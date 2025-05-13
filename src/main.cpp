@@ -127,5 +127,5 @@ void loop() {
     }
     
     // Small delay to prevent CPU hogging
-    delay(100);
+    //delay(100);
 }

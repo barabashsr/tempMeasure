@@ -6,7 +6,7 @@ TempModbusServer::TempModbusServer(RegisterMap& regMap, uint8_t id, HardwareSeri
       rxPin(rx), txPin(tx), baudRate(baud) {
     
     // Create ModbusRTU server with 2000ms timeout
-    mbServer = new ModbusServerRTU(2000, 18);
+    mbServer = new ModbusServerRTU(1000, 18);
     
     // Set static pointer to register map for worker functions
     registerMapPtr = &regMap;
