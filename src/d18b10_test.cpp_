@@ -1,0 +1,83 @@
+#include <OneWire.h>
+#include <DallasTemperature.h>
+
+// GPIO where the DS18B20 sensors are connected
+const int oneWireBus = 4;
+
+// Setup a oneWire instance to communicate with any OneWire devices
+OneWire oneWire(oneWireBus);
+
+// Pass our oneWire reference to Dallas Temperature sensor
+DallasTemperature sensors(&oneWire);
+
+// Arrays to store device addresses
+DeviceAddress sensor1, sensor2;
+
+// Function to print a device address
+void printAddress(DeviceAddress deviceAddress) {
+    for (uint8_t i = 0; i < 8; i++) {
+      if (deviceAddress[i] < 16) Serial.print("0");
+      Serial.print(deviceAddress[i], HEX);
+    }
+  }
+  
+
+void setup() {
+  // Start serial communication
+  Serial.begin(115200);
+  
+  // Start the DS18B20 sensor
+  sensors.begin();
+  
+  // Locate devices on the bus
+  Serial.println("Locating DS18B20 temperature sensors...");
+  Serial.print("Found ");
+  Serial.print(sensors.getDeviceCount(), DEC);
+  Serial.println(" devices.");
+
+  // Get the addresses of the first two sensors
+  if (!sensors.getAddress(sensor1, 0)) {
+    Serial.println("Unable to find address for Sensor 1");
+  }
+  
+  if (!sensors.getAddress(sensor2, 1)) {
+    Serial.println("Unable to find address for Sensor 2");
+  }
+
+  // Print the addresses
+  Serial.print("Sensor 1 Address: ");
+  printAddress(sensor1);
+  Serial.println();
+  
+  Serial.print("Sensor 2 Address: ");
+  printAddress(sensor2);
+  Serial.println();
+  
+  // Set the resolution to 9 bit (can be 9, 10, 11, or 12)
+  sensors.setResolution(sensor1, 12);
+  sensors.setResolution(sensor2, 12);
+}
+
+void loop() {
+  // Request temperatures from all sensors
+  Serial.println("Requesting temperatures...");
+  sensors.requestTemperatures();
+  
+  // Get and print the temperature for each sensor
+  float temp1 = sensors.getTempC(sensor1);
+  float temp2 = sensors.getTempC(sensor2);
+  
+  Serial.print("Sensor 1 Temperature: ");
+  Serial.print(temp1);
+  Serial.println(" °C");
+  
+  Serial.print("Sensor 2 Temperature: ");
+  Serial.print(temp2);
+  Serial.println(" °C");
+  
+  Serial.println("----------------------------");
+  
+  // Wait 2 seconds before next reading
+  delay(2000);
+}
+
