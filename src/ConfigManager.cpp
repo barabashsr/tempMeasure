@@ -1,7 +1,10 @@
+
 #include "ConfigManager.h"
 #include <ArduinoJson.h>
 
+
 ConfigManager* ConfigManager::instance = nullptr;
+
 
 // YAML configuration definition
 const char* VARIABLES_DEF_YAML PROGMEM = R"~(
@@ -113,19 +116,31 @@ bool ConfigManager::begin() {
     // Set callback function for configuration changes
     conf.setRemotUpdateCallback(onConfigChanged);
     
-    // Setup ConfigAssist
-    bool startAP = true;
-    if (conf("st_ssid") != "" && conf("st_pass") != "") {
-        // Try to connect to WiFi if credentials are available
-        if (connectWiFi(10000)) {
-            startAP = false;
+    // IMPORTANT: Register custom routes BEFORE ConfigAssist setup
+    
+    // Add route for the main page
+    server->on("/", HTTP_GET, [this]() {
+        if (LittleFS.exists("/index.html")) {
+            File file = LittleFS.open("/index.html", "r");
+            server->streamFile(file, "text/html");
+            file.close();
+        } else {
+            server->send(200, "text/html", "<html><body><h1>Temperature Monitoring System</h1><p><a href='/cfg'>Configuration</a></p><p><a href='/sensors.html'>Sensors</a></p></body></html>");
         }
-    }
+    });
     
-    // Setup ConfigAssist with web server
-    conf.setup(*server, startAP);
+    // Add route for the sensors page
+    server->on("/sensors.html", HTTP_GET, [this]() {
+        if (LittleFS.exists("/sensors.html")) {
+            File file = LittleFS.open("/sensors.html", "r");
+            server->streamFile(file, "text/html");
+            file.close();
+        } else {
+            server->send(404, "text/plain", "Sensors page not found");
+        }
+    });
     
-    // Add custom web routes for sensor management
+    // API endpoints for sensor data
     server->on("/api/sensors", HTTP_GET, [this]() {
         server->send(200, "application/json", controller.getSensorsJson());
     });
@@ -138,6 +153,100 @@ bool ConfigManager::begin() {
         controller.resetMinMaxValues();
         server->send(200, "text/plain", "Min/Max values reset");
     });
+    
+    // API endpoint for sensor discovery
+    server->on("/api/discover", HTTP_POST, [this]() {
+        bool discovered = controller.discoverDS18B20Sensors();
+        if (discovered) {
+            // Add discovered sensors to configuration
+            for (int i = 0; i < controller.getSensorCount(); i++) {
+                Sensor* sensor = controller.getSensorByIndex(i);
+                if (sensor && sensor->getType() == SensorType::DS18B20) {
+                    addSensorToConfig(
+                        SensorType::DS18B20,
+                        sensor->getAddress(),
+                        sensor->getName(),
+                        sensor->getDS18B20Address()
+                    );
+                }
+            }
+            server->send(200, "text/plain", "Sensors discovered");
+        } else {
+            server->send(404, "text/plain", "No sensors found");
+        }
+    });
+    
+    // API endpoint to update a sensor
+    server->on("/api/sensors", HTTP_PUT, [this]() {
+        if (server->hasArg("plain")) {
+            String body = server->arg("plain");
+            DynamicJsonDocument doc(512);
+            DeserializationError error = deserializeJson(doc, body);
+            
+            if (!error) {
+                uint8_t address = doc["address"];
+                String name = doc["name"].as<String>();
+                int16_t lowAlarm = doc["lowAlarm"];
+                int16_t highAlarm = doc["highAlarm"];
+                
+                Sensor* sensor = controller.findSensor(address);
+                if (sensor) {
+                    sensor->setName(name);
+                    sensor->setLowAlarmThreshold(lowAlarm);
+                    sensor->setHighAlarmThreshold(highAlarm);
+                    
+                    // Update configuration
+                    updateSensorInConfig(address, name, lowAlarm, highAlarm);
+                    
+                    server->send(200, "text/plain", "Sensor updated");
+                } else {
+                    server->send(404, "text/plain", "Sensor not found");
+                }
+            } else {
+                server->send(400, "text/plain", "Invalid JSON");
+            }
+        } else {
+            server->send(400, "text/plain", "No data provided");
+        }
+    });
+    
+    // API endpoint to delete a sensor
+    server->on("/api/sensors", HTTP_DELETE, [this]() {
+        if (server->hasArg("plain")) {
+            String body = server->arg("plain");
+            DynamicJsonDocument doc(256);
+            DeserializationError error = deserializeJson(doc, body);
+            
+            if (!error) {
+                uint8_t address = doc["address"];
+                
+                if (controller.removeSensor(address)) {
+                    // Remove from configuration
+                    removeSensorFromConfig(address);
+                    
+                    server->send(200, "text/plain", "Sensor removed");
+                } else {
+                    server->send(404, "text/plain", "Sensor not found");
+                }
+            } else {
+                server->send(400, "text/plain", "Invalid JSON");
+            }
+        } else {
+            server->send(400, "text/plain", "No data provided");
+        }
+    });
+    
+    // Setup WiFi
+    bool startAP = true;
+    if (conf("st_ssid") != "" && conf("st_pass") != "") {
+        // Try to connect to WiFi if credentials are available
+        if (connectWiFi(10000)) {
+            startAP = false;
+        }
+    }
+    
+    // Setup ConfigAssist with web server AFTER registering custom routes
+    conf.setup(*server, startAP);
     
     // Start the web server
     server->begin();
