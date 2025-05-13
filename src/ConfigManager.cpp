@@ -1,0 +1,386 @@
+#include "ConfigManager.h"
+#include <ArduinoJson.h>
+
+ConfigManager* ConfigManager::instance = nullptr;
+
+// YAML configuration definition
+const char* VARIABLES_DEF_YAML PROGMEM = R"~(
+Wifi settings:
+  - st_ssid:
+      label: WiFi SSID
+      default: Tenda_B3E6F0
+  - st_pass:
+      label: WiFi Password
+      default: a111222333
+  - host_name:
+      label: Device Hostname
+      default: 'temp-monitor-{mac}'
+
+Device settings:
+  - device_id:
+      label: Device ID
+      type: number
+      min: 1
+      max: 9999
+      default: 1000
+  - firmware_version:
+      label: Firmware Version
+      default: '1.0'
+      readonly: true
+  - measurement_period:
+      label: Measurement Period (seconds)
+      type: number
+      min: 1
+      max: 3600
+      default: 10
+
+Modbus settings:
+  - modbus_enabled:
+      label: Enable Modbus RTU
+      checked: true
+  - modbus_address:
+      label: Modbus Device Address
+      type: number
+      min: 1
+      max: 247
+      default: 1
+  - modbus_baud_rate:
+      label: Baud Rate
+      options: '4800', '9600', '19200', '38400', '57600', '115200'
+      default: '9600'
+  - rs485_rx_pin:
+      label: RS485 RX Pin
+      type: number
+      min: 0
+      max: 39
+      default: 22
+  - rs485_tx_pin:
+      label: RS485 TX Pin
+      type: number
+      min: 0
+      max: 39
+      default: 23
+  - rs485_de_pin:
+      label: RS485 DE/RE Pin
+      type: number
+      min: 0
+      max: 39
+      default: 18
+
+Sensor settings:
+  - onewire_pin:
+      label: OneWire Bus Pin
+      type: number
+      min: 0
+      max: 39
+      default: 4
+  - auto_discover:
+      label: Auto-discover sensors on startup
+      checked: true
+  - reset_min_max:
+      label: Reset Min/Max Values
+      type: button
+      attribs: onClick="resetMinMax()"
+)~";
+
+ConfigManager::ConfigManager(TemperatureController& tempController)
+    : conf("/config.ini", VARIABLES_DEF_YAML),
+      controller(tempController),
+      portalActive(false) {
+    
+    instance = this;
+    server = new WebServer(80);
+    confHelper = new ConfigAssistHelper(conf);
+}
+
+ConfigManager::~ConfigManager() {
+    if (server) {
+        delete server;
+    }
+    
+    if (confHelper) {
+        delete confHelper;
+    }
+}
+
+bool ConfigManager::begin() {
+    // Initialize LittleFS
+    if (!LittleFS.begin(true)) {
+        Serial.println("LittleFS mount failed");
+        return false;
+    }
+    
+    // Set callback function for configuration changes
+    conf.setRemotUpdateCallback(onConfigChanged);
+    
+    // Setup ConfigAssist
+    bool startAP = true;
+    if (conf("st_ssid") != "" && conf("st_pass") != "") {
+        // Try to connect to WiFi if credentials are available
+        if (connectWiFi(10000)) {
+            startAP = false;
+        }
+    }
+    
+    // Setup ConfigAssist with web server
+    conf.setup(*server, startAP);
+    
+    // Add custom web routes for sensor management
+    server->on("/api/sensors", HTTP_GET, [this]() {
+        server->send(200, "application/json", controller.getSensorsJson());
+    });
+    
+    server->on("/api/status", HTTP_GET, [this]() {
+        server->send(200, "application/json", controller.getSystemStatusJson());
+    });
+    
+    server->on("/api/reset-minmax", HTTP_POST, [this]() {
+        controller.resetMinMaxValues();
+        server->send(200, "text/plain", "Min/Max values reset");
+    });
+    
+    // Start the web server
+    server->begin();
+    
+    // Load sensor configuration
+    loadSensorConfig();
+    
+    // Apply configuration to controller
+    controller.setDeviceId(getDeviceId());
+    controller.setMeasurementPeriod(getMeasurementPeriod());
+    
+    return true;
+}
+
+void ConfigManager::update() {
+    // Handle client requests
+    server->handleClient();
+}
+
+bool ConfigManager::connectWiFi(int timeoutMs) {
+    // Use ConfigAssistHelper to connect to WiFi
+    bool connected = confHelper->connectToNetwork(timeoutMs, -1);
+    
+    if (connected) {
+        Serial.print("Connected to WiFi. IP: ");
+        Serial.println(WiFi.localIP().toString());
+    } else {
+        Serial.println("Failed to connect to WiFi");
+    }
+    
+    return connected;
+}
+
+void ConfigManager::onConfigChanged(String key) {
+    if (instance == nullptr) return;
+    
+    Serial.print("Config changed: ");
+    Serial.print(key);
+    Serial.print(" = ");
+    Serial.println(instance->conf(key));
+    
+    if (key == "device_id") {
+        instance->controller.setDeviceId(instance->conf(key).toInt());
+    } else if (key == "measurement_period") {
+        instance->controller.setMeasurementPeriod(instance->conf(key).toInt());
+    } else if (key == "reset_min_max") {
+        instance->resetMinMaxValues();
+    }
+}
+
+bool ConfigManager::addSensorToConfig(SensorType type, uint8_t address, const String& name, const uint8_t* romAddress) {
+    // Create a ConfigAssist for sensor configuration
+    ConfigAssist sensorConf("/sensors.ini", false);
+    
+    // Create a unique key for this sensor
+    String sensorKey = String(type == SensorType::DS18B20 ? "ds_" : "pt_") + String(address);
+    
+    // Check if sensor already exists
+    if (sensorConf(sensorKey + "_name") != "") {
+        return false; // Sensor already exists
+    }
+    
+    // Add sensor configuration
+    sensorConf[sensorKey + "_name"] = name;
+    sensorConf[sensorKey + "_type"] = type == SensorType::DS18B20 ? "DS18B20" : "PT1000";
+    sensorConf[sensorKey + "_address"] = String(address);
+    sensorConf[sensorKey + "_low_alarm"] = "-10"; // Default low alarm
+    sensorConf[sensorKey + "_high_alarm"] = "50"; // Default high alarm
+    
+    // Add ROM address for DS18B20 sensors
+    if (type == SensorType::DS18B20 && romAddress != nullptr) {
+        String romHex = "";
+        for (int i = 0; i < 8; i++) {
+            if (romAddress[i] < 16) romHex += "0";
+            romHex += String(romAddress[i], HEX);
+        }
+        sensorConf[sensorKey + "_rom"] = romHex;
+    }
+    
+    // Save configuration
+    sensorConf.saveConfigFile();
+    
+    return true;
+}
+
+bool ConfigManager::removeSensorFromConfig(uint8_t address) {
+    // Create a ConfigAssist for sensor configuration
+    ConfigAssist sensorConf("/sensors.ini", false);
+    
+    // Try both sensor types
+    String dsKey = "ds_" + String(address);
+    String ptKey = "pt_" + String(address);
+    
+    bool found = false;
+    
+    // Check if DS18B20 sensor exists
+    if (sensorConf(dsKey + "_name") != "") {
+        // Remove all keys for this sensor by setting them to empty
+        sensorConf[dsKey + "_name"] = "";
+        sensorConf[dsKey + "_type"] = "";
+        sensorConf[dsKey + "_address"] = "";
+        sensorConf[dsKey + "_low_alarm"] = "";
+        sensorConf[dsKey + "_high_alarm"] = "";
+        sensorConf[dsKey + "_rom"] = "";
+        found = true;
+    }
+    
+    // Check if PT1000 sensor exists
+    if (sensorConf(ptKey + "_name") != "") {
+        // Remove all keys for this sensor by setting them to empty
+        sensorConf[ptKey + "_name"] = "";
+        sensorConf[ptKey + "_type"] = "";
+        sensorConf[ptKey + "_address"] = "";
+        sensorConf[ptKey + "_low_alarm"] = "";
+        sensorConf[ptKey + "_high_alarm"] = "";
+        found = true;
+    }
+    
+    if (found) {
+        // Save configuration
+        sensorConf.saveConfigFile();
+    }
+    
+    return found;
+}
+
+bool ConfigManager::updateSensorInConfig(uint8_t address, const String& name, int16_t lowAlarm, int16_t highAlarm) {
+    // Create a ConfigAssist for sensor configuration
+    ConfigAssist sensorConf("/sensors.ini", false);
+    
+    // Try both sensor types
+    String dsKey = "ds_" + String(address);
+    String ptKey = "pt_" + String(address);
+    
+    bool found = false;
+    
+    // Check if DS18B20 sensor exists
+    if (sensorConf(dsKey + "_name") != "") {
+        sensorConf[dsKey + "_name"] = name;
+        sensorConf[dsKey + "_low_alarm"] = String(lowAlarm);
+        sensorConf[dsKey + "_high_alarm"] = String(highAlarm);
+        found = true;
+    }
+    
+    // Check if PT1000 sensor exists
+    if (sensorConf(ptKey + "_name") != "") {
+        sensorConf[ptKey + "_name"] = name;
+        sensorConf[ptKey + "_low_alarm"] = String(lowAlarm);
+        sensorConf[ptKey + "_high_alarm"] = String(highAlarm);
+        found = true;
+    }
+    
+    if (found) {
+        // Save configuration
+        sensorConf.saveConfigFile();
+    }
+    
+    return found;
+}
+
+void ConfigManager::loadSensorConfig() {
+    // Create a ConfigAssist for sensor configuration
+    ConfigAssist sensorConf("/sensors.ini", false);
+    
+    // Check if the file exists
+    if (!LittleFS.exists("/sensors.ini")) {
+        return; // No sensor configuration yet
+    }
+    
+    // Load the configuration
+    sensorConf.loadConfigFile();
+    
+    // Get all keys (ConfigAssist doesn't have getKeys method, so we'll check known patterns)
+    for (int i = 0; i < 60; i++) {
+        // Check DS18B20 sensors
+        String dsPrefix = "ds_" + String(i);
+        if (sensorConf(dsPrefix + "_name") != "") {
+            // Get sensor type
+            String typeStr = sensorConf(dsPrefix + "_type");
+            SensorType type = SensorType::DS18B20;
+            
+            // Get sensor address
+            uint8_t address = sensorConf(dsPrefix + "_address").toInt();
+            
+            // Get sensor name
+            String name = sensorConf(dsPrefix + "_name");
+            
+            // Create sensor
+            Sensor* newSensor = new Sensor(type, address, name);
+            
+            // Set thresholds
+            newSensor->setLowAlarmThreshold(sensorConf(dsPrefix + "_low_alarm").toInt());
+            newSensor->setHighAlarmThreshold(sensorConf(dsPrefix + "_high_alarm").toInt());
+            
+            // Set up physical connection
+            String romHex = sensorConf(dsPrefix + "_rom");
+            if (romHex.length() == 16) {
+                uint8_t romAddress[8];
+                for (int j = 0; j < 8; j++) {
+                    String byteHex = romHex.substring(j*2, j*2+2);
+                    romAddress[j] = strtol(byteHex.c_str(), NULL, 16);
+                }
+                newSensor->setupDS18B20(getOneWirePin(), romAddress);
+            }
+            
+            // Initialize sensor
+            if (newSensor->initialize()) {
+                controller.addSensor(type, address, name);
+            } else {
+                delete newSensor;
+            }
+        }
+        
+        // Check PT1000 sensors
+        String ptPrefix = "pt_" + String(i);
+        if (sensorConf(ptPrefix + "_name") != "") {
+            // Get sensor type
+            String typeStr = sensorConf(ptPrefix + "_type");
+            SensorType type = SensorType::PT1000;
+            
+            // Get sensor address
+            uint8_t address = sensorConf(ptPrefix + "_address").toInt();
+            
+            // Get sensor name
+            String name = sensorConf(ptPrefix + "_name");
+            
+            // Create sensor
+            Sensor* newSensor = new Sensor(type, address, name);
+            
+            // Set thresholds
+            newSensor->setLowAlarmThreshold(sensorConf(ptPrefix + "_low_alarm").toInt());
+            newSensor->setHighAlarmThreshold(sensorConf(ptPrefix + "_high_alarm").toInt());
+            
+            // Initialize sensor
+            if (newSensor->initialize()) {
+                controller.addSensor(type, address, name);
+            } else {
+                delete newSensor;
+            }
+        }
+    }
+}
+
+void ConfigManager::resetMinMaxValues() {
+    controller.resetMinMaxValues();
+}

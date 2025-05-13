@@ -65,6 +65,14 @@ public:
     
     // Reset min/max values for all sensors
     void resetMinMaxValues();
+
+    // Add a pre-configured sensor
+    bool addSensor(Sensor* sensor);
+
+    // Get sensor by index
+    Sensor* getSensorByIndex(int index);
+
+    void setOneWireBusPin(uint8_t pin) { oneWireBusPin = pin; }
 };
 
 #endif // TEMPERATURE_CONTROLLER_H

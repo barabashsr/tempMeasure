@@ -314,3 +314,33 @@ void TemperatureController::resetMinMaxValues() {
         sensor->resetMinMaxTemp();
     }
 }
+
+bool TemperatureController::addSensor(Sensor* sensor) {
+    if (sensor == nullptr) {
+        return false;
+    }
+    
+    // Check if address is already in use
+    if (findSensor(sensor->getAddress()) != nullptr) {
+        return false; // Address already exists
+    }
+    
+    // Add to vector
+    sensors.push_back(sensor);
+    
+    // Update register map count
+    if (sensor->getType() == SensorType::DS18B20) {
+        registerMap.incrementActiveDS18B20();
+    } else {
+        registerMap.incrementActivePT1000();
+    }
+    
+    return true;
+}
+
+Sensor* TemperatureController::getSensorByIndex(int index) {
+    if (index >= 0 && index < sensors.size()) {
+        return sensors[index];
+    }
+    return nullptr;
+}

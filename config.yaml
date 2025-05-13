@@ -1,0 +1,76 @@
+Wifi settings:
+  - st_ssid:
+      label: WiFi SSID
+      default: ''
+  - st_pass:
+      label: WiFi Password
+      default: ''
+  - host_name:
+      label: Device Hostname
+      default: 'temp-monitor-{mac}'
+
+Device settings:
+  - device_id:
+      label: Device ID
+      type: number
+      min: 1
+      max: 9999
+      default: 1000
+  - firmware_version:
+      label: Firmware Version
+      default: '1.0'
+      readonly: true
+  - measurement_period:
+      label: Measurement Period (seconds)
+      type: number
+      min: 1
+      max: 3600
+      default: 10
+
+Modbus settings:
+  - modbus_enabled:
+      label: Enable Modbus RTU
+      checked: true
+  - modbus_address:
+      label: Modbus Device Address
+      type: number
+      min: 1
+      max: 247
+      default: 1
+  - modbus_baud_rate:
+      label: Baud Rate
+      options: '4800', '9600', '19200', '38400', '57600', '115200'
+      default: '9600'
+  - rs485_rx_pin:
+      label: RS485 RX Pin
+      type: number
+      min: 0
+      max: 39
+      default: 22
+  - rs485_tx_pin:
+      label: RS485 TX Pin
+      type: number
+      min: 0
+      max: 39
+      default: 23
+  - rs485_de_pin:
+      label: RS485 DE/RE Pin
+      type: number
+      min: 0
+      max: 39
+      default: 18
+
+Sensor settings:
+  - onewire_pin:
+      label: OneWire Bus Pin
+      type: number
+      min: 0
+      max: 39
+      default: 4
+  - auto_discover:
+      label: Auto-discover sensors on startup
+      checked: true
+  - reset_min_max:
+      label: Reset Min/Max Values
+      type: button
+      attribs: onClick="resetMinMax()"
