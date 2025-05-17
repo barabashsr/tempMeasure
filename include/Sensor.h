@@ -102,12 +102,7 @@ public:
     static const uint16_t ALARM_HIGH_TEMP = 0x0002;
     
     // Get DS18B20 ROM address
-    const uint8_t* getDS18B20Address() const {
-        if (type == SensorType::DS18B20) {
-            return connection.ds18b20.oneWireAddress;
-        }
-        return nullptr;
-    }
+    const uint8_t* getDS18B20Address() const;
     };
 
 #endif // SENSOR_H

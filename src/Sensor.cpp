@@ -209,3 +209,12 @@ void Sensor::setHighAlarmThreshold(int16_t threshold) {
     // Update alarm status after changing threshold
     updateAlarmStatus();
 }
+
+    // Get DS18B20 ROM address
+    const uint8_t* Sensor::getDS18B20Address() const {
+        if (type == SensorType::DS18B20) {
+            return connection.ds18b20.oneWireAddress;
+        }
+        return nullptr;
+    }
+    

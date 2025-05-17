@@ -228,8 +228,14 @@ bool TemperatureController::discoverDS18B20Sensors() {
             bool alreadyExists = false;
             for (auto sensor : sensors) {
                 if (sensor->getType() == SensorType::DS18B20) {
-                    // Compare ROM address (would need to add a method to get ROM address from Sensor)
-                    // For now, we'll just add all discovered sensors
+                    const uint8_t* existingROM = sensor->getDS18B20Address();
+                    if (existingROM != nullptr) {
+                        // Compare ROM addresses
+                        if (memcmp(existingROM, sensorAddress, 8) == 0) {
+                            alreadyExists = true;
+                            break;
+                        }
+                    }
                 }
             }
             
@@ -265,6 +271,8 @@ bool TemperatureController::discoverDS18B20Sensors() {
     return anyAdded;
 }
 
+
+
 String TemperatureController::getSensorsJson() {
     DynamicJsonDocument doc(4096); // Adjust size based on your needs
     JsonArray sensorArray = doc.createNestedArray("sensors");
@@ -281,12 +289,25 @@ String TemperatureController::getSensorsJson() {
         sensorObj["highAlarmThreshold"] = sensor->getHighAlarmThreshold();
         sensorObj["alarmStatus"] = sensor->getAlarmStatus();
         sensorObj["errorStatus"] = sensor->getErrorStatus();
+        
+        // Add ROM address for DS18B20 sensors
+        if (sensor->getType() == SensorType::DS18B20) {
+            const uint8_t* romAddress = sensor->getDS18B20Address();
+            if (romAddress != nullptr) {
+                JsonArray romArray = sensorObj.createNestedArray("romAddress");
+                for (int i = 0; i < 8; i++) {
+                    romArray.add(romAddress[i]);
+                }
+            }
+        }
     }
     
     String jsonString;
     serializeJson(doc, jsonString);
     return jsonString;
 }
+
+
 
 String TemperatureController::getSystemStatusJson() {
     DynamicJsonDocument doc(1024); // Adjust size based on your needs

@@ -31,7 +31,7 @@ void setup() {
     // Apply configuration to controller
     controller.setDeviceId(configManager->getDeviceId());
     Serial.println("controller.setDeviceId(configManager->getDeviceId());");
-    controller.setMeasurementPeriod(configManager->getMeasurementPeriod());
+    controller.setMeasurementPeriod(configManager->getMeasurementPeriod()*1000);
     Serial.println("controller.setMeasurementPeriod(configManager->getMeasurementPeriod());");
     controller.setOneWireBusPin(configManager->getOneWirePin());
     Serial.println("controller.setOneWireBusPin(configManager->getOneWirePin());");
@@ -94,7 +94,7 @@ void loop() {
     
     // Print status every 30 seconds if not in portal mode
     static unsigned long lastPrintTime = 0;
-    if (!configManager->isPortalActive() && millis() - lastPrintTime > 30000) {
+    if (!configManager->isPortalActive() && millis() - lastPrintTime > controller.getMeasurementPeriod()) {
         Serial.println("\nSystem Status:");
         //Serial.println(controller.getSystemStatusJson());
         Serial.println(controller.getSensorsJson());
