@@ -1,0 +1,26 @@
+#include <LittleFS.h>
+
+void setup() {
+  Serial.begin(115200);
+  delay(3000);  // Give time to open serial monitor
+  
+  // Force format sequence
+  Serial.println("Attempting LittleFS format...");
+  if(LittleFS.format()) {
+    Serial.println("Format successful");
+  } else {
+    Serial.println("Format failed");
+    ESP.restart();
+  }
+  
+  // Verify mount after format
+  if(LittleFS.begin(true)) {
+    Serial.println("Mount successful");
+    Serial.printf("Total space: %u\nUsed space: %u\n", 
+                 LittleFS.totalBytes(), LittleFS.usedBytes());
+  } else {
+    Serial.println("Mount failed after format");
+  }
+}
+
+void loop() {};
