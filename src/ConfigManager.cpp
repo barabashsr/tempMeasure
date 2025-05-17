@@ -253,10 +253,13 @@ bool ConfigManager::begin() {
     
     // Load sensor configuration
     loadSensorConfig();
+    Serial.println("Sensor data loaded");
     
     // Apply configuration to controller
     controller.setDeviceId(getDeviceId());
+    Serial.println("Device ID set");
     controller.setMeasurementPeriod(getMeasurementPeriod());
+    Serial.println("Measurement period set");
     
     return true;
 }
@@ -299,7 +302,7 @@ void ConfigManager::onConfigChanged(String key) {
 
 bool ConfigManager::addSensorToConfig(SensorType type, uint8_t address, const String& name, const uint8_t* romAddress) {
     // Create a ConfigAssist for sensor configuration
-    ConfigAssist sensorConf("/sensors.ini", false);
+    ConfigAssist sensorConf("/sensors2.ini", false);
     
     // Create a unique key for this sensor
     String sensorKey = String(type == SensorType::DS18B20 ? "ds_" : "pt_") + String(address);
@@ -334,7 +337,7 @@ bool ConfigManager::addSensorToConfig(SensorType type, uint8_t address, const St
 
 bool ConfigManager::removeSensorFromConfig(uint8_t address) {
     // Create a ConfigAssist for sensor configuration
-    ConfigAssist sensorConf("/sensors.ini", false);
+    ConfigAssist sensorConf("/sensors2.ini", false);
     
     // Try both sensor types
     String dsKey = "ds_" + String(address);
@@ -375,7 +378,7 @@ bool ConfigManager::removeSensorFromConfig(uint8_t address) {
 
 bool ConfigManager::updateSensorInConfig(uint8_t address, const String& name, int16_t lowAlarm, int16_t highAlarm) {
     // Create a ConfigAssist for sensor configuration
-    ConfigAssist sensorConf("/sensors.ini", false);
+    ConfigAssist sensorConf("/sensors2.ini", false);
     
     // Try both sensor types
     String dsKey = "ds_" + String(address);
@@ -409,10 +412,10 @@ bool ConfigManager::updateSensorInConfig(uint8_t address, const String& name, in
 
 void ConfigManager::loadSensorConfig() {
     // Create a ConfigAssist for sensor configuration
-    ConfigAssist sensorConf("/sensors.ini", false);
+    ConfigAssist sensorConf("/sensors2.ini", false);
     
     // Check if the file exists
-    if (!LittleFS.exists("/sensors.ini")) {
+    if (!LittleFS.exists("/sensors2.ini")) {
         return; // No sensor configuration yet
     }
     

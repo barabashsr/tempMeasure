@@ -27,12 +27,20 @@ TempModbusServer::~TempModbusServer() {
 bool TempModbusServer::begin() {
     // Prepare serial port for Modbus RTU
     RTUutils::prepareHardwareSerial(serial);
+    Serial.println("Modbus begin1");
+    if (baudRate == 0) {
+        baudRate = 9600;
+    }
     serial.begin(baudRate, SERIAL_8N1, rxPin, txPin);
+    Serial.println("Modbus begin2");
     
     // Register worker functions for different Modbus function codes
     mbServer->registerWorker(serverID, READ_HOLD_REGISTER, &TempModbusServer::readHoldingRegistersWorker);
+    Serial.println("Modbus begin3");
     mbServer->registerWorker(serverID, WRITE_HOLD_REGISTER, &TempModbusServer::writeHoldingRegisterWorker);
+    Serial.println("Modbus begin4");
     mbServer->registerWorker(serverID, WRITE_MULT_REGISTERS, &TempModbusServer::writeMultipleRegistersWorker);
+    Serial.println("Modbus begin5");
     
     // Start ModbusRTU server - note that begin() returns void
     mbServer->begin(serial);

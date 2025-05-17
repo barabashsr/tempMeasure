@@ -30,8 +30,11 @@ void setup() {
     
     // Apply configuration to controller
     controller.setDeviceId(configManager->getDeviceId());
+    Serial.println("controller.setDeviceId(configManager->getDeviceId());");
     controller.setMeasurementPeriod(configManager->getMeasurementPeriod());
+    Serial.println("controller.setMeasurementPeriod(configManager->getMeasurementPeriod());");
     controller.setOneWireBusPin(configManager->getOneWirePin());
+    Serial.println("controller.setOneWireBusPin(configManager->getOneWirePin());");
     
     // Discover DS18B20 sensors if auto-discover is enabled
     if (configManager->getAutoDiscover() && controller.getDS18B20Count() == 0) {
@@ -60,6 +63,7 @@ void setup() {
     
     // Initialize Modbus server if enabled in config
     if (configManager->isModbusEnabled()) {
+        Serial.println("Init Modbus RTU server...");
         modbusServer = new TempModbusServer(
             controller.getRegisterMap(),
             configManager->getModbusAddress(),
@@ -68,6 +72,8 @@ void setup() {
             configManager->getTxPin(),
             configManager->getModbusBaudRate()
         );
+        Serial.println("Init Modbus RTU server!");
+
         
         if (modbusServer->begin()) {
             Serial.println("Modbus RTU server started successfully");
@@ -90,7 +96,8 @@ void loop() {
     static unsigned long lastPrintTime = 0;
     if (!configManager->isPortalActive() && millis() - lastPrintTime > 30000) {
         Serial.println("\nSystem Status:");
-        Serial.println(controller.getSystemStatusJson());
+        //Serial.println(controller.getSystemStatusJson());
+        Serial.println(controller.getSensorsJson());
         
         lastPrintTime = millis();
     }
