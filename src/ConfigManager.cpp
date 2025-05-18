@@ -320,14 +320,50 @@ bool ConfigManager::addSensorToConfig(SensorType type, uint8_t address, const St
     sensorConf[sensorKey + "_high_alarm"] = "50"; // Default high alarm
     
     // Add ROM address for DS18B20 sensors
-    if (type == SensorType::DS18B20 && romAddress != nullptr) {
-        String romHex = "";
-        for (int i = 0; i < 8; i++) {
-            if (romAddress[i] < 16) romHex += "0";
-            romHex += String(romAddress[i], HEX);
-        }
-        sensorConf[sensorKey + "_rom"] = romHex;
+    // if (type == SensorType::DS18B20 && romAddress != nullptr) {
+    //     String romHex = "";
+    //     for (int i = 0; i < 8; i++) {
+    //         if (romAddress[i] < 16) romHex += "0";
+    //         romHex += String(romAddress[i], HEX);
+    //     }
+    //     sensorConf[sensorKey + "_rom"] = romHex;
+    // }
+
+
+    // Add ROM address for DS18B20 sensors
+if (type == SensorType::DS18B20 && romAddress != nullptr) {
+    String romHex = "";
+    
+    Serial.println(F("--- Processing ROM address ---"));
+    Serial.print(F("Raw ROM bytes: "));
+    for (int i = 0; i < 8; i++) {
+        Serial.print(romAddress[i], HEX);
+        Serial.print(" ");
     }
+    Serial.println();
+    
+    for (int i = 0; i < 8; i++) {
+        if (romAddress[i] < 16) romHex += "0";
+        romHex += String(romAddress[i], HEX);
+        
+        // Debug each byte as it's added to the string
+        Serial.print(F("Added byte "));
+        Serial.print(i);
+        Serial.print(F(": "));
+        Serial.print(romAddress[i], HEX);
+        Serial.print(F(" -> Current romHex: "));
+        Serial.println(romHex);
+    }
+    
+    sensorConf[sensorKey + "_rom"] = romHex;
+    
+    // Show the final string being written to the configuration
+    Serial.print(F("Final ROM string written to config: "));
+    Serial.println(romHex);
+    Serial.print(F("Config key: "));
+    Serial.println(sensorKey + "_rom");
+}
+
     
     // Save configuration
     sensorConf.saveConfigFile();
