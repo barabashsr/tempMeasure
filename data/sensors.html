@@ -112,6 +112,64 @@
             font-family: monospace;
             font-size: 12px;
         }
+        
+        .auto-update-container {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+        
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+            margin-left: 10px;
+        }
+        
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        
+        #updateStatus {
+            margin-left: 10px;
+            font-size: 14px;
+            color: #666;
+        }
     </style>
 </head>
 <body>
@@ -122,6 +180,15 @@
             <button id="discoverBtn" class="btn">Discover Sensors</button>
             <button id="resetMinMaxBtn" class="btn">Reset Min/Max Values</button>
             <button id="clearBtn" class="btn">Clear Sensors</button>
+        </div>
+        
+        <div class="auto-update-container">
+            <span>Auto-update:</span>
+            <label class="switch">
+                <input type="checkbox" id="autoUpdateToggle">
+                <span class="slider"></span>
+            </label>
+            <span id="updateStatus">Off</span>
         </div>
         
         <div id="sensorTableContainer">
@@ -151,6 +218,10 @@
     </div>
 
     <script>
+        // Global variables
+        let updateInterval = null;
+        const UPDATE_INTERVAL_MS = 5000; // Update every 5 seconds
+        
         document.addEventListener('DOMContentLoaded', function() {
             loadSensors();
             
@@ -158,18 +229,55 @@
             document.getElementById('discoverBtn').addEventListener('click', discoverSensors);
             document.getElementById('resetMinMaxBtn').addEventListener('click', resetMinMax);
             document.getElementById('clearBtn').addEventListener('click', clearSensors);
+            
+            // Auto-update toggle
+            document.getElementById('autoUpdateToggle').addEventListener('change', toggleAutoUpdate);
         });
         
-        function loadSensors() {
+        function toggleAutoUpdate() {
+            const toggle = document.getElementById('autoUpdateToggle');
+            const statusText = document.getElementById('updateStatus');
+            
+            if (toggle.checked) {
+                // Start auto-update
+                statusText.textContent = `On (every ${UPDATE_INTERVAL_MS/1000} seconds)`;
+                
+                // Immediately load data once
+                loadSensors();
+                
+                // Then set up the interval for future updates
+                updateInterval = setInterval(function() {
+                    loadSensors(true); // true = silent update (no loading message)
+                }, UPDATE_INTERVAL_MS);
+            } else {
+                // Stop auto-update
+                statusText.textContent = 'Off';
+                if (updateInterval) {
+                    clearInterval(updateInterval);
+                    updateInterval = null;
+                }
+            }
+        }
+        
+        function loadSensors(silent = false) {
+            if (!silent) {
+                document.getElementById('loadingMessage').style.display = 'block';
+                document.getElementById('loadingMessage').textContent = 'Loading sensors...';
+            }
+            
             fetch('/api/sensors')
                 .then(response => response.json())
                 .then(data => {
                     displaySensors(data);
-                    document.getElementById('loadingMessage').style.display = 'none';
+                    if (!silent) {
+                        document.getElementById('loadingMessage').style.display = 'none';
+                    }
                 })
                 .catch(error => {
                     console.error('Error loading sensors:', error);
-                    document.getElementById('loadingMessage').textContent = 'Error loading sensors';
+                    if (!silent) {
+                        document.getElementById('loadingMessage').textContent = 'Error loading sensors';
+                    }
                 });
         }
         
