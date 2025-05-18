@@ -73,6 +73,7 @@ public:
     Sensor* getSensorByIndex(int index);
 
     void setOneWireBusPin(uint8_t pin) { oneWireBusPin = pin; }
+    bool addSensorFromConfig(Sensor* sensor); 
 };
 
 #endif // TEMPERATURE_CONTROLLER_H

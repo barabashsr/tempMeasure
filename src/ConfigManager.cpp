@@ -551,7 +551,7 @@ void ConfigManager::loadSensorConfig() {
             
             // Initialize sensor
             if (newSensor->initialize()) {
-                controller.addSensor(type, address, name);
+                controller.addSensorFromConfig(newSensor);
             } else {
                 delete newSensor;
             }

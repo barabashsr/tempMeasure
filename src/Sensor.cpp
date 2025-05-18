@@ -84,8 +84,10 @@ bool Sensor::initialize() {
         DeviceAddress deviceAddress;
         memcpy(deviceAddress, connection.ds18b20.oneWireAddress, 8);
         dallasTemperature->setResolution(deviceAddress, 12);
+        bool success = dallasTemperature->isConnected(deviceAddress);
+        Serial.printf("Device ROM: %d, device status: %d\n", deviceAddress[7], success);
         
-        return dallasTemperature->isConnected(deviceAddress);
+        return success;//dallasTemperature->isConnected(deviceAddress);
     } 
     else if (type == SensorType::PT1000) {
         max31865 = new Adafruit_MAX31865(connection.pt1000.csPin);
