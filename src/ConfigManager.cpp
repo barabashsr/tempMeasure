@@ -533,13 +533,20 @@ void ConfigManager::loadSensorConfig() {
             
             // Set up physical connection
             String romHex = sensorConf(dsPrefix + "_rom");
+            Serial.println("Processing ROM: " + romHex);
             if (romHex.length() == 16) {
+                Serial.print("HEX ROM: ");
                 uint8_t romAddress[8];
                 for (int j = 0; j < 8; j++) {
                     String byteHex = romHex.substring(j*2, j*2+2);
                     romAddress[j] = strtol(byteHex.c_str(), NULL, 16);
+                    Serial.print(romAddress[j], HEX);
+                    Serial.print(":");
                 }
+                Serial.println("");
                 newSensor->setupDS18B20(getOneWirePin(), romAddress);
+            } else {
+                Serial.println("Invalid ROM: " + romHex);
             }
             
             // Initialize sensor
