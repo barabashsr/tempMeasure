@@ -1,4 +1,3 @@
-
 #include "ConfigManager.h"
 #include <ArduinoJson.h>
 
@@ -121,10 +120,17 @@ bool ConfigManager::begin() {
     // Add route for the main page
     server->on("/", HTTP_GET, [this]() {
         if (LittleFS.exists("/index.html")) {
+            server->sendHeader("HTTP/1.1 200 OK", "");
+            server->sendHeader("Content-Type", "text/html");
+            server->sendHeader("Connection", "close");
+            server->sendHeader("Cache-Control", "max-age=3600");
             File file = LittleFS.open("/index.html", "r");
             server->streamFile(file, "text/html");
             file.close();
         } else {
+            server->sendHeader("HTTP/1.1 200 OK", "");
+            server->sendHeader("Content-Type", "text/html");
+            server->sendHeader("Connection", "close");
             server->send(200, "text/html", "<html><body><h1>Temperature Monitoring System</h1><p><a href='/cfg'>Configuration</a></p><p><a href='/sensors.html'>Sensors</a></p></body></html>");
         }
     });
@@ -132,25 +138,45 @@ bool ConfigManager::begin() {
     // Add route for the sensors page
     server->on("/sensors.html", HTTP_GET, [this]() {
         if (LittleFS.exists("/sensors.html")) {
+            server->sendHeader("HTTP/1.1 200 OK", "");
+            server->sendHeader("Content-Type", "text/html");
+            server->sendHeader("Connection", "close");
+            server->sendHeader("Cache-Control", "max-age=3600");
             File file = LittleFS.open("/sensors.html", "r");
             server->streamFile(file, "text/html");
             file.close();
         } else {
+            server->sendHeader("HTTP/1.1 200 OK", "");
+            server->sendHeader("Content-Type", "text/plain");
+            server->sendHeader("Connection", "close");
             server->send(404, "text/plain", "Sensors page not found");
         }
     });
     
     // API endpoints for sensor data
     server->on("/api/sensors", HTTP_GET, [this]() {
+        server->sendHeader("HTTP/1.1 200 OK", "");
+        server->sendHeader("Content-Type", "application/json");
+        server->sendHeader("Connection", "close");
+        server->sendHeader("Access-Control-Allow-Origin", "*");
+        server->sendHeader("Cache-Control", "no-store");
         server->send(200, "application/json", controller.getSensorsJson());
     });
     
     server->on("/api/status", HTTP_GET, [this]() {
+        server->sendHeader("HTTP/1.1 200 OK", "");
+        server->sendHeader("Content-Type", "application/json");
+        server->sendHeader("Connection", "close");
+        server->sendHeader("Access-Control-Allow-Origin", "*");
+        server->sendHeader("Cache-Control", "no-store");
         server->send(200, "application/json", controller.getSystemStatusJson());
     });
     
     server->on("/api/reset-minmax", HTTP_POST, [this]() {
         controller.resetMinMaxValues();
+        server->sendHeader("HTTP/1.1 200 OK", "");
+        server->sendHeader("Content-Type", "text/plain");
+        server->sendHeader("Connection", "close");
         server->send(200, "text/plain", "Min/Max values reset");
     });
     
@@ -170,8 +196,14 @@ bool ConfigManager::begin() {
                     );
                 }
             }
+            server->sendHeader("HTTP/1.1 200 OK", "");
+            server->sendHeader("Content-Type", "text/plain");
+            server->sendHeader("Connection", "close");
             server->send(200, "text/plain", "Sensors discovered");
         } else {
+            server->sendHeader("HTTP/1.1 404 Not Found", "");
+            server->sendHeader("Content-Type", "text/plain");
+            server->sendHeader("Connection", "close");
             server->send(404, "text/plain", "No sensors found");
         }
     });
@@ -197,15 +229,26 @@ bool ConfigManager::begin() {
                     
                     // Update configuration
                     updateSensorInConfig(address, name, lowAlarm, highAlarm);
-                    
+                    server->sendHeader("HTTP/1.1 200 OK", "");
+                    server->sendHeader("Content-Type", "text/plain");
+                    server->sendHeader("Connection", "close");
                     server->send(200, "text/plain", "Sensor updated");
                 } else {
+                    server->sendHeader("HTTP/1.1 404 Not Found", "");
+                    server->sendHeader("Content-Type", "text/plain");
+                    server->sendHeader("Connection", "close");
                     server->send(404, "text/plain", "Sensor not found");
                 }
             } else {
+                server->sendHeader("HTTP/1.1 400 Bad Request", "");
+                server->sendHeader("Content-Type", "text/plain");
+                server->sendHeader("Connection", "close");
                 server->send(400, "text/plain", "Invalid JSON");
             }
         } else {
+            server->sendHeader("HTTP/1.1 400 Bad Request", "");
+            server->sendHeader("Content-Type", "text/plain");
+            server->sendHeader("Connection", "close");
             server->send(400, "text/plain", "No data provided");
         }
     });
@@ -223,17 +266,37 @@ bool ConfigManager::begin() {
                 if (controller.removeSensor(address)) {
                     // Remove from configuration
                     removeSensorFromConfig(address);
-                    
+                    server->sendHeader("HTTP/1.1 200 OK", "");
+                    server->sendHeader("Content-Type", "text/plain");
+                    server->sendHeader("Connection", "close");
                     server->send(200, "text/plain", "Sensor removed");
                 } else {
+                    server->sendHeader("HTTP/1.1 404 Not Found", "");
+                    server->sendHeader("Content-Type", "text/plain");
+                    server->sendHeader("Connection", "close");
                     server->send(404, "text/plain", "Sensor not found");
                 }
             } else {
+                server->sendHeader("HTTP/1.1 400 Bad Request", "");
+                server->sendHeader("Content-Type", "text/plain");
+                server->sendHeader("Connection", "close");
                 server->send(400, "text/plain", "Invalid JSON");
             }
         } else {
+            server->sendHeader("HTTP/1.1 400 Bad Request", "");
+            server->sendHeader("Content-Type", "text/plain");
+            server->sendHeader("Connection", "close");
             server->send(400, "text/plain", "No data provided");
         }
+    });
+    
+    // Add CORS support for OPTIONS requests
+    server->on("/api/sensors", HTTP_OPTIONS, [this]() {
+        server->sendHeader("HTTP/1.1 204 No Content", "");
+        server->sendHeader("Access-Control-Allow-Origin", "*");
+        server->sendHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+        server->sendHeader("Access-Control-Allow-Headers", "Content-Type");
+        server->send(204);
     });
     
     // Setup WiFi
@@ -320,50 +383,38 @@ bool ConfigManager::addSensorToConfig(SensorType type, uint8_t address, const St
     sensorConf[sensorKey + "_high_alarm"] = "50"; // Default high alarm
     
     // Add ROM address for DS18B20 sensors
-    // if (type == SensorType::DS18B20 && romAddress != nullptr) {
-    //     String romHex = "";
-    //     for (int i = 0; i < 8; i++) {
-    //         if (romAddress[i] < 16) romHex += "0";
-    //         romHex += String(romAddress[i], HEX);
-    //     }
-    //     sensorConf[sensorKey + "_rom"] = romHex;
-    // }
-
-
-    // Add ROM address for DS18B20 sensors
-if (type == SensorType::DS18B20 && romAddress != nullptr) {
-    String romHex = "";
-    
-    Serial.println(F("--- Processing ROM address ---"));
-    Serial.print(F("Raw ROM bytes: "));
-    for (int i = 0; i < 8; i++) {
-        Serial.print(romAddress[i], HEX);
-        Serial.print(" ");
-    }
-    Serial.println();
-    
-    for (int i = 0; i < 8; i++) {
-        if (romAddress[i] < 16) romHex += "0";
-        romHex += String(romAddress[i], HEX);
+    if (type == SensorType::DS18B20 && romAddress != nullptr) {
+        String romHex = "";
         
-        // Debug each byte as it's added to the string
-        Serial.print(F("Added byte "));
-        Serial.print(i);
-        Serial.print(F(": "));
-        Serial.print(romAddress[i], HEX);
-        Serial.print(F(" -> Current romHex: "));
+        Serial.println(F("--- Processing ROM address ---"));
+        Serial.print(F("Raw ROM bytes: "));
+        for (int i = 0; i < 8; i++) {
+            Serial.print(romAddress[i], HEX);
+            Serial.print(" ");
+        }
+        Serial.println();
+        
+        for (int i = 0; i < 8; i++) {
+            if (romAddress[i] < 16) romHex += "0";
+            romHex += String(romAddress[i], HEX);
+            
+            // Debug each byte as it's added to the string
+            Serial.print(F("Added byte "));
+            Serial.print(i);
+            Serial.print(F(": "));
+            Serial.print(romAddress[i], HEX);
+            Serial.print(F(" -> Current romHex: "));
+            Serial.println(romHex);
+        }
+        
+        sensorConf[sensorKey + "_rom"] = romHex;
+        
+        // Show the final string being written to the configuration
+        Serial.print(F("Final ROM string written to config: "));
         Serial.println(romHex);
+        Serial.print(F("Config key: "));
+        Serial.println(sensorKey + "_rom");
     }
-    
-    sensorConf[sensorKey + "_rom"] = romHex;
-    
-    // Show the final string being written to the configuration
-    Serial.print(F("Final ROM string written to config: "));
-    Serial.println(romHex);
-    Serial.print(F("Config key: "));
-    Serial.println(sensorKey + "_rom");
-}
-
     
     // Save configuration
     sensorConf.saveConfigFile();

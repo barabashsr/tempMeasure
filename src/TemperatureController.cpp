@@ -133,7 +133,7 @@ void TemperatureController::update() {
     
     // Check if it's time to take measurements
     unsigned long currentTime = millis();
-    if (currentTime - lastMeasurementTime >= measurementPeriodSeconds * 1000) {
+    if (currentTime - lastMeasurementTime >= measurementPeriodSeconds) {
         readAllSensors();
         updateRegisterMap();
         lastMeasurementTime = currentTime;

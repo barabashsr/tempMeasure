@@ -4,161 +4,300 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Temperature Sensors</title>
-    <link rel="stylesheet" href="/style.css">
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: #333;
+            margin-top: 0;
+        }
+        
+        .button-group {
+            margin: 20px 0;
+        }
+        
+        .btn {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin-right: 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        
+        .btn:hover {
+            background-color: #45a049;
+        }
+        
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 20px;
+            margin-top: 20px;
         }
+        
         th, td {
-            padding: 8px;
+            padding: 12px;
             text-align: left;
             border-bottom: 1px solid #ddd;
         }
+        
         th {
             background-color: #f2f2f2;
             font-weight: bold;
         }
+        
         tr:hover {
             background-color: #f5f5f5;
         }
-        .alarm {
+        
+        .delete-btn {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        
+        .delete-btn:hover {
+            background-color: #d32f2f;
+        }
+        
+        .status-normal {
+            color: green;
+        }
+        
+        .status-alarm {
             color: red;
             font-weight: bold;
         }
-        .error {
-            background-color: #ffeeee;
+        
+        #loadingMessage {
+            text-align: center;
+            margin-top: 20px;
+            font-style: italic;
         }
+        
+        .no-sensors {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+        }
+        
         .rom-address {
             font-family: monospace;
-            font-size: 0.9em;
-        }
-        .button {
-            padding: 8px 16px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-right: 10px;
-        }
-        .button:hover {
-            background-color: #45a049;
+            font-size: 12px;
         }
     </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/settings.html">Settings</a></li>
-                <li><a href="/sensors.html" class="active">Sensors</a></li>
-            </ul>
-        </nav>
-    </header>
-    
-    <main>
+    <div class="container">
         <h1>Temperature Sensors</h1>
         
-        <div id="sensors-container">
-            <p>Loading sensors...</p>
+        <div class="button-group">
+            <button id="discoverBtn" class="btn">Discover Sensors</button>
+            <button id="resetMinMaxBtn" class="btn">Reset Min/Max Values</button>
+            <button id="clearBtn" class="btn">Clear Sensors</button>
         </div>
         
-        <div>
-            <button id="discover-btn" class="button">Discover Sensors</button>
-            <button id="reset-minmax-btn" class="button">Reset Min/Max Values</button>
+        <div id="sensorTableContainer">
+            <table id="sensorTable">
+                <thead>
+                    <tr>
+                        <th>Address</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>ROM Address</th>
+                        <th>Current Temp</th>
+                        <th>Min Temp</th>
+                        <th>Max Temp</th>
+                        <th>Low Alarm</th>
+                        <th>High Alarm</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="sensorTableBody">
+                    <!-- Sensor rows will be added here -->
+                </tbody>
+            </table>
         </div>
-    </main>
-    
+        
+        <div id="loadingMessage">Loading sensors...</div>
+    </div>
+
     <script>
-        // Function to format ROM address
-        function formatROMAddress(romArray) {
-            if (!romArray) return "N/A";
-            return Array.from(romArray).map(byte => byte.toString(16).padStart(2, '0')).join(':');
-        }
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSensors();
+            
+            // Button event listeners
+            document.getElementById('discoverBtn').addEventListener('click', discoverSensors);
+            document.getElementById('resetMinMaxBtn').addEventListener('click', resetMinMax);
+            document.getElementById('clearBtn').addEventListener('click', clearSensors);
+        });
         
-        // Function to render sensor data
-        function renderSensors(sensors) {
-            const container = document.getElementById('sensors-container');
-            
-            if (!sensors || sensors.length === 0) {
-                container.innerHTML = '<p>No sensors found</p>';
-                return;
-            }
-            
-            let html = '<table>';
-            html += '<tr><th>Name</th><th>Type</th><th>Address</th><th>ROM Address</th><th>Current</th><th>Min</th><th>Max</th><th>Low Alarm</th><th>High Alarm</th><th>Status</th></tr>';
-            
-            sensors.forEach(sensor => {
-                const hasError = sensor.errorStatus > 0;
-                const hasAlarm = sensor.alarmStatus > 0;
-                const romAddressDisplay = sensor.type === "DS18B20" && sensor.romAddress ? 
-                    formatROMAddress(sensor.romAddress) : "N/A";
-                
-                html += `<tr class="${hasError ? 'error' : ''}">
-                    <td>${sensor.name}</td>
-                    <td>${sensor.type}</td>
-                    <td>${sensor.address}</td>
-                    <td class="rom-address">${romAddressDisplay}</td>
-                    <td class="${hasAlarm ? 'alarm' : ''}">${sensor.currentTemp}°C</td>
-                    <td>${sensor.minTemp}°C</td>
-                    <td>${sensor.maxTemp}°C</td>
-                    <td>${sensor.lowAlarmThreshold}°C</td>
-                    <td>${sensor.highAlarmThreshold}°C</td>
-                    <td>${hasError ? 'Error' : (hasAlarm ? 'Alarm' : 'Normal')}</td>
-                </tr>`;
-            });
-            
-            html += '</table>';
-            container.innerHTML = html;
-        }
-        
-        // Function to fetch sensor data
-        function fetchSensors() {
+        function loadSensors() {
             fetch('/api/sensors')
                 .then(response => response.json())
                 .then(data => {
-                    renderSensors(data.sensors);
+                    displaySensors(data);
+                    document.getElementById('loadingMessage').style.display = 'none';
                 })
                 .catch(error => {
-                    console.error('Error fetching sensors:', error);
+                    console.error('Error loading sensors:', error);
+                    document.getElementById('loadingMessage').textContent = 'Error loading sensors';
                 });
         }
         
-        // Initial fetch
-        fetchSensors();
+        function displaySensors(data) {
+            const tableBody = document.getElementById('sensorTableBody');
+            tableBody.innerHTML = '';
+            
+            if (!data.sensors || data.sensors.length === 0) {
+                document.getElementById('sensorTableContainer').style.display = 'none';
+                document.getElementById('loadingMessage').textContent = 'No sensors found';
+                document.getElementById('loadingMessage').style.display = 'block';
+                return;
+            }
+            
+            document.getElementById('sensorTableContainer').style.display = 'block';
+            
+            data.sensors.forEach(sensor => {
+                const row = document.createElement('tr');
+                
+                // Format ROM address if available
+                let romAddressHtml = '';
+                if (sensor.type === 'DS18B20' && sensor.romAddress) {
+                    const romBytes = sensor.romAddress.map(byte => {
+                        // Format each byte as a 2-digit hex number
+                        return ('0' + byte.toString(16).toUpperCase()).slice(-2);
+                    });
+                    romAddressHtml = `<span class="rom-address">${romBytes.join(' ')}</span>`;
+                } else {
+                    romAddressHtml = 'N/A';
+                }
+                
+                row.innerHTML = `
+                    <td>${sensor.address}</td>
+                    <td>${sensor.name}</td>
+                    <td>${sensor.type}</td>
+                    <td>${romAddressHtml}</td>
+                    <td>${sensor.currentTemp.toFixed(2)}°C</td>
+                    <td>${sensor.minTemp.toFixed(2)}°C</td>
+                    <td>${sensor.maxTemp.toFixed(2)}°C</td>
+                    <td>${sensor.lowAlarmThreshold.toFixed(2)}°C</td>
+                    <td>${sensor.highAlarmThreshold.toFixed(2)}°C</td>
+                    <td class="${sensor.alarmStatus ? 'status-alarm' : 'status-normal'}">${sensor.alarmStatus ? 'ALARM' : 'Normal'}</td>
+                    <td>
+                        <button class="delete-btn" data-address="${sensor.address}">Delete</button>
+                    </td>
+                `;
+                
+                tableBody.appendChild(row);
+            });
+            
+            // Add event listeners to delete buttons
+            document.querySelectorAll('.delete-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const address = this.getAttribute('data-address');
+                    deleteSensor(address);
+                });
+            });
+        }
         
-        // Set up real-time updates
-        setInterval(fetchSensors, 5000); // Update every 5 seconds
-        
-        // Set up button event listeners
-        document.getElementById('discover-btn').addEventListener('click', function() {
-            fetch('/api/discover', { method: 'POST' })
+        function deleteSensor(address) {
+            if (confirm(`Are you sure you want to delete sensor with address ${address}?`)) {
+                // Create the JSON payload
+                const payload = JSON.stringify({
+                    address: parseInt(address)
+                });
+                
+                fetch('/api/sensors', {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: payload
+                })
                 .then(response => {
                     if (response.ok) {
-                        fetchSensors(); // Refresh the sensor list
+                        loadSensors(); // Reload the table
                     } else {
-                        alert('No new sensors found');
+                        alert('Failed to delete sensor');
                     }
                 })
                 .catch(error => {
-                    console.error('Error discovering sensors:', error);
+                    console.error('Error deleting sensor:', error);
+                    alert('Error deleting sensor');
                 });
-        });
+            }
+        }
         
-        document.getElementById('reset-minmax-btn').addEventListener('click', function() {
-            fetch('/api/reset-minmax', { method: 'POST' })
-                .then(response => {
-                    if (response.ok) {
-                        fetchSensors(); // Refresh the sensor list
-                    }
-                })
-                .catch(error => {
-                    console.error('Error resetting min/max values:', error);
-                });
-        });
+        function discoverSensors() {
+            fetch('/api/discover', {
+                method: 'POST'
+            })
+            .then(response => {
+                if (response.ok) {
+                    loadSensors();
+                } else {
+                    alert('No new sensors found');
+                }
+            })
+            .catch(error => {
+                console.error('Error discovering sensors:', error);
+                alert('Error discovering sensors');
+            });
+        }
+        
+        function resetMinMax() {
+            fetch('/api/reset-minmax', {
+                method: 'POST'
+            })
+            .then(response => {
+                if (response.ok) {
+                    loadSensors();
+                } else {
+                    alert('Failed to reset min/max values');
+                }
+            })
+            .catch(error => {
+                console.error('Error resetting min/max values:', error);
+                alert('Error resetting min/max values');
+            });
+        }
+        
+        function clearSensors() {
+            if (confirm('Are you sure you want to clear all sensors?')) {
+                // This would require a new API endpoint to clear all sensors
+                // For now, just show a message
+                alert('This feature is not implemented yet');
+            }
+        }
     </script>
 </body>
 </html>
