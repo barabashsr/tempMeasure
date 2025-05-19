@@ -1,81 +1,78 @@
-#ifndef TEMPERATURE_CONTROLLER_H
-#define TEMPERATURE_CONTROLLER_H
+#pragma once
 
 #include <Arduino.h>
 #include <vector>
-#include <ArduinoJson.h>
 #include "Sensor.h"
+#include "MeasurementPoint.h"
 #include "RegisterMap.h"
+#include <OneWire.h>
+#include <DallasTemperature.h>
+#include <ArduinoJson.h>
 
 class TemperatureController {
+public:
+    TemperatureController(uint8_t oneWirePin = 4);
+    ~TemperatureController();
+
+    bool begin();
+
+    MeasurementPoint* getMeasurementPoint(uint8_t address);
+    MeasurementPoint* getDS18B20Point(uint8_t idx);
+    MeasurementPoint* getPT1000Point(uint8_t idx);
+
+    bool addSensor(Sensor* sensor);
+    bool removeSensorByRom(const String& romString);
+    Sensor* findSensorByRom(const String& romString);
+    Sensor* findSensorByChipSelect(uint8_t csPin);
+    int getSensorCount() const { return sensors.size(); }
+    Sensor* getSensorByIndex(int idx);
+
+    bool bindSensorToPointByRom(const String& romString, uint8_t pointAddress);
+    bool bindSensorToPointByChipSelect(uint8_t csPin, uint8_t pointAddress);
+    bool unbindSensorFromPoint(uint8_t pointAddress);
+    Sensor* getBoundSensor(uint8_t pointAddress);
+
+    void update();
+    void readAllPoints();
+    void updateRegisterMap();
+    void applyConfigFromRegisterMap();
+    void applyConfigToRegisterMap();
+
+    bool discoverDS18B20Sensors();
+
+    String getSensorsJson();
+    String getPointsJson();
+    String getSystemStatusJson();
+
+    void resetMinMaxValues();
+
+    RegisterMap& getRegisterMap() { return registerMap; }
+
+    void setDeviceId(uint16_t id);
+    uint16_t getDeviceId() const;
+    void setFirmwareVersion(uint16_t version);
+    uint16_t getFirmwareVersion() const;
+    void setMeasurementPeriod(uint16_t seconds);
+    uint16_t getMeasurementPeriod() const;
+    void setOneWireBusPin(uint8_t pin);
+
+    int getDS18B20Count() const;
+    int getPT1000Count() const;
+    void updateAllSensors();
+
 private:
-    
+    MeasurementPoint dsPoints[50];
+    MeasurementPoint ptPoints[10];
     std::vector<Sensor*> sensors;
     RegisterMap registerMap;
-    
-    // Configuration settings
+
     uint16_t measurementPeriodSeconds;
     uint16_t deviceId;
     uint16_t firmwareVersion;
     unsigned long lastMeasurementTime;
     bool systemInitialized;
-    
-    // OneWire bus pin for DS18B20 sensors
     uint8_t oneWireBusPin;
 
-public:
-    TemperatureController(uint8_t oneWirePin = 4);
-    ~TemperatureController();
-    
-    // Initialization
-    bool begin();
-    
-    // Sensor management
-    bool addSensor(SensorType type, uint8_t address, const String& name);
-    bool removeSensor(uint8_t address);
-    bool updateSensorAddress(uint8_t oldAddress, uint8_t newAddress);
-    bool updateSensorName(uint8_t address, const String& newName);
-    Sensor* findSensor(uint8_t address);
-    int getSensorCount() const { return sensors.size(); }
-    int getDS18B20Count() const;
-    int getPT1000Count() const;
-    
-    // Data collection
-    void update(); // Main update function to be called in loop
-    void readAllSensors();
-    void updateRegisterMap();
-    void applyConfigFromRegisterMap();
-    void applyConfigToRegisterMap();
-    
-    // Configuration
-    void setMeasurementPeriod(uint16_t seconds) { measurementPeriodSeconds = seconds; }
-    uint16_t getMeasurementPeriod() const { return measurementPeriodSeconds; }
-    void setDeviceId(uint16_t id);
-    uint16_t getDeviceId() const { return deviceId; }
-    void setFirmwareVersion(uint16_t version);
-    uint16_t getFirmwareVersion() const { return firmwareVersion; }
-    
-    // Sensor discovery
-    bool discoverDS18B20Sensors();
-    
-    // Access to register map for Modbus server
-    RegisterMap& getRegisterMap() { return registerMap; }
-    
-    // JSON representation for web interface
-    String getSensorsJson();
-    String getSystemStatusJson();
-    
-    // Reset min/max values for all sensors
-    void resetMinMaxValues();
-
-    // Add a pre-configured sensor
-    bool addSensor(Sensor* sensor);
-
-    // Get sensor by index
-    Sensor* getSensorByIndex(int index);
-
-    void setOneWireBusPin(uint8_t pin) { oneWireBusPin = pin; }
-    bool addSensorFromConfig(Sensor* sensor); 
+    bool isDS18B20Address(uint8_t address) const { return address < 50; }
+    bool isPT1000Address(uint8_t address) const { return address >= 50 && address < 60; }
 };
-
-#endif // TEMPERATURE_CONTROLLER_H

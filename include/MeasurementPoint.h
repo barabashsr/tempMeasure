@@ -9,6 +9,8 @@
 class MeasurementPoint {
 public:
     // Constructor
+    MeasurementPoint() : address(0), name(""), currentTemp(0), minTemp(32767), maxTemp(-32768),
+    lowAlarmThreshold(-10), highAlarmThreshold(50), alarmStatus(0), errorStatus(0), boundSensor(nullptr) {}
     MeasurementPoint(uint8_t address, const String& name);
 
     // Destructor

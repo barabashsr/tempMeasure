@@ -26,10 +26,10 @@ private:
     static ConfigManager* instance;
     
     // Save sensor configuration to file
-    void saveSensorConfig();
+    //void saveSensorConfig();
     
     // Load sensor configuration from file
-    void loadSensorConfig();
+    //void loadSensorConfig();
 
 public:
     ConfigManager(TemperatureController& tempController);
@@ -45,15 +45,15 @@ public:
     bool connectWiFi(int timeoutMs = 15000);
     
     // Add sensor to configuration
-    bool addSensorToConfig(SensorType type, uint8_t address, const String& name, 
-                          const uint8_t* romAddress = nullptr);
+    // bool addSensorToConfig(SensorType type, uint8_t address, const String& name, 
+    //                       const uint8_t* romAddress = nullptr);
     
     // Remove sensor from configuration
-    bool removeSensorFromConfig(uint8_t address);
+    //bool removeSensorFromConfig(uint8_t address);
     
     // Update sensor in configuration
-    bool updateSensorInConfig(uint8_t address, const String& name, 
-                             int16_t lowAlarm, int16_t highAlarm);
+    // bool updateSensorInConfig(uint8_t address, const String& name, 
+    //                          int16_t lowAlarm, int16_t highAlarm);
     
     // Get web server instance
     WebServer* getWebServer() { return server; }
@@ -78,7 +78,20 @@ public:
     
     // Reset min/max values
     void resetMinMaxValues();
-    void updateSensorInConfig(Sensor* sensor);
+    //void updateSensorInConfig(Sensor* sensor);
+    // Remove:
+// void saveSensorConfig();
+// void loadSensorConfig();
+// bool addSensorToConfig(...);
+// bool removeSensorFromConfig(...);
+// bool updateSensorInConfig(...);
+// void updateSensorInConfig(Sensor* sensor);
+
+    // Add:
+    void savePointsConfig();
+    void loadPointsConfig();
+    bool updatePointInConfig(uint8_t address, const String& name, int16_t lowAlarm, int16_t highAlarm,
+                            const String& ds18b20RomString = "", int pt1000ChipSelect = -1);
 };
 
 // Initialize static member

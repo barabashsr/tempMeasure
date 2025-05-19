@@ -6,103 +6,95 @@
 #include <DallasTemperature.h>
 #include <Adafruit_MAX31865.h>
 
+// Define your sensor types
 enum class SensorType {
     DS18B20,
     PT1000
 };
 
+// Error and alarm bitmasks
+constexpr uint8_t ERROR_COMMUNICATION = 0x01;
+constexpr uint8_t ERROR_OUT_OF_RANGE  = 0x02;
+constexpr uint8_t ERROR_DISCONNECTED  = 0x04;
+
+constexpr uint8_t ALARM_LOW_TEMP  = 0x01;
+constexpr uint8_t ALARM_HIGH_TEMP = 0x02;
+
 class Sensor {
+public:
+    Sensor(SensorType type, uint8_t address, const String& name);
+    ~Sensor();
+
+    // Setup methods for each sensor type
+    void setupDS18B20(uint8_t pin, const uint8_t* deviceAddress);
+    void setupPT1000(uint8_t csPin, uint8_t maxAddress);
+
+    // Initialize hardware
+    bool initialize();
+
+    // Read temperature from the sensor, update internal state
+    bool readTemperature();
+
+    // Accessors
+    SensorType getType() const;
+    uint8_t getAddress() const;
+    String getName() const;
+    void setName(const String& newName);
+
+    int16_t getCurrentTemp() const;
+    int16_t getMinTemp() const;
+    int16_t getMaxTemp() const;
+    int16_t getLowAlarmThreshold() const;
+    int16_t getHighAlarmThreshold() const;
+    uint8_t getAlarmStatus() const;
+    uint8_t getErrorStatus() const;
+    uint8_t getPT1000ChipSelectPin() const;
+    
+
+    void setAddress(uint8_t newAddress);
+    void setLowAlarmThreshold(int16_t threshold);
+    void setHighAlarmThreshold(int16_t threshold);
+
+    // DS18B20 ROM address accessor
+    const uint8_t* getDS18B20Address() const;
+
+    // Reset min/max values
+    void resetMinMaxTemp();
+
+    // Update alarm status (call after reading temperature or changing thresholds)
+    void updateAlarmStatus();
+    String getDS18B20RomString() const;        // ROM as hex string
+    void getDS18B20RomArray(uint8_t out[8]) const; // ROM as array
+
 private:
-    uint8_t address;       // Modbus register address
-    String name;           // Equipment name
+    uint8_t address;
+    String name;
     SensorType type;
-    int16_t currentTemp;   // Current temperature in Celsius
-    int16_t minTemp;       // Minimum recorded temperature
-    int16_t maxTemp;       // Maximum recorded temperature
-    uint16_t alarmStatus;  // Bit flags for alarms
-    uint16_t errorStatus;  // Bit flags for errors
+
+    int16_t currentTemp;
+    int16_t minTemp;
+    int16_t maxTemp;
     int16_t lowAlarmThreshold;
     int16_t highAlarmThreshold;
-    
-    // Physical connection details
+    uint8_t alarmStatus;
+    uint8_t errorStatus;
+
+    // Hardware-specific members
+    OneWire* oneWire;
+    DallasTemperature* dallasTemperature;
+    Adafruit_MAX31865* max31865;
+
+    // Connection details
     union {
         struct {
             uint8_t oneWirePin;
             uint8_t oneWireAddress[8];
         } ds18b20;
-        
         struct {
             uint8_t csPin;
             uint8_t maxAddress;
         } pt1000;
     } connection;
-
-    // References to sensor libraries
-    OneWire* oneWire;
-    DallasTemperature* dallasTemperature;
-    Adafruit_MAX31865* max31865;
-    
-    // Helper methods
-    void calculateModbusRegisters();
-    uint16_t currentTempRegister;
-    uint16_t minTempRegister;
-    uint16_t maxTempRegister;
-    uint16_t alarmStatusRegister;
-    uint16_t errorStatusRegister;
-    uint16_t lowAlarmThresholdRegister;
-    uint16_t highAlarmThresholdRegister;
-
-public:
-    Sensor(SensorType type, uint8_t address, const String& name);
-    ~Sensor();
-    
-    bool initialize();
-    bool readTemperature();
-    void updateAlarmStatus();
-    void resetMinMaxTemp();
-    
-    // DS18B20 specific setup
-    void setupDS18B20(uint8_t pin, const uint8_t* deviceAddress);
-    
-    // PT1000 specific setup
-    void setupPT1000(uint8_t csPin, uint8_t maxAddress);
-    
-    // Getters and setters
-    uint8_t getAddress() const { return address; }
-    void setAddress(uint8_t newAddress);
-    String getName() const { return name; }
-    void setName(const String& newName) { name = newName; }
-    int16_t getCurrentTemp() const { return currentTemp; }
-    int16_t getMinTemp() const { return minTemp; }
-    int16_t getMaxTemp() const { return maxTemp; }
-    uint16_t getAlarmStatus() const { return alarmStatus; }
-    uint16_t getErrorStatus() const { return errorStatus; }
-    int16_t getLowAlarmThreshold() const { return lowAlarmThreshold; }
-    void setLowAlarmThreshold(int16_t threshold);
-    int16_t getHighAlarmThreshold() const { return highAlarmThreshold; }
-    void setHighAlarmThreshold(int16_t threshold);
-    SensorType getType() const { return type; }
-    
-    // Modbus register getters
-    uint16_t getCurrentTempRegister() const { return currentTempRegister; }
-    uint16_t getMinTempRegister() const { return minTempRegister; }
-    uint16_t getMaxTempRegister() const { return maxTempRegister; }
-    uint16_t getAlarmStatusRegister() const { return alarmStatusRegister; }
-    uint16_t getErrorStatusRegister() const { return errorStatusRegister; }
-    uint16_t getLowAlarmThresholdRegister() const { return lowAlarmThresholdRegister; }
-    uint16_t getHighAlarmThresholdRegister() const { return highAlarmThresholdRegister; }
-    
-    // Error status bit flags
-    static const uint16_t ERROR_COMMUNICATION = 0x0001;
-    static const uint16_t ERROR_OUT_OF_RANGE = 0x0002;
-    static const uint16_t ERROR_DISCONNECTED = 0x0004;
-    
-    // Alarm status bit flags
-    static const uint16_t ALARM_LOW_TEMP = 0x0001;
-    static const uint16_t ALARM_HIGH_TEMP = 0x0002;
-    
-    // Get DS18B20 ROM address
-    const uint8_t* getDS18B20Address() const;
-    };
+};
 
 #endif // SENSOR_H
