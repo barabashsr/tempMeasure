@@ -107,7 +107,7 @@ bool Sensor::readTemperature() {
     errorStatus &= ~(ERROR_COMMUNICATION | ERROR_OUT_OF_RANGE | ERROR_DISCONNECTED);
     
     if (type == SensorType::DS18B20) {
-        Serial.println("Reading DS18B20 sensors");
+        // Serial.println("Reading DS18B20 sensors");
         if (dallasTemperature != nullptr) {
             DeviceAddress deviceAddress;
             memcpy(deviceAddress, connection.ds18b20.oneWireAddress, 8);
@@ -116,12 +116,12 @@ bool Sensor::readTemperature() {
                 dallasTemperature->requestTemperaturesByAddress(deviceAddress);
                 //delay(750);
                 tempC = dallasTemperature->getTempC(deviceAddress);
-                Serial.printf("Temperature: %f", tempC);
+                // Serial.printf("Temperature: %f", tempC);
                 Serial.println(errorStatus);
                 
                 if (tempC != DEVICE_DISCONNECTED_C) {
                     success = true;
-                    Serial.println(success);
+                    // Serial.println(success);
                 } else {
                     errorStatus |= ERROR_DISCONNECTED;
                 }

@@ -37,29 +37,29 @@ void setup() {
     Serial.println("controller.setOneWireBusPin(configManager->getOneWirePin());");
     
     // Discover DS18B20 sensors if auto-discover is enabled
-    if (configManager->getAutoDiscover() && controller.getDS18B20Count() == 0) {
-        Serial.println("Auto-discovering DS18B20 sensors...");
-        if (controller.discoverDS18B20Sensors()) {
-            Serial.print("Found ");
-            Serial.print(controller.getDS18B20Count());
-            Serial.println(" DS18B20 sensors");
+    // if (configManager->getAutoDiscover() && controller.getDS18B20Count() == 0) {
+    //     Serial.println("Auto-discovering DS18B20 sensors...");
+    //     if (controller.discoverDS18B20Sensors()) {
+    //         Serial.print("Found ");
+    //         Serial.print(controller.getDS18B20Count());
+    //         Serial.println(" DS18B20 sensors");
             
-            // Add discovered sensors to configuration
-            for (int i = 0; i < controller.getSensorCount(); i++) {
-                Sensor* sensor = controller.getSensorByIndex(i);
-                if (sensor && sensor->getType() == SensorType::DS18B20) {
-                    configManager->addSensorToConfig(
-                        SensorType::DS18B20,
-                        sensor->getAddress(),
-                        sensor->getName(),
-                        sensor->getDS18B20Address()
-                    );
-                }
-            }
-        } else {
-            Serial.println("No DS18B20 sensors found");
-        }
-    }
+    //         // Add discovered sensors to configuration
+    //         for (int i = 0; i < controller.getSensorCount(); i++) {
+    //             Sensor* sensor = controller.getSensorByIndex(i);
+    //             if (sensor && sensor->getType() == SensorType::DS18B20) {
+    //                 configManager->addSensorToConfig(
+    //                     SensorType::DS18B20,
+    //                     sensor->getAddress(),
+    //                     sensor->getName(),
+    //                     sensor->getDS18B20Address()
+    //                 );
+    //             }
+    //         }
+    //     } else {
+    //         Serial.println("No DS18B20 sensors found");
+    //     }
+    // }
     
     // Initialize Modbus server if enabled in config
     if (configManager->isModbusEnabled()) {
@@ -81,6 +81,8 @@ void setup() {
             Serial.println("Failed to start Modbus RTU server");
         }
     }
+
+
     
     Serial.println("\nSystem is now running...");
 }

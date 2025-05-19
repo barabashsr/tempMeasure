@@ -257,15 +257,29 @@ bool ConfigManager::begin() {
     server->on("/api/sensor/update", HTTP_PUT, [this]() {
         if (server->hasArg("plain")) {
         String body = server->arg("plain");
+             
         DynamicJsonDocument doc(512);
         DeserializationError error = deserializeJson(doc, body);
+        Serial.println("JSON request: " + doc.as<String>() + "\n error: " + error.c_str());
         
-        if (!error) {
+        if (error.c_str() == "Ok") {
             uint8_t originalAddress = doc["originalAddress"];
             uint8_t newAddress = doc["address"];
             String name = doc["name"].as<String>();
             int16_t lowThreshold = doc["lowAlarmThreshold"];
             int16_t highThreshold = doc["highAlarmThreshold"];
+            Serial.printf("\
+                Orig. add: %d\n \
+                New add: %d\n \
+                Name: %s \n \
+                LAS: %d \n \
+                HAS: %d \n", 
+                originalAddress, 
+                newAddress, 
+                name, 
+                lowThreshold, 
+                highThreshold);
+
             
             bool success = true;
             
@@ -293,7 +307,8 @@ bool ConfigManager::begin() {
             
             // Get sensor to update thresholds
             Sensor* sensor = controller.findSensor(newAddress);
-            if (sensor) {
+            //Serial.println("Updated sensor status: " + sensor.as<String>())
+            if (sensor != nullptr) {
             sensor->setLowAlarmThreshold(lowThreshold);
             sensor->setHighAlarmThreshold(highThreshold);
             
@@ -400,7 +415,8 @@ bool ConfigManager::begin() {
     
     // Load sensor configuration
     loadSensorConfig();
-    Serial.println("Sensor data loaded");
+    Serial.println("CM.begin(): Sensor data loaded:");
+    //Serial.println(controller.getSensorsJson());
     
     // Apply configuration to controller
     controller.setDeviceId(getDeviceId());
@@ -576,7 +592,9 @@ bool ConfigManager::updateSensorInConfig(uint8_t address, const String& name, in
     if (found) {
         // Save configuration
         sensorConf.saveConfigFile();
+        
     }
+    controller.applyConfigToRegisterMap();
     
     return found;
 }
@@ -614,6 +632,7 @@ void ConfigManager::loadSensorConfig() {
             // Set thresholds
             newSensor->setLowAlarmThreshold(sensorConf(dsPrefix + "_low_alarm").toInt());
             newSensor->setHighAlarmThreshold(sensorConf(dsPrefix + "_high_alarm").toInt());
+            Serial.printf("CM1. New HAS: %d, New LAS: %d \n", newSensor->getHighAlarmThreshold(), newSensor->getLowAlarmThreshold());
             
             // Set up physical connection
             String romHex = sensorConf(dsPrefix + "_rom");
@@ -636,6 +655,8 @@ void ConfigManager::loadSensorConfig() {
             // Initialize sensor
             if (newSensor->initialize()) {
                 controller.addSensorFromConfig(newSensor);
+                Serial.printf("CM2. New HAS: %d, New LAS: %d \n", newSensor->getHighAlarmThreshold(), newSensor->getLowAlarmThreshold());
+                Serial.println(controller.getSensorsJson());
             } else {
                 delete newSensor;
             }

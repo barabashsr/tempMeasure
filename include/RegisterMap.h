@@ -40,6 +40,7 @@ public:
     
     // Methods to apply register map changes to sensors
     void applyConfigToSensor(Sensor& sensor);
+    void applyConfigFromSensor(Sensor& sensor); 
     
     // Utility methods
     void incrementActiveDS18B20() { numActiveDS18B20++; }

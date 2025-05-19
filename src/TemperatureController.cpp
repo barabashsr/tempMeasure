@@ -162,6 +162,12 @@ void TemperatureController::applyConfigFromRegisterMap() {
     }
 }
 
+void TemperatureController::applyConfigToRegisterMap() {
+    for (auto sensor : sensors) {
+        registerMap.applyConfigFromSensor(*sensor);
+    }
+}
+
 int TemperatureController::getDS18B20Count() const {
     int count = 0;
     for (auto sensor : sensors) {
@@ -242,7 +248,7 @@ bool TemperatureController::discoverDS18B20Sensors() {
             if (!alreadyExists) {
                 // Create a new sensor with the next available address
                 String sensorName = "DS18B20_" + String(nextAddress);
-                Sensor* newSensor = new Sensor(SensorType::DS18B20, nextAddress, sensorName);
+                Sensor* newSensor = new Sensor(SensorType::DS18B20,  nextAddress, sensorName);
                 
                 // Set up the DS18B20 with the pin and address
                 newSensor->setupDS18B20(oneWireBusPin, sensorAddress);
@@ -256,8 +262,8 @@ bool TemperatureController::discoverDS18B20Sensors() {
                     registerMap.incrementActiveDS18B20();
                     
                     // Set default alarm thresholds
-                    newSensor->setLowAlarmThreshold(-10);
-                    newSensor->setHighAlarmThreshold(50);
+                    //newSensor->setLowAlarmThreshold(-10);
+                    //newSensor->setHighAlarmThreshold(50);
                     
                     anyAdded = true;
                     nextAddress++;
@@ -378,6 +384,7 @@ bool TemperatureController::addSensorFromConfig(Sensor* sensor) {
     
     // Add to vector
     sensors.push_back(sensor);
+    Serial.printf("Controller: New HAS: %d, New LAS: %d \n", sensor->getHighAlarmThreshold(), sensor->getLowAlarmThreshold());
     
     // Update register map count
     if (sensor->getType() == SensorType::DS18B20) {
@@ -385,6 +392,7 @@ bool TemperatureController::addSensorFromConfig(Sensor* sensor) {
     } else {
         registerMap.incrementActivePT1000();
     }
+    applyConfigToRegisterMap();
     
     return true;
 }

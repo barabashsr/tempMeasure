@@ -21,7 +21,7 @@ RegisterMap::RegisterMap() {
         errorStatus[i] = 0;
         
         // Set default alarm thresholds
-        lowAlarmThresholds[i] = -10;  // Default low alarm at -10°C
+        lowAlarmThresholds[i] = -8;  // Default low alarm at -10°C
         highAlarmThresholds[i] = 50;  // Default high alarm at 50°C
     }
 }
@@ -196,6 +196,24 @@ void RegisterMap::applyConfigToSensor(Sensor& sensor) {
         if (index >= 50 && index < 60) {  // Valid PT1000 address range
             sensor.setLowAlarmThreshold(lowAlarmThresholds[index]);
             sensor.setHighAlarmThreshold(highAlarmThresholds[index]);
+        }
+    }
+}
+
+void RegisterMap::applyConfigFromSensor(Sensor& sensor) {
+    uint8_t sensorAddress = sensor.getAddress();
+    uint16_t index = sensorAddress;
+    
+    // Apply alarm thresholds based on sensor type
+    if (sensor.getType() == SensorType::DS18B20) {
+        if (index < 50) {  // Valid DS18B20 address range
+            lowAlarmThresholds[index] = sensor.getLowAlarmThreshold();
+            highAlarmThresholds[index] = sensor.getHighAlarmThreshold();
+        }
+    } else if (sensor.getType() == SensorType::PT1000) {
+        if (index >= 50 && index < 60) {  // Valid PT1000 address range
+            lowAlarmThresholds[index] = sensor.getLowAlarmThreshold();
+            highAlarmThresholds[index] = sensor.getHighAlarmThreshold();
         }
     }
 }

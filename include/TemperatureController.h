@@ -9,6 +9,7 @@
 
 class TemperatureController {
 private:
+    
     std::vector<Sensor*> sensors;
     RegisterMap registerMap;
     
@@ -44,6 +45,7 @@ public:
     void readAllSensors();
     void updateRegisterMap();
     void applyConfigFromRegisterMap();
+    void applyConfigToRegisterMap();
     
     // Configuration
     void setMeasurementPeriod(uint16_t seconds) { measurementPeriodSeconds = seconds; }
