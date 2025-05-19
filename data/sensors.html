@@ -170,6 +170,63 @@
             font-size: 14px;
             color: #666;
         }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+        
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+        }
+        
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: inline-block;
+            width: 180px;
+            font-weight: bold;
+        }
+        
+        .form-actions {
+            margin-top: 20px;
+            text-align: right;
+        }
+        
+        .form-actions button {
+            margin-left: 10px;
+            padding: 5px 15px;
+        }
     </style>
 </head>
 <body>
@@ -216,6 +273,78 @@
         
         <div id="loadingMessage">Loading sensors...</div>
     </div>
+
+    <!-- Modal for sensor configuration -->
+<div id="sensorConfigModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Sensor Configuration</h2>
+      <form id="sensorConfigForm">
+        <input type="hidden" id="originalAddress" name="originalAddress">
+        
+        <div class="form-group">
+          <label for="sensorAddress">Address:</label>
+          <input type="number" id="sensorAddress" name="address" min="0" max="59" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="sensorName">Name:</label>
+          <input type="text" id="sensorName" name="name" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="lowAlarmThreshold">Low Alarm Threshold (°C):</label>
+          <input type="number" id="lowAlarmThreshold" name="lowAlarmThreshold" step="0.1" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="highAlarmThreshold">High Alarm Threshold (°C):</label>
+          <input type="number" id="highAlarmThreshold" name="highAlarmThreshold" step="0.1" required>
+        </div>
+        
+        <div class="form-group">
+          <label>Sensor Type:</label>
+          <span id="sensorType"></span>
+        </div>
+        
+        <div class="form-group" id="romAddressGroup">
+          <label>ROM Address:</label>
+          <span id="romAddress"></span>
+        </div>
+        
+        <div class="form-group">
+          <label>Current Temperature:</label>
+          <span id="currentTemp"></span> °C
+        </div>
+        
+        <div class="form-group">
+          <label>Min Temperature:</label>
+          <span id="minTemp"></span> °C
+        </div>
+        
+        <div class="form-group">
+          <label>Max Temperature:</label>
+          <span id="maxTemp"></span> °C
+        </div>
+        
+        <div class="form-group">
+          <label>Alarm Status:</label>
+          <span id="alarmStatus"></span>
+        </div>
+        
+        <div class="form-group">
+          <label>Error Status:</label>
+          <span id="errorStatus"></span>
+        </div>
+        
+        <div class="form-actions">
+          <button type="submit" class="save-btn">Save Changes</button>
+          <button type="button" class="cancel-btn">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
 
     <script>
         // Global variables
@@ -280,6 +409,57 @@
                     }
                 });
         }
+
+        function updateSensorTable(sensors) {
+            const tableBody = document.querySelector('table tbody');
+            if (!tableBody) return;
+            
+            tableBody.innerHTML = '';
+            
+            if (sensors.length === 0) {
+                tableBody.innerHTML = '<tr><td colspan="11">No sensors found</td></tr>';
+                return;
+            }
+            
+            sensors.forEach(sensor => {
+                const row = document.createElement('tr');
+                
+                // Create ROM address string if available
+                let romAddressStr = '';
+                if (sensor.type === 'DS18B20' && sensor.romAddress) {
+                romAddressStr = sensor.romAddress.map(byte => byte.toString(16).padStart(2, '0')).join(':');
+                }
+                
+                // Create status text
+                let statusText = '';
+                if (sensor.errorStatus > 0) {
+                statusText = 'Error';
+                } else if (sensor.alarmStatus > 0) {
+                statusText = 'Alarm';
+                } else {
+                statusText = 'Normal';
+                }
+                
+                row.innerHTML = `
+                <td>${sensor.address}</td>
+                <td>${sensor.name}</td>
+                <td>${sensor.type}</td>
+                <td>${romAddressStr}</td>
+                <td>${sensor.currentTemp}</td>
+                <td>${sensor.minTemp}</td>
+                <td>${sensor.maxTemp}</td>
+                <td>${sensor.lowAlarmThreshold}</td>
+                <td>${sensor.highAlarmThreshold}</td>
+                <td>${statusText}</td>
+                <td>
+                    <button class="config-btn" data-address="${sensor.address}">Config</button>
+                </td>
+                `;
+                
+                tableBody.appendChild(row);
+            });
+        }
+
         
         function displaySensors(data) {
             const tableBody = document.getElementById('sensorTableBody');
@@ -322,6 +502,7 @@
                     <td class="${sensor.alarmStatus ? 'status-alarm' : 'status-normal'}">${sensor.alarmStatus ? 'ALARM' : 'Normal'}</td>
                     <td>
                         <button class="delete-btn" data-address="${sensor.address}">Delete</button>
+                        <button class="config-btn" data-address="${sensor.address}">Config</button>
                     </td>
                 `;
                 
@@ -407,5 +588,132 @@
             }
         }
     </script>
+    <script>
+        // Get modal elements
+        const modal = document.getElementById("sensorConfigModal");
+        const closeBtn = modal.querySelector(".close");
+        const cancelBtn = modal.querySelector(".cancel-btn");
+        const configForm = document.getElementById("sensorConfigForm");
+        
+        // Function to open modal with sensor data
+        function openConfigModal(sensorData) {
+          // Set form values
+          document.getElementById("originalAddress").value = sensorData.address;
+          document.getElementById("sensorAddress").value = sensorData.address;
+          document.getElementById("sensorName").value = sensorData.name;
+          document.getElementById("lowAlarmThreshold").value = sensorData.lowAlarmThreshold;
+          document.getElementById("highAlarmThreshold").value = sensorData.highAlarmThreshold;
+          
+          // Set read-only information
+          document.getElementById("sensorType").textContent = sensorData.type;
+          document.getElementById("currentTemp").textContent = sensorData.currentTemp;
+          document.getElementById("minTemp").textContent = sensorData.minTemp;
+          document.getElementById("maxTemp").textContent = sensorData.maxTemp;
+          document.getElementById("alarmStatus").textContent = getAlarmStatusText(sensorData.alarmStatus);
+          document.getElementById("errorStatus").textContent = getErrorStatusText(sensorData.errorStatus);
+          
+          // Handle ROM address display for DS18B20 sensors
+          const romAddressGroup = document.getElementById("romAddressGroup");
+          if (sensorData.type === "DS18B20" && sensorData.romAddress) {
+            romAddressGroup.style.display = "block";
+            const romAddressHex = sensorData.romAddress.map(byte => byte.toString(16).padStart(2, '0')).join(':');
+            document.getElementById("romAddress").textContent = romAddressHex;
+          } else {
+            romAddressGroup.style.display = "none";
+          }
+          
+          // Show modal
+          modal.style.display = "block";
+        }
+        
+        // Function to close modal
+        function closeModal() {
+          modal.style.display = "none";
+        }
+        
+        // Close modal when clicking close button or cancel
+        closeBtn.addEventListener("click", closeModal);
+        cancelBtn.addEventListener("click", closeModal);
+        
+        // Close modal when clicking outside
+        window.addEventListener("click", function(event) {
+          if (event.target === modal) {
+            closeModal();
+          }
+        });
+        
+        // Handle form submission
+        configForm.addEventListener("submit", function(event) {
+          event.preventDefault();
+          
+          const originalAddress = document.getElementById("originalAddress").value;
+          const formData = {
+            originalAddress: parseInt(originalAddress),
+            address: parseInt(document.getElementById("sensorAddress").value),
+            name: document.getElementById("sensorName").value,
+            lowAlarmThreshold: parseFloat(document.getElementById("lowAlarmThreshold").value),
+            highAlarmThreshold: parseFloat(document.getElementById("highAlarmThreshold").value)
+          };
+          
+          // Send data to API
+          fetch('/api/sensor/update', {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData)
+          })
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Failed to update sensor');
+            }
+            return response.json();
+          })
+          .then(data => {
+            closeModal();
+            // Refresh sensor data
+            fetchSensors();
+            alert('Sensor updated successfully');
+          })
+          .catch(error => {
+            alert('Error: ' + error.message);
+          });
+        });
+        
+        // Helper function to convert alarm status code to text
+        function getAlarmStatusText(status) {
+          const texts = [];
+          if (status & 1) texts.push("Low Temperature");
+          if (status & 2) texts.push("High Temperature");
+          return texts.length > 0 ? texts.join(", ") : "Normal";
+        }
+        
+        // Helper function to convert error status code to text
+        function getErrorStatusText(status) {
+          const texts = [];
+          if (status & 1) texts.push("Communication Error");
+          if (status & 2) texts.push("Out of Range");
+          if (status & 4) texts.push("Disconnected");
+          return texts.length > 0 ? texts.join(", ") : "No Errors";
+        }
+        
+        // Add click event for config buttons
+        document.addEventListener('click', function(event) {
+          if (event.target.classList.contains('config-btn')) {
+            const sensorAddress = parseInt(event.target.dataset.address);
+            
+            // Find sensor data
+            fetch('/api/sensors')
+              .then(response => response.json())
+              .then(data => {
+                const sensor = data.sensors.find(s => s.address === sensorAddress);
+                if (sensor) {
+                  openConfigModal(sensor);
+                }
+              });
+          }
+        });
+      </script>
+      
 </body>
 </html>

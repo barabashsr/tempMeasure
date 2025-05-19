@@ -78,6 +78,7 @@ public:
     
     // Reset min/max values
     void resetMinMaxValues();
+    void updateSensorInConfig(Sensor* sensor);
 };
 
 // Initialize static member

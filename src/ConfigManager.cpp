@@ -252,6 +252,90 @@ bool ConfigManager::begin() {
             server->send(400, "text/plain", "No data provided");
         }
     });
+
+    // API endpoint to update a sensor
+    server->on("/api/sensor/update", HTTP_PUT, [this]() {
+        if (server->hasArg("plain")) {
+        String body = server->arg("plain");
+        DynamicJsonDocument doc(512);
+        DeserializationError error = deserializeJson(doc, body);
+        
+        if (!error) {
+            uint8_t originalAddress = doc["originalAddress"];
+            uint8_t newAddress = doc["address"];
+            String name = doc["name"].as<String>();
+            int16_t lowThreshold = doc["lowAlarmThreshold"];
+            int16_t highThreshold = doc["highAlarmThreshold"];
+            
+            bool success = true;
+            
+            // Update sensor address if changed
+            if (originalAddress != newAddress) {
+            success = controller.updateSensorAddress(originalAddress, newAddress);
+            if (!success) {
+                server->sendHeader("HTTP/1.1 400 Bad Request", "");
+                server->sendHeader("Content-Type", "application/json");
+                server->sendHeader("Connection", "close");
+                server->send(400, "application/json", "{\"error\":\"Failed to update sensor address\"}");
+                return;
+            }
+            }
+            
+            // Update sensor name
+            success = controller.updateSensorName(newAddress, name);
+            if (!success) {
+            server->sendHeader("HTTP/1.1 400 Bad Request", "");
+            server->sendHeader("Content-Type", "application/json");
+            server->sendHeader("Connection", "close");
+            server->send(400, "application/json", "{\"error\":\"Failed to update sensor name\"}");
+            return;
+            }
+            
+            // Get sensor to update thresholds
+            Sensor* sensor = controller.findSensor(newAddress);
+            if (sensor) {
+            sensor->setLowAlarmThreshold(lowThreshold);
+            sensor->setHighAlarmThreshold(highThreshold);
+            
+            // Update configuration in storage
+            updateSensorInConfig(sensor->getAddress(),
+                                sensor->getName(),
+                                sensor->getLowAlarmThreshold(),
+                                sensor->getHighAlarmThreshold()
+                                );
+            
+            // Send success response    
+            DynamicJsonDocument responseDoc(256);
+            responseDoc["success"] = true;
+            responseDoc["message"] = "Sensor updated successfully";
+            
+            String responseJson;
+            serializeJson(responseDoc, responseJson);
+            
+            server->sendHeader("HTTP/1.1 200 OK", "");
+            server->sendHeader("Content-Type", "application/json");
+            server->sendHeader("Connection", "close");
+            server->send(200, "application/json", responseJson);
+            } else {
+            server->sendHeader("HTTP/1.1 404 Not Found", "");
+            server->sendHeader("Content-Type", "application/json");
+            server->sendHeader("Connection", "close");
+            server->send(404, "application/json", "{\"error\":\"Sensor not found\"}");
+            }
+        } else {
+            server->sendHeader("HTTP/1.1 400 Bad Request", "");
+            server->sendHeader("Content-Type", "application/json");
+            server->sendHeader("Connection", "close");
+            server->send(400, "application/json", "{\"error\":\"Invalid JSON\"}");
+        }
+        } else {
+        server->sendHeader("HTTP/1.1 400 Bad Request", "");
+        server->sendHeader("Content-Type", "application/json");
+        server->sendHeader("Connection", "close");
+        server->send(400, "application/json", "{\"error\":\"Missing request body\"}");
+        }
+    });
+  
     
     // API endpoint to delete a sensor
     server->on("/api/sensors", HTTP_DELETE, [this]() {
@@ -590,3 +674,7 @@ void ConfigManager::loadSensorConfig() {
 void ConfigManager::resetMinMaxValues() {
     controller.resetMinMaxValues();
 }
+
+
+
+  
