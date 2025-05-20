@@ -12,6 +12,7 @@ MeasurementPoint::MeasurementPoint(uint8_t address, const String& name)
       alarmStatus(0),
       errorStatus(0),
       boundSensor(nullptr)
+      //oneWireBus(0)
 {
     // Nothing else needed
 }
@@ -112,3 +113,12 @@ void MeasurementPoint::updateAlarmStatus() {
     if (currentTemp < lowAlarmThreshold) alarmStatus |= 0x01; // Low alarm bit
     if (currentTemp > highAlarmThreshold) alarmStatus |= 0x02; // High alarm bit
 }
+
+// void MeasurementPoint::setOneWireBus(uint8_t bus) {
+//     oneWireBus = bus;
+
+// }
+// uint8_t MeasurementPoint::getOneWireBus() {
+//     return oneWireBus;
+
+// }

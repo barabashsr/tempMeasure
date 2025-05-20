@@ -1,18 +1,25 @@
 #include "TemperatureController.h"
 
 
-TemperatureController::TemperatureController(uint8_t oneWirePin)
+TemperatureController::TemperatureController(uint8_t oneWirePin[4])
     : measurementPeriodSeconds(10),
       deviceId(1000),
       firmwareVersion(0x0100),
       lastMeasurementTime(0),
-      systemInitialized(false),
-      oneWireBusPin(oneWirePin)
+      systemInitialized(false)
+      //oneWireBusPin(oneWirePin)
 {
     for (uint8_t i = 0; i < 50; ++i)
         dsPoints[i] = MeasurementPoint(i, "DS18B20_Point_" + String(i));
     for (uint8_t i = 0; i < 10; ++i)
         ptPoints[i] = MeasurementPoint(50 + i, "PT1000_Point_" + String(i));
+    for (uint8_t i = 0; i < 4; i++)
+        oneWireBusPin[i] = oneWirePin[i];
+    for (int i = 0; i < 4; ++i) {
+        oneWireBuses[i] = new OneWire(oneWireBusPin[i]);
+        dallasSensors[i] = new DallasTemperature(oneWireBuses[i]);
+    }
+
 }
 
 TemperatureController::~TemperatureController() {
@@ -20,7 +27,7 @@ TemperatureController::~TemperatureController() {
         delete sensor;
     sensors.clear();
 }
-
+// 
 bool TemperatureController::begin() {
     registerMap.writeHoldingRegister(0, deviceId);
     registerMap.writeHoldingRegister(1, firmwareVersion);
@@ -174,38 +181,63 @@ void TemperatureController::applyConfigToRegisterMap() {
 }
 
 bool TemperatureController::discoverDS18B20Sensors() {
-    OneWire oneWire(oneWireBusPin);
-    DallasTemperature dallasSensors(&oneWire);
-    dallasSensors.begin();
+    bool anyAdded = false;
+    Serial.println("Discover method started...");
+    // OneWire oneWire[] = { OneWire(oneWireBusPin[0]), OneWire(oneWireBusPin[1]), OneWire(oneWireBusPin[2]), OneWire(oneWireBusPin[3]) };
+    // DallasTemperature dallasSensors[] = {DallasTemperature(&oneWire[0]), DallasTemperature(&oneWire[1]), DallasTemperature(&oneWire[2]), DallasTemperature(&oneWire[3])};
+    for (uint j = 0; j < 4; j++){
+        Serial.printf("Discover bus %d pin %d started...\n", j, oneWireBusPin[j]);
+        
+    //OneWire oneWire(oneWireBusPin[j]);
+    
+    dallasSensors[j]->begin();
 
-    int deviceCount = dallasSensors.getDeviceCount();
-    if (deviceCount == 0) return false;
+    int deviceCount = dallasSensors[j]->getDeviceCount();
+    Serial.printf("Devices on bus %d: %d\n", j, deviceCount);
+    if (deviceCount == 0) continue;
 
     DeviceAddress sensorAddress;
-    bool anyAdded = false;
+    
 
     for (int i = 0; i < deviceCount; i++) {
-        if (dallasSensors.getAddress(sensorAddress, i)) {
+        if (dallasSensors[j]->getAddress(sensorAddress, i)) {
+            Serial.printf("Bus %d. Device %d of %d\n", j, i, deviceCount);
             // Convert ROM to string for uniqueness
             char buf[17];
-            for (int j = 0; j < 8; ++j) sprintf(buf + j*2, "%02X", sensorAddress[j]);
+            for (int u = 0; u < 8; ++u) sprintf(buf + u*2, "%02X", sensorAddress[u]);
             String romString(buf);
+            Serial.printf("ROM: %s\n", romString);
 
             // Check if already exists
-            if (findSensorByRom(romString)) continue;
+            if (findSensorByRom(romString)){
+                if(getSensorBus(findSensorByRom(romString)) != j) {
+                    removeSensorByRom(romString);
+                    Serial.println("Device existed on enother bus. Deleting");
+                    //continue;
+
+                }
+
+            }
+             
 
             String sensorName = "DS18B20_" + romString;
             Sensor* newSensor = new Sensor(SensorType::DS18B20, 0, sensorName); // address field not used for DS
-            newSensor->setupDS18B20(oneWireBusPin, sensorAddress);
+            Serial.printf("Sensor created with name %s on bus %d\n", newSensor->getName(), getSensorBus(newSensor));
+
+            newSensor->setupDS18B20(oneWireBusPin[j], sensorAddress);
+            Serial.printf("Sensor %s set on bus %d/ pin %d\n", newSensor->getName(), getSensorBus(newSensor), newSensor->getOneWirePin());
 
             if (newSensor->initialize()) {
                 sensors.push_back(newSensor);
                 registerMap.incrementActiveDS18B20();
                 anyAdded = true;
+                Serial.printf("Sensor %s set on bus %d/ pin %d status: Connected\n", newSensor->getName(), getSensorBus(newSensor), newSensor->getOneWirePin());
+
             } else {
                 delete newSensor;
             }
         }
+    }
     }
     return anyAdded;
 }
@@ -232,6 +264,7 @@ String TemperatureController::getSensorsJson() {
             uint8_t rom[8];
             sensor->getDS18B20RomArray(rom);
             for (int j = 0; j < 8; ++j) romArr.add(rom[j]);
+            obj["bus"] = getSensorBus(sensor);
         } else if (sensor->getType() == SensorType::PT1000) {
             obj["chipSelectPin"] = sensor->getPT1000ChipSelectPin();
         }
@@ -293,6 +326,7 @@ String TemperatureController::getPointsJson() {
             uint8_t rom[8];
             bound->getDS18B20RomArray(rom);
             for (int j = 0; j < 8; ++j) romArr.add(rom[j]);
+            obj["bus"] = getSensorBus(bound);
         }
     }
 
@@ -371,8 +405,8 @@ uint16_t TemperatureController::getMeasurementPeriod() const {
     return measurementPeriodSeconds;
 }
 
-void TemperatureController::setOneWireBusPin(uint8_t pin) {
-    oneWireBusPin = pin;
+void TemperatureController::setOneWireBusPin(uint8_t pin, size_t bus) {
+    oneWireBusPin[bus] = pin;
 }
 
 int TemperatureController::getDS18B20Count() const {
@@ -399,4 +433,19 @@ void TemperatureController::updateAllSensors() {
     for (auto sensor : sensors) {
         sensor->readTemperature();
     }
+}
+
+uint8_t TemperatureController::getOneWirePin(size_t bus) {
+    return oneWireBusPin[bus];
+}
+
+int TemperatureController::getSensorBus(Sensor* sensor) {
+    uint8_t pin = sensor->getOneWirePin();
+    for (int i = 0; i < 4; i++) {
+        if (oneWireBusPin[i] == pin) return i;
+    } 
+
+        return -1;
+
+    
 }

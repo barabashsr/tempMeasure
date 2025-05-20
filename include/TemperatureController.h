@@ -11,7 +11,7 @@
 
 class TemperatureController {
 public:
-    TemperatureController(uint8_t oneWirePin = 4);
+    TemperatureController(uint8_t oneWirePin[4]);
     ~TemperatureController();
 
     bool begin();
@@ -54,14 +54,18 @@ public:
     uint16_t getFirmwareVersion() const;
     void setMeasurementPeriod(uint16_t seconds);
     uint16_t getMeasurementPeriod() const;
-    void setOneWireBusPin(uint8_t pin);
-    uint8_t getOneWirePin() {return oneWireBusPin;}
+    void setOneWireBusPin(uint8_t pin, size_t idx);
+    uint8_t getOneWirePin(size_t bus);
 
     int getDS18B20Count() const;
     int getPT1000Count() const;
     void updateAllSensors();
+    int getSensorBus(Sensor* sensor);
 
 private:
+
+    OneWire* oneWireBuses[4];
+    DallasTemperature* dallasSensors[4];
     MeasurementPoint dsPoints[50];
     MeasurementPoint ptPoints[10];
     std::vector<Sensor*> sensors;
@@ -72,7 +76,7 @@ private:
     uint16_t firmwareVersion;
     unsigned long lastMeasurementTime;
     bool systemInitialized;
-    uint8_t oneWireBusPin;
+    uint8_t oneWireBusPin[4];
 
     bool isDS18B20Address(uint8_t address) const { return address < 50; }
     bool isPT1000Address(uint8_t address) const { return address >= 50 && address < 60; }

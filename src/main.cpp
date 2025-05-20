@@ -4,7 +4,12 @@
 #include "ConfigManager.h"
 
 // Create temperature controller
-TemperatureController controller;
+#define BUS1_PIN  4
+#define BUS2_PIN  19
+#define BUS3_PIN  17
+#define BUS4_PIN  5
+uint8_t onwWirePins[4] = {BUS1_PIN,  BUS2_PIN, BUS3_PIN, BUS4_PIN};
+TemperatureController controller(onwWirePins);
 
 // Create configuration manager
 ConfigManager* configManager;
@@ -18,9 +23,12 @@ void setup() {
     while (!Serial) {}
     Serial.println("\nIndustrial Temperature Monitoring System");
     Serial.println("--------------------------------------");
+    //controller = new TemperatureController(onwWirePins);
+    Serial.println("\nController created");
     
     // Initialize controller
     controller.begin();
+    Serial.println("\nController begin");
     
     // Initialize configuration manager
     configManager = new ConfigManager(controller);
@@ -33,7 +41,7 @@ void setup() {
     Serial.println("controller.setDeviceId(configManager->getDeviceId());");
     controller.setMeasurementPeriod(configManager->getMeasurementPeriod()*1000);
     Serial.println("controller.setMeasurementPeriod(configManager->getMeasurementPeriod());");
-    controller.setOneWireBusPin(configManager->getOneWirePin());
+    //controller.setOneWireBusPin(configManager->getOneWirePin());
     Serial.println("controller.setOneWireBusPin(configManager->getOneWirePin());");
     
     //Discover DS18B20 sensors if auto-discover is enabled
@@ -100,9 +108,9 @@ void loop() {
         Serial.println("\nSensors Status:");
         //Serial.println(controller.getSystemStatusJson());
         Serial.println(controller.getSensorsJson());
-        Serial.println("\nPoints Status:");
+        //Serial.println("\nPoints Status:");
         //Serial.println(controller.getSystemStatusJson());
-        Serial.println(controller.getPointsJson());
+        //Serial.println(controller.getPointsJson());
         
         lastPrintTime = millis();
     }

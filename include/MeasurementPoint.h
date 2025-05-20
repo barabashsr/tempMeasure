@@ -40,10 +40,13 @@ public:
     // Operations
     void update();              // Should be called to refresh temperature and status
     void resetMinMaxTemp();     // Resets min/max to current
+    // void setOneWireBus(uint8_t bus);
+    // uint8_t getOneWireBus();
 
 private:
     uint8_t address;
     String name;
+    // uint8_t oneWireBus;
 
     int16_t currentTemp;        // Latest temperature (°C x1)
     int16_t minTemp;            // Minimum recorded temperature

@@ -68,39 +68,6 @@ Modbus settings:
       min: 0
       max: 39
       default: 18
-
-Sensor settings:
-  - onewire_pin1:
-      label: OneWire Bus Pin1
-      type: number
-      min: 0
-      max: 39
-      default: 25
-  - onewire_pin2:
-      label: OneWire Bus Pin2
-      type: number
-      min: 0
-      max: 39
-      default: 26
-  - onewire_pin3:
-      label: OneWire Bus Pin3
-      type: number
-      min: 0
-      max: 39
-      default: 26
-  - onewire_pin4:
-      label: OneWire Bus Pin3
-      type: number
-      min: 0
-      max: 39
-      default: 33
-  - auto_discover:
-      label: Auto-discover sensors on startup
-      checked: true
-  - reset_min_max:
-      label: Reset Min/Max Values
-      type: button
-      attribs: onClick="resetMinMax()"
 )~";
 
 ConfigManager::ConfigManager(TemperatureController& tempController)
@@ -600,234 +567,6 @@ void ConfigManager::onConfigChanged(String key) {
     }
 }
 
-// bool ConfigManager::addSensorToConfig(SensorType type, uint8_t address, const String& name, const uint8_t* romAddress) {
-//     // Create a ConfigAssist for sensor configuration
-//     ConfigAssist sensorConf("/sensors2.ini", false);
-    
-//     // Create a unique key for this sensor
-//     String sensorKey = String(type == SensorType::DS18B20 ? "ds_" : "pt_") + String(address);
-    
-//     // Check if sensor already exists
-//     if (sensorConf(sensorKey + "_name") != "") {
-//         return false; // Sensor already exists
-//     }
-    
-//     // Add sensor configuration
-//     sensorConf[sensorKey + "_name"] = name;
-//     sensorConf[sensorKey + "_type"] = type == SensorType::DS18B20 ? "DS18B20" : "PT1000";
-//     sensorConf[sensorKey + "_address"] = String(address);
-//     sensorConf[sensorKey + "_low_alarm"] = "-10"; // Default low alarm
-//     sensorConf[sensorKey + "_high_alarm"] = "50"; // Default high alarm
-    
-//     // Add ROM address for DS18B20 sensors
-//     if (type == SensorType::DS18B20 && romAddress != nullptr) {
-//         String romHex = "";
-        
-//         Serial.println(F("--- Processing ROM address ---"));
-//         Serial.print(F("Raw ROM bytes: "));
-//         for (int i = 0; i < 8; i++) {
-//             Serial.print(romAddress[i], HEX);
-//             Serial.print(" ");
-//         }
-//         Serial.println();
-        
-//         for (int i = 0; i < 8; i++) {
-//             if (romAddress[i] < 16) romHex += "0";
-//             romHex += String(romAddress[i], HEX);
-            
-//             // Debug each byte as it's added to the string
-//             Serial.print(F("Added byte "));
-//             Serial.print(i);
-//             Serial.print(F(": "));
-//             Serial.print(romAddress[i], HEX);
-//             Serial.print(F(" -> Current romHex: "));
-//             Serial.println(romHex);
-//         }
-        
-//         sensorConf[sensorKey + "_rom"] = romHex;
-        
-//         // Show the final string being written to the configuration
-//         Serial.print(F("Final ROM string written to config: "));
-//         Serial.println(romHex);
-//         Serial.print(F("Config key: "));
-//         Serial.println(sensorKey + "_rom");
-//     }
-    
-//     // Save configuration
-//     sensorConf.saveConfigFile();
-    
-//     return true;
-// }
-
-// bool ConfigManager::removeSensorFromConfig(uint8_t address) {
-//     // Create a ConfigAssist for sensor configuration
-//     ConfigAssist sensorConf("/sensors2.ini", false);
-    
-//     // Try both sensor types
-//     String dsKey = "ds_" + String(address);
-//     String ptKey = "pt_" + String(address);
-    
-//     bool found = false;
-    
-//     // Check if DS18B20 sensor exists
-//     if (sensorConf(dsKey + "_name") != "") {
-//         // Remove all keys for this sensor by setting them to empty
-//         sensorConf[dsKey + "_name"] = "";
-//         sensorConf[dsKey + "_type"] = "";
-//         sensorConf[dsKey + "_address"] = "";
-//         sensorConf[dsKey + "_low_alarm"] = "";
-//         sensorConf[dsKey + "_high_alarm"] = "";
-//         sensorConf[dsKey + "_rom"] = "";
-//         found = true;
-//     }
-    
-//     // Check if PT1000 sensor exists
-//     if (sensorConf(ptKey + "_name") != "") {
-//         // Remove all keys for this sensor by setting them to empty
-//         sensorConf[ptKey + "_name"] = "";
-//         sensorConf[ptKey + "_type"] = "";
-//         sensorConf[ptKey + "_address"] = "";
-//         sensorConf[ptKey + "_low_alarm"] = "";
-//         sensorConf[ptKey + "_high_alarm"] = "";
-//         found = true;
-//     }
-    
-//     if (found) {
-//         // Save configuration
-//         sensorConf.saveConfigFile();
-//     }
-    
-//     return found;
-// }
-
-// bool ConfigManager::updateSensorInConfig(uint8_t address, const String& name, int16_t lowAlarm, int16_t highAlarm) {
-//     // Create a ConfigAssist for sensor configuration
-//     ConfigAssist sensorConf("/sensors2.ini", false);
-    
-//     // Try both sensor types
-//     String dsKey = "ds_" + String(address);
-//     String ptKey = "pt_" + String(address);
-    
-//     bool found = false;
-    
-//     // Check if DS18B20 sensor exists
-//     if (sensorConf(dsKey + "_name") != "") {
-//         sensorConf[dsKey + "_name"] = name;
-//         sensorConf[dsKey + "_low_alarm"] = String(lowAlarm);
-//         sensorConf[dsKey + "_high_alarm"] = String(highAlarm);
-//         found = true;
-//     }
-    
-//     // Check if PT1000 sensor exists
-//     if (sensorConf(ptKey + "_name") != "") {
-//         sensorConf[ptKey + "_name"] = name;
-//         sensorConf[ptKey + "_low_alarm"] = String(lowAlarm);
-//         sensorConf[ptKey + "_high_alarm"] = String(highAlarm);
-//         found = true;
-//     }
-    
-//     if (found) {
-//         // Save configuration
-//         sensorConf.saveConfigFile();
-        
-//     }
-//     controller.applyConfigToRegisterMap();
-    
-//     return found;
-// }
-
-// void ConfigManager::loadSensorConfig() {
-//     // Create a ConfigAssist for sensor configuration
-//     ConfigAssist sensorConf("/sensors2.ini", false);
-    
-//     // Check if the file exists
-//     if (!LittleFS.exists("/sensors2.ini")) {
-//         return; // No sensor configuration yet
-//     }
-    
-//     // Load the configuration
-//     sensorConf.loadConfigFile();
-    
-//     // Get all keys (ConfigAssist doesn't have getKeys method, so we'll check known patterns)
-//     for (int i = 0; i < 60; i++) {
-//         // Check DS18B20 sensors
-//         String dsPrefix = "ds_" + String(i);
-//         if (sensorConf(dsPrefix + "_name") != "") {
-//             // Get sensor type
-//             String typeStr = sensorConf(dsPrefix + "_type");
-//             SensorType type = SensorType::DS18B20;
-            
-//             // Get sensor address
-//             uint8_t address = sensorConf(dsPrefix + "_address").toInt();
-            
-//             // Get sensor name
-//             String name = sensorConf(dsPrefix + "_name");
-            
-//             // Create sensor
-//             Sensor* newSensor = new Sensor(type, address, name);
-            
-//             // Set thresholds
-//             newSensor->setLowAlarmThreshold(sensorConf(dsPrefix + "_low_alarm").toInt());
-//             newSensor->setHighAlarmThreshold(sensorConf(dsPrefix + "_high_alarm").toInt());
-//             Serial.printf("CM1. New HAS: %d, New LAS: %d \n", newSensor->getHighAlarmThreshold(), newSensor->getLowAlarmThreshold());
-            
-//             // Set up physical connection
-//             String romHex = sensorConf(dsPrefix + "_rom");
-//             Serial.println("Processing ROM: " + romHex);
-//             if (romHex.length() == 16) {
-//                 Serial.print("HEX ROM: ");
-//                 uint8_t romAddress[8];
-//                 for (int j = 0; j < 8; j++) {
-//                     String byteHex = romHex.substring(j*2, j*2+2);
-//                     romAddress[j] = strtol(byteHex.c_str(), NULL, 16);
-//                     Serial.print(romAddress[j], HEX);
-//                     Serial.print(":");
-//                 }
-//                 Serial.println("");
-//                 newSensor->setupDS18B20(getOneWirePin(), romAddress);
-//             } else {
-//                 Serial.println("Invalid ROM: " + romHex);
-//             }
-            
-//             // Initialize sensor
-//             if (newSensor->initialize()) {
-//                 controller.addSensorFromConfig(newSensor);
-//                 Serial.printf("CM2. New HAS: %d, New LAS: %d \n", newSensor->getHighAlarmThreshold(), newSensor->getLowAlarmThreshold());
-//                 Serial.println(controller.getSensorsJson());
-//             } else {
-//                 delete newSensor;
-//             }
-//         }
-        
-//         // Check PT1000 sensors
-//         String ptPrefix = "pt_" + String(i);
-//         if (sensorConf(ptPrefix + "_name") != "") {
-//             // Get sensor type
-//             String typeStr = sensorConf(ptPrefix + "_type");
-//             SensorType type = SensorType::PT1000;
-            
-//             // Get sensor address
-//             uint8_t address = sensorConf(ptPrefix + "_address").toInt();
-            
-//             // Get sensor name
-//             String name = sensorConf(ptPrefix + "_name");
-            
-//             // Create sensor
-//             Sensor* newSensor = new Sensor(type, address, name);
-            
-//             // Set thresholds
-//             newSensor->setLowAlarmThreshold(sensorConf(ptPrefix + "_low_alarm").toInt());
-//             newSensor->setHighAlarmThreshold(sensorConf(ptPrefix + "_high_alarm").toInt());
-            
-//             // Initialize sensor
-//             if (newSensor->initialize()) {
-//                 controller.addSensor(type, address, name);
-//             } else {
-//                 delete newSensor;
-//             }
-//         }
-//     }
-// }
 
 void ConfigManager::resetMinMaxValues() {
     controller.resetMinMaxValues();
@@ -852,8 +591,10 @@ void ConfigManager::savePointsConfig() {
         Sensor* bound = point->getBoundSensor();
         if (bound && bound->getType() == SensorType::DS18B20) {
             pointsConf[key + "_sensor_rom"] = bound->getDS18B20RomString();
+            pointsConf[key + "_sensor_bus"] = controller.getSensorBus(bound);
         } else {
             pointsConf[key + "_sensor_rom"] = "";
+            pointsConf[key + "_sensor_bus"] = "";
         }
     }
 
@@ -926,6 +667,7 @@ void ConfigManager::loadPointsConfig() {
         point->setName(pointsConf(key + "_name"));
         point->setLowAlarmThreshold(pointsConf(key + "_low_alarm").toInt());
         point->setHighAlarmThreshold(pointsConf(key + "_high_alarm").toInt());
+        uint8_t bus = pointsConf(key + "_sensor_bus").toInt();
         String rom = pointsConf(key + "_sensor_rom");
         if (rom.length() == 16) {
             // Ensure the sensor exists and is initialized before binding
@@ -936,12 +678,13 @@ void ConfigManager::loadPointsConfig() {
                     romArr[j] = strtol(rom.substring(j*2, j*2+2).c_str(), nullptr, 16);
                 String sensorName = "DS18B20_" + rom;
                 sensor = new Sensor(SensorType::DS18B20, 0, sensorName);
-                sensor->setupDS18B20(controller.getOneWirePin(), romArr);
+                sensor->setupDS18B20(controller.getOneWirePin(bus), romArr);
                 if (!sensor->initialize()) {
                     //sensor->setErrorStatus(0x01); // Mark as error (not connected)
                 }
                 controller.addSensor(sensor);
             }
+            
             controller.bindSensorToPointByRom(rom, i);
         } else {
             controller.unbindSensorFromPoint(i);

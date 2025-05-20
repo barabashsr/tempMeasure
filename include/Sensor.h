@@ -65,6 +65,7 @@ public:
     void updateAlarmStatus();
     String getDS18B20RomString() const;        // ROM as hex string
     void getDS18B20RomArray(uint8_t out[8]) const; // ROM as array
+    uint8_t getOneWirePin() {return connection.ds18b20.oneWirePin;}
 
 private:
     uint8_t address;
