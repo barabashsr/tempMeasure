@@ -70,12 +70,30 @@ Modbus settings:
       default: 18
 
 Sensor settings:
-  - onewire_pin:
-      label: OneWire Bus Pin
+  - onewire_pin1:
+      label: OneWire Bus Pin1
       type: number
       min: 0
       max: 39
-      default: 4
+      default: 25
+  - onewire_pin2:
+      label: OneWire Bus Pin2
+      type: number
+      min: 0
+      max: 39
+      default: 26
+  - onewire_pin3:
+      label: OneWire Bus Pin3
+      type: number
+      min: 0
+      max: 39
+      default: 26
+  - onewire_pin4:
+      label: OneWire Bus Pin3
+      type: number
+      min: 0
+      max: 39
+      default: 33
   - auto_discover:
       label: Auto-discover sensors on startup
       checked: true
@@ -118,8 +136,8 @@ bool ConfigManager::begin() {
     // IMPORTANT: Register custom routes BEFORE ConfigAssist setup
     
     // Add route for the main page
-    server->on("/", HTTP_GET, [this]() {
-        if (LittleFS.exists("/index.html")) {
+    server->on("/dashboard.html", HTTP_GET, [this]() {
+        if (LittleFS.exists("/dashboard.html")) {
             server->sendHeader("HTTP/1.1 200 OK", "");
             server->sendHeader("Content-Type", "text/html");
             server->sendHeader("Connection", "close");
@@ -257,7 +275,7 @@ bool ConfigManager::begin() {
         point->setHighAlarmThreshold(high);
         controller.applyConfigToRegisterMap();
         // Save to config if needed
-        //savePointsConfig(); // implement this to persist changes
+        savePointsConfig(); // implement this to persist changes
 
         server->send(200, "application/json", "{\"success\":true}");
     });

@@ -1,434 +1,414 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Temperature Sensors</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f4f4f4;
-    }
-    
-    header {
-      background-color: #333;
-      color: white;
-      padding: 10px 0;
-      text-align: center;
-    }
-    
-    nav {
-      display: flex;
-      justify-content: center;
-      background-color: #444;
-    }
-    
-    nav a {
-      color: white;
-      padding: 14px 20px;
-      text-decoration: none;
-      text-align: center;
-    }
-    
-    nav a:hover {
-      background-color: #555;
-    }
-    
-    main {
-      max-width: 1200px;
-      margin: 20px auto;
-      padding: 20px;
-      background-color: white;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-    
-    h1, h2 {
-      color: #333;
-    }
-    
-    button {
-      background-color: #4CAF50;
-      border: none;
-      color: white;
-      padding: 10px 15px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 16px;
-      margin: 4px 2px;
-      cursor: pointer;
-      border-radius: 4px;
-    }
-    
-    button:hover {
-      background-color: #45a049;
-    }
-    
-    button:disabled {
-      background-color: #cccccc;
-      cursor: not-allowed;
-    }
-    
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-      font-size: 14px;
-    }
-    
-    th, td {
-      border: 1px solid #ddd;
-      padding: 8px;
-      text-align: left;
-    }
-    
-    th {
-      background-color: #f2f2f2;
-      position: sticky;
-      top: 0;
-    }
-    
-    tr:nth-child(even) {
-      background-color: #f9f9f9;
-    }
-    
-    .status-ok {
-      color: green;
-    }
-    
-    .status-alarm {
-      color: red;
-      font-weight: bold;
-    }
-    
-    .status-error {
-      color: orange;
-      font-weight: bold;
-    }
-    
-    .button-container {
-      margin-top: 20px;
-    }
-    
-    .loading {
-      text-align: center;
-      padding: 20px;
-      font-style: italic;
-      color: #666;
-    }
-    
-    .error-message {
-      color: red;
-      padding: 10px;
-      border: 1px solid red;
-      background-color: #ffeeee;
-      margin: 10px 0;
-    }
-    
-    .warning-message {
-      color: #856404;
-      padding: 10px;
-      border: 1px solid #ffeeba;
-      background-color: #fff3cd;
-      margin: 10px 0;
-    }
-    
-    .rom-address {
-      font-family: monospace;
-      font-size: 12px;
-      color: #666;
-    }
-    
-    .duplicate-warning {
-      background-color: #fff3cd;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>Sensors Management</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        /* Use styles from index.html */
+        body {
+            font-family: Arial, sans-serif;
+            background: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #3f51b5;
+            color: #fff;
+            padding: 1em 2em;
+            text-align: center;
+            font-size: 1.5em;
+            letter-spacing: 2px;
+        }
+        nav {
+            background: #263238;
+            padding: 0.5em 2em;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin-right: 2em;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+        nav a:hover {
+            color: #ffeb3b;
+        }
+        main {
+            max-width: 1200px;
+            margin: 2em auto;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            padding: 2em;
+        }
+        h2 {
+            margin-top: 1em;
+            color: #3f51b5;
+            font-size: 1.2em;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.25em;
+        }
+        .actions {
+            margin-bottom: 1.5em;
+        }
+        button {
+            background: #3f51b5;
+            color: #fff;
+            border: none;
+            padding: 0.5em 1.2em;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-right: 0.5em;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background: #283593;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2em;
+        }
+        th, td {
+            padding: 0.6em 0.8em;
+            border-bottom: 1px solid #eee;
+            text-align: left;
+        }
+        th {
+            background: #f0f4ff;
+            color: #3f51b5;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        .status-bound {
+            color: #388e3c;
+            font-weight: bold;
+        }
+        .status-unbound {
+            color: #b71c1c;
+            font-weight: bold;
+        }
+        .rom, .chip-select {
+            font-family: monospace;
+            font-size: 0.98em;
+            color: #333;
+        }
+        @media (max-width: 800px) {
+            main { padding: 1em; }
+            th, td { font-size: 0.95em; }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Temperature Monitoring System</h1>
-  </header>
-  
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="settings.html">Settings</a>
-    <a href="sensors.html">Sensors</a>
-  </nav>
-  
-  <main>
-    <h2>Temperature Sensors</h2>
-    
-    <div id="warning-container"></div>
-    <div id="sensor-container" class="loading">Loading sensors...</div>
-    
-    <div class="button-container">
-      <button id="discover-btn">Discover Sensors</button>
-      <button id="reset-btn">Reset Min/Max Values</button>
-    </div>
-  </main>
+    <header>Temperature Monitoring System</header>
+    <nav>
+        <a href="dashboard.html">Home</a>
+        <a href="settings.html">Settings</a>
+        <a href="sensors.html">Sensors</a>
+        <a href="points.html">Points</a>
 
-  <script>
-    // Store the last known sensor data to detect changes
-    let lastSensorData = [];
-    let romAddresses = new Map(); // Map to track ROM addresses
-    
-    // Function to check for duplicate sensors
-    function checkForDuplicates(sensors) {
-      // Clear previous ROM addresses
-      romAddresses.clear();
-      
-      let duplicateCount = 0;
-      let seenAddresses = new Set();
-      
-      sensors.forEach(sensor => {
-        // Check for duplicate logical addresses
-        if (seenAddresses.has(sensor.address)) {
-          duplicateCount++;
-        } else {
-          seenAddresses.add(sensor.address);
-        }
-        
-        // Track ROM addresses if available
-        if (sensor.romAddress) {
-          if (romAddresses.has(sensor.romAddress)) {
-            romAddresses.set(sensor.romAddress, romAddresses.get(sensor.romAddress) + 1);
-          } else {
-            romAddresses.set(sensor.romAddress, 1);
-          }
-        }
-      });
-      
-      // Check for duplicate ROM addresses
-      let romDuplicates = 0;
-      romAddresses.forEach((count, rom) => {
-        if (count > 1) romDuplicates++;
-      });
-      
-      return { duplicateCount, romDuplicates };
-    }
-    
-    // Function to show warning about duplicates
-    function showDuplicateWarning(duplicateInfo) {
-      const warningContainer = document.getElementById('warning-container');
-      
-      if (duplicateInfo.duplicateCount > 0 || duplicateInfo.romDuplicates > 0) {
-        let warningText = "";
-        
-        if (duplicateInfo.duplicateCount > 0) {
-          warningText += `<p>Warning: ${duplicateInfo.duplicateCount} duplicate sensor addresses detected. This may cause issues with data accuracy.</p>`;
-        }
-        
-        warningText += `<p>The system has detected ${lastSensorData.length} sensors, but there may be duplicates. `;
-        warningText += `Consider resetting the device if you're seeing unexpected sensor data.</p>`;
-        
-        warningContainer.innerHTML = `<div class="warning-message">${warningText}</div>`;
-      } else {
-        warningContainer.innerHTML = '';
-      }
-    }
-    
-    // Function to format ROM address for display
-    function formatRomAddress(romAddressBytes) {
-      if (!romAddressBytes) return "Unknown";
-      
-      // Convert byte array to hex string
-      return Array.from(romAddressBytes)
-        .map(byte => byte.toString(16).padStart(2, '0'))
-        .join(':');
-    }
-    
-    // Function to fetch and update sensor data
-    function updateSensorData() {
-      fetch('/api/sensors')
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          return response.json();
-        })
-        .then(data => {
-          // Get the sensor container
-          const sensorContainer = document.getElementById('sensor-container');
-          sensorContainer.classList.remove('loading');
-          
-          // Check if we have sensors
-          if (!data.sensors || data.sensors.length === 0) {
-            sensorContainer.innerHTML = '<p>No sensors found. Click "Discover Sensors" to search for connected sensors.</p>';
-            return;
-          }
-          
-          // Check for duplicates
-          const duplicateInfo = checkForDuplicates(data.sensors);
-          showDuplicateWarning(duplicateInfo);
-          
-          // Check if data has changed
-          const dataChanged = JSON.stringify(data.sensors) !== JSON.stringify(lastSensorData);
-          
-          // If data hasn't changed and we already have a table, don't rebuild it
-          if (!dataChanged && document.getElementById('sensor-table')) {
-            return;
-          }
-          
-          // Store the new data
-          lastSensorData = JSON.parse(JSON.stringify(data.sensors));
-          
-          // Create table structure
-          let tableHTML = `
-            <table id="sensor-table">
-              <thead>
+    </nav>
+    <main>
+        <div class="actions">
+            <button id="discoverBtn">Discover</button>
+            <button id="resetMinMaxBtn">Reset Min/Max</button>
+        </div>
+
+        <h2>DS18B20 Sensors</h2>
+        <table id="dsTable">
+            <thead>
                 <tr>
-                  <th>Address</th>
-                  <th>Name</th>
-                  <th>Type</th>
-                  <th>ROM Address</th>
-                  <th>Current Temp</th>
-                  <th>Min Temp</th>
-                  <th>Max Temp</th>
-                  <th>Low Alarm</th>
-                  <th>High Alarm</th>
-                  <th>Status</th>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>ROM Address</th>
+                    <th>Current Temp (°C)</th>
+                    <th>Min Temp (°C)</th>
+                    <th>Max Temp (°C)</th>
+                    <th>Measurement Point</th>
+                    <th>Errors</th>
+                    <th>Alarms</th>
+                    <th>Actions</th>
                 </tr>
-              </thead>
-              <tbody>
-          `;
-          
-          // Add each sensor to the table
-          data.sensors.forEach(sensor => {
-            // Create alarm status display
-            let alarmStatus = "OK";
-            let statusClass = "status-ok";
+            </thead>
+            <tbody id="dsTbody">
+                <tr><td colspan="8">Loading DS18B20 sensors...</td></tr>
+            </tbody>
+        </table>
+
+        <h2>PT1000 Sensors</h2>
+        <table id="ptTable">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Chip Select Pin</th>
+                    <th>Current Temp (°C)</th>
+                    <th>Min Temp (°C)</th>
+                    <th>Max Temp (°C)</th>
+                    <th>Measurement Point</th>
+                    <th>Errors</th>
+                    <th>Alarms</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="ptTbody">
+                <tr><td colspan="8">Loading PT1000 sensors...</td></tr>
+            </tbody>
+        </table>
+    </main>
+    <script>
+        // Auto-update interval (ms)
+        const UPDATE_INTERVAL = 5000;
+
+        function fetchSensors() {
+            fetch('/api/sensors')
+                .then(res => res.json())
+                .then(data => {
+                    renderSensorTables(data.sensors || []);
+                });
+        }
+
+        // function renderSensorTables(sensors) {
+        //     // Separate DS and PT
+        //     const dsSensors = sensors.filter(s => s.type === "DS18B20");
+        //     const ptSensors = sensors.filter(s => s.type === "PT1000");
+
+        //     // DS Table
+        //     const dsTbody = document.getElementById('dsTbody');
+        //     dsTbody.innerHTML = '';
+        //     if (dsSensors.length === 0) {
+        //         dsTbody.innerHTML = '<tr><td colspan="8">No DS18B20 sensors found.</td></tr>';
+        //     } else {
+        //         dsSensors.forEach((sensor, idx) => {
+        //             const row = document.createElement('tr');
+        //             row.innerHTML = `
+        //                 <td>${idx+1}</td>
+        //                 <td>${sensor.name || ''}</td>
+        //                 <td class="rom">${sensor.romString || ''}</td>
+        //                 <td>${sensor.currentTemp !== undefined ? sensor.currentTemp : ''}</td>
+        //                 <td>${sensor.minTemp !== undefined ? sensor.minTemp : ''}</td>
+        //                 <td>${sensor.maxTemp !== undefined ? sensor.maxTemp : ''}</td>
+        //                 <td>
+        //                     ${sensor.boundPoint !== null && sensor.boundPoint !== undefined
+        //                         ? `<span class="status-bound">#${sensor.boundPoint}</span>`
+        //                         : `<span class="status-unbound">Unbound</span>`}
+        //                 </td>
+        //                 <td>
+        //                     ${sensor.boundPoint === null || sensor.boundPoint === undefined
+        //                         ? `<button onclick="bindPrompt('DS18B20','${sensor.romString}')">Bind</button>`
+        //                         : `<button onclick="unbindSensor('DS18B20','${sensor.romString}')">Unbind</button>`}
+        //                 </td>
+        //             `;
+        //             dsTbody.appendChild(row);
+        //         });
+        //     }
+
+        //     // PT Table
+        //     const ptTbody = document.getElementById('ptTbody');
+        //     ptTbody.innerHTML = '';
+        //     if (ptSensors.length === 0) {
+        //         ptTbody.innerHTML = '<tr><td colspan="8">No PT1000 sensors found.</td></tr>';
+        //     } else {
+        //         ptSensors.forEach((sensor, idx) => {
+        //             const row = document.createElement('tr');
+        //             row.innerHTML = `
+        //                 <td>${idx+1}</td>
+        //                 <td>${sensor.name || ''}</td>
+        //                 <td class="chip-select">${sensor.chipSelectPin !== undefined ? sensor.chipSelectPin : ''}</td>
+        //                 <td>${sensor.currentTemp !== undefined ? sensor.currentTemp : ''}</td>
+        //                 <td>${sensor.minTemp !== undefined ? sensor.minTemp : ''}</td>
+        //                 <td>${sensor.maxTemp !== undefined ? sensor.maxTemp : ''}</td>
+        //                 <td>
+        //                     ${sensor.boundPoint !== null && sensor.boundPoint !== undefined
+        //                         ? `<span class="status-bound">#${sensor.boundPoint}</span>`
+        //                         : `<span class="status-unbound">Unbound</span>`}
+        //                 </td>
+        //                 <td>
+        //                     ${sensor.boundPoint === null || sensor.boundPoint === undefined
+        //                         ? `<button onclick="bindPrompt('PT1000','${sensor.chipSelectPin}')">Bind</button>`
+        //                         : `<button onclick="unbindSensor('PT1000','${sensor.chipSelectPin}')">Unbind</button>`}
+        //                 </td>
+        //             `;
+        //             ptTbody.appendChild(row);
+        //         });
+        //     }
+        // }
+
+        function renderSensorTables(sensors) {
+    // Separate DS and PT
+    const dsSensors = sensors.filter(s => s.type === "DS18B20");
+    const ptSensors = sensors.filter(s => s.type === "PT1000");
+
+    // Helper functions to interpret status bitmasks
+    function getErrorText(errorStatus) {
+        if (errorStatus === 0) return '';
+        
+        const errors = [];
+        if (errorStatus & 0x01) errors.push('Communication Error');
+        if (errorStatus & 0x02) errors.push('Out of Range');
+        if (errorStatus & 0x04) errors.push('Disconnected');
+        
+        return errors.join(', ');
+    }
+    
+    function getAlarmText(alarmStatus) {
+        if (alarmStatus === 0) return '';
+        
+        const alarms = [];
+        if (alarmStatus & 0x01) alarms.push('Low Temperature');
+        if (alarmStatus & 0x02) alarms.push('High Temperature');
+        
+        return alarms.join(', ');
+    }
+    
+    function getStatusClass(errorStatus, alarmStatus) {
+        if (errorStatus > 0) return 'status-error';
+        if (alarmStatus > 0) return 'status-alarm';
+        return 'status-normal';
+    }
+
+    // DS Table
+    const dsTbody = document.getElementById('dsTbody');
+    dsTbody.innerHTML = '';
+    if (dsSensors.length === 0) {
+        dsTbody.innerHTML = '<tr><td colspan="10">No DS18B20 sensors found.</td></tr>';
+    } else {
+        dsSensors.forEach((sensor, idx) => {
+            const errorText = getErrorText(sensor.errorStatus);
+            const alarmText = getAlarmText(sensor.alarmStatus);
+            const statusClass = getStatusClass(sensor.errorStatus, sensor.alarmStatus);
             
-            if (sensor.alarmStatus & 1) {
-              alarmStatus = "LOW TEMP";
-              statusClass = "status-alarm";
-            } else if (sensor.alarmStatus & 2) {
-              alarmStatus = "HIGH TEMP";
-              statusClass = "status-alarm";
-            }
-            
-            if (sensor.errorStatus > 0) {
-              alarmStatus = "ERROR";
-              statusClass = "status-error";
-            }
-            
-            // Check if this is a duplicate by ROM address
-            let isDuplicate = false;
-            if (sensor.romAddress && romAddresses.get(sensor.romAddress) > 1) {
-              isDuplicate = true;
-            }
-            
-            // Add row for this sensor
-            tableHTML += `
-              <tr${isDuplicate ? ' class="duplicate-warning"' : ''}>
-                <td>${sensor.address}</td>
-                <td>${sensor.name}</td>
-                <td>${sensor.type}</td>
-                <td class="rom-address">${formatRomAddress(sensor.romAddress || sensor.ds18b20Address)}</td>
-                <td>${sensor.currentTemp}°C</td>
-                <td>${sensor.minTemp}°C</td>
-                <td>${sensor.maxTemp}°C</td>
-                <td>${sensor.lowAlarmThreshold}°C</td>
-                <td>${sensor.highAlarmThreshold}°C</td>
-                <td class="${statusClass}">${alarmStatus}</td>
-              </tr>
+            const row = document.createElement('tr');
+            row.className = statusClass;
+            row.innerHTML = `
+                <td>${idx+1}</td>
+                <td>${sensor.name || ''}</td>
+                <td class="rom">${sensor.romString || ''}</td>
+                <td>${sensor.currentTemp !== undefined ? sensor.currentTemp : ''}</td>
+                <td>${sensor.minTemp !== undefined ? sensor.minTemp : ''}</td>
+                <td>${sensor.maxTemp !== undefined ? sensor.maxTemp : ''}</td>
+                <td>
+                    ${sensor.boundPoint !== null && sensor.boundPoint !== undefined
+                        ? `<span class="status-bound">#${sensor.boundPoint}</span>`
+                        : `<span class="status-unbound">Unbound</span>`}
+                </td>
+                <td class="${errorText ? 'error-cell' : ''}">${errorText}</td>
+                <td class="${alarmText ? 'alarm-cell' : ''}">${alarmText}</td>
+                <td>
+                    ${sensor.boundPoint === null || sensor.boundPoint === undefined
+                        ? `<button onclick="bindPrompt('DS18B20','${sensor.romString}')">Bind</button>`
+                        : `<button onclick="unbindSensor('DS18B20','${sensor.romString}')">Unbind</button>`}
+                </td>
             `;
-          });
-          
-          // Close the table
-          tableHTML += `
-              </tbody>
-            </table>
-          `;
-          
-          // Update the container
-          sensorContainer.innerHTML = tableHTML;
-        })
-        .catch(error => {
-          console.error('Error fetching sensor data:', error);
-          document.getElementById('sensor-container').innerHTML = `
-            <div class="error-message">
-              <p>Error loading sensor data. Please try again.</p>
-              <p>Error details: ${error.message}</p>
-            </div>
-          `;
+            dsTbody.appendChild(row);
         });
     }
-    
-    // Function to handle sensor discovery with confirmation
-    function discoverSensors() {
-      if (lastSensorData.length > 0) {
-        if (!confirm("Warning: Discovering sensors may create duplicates in the current firmware version. Continue anyway?")) {
-          return;
-        }
-      }
-      
-      const discoverBtn = document.getElementById('discover-btn');
-      discoverBtn.disabled = true;
-      discoverBtn.textContent = 'Discovering...';
-      
-      fetch('/api/discover', {
-        method: 'POST'
-      })
-      .then(response => {
-        discoverBtn.disabled = false;
-        discoverBtn.textContent = 'Discover Sensors';
-        
-        if (response.ok) {
-          updateSensorData(); // Refresh the data after discovery
-        } else {
-          alert('No new sensors found or error during discovery.');
-        }
-      })
-      .catch(error => {
-        discoverBtn.disabled = false;
-        discoverBtn.textContent = 'Discover Sensors';
-        alert('Error during sensor discovery: ' + error.message);
-      });
+
+    // PT Table
+    const ptTbody = document.getElementById('ptTbody');
+    ptTbody.innerHTML = '';
+    if (ptSensors.length === 0) {
+        ptTbody.innerHTML = '<tr><td colspan="10">No PT1000 sensors found.</td></tr>';
+    } else {
+        ptSensors.forEach((sensor, idx) => {
+            const errorText = getErrorText(sensor.errorStatus);
+            const alarmText = getAlarmText(sensor.alarmStatus);
+            const statusClass = getStatusClass(sensor.errorStatus, sensor.alarmStatus);
+            
+            const row = document.createElement('tr');
+            row.className = statusClass;
+            row.innerHTML = `
+                <td>${idx+1}</td>
+                <td>${sensor.name || ''}</td>
+                <td class="chip-select">${sensor.chipSelectPin !== undefined ? sensor.chipSelectPin : ''}</td>
+                <td>${sensor.currentTemp !== undefined ? sensor.currentTemp : ''}</td>
+                <td>${sensor.minTemp !== undefined ? sensor.minTemp : ''}</td>
+                <td>${sensor.maxTemp !== undefined ? sensor.maxTemp : ''}</td>
+                <td>
+                    ${sensor.boundPoint !== null && sensor.boundPoint !== undefined
+                        ? `<span class="status-bound">#${sensor.boundPoint}</span>`
+                        : `<span class="status-unbound">Unbound</span>`}
+                </td>
+                <td class="${errorText ? 'error-cell' : ''}">${errorText}</td>
+                <td class="${alarmText ? 'alarm-cell' : ''}">${alarmText}</td>
+                <td>
+                    ${sensor.boundPoint === null || sensor.boundPoint === undefined
+                        ? `<button onclick="bindPrompt('PT1000','${sensor.chipSelectPin}')">Bind</button>`
+                        : `<button onclick="unbindSensor('PT1000','${sensor.chipSelectPin}')">Unbind</button>`}
+                </td>
+            `;
+            ptTbody.appendChild(row);
+        });
     }
-    
-    // Function to reset min/max values with confirmation
-    function resetMinMaxValues() {
-      if (!confirm("This will reset all min/max temperature values. Continue?")) {
-        return;
-      }
-      
-      const resetBtn = document.getElementById('reset-btn');
-      resetBtn.disabled = true;
-      resetBtn.textContent = 'Resetting...';
-      
-      fetch('/api/reset-minmax', {
-        method: 'POST'
-      })
-      .then(response => {
-        resetBtn.disabled = false;
-        resetBtn.textContent = 'Reset Min/Max Values';
-        
-        if (response.ok) {
-          updateSensorData(); // Refresh the data after reset
-        } else {
-          alert('Error resetting min/max values.');
+}
+
+
+        // Prompt user for measurement point to bind
+        function bindPrompt(type, id) {
+            let point = prompt("Enter Measurement Point address to bind:");
+            if (point === null || point.trim() === "") return;
+            point = parseInt(point, 10);
+            if (isNaN(point)) {
+                alert("Invalid address!");
+                return;
+            }
+            bindSensor(type, id, point);
         }
-      })
-      .catch(error => {
-        resetBtn.disabled = false;
-        resetBtn.textContent = 'Reset Min/Max Values';
-        alert('Error resetting min/max values: ' + error.message);
-      });
-    }
-    
-    // Initialize the page
-    document.addEventListener('DOMContentLoaded', function() {
-      // Set up event listeners for buttons
-      document.getElementById('discover-btn').addEventListener('click', discoverSensors);
-      document.getElementById('reset-btn').addEventListener('click', resetMinMaxValues);
-      
-      // Initial data load
-      updateSensorData();
-      
-      // Set up automatic refresh every 10 seconds (matching the controller's measurement period)
-      setInterval(updateSensorData, 10000);
-    });
-  </script>
+
+        // Bind sensor to point
+        function bindSensor(type, id, pointAddress) {
+            let payload = { pointAddress };
+            if (type === "DS18B20") payload.romString = id;
+            else if (type === "PT1000") payload.chipSelect = parseInt(id, 10);
+            fetch('/api/sensor-bind', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            }).then(res => {
+                if (res.ok) fetchSensors();
+                else alert("Failed to bind sensor");
+            });
+        }
+
+        // Unbind sensor
+        function unbindSensor(type, id) {
+            let payload = {};
+            if (type === "DS18B20") payload.romString = id;
+            else if (type === "PT1000") payload.chipSelect = parseInt(id, 10);
+            fetch('/api/sensor-unbind', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            }).then(res => {
+                if (res.ok) fetchSensors();
+                else alert("Failed to unbind sensor");
+            });
+        }
+
+        // Discover sensors
+        document.getElementById('discoverBtn').onclick = function() {
+            fetch('/api/discover', { method: 'POST' })
+                .then(res => {
+                    if (res.ok) fetchSensors();
+                    else alert("Discovery failed");
+                });
+        };
+
+        // Reset min/max
+        document.getElementById('resetMinMaxBtn').onclick = function() {
+            fetch('/api/reset-minmax', { method: 'POST' })
+                .then(res => {
+                    if (res.ok) fetchSensors();
+                    else alert("Reset failed");
+                });
+        };
+
+        // Auto-update
+        setInterval(fetchSensors, UPDATE_INTERVAL);
+        window.onload = fetchSensors;
+    </script>
 </body>
 </html>
