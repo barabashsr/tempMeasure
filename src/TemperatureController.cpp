@@ -137,7 +137,7 @@ void TemperatureController::update() {
     updateAllSensors();
     if (!systemInitialized) return;
     unsigned long currentTime = millis();
-    if (currentTime - lastMeasurementTime >= measurementPeriodSeconds * 1000UL) {
+    if (currentTime - lastMeasurementTime >= measurementPeriodSeconds) {
         readAllPoints();
         updateRegisterMap();
         lastMeasurementTime = currentTime;
@@ -271,7 +271,7 @@ String TemperatureController::getPointsJson() {
     JsonArray pointsArray = doc.createNestedArray("points");
 
     // DS18B20 points
-    for (uint8_t i = 0; i < 50; ++i) {
+    for (uint8_t i = 0; i < 2; ++i) { //Should be 50 instad of 2 here
         MeasurementPoint& point = dsPoints[i];
         JsonObject obj = pointsArray.createNestedObject();
         obj["address"] = point.getAddress();
@@ -297,7 +297,7 @@ String TemperatureController::getPointsJson() {
     }
 
     // PT1000 points
-    for (uint8_t i = 0; i < 10; ++i) {
+    for (uint8_t i = 0; i < 1; ++i) { //should be 10 instaed of 1
         MeasurementPoint& point = ptPoints[i];
         JsonObject obj = pointsArray.createNestedObject();
         obj["address"] = point.getAddress();

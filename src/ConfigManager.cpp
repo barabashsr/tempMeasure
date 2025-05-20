@@ -152,7 +152,22 @@ bool ConfigManager::begin() {
             server->send(404, "text/plain", "Sensors page not found");
         }
     });
-    
+    server->on("/points.html", HTTP_GET, [this]() {
+        if (LittleFS.exists("/points.html")) {
+            server->sendHeader("HTTP/1.1 200 OK", "");
+            server->sendHeader("Content-Type", "text/html");
+            server->sendHeader("Connection", "close");
+            server->sendHeader("Cache-Control", "max-age=3600");
+            File file = LittleFS.open("/points.html", "r");
+            server->streamFile(file, "text/html");
+            file.close();
+        } else {
+            server->sendHeader("HTTP/1.1 200 OK", "");
+            server->sendHeader("Content-Type", "text/plain");
+            server->sendHeader("Connection", "close");
+            server->send(404, "text/plain", "Points page not found");
+        }
+    });
     // API endpoints for sensor data
     server->on("/api/sensors", HTTP_GET, [this]() {
         server->sendHeader("HTTP/1.1 200 OK", "");
@@ -207,6 +222,46 @@ bool ConfigManager::begin() {
             server->send(404, "text/plain", "No sensors found");
         }
     });
+
+    // GET points
+    server->on("/api/points", HTTP_GET, [this]() {
+        server->sendHeader("Content-Type", "application/json");
+        server->send(200, "application/json", controller.getPointsJson());
+    });
+
+    // PUT point update
+    server->on("/api/points", HTTP_PUT, [this]() {
+        if (!server->hasArg("plain")) {
+            server->send(400, "application/json", "{\"error\":\"No data\"}");
+            return;
+        }
+        DynamicJsonDocument doc(512);
+        DeserializationError err = deserializeJson(doc, server->arg("plain"));
+        if (err) {
+            server->send(400, "application/json", "{\"error\":\"Invalid JSON\"}");
+            return;
+        }
+        Serial.println("/api/points HTTP_PUT:" + doc.as<String>());
+        uint8_t address = doc["address"];
+        String name = doc["name"].as<String>();
+        int16_t low = doc["lowAlarmThreshold"];
+        int16_t high = doc["highAlarmThreshold"];
+
+        MeasurementPoint* point = controller.getMeasurementPoint(address);
+        if (!point) {
+            server->send(404, "application/json", "{\"error\":\"Point not found\"}");
+            return;
+        }
+        point->setName(name);
+        point->setLowAlarmThreshold(low);
+        point->setHighAlarmThreshold(high);
+        controller.applyConfigToRegisterMap();
+        // Save to config if needed
+        //savePointsConfig(); // implement this to persist changes
+
+        server->send(200, "application/json", "{\"success\":true}");
+    });
+
     
     // API endpoint to update a sensor
     server->on("/api/sensors", HTTP_PUT, [this]() {

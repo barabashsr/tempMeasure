@@ -84,16 +84,17 @@ Sensor* MeasurementPoint::getBoundSensor() const {
 }
 
 void MeasurementPoint::update() {
-    if (boundSensor) {
+    if (boundSensor != nullptr) {
         // Example: ask the sensor for the latest temperature
-        if (boundSensor->readTemperature()) {
+        //if (boundSensor->readTemperature()) {
             currentTemp = boundSensor->getCurrentTemp();
+            Serial.printf("\nPoint: %d. %s. Sensor: %s. Temp: %d\n", getAddress(), getName(), boundSensor->getName(), currentTemp);
             if (currentTemp < minTemp) minTemp = currentTemp;
             if (currentTemp > maxTemp) maxTemp = currentTemp;
             errorStatus = boundSensor->getErrorStatus();
-        } else {
-            errorStatus = boundSensor->getErrorStatus();
-        }
+        //} else {
+            //errorStatus = boundSensor->getErrorStatus();
+        //}
     } else {
         errorStatus = 0x01; // Example: error code for "not bound"
     }

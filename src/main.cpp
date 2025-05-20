@@ -97,9 +97,12 @@ void loop() {
     // Print status every 30 seconds if not in portal mode
     static unsigned long lastPrintTime = 0;
     if (!configManager->isPortalActive() && millis() - lastPrintTime > controller.getMeasurementPeriod()) {
-        Serial.println("\nSystem Status:");
+        Serial.println("\nSensors Status:");
         //Serial.println(controller.getSystemStatusJson());
         Serial.println(controller.getSensorsJson());
+        Serial.println("\nPoints Status:");
+        //Serial.println(controller.getSystemStatusJson());
+        Serial.println(controller.getPointsJson());
         
         lastPrintTime = millis();
     }
