@@ -55,6 +55,7 @@ public:
     void setMeasurementPeriod(uint16_t seconds);
     uint16_t getMeasurementPeriod() const;
     void setOneWireBusPin(uint8_t pin);
+    uint8_t getOneWirePin() {return oneWireBusPin;}
 
     int getDS18B20Count() const;
     int getPT1000Count() const;

@@ -803,7 +803,45 @@ void ConfigManager::savePointsConfig() {
     pointsConf.saveConfigFile();
 }
 
-// Load all measurement points and their bindings
+// // Load all measurement points and their bindings
+// void ConfigManager::loadPointsConfig() {
+//     ConfigAssist pointsConf("/points2.ini", false);
+
+//     // DS18B20 points
+//     for (uint8_t i = 0; i < 50; ++i) {
+//         String key = "ds_" + String(i);
+//         MeasurementPoint* point = controller.getDS18B20Point(i);
+//         if (!point) continue;
+//         point->setName(pointsConf(key + "_name"));
+//         point->setLowAlarmThreshold(pointsConf(key + "_low_alarm").toInt());
+//         point->setHighAlarmThreshold(pointsConf(key + "_high_alarm").toInt());
+//         String rom = pointsConf(key + "_sensor_rom");
+//         if (rom.length() == 16) {
+//             Serial.println("ROM from file: " + rom);
+//             controller.bindSensorToPointByRom(rom, i);
+//         } else {
+//             controller.unbindSensorFromPoint(i);
+//         }
+//     }
+
+//     // PT1000 points
+//     for (uint8_t i = 0; i < 10; ++i) {
+//         uint8_t address = 50 + i;
+//         String key = "pt_" + String(address);
+//         MeasurementPoint* point = controller.getPT1000Point(i);
+//         if (!point) continue;
+//         point->setName(pointsConf(key + "_name"));
+//         point->setLowAlarmThreshold(pointsConf(key + "_low_alarm").toInt());
+//         point->setHighAlarmThreshold(pointsConf(key + "_high_alarm").toInt());
+//         int cs = pointsConf(key + "_sensor_cs").toInt();
+//         if (cs > 0) {
+//             controller.bindSensorToPointByChipSelect(cs, address);
+//         } else {
+//             controller.unbindSensorFromPoint(address);
+//         }
+//     }
+// }
+
 void ConfigManager::loadPointsConfig() {
     ConfigAssist pointsConf("/points2.ini", false);
 
@@ -817,7 +855,20 @@ void ConfigManager::loadPointsConfig() {
         point->setHighAlarmThreshold(pointsConf(key + "_high_alarm").toInt());
         String rom = pointsConf(key + "_sensor_rom");
         if (rom.length() == 16) {
-            Serial.println("ROM from file: " + rom);
+            // Ensure the sensor exists and is initialized before binding
+            Sensor* sensor = controller.findSensorByRom(rom);
+            if (!sensor) {
+                uint8_t romArr[8];
+                for (int j = 0; j < 8; ++j)
+                    romArr[j] = strtol(rom.substring(j*2, j*2+2).c_str(), nullptr, 16);
+                String sensorName = "DS18B20_" + rom;
+                sensor = new Sensor(SensorType::DS18B20, 0, sensorName);
+                sensor->setupDS18B20(controller.getOneWirePin(), romArr);
+                if (!sensor->initialize()) {
+                    //sensor->setErrorStatus(0x01); // Mark as error (not connected)
+                }
+                controller.addSensor(sensor);
+            }
             controller.bindSensorToPointByRom(rom, i);
         } else {
             controller.unbindSensorFromPoint(i);
@@ -835,12 +886,24 @@ void ConfigManager::loadPointsConfig() {
         point->setHighAlarmThreshold(pointsConf(key + "_high_alarm").toInt());
         int cs = pointsConf(key + "_sensor_cs").toInt();
         if (cs > 0) {
+            // Ensure the sensor exists and is initialized before binding
+            Sensor* sensor = controller.findSensorByChipSelect(cs);
+            if (!sensor) {
+                String sensorName = "PT1000_CS" + String(cs);
+                sensor = new Sensor(SensorType::PT1000, 0, sensorName);
+                sensor->setupPT1000(cs, i);
+                if (!sensor->initialize()) {
+                    //sensor->setErrorStatus(0x01); // Mark as error (not connected)
+                }
+                controller.addSensor(sensor);
+            }
             controller.bindSensorToPointByChipSelect(cs, address);
         } else {
             controller.unbindSensorFromPoint(address);
         }
     }
 }
+
 
 // Update a measurement point and its binding in config
 bool ConfigManager::updatePointInConfig(uint8_t address, const String& name, int16_t lowAlarm, int16_t highAlarm,

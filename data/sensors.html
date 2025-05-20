@@ -126,6 +126,8 @@
                     <th>Min Temp (°C)</th>
                     <th>Max Temp (°C)</th>
                     <th>Measurement Point</th>
+                    <th>Errors</th>
+                    <th>Alarms</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -145,6 +147,8 @@
                     <th>Min Temp (°C)</th>
                     <th>Max Temp (°C)</th>
                     <th>Measurement Point</th>
+                    <th>Errors</th>
+                    <th>Alarms</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -165,71 +169,180 @@
                 });
         }
 
+        // function renderSensorTables(sensors) {
+        //     // Separate DS and PT
+        //     const dsSensors = sensors.filter(s => s.type === "DS18B20");
+        //     const ptSensors = sensors.filter(s => s.type === "PT1000");
+
+        //     // DS Table
+        //     const dsTbody = document.getElementById('dsTbody');
+        //     dsTbody.innerHTML = '';
+        //     if (dsSensors.length === 0) {
+        //         dsTbody.innerHTML = '<tr><td colspan="8">No DS18B20 sensors found.</td></tr>';
+        //     } else {
+        //         dsSensors.forEach((sensor, idx) => {
+        //             const row = document.createElement('tr');
+        //             row.innerHTML = `
+        //                 <td>${idx+1}</td>
+        //                 <td>${sensor.name || ''}</td>
+        //                 <td class="rom">${sensor.romString || ''}</td>
+        //                 <td>${sensor.currentTemp !== undefined ? sensor.currentTemp : ''}</td>
+        //                 <td>${sensor.minTemp !== undefined ? sensor.minTemp : ''}</td>
+        //                 <td>${sensor.maxTemp !== undefined ? sensor.maxTemp : ''}</td>
+        //                 <td>
+        //                     ${sensor.boundPoint !== null && sensor.boundPoint !== undefined
+        //                         ? `<span class="status-bound">#${sensor.boundPoint}</span>`
+        //                         : `<span class="status-unbound">Unbound</span>`}
+        //                 </td>
+        //                 <td>
+        //                     ${sensor.boundPoint === null || sensor.boundPoint === undefined
+        //                         ? `<button onclick="bindPrompt('DS18B20','${sensor.romString}')">Bind</button>`
+        //                         : `<button onclick="unbindSensor('DS18B20','${sensor.romString}')">Unbind</button>`}
+        //                 </td>
+        //             `;
+        //             dsTbody.appendChild(row);
+        //         });
+        //     }
+
+        //     // PT Table
+        //     const ptTbody = document.getElementById('ptTbody');
+        //     ptTbody.innerHTML = '';
+        //     if (ptSensors.length === 0) {
+        //         ptTbody.innerHTML = '<tr><td colspan="8">No PT1000 sensors found.</td></tr>';
+        //     } else {
+        //         ptSensors.forEach((sensor, idx) => {
+        //             const row = document.createElement('tr');
+        //             row.innerHTML = `
+        //                 <td>${idx+1}</td>
+        //                 <td>${sensor.name || ''}</td>
+        //                 <td class="chip-select">${sensor.chipSelectPin !== undefined ? sensor.chipSelectPin : ''}</td>
+        //                 <td>${sensor.currentTemp !== undefined ? sensor.currentTemp : ''}</td>
+        //                 <td>${sensor.minTemp !== undefined ? sensor.minTemp : ''}</td>
+        //                 <td>${sensor.maxTemp !== undefined ? sensor.maxTemp : ''}</td>
+        //                 <td>
+        //                     ${sensor.boundPoint !== null && sensor.boundPoint !== undefined
+        //                         ? `<span class="status-bound">#${sensor.boundPoint}</span>`
+        //                         : `<span class="status-unbound">Unbound</span>`}
+        //                 </td>
+        //                 <td>
+        //                     ${sensor.boundPoint === null || sensor.boundPoint === undefined
+        //                         ? `<button onclick="bindPrompt('PT1000','${sensor.chipSelectPin}')">Bind</button>`
+        //                         : `<button onclick="unbindSensor('PT1000','${sensor.chipSelectPin}')">Unbind</button>`}
+        //                 </td>
+        //             `;
+        //             ptTbody.appendChild(row);
+        //         });
+        //     }
+        // }
+
         function renderSensorTables(sensors) {
-            // Separate DS and PT
-            const dsSensors = sensors.filter(s => s.type === "DS18B20");
-            const ptSensors = sensors.filter(s => s.type === "PT1000");
+    // Separate DS and PT
+    const dsSensors = sensors.filter(s => s.type === "DS18B20");
+    const ptSensors = sensors.filter(s => s.type === "PT1000");
 
-            // DS Table
-            const dsTbody = document.getElementById('dsTbody');
-            dsTbody.innerHTML = '';
-            if (dsSensors.length === 0) {
-                dsTbody.innerHTML = '<tr><td colspan="8">No DS18B20 sensors found.</td></tr>';
-            } else {
-                dsSensors.forEach((sensor, idx) => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>${idx+1}</td>
-                        <td>${sensor.name || ''}</td>
-                        <td class="rom">${sensor.romString || ''}</td>
-                        <td>${sensor.currentTemp !== undefined ? sensor.currentTemp : ''}</td>
-                        <td>${sensor.minTemp !== undefined ? sensor.minTemp : ''}</td>
-                        <td>${sensor.maxTemp !== undefined ? sensor.maxTemp : ''}</td>
-                        <td>
-                            ${sensor.boundPoint !== null && sensor.boundPoint !== undefined
-                                ? `<span class="status-bound">#${sensor.boundPoint}</span>`
-                                : `<span class="status-unbound">Unbound</span>`}
-                        </td>
-                        <td>
-                            ${sensor.boundPoint === null || sensor.boundPoint === undefined
-                                ? `<button onclick="bindPrompt('DS18B20','${sensor.romString}')">Bind</button>`
-                                : `<button onclick="unbindSensor('DS18B20','${sensor.romString}')">Unbind</button>`}
-                        </td>
-                    `;
-                    dsTbody.appendChild(row);
-                });
-            }
+    // Helper functions to interpret status bitmasks
+    function getErrorText(errorStatus) {
+        if (errorStatus === 0) return '';
+        
+        const errors = [];
+        if (errorStatus & 0x01) errors.push('Communication Error');
+        if (errorStatus & 0x02) errors.push('Out of Range');
+        if (errorStatus & 0x04) errors.push('Disconnected');
+        
+        return errors.join(', ');
+    }
+    
+    function getAlarmText(alarmStatus) {
+        if (alarmStatus === 0) return '';
+        
+        const alarms = [];
+        if (alarmStatus & 0x01) alarms.push('Low Temperature');
+        if (alarmStatus & 0x02) alarms.push('High Temperature');
+        
+        return alarms.join(', ');
+    }
+    
+    function getStatusClass(errorStatus, alarmStatus) {
+        if (errorStatus > 0) return 'status-error';
+        if (alarmStatus > 0) return 'status-alarm';
+        return 'status-normal';
+    }
 
-            // PT Table
-            const ptTbody = document.getElementById('ptTbody');
-            ptTbody.innerHTML = '';
-            if (ptSensors.length === 0) {
-                ptTbody.innerHTML = '<tr><td colspan="8">No PT1000 sensors found.</td></tr>';
-            } else {
-                ptSensors.forEach((sensor, idx) => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>${idx+1}</td>
-                        <td>${sensor.name || ''}</td>
-                        <td class="chip-select">${sensor.chipSelectPin !== undefined ? sensor.chipSelectPin : ''}</td>
-                        <td>${sensor.currentTemp !== undefined ? sensor.currentTemp : ''}</td>
-                        <td>${sensor.minTemp !== undefined ? sensor.minTemp : ''}</td>
-                        <td>${sensor.maxTemp !== undefined ? sensor.maxTemp : ''}</td>
-                        <td>
-                            ${sensor.boundPoint !== null && sensor.boundPoint !== undefined
-                                ? `<span class="status-bound">#${sensor.boundPoint}</span>`
-                                : `<span class="status-unbound">Unbound</span>`}
-                        </td>
-                        <td>
-                            ${sensor.boundPoint === null || sensor.boundPoint === undefined
-                                ? `<button onclick="bindPrompt('PT1000','${sensor.chipSelectPin}')">Bind</button>`
-                                : `<button onclick="unbindSensor('PT1000','${sensor.chipSelectPin}')">Unbind</button>`}
-                        </td>
-                    `;
-                    ptTbody.appendChild(row);
-                });
-            }
-        }
+    // DS Table
+    const dsTbody = document.getElementById('dsTbody');
+    dsTbody.innerHTML = '';
+    if (dsSensors.length === 0) {
+        dsTbody.innerHTML = '<tr><td colspan="10">No DS18B20 sensors found.</td></tr>';
+    } else {
+        dsSensors.forEach((sensor, idx) => {
+            const errorText = getErrorText(sensor.errorStatus);
+            const alarmText = getAlarmText(sensor.alarmStatus);
+            const statusClass = getStatusClass(sensor.errorStatus, sensor.alarmStatus);
+            
+            const row = document.createElement('tr');
+            row.className = statusClass;
+            row.innerHTML = `
+                <td>${idx+1}</td>
+                <td>${sensor.name || ''}</td>
+                <td class="rom">${sensor.romString || ''}</td>
+                <td>${sensor.currentTemp !== undefined ? sensor.currentTemp : ''}</td>
+                <td>${sensor.minTemp !== undefined ? sensor.minTemp : ''}</td>
+                <td>${sensor.maxTemp !== undefined ? sensor.maxTemp : ''}</td>
+                <td>
+                    ${sensor.boundPoint !== null && sensor.boundPoint !== undefined
+                        ? `<span class="status-bound">#${sensor.boundPoint}</span>`
+                        : `<span class="status-unbound">Unbound</span>`}
+                </td>
+                <td class="${errorText ? 'error-cell' : ''}">${errorText}</td>
+                <td class="${alarmText ? 'alarm-cell' : ''}">${alarmText}</td>
+                <td>
+                    ${sensor.boundPoint === null || sensor.boundPoint === undefined
+                        ? `<button onclick="bindPrompt('DS18B20','${sensor.romString}')">Bind</button>`
+                        : `<button onclick="unbindSensor('DS18B20','${sensor.romString}')">Unbind</button>`}
+                </td>
+            `;
+            dsTbody.appendChild(row);
+        });
+    }
+
+    // PT Table
+    const ptTbody = document.getElementById('ptTbody');
+    ptTbody.innerHTML = '';
+    if (ptSensors.length === 0) {
+        ptTbody.innerHTML = '<tr><td colspan="10">No PT1000 sensors found.</td></tr>';
+    } else {
+        ptSensors.forEach((sensor, idx) => {
+            const errorText = getErrorText(sensor.errorStatus);
+            const alarmText = getAlarmText(sensor.alarmStatus);
+            const statusClass = getStatusClass(sensor.errorStatus, sensor.alarmStatus);
+            
+            const row = document.createElement('tr');
+            row.className = statusClass;
+            row.innerHTML = `
+                <td>${idx+1}</td>
+                <td>${sensor.name || ''}</td>
+                <td class="chip-select">${sensor.chipSelectPin !== undefined ? sensor.chipSelectPin : ''}</td>
+                <td>${sensor.currentTemp !== undefined ? sensor.currentTemp : ''}</td>
+                <td>${sensor.minTemp !== undefined ? sensor.minTemp : ''}</td>
+                <td>${sensor.maxTemp !== undefined ? sensor.maxTemp : ''}</td>
+                <td>
+                    ${sensor.boundPoint !== null && sensor.boundPoint !== undefined
+                        ? `<span class="status-bound">#${sensor.boundPoint}</span>`
+                        : `<span class="status-unbound">Unbound</span>`}
+                </td>
+                <td class="${errorText ? 'error-cell' : ''}">${errorText}</td>
+                <td class="${alarmText ? 'alarm-cell' : ''}">${alarmText}</td>
+                <td>
+                    ${sensor.boundPoint === null || sensor.boundPoint === undefined
+                        ? `<button onclick="bindPrompt('PT1000','${sensor.chipSelectPin}')">Bind</button>`
+                        : `<button onclick="unbindSensor('PT1000','${sensor.chipSelectPin}')">Unbind</button>`}
+                </td>
+            `;
+            ptTbody.appendChild(row);
+        });
+    }
+}
+
 
         // Prompt user for measurement point to bind
         function bindPrompt(type, id) {
