@@ -381,6 +381,7 @@ String TemperatureController::getPointsJson() {
         obj["highAlarmThreshold"] = point.getHighAlarmThreshold();
         obj["alarmStatus"] = point.getAlarmStatus();
         obj["errorStatus"] = point.getErrorStatus();
+        
 
         Sensor* bound = point.getBoundSensor();
         if (bound && bound->getType() == SensorType::DS18B20) {
@@ -391,6 +392,7 @@ String TemperatureController::getPointsJson() {
             bound->getDS18B20RomArray(rom);
             for (int j = 0; j < 8; ++j) romArr.add(rom[j]);
             obj["bus"] = getSensorBus(bound);
+            
         }
     }
 
@@ -413,6 +415,7 @@ String TemperatureController::getPointsJson() {
         if (bound && bound->getType() == SensorType::PT1000) {
             obj["sensorType"] = "PT1000";
             obj["chipSelectPin"] = bound->getPT1000ChipSelectPin();
+            obj["bus"] = getSensorBus(bound);
         }
     }
 

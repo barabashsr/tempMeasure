@@ -331,7 +331,7 @@
                     const row = document.createElement('tr');
                     row.innerHTML = `
                         <td>${point.address}</td>
-                        <td>${point.bus !== undefined && sensor.bus !== null ? sensor.bus : ''}</td>
+                        <td>${point.bus !== undefined && point.bus !== null ? point.bus : ''}</td>
                         <td>${point.name || ''}</td>
                         <td>${point.currentTemp !== undefined ? point.currentTemp : ''}</td>
                         <td>${point.minTemp !== undefined ? point.minTemp : ''}</td>
@@ -354,7 +354,7 @@
                     const row = document.createElement('tr');
                     row.innerHTML = `
                         <td>${point.address}</td>
-                        <td>${point.bus !== undefined && sensor.bus !== null ? sensor.bus : ''}</td>
+                        <td>${point.bus !== undefined && point.bus !== null ? point.bus : ''}</td>
                         <td>${point.name || ''}</td>
                         <td>${point.currentTemp !== undefined ? point.currentTemp : ''}</td>
                         <td>${point.minTemp !== undefined ? point.minTemp : ''}</td>

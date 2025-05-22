@@ -91,7 +91,7 @@ bool ConfigManager::begin() {
             server->sendHeader("Content-Type", "text/html");
             server->sendHeader("Connection", "close");
             server->sendHeader("Cache-Control", "max-age=3600");
-            File file = LittleFS.open("/index.html", "r");
+            File file = LittleFS.open("/dashboard.html", "r");
             server->streamFile(file, "text/html");
             file.close();
         } else {
