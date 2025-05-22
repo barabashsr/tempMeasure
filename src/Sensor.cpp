@@ -1,5 +1,10 @@
 #include "Sensor.h"
 
+//SPI PINs
+// #define SCK_PIN  14
+// #define MISO_PIN  12
+// #define MOSI_PIN  13
+
 Sensor::Sensor(SensorType type, uint8_t address, const String& name)
     : address(address), name(name), type(type),
       currentTemp(0), minTemp(32767), maxTemp(-32768),
@@ -52,7 +57,42 @@ bool Sensor::initialize() {
         return dallasTemperature->isConnected(deviceAddress);
     } else if (type == SensorType::PT1000) {
         max31865 = new Adafruit_MAX31865(connection.pt1000.csPin);
-        return max31865->begin(MAX31865_3WIRE); // Adjust for your wiring
+        
+        // Try to begin the MAX31865
+        bool beginSuccess = max31865->begin(MAX31865_3WIRE); // Adjust for your wiring
+        
+        if (!beginSuccess) {
+            errorStatus |= ERROR_COMMUNICATION;
+            return false;
+        }
+        
+        // Check for faults immediately after initialization
+        uint8_t fault = max31865->readFault();
+        if (fault) {
+            max31865->clearFault();
+            errorStatus |= ERROR_COMMUNICATION;
+            return false;
+        }
+        
+        // Read RTD value to verify communication
+        uint16_t rtd = max31865->readRTD();
+        if (rtd == 0 || rtd == 0xFFFF) {  // Common values when module is not connected
+            errorStatus |= ERROR_COMMUNICATION;
+            // return false;
+        }
+        
+        // Calculate resistance to check if it's within reasonable range for PT1000
+        float ratio = rtd / 32768.0;
+        float resistance = 4300.0 * ratio;  // Using RREF of 4300 for PT1000
+        
+        // PT1000 should be roughly 1000 ohms at 0°C, with reasonable range between 800-1400 ohms
+        // for normal temperature measurements (-50°C to +100°C)
+        if (resistance < 800.0 || resistance > 2200.0) {
+            errorStatus |= ERROR_DISCONNECTED;
+            // return false;
+        }
+        
+        return true;
     }
     return false;
 }
@@ -81,19 +121,19 @@ bool Sensor::readTemperature() {
     } else if (type == SensorType::PT1000) {
         if (max31865 != nullptr) {
             uint8_t fault = max31865->readFault();
-            if (fault) {
-                if (fault & MAX31865_FAULT_HIGHTHRESH || fault & MAX31865_FAULT_LOWTHRESH) {
-                    errorStatus |= ERROR_OUT_OF_RANGE;
-                }
+            // if (fault) {
+            //     // if (fault & MAX31865_FAULT_HIGHTHRESH || fault & MAX31865_FAULT_LOWTHRESH) {
+            //     //     errorStatus |= ERROR_OUT_OF_RANGE;
+            //     // }
                 if (fault & (MAX31865_FAULT_REFINLOW | MAX31865_FAULT_REFINHIGH |
                              MAX31865_FAULT_RTDINLOW | MAX31865_FAULT_OVUV)) {
                     errorStatus |= ERROR_COMMUNICATION;
+                    max31865->clearFault();
+                
+                } else {
+                    tempC = max31865->temperature(1000.0, 4300.0); // PT1000: 1000 ohm at 0°C, adjust reference as needed
+                    success = true;
                 }
-                max31865->clearFault();
-            } else {
-                tempC = max31865->temperature(100.0, 430.0); // PT1000: 1000 ohm at 0°C, adjust reference as needed
-                success = true;
-            }
         }
     }
 

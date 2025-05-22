@@ -1,12 +1,17 @@
 #include "TempModbusServer.h"
 
-TempModbusServer::TempModbusServer(RegisterMap& regMap, uint8_t id, HardwareSerial& serialPort, 
-                           int rx, int tx, int baud) 
+TempModbusServer::TempModbusServer(RegisterMap& regMap, 
+                                uint8_t id, 
+                                HardwareSerial& serialPort, 
+                                int rx, 
+                                int tx, 
+                                int de,
+                                int baud) 
     : registerMap(regMap), serverID(id), serial(serialPort), 
-      rxPin(rx), txPin(tx), baudRate(baud) {
+      rxPin(rx), txPin(tx), baudRate(baud), dePin(de) {
     
     // Create ModbusRTU server with 2000ms timeout
-    mbServer = new ModbusServerRTU(1000, 18);
+    mbServer = new ModbusServerRTU(1000, dePin);
     
     // Set static pointer to register map for worker functions
     registerMapPtr = &regMap;

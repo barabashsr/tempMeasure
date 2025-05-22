@@ -1,7 +1,7 @@
 #include "TemperatureController.h"
 
 
-TemperatureController::TemperatureController(uint8_t oneWirePin[4])
+TemperatureController::TemperatureController(uint8_t oneWirePin[4], uint8_t csPin[5])
     : measurementPeriodSeconds(10),
       deviceId(1000),
       firmwareVersion(0x0100),
@@ -15,10 +15,14 @@ TemperatureController::TemperatureController(uint8_t oneWirePin[4])
         ptPoints[i] = MeasurementPoint(50 + i, "PT1000_Point_" + String(i));
     for (uint8_t i = 0; i < 4; i++)
         oneWireBusPin[i] = oneWirePin[i];
+    for (uint8_t i = 0; i < 5; i++)
+        chipSelectPin[i] = csPin[i];
     for (int i = 0; i < 4; ++i) {
         oneWireBuses[i] = new OneWire(oneWireBusPin[i]);
         dallasSensors[i] = new DallasTemperature(oneWireBuses[i]);
     }
+
+
 
 }
 
@@ -29,6 +33,8 @@ TemperatureController::~TemperatureController() {
 }
 // 
 bool TemperatureController::begin() {
+    
+
     registerMap.writeHoldingRegister(0, deviceId);
     registerMap.writeHoldingRegister(1, firmwareVersion);
     registerMap.writeHoldingRegister(2, 0);
@@ -37,6 +43,9 @@ bool TemperatureController::begin() {
         registerMap.writeHoldingRegister(i, 0);
     systemInitialized = true;
     return true;
+
+    discoverPTSensors();
+    
 }
 
 MeasurementPoint* TemperatureController::getMeasurementPoint(uint8_t address) {
@@ -215,7 +224,7 @@ bool TemperatureController::discoverDS18B20Sensors() {
                     Serial.println("Device existed on enother bus. Deleting");
                     //continue;
 
-                }
+                } else continue;
 
             }
              
@@ -241,6 +250,53 @@ bool TemperatureController::discoverDS18B20Sensors() {
     }
     return anyAdded;
 }
+
+
+bool TemperatureController::discoverPTSensors() {
+    bool anyAdded = false;
+    Serial.println("Discover PT method started...");
+    for (uint j = 0; j < 5; j++){
+        Serial.printf("Bus: %d: PIN: %d", j, chipSelectPin[j]);
+    }
+    // OneWire oneWire[] = { OneWire(oneWireBusPin[0]), OneWire(oneWireBusPin[1]), OneWire(oneWireBusPin[2]), OneWire(oneWireBusPin[3]) };
+    // DallasTemperature dallasSensors[] = {DallasTemperature(&oneWire[0]), DallasTemperature(&oneWire[1]), DallasTemperature(&oneWire[2]), DallasTemperature(&oneWire[3])};
+    for (uint j = 0; j < 5; j++){
+        Serial.printf("Discover PT: bus %d pin %d started...\n", j, chipSelectPin[j]);
+        if(findSensorByChipSelect(chipSelectPin[j]) != nullptr){
+            Serial.printf("Sensor already discovered on bus %d\n", j);
+            continue;
+
+        }
+  
+        
+             
+
+            String sensorName = "PT1000_" + String(j);
+            Sensor* newSensor = new Sensor(SensorType::PT1000, j, sensorName); // address field not used for DS
+            Serial.printf("Sensor created with name %s on bus %d\n", newSensor->getName(), getSensorBus(newSensor));
+
+            newSensor->setupPT1000(chipSelectPin[j], j);
+            Serial.printf("Sensor %s set on bus %d/ pin %d\n", newSensor->getName(), getSensorBus(newSensor), newSensor->getPT1000ChipSelectPin());
+
+            if (newSensor->initialize()) {
+
+                
+
+
+                sensors.push_back(newSensor);
+                registerMap.incrementActivePT1000();
+                anyAdded = true;
+                Serial.printf("Sensor %s set on bus %d/ pin %d status: Connected\n", newSensor->getName(), getSensorBus(newSensor), newSensor->getPT1000ChipSelectPin());
+
+            } else {
+                delete newSensor;
+            }
+        
+    
+        }
+    return anyAdded;
+}
+
 
 String TemperatureController::getSensorsJson() {
     DynamicJsonDocument doc(8192);
@@ -440,10 +496,17 @@ uint8_t TemperatureController::getOneWirePin(size_t bus) {
 }
 
 int TemperatureController::getSensorBus(Sensor* sensor) {
-    uint8_t pin = sensor->getOneWirePin();
-    for (int i = 0; i < 4; i++) {
-        if (oneWireBusPin[i] == pin) return i;
-    } 
+    if (sensor->getType() == SensorType::DS18B20){
+        uint8_t pin = sensor->getOneWirePin();
+        for (int i = 0; i < 4; i++) {
+            if (oneWireBusPin[i] == pin) return i;
+        } 
+    } else if(sensor->getType() == SensorType::PT1000) {
+        uint8_t pin = sensor->getPT1000ChipSelectPin();
+        for (int i = 0; i < 5; i++) {
+            if (chipSelectPin[i] == pin) return i;
+        } 
+    }
 
         return -1;
 

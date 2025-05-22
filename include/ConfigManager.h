@@ -72,8 +72,8 @@ public:
     uint32_t getModbusBaudRate() { return conf("modbus_baud_rate").toInt(); }
     uint8_t getRxPin() { return conf("rs485_rx_pin").toInt(); }
     uint8_t getTxPin() { return conf("rs485_tx_pin").toInt(); }
-    uint8_t getDePin() { return conf("rs485_de_pin").toInt(); }
-    uint8_t getOneWirePin() { return conf("onewire_pin").toInt(); }
+    //uint8_t getDePin() { return conf("rs485_de_pin").toInt(); }
+    //uint8_t getOneWirePin() { return conf("onewire_pin").toInt(); }
     bool getAutoDiscover() { return conf("auto_discover").toInt() == 1; }
     
     // Reset min/max values

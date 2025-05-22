@@ -8,10 +8,11 @@
 #include <OneWire.h>
 #include <DallasTemperature.h>
 #include <ArduinoJson.h>
+#include <SPI.h>
 
 class TemperatureController {
 public:
-    TemperatureController(uint8_t oneWirePin[4]);
+    TemperatureController(uint8_t oneWirePin[4], uint8_t csPin[5]);
     ~TemperatureController();
 
     bool begin();
@@ -39,6 +40,7 @@ public:
     void applyConfigToRegisterMap();
 
     bool discoverDS18B20Sensors();
+    bool discoverPTSensors();
 
     String getSensorsJson();
     String getPointsJson();
@@ -70,6 +72,8 @@ private:
     MeasurementPoint ptPoints[10];
     std::vector<Sensor*> sensors;
     RegisterMap registerMap;
+    
+    
 
     uint16_t measurementPeriodSeconds;
     uint16_t deviceId;
@@ -77,6 +81,7 @@ private:
     unsigned long lastMeasurementTime;
     bool systemInitialized;
     uint8_t oneWireBusPin[4];
+    uint8_t chipSelectPin[5];
 
     bool isDS18B20Address(uint8_t address) const { return address < 50; }
     bool isPT1000Address(uint8_t address) const { return address >= 50 && address < 60; }

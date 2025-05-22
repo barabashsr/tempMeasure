@@ -1,0 +1,93 @@
+#include <SPI.h>
+#include <Adafruit_MAX31865.h>
+#include <Arduino.h>
+
+//SPI PINs
+#define SCK_PIN  14
+#define MISO_PIN  12
+#define MOSI_PIN  13
+
+//PT1000 PINs
+#define CS1_PIN  32
+#define CS2_PIN  33
+
+// The value of the Rref resistor. Use 4300.0 for PT1000
+#define RREF      4300.0
+// The 'nominal' 0-degrees-C resistance of the sensor (1000.0 for PT1000)
+#define RNOMINAL  1000.0
+
+// Initialize the MAX31865 with software SPI
+Adafruit_MAX31865 thermo1 = Adafruit_MAX31865(CS1_PIN, MOSI_PIN, MISO_PIN, SCK_PIN);
+Adafruit_MAX31865 thermo2 = Adafruit_MAX31865(CS2_PIN, MOSI_PIN, MISO_PIN, SCK_PIN);
+
+void readSensor(Adafruit_MAX31865 &thermo, int sensorNum) {
+    uint16_t rtd = thermo.readRTD();
+    
+    Serial.print("RTD value: ");
+    Serial.println(rtd);
+    
+    float ratio = rtd;
+    ratio /= 32768;
+    
+    Serial.print("Ratio = ");
+    Serial.println(ratio, 8);
+    
+    Serial.print("Resistance = ");
+    Serial.println(RREF * ratio, 8);
+    
+    Serial.print("Temperature = ");
+    Serial.println(thermo.temperature(RNOMINAL, RREF));
+    
+    // Check and print any faults
+    uint8_t fault = thermo.readFault();
+    if (fault) {
+      Serial.print("Fault 0x");
+      Serial.println(fault, HEX);
+      
+      if (fault & MAX31865_FAULT_HIGHTHRESH) {
+        Serial.println("RTD High Threshold");
+      }
+      if (fault & MAX31865_FAULT_LOWTHRESH) {
+        Serial.println("RTD Low Threshold");
+      }
+      if (fault & MAX31865_FAULT_REFINLOW) {
+        Serial.println("REFIN- > 0.85 x Bias");
+      }
+      if (fault & MAX31865_FAULT_REFINHIGH) {
+        Serial.println("REFIN- < 0.85 x Bias - FORCE- open");
+      }
+      if (fault & MAX31865_FAULT_RTDINLOW) {
+        Serial.println("RTDIN- < 0.85 x Bias - FORCE- open");
+      }
+      if (fault & MAX31865_FAULT_OVUV) {
+        Serial.println("Under/Over voltage");
+      }
+      
+      thermo.clearFault();
+    }
+  }
+  
+
+void setup() {
+  Serial.begin(115200);
+  
+  while (!Serial) delay(10);
+  
+  Serial.println("PT1000 Test with MAX31865!");
+  
+  // Initialize the MAX31865 modules
+  thermo1.begin(MAX31865_3WIRE);  // Set to 2WIRE, 3WIRE, or 4WIRE as needed
+  thermo2.begin(MAX31865_3WIRE);  // Set to 2WIRE, 3WIRE, or 4WIRE as needed
+}
+
+void loop() {
+  Serial.println("=== Sensor 1 ===");
+  readSensor(thermo1, 1);
+  
+  Serial.println("=== Sensor 2 ===");
+  readSensor(thermo2, 2);
+  
+  Serial.println();
+  delay(1000);
+}
+

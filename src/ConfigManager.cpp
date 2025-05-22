@@ -50,24 +50,6 @@ Modbus settings:
       label: Baud Rate
       options: '4800', '9600', '19200', '38400', '57600', '115200'
       default: '9600'
-  - rs485_rx_pin:
-      label: RS485 RX Pin
-      type: number
-      min: 0
-      max: 39
-      default: 22
-  - rs485_tx_pin:
-      label: RS485 TX Pin
-      type: number
-      min: 0
-      max: 39
-      default: 23
-  - rs485_de_pin:
-      label: RS485 DE/RE Pin
-      type: number
-      min: 0
-      max: 39
-      default: 18
 )~";
 
 ConfigManager::ConfigManager(TemperatureController& tempController)
@@ -182,7 +164,10 @@ bool ConfigManager::begin() {
     
     // API endpoint for sensor discovery
     server->on("/api/discover", HTTP_POST, [this]() {
-        bool discovered = controller.discoverDS18B20Sensors();
+        bool discoveredDS = controller.discoverDS18B20Sensors();
+        bool discoveredPT = controller.discoverPTSensors();
+        bool discovered = discoveredDS || discoveredPT;
+        //bool discovered = controller.discoverDS18B20Sensors() || controller.discoverPTSensors();
         if (discovered) {
             // Add discovered sensors to configuration
             // for (int i = 0; i < controller.getSensorCount(); i++) {

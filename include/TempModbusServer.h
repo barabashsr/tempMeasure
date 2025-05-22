@@ -13,6 +13,7 @@ private:
     HardwareSerial& serial;
     int rxPin;
     int txPin;
+    int dePin;
     int baudRate;
     
     // Worker functions for different Modbus function codes
@@ -25,7 +26,7 @@ private:
 
 public:
     TempModbusServer(RegisterMap& regMap, uint8_t id, HardwareSerial& serialPort, 
-                 int rx, int tx, int baud = 9600);
+                 int rx, int tx, int de, int baud = 9600);
     ~TempModbusServer();
     
     bool begin();
