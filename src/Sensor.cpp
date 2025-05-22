@@ -61,36 +61,36 @@ bool Sensor::initialize() {
         // Try to begin the MAX31865
         bool beginSuccess = max31865->begin(MAX31865_3WIRE); // Adjust for your wiring
         
-        if (!beginSuccess) {
-            errorStatus |= ERROR_COMMUNICATION;
-            return false;
-        }
+        // if (!beginSuccess) {
+        //     errorStatus |= ERROR_COMMUNICATION;
+        //     return false;
+        // }
         
-        // Check for faults immediately after initialization
-        uint8_t fault = max31865->readFault();
-        if (fault) {
-            max31865->clearFault();
-            errorStatus |= ERROR_COMMUNICATION;
-            return false;
-        }
+        // // Check for faults immediately after initialization
+        // uint8_t fault = max31865->readFault();
+        // if (fault) {
+        //     max31865->clearFault();
+        //     errorStatus |= ERROR_COMMUNICATION;
+        //     return false;
+        // }
         
-        // Read RTD value to verify communication
-        uint16_t rtd = max31865->readRTD();
-        if (rtd == 0 || rtd == 0xFFFF) {  // Common values when module is not connected
-            errorStatus |= ERROR_COMMUNICATION;
-            // return false;
-        }
+        // // Read RTD value to verify communication
+        // uint16_t rtd = max31865->readRTD();
+        // if (rtd == 0 || rtd == 0xFFFF) {  // Common values when module is not connected
+        //     errorStatus |= ERROR_COMMUNICATION;
+        //     // return false;
+        // }
         
-        // Calculate resistance to check if it's within reasonable range for PT1000
-        float ratio = rtd / 32768.0;
-        float resistance = 4300.0 * ratio;  // Using RREF of 4300 for PT1000
+        // // Calculate resistance to check if it's within reasonable range for PT1000
+        // float ratio = rtd / 32768.0;
+        // float resistance = 4300.0 * ratio;  // Using RREF of 4300 for PT1000
         
-        // PT1000 should be roughly 1000 ohms at 0°C, with reasonable range between 800-1400 ohms
-        // for normal temperature measurements (-50°C to +100°C)
-        if (resistance < 800.0 || resistance > 2200.0) {
-            errorStatus |= ERROR_DISCONNECTED;
-            // return false;
-        }
+        // // PT1000 should be roughly 1000 ohms at 0°C, with reasonable range between 800-1400 ohms
+        // // for normal temperature measurements (-50°C to +100°C)
+        // if (resistance < 800.0 || resistance > 2200.0) {
+        //     errorStatus |= ERROR_DISCONNECTED;
+        //     // return false;
+        // }
         
         return true;
     }

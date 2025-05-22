@@ -146,6 +146,7 @@
                     <th>#</th>
                     <th>Name</th>
                     <th>Chip Select Pin</th>
+                    <th>Bus</th>
                     <th>Current Temp (°C)</th>
                     <th>Min Temp (°C)</th>
                     <th>Max Temp (°C)</th>
@@ -288,7 +289,7 @@
                 <td>${idx+1}</td>
                 <td>${sensor.name || ''}</td>
                 <td class="rom">${sensor.romString || ''}</td>
-                <td>${sensor.bus || ''}</td>
+                <td>${sensor.bus !== undefined && sensor.bus !== null ? sensor.bus : ''}</td>
                 <td>${sensor.currentTemp !== undefined ? sensor.currentTemp : ''}</td>
                 <td>${sensor.minTemp !== undefined ? sensor.minTemp : ''}</td>
                 <td>${sensor.maxTemp !== undefined ? sensor.maxTemp : ''}</td>
@@ -326,6 +327,7 @@
                 <td>${idx+1}</td>
                 <td>${sensor.name || ''}</td>
                 <td class="chip-select">${sensor.chipSelectPin !== undefined ? sensor.chipSelectPin : ''}</td>
+                <td>${sensor.bus !== undefined && sensor.bus !== null ? sensor.bus : ''}</td>
                 <td>${sensor.currentTemp !== undefined ? sensor.currentTemp : ''}</td>
                 <td>${sensor.minTemp !== undefined ? sensor.minTemp : ''}</td>
                 <td>${sensor.maxTemp !== undefined ? sensor.maxTemp : ''}</td>

@@ -1,7 +1,7 @@
 #include "TemperatureController.h"
 
 
-TemperatureController::TemperatureController(uint8_t oneWirePin[4], uint8_t csPin[5])
+TemperatureController::TemperatureController(uint8_t oneWirePin[4], uint8_t csPin[4])
     : measurementPeriodSeconds(10),
       deviceId(1000),
       firmwareVersion(0x0100),
@@ -15,7 +15,7 @@ TemperatureController::TemperatureController(uint8_t oneWirePin[4], uint8_t csPi
         ptPoints[i] = MeasurementPoint(50 + i, "PT1000_Point_" + String(i));
     for (uint8_t i = 0; i < 4; i++)
         oneWireBusPin[i] = oneWirePin[i];
-    for (uint8_t i = 0; i < 5; i++)
+    for (uint8_t i = 0; i < 4; i++)
         chipSelectPin[i] = csPin[i];
     for (int i = 0; i < 4; ++i) {
         oneWireBuses[i] = new OneWire(oneWireBusPin[i]);
@@ -122,7 +122,9 @@ Sensor* TemperatureController::getSensorByIndex(int idx) {
 }
 
 bool TemperatureController::bindSensorToPointByRom(const String& romString, uint8_t pointAddress) {
+    if(pointAddress > 49) return false;
     Sensor* sensor = findSensorByRom(romString);
+    unbindSensorFromPointBySensor(sensor);
     MeasurementPoint* point = getMeasurementPoint(pointAddress);
     if (!sensor || !point) return false;
     point->bindSensor(sensor);
@@ -130,7 +132,12 @@ bool TemperatureController::bindSensorToPointByRom(const String& romString, uint
 }
 
 bool TemperatureController::bindSensorToPointByChipSelect(uint8_t csPin, uint8_t pointAddress) {
+    Serial.printf("Point address: %d\n", pointAddress);
+    if((pointAddress < 50) || (pointAddress > 59)) 
+        return false;
+    Serial.printf("Point address: %d PASSED!\n", pointAddress);
     Sensor* sensor = findSensorByChipSelect(csPin);
+    unbindSensorFromPointBySensor(sensor);
     MeasurementPoint* point = getMeasurementPoint(pointAddress);
     if (!sensor || !point) return false;
     point->bindSensor(sensor);
@@ -255,12 +262,12 @@ bool TemperatureController::discoverDS18B20Sensors() {
 bool TemperatureController::discoverPTSensors() {
     bool anyAdded = false;
     Serial.println("Discover PT method started...");
-    for (uint j = 0; j < 5; j++){
+    for (uint j = 0; j < 4; j++){
         Serial.printf("Bus: %d: PIN: %d", j, chipSelectPin[j]);
     }
     // OneWire oneWire[] = { OneWire(oneWireBusPin[0]), OneWire(oneWireBusPin[1]), OneWire(oneWireBusPin[2]), OneWire(oneWireBusPin[3]) };
     // DallasTemperature dallasSensors[] = {DallasTemperature(&oneWire[0]), DallasTemperature(&oneWire[1]), DallasTemperature(&oneWire[2]), DallasTemperature(&oneWire[3])};
-    for (uint j = 0; j < 5; j++){
+    for (uint j = 0; j < 4; j++){
         Serial.printf("Discover PT: bus %d pin %d started...\n", j, chipSelectPin[j]);
         if(findSensorByChipSelect(chipSelectPin[j]) != nullptr){
             Serial.printf("Sensor already discovered on bus %d\n", j);
@@ -313,6 +320,7 @@ String TemperatureController::getSensorsJson() {
         obj["highAlarmThreshold"] = sensor->getHighAlarmThreshold();
         obj["alarmStatus"] = sensor->getAlarmStatus();
         obj["errorStatus"] = sensor->getErrorStatus();
+        obj["bus"] = getSensorBus(sensor);
 
         if (sensor->getType() == SensorType::DS18B20) {
             obj["romString"] = sensor->getDS18B20RomString();
@@ -320,7 +328,7 @@ String TemperatureController::getSensorsJson() {
             uint8_t rom[8];
             sensor->getDS18B20RomArray(rom);
             for (int j = 0; j < 8; ++j) romArr.add(rom[j]);
-            obj["bus"] = getSensorBus(sensor);
+            
         } else if (sensor->getType() == SensorType::PT1000) {
             obj["chipSelectPin"] = sensor->getPT1000ChipSelectPin();
         }
@@ -503,7 +511,7 @@ int TemperatureController::getSensorBus(Sensor* sensor) {
         } 
     } else if(sensor->getType() == SensorType::PT1000) {
         uint8_t pin = sensor->getPT1000ChipSelectPin();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 4; i++) {
             if (chipSelectPin[i] == pin) return i;
         } 
     }
@@ -511,4 +519,34 @@ int TemperatureController::getSensorBus(Sensor* sensor) {
         return -1;
 
     
+}
+
+
+
+bool TemperatureController::unbindSensorFromPointBySensor(Sensor* sensor) {
+    if (!sensor) return false;
+    
+    bool anyUnbound = false;
+    
+    // Search through all DS18B20 points
+    for (auto& point : dsPoints) {
+        if (point.getBoundSensor() == sensor) {
+            point.unbindSensor();
+            Serial.printf("Unbound sensor %s from DS18B20 point %d\n", 
+                         sensor->getName().c_str(), point.getAddress());
+            anyUnbound = true;
+        }
+    }
+    
+    // Search through all PT1000 points
+    for (auto& point : ptPoints) {
+        if (point.getBoundSensor() == sensor) {
+            point.unbindSensor();
+            Serial.printf("Unbound sensor %s from PT1000 point %d\n", 
+                         sensor->getName().c_str(), point.getAddress());
+            anyUnbound = true;
+        }
+    }
+    
+    return anyUnbound;
 }

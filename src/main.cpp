@@ -19,7 +19,7 @@
 #define CS2_PIN  33
 #define CS3_PIN  26
 #define CS4_PIN  27
-#define CS5_PIN  15
+//#define CS5_PIN  15
 
 //RS485 PINs
 #define RX_PIN  22
@@ -37,7 +37,7 @@
 
 
 uint8_t onwWirePins[4] = {BUS1_PIN,  BUS2_PIN, BUS3_PIN, BUS4_PIN};
-uint8_t csPins[5] = {CS1_PIN,  CS2_PIN, CS3_PIN, CS4_PIN, CS5_PIN};
+uint8_t csPins[4] = {CS1_PIN,  CS2_PIN, CS3_PIN, CS4_PIN};
 TemperatureController controller(onwWirePins, csPins);
 
 // Create configuration manager
@@ -58,14 +58,14 @@ void setup() {
     pinMode(CS2_PIN, OUTPUT);
     pinMode(CS3_PIN, OUTPUT);
     pinMode(CS4_PIN, OUTPUT);
-    pinMode(CS5_PIN, OUTPUT);
+    //pinMode(CS5_PIN, OUTPUT);
     
     // Set all CS pins HIGH initially (inactive)
     digitalWrite(CS1_PIN, HIGH);
     digitalWrite(CS2_PIN, HIGH);
     digitalWrite(CS3_PIN, HIGH);
     digitalWrite(CS4_PIN, HIGH);
-    digitalWrite(CS5_PIN, HIGH);
+    //digitalWrite(CS5_PIN, HIGH);
 
 
 
@@ -132,9 +132,9 @@ void loop() {
     // Print status every 30 seconds if not in portal mode
     static unsigned long lastPrintTime = 0;
     if (!configManager->isPortalActive() && millis() - lastPrintTime > controller.getMeasurementPeriod()) {
-        Serial.println("\nSensors Status:");
+        //Serial.println("\nSensors Status:");
         //Serial.println(controller.getSystemStatusJson());
-        Serial.println(controller.getSensorsJson());
+        //Serial.println(controller.getSensorsJson());
         //Serial.println("\nPoints Status:");
         //Serial.println(controller.getSystemStatusJson());
         //Serial.println(controller.getPointsJson());

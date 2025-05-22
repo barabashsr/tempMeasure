@@ -12,7 +12,7 @@
 
 class TemperatureController {
 public:
-    TemperatureController(uint8_t oneWirePin[4], uint8_t csPin[5]);
+    TemperatureController(uint8_t oneWirePin[4], uint8_t csPin[4]);
     ~TemperatureController();
 
     bool begin();
@@ -63,6 +63,7 @@ public:
     int getPT1000Count() const;
     void updateAllSensors();
     int getSensorBus(Sensor* sensor);
+    bool unbindSensorFromPointBySensor(Sensor* sensor);
 
 private:
 
@@ -81,7 +82,7 @@ private:
     unsigned long lastMeasurementTime;
     bool systemInitialized;
     uint8_t oneWireBusPin[4];
-    uint8_t chipSelectPin[5];
+    uint8_t chipSelectPin[4];
 
     bool isDS18B20Address(uint8_t address) const { return address < 50; }
     bool isPT1000Address(uint8_t address) const { return address >= 50 && address < 60; }

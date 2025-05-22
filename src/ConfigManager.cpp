@@ -167,20 +167,9 @@ bool ConfigManager::begin() {
         bool discoveredDS = controller.discoverDS18B20Sensors();
         bool discoveredPT = controller.discoverPTSensors();
         bool discovered = discoveredDS || discoveredPT;
-        //bool discovered = controller.discoverDS18B20Sensors() || controller.discoverPTSensors();
+        
         if (discovered) {
-            // Add discovered sensors to configuration
-            // for (int i = 0; i < controller.getSensorCount(); i++) {
-            //     Sensor* sensor = controller.getSensorByIndex(i);
-            //     if (sensor && sensor->getType() == SensorType::DS18B20) {
-            //         addSensorToConfig(
-            //             SensorType::DS18B20,
-            //             sensor->getAddress(),
-            //             sensor->getName(),
-            //             sensor->getDS18B20Address()
-            //         );
-            //     }
-            // }
+
             server->sendHeader("HTTP/1.1 200 OK", "");
             server->sendHeader("Content-Type", "text/plain");
             server->sendHeader("Connection", "close");
@@ -233,204 +222,31 @@ bool ConfigManager::begin() {
     });
 
     
-    // API endpoint to update a sensor
-    server->on("/api/sensors", HTTP_PUT, [this]() {
-        // if (server->hasArg("plain")) {
-        //     String body = server->arg("plain");
-        //     DynamicJsonDocument doc(512);
-        //     DeserializationError error = deserializeJson(doc, body);
-            
-        //     if (!error) {
-        //         uint8_t address = doc["address"];
-        //         String name = doc["name"].as<String>();
-        //         int16_t lowAlarm = doc["lowAlarm"];
-        //         int16_t highAlarm = doc["highAlarm"];
-                
-        //         Sensor* sensor = controller.findSensor(address);
-        //         if (sensor) {
-        //             sensor->setName(name);
-        //             sensor->setLowAlarmThreshold(lowAlarm);
-        //             sensor->setHighAlarmThreshold(highAlarm);
-                    
-        //             // Update configuration
-        //             updateSensorInConfig(address, name, lowAlarm, highAlarm);
-        //             server->sendHeader("HTTP/1.1 200 OK", "");
-        //             server->sendHeader("Content-Type", "text/plain");
-        //             server->sendHeader("Connection", "close");
-        //             server->send(200, "text/plain", "Sensor updated");
-        //         } else {
-        //             server->sendHeader("HTTP/1.1 404 Not Found", "");
-        //             server->sendHeader("Content-Type", "text/plain");
-        //             server->sendHeader("Connection", "close");
-        //             server->send(404, "text/plain", "Sensor not found");
-        //         }
-        //     } else {
-        //         server->sendHeader("HTTP/1.1 400 Bad Request", "");
-        //         server->sendHeader("Content-Type", "text/plain");
-        //         server->sendHeader("Connection", "close");
-        //         server->send(400, "text/plain", "Invalid JSON");
-        //     }
-        // } else {
-        //     server->sendHeader("HTTP/1.1 400 Bad Request", "");
-        //     server->sendHeader("Content-Type", "text/plain");
-        //     server->sendHeader("Connection", "close");
-        //     server->send(400, "text/plain", "No data provided");
-        // }
-    });
-
-    // API endpoint to update a sensor
-    server->on("/api/sensor/update", HTTP_PUT, [this]() {
-        // if (server->hasArg("plain")) {
-        // String body = server->arg("plain");
-             
-        // DynamicJsonDocument doc(512);
-        // DeserializationError error = deserializeJson(doc, body);
-        // Serial.println("JSON request: " + doc.as<String>() + "\n error: " + error.c_str());
-        
-        // if (error.c_str() == "Ok") {
-        //     uint8_t originalAddress = doc["originalAddress"];
-        //     uint8_t newAddress = doc["address"];
-        //     String name = doc["name"].as<String>();
-        //     int16_t lowThreshold = doc["lowAlarmThreshold"];
-        //     int16_t highThreshold = doc["highAlarmThreshold"];
-        //     Serial.printf("\
-        //         Orig. add: %d\n \
-        //         New add: %d\n \
-        //         Name: %s \n \
-        //         LAS: %d \n \
-        //         HAS: %d \n", 
-        //         originalAddress, 
-        //         newAddress, 
-        //         name, 
-        //         lowThreshold, 
-        //         highThreshold);
-
-            
-        //     bool success = true;
-            
-        //     // Update sensor address if changed
-        //     if (originalAddress != newAddress) {
-        //     success = controller.updateSensorAddress(originalAddress, newAddress);
-        //     if (!success) {
-        //         server->sendHeader("HTTP/1.1 400 Bad Request", "");
-        //         server->sendHeader("Content-Type", "application/json");
-        //         server->sendHeader("Connection", "close");
-        //         server->send(400, "application/json", "{\"error\":\"Failed to update sensor address\"}");
-        //         return;
-        //     }
-        //     }
-            
-        //     // Update sensor name
-        //     success = controller.updateSensorName(newAddress, name);
-        //     if (!success) {
-        //     server->sendHeader("HTTP/1.1 400 Bad Request", "");
-        //     server->sendHeader("Content-Type", "application/json");
-        //     server->sendHeader("Connection", "close");
-        //     server->send(400, "application/json", "{\"error\":\"Failed to update sensor name\"}");
-        //     return;
-        //     }
-            
-        //     // Get sensor to update thresholds
-        //     Sensor* sensor = controller.findSensor(newAddress);
-        //     //Serial.println("Updated sensor status: " + sensor.as<String>())
-        //     if (sensor != nullptr) {
-        //     sensor->setLowAlarmThreshold(lowThreshold);
-        //     sensor->setHighAlarmThreshold(highThreshold);
-            
-        //     // Update configuration in storage
-        //     updateSensorInConfig(sensor->getAddress(),
-        //                         sensor->getName(),
-        //                         sensor->getLowAlarmThreshold(),
-        //                         sensor->getHighAlarmThreshold()
-        //                         );
-            
-        //     // Send success response    
-        //     DynamicJsonDocument responseDoc(256);
-        //     responseDoc["success"] = true;
-        //     responseDoc["message"] = "Sensor updated successfully";
-            
-        //     String responseJson;
-        //     serializeJson(responseDoc, responseJson);
-            
-        //     server->sendHeader("HTTP/1.1 200 OK", "");
-        //     server->sendHeader("Content-Type", "application/json");
-        //     server->sendHeader("Connection", "close");
-        //     server->send(200, "application/json", responseJson);
-        //     } else {
-        //     server->sendHeader("HTTP/1.1 404 Not Found", "");
-        //     server->sendHeader("Content-Type", "application/json");
-        //     server->sendHeader("Connection", "close");
-        //     server->send(404, "application/json", "{\"error\":\"Sensor not found\"}");
-        //     }
-        // } else {
-        //     server->sendHeader("HTTP/1.1 400 Bad Request", "");
-        //     server->sendHeader("Content-Type", "application/json");
-        //     server->sendHeader("Connection", "close");
-        //     server->send(400, "application/json", "{\"error\":\"Invalid JSON\"}");
-        // }
-        // } else {
-        // server->sendHeader("HTTP/1.1 400 Bad Request", "");
-        // server->sendHeader("Content-Type", "application/json");
-        // server->sendHeader("Connection", "close");
-        // server->send(400, "application/json", "{\"error\":\"Missing request body\"}");
-        // }
-    });
-  
     
-    // API endpoint to delete a sensor
-    // server->on("/api/sensors", HTTP_DELETE, [this]() {
-    //     if (server->hasArg("plain")) {
-    //         String body = server->arg("plain");
-    //         DynamicJsonDocument doc(256);
-    //         DeserializationError error = deserializeJson(doc, body);
-            
-    //         if (!error) {
-    //             uint8_t address = doc["address"];
-                
-    //             if (controller.removeSensor(address)) {
-    //                 // Remove from configuration
-    //                 //removeSensorFromConfig(address);
-    //                 server->sendHeader("HTTP/1.1 200 OK", "");
-    //                 server->sendHeader("Content-Type", "text/plain");
-    //                 server->sendHeader("Connection", "close");
-    //                 server->send(200, "text/plain", "Sensor removed");
-    //             } else {
-    //                 server->sendHeader("HTTP/1.1 404 Not Found", "");
-    //                 server->sendHeader("Content-Type", "text/plain");
-    //                 server->sendHeader("Connection", "close");
-    //                 server->send(404, "text/plain", "Sensor not found");
-    //             }
-    //         } else {
-    //             server->sendHeader("HTTP/1.1 400 Bad Request", "");
-    //             server->sendHeader("Content-Type", "text/plain");
-    //             server->sendHeader("Connection", "close");
-    //             server->send(400, "text/plain", "Invalid JSON");
-    //         }
-    //     } else {
-    //         server->sendHeader("HTTP/1.1 400 Bad Request", "");
-    //         server->sendHeader("Content-Type", "text/plain");
-    //         server->sendHeader("Connection", "close");
-    //         server->send(400, "text/plain", "No data provided");
-    //     }
-    // });
 
     // POST /api/sensor-bind
     server->on("/api/sensor-bind", HTTP_POST, [this]() {
         if (server->hasArg("plain")) {
             DynamicJsonDocument doc(256);
+            
             DeserializationError err = deserializeJson(doc, server->arg("plain"));
+            
             if (!err) {
                 uint8_t pointAddress = doc["pointAddress"];
                 if (doc.containsKey("romString")) {
+                    Serial.println("ROM:\n" + doc.as<String>());
                     String rom = doc["romString"].as<String>();
                     if (controller.bindSensorToPointByRom(rom, pointAddress)) {
+                        //Serial.println("Save points to config ROM\n");
                         savePointsConfig();
                         server->send(200, "text/plain", "Bound");
                         return;
                     }
                 } else if (doc.containsKey("chipSelect")) {
                     int cs = doc["chipSelect"];
+                    Serial.println("CS:\n" + doc.as<String>());
                     if (controller.bindSensorToPointByChipSelect(cs, pointAddress)) {
+                        //Serial.println("Save points to config ROM\n");
                         savePointsConfig();
                         server->send(200, "text/plain", "Bound");
                         return;
@@ -453,10 +269,13 @@ bool ConfigManager::begin() {
                     for (uint8_t i = 0; i < 50; ++i) {
                         Sensor* bound = controller.getDS18B20Point(i)->getBoundSensor();
                         if (bound && bound->getDS18B20RomString() == rom) {
-                            controller.unbindSensorFromPoint(i);
-                            savePointsConfig();
+                            if(controller.unbindSensorFromPoint(i)){
+                                savePointsConfig();
                             server->send(200, "text/plain", "Unbound");
                             return;
+
+                            };
+                            
                         }
                     }
                 } else if (doc.containsKey("chipSelect")) {
@@ -464,10 +283,12 @@ bool ConfigManager::begin() {
                     for (uint8_t i = 0; i < 10; ++i) {
                         Sensor* bound = controller.getPT1000Point(i)->getBoundSensor();
                         if (bound && bound->getPT1000ChipSelectPin() == cs) {
-                            controller.unbindSensorFromPoint(50 + i);
-                            savePointsConfig();
-                            server->send(200, "text/plain", "Unbound");
-                            return;
+                            if(controller.unbindSensorFromPoint(50 + i)){
+                                savePointsConfig();
+                                server->send(200, "text/plain", "Unbound");
+                                return;
+                            };
+
                         }
                     }
                 }
