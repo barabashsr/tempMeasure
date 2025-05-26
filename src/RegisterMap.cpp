@@ -99,6 +99,7 @@ void RegisterMap::applyConfigToMeasurementPoint(MeasurementPoint& point) {
     if (idx < 60) {
         point.setLowAlarmThreshold(lowAlarmThresholds[idx]);
         point.setHighAlarmThreshold(highAlarmThresholds[idx]);
+        //Serial.printf("applyConfigToMeasurementPoint(%d): LAS: %d, HAS: %d\n", idx, lowAlarmThresholds[idx], highAlarmThresholds[idx]);
     }
 }
 
@@ -107,5 +108,6 @@ void RegisterMap::applyConfigFromMeasurementPoint(const MeasurementPoint& point)
     if (idx < 60) {
         lowAlarmThresholds[idx] = point.getLowAlarmThreshold();
         highAlarmThresholds[idx] = point.getHighAlarmThreshold();
+        //Serial.printf("applyConfigFromMeasurementPoint(%d): LAS: %d, HAS: %d\n", idx, lowAlarmThresholds[idx], highAlarmThresholds[idx]);
     }
 }

@@ -206,6 +206,7 @@ bool ConfigManager::begin() {
         int16_t low = doc["lowAlarmThreshold"];
         int16_t high = doc["highAlarmThreshold"];
 
+
         MeasurementPoint* point = controller.getMeasurementPoint(address);
         if (!point) {
             server->send(404, "application/json", "{\"error\":\"Point not found\"}");
@@ -214,6 +215,8 @@ bool ConfigManager::begin() {
         point->setName(name);
         point->setLowAlarmThreshold(low);
         point->setHighAlarmThreshold(high);
+        Serial.printf("Point: %s. LAS: %d, HAS: %d\n Delay....\n", point->getName(), point->getLowAlarmThreshold(), point->getHighAlarmThreshold());
+        delay(5000);
         controller.applyConfigToRegisterMap();
         // Save to config if needed
         savePointsConfig(); // implement this to persist changes
@@ -524,6 +527,7 @@ void ConfigManager::loadPointsConfig() {
             controller.unbindSensorFromPoint(address);
         }
     }
+    controller.applyConfigToRegisterMap();
 }
 
 
