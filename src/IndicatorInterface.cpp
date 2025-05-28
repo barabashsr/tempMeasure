@@ -3,18 +3,31 @@
 // Static instance for interrupt handling
 IndicatorInterface* IndicatorInterface::_instance = nullptr;
 
-IndicatorInterface::IndicatorInterface(TwoWire& i2cBus, uint8_t i2cAddress, int intPin)
-    : _i2cBus(&i2cBus), _i2cAddress(i2cAddress), _intPin(intPin), _pcf8575(i2cAddress),
+IndicatorInterface::IndicatorInterface(TwoWire& i2cBus, uint8_t pcf_i2cAddress, int intPin)
+    : _i2cBus(&i2cBus), _pcf_i2cAddress(pcf_i2cAddress), _intPin(intPin), _pcf8575(pcf_i2cAddress),
       _directionMask(0x0000), _modeMask(0x0000), _currentState(0xFFFF), _lastState(0xFFFF),
       _lastReadTime(0), _pollInterval(50), _interruptFlag(false), _useInterrupts(false),
-      _interruptCallback(nullptr) {
+      _interruptCallback(nullptr),
+      _oledSleepDelay(30000), _oledLines(3), _textBufferSize(0), _oledOn(true),
+      _oledBlink(false), _blinkTimeOn(500), _blinkTimeOff(500), _lastBlinkTime(0),
+      _blinkState(true), _lastActivityTime(0), _oledSleeping(false),
+      _lastScrollTime(0), _scrollDelay(200), _charWidth(6), _lineHeight(12),
+      _maxCharsPerLine(21)  {
     
     // Set static instance for interrupt handling
     _instance = this;
     
     // Configure interrupt usage
     _useInterrupts = (intPin >= 0);
+
+    // Initialize scroll offsets
+    for (int i = 0; i < 5; i++) {
+        _scrollOffset[i] = 0;
+    }
+    
 }
+
+U8G2_SH1106_128X64_NONAME_F_HW_I2C IndicatorInterface::u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE);
 
 IndicatorInterface::~IndicatorInterface() {
     if (_useInterrupts && _intPin >= 0) {
@@ -48,6 +61,10 @@ bool IndicatorInterface::begin() {
     _currentState = _readPCF();
     _lastState = _currentState;
     _lastReadTime = millis();
+
+    //OLED INIT
+    u8g2.begin();
+    _initOLED();
     
     return true;
 }
@@ -250,12 +267,12 @@ std::string IndicatorInterface::getPortName(uint8_t portNumber) {
     return (it != _portNumbers.end()) ? it->second : "";
 }
 
-void IndicatorInterface::handleInterrupt() {
-    if (_interruptFlag) {
-        _interruptFlag = false;
-        _updateState();
-    }
-}
+// void IndicatorInterface::handleInterrupt() {
+//     if (_interruptFlag) {
+//         _interruptFlag = false;
+//         _updateState();
+//     }
+// }
 
 void IndicatorInterface::setInterruptCallback(void (*callback)(uint16_t currentState, uint16_t changedPins)) {
     _interruptCallback = callback;
@@ -295,7 +312,7 @@ void IndicatorInterface::printPortStates() {
 void IndicatorInterface::printConfiguration() {
     Serial.println("=== Configuration ===");
     Serial.print("I2C Address: 0x");
-    Serial.println(_i2cAddress, HEX);
+    Serial.println(_pcf_i2cAddress, HEX);
     Serial.print("INT Pin: ");
     Serial.println(_intPin);
     Serial.print("Use Interrupts: ");
@@ -379,3 +396,333 @@ void IndicatorInterface::setPortInverted(uint8_t portNumber, bool inverted) {
         _modeMask &= ~(1 << portNumber);  // Set bit to 0 for normal
     }
 }
+
+
+void IndicatorInterface::_initOLED() {
+    u8g2.enableUTF8Print();
+    u8g2.clearBuffer();
+    _calculateDisplayParams();
+    u8g2.sendBuffer();
+    _lastActivityTime = millis();
+}
+
+void IndicatorInterface::setOledSleepDelay(long sleepDelay) {
+    _oledSleepDelay = sleepDelay;
+    _wakeOLED();
+}
+
+void IndicatorInterface::setOledMode(int lines) {
+    if (lines < 1) lines = 1;
+    if (lines > 5) lines = 5;
+    
+    _oledLines = lines;
+    _calculateDisplayParams();
+    _wakeOLED();
+}
+
+void IndicatorInterface::printText(String buffer[], int bufferSize) {
+    _textBufferSize = (bufferSize > 5) ? 5 : bufferSize;
+    
+    for (int i = 0; i < _textBufferSize; i++) {
+        _textBuffer[i] = buffer[i];
+        _scrollOffset[i] = 0;  // Reset scroll position
+    }
+    
+    // Clear unused lines
+    for (int i = _textBufferSize; i < 5; i++) {
+        _textBuffer[i] = "";
+        _scrollOffset[i] = 0;
+    }
+    
+    _updateOLEDDisplay();
+    _wakeOLED();
+}
+
+void IndicatorInterface::setOLEDblink(int timeOn, int timeOff, bool blinkOn) {
+    _oledBlink = blinkOn;
+    _blinkTimeOn = timeOn;
+    _blinkTimeOff = timeOff;
+    _lastBlinkTime = millis();
+    _blinkState = true;
+    
+    if (blinkOn) {
+        _wakeOLED();
+    }
+}
+
+void IndicatorInterface::setOLEDOff() {
+    _oledOn = false;
+    _oledBlink = false;
+    u8g2.setPowerSave(1);
+}
+
+void IndicatorInterface::setOLEDOn() {
+    _oledOn = true;
+    _oledSleeping = false;
+    u8g2.setPowerSave(0);
+    _updateOLEDDisplay();
+    _wakeOLED();
+}
+
+void IndicatorInterface::updateOLED() {
+    if (!_oledOn) return;
+    
+    _handleOLEDSleep();
+    
+    if (_oledSleeping) return;
+    
+    _handleOLEDBlink();
+    _handleScrolling();
+}
+
+
+void IndicatorInterface::_calculateDisplayParams() {
+    int displayHeight = u8g2.getDisplayHeight(); // 64 pixels for your display
+    
+    // Set font based on number of lines to maximize height usage
+    switch (_oledLines) {
+        case 1:
+            // 3x bigger - use largest available font
+            u8g2.setFont(u8g2_font_10x20_t_cyrillic);
+            _lineHeight = displayHeight;  // Use full height (64px)
+            _charWidth = 10;
+            _maxCharsPerLine = 12;
+            break;
+            
+        case 2:
+            // 1.5x bigger - use medium-large font
+            u8g2.setFont(u8g2_font_9x15_t_cyrillic);
+            _lineHeight = displayHeight / 2;  // 32px per line
+            _charWidth = 9;
+            _maxCharsPerLine = 14;
+            break;
+            
+        case 3:
+            // Standard size - balanced
+            u8g2.setFont(u8g2_font_7x13_t_cyrillic);
+            _lineHeight = displayHeight / 3;  // ~21px per line
+            _charWidth = 7;
+            _maxCharsPerLine = 18;
+            break;
+            
+        case 4:
+            // Smaller to fit 4 lines
+            u8g2.setFont(u8g2_font_5x7_t_cyrillic);
+            _lineHeight = displayHeight / 4;  // 16px per line
+            _charWidth = 5;
+            _maxCharsPerLine = 25;
+            break;
+            
+        case 5:
+        default:
+            // Smallest to fit 5 lines
+            u8g2.setFont(u8g2_font_4x6_t_cyrillic);
+            _lineHeight = displayHeight / 5;  // ~12px per line
+            _charWidth = 4;
+            _maxCharsPerLine = 32;
+            break;
+    }
+}
+
+// void IndicatorInterface::_calculateDisplayParams() {
+//     // Set font based on number of lines
+//     switch (_oledLines) {
+//         case 1:
+//             u8g2.setFont(u8g2_font_10x20_t_cyrillic);
+//             _lineHeight = 24;
+//             _charWidth = 10;
+//             _maxCharsPerLine = 12;
+//             break;
+//         case 2:
+//             u8g2.setFont(u8g2_font_9x15_t_cyrillic);
+//             _lineHeight = 20;
+//             _charWidth = 9;
+//             _maxCharsPerLine = 14;
+//             break;
+//         case 3:
+//             u8g2.setFont(u8g2_font_7x13_t_cyrillic);
+//             _lineHeight = 16;
+//             _charWidth = 7;
+//             _maxCharsPerLine = 18;
+//             break;
+//         case 4:
+//             u8g2.setFont(u8g2_font_5x7_t_cyrillic);
+//             _lineHeight = 12;
+//             _charWidth = 6;
+//             _maxCharsPerLine = 21;
+//             break;
+//         case 5:
+//         default:
+//             u8g2.setFont(u8g2_font_4x6_t_cyrillic);
+//             _lineHeight = 10;
+//             _charWidth = 5;
+//             _maxCharsPerLine = 25;
+//             break;
+//     }
+// }
+
+void IndicatorInterface::_updateOLEDDisplay() {
+    if (!_oledOn || _oledSleeping) return;
+    
+    u8g2.clearBuffer();
+    //_fixSH1106Offset();  // Fix SH1106 offset
+    _calculateDisplayParams();
+    
+    int startY = (_lineHeight == 24) ? 24 : _lineHeight;
+    
+    for (int i = 0; i < _oledLines && i < _textBufferSize; i++) {
+        int yPos = startY + (i * _lineHeight);
+        if (yPos <= 64) {  // Make sure we don't draw outside display
+            _drawTextLine(i, yPos);
+        }
+    }
+    
+    u8g2.sendBuffer();
+}
+
+
+void IndicatorInterface::_drawTextLine(int lineIndex, int yPos) {
+    if (lineIndex >= _textBufferSize || _textBuffer[lineIndex].length() == 0) {
+        return;
+    }
+    
+    String text = _textBuffer[lineIndex];
+    
+    // Check pixel width instead of character count
+    int textPixelWidth = u8g2.getUTF8Width(text.c_str());
+    int displayWidth = u8g2.getDisplayWidth();
+    
+    // Only scroll if text pixel width exceeds display width
+    if (textPixelWidth > displayWidth) {
+        // Create scrolling text with padding
+        String scrollText = text + "   " + text;  // Add spacing between repeats
+        
+        int scrollTextWidth = u8g2.getUTF8Width(scrollText.c_str());
+        int startPixel = _scrollOffset[lineIndex];
+        
+        // Calculate how much text to display
+        String displayText = "";
+        int currentWidth = 0;
+        int charIndex = 0;
+        
+        // Skip characters until we reach the scroll offset
+        while (charIndex < scrollText.length() && currentWidth < startPixel) {
+            String charStr = scrollText.substring(charIndex, charIndex + 1);
+            currentWidth += u8g2.getUTF8Width(charStr.c_str());
+            charIndex++;
+        }
+        
+        // Collect characters that fit on screen
+        currentWidth = 0;
+        int startChar = charIndex;
+        while (charIndex < scrollText.length() && currentWidth < displayWidth) {
+            String charStr = scrollText.substring(charIndex, charIndex + 1);
+            int charWidth = u8g2.getUTF8Width(charStr.c_str());
+            if (currentWidth + charWidth <= displayWidth) {
+                currentWidth += charWidth;
+                charIndex++;
+            } else {
+                break;
+            }
+        }
+        
+        displayText = scrollText.substring(startChar, charIndex);
+        u8g2.drawUTF8(0, yPos, displayText.c_str());
+    } else {
+        // Text fits on one line - display normally without scrolling
+        u8g2.drawUTF8(0, yPos, text.c_str());
+        
+    }
+}
+
+
+
+
+void IndicatorInterface::_handleOLEDSleep() {
+    if (_oledSleepDelay < 0) return;  // Never sleep
+    
+    if (!_oledSleeping && (millis() - _lastActivityTime) > _oledSleepDelay) {
+        _oledSleeping = true;
+        u8g2.setPowerSave(1);
+    }
+}
+
+void IndicatorInterface::_handleOLEDBlink() {
+    if (!_oledBlink || _oledSleeping) return;
+    
+    unsigned long currentTime = millis();
+    unsigned long elapsed = currentTime - _lastBlinkTime;
+    
+    if (_blinkState && elapsed > _blinkTimeOn) {
+        // Turn off
+        u8g2.setPowerSave(1);
+        _blinkState = false;
+        _lastBlinkTime = currentTime;
+    } else if (!_blinkState && elapsed > _blinkTimeOff) {
+        // Turn on
+        u8g2.setPowerSave(0);
+        _updateOLEDDisplay();
+        _blinkState = true;
+        _lastBlinkTime = currentTime;
+    }
+}
+
+void IndicatorInterface::_handleScrolling() {
+    if (_oledSleeping || _oledBlink) return;
+    
+    unsigned long currentTime = millis();
+    if (currentTime - _lastScrollTime < _scrollDelay) return;
+    
+    bool needsUpdate = false;
+    
+    for (int i = 0; i < _oledLines && i < _textBufferSize; i++) {
+        if (_textBuffer[i].length() > 0) {
+            int textPixelWidth = u8g2.getUTF8Width(_textBuffer[i].c_str());
+            int displayWidth = u8g2.getDisplayWidth();
+            
+            // Only scroll if text is wider than display
+            if (textPixelWidth > displayWidth) {
+                _scrollOffset[i] += 2;  // Scroll by 2 pixels each time
+                
+                // Reset scroll when we've scrolled through the entire text
+                String scrollText = _textBuffer[i] + "   " + _textBuffer[i];
+                int totalScrollWidth = u8g2.getUTF8Width(_textBuffer[i].c_str()) + 
+                                     u8g2.getUTF8Width("   ");
+                
+                if (_scrollOffset[i] >= totalScrollWidth) {
+                    _scrollOffset[i] = 0;
+                }
+                
+                needsUpdate = true;
+            }
+        }
+    }
+    
+    if (needsUpdate) {
+        _updateOLEDDisplay();
+        _lastScrollTime = currentTime;
+    }
+}
+
+void IndicatorInterface::_wakeOLED() {
+    if (_oledOn) {
+        _lastActivityTime = millis();
+        _oledSleeping = false;
+        u8g2.setPowerSave(0);
+    }
+}
+
+// Modify existing handleInterrupt() method to wake OLED:
+void IndicatorInterface::handleInterrupt() {
+    if (_interruptFlag) {
+        _interruptFlag = false;
+        _updateState();
+        _wakeOLED();  // Wake OLED on any interrupt
+    }
+}
+
+// Add this method to IndicatorInterface.cpp
+// void IndicatorInterface::_fixSH1106Offset() {
+//     // Set column start address to 2 for SH1106
+//     u8g2.sendF("ca", 0x10 | 0, 0x10 | 2);  // Set lower and higher column start address
+// }

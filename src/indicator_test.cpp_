@@ -21,13 +21,13 @@ void setup() {
     }
     
     // Configure ports
-    indicator.setDirection(0x0E00);  // P9, P10, P11 as outputs
+    indicator.setDirection(0b0000000011111111);  // P9, P10, P11 as outputs
     
     // Set port names
-    indicator.setPortName("BUTTON", 8);
-    indicator.setPortName("LED1", 9);
-    indicator.setPortName("LED2", 10);
-    indicator.setPortName("LED3", 11);
+    indicator.setPortName("BUTTON", 15);
+    indicator.setPortName("LED1", 4);
+    indicator.setPortName("LED2", 5);
+    indicator.setPortName("LED3", 7);
     
     // Set individual port inversion for ULN2803
     indicator.setPortInverted("LED1", false);   // Invert LED1 for ULN2803

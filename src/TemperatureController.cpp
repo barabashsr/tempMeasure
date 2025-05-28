@@ -1,12 +1,13 @@
 #include "TemperatureController.h"
 
 
-TemperatureController::TemperatureController(uint8_t oneWirePin[4], uint8_t csPin[4])
+TemperatureController::TemperatureController(uint8_t oneWirePin[4], uint8_t csPin[4], IndicatorInterface& indicator)
     : measurementPeriodSeconds(10),
       deviceId(1000),
       firmwareVersion(0x0100),
       lastMeasurementTime(0),
-      systemInitialized(false)
+      systemInitialized(false),
+      indicator(indicator)
       //oneWireBusPin(oneWirePin)
 {
     for (uint8_t i = 0; i < 50; ++i)
@@ -45,6 +46,39 @@ bool TemperatureController::begin() {
     return true;
 
     discoverPTSensors();
+
+    // Initialize indicator interface
+    if (!indicator.begin()) {
+        Serial.println("Failed to initialize indicator interface!");
+        //return;
+    }
+    
+    // Configure ports
+    indicator.setDirection(0b0000000011111111);  // P9, P10, P11 as outputs
+    
+    // Set port names
+    indicator.setPortName("BUTTON", 15);
+    indicator.setPortName("LED1", 4);
+    indicator.setPortName("LED2", 5);
+    indicator.setPortName("LED3", 7);
+    
+    // Set individual port inversion for ULN2803
+    indicator.setPortInverted("LED1", false);   // Invert LED1 for ULN2803
+    indicator.setPortInverted("LED2", false);   // Invert LED2 for ULN2803
+    indicator.setPortInverted("LED3", false);   // Invert LED3 for ULN2803
+    indicator.setPortInverted("BUTTON", false); // Button is normal (not inverted)
+    
+    // Or you can still use the mask method if you prefer:
+    // indicator.setMode(0x0E00);  // This should now work correctly
+    
+    // Set interrupt callback
+    //indicator.setInterruptCallback(onPortChange);
+    
+    // Turn off all LEDs
+    indicator.setAllOutputsLow();
+    
+    Serial.println("Setup complete!");
+    indicator.printConfiguration();
     
 }
 

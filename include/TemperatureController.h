@@ -5,6 +5,7 @@
 #include "Sensor.h"
 #include "MeasurementPoint.h"
 #include "RegisterMap.h"
+#include "IndicatorInterface.h"
 #include <OneWire.h>
 #include <DallasTemperature.h>
 #include <ArduinoJson.h>
@@ -12,7 +13,7 @@
 
 class TemperatureController {
 public:
-    TemperatureController(uint8_t oneWirePin[4], uint8_t csPin[4]);
+    TemperatureController(uint8_t oneWirePin[4], uint8_t csPin[4], IndicatorInterface& indicator);
     ~TemperatureController();
 
     bool begin();
@@ -66,6 +67,7 @@ public:
     bool unbindSensorFromPointBySensor(Sensor* sensor);
 
 private:
+    IndicatorInterface& indicator;
 
     OneWire* oneWireBuses[4];
     DallasTemperature* dallasSensors[4];

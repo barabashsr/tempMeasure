@@ -2,7 +2,9 @@
 #include "TemperatureController.h"
 #include "TempModbusServer.h"
 #include "ConfigManager.h"
+#include "IndicatorInterface.h"
 #include <SPI.h>
+
 
 
 // Create temperature controller
@@ -14,35 +16,37 @@
 #define BUS4_PIN  19
 
 //PT1000 PINs
+//SPI PINs
+#define SCK_PIN  14
+#define MISO_PIN  12
+#define MOSI_PIN  13
 
 #define CS1_PIN  32
 #define CS2_PIN  33
 #define CS3_PIN  26
 #define CS4_PIN  27
-//#define CS5_PIN  15
+
 
 //RS485 PINs
 #define RX_PIN  22 //to rxd
 #define TX_PIN  23 //to txd
 #define DE_PIN  -1
 
-//SPI PINs
-#define SCK_PIN  14
-#define MISO_PIN  12
-#define MOSI_PIN  13
-//#define SS_PIN  15
+
 
 // I2C pins for WROVER (avoiding conflicts)
 #define I2C_SDA 21  // Default SDA, available
 #define I2C_SCL 25  // Alternative SCL (GPIO 22 used by RS485)
 #define PCF_INT 34 // PCF expander interupt pin
 
+IndicatorInterface indicator(Wire, 0x20, PCF_INT, 0x39);  // I2C address 0x20, INT pin 34
+
 
 
 
 uint8_t onwWirePins[4] = {BUS1_PIN,  BUS2_PIN, BUS3_PIN, BUS4_PIN};
 uint8_t csPins[4] = {CS1_PIN,  CS2_PIN, CS3_PIN, CS4_PIN};
-TemperatureController controller(onwWirePins, csPins);
+TemperatureController controller(onwWirePins, csPins, indicator);
 
 // Create configuration manager
 ConfigManager* configManager;
@@ -54,12 +58,15 @@ void setup() {
     // Initialize serial for debugging
     Serial.begin(115200);
     while (!Serial) {}
+        // Initialize I2C
+    Wire.begin(I2C_SDA, I2C_SCL);
+    Wire.setClock(100000);
 
     SPI.begin(SCK_PIN, MISO_PIN, MOSI_PIN);  // SCK, MISO, MOSI, SS
 
     // Configure all CS pins as OUTPUT
     pinMode(CS1_PIN, OUTPUT);
-    pinMode(CS2_PIN, OUTPUT);It does not change the behaviour or may be my 34 pin d
+    pinMode(CS2_PIN, OUTPUT); //It does not change the behaviour or may be my 34 pin d
     pinMode(CS3_PIN, OUTPUT);
     pinMode(CS4_PIN, OUTPUT);
     //pinMode(CS5_PIN, OUTPUT);

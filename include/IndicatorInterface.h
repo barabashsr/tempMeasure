@@ -6,11 +6,12 @@
 #include <map>
 #include <string>
 #include "PCF8575.h"
+#include <U8g2lib.h>
 
 class IndicatorInterface {
 public:
     // Constructor
-    IndicatorInterface(TwoWire& i2cBus, uint8_t i2cAddress, int intPin = -1);
+    IndicatorInterface(TwoWire& i2cBus, uint8_t pcf_i2cAddress, int intPin = -1);
     
     // Destructor
     ~IndicatorInterface();
@@ -56,10 +57,20 @@ public:
     void printPortStates();
     void printConfiguration();
 
+    // OLED control methods
+    void setOledSleepDelay(long sleepDelay);        // -1 = never sleep
+    void setOledMode(int lines);                    // 1-5 lines
+    void printText(String buffer[], int bufferSize);
+    void setOLEDblink(int timeOn, int timeOff, bool blinkOn = true);
+    void setOLEDOff();
+    void setOLEDOn();
+    void updateOLED();                              // Call this in loop for scrolling/blinking
+
 private:
     // Hardware configuration
     TwoWire* _i2cBus;
-    uint8_t _i2cAddress;
+    uint8_t _pcf_i2cAddress;
+    uint8_t oled_i2cAddress;
     int _intPin;
     PCF8575 _pcf8575;
     
@@ -92,6 +103,40 @@ private:
     // Static interrupt handler
     static IndicatorInterface* _instance;
     static void IRAM_ATTR _staticInterruptHandler();
+    static U8G2_SH1106_128X64_NONAME_F_HW_I2C u8g2;
+
+    // OLED configuration
+    long _oledSleepDelay;
+    int _oledLines;
+    String _textBuffer[5];                          // Max 5 lines
+    int _textBufferSize;
+    bool _oledOn;
+    bool _oledBlink;
+    int _blinkTimeOn;
+    int _blinkTimeOff;
+    unsigned long _lastBlinkTime;
+    bool _blinkState;
+    unsigned long _lastActivityTime;
+    bool _oledSleeping;
+    
+    // Scrolling variables
+    int _scrollOffset[5];                           // Scroll offset for each line
+    unsigned long _lastScrollTime;
+    int _scrollDelay;
+    int _charWidth;
+    int _lineHeight;
+    int _maxCharsPerLine;
+    
+    // Internal OLED methods
+    void _initOLED();
+    void _updateOLEDDisplay();
+    void _handleOLEDSleep();
+    void _handleOLEDBlink();
+    void _handleScrolling();
+    void _drawTextLine(int lineIndex, int yPos);
+    void _calculateDisplayParams();
+    void _wakeOLED();
+    //void _fixSH1106Offset();
 };
 
 #endif
