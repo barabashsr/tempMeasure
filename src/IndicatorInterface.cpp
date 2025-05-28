@@ -12,7 +12,9 @@ IndicatorInterface::IndicatorInterface(TwoWire& i2cBus, uint8_t pcf_i2cAddress, 
       _oledBlink(false), _blinkTimeOn(500), _blinkTimeOff(500), _lastBlinkTime(0),
       _blinkState(true), _lastActivityTime(0), _oledSleeping(false),
       _lastScrollTime(0), _scrollDelay(200), _charWidth(6), _lineHeight(12),
-      _maxCharsPerLine(21)  {
+      _maxCharsPerLine(21),
+      _savedTextBufferSize(0), _savedOledLines(3), _isBlinkingOK(false), 
+      _isBlinkingCross(false), _blinkDelayTime(500), _lastBlinkToggle(0), _blinkShowSpecial(true)  {
     
     // Set static instance for interrupt handling
     _instance = this;
@@ -468,61 +470,84 @@ void IndicatorInterface::updateOLED() {
     if (!_oledOn) return;
     
     _handleOLEDSleep();
-    
     if (_oledSleeping) return;
+    
+    // Handle special blinking first - if active, skip other operations
+    if (_isBlinkingOK || _isBlinkingCross) {
+        _handleSpecialBlink();
+        return;  // Don't handle regular blink/scroll when special blinking
+    }
     
     _handleOLEDBlink();
     _handleScrolling();
 }
 
+// void IndicatorInterface::updateOLED() {
+//     if (!_oledOn) return;
+    
+//     _handleOLEDSleep();
+//     if (_oledSleeping) return;
+    
+//     _handleOLEDBlink();
+//     _handleSpecialBlink();  // Add this line
+//     _handleScrolling();
+// }
+
+
 
 void IndicatorInterface::_calculateDisplayParams() {
-    int displayHeight = u8g2.getDisplayHeight(); // 64 pixels for your display
+    int displayHeight = u8g2.getDisplayHeight(); // 64 pixels
     
-    // Set font based on number of lines to maximize height usage
+    // Calculate optimal line height for each mode to use full display height
     switch (_oledLines) {
         case 1:
-            // 3x bigger - use largest available font
+            // Use largest font and center it
             u8g2.setFont(u8g2_font_10x20_t_cyrillic);
-            _lineHeight = displayHeight;  // Use full height (64px)
+            _lineHeight = displayHeight; // Full height for single line
             _charWidth = 10;
             _maxCharsPerLine = 12;
             break;
             
         case 2:
-            // 1.5x bigger - use medium-large font
-            u8g2.setFont(u8g2_font_9x15_t_cyrillic);
-            _lineHeight = displayHeight / 2;  // 32px per line
+            // Use medium-large font
+            //u8g2.setFont(u8g2_font_9x15_t_cyrillic);
+            u8g2.setFont(u8g2_font_10x20_t_cyrillic);
+            _lineHeight = displayHeight / 2; // 32px per line
             _charWidth = 9;
             _maxCharsPerLine = 14;
             break;
             
         case 3:
-            // Standard size - balanced
-            u8g2.setFont(u8g2_font_7x13_t_cyrillic);
-            _lineHeight = displayHeight / 3;  // ~21px per line
+            // Use medium font
+            //u8g2.setFont(u8g2_font_7x13_t_cyrillic);
+            // u8g2.setFont(u8g2_font_9x15_t_cyrillic);
+            u8g2.setFont(u8g2_font_10x20_t_cyrillic);
+            _lineHeight = displayHeight / 3; // ~21px per line
             _charWidth = 7;
             _maxCharsPerLine = 18;
             break;
             
         case 4:
-            // Smaller to fit 4 lines
-            u8g2.setFont(u8g2_font_5x7_t_cyrillic);
-            _lineHeight = displayHeight / 4;  // 16px per line
+            // Use smaller font
+            //u8g2.setFont(u8g2_font_5x7_t_cyrillic);
+            u8g2.setFont(u8g2_font_9x15_t_cyrillic);
+            _lineHeight = displayHeight / 4; // 16px per line
             _charWidth = 5;
             _maxCharsPerLine = 25;
             break;
             
         case 5:
         default:
-            // Smallest to fit 5 lines
-            u8g2.setFont(u8g2_font_4x6_t_cyrillic);
-            _lineHeight = displayHeight / 5;  // ~12px per line
+            // Use smallest font
+            u8g2.setFont(u8g2_font_9x15_t_cyrillic);
+            // u8g2.setFont(u8g2_font_4x6_t_cyrillic);
+            _lineHeight = displayHeight / 5; // ~12px per line
             _charWidth = 4;
             _maxCharsPerLine = 32;
             break;
     }
 }
+
 
 // void IndicatorInterface::_calculateDisplayParams() {
 //     // Set font based on number of lines
@@ -565,16 +590,26 @@ void IndicatorInterface::_updateOLEDDisplay() {
     if (!_oledOn || _oledSleeping) return;
     
     u8g2.clearBuffer();
-    //_fixSH1106Offset();  // Fix SH1106 offset
     _calculateDisplayParams();
     
-    int startY = (_lineHeight == 24) ? 24 : _lineHeight;
+    // Set font position to top for consistent positioning
+    u8g2.setFontPosTop();
+    
+    int displayHeight = u8g2.getDisplayHeight(); // 64 pixels
     
     for (int i = 0; i < _oledLines && i < _textBufferSize; i++) {
-        int yPos = startY + (i * _lineHeight);
-        if (yPos <= 64) {  // Make sure we don't draw outside display
-            _drawTextLine(i, yPos);
+        int yPos;
+        
+        if (_oledLines == 1) {
+            // Center single line vertically
+            int fontHeight = u8g2.getFontAscent() - u8g2.getFontDescent();
+            yPos = (displayHeight - fontHeight) / 2;
+        } else {
+            // Distribute lines evenly across display height
+            yPos = (i * displayHeight) / _oledLines;
         }
+        
+        _drawTextLine(i, yPos);
     }
     
     u8g2.sendBuffer();
@@ -726,3 +761,215 @@ void IndicatorInterface::handleInterrupt() {
 //     // Set column start address to 2 for SH1106
 //     u8g2.sendF("ca", 0x10 | 0, 0x10 | 2);  // Set lower and higher column start address
 // }
+
+void IndicatorInterface::pushLine(String newLine) {
+    // Shift all lines down
+    for (int i = 4; i > 0; i--) {
+        _textBuffer[i] = _textBuffer[i-1];
+    }
+    
+    // Add new line at the top
+    _textBuffer[0] = newLine;
+    
+    // Ensure we have the right number of lines
+    if (_textBufferSize < _oledLines) {
+        _textBufferSize++;
+    } else {
+        _textBufferSize = _oledLines;
+    }
+    
+    // Reset scroll offsets
+    for (int i = 0; i < 5; i++) {
+        _scrollOffset[i] = 0;
+    }
+    
+    _updateOLEDDisplay();
+    _wakeOLED();
+}
+
+void IndicatorInterface::displayOK() {
+    // Remove this line: stopBlinking(); // Stop any current blinking
+    
+    u8g2.clearBuffer();
+    
+    // Use the largest available font for OK
+    u8g2.setFont(u8g2_font_logisoso42_tf);
+    u8g2.setFontPosCenter();
+    
+    // Calculate center position
+    int displayWidth = u8g2.getDisplayWidth();
+    int displayHeight = u8g2.getDisplayHeight();
+    
+    String okText = "OK";
+    int textWidth = u8g2.getUTF8Width(okText.c_str());
+    
+    int x = (displayWidth - textWidth) / 2;
+    int y = displayHeight / 2;
+    
+    // Draw OK in center
+    u8g2.drawUTF8(x, y + 5, okText.c_str());
+    
+    // Add a border around OK
+    u8g2.drawFrame(x - 5, y - u8g2.getFontAscent() / 2 - 5, 
+                   textWidth + 10, u8g2.getFontAscent() + u8g2.getFontDescent() + 20);
+    
+    u8g2.sendBuffer();
+    _wakeOLED();
+}
+
+void IndicatorInterface::displayCross() {
+    u8g2.clearBuffer();
+    
+    int displayWidth = u8g2.getDisplayWidth();
+    int displayHeight = u8g2.getDisplayHeight();
+    
+    // Calculate center and radius for circle
+    int centerX = displayWidth / 2;
+    int centerY = displayHeight / 2;
+    int radius = min(displayWidth, displayHeight) / 2 - 4;
+    
+    // Draw thicker circle by drawing multiple concentric circles
+    for (int r = radius; r > radius - 3; r--) {
+        u8g2.drawCircle(centerX, centerY, r);
+    }
+    
+    // Cross parameters - made smaller
+    int crossSize = (radius * 5) / 10;  // Reduced from 70% to 50% of radius
+    int thickness = 4;  // Cross arm thickness
+    int halfThickness = thickness / 2;
+    
+    // Draw main diagonal (top-left to bottom-right)
+    for (int i = -crossSize; i <= crossSize; i++) {
+        int x1 = centerX + i - halfThickness;
+        int y1 = centerY + i - halfThickness;
+        
+        // Draw small filled rectangles along the diagonal
+        u8g2.drawBox(x1, y1, thickness, thickness);
+    }
+    
+    // Draw anti-diagonal (top-right to bottom-left)
+    for (int i = -crossSize; i <= crossSize; i++) {
+        int x1 = centerX + i - halfThickness;
+        int y1 = centerY - i - halfThickness;
+        
+        // Draw small filled rectangles along the anti-diagonal
+        u8g2.drawBox(x1, y1, thickness, thickness);
+    }
+    
+    u8g2.sendBuffer();
+    _wakeOLED();
+}
+
+// void IndicatorInterface::displayCross() {
+//     // Remove this line: stopBlinking(); // Stop any current blinking
+    
+//     u8g2.clearBuffer();
+    
+//     int displayWidth = u8g2.getDisplayWidth();
+//     int displayHeight = u8g2.getDisplayHeight();
+    
+//     // Calculate center and radius for circle
+//     int centerX = displayWidth / 2;
+//     int centerY = displayHeight / 2;
+//     int radius = min(displayWidth, displayHeight) / 2 - 4;
+    
+//     // Draw circle
+//     u8g2.drawCircle(centerX, centerY, radius);
+    
+//     // Draw cross inside circle
+//     int crossSize = radius - 8;
+    
+//     // Draw X (cross) - make it thicker
+//     for (int offset = -1; offset <= 1; offset++) {
+//         u8g2.drawLine(centerX - crossSize + offset, centerY - crossSize, 
+//                       centerX + crossSize + offset, centerY + crossSize);
+//         u8g2.drawLine(centerX + crossSize + offset, centerY - crossSize, 
+//                       centerX - crossSize + offset, centerY + crossSize);
+//         u8g2.drawLine(centerX - crossSize, centerY - crossSize + offset, 
+//                       centerX + crossSize, centerY + crossSize + offset);
+//         u8g2.drawLine(centerX + crossSize, centerY - crossSize + offset, 
+//                       centerX - crossSize, centerY + crossSize + offset);
+//     }
+    
+//     u8g2.sendBuffer();
+//     _wakeOLED();
+// }
+
+
+void IndicatorInterface::blinkOK(int blinkDelay) {
+    // Stop any regular OLED blinking first
+    _oledBlink = false;
+    
+    _saveCurrentText();
+    _isBlinkingOK = true;
+    _isBlinkingCross = false;
+    _blinkDelayTime = blinkDelay;
+    _lastBlinkToggle = millis();
+    _blinkShowSpecial = true;
+    
+    displayOK();  // Start with OK showing
+}
+
+void IndicatorInterface::blinkCross(int blinkDelay) {
+    // Stop any regular OLED blinking first
+    _oledBlink = false;
+    
+    _saveCurrentText();
+    _isBlinkingOK = false;
+    _isBlinkingCross = true;
+    _blinkDelayTime = blinkDelay;
+    _lastBlinkToggle = millis();
+    _blinkShowSpecial = true;
+    
+    displayCross();  // Start with cross showing
+}
+
+
+void IndicatorInterface::stopBlinking() {
+    _isBlinkingOK = false;
+    _isBlinkingCross = false;
+    _restoreCurrentText();
+}
+
+void IndicatorInterface::_saveCurrentText() {
+    // Save current text buffer
+    for (int i = 0; i < 5; i++) {
+        _savedTextBuffer[i] = _textBuffer[i];
+    }
+    _savedTextBufferSize = _textBufferSize;
+    _savedOledLines = _oledLines;
+}
+
+void IndicatorInterface::_restoreCurrentText() {
+    // Restore saved text buffer
+    for (int i = 0; i < 5; i++) {
+        _textBuffer[i] = _savedTextBuffer[i];
+    }
+    _textBufferSize = _savedTextBufferSize;
+    _oledLines = _savedOledLines;
+    
+    _updateOLEDDisplay();
+}
+
+void IndicatorInterface::_handleSpecialBlink() {
+    if (!_isBlinkingOK && !_isBlinkingCross) return;
+    
+    unsigned long currentTime = millis();
+    if (currentTime - _lastBlinkToggle >= _blinkDelayTime) {
+        _blinkShowSpecial = !_blinkShowSpecial;
+        _lastBlinkToggle = currentTime;
+        
+        if (_blinkShowSpecial) {
+            // Show OK or Cross
+            if (_isBlinkingOK) {
+                displayOK();
+            } else if (_isBlinkingCross) {
+                displayCross();
+            }
+        } else {
+            // Show original text
+            _restoreCurrentText();
+        }
+    }
+}
+

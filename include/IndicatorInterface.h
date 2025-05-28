@@ -66,6 +66,15 @@ public:
     void setOLEDOn();
     void updateOLED();                              // Call this in loop for scrolling/blinking
 
+    // Add these to the public section:
+    void pushLine(String newLine);                      // Push new line, shift others down
+    void displayOK();                                   // Display huge "OK"
+    void displayCross();                                // Display huge cross in circle
+    void blinkOK(int blinkDelay);                       // Blink between OK and previous text
+    void blinkCross(int blinkDelay);                    // Blink between cross and previous text
+    void stopBlinking();                                // Stop any blinking and restore text
+
+
 private:
     // Hardware configuration
     TwoWire* _i2cBus;
@@ -137,6 +146,21 @@ private:
     void _calculateDisplayParams();
     void _wakeOLED();
     //void _fixSH1106Offset();
+    // Add these to the private section:
+    String _savedTextBuffer[5];                         // Backup of text before OK/Cross
+    int _savedTextBufferSize;
+    int _savedOledLines;
+    bool _isBlinkingOK;
+    bool _isBlinkingCross;
+    int _blinkDelayTime;
+    unsigned long _lastBlinkToggle;
+    bool _blinkShowSpecial;                             // true = show OK/Cross, false = show text
+
+    // Internal methods
+    void _saveCurrentText();
+    void _restoreCurrentText();
+    void _handleSpecialBlink();
+
 };
 
 #endif

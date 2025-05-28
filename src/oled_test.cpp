@@ -12,68 +12,36 @@ void setup() {
         return;
     }
     
+    indicator.setOledMode(3);
     indicator.setOledSleepDelay(-1);
-    Serial.println("Height-maximized OLED test starting...");
+    
+    // Show some text first
+    String lines[] = {"Line 1", "Line 2", "Line 3"};
+    indicator.printText(lines, 3);
+    delay(2000);
+    
+    // Test blinking OK
+    Serial.println("Starting OK blink...");
+    indicator.blinkOK(1000);  // Blink every 1 second
 }
 
 void loop() {
-    static unsigned long lastModeChange = 0;
-    static int currentMode = 1;
-    
     indicator.updateOLED();
     
-    if (millis() - lastModeChange >= 5000) {
-        Serial.print("Testing ");
-        Serial.print(currentMode);
-        Serial.println(" line mode (height-maximized)");
+    static unsigned long lastAction = 0;
+    if (millis() - lastAction > 10000) {  // Every 10 seconds
+        static bool showCross = false;
         
-        indicator.setOledMode(currentMode);
-        String testLines[5];
-        
-        switch (currentMode) {
-            case 1:
-                testLines[0] = "БОЛЬШОЙ";  // Should fill most of the screen height
-                indicator.printText(testLines, 1);
-                break;
-                
-            case 2:
-                testLines[0] = "Строка 1";
-                testLines[1] = "Строка 2";
-                indicator.printText(testLines, 2);
-                break;
-                
-            case 3:
-                testLines[0] = "Линия 1";
-                testLines[1] = "Линия 2";
-                testLines[2] = "Линия 3";
-                indicator.printText(testLines, 3);
-                break;
-                
-            case 4:
-                testLines[0] = "L1: Тест";
-                testLines[1] = "L2: Test";
-                testLines[2] = "L3: Линия";
-                testLines[3] = "L4: Line";
-                indicator.printText(testLines, 4);
-                break;
-                
-            case 5:
-                testLines[0] = "1: Мини";
-                testLines[1] = "2: Small";
-                testLines[2] = "3: Текст";
-                testLines[3] = "4: Test";
-                testLines[4] = "5: Line";
-                indicator.printText(testLines, 5);
-                break;
+        if (showCross) {
+            Serial.println("Starting Cross blink...");
+            indicator.blinkCross(500);  // Blink every 500ms
+        } else {
+            Serial.println("Starting OK blink...");
+            indicator.blinkCross(800);     // Blink every 800ms
         }
         
-        currentMode++;
-        if (currentMode > 5) {
-            currentMode = 1;
-            Serial.println("=== Restarting height-maximized test ===");
-        }
-        
-        lastModeChange = millis();
+        showCross = !showCross;
+        lastAction = millis();
     }
     
     delay(10);
