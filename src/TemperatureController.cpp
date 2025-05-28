@@ -1,62 +1,77 @@
 #include "TemperatureController.h"
 
-
 TemperatureController::TemperatureController(uint8_t oneWirePin[4], uint8_t csPin[4], IndicatorInterface& indicator)
     : measurementPeriodSeconds(10),
       deviceId(1000),
       firmwareVersion(0x0100),
       lastMeasurementTime(0),
       systemInitialized(false),
-      indicator(indicator)
-      //oneWireBusPin(oneWirePin)
+      indicator(indicator),
+      _lastAlarmCheck(0),
+      _lastButtonState(true),
+      _lastButtonPressTime(0),
+      _currentDisplayedAlarm(nullptr),
+      _okDisplayStartTime(0),
+      _showingOK(false)
 {
+    // Initialize measurement points
     for (uint8_t i = 0; i < 50; ++i)
         dsPoints[i] = MeasurementPoint(i, "DS18B20_Point_" + String(i));
     for (uint8_t i = 0; i < 10; ++i)
         ptPoints[i] = MeasurementPoint(50 + i, "PT1000_Point_" + String(i));
-    for (uint8_t i = 0; i < 4; i++)
+    
+    // Initialize bus pins
+    for (uint8_t i = 0; i < 4; i++) {
         oneWireBusPin[i] = oneWirePin[i];
-    for (uint8_t i = 0; i < 4; i++)
         chipSelectPin[i] = csPin[i];
+    }
+    
+    // Initialize OneWire buses
     for (int i = 0; i < 4; ++i) {
         oneWireBuses[i] = new OneWire(oneWireBusPin[i]);
         dallasSensors[i] = new DallasTemperature(oneWireBuses[i]);
     }
-
-
-
 }
 
 TemperatureController::~TemperatureController() {
+    // Clean up sensors
     for (auto sensor : sensors)
         delete sensor;
     sensors.clear();
-}
-// 
-bool TemperatureController::begin() {
     
+    // Clean up alarms
+    for (auto alarm : _alarms)
+        delete alarm;
+    _alarms.clear();
+    
+    // Clean up OneWire buses
+    for (int i = 0; i < 4; ++i) {
+        delete dallasSensors[i];
+        delete oneWireBuses[i];
+    }
+}
 
+bool TemperatureController::begin() {
+    // Initialize register map
     registerMap.writeHoldingRegister(0, deviceId);
     registerMap.writeHoldingRegister(1, firmwareVersion);
     registerMap.writeHoldingRegister(2, 0);
     registerMap.writeHoldingRegister(3, 0);
     for (int i = 4; i <= 10; i++)
         registerMap.writeHoldingRegister(i, 0);
-    systemInitialized = true;
-    
     
     Serial.println("Discovering sensors...");
     discoverPTSensors();
     Serial.println("Setting HMI...");
-
+    
     // Initialize indicator interface
     if (!indicator.begin()) {
         Serial.println("Failed to initialize indicator interface!");
-        /return;
+        return false;
     }
     
     // Configure ports
-    indicator.setDirection(0b0000000011111111);  // P0-P7 as outputs
+    indicator.setDirection(0b0000000011111111); // P0-P7 as outputs
     
     // Set port names
     indicator.setPortName("BUTTON", 15);
@@ -69,25 +84,365 @@ bool TemperatureController::begin() {
     indicator.setPortName("RedLED", 7);
     
     // Set individual port inversion for ULN2803
-    indicator.setPortInverted("Relay1", false);   
-    indicator.setPortInverted("Relay2", false);  
-    indicator.setPortInverted("Relay3", false);   
-    indicator.setPortInverted("GreenLED", false);   
-    indicator.setPortInverted("BlueLED", false);  
-    indicator.setPortInverted("YellowLED", false);  
-    indicator.setPortInverted("RedLED", false);  
+    indicator.setPortInverted("Relay1", false);
+    indicator.setPortInverted("Relay2", false);
+    indicator.setPortInverted("Relay3", false);
+    indicator.setPortInverted("GreenLED", false);
+    indicator.setPortInverted("BlueLED", false);
+    indicator.setPortInverted("YellowLED", false);
+    indicator.setPortInverted("RedLED", false);
     indicator.setPortInverted("BUTTON", false);
     
-    
-
-    // Turn off all LEDs
+    // Turn off all LEDs initially
     indicator.setAllOutputsLow();
     
+    // Set interrupt callback
+    indicator.setInterruptCallback([](uint16_t currentState, uint16_t changedPins) {
+        Serial.print("PCF8575 Interrupt - State: 0x");
+        Serial.print(currentState, HEX);
+        Serial.print(", Changed: 0x");
+        Serial.println(changedPins, HEX);
+    });
+    
+    // Set normal operation display
+    indicator.setOledMode(3);
+    indicator.writePort("GreenLED", true); // Normal operation LED
+    
+    systemInitialized = true;
     Serial.println("Setup complete!");
     indicator.printConfiguration();
     return true;
-    
 }
+
+void TemperatureController::update() {
+    updateAllSensors();
+    readAllPoints();
+    
+    // Handle PCF8575 interrupts
+    indicator.handleInterrupt();
+    
+    // Update alarm system
+    updateAlarms();
+    
+    // Handle button presses
+    _checkButtonPress();
+    
+    // Handle alarm display and outputs
+    handleAlarmDisplay();
+    handleAlarmOutputs();
+    
+    // Update OLED
+    indicator.updateOLED();
+    
+    if (!systemInitialized) return;
+
+
+    unsigned long currentTime = millis();
+    if (currentTime - lastMeasurementTime >= measurementPeriodSeconds * 1000) {
+        
+        updateRegisterMap();
+        lastMeasurementTime = currentTime;
+        //applyConfigFromRegisterMap();
+    }
+}
+
+// Alarm Management Methods
+void TemperatureController::updateAlarms() {
+    unsigned long currentTime = millis();
+    if (currentTime - _lastAlarmCheck < _alarmCheckInterval) {
+        return;
+    }
+    _lastAlarmCheck = currentTime;
+    
+    // Ensure we have fresh sensor data before checking alarms
+    Serial.println("Checking alarms with fresh sensor data...");
+    
+    // Check all measurement points for alarm conditions
+    for (uint8_t i = 0; i < 50; ++i) {
+        if (dsPoints[i].getBoundSensor() != nullptr) {
+            Serial.printf("DS Point %d: Temp=%d, High=%d, Low=%d\n", 
+                         i, dsPoints[i].getCurrentTemp(), 
+                         dsPoints[i].getHighAlarmThreshold(), 
+                         dsPoints[i].getLowAlarmThreshold());
+            _checkPointForAlarms(&dsPoints[i]);
+        }
+    }
+    
+    for (uint8_t i = 0; i < 10; ++i) {
+        if (ptPoints[i].getBoundSensor() != nullptr) {
+            Serial.printf("PT Point %d: Temp=%d, High=%d, Low=%d\n", 
+                         i, ptPoints[i].getCurrentTemp(), 
+                         ptPoints[i].getHighAlarmThreshold(), 
+                         ptPoints[i].getLowAlarmThreshold());
+            _checkPointForAlarms(&ptPoints[i]);
+        }
+    }
+    
+    // Update existing alarms
+    for (auto it = _alarms.begin(); it != _alarms.end();) {
+        bool conditionExists = (*it)->updateCondition();
+        if (!conditionExists && (*it)->isResolved()) {
+            // Alarm is resolved, remove it
+            if (_currentDisplayedAlarm == *it) {
+                _currentDisplayedAlarm = nullptr;
+            }
+            Serial.printf("Removing resolved alarm for point %d\n", 
+                         (*it)->getSource() ? (*it)->getSource()->getAddress() : -1);
+            delete *it;
+            it = _alarms.erase(it);
+        } else {
+            ++it;
+        }
+    }
+    
+    // Sort alarms by priority
+    std::sort(_alarms.begin(), _alarms.end(), AlarmComparator());
+    
+    Serial.printf("Active alarms count: %d\n", getActiveAlarms().size());
+}
+
+
+void TemperatureController::_checkPointForAlarms(MeasurementPoint* point) {
+    if (!point || !point->getBoundSensor()) return;
+    
+    // Check for high temperature alarm
+    if (point->getCurrentTemp() >= point->getHighAlarmThreshold()) {
+        if (!_hasAlarmForPoint(point, AlarmType::HIGH_TEMPERATURE)) {
+            createAlarm(AlarmType::HIGH_TEMPERATURE, point, AlarmPriority::PRIORITY_HIGH);
+        }
+    }
+    
+    // Check for low temperature alarm
+    if (point->getCurrentTemp() <= point->getLowAlarmThreshold()) {
+        if (!_hasAlarmForPoint(point, AlarmType::LOW_TEMPERATURE)) {
+            createAlarm(AlarmType::LOW_TEMPERATURE, point, AlarmPriority::PRIORITY_MEDIUM);
+        }
+    }
+    
+    // Check for sensor error
+    if (point->getErrorStatus() != 0) {
+        if (!_hasAlarmForPoint(point, AlarmType::SENSOR_ERROR)) {
+            createAlarm(AlarmType::SENSOR_ERROR, point, AlarmPriority::PRIORITY_HIGH);
+        }
+    }
+}
+
+bool TemperatureController::_hasAlarmForPoint(MeasurementPoint* point, AlarmType type) {
+    for (auto alarm : _alarms) {
+        if (alarm->getSource() == point && 
+            alarm->getType() == type && 
+            alarm->isActive()) {
+            return true;
+        }
+    }
+    return false;
+}
+
+void TemperatureController::createAlarm(AlarmType type, MeasurementPoint* source, AlarmPriority priority) {
+    Alarm* newAlarm = new Alarm(type, source, priority);
+    _alarms.push_back(newAlarm);
+    
+    // Sort alarms by priority
+    std::sort(_alarms.begin(), _alarms.end(), AlarmComparator());
+}
+
+Alarm* TemperatureController::getHighestPriorityAlarm() const {
+    for (auto alarm : _alarms) {
+        if (alarm->isActive()) {
+            return alarm;
+        }
+    }
+    return nullptr;
+}
+
+void TemperatureController::acknowledgeHighestPriorityAlarm() {
+    Alarm* alarm = getHighestPriorityAlarm();
+    if (alarm) {
+        alarm->acknowledge();
+        Serial.printf("Alarm acknowledged: %s\n", alarm->getStatusText().c_str());
+    }
+}
+
+void TemperatureController::acknowledgeAllAlarms() {
+    for (auto alarm : _alarms) {
+        if (alarm->isActive() && !alarm->isAcknowledged()) {
+            alarm->acknowledge();
+        }
+    }
+}
+
+std::vector<Alarm*> TemperatureController::getActiveAlarms() const {
+    std::vector<Alarm*> activeAlarms;
+    for (auto alarm : _alarms) {
+        if (alarm->isActive()) {
+            activeAlarms.push_back(alarm);
+        }
+    }
+    return activeAlarms;
+}
+
+void TemperatureController::clearResolvedAlarms() {
+    for (auto it = _alarms.begin(); it != _alarms.end();) {
+        if ((*it)->isResolved()) {
+            if (_currentDisplayedAlarm == *it) {
+                _currentDisplayedAlarm = nullptr;
+            }
+            delete *it;
+            it = _alarms.erase(it);
+        } else {
+            ++it;
+        }
+    }
+}
+
+void TemperatureController::handleAlarmDisplay() {
+    Alarm* highestPriorityAlarm = getHighestPriorityAlarm();
+    
+    if (highestPriorityAlarm) {
+        // Display alarm
+        _currentDisplayedAlarm = highestPriorityAlarm;
+        _showingOK = false;
+        
+        indicator.setOledMode(2);
+        String displayText = highestPriorityAlarm->getDisplayText();
+        
+        // Split display text into lines
+        int newlineIndex = displayText.indexOf('\n');
+        String line1 = displayText.substring(0, newlineIndex);
+        String line2 = displayText.substring(newlineIndex + 1);
+        
+        String displayLines[2] = {line1, line2};
+        indicator.printText(displayLines, 2);
+        
+    } else if (_currentDisplayedAlarm && !_showingOK) {
+        // No more alarms, show OK for 1 minute
+        _showOKAndTurnOffOLED();
+        
+    } else if (_showingOK) {
+        // Check if OK display time has elapsed
+        if (millis() - _okDisplayStartTime >= 60000) { // 1 minute
+            indicator.setOLEDOff();
+            _showingOK = false;
+            _currentDisplayedAlarm = nullptr;
+        }
+        
+    } else {
+        // Normal operation - show normal display
+        _updateNormalDisplay();
+    }
+}
+
+void TemperatureController::handleAlarmOutputs() {
+    Alarm* highestPriorityAlarm = getHighestPriorityAlarm();
+    
+    if (highestPriorityAlarm) {
+        // Handle alarm outputs based on type and stage
+        if (highestPriorityAlarm->getType() == AlarmType::HIGH_TEMPERATURE) {
+            // High temperature alarm
+            indicator.writePort("RedLED", true);
+            indicator.writePort("GreenLED", false);
+            
+            if (!highestPriorityAlarm->isAcknowledged()) {
+                indicator.writePort("Relay1", true);
+            } else {
+                indicator.writePort("Relay1", false);
+            }
+            indicator.writePort("Relay2", true);
+        }
+        // Add other alarm type handling here
+        
+    } else {
+        // No active alarms - normal operation
+        indicator.writePort("GreenLED", true);
+        indicator.writePort("RedLED", false);
+        indicator.writePort("Relay1", false);
+        indicator.writePort("Relay2", false);
+    }
+}
+
+void TemperatureController::_checkButtonPress() {
+    bool currentButtonState = indicator.readPort("BUTTON");
+    
+    // Detect button press (HIGH to LOW transition)
+    if (_lastButtonState == true && currentButtonState == false) {
+        if ((millis() - _lastButtonPressTime) > _buttonDebounceDelay) {
+            Serial.println("BUTTON PRESS DETECTED!");
+            acknowledgeHighestPriorityAlarm();
+            _lastButtonPressTime = millis();
+        }
+    }
+    
+    _lastButtonState = currentButtonState;
+}
+
+void TemperatureController::_updateNormalDisplay() {
+    // Show normal system status
+    indicator.setOledMode(3);
+    String lines[3] = {
+        "System Normal",
+        "Temp Monitor",
+        "Ready"
+    };
+    indicator.printText(lines, 3);
+}
+
+void TemperatureController::_showOKAndTurnOffOLED() {
+    indicator.displayOK();
+    _okDisplayStartTime = millis();
+    _showingOK = true;
+}
+
+String TemperatureController::getAlarmsJson() const {
+    DynamicJsonDocument doc(4096);
+    JsonArray alarmArray = doc.createNestedArray("alarms");
+    
+    for (auto alarm : _alarms) {
+        JsonObject obj = alarmArray.createNestedObject();
+        obj["type"] = static_cast<int>(alarm->getType());
+        obj["stage"] = static_cast<int>(alarm->getStage());
+        obj["priority"] = static_cast<int>(alarm->getPriority());
+        obj["timestamp"] = alarm->getTimestamp();
+        obj["message"] = alarm->getMessage();
+        obj["isActive"] = alarm->isActive();
+        obj["isAcknowledged"] = alarm->isAcknowledged();
+        
+        if (alarm->getSource()) {
+            obj["pointAddress"] = alarm->getSource()->getAddress();
+            obj["pointName"] = alarm->getSource()->getName();
+            obj["currentTemp"] = alarm->getSource()->getCurrentTemp();
+        }
+    }
+    
+    String output;
+    serializeJson(doc, output);
+    return output;
+}
+
+
+// void TemperatureController::update() {
+//     updateAllSensors();
+    
+//     // Add this line - handle PCF8575 interrupts
+//     indicator.handleInterrupt();
+    
+//     // Handle alarm logic
+    
+    
+//     // Update OLED
+//     indicator.updateOLED();
+    
+//     if (!systemInitialized) return;
+    
+//     unsigned long currentTime = millis();
+//     if (currentTime - lastMeasurementTime >= measurementPeriodSeconds) {
+//         readAllPoints();
+//         updateRegisterMap();
+//         lastMeasurementTime = currentTime;
+//         applyConfigFromRegisterMap();
+//     }
+// }
+
+
 
 MeasurementPoint* TemperatureController::getMeasurementPoint(uint8_t address) {
     if (isDS18B20Address(address))
@@ -195,18 +550,6 @@ bool TemperatureController::unbindSensorFromPoint(uint8_t pointAddress) {
 Sensor* TemperatureController::getBoundSensor(uint8_t pointAddress) {
     MeasurementPoint* point = getMeasurementPoint(pointAddress);
     return point ? point->getBoundSensor() : nullptr;
-}
-
-void TemperatureController::update() {
-    updateAllSensors();
-    if (!systemInitialized) return;
-    unsigned long currentTime = millis();
-    if (currentTime - lastMeasurementTime >= measurementPeriodSeconds) {
-        readAllPoints();
-        updateRegisterMap();
-        lastMeasurementTime = currentTime;
-        applyConfigFromRegisterMap();
-    }
 }
 
 void TemperatureController::readAllPoints() {
@@ -594,3 +937,4 @@ bool TemperatureController::unbindSensorFromPointBySensor(Sensor* sensor) {
     
     return anyUnbound;
 }
+
