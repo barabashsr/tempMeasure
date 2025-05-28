@@ -43,42 +43,49 @@ bool TemperatureController::begin() {
     for (int i = 4; i <= 10; i++)
         registerMap.writeHoldingRegister(i, 0);
     systemInitialized = true;
-    return true;
-
+    
+    
+    Serial.println("Discovering sensors...");
     discoverPTSensors();
+    Serial.println("Setting HMI...");
 
     // Initialize indicator interface
     if (!indicator.begin()) {
         Serial.println("Failed to initialize indicator interface!");
-        //return;
+        /return;
     }
     
     // Configure ports
-    indicator.setDirection(0b0000000011111111);  // P9, P10, P11 as outputs
+    indicator.setDirection(0b0000000011111111);  // P0-P7 as outputs
     
     // Set port names
     indicator.setPortName("BUTTON", 15);
-    indicator.setPortName("LED1", 4);
-    indicator.setPortName("LED2", 5);
-    indicator.setPortName("LED3", 7);
+    indicator.setPortName("Relay1", 0);
+    indicator.setPortName("Relay2", 1);
+    indicator.setPortName("Relay3", 2);
+    indicator.setPortName("GreenLED", 4);
+    indicator.setPortName("BlueLED", 5);
+    indicator.setPortName("YellowLED", 6);
+    indicator.setPortName("RedLED", 7);
     
     // Set individual port inversion for ULN2803
-    indicator.setPortInverted("LED1", false);   // Invert LED1 for ULN2803
-    indicator.setPortInverted("LED2", false);   // Invert LED2 for ULN2803
-    indicator.setPortInverted("LED3", false);   // Invert LED3 for ULN2803
-    indicator.setPortInverted("BUTTON", false); // Button is normal (not inverted)
+    indicator.setPortInverted("Relay1", false);   
+    indicator.setPortInverted("Relay2", false);  
+    indicator.setPortInverted("Relay3", false);   
+    indicator.setPortInverted("GreenLED", false);   
+    indicator.setPortInverted("BlueLED", false);  
+    indicator.setPortInverted("YellowLED", false);  
+    indicator.setPortInverted("RedLED", false);  
+    indicator.setPortInverted("BUTTON", false);
     
-    // Or you can still use the mask method if you prefer:
-    // indicator.setMode(0x0E00);  // This should now work correctly
     
-    // Set interrupt callback
-    //indicator.setInterruptCallback(onPortChange);
-    
+
     // Turn off all LEDs
     indicator.setAllOutputsLow();
     
     Serial.println("Setup complete!");
     indicator.printConfiguration();
+    return true;
     
 }
 

@@ -39,7 +39,7 @@
 #define I2C_SCL 25  // Alternative SCL (GPIO 22 used by RS485)
 #define PCF_INT 34 // PCF expander interupt pin
 
-IndicatorInterface indicator(Wire, 0x20, PCF_INT, 0x39);  // I2C address 0x20, INT pin 34
+IndicatorInterface indicator(Wire, 0x20, PCF_INT);  // I2C address 0x20, INT pin 34
 
 
 
@@ -66,7 +66,7 @@ void setup() {
 
     // Configure all CS pins as OUTPUT
     pinMode(CS1_PIN, OUTPUT);
-    pinMode(CS2_PIN, OUTPUT); //It does not change the behaviour or may be my 34 pin d
+    pinMode(CS2_PIN, OUTPUT); 
     pinMode(CS3_PIN, OUTPUT);
     pinMode(CS4_PIN, OUTPUT);
     //pinMode(CS5_PIN, OUTPUT);
