@@ -92,6 +92,9 @@ public:
     void loadPointsConfig();
     bool updatePointInConfig(uint8_t address, const String& name, int16_t lowAlarm, int16_t highAlarm,
                             const String& ds18b20RomString = "", int pt1000ChipSelect = -1);
+    
+    void saveAlarmsConfig();
+    void loadAlarmsConfig();
 };
 
 // Initialize static member

@@ -2,39 +2,98 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Measurement Points</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Controller - Points</title>
     <style>
-        .status-ok {
-            color: #388e3c;
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        nav {
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #007bff;
+            border-radius: 5px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 15px;
+            padding: 5px 10px;
+            border-radius: 3px;
+        }
+        nav a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
             font-weight: bold;
         }
-        .status-error, .status-alarm, .status-unbound {
-            color: #d32f2f;
-            font-weight: bold;
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
         }
-        .status-bound {
-            color: #388e3c;
-            font-weight: bold;
+        .btn {
+            padding: 5px 10px;
+            margin: 2px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            color: white;
+        }
+        .btn-warning {
+            background-color: #ffc107;
+            color: black;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+            color: white;
+        }
+        .btn:hover {
+            opacity: 0.8;
         }
         .modal {
             display: none;
             position: fixed;
-            z-index: 10;
+            z-index: 1000;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.4);
+            background-color: rgba(0,0,0,0.5);
         }
         .modal-content {
             background-color: #fefefe;
-            margin: 8% auto;
-            padding: 24px;
+            margin: 5% auto;
+            padding: 20px;
             border: 1px solid #888;
-            width: 100%;
-            max-width: 400px;
-            border-radius: 6px;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
         }
         .close {
             color: #aaa;
@@ -43,145 +102,69 @@
             font-weight: bold;
             cursor: pointer;
         }
-        .close:hover,
-        .close:focus {
-            color: #d32f2f;
-            text-decoration: none;
-            cursor: pointer;
+        .close:hover {
+            color: black;
         }
         .form-group {
-            margin-bottom: 18px;
+            margin-bottom: 15px;
         }
         .form-group label {
             display: block;
+            margin-bottom: 5px;
             font-weight: bold;
-            margin-bottom: 4px;
         }
-        .form-group input[type="text"],
-        .form-group input[type="number"] {
-            width: 95%;
-            padding: 6px;
-            font-size: 1em;
-        }
-        .form-actions {
-            text-align: right;
-        }
-        .form-actions button {
-            margin-left: 10px;
-            padding: 5px 15px;
-        }
-        
-        /* Use styles from index.html */
-        body {
-            font-family: Arial, sans-serif;
-            background: #f7f7f7;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background: #3f51b5;
-            color: #fff;
-            padding: 1em 2em;
-            text-align: center;
-            font-size: 1.5em;
-            letter-spacing: 2px;
-        }
-        nav {
-            background: #263238;
-            padding: 0.5em 2em;
-        }
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            margin-right: 2em;
-            font-weight: bold;
-            transition: color 0.2s;
-        }
-        nav a:hover {
-            color: #ffeb3b;
-        }
-        main {
-            max-width: 1200px;
-            margin: 2em auto;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-            padding: 2em;
-        }
-        h2 {
-            margin-top: 1em;
-            color: #3f51b5;
-            font-size: 1.2em;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 0.25em;
-        }
-        .actions {
-            margin-bottom: 1.5em;
-        }
-        button {
-            background: #3f51b5;
-            color: #fff;
-            border: none;
-            padding: 0.5em 1.2em;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1em;
-            margin-right: 0.5em;
-            transition: background 0.2s;
-        }
-        button:hover {
-            background: #283593;
-        }
-        table {
+        .form-group input, .form-group select {
             width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 2em;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
         }
-        th, td {
-            padding: 0.6em 0.8em;
-            border-bottom: 1px solid #eee;
-            text-align: left;
+        .alarm-list {
+            margin-top: 20px;
         }
-        th {
-            background: #f0f4ff;
-            color: #3f51b5;
+        .alarm-item {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 10px;
+            margin-bottom: 10px;
         }
-        tr:last-child td {
-            border-bottom: none;
+        .alarm-item.critical {
+            border-left: 4px solid #dc3545;
         }
-        .status-bound {
-            color: #388e3c;
+        .alarm-item.high {
+            border-left: 4px solid #fd7e14;
+        }
+        .alarm-item.medium {
+            border-left: 4px solid #ffc107;
+        }
+        .alarm-item.low {
+            border-left: 4px solid #28a745;
+        }
+        .status-active {
+            color: #dc3545;
             font-weight: bold;
         }
-        .status-unbound {
-            color: #b71c1c;
-            font-weight: bold;
+        .status-inactive {
+            color: #6c757d;
         }
-        .rom, .chip-select {
-            font-family: monospace;
-            font-size: 0.98em;
-            color: #333;
-        }
-        @media (max-width: 800px) {
-            main { padding: 1em; }
-            th, td { font-size: 0.95em; }
-        }
-    
     </style>
 </head>
 <body>
-    <header>Measurement Points</header>
-    <nav>
-        <a href="dashboard.html">Home</a>
-        <a href="settings.html">Settings</a>
-        <a href="sensors.html">Sensors</a>
-        <a href="points.html">Points</a>
+    <div class="container">
+        <nav>
+            <a href="/dashboard.html">Home</a>
+            <a href="/sensors.html">Sensors</a>
+            <a href="/points.html">Points</a>
+            <a href="/config">Configuration</a>
+            <a href="/alarms.html">Alarms</a>
+        </nav>
 
-    </nav>
-    <main>
-    <h2>DS18B20 Points</h2>
-    
-        <table>
+        <h1>Temperature Measurement Points</h1>
+
+        ## DS18B20 Points
+        <table id="ds18b20Table">
             <thead>
                 <tr>
                     <th>Address</th>
@@ -195,16 +178,19 @@
                     <th>Alarm Status</th>
                     <th>Error Status</th>
                     <th>Sensor Status</th>
-                    <th>Edit</th>
+                    <th>Edit Point</th>
+                    <th>Edit Alarm</th>
                 </tr>
             </thead>
-            <tbody id="dsPointsTbody">
-                <tr><td colspan="11">Loading DS18B20 points...</td></tr>
+            <tbody>
+                <tr>
+                    <td colspan="13">Loading DS18B20 points...</td>
+                </tr>
             </tbody>
         </table>
 
-        <h2>PT1000 Points</h2>
-        <table>
+        ## PT1000 Points
+        <table id="pt1000Table">
             <thead>
                 <tr>
                     <th>Address</th>
@@ -218,196 +204,392 @@
                     <th>Alarm Status</th>
                     <th>Error Status</th>
                     <th>Sensor Status</th>
-                    <th>Edit</th>
+                    <th>Edit Point</th>
+                    <th>Edit Alarm</th>
                 </tr>
             </thead>
-            <tbody id="ptPointsTbody">
-                <tr><td colspan="11">Loading PT1000 points...</td></tr>
+            <tbody>
+                <tr>
+                    <td colspan="13">Loading PT1000 points...</td>
+                </tr>
             </tbody>
         </table>
-    </main>
+    </div>
 
-    <!-- Modal -->
-    <div id="pointConfigModal" class="modal">
+    <!-- Point Edit Modal -->
+    <div id="pointModal" class="modal">
         <div class="modal-content">
-            <span class="close" id="modalCloseBtn">&times;</span>
+            <span class="close" onclick="closePointModal()">&times;</span>
             <h2>Edit Point</h2>
-            <form id="pointConfigForm">
-                <input type="hidden" id="modalPointAddress">
+            <form id="pointForm">
                 <div class="form-group">
-                    <label for="modalPointName">Name</label>
-                    <input type="text" id="modalPointName" required>
-                </div>
-                <div class="form-group">
-                    <label for="modalLowAlarm">Low Alarm Threshold (°C)</label>
-                    <input type="number" id="modalLowAlarm" step="0.1" required>
+                    <label for="pointAddress">Address:</label>
+                    <input type="number" id="pointAddress" readonly>
                 </div>
                 <div class="form-group">
-                    <label for="modalHighAlarm">High Alarm Threshold (°C)</label>
-                    <input type="number" id="modalHighAlarm" step="0.1" required>
+                    <label for="pointName">Name:</label>
+                    <input type="text" id="pointName" required>
                 </div>
-                <div class="form-actions">
-                    <button type="submit" class="button">Save</button>
-                    <button type="button" class="button" id="modalCancelBtn" style="background:#888;">Cancel</button>
+                <div class="form-group">
+                    <label for="lowAlarm">Low Alarm Threshold:</label>
+                    <input type="number" id="lowAlarm" step="0.1">
                 </div>
+                <div class="form-group">
+                    <label for="highAlarm">High Alarm Threshold:</label>
+                    <input type="number" id="highAlarm" step="0.1">
+                </div>
+                <button type="submit" class="btn btn-primary">Save Point</button>
+                <button type="button" class="btn" onclick="closePointModal()">Cancel</button>
             </form>
         </div>
     </div>
 
+    <!-- Alarm Configuration Modal -->
+    <div id="alarmModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAlarmModal()">&times;</span>
+            <h2>Alarm Configuration for Point <span id="alarmPointInfo"></span></h2>
+            
+            <div class="form-group">
+                <h3>Add New Alarm</h3>
+                <form id="alarmForm">
+                    <div class="form-group">
+                        <label for="alarmType">Alarm Type:</label>
+                        <select id="alarmType" required>
+                            <option value="0">High Temperature</option>
+                            <option value="1">Low Temperature</option>
+                            <option value="2">Sensor Error</option>
+                            <option value="3">Sensor Disconnected</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="alarmPriority">Priority:</label>
+                        <select id="alarmPriority" required>
+                            <option value="0">Low</option>
+                            <option value="1">Medium</option>
+                            <option value="2">High</option>
+                            <option value="3">Critical</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Alarm</button>
+                </form>
+            </div>
+
+            <div class="alarm-list">
+                <h3>Configured Alarms</h3>
+                <div id="alarmsList">
+                    <!-- Alarms will be loaded here -->
+                </div>
+            </div>
+
+            <div style="margin-top: 20px;">
+                <button type="button" class="btn" onclick="closeAlarmModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // Auto-update interval (ms)
-        const UPDATE_INTERVAL = 5000;
-        // Helper functions for status rendering
-        function getAlarmText(alarmStatus) {
-            if (alarmStatus === 0) return '<span class="status-ok">OK</span>';
-            const alarms = [];
-            if (alarmStatus & 0x01) alarms.push('Low Temp');
-            if (alarmStatus & 0x02) alarms.push('High Temp');
-            return `<span class="status-alarm">${alarms.join(', ')}</span>`;
-        }
-        function getErrorText(errorStatus) {
-            if (errorStatus === 0) return '<span class="status-ok">OK</span>';
-            const errors = [];
-            if (errorStatus & 0x01) errors.push('Comm');
-            if (errorStatus & 0x02) errors.push('OutOfRange');
-            if (errorStatus & 0x04) errors.push('Disconnected');
-            return `<span class="status-error">${errors.join(', ')}</span>`;
-        }
-        function getSensorStatus(bound) {
-            return bound
-                ? '<span class="status-bound">Bound</span>'
-                : '<span class="status-unbound">Unbound</span>';
-        }
+        let currentPointAddress = null;
+        let pointsData = [];
+        let alarmsData = [];
 
-        // Modal logic
-        const modal = document.getElementById('pointConfigModal');
-        const modalCloseBtn = document.getElementById('modalCloseBtn');
-        const modalCancelBtn = document.getElementById('modalCancelBtn');
-        const pointConfigForm = document.getElementById('pointConfigForm');
-        let currentEditPoint = null;
+        // Load points data on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadPoints();
+            loadAlarms();
+        });
 
-        function openModal(point) {
-            currentEditPoint = point;
-            document.getElementById('modalPointAddress').value = point.address;
-            document.getElementById('modalPointName').value = point.name || '';
-            document.getElementById('modalLowAlarm').value = point.lowAlarmThreshold;
-            document.getElementById('modalHighAlarm').value = point.highAlarmThreshold;
-            modal.style.display = "block";
-        }
-        function closeModal() {
-            modal.style.display = "none";
-            currentEditPoint = null;
-        }
-        modalCloseBtn.onclick = closeModal;
-        modalCancelBtn.onclick = closeModal;
-        window.onclick = function(event) {
-            if (event.target === modal) closeModal();
-        };
-
-        // Fetch and render points
-        function fetchAndRenderPoints() {
-            fetch('/api/points')
-                .then(res => res.json())
-                .then(data => renderPointsTables(data.points))
-                .catch(() => {
-                    document.getElementById('dsPointsTbody').innerHTML = '<tr><td colspan="11">Failed to load points.</td></tr>';
-                    document.getElementById('ptPointsTbody').innerHTML = '<tr><td colspan="11">Failed to load points.</td></tr>';
-                });
-        }
-
-        function renderPointsTables(points) {
-            const dsTbody = document.getElementById('dsPointsTbody');
-            const ptTbody = document.getElementById('ptPointsTbody');
-            dsTbody.innerHTML = '';
-            ptTbody.innerHTML = '';
-
-            const dsPoints = points.filter(p => p.type === "DS18B20");
-            const ptPoints = points.filter(p => p.type === "PT1000");
-
-            if (dsPoints.length === 0) {
-                dsTbody.innerHTML = '<tr><td colspan="11">No DS18B20 points found.</td></tr>';
-            } else {
-                dsPoints.forEach(point => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>${point.address}</td>
-                        <td>${point.bus !== undefined && point.bus !== null ? point.bus : ''}</td>
-                        <td>${point.name || ''}</td>
-                        <td>${point.currentTemp !== undefined ? point.currentTemp : ''}</td>
-                        <td>${point.minTemp !== undefined ? point.minTemp : ''}</td>
-                        <td>${point.maxTemp !== undefined ? point.maxTemp : ''}</td>
-                        <td>${point.lowAlarmThreshold !== undefined ? point.lowAlarmThreshold : ''}</td>
-                        <td>${point.highAlarmThreshold !== undefined ? point.highAlarmThreshold : ''}</td>
-                        <td>${getAlarmText(point.alarmStatus)}</td>
-                        <td>${getErrorText(point.errorStatus)}</td>
-                        <td>${getSensorStatus(!!point.sensorRomString)}</td>
-                        <td><button class="button" onclick='onEditPoint(${point.address})'>Edit</button></td>
-                    `;
-                    dsTbody.appendChild(row);
-                });
-            }
-
-            if (ptPoints.length === 0) {
-                ptTbody.innerHTML = '<tr><td colspan="11">No PT1000 points found.</td></tr>';
-            } else {
-                ptPoints.forEach(point => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>${point.address}</td>
-                        <td>${point.bus !== undefined && point.bus !== null ? point.bus : ''}</td>
-                        <td>${point.name || ''}</td>
-                        <td>${point.currentTemp !== undefined ? point.currentTemp : ''}</td>
-                        <td>${point.minTemp !== undefined ? point.minTemp : ''}</td>
-                        <td>${point.maxTemp !== undefined ? point.maxTemp : ''}</td>
-                        <td>${point.lowAlarmThreshold !== undefined ? point.lowAlarmThreshold : ''}</td>
-                        <td>${point.highAlarmThreshold !== undefined ? point.highAlarmThreshold : ''}</td>
-                        <td>${getAlarmText(point.alarmStatus)}</td>
-                        <td>${getErrorText(point.errorStatus)}</td>
-                        <td>${getSensorStatus(!!point.chipSelectPin)}</td>
-                        <td><button class="button" onclick='onEditPoint(${point.address})'>Edit</button></td>
-                    `;
-                    ptTbody.appendChild(row);
-                });
+        // Load points from API
+        async function loadPoints() {
+            try {
+                const response = await fetch('/api/points');
+                const data = await response.json();
+                pointsData = data.points || [];
+                displayPoints();
+            } catch (error) {
+                console.error('Error loading points:', error);
             }
         }
 
-        // Edit handler
-        function onEditPoint(address) {
-            fetch('/api/points')
-                .then(res => res.json())
-                .then(data => {
-                    const point = data.points.find(p => p.address === address);
-                    if (point) openModal(point);
-                });
+        // Load alarms from API
+        async function loadAlarms() {
+            try {
+                const response = await fetch('/api/alarms');
+                const data = await response.json();
+                alarmsData = data.alarms || [];
+            } catch (error) {
+                console.error('Error loading alarms:', error);
+            }
         }
-        window.onEditPoint = onEditPoint;
 
-        // Handle form submit
-        pointConfigForm.onsubmit = function(e) {
+        // Display points in tables
+        function displayPoints() {
+            const ds18b20Table = document.getElementById('ds18b20Table').getElementsByTagName('tbody')[0];
+            const pt1000Table = document.getElementById('pt1000Table').getElementsByTagName('tbody')[0];
+            
+            // Clear existing rows
+            ds18b20Table.innerHTML = '';
+            pt1000Table.innerHTML = '';
+
+            pointsData.forEach(point => {
+                const row = createPointRow(point);
+                
+                if (point.type === 'DS18B20') {
+                    ds18b20Table.appendChild(row);
+                } else if (point.type === 'PT1000') {
+                    pt1000Table.appendChild(row);
+                }
+            });
+        }
+
+        // Create table row for a point
+        function createPointRow(point) {
+            const row = document.createElement('tr');
+            
+            const alarmCount = getAlarmCountForPoint(point.address);
+            const alarmStatus = alarmCount > 0 ? `${alarmCount} configured` : 'None';
+            
+            row.innerHTML = `
+                <td>${point.address}</td>
+                <td>${point.bus || 'N/A'}</td>
+                <td>${point.name}</td>
+                <td>${point.currentTemp}°C</td>
+                <td>${point.minTemp}°C</td>
+                <td>${point.maxTemp}°C</td>
+                <td>${point.lowAlarmThreshold}°C</td>
+                <td>${point.highAlarmThreshold}°C</td>
+                <td>${alarmStatus}</td>
+                <td>${point.errorStatus || 'OK'}</td>
+                <td>${point.sensorType || 'No Sensor'}</td>
+                <td><button class="btn btn-primary" onclick="editPoint(${point.address})">Edit</button></td>
+                <td><button class="btn btn-warning" onclick="editAlarms(${point.address})">Alarms</button></td>
+            `;
+            
+            return row;
+        }
+
+        // Get alarm count for a specific point
+        function getAlarmCountForPoint(pointAddress) {
+            return alarmsData.filter(alarm => alarm.pointAddress === pointAddress).length;
+        }
+
+        // Edit point function
+        function editPoint(address) {
+            const point = pointsData.find(p => p.address === address);
+            if (!point) return;
+
+            document.getElementById('pointAddress').value = point.address;
+            document.getElementById('pointName').value = point.name;
+            document.getElementById('lowAlarm').value = point.lowAlarmThreshold;
+            document.getElementById('highAlarm').value = point.highAlarmThreshold;
+            
+            document.getElementById('pointModal').style.display = 'block';
+        }
+
+        // Edit alarms function
+        function editAlarms(address) {
+            currentPointAddress = address;
+            const point = pointsData.find(p => p.address === address);
+            if (!point) return;
+
+            document.getElementById('alarmPointInfo').textContent = `${address} (${point.name})`;
+            displayAlarmsForPoint(address);
+            document.getElementById('alarmModal').style.display = 'block';
+        }
+
+        // Display alarms for specific point
+        function displayAlarmsForPoint(pointAddress) {
+            const alarmsList = document.getElementById('alarmsList');
+            const pointAlarms = alarmsData.filter(alarm => alarm.pointAddress === pointAddress);
+            
+            if (pointAlarms.length === 0) {
+                alarmsList.innerHTML = '<p>No alarms configured for this point.</p>';
+                return;
+            }
+
+            alarmsList.innerHTML = pointAlarms.map(alarm => `
+                <div class="alarm-item ${getPriorityClass(alarm.priority)}">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <strong>${getAlarmTypeText(alarm.type)}</strong> - 
+                            <span class="${alarm.enabled ? 'status-active' : 'status-inactive'}">
+                                ${alarm.enabled ? 'Enabled' : 'Disabled'}
+                            </span>
+                            <br>
+                            <small>Priority: ${getPriorityText(alarm.priority)}</small>
+                            ${alarm.isActive ? '<br><small class="status-active">Currently Active</small>' : ''}
+                        </div>
+                        <div>
+                            <button class="btn btn-warning" onclick="toggleAlarm('${alarm.configKey}', ${!alarm.enabled})">
+                                ${alarm.enabled ? 'Disable' : 'Enable'}
+                            </button>
+                            <button class="btn btn-danger" onclick="deleteAlarm('${alarm.configKey}')">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Helper functions for alarm display
+        function getAlarmTypeText(type) {
+            const types = ['High Temperature', 'Low Temperature', 'Sensor Error', 'Sensor Disconnected'];
+            return types[type] || 'Unknown';
+        }
+
+        function getPriorityText(priority) {
+            const priorities = ['Low', 'Medium', 'High', 'Critical'];
+            return priorities[priority] || 'Unknown';
+        }
+
+        function getPriorityClass(priority) {
+            const classes = ['low', 'medium', 'high', 'critical'];
+            return classes[priority] || 'low';
+        }
+
+        // Form submission handlers
+        document.getElementById('pointForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-            const address = parseInt(document.getElementById('modalPointAddress').value, 10);
-            const name = document.getElementById('modalPointName').value;
-            const lowAlarm = parseFloat(document.getElementById('modalLowAlarm').value);
-            const highAlarm = parseFloat(document.getElementById('modalHighAlarm').value);
+            
+            const pointData = {
+                address: parseInt(document.getElementById('pointAddress').value),
+                name: document.getElementById('pointName').value,
+                lowAlarmThreshold: parseFloat(document.getElementById('lowAlarm').value),
+                highAlarmThreshold: parseFloat(document.getElementById('highAlarm').value)
+            };
 
-            fetch('/api/points', {
-                method: 'PUT',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({ address, name, lowAlarmThreshold: lowAlarm, highAlarmThreshold: highAlarm })
-            })
-            .then(res => {
-                if (!res.ok) throw new Error('Failed to update point');
-                closeModal();
-                fetchAndRenderPoints();
-            })
-            .catch(() => alert('Failed to update point!'));
-        };
+            try {
+                const response = await fetch('/api/points', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(pointData)
+                });
 
-        // Initial load
-        setInterval(fetchAndRenderPoints, UPDATE_INTERVAL);
-        window.onload = fetchAndRenderPoints();
-        // Optionally, set up periodic refresh if needed
-        // setInterval(fetchAndRenderPoints, 10000);
+                if (response.ok) {
+                    closePointModal();
+                    loadPoints();
+                } else {
+                    alert('Error updating point');
+                }
+            } catch (error) {
+                console.error('Error updating point:', error);
+                alert('Error updating point');
+            }
+        });
+
+        document.getElementById('alarmForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const alarmData = {
+                type: parseInt(document.getElementById('alarmType').value),
+                pointAddress: currentPointAddress,
+                priority: parseInt(document.getElementById('alarmPriority').value)
+            };
+
+            try {
+                const response = await fetch('/api/alarms', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(alarmData)
+                });
+
+                if (response.ok) {
+                    document.getElementById('alarmForm').reset();
+                    loadAlarms();
+                    displayAlarmsForPoint(currentPointAddress);
+                    loadPoints(); // Refresh points to update alarm count
+                } else {
+                    alert('Error adding alarm');
+                }
+            } catch (error) {
+                console.error('Error adding alarm:', error);
+                alert('Error adding alarm');
+            }
+        });
+
+        // Alarm management functions
+        async function toggleAlarm(configKey, enabled) {
+            const alarm = alarmsData.find(a => a.configKey === configKey);
+            if (!alarm) return;
+
+            try {
+                const response = await fetch('/api/alarms', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        configKey: configKey,
+                        priority: alarm.priority,
+                        enabled: enabled
+                    })
+                });
+
+                if (response.ok) {
+                    loadAlarms();
+                    displayAlarmsForPoint(currentPointAddress);
+                    loadPoints();
+                } else {
+                    alert('Error updating alarm');
+                }
+            } catch (error) {
+                console.error('Error updating alarm:', error);
+                alert('Error updating alarm');
+            }
+        }
+
+        async function deleteAlarm(configKey) {
+            if (!confirm('Are you sure you want to delete this alarm?')) return;
+
+            try {
+                const response = await fetch(`/api/alarms?configKey=${encodeURIComponent(configKey)}`, {
+                    method: 'DELETE'
+                });
+
+                if (response.ok) {
+                    loadAlarms();
+                    displayAlarmsForPoint(currentPointAddress);
+                    loadPoints();
+                } else {
+                    alert('Error deleting alarm');
+                }
+            } catch (error) {
+                console.error('Error deleting alarm:', error);
+                alert('Error deleting alarm');
+            }
+        }
+
+        // Modal control functions
+        function closePointModal() {
+            document.getElementById('pointModal').style.display = 'none';
+        }
+
+        function closeAlarmModal() {
+            document.getElementById('alarmModal').style.display = 'none';
+            currentPointAddress = null;
+        }
+
+        // Close modals when clicking outside
+        window.onclick = function(event) {
+            const pointModal = document.getElementById('pointModal');
+            const alarmModal = document.getElementById('alarmModal');
+            
+            if (event.target === pointModal) {
+                closePointModal();
+            }
+            if (event.target === alarmModal) {
+                closeAlarmModal();
+            }
+        }
+
+        // Auto-refresh data every 30 seconds
+        setInterval(() => {
+            loadPoints();
+            loadAlarms();
+        }, 30000);
     </script>
 </body>
 </html>

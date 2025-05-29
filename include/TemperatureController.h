@@ -77,17 +77,36 @@ public:
     
     // New Alarm Management
     void updateAlarms();
-    void createAlarm(AlarmType type, MeasurementPoint* source, AlarmPriority priority = AlarmPriority::PRIORITY_MEDIUM);
-    void removeAlarm(Alarm* alarm);
-    void acknowledgeHighestPriorityAlarm();
-    void acknowledgeAllAlarms();
-    std::vector<Alarm*> getActiveAlarms() const;
-    Alarm* getHighestPriorityAlarm() const;
-    void clearResolvedAlarms();
-    String getAlarmsJson() const;
+    String getAlarmsJson();
     void handleAlarmDisplay();
     void handleAlarmOutputs();
-    
+
+    std::vector<Alarm*> getActiveAlarms() const;
+    void createAlarm(AlarmType type, MeasurementPoint* source, AlarmPriority priority);
+    Alarm* getHighestPriorityAlarm() const;
+    void acknowledgeHighestPriorityAlarm();
+    void acknowledgeAllAlarms();
+    void clearResolvedAlarms();
+
+    // Alarm management (similar to sensor management)
+    bool addAlarm(AlarmType type, uint8_t pointAddress, AlarmPriority priority);
+    bool removeAlarm(const String& configKey);
+    bool updateAlarm(const String& configKey, AlarmPriority priority, bool enabled);
+    Alarm* findAlarm(const String& configKey);
+    Alarm* getAlarmByIndex(int idx);
+    int getAlarmCount() const { return _configuredAlarms.size(); }
+    std::vector<Alarm*> getConfiguredAlarms() const { return _configuredAlarms; }
+
+    // JSON output (similar to getSensorsJson, getPointsJson)
+    //String getAlarmsJson();
+
+    // Alarm handling scenarios (placeholders)
+    void handleCriticalAlarms();
+    void handleHighPriorityAlarms();
+    void handleMediumPriorityAlarms();
+    void handleLowPriorityAlarms();
+
+
 
 private:
     // Hardware components
@@ -111,7 +130,8 @@ private:
     uint8_t chipSelectPin[4];
     
     // Alarm system
-    std::vector<Alarm*> _alarms;
+    //std::vector<Alarm*> _alarms;
+    std::vector<Alarm*> _configuredAlarms; 
     unsigned long _lastAlarmCheck;
     const unsigned long _alarmCheckInterval = 1000; // Check every second
     bool _lastButtonState;
@@ -133,4 +153,6 @@ private:
     void _checkButtonPress();
     void _updateNormalDisplay();
     void _showOKAndTurnOffOLED();
+
+    
 };

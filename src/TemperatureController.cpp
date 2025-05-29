@@ -39,16 +39,18 @@ TemperatureController::~TemperatureController() {
         delete sensor;
     sensors.clear();
     
-    // Clean up alarms
-    for (auto alarm : _alarms)
-        delete alarm;
-    _alarms.clear();
+ 
     
     // Clean up OneWire buses
     for (int i = 0; i < 4; ++i) {
         delete dallasSensors[i];
         delete oneWireBuses[i];
     }
+
+    // Clean up configured alarms
+    for (auto alarm : _configuredAlarms)
+        delete alarm;
+    _configuredAlarms.clear();
 }
 
 bool TemperatureController::begin() {
@@ -154,15 +156,14 @@ void TemperatureController::updateAlarms() {
     }
     _lastAlarmCheck = currentTime;
     
-    // Ensure we have fresh sensor data before checking alarms
-    Serial.println("Checking alarms with fresh sensor data...");
+    Serial.println("=== Checking alarms with fresh sensor data ===");
     
-    // Check all measurement points for alarm conditions
+    // Check all measurement points for NEW alarm conditions
     for (uint8_t i = 0; i < 50; ++i) {
         if (dsPoints[i].getBoundSensor() != nullptr) {
-            Serial.printf("DS Point %d: Temp=%d, High=%d, Low=%d\n", 
-                         i, dsPoints[i].getCurrentTemp(), 
-                         dsPoints[i].getHighAlarmThreshold(), 
+            Serial.printf("DS Point %d: Temp=%d, High=%d, Low=%d\n",
+                         i, dsPoints[i].getCurrentTemp(),
+                         dsPoints[i].getHighAlarmThreshold(),
                          dsPoints[i].getLowAlarmThreshold());
             _checkPointForAlarms(&dsPoints[i]);
         }
@@ -170,36 +171,40 @@ void TemperatureController::updateAlarms() {
     
     for (uint8_t i = 0; i < 10; ++i) {
         if (ptPoints[i].getBoundSensor() != nullptr) {
-            Serial.printf("PT Point %d: Temp=%d, High=%d, Low=%d\n", 
-                         i, ptPoints[i].getCurrentTemp(), 
-                         ptPoints[i].getHighAlarmThreshold(), 
+            Serial.printf("PT Point %d: Temp=%d, High=%d, Low=%d\n",
+                         i, ptPoints[i].getCurrentTemp(),
+                         ptPoints[i].getHighAlarmThreshold(),
                          ptPoints[i].getLowAlarmThreshold());
             _checkPointForAlarms(&ptPoints[i]);
         }
     }
     
-    // Update existing alarms
-    for (auto it = _alarms.begin(); it != _alarms.end();) {
-        bool conditionExists = (*it)->updateCondition();
-        if (!conditionExists && (*it)->isResolved()) {
-            // Alarm is resolved, remove it
-            if (_currentDisplayedAlarm == *it) {
-                _currentDisplayedAlarm = nullptr;
-            }
-            Serial.printf("Removing resolved alarm for point %d\n", 
-                         (*it)->getSource() ? (*it)->getSource()->getAddress() : -1);
-            delete *it;
-            it = _alarms.erase(it);
-        } else {
-            ++it;
+    // Update existing configured alarms (do NOT remove resolved alarms)
+    Serial.println("=== Updating existing alarms ===");
+    for (auto alarm : _configuredAlarms) {
+        if (alarm->isEnabled()) {
+            alarm->updateCondition();
+            // Do NOT check for resolved state or remove alarms here
         }
     }
     
     // Sort alarms by priority
-    std::sort(_alarms.begin(), _alarms.end(), AlarmComparator());
+    std::sort(_configuredAlarms.begin(), _configuredAlarms.end(), AlarmComparator());
     
     Serial.printf("Active alarms count: %d\n", getActiveAlarms().size());
+    
+    // Debug: Print all current alarms
+    for (auto alarm : _configuredAlarms) {
+        if (alarm->isEnabled()) {
+            Serial.printf("  Alarm: %s, Stage: %s, Point: %d\n",
+                         alarm->getTypeString().c_str(),
+                         alarm->getStageString().c_str(),
+                         alarm->getSource() ? alarm->getSource()->getAddress() : -1);
+        }
+    }
 }
+
+
 
 
 void TemperatureController::_checkPointForAlarms(MeasurementPoint* point) {
@@ -228,9 +233,10 @@ void TemperatureController::_checkPointForAlarms(MeasurementPoint* point) {
 }
 
 bool TemperatureController::_hasAlarmForPoint(MeasurementPoint* point, AlarmType type) {
-    for (auto alarm : _alarms) {
+    for (auto alarm : _configuredAlarms) {
         if (alarm->getSource() == point && 
             alarm->getType() == type && 
+            alarm->isEnabled() &&
             alarm->isActive()) {
             return true;
         }
@@ -238,22 +244,41 @@ bool TemperatureController::_hasAlarmForPoint(MeasurementPoint* point, AlarmType
     return false;
 }
 
+
 void TemperatureController::createAlarm(AlarmType type, MeasurementPoint* source, AlarmPriority priority) {
+    // Check if this alarm already exists in configured alarms
+    String configKey = "alarm_" + String(source->getAddress()) + "_" + String(static_cast<int>(type));
+    
+    for (auto alarm : _configuredAlarms) {
+        if (alarm->getConfigKey() == configKey) {
+            // Alarm already exists, just enable it if it's disabled
+            if (!alarm->isEnabled()) {
+                alarm->setEnabled(true);
+                alarm->setStage(AlarmStage::NEW); // Reset stage
+            }
+            return;
+        }
+    }
+    
+    // Create new alarm and add to configured alarms
     Alarm* newAlarm = new Alarm(type, source, priority);
-    _alarms.push_back(newAlarm);
+    newAlarm->setConfigKey(configKey);
+    _configuredAlarms.push_back(newAlarm);
     
     // Sort alarms by priority
-    std::sort(_alarms.begin(), _alarms.end(), AlarmComparator());
+    std::sort(_configuredAlarms.begin(), _configuredAlarms.end(), AlarmComparator());
 }
 
+
 Alarm* TemperatureController::getHighestPriorityAlarm() const {
-    for (auto alarm : _alarms) {
-        if (alarm->isActive()) {
+    for (auto alarm : _configuredAlarms) {
+        if (alarm->isEnabled() && alarm->isActive()) {
             return alarm;
         }
     }
     return nullptr;
 }
+
 
 void TemperatureController::acknowledgeHighestPriorityAlarm() {
     Alarm* alarm = getHighestPriorityAlarm();
@@ -264,17 +289,18 @@ void TemperatureController::acknowledgeHighestPriorityAlarm() {
 }
 
 void TemperatureController::acknowledgeAllAlarms() {
-    for (auto alarm : _alarms) {
-        if (alarm->isActive() && !alarm->isAcknowledged()) {
+    for (auto alarm : _configuredAlarms) {
+        if (alarm->isEnabled() && alarm->isActive() && !alarm->isAcknowledged()) {
             alarm->acknowledge();
         }
     }
 }
 
+
 std::vector<Alarm*> TemperatureController::getActiveAlarms() const {
     std::vector<Alarm*> activeAlarms;
-    for (auto alarm : _alarms) {
-        if (alarm->isActive()) {
+    for (auto alarm : _configuredAlarms) {
+        if (alarm->isEnabled() && alarm->isActive()) {
             activeAlarms.push_back(alarm);
         }
     }
@@ -282,18 +308,21 @@ std::vector<Alarm*> TemperatureController::getActiveAlarms() const {
 }
 
 void TemperatureController::clearResolvedAlarms() {
-    for (auto it = _alarms.begin(); it != _alarms.end();) {
+    for (auto it = _configuredAlarms.begin(); it != _configuredAlarms.end();) {
         if ((*it)->isResolved()) {
             if (_currentDisplayedAlarm == *it) {
                 _currentDisplayedAlarm = nullptr;
             }
+            Serial.printf("Manually clearing resolved alarm: %s\n", (*it)->getConfigKey().c_str());
             delete *it;
-            it = _alarms.erase(it);
+            it = _configuredAlarms.erase(it);
         } else {
             ++it;
         }
     }
 }
+
+
 
 void TemperatureController::handleAlarmDisplay() {
     Alarm* highestPriorityAlarm = getHighestPriorityAlarm();
@@ -392,24 +421,29 @@ void TemperatureController::_showOKAndTurnOffOLED() {
     _showingOK = true;
 }
 
-String TemperatureController::getAlarmsJson() const {
+String TemperatureController::getAlarmsJson() {
     DynamicJsonDocument doc(4096);
     JsonArray alarmArray = doc.createNestedArray("alarms");
     
-    for (auto alarm : _alarms) {
+    for (auto alarm : _configuredAlarms) {
         JsonObject obj = alarmArray.createNestedObject();
+        obj["configKey"] = alarm->getConfigKey();
         obj["type"] = static_cast<int>(alarm->getType());
-        obj["stage"] = static_cast<int>(alarm->getStage());
         obj["priority"] = static_cast<int>(alarm->getPriority());
-        obj["timestamp"] = alarm->getTimestamp();
-        obj["message"] = alarm->getMessage();
+        obj["enabled"] = alarm->isEnabled();
+        obj["pointAddress"] = alarm->getPointAddress();
+        obj["stage"] = static_cast<int>(alarm->getStage());
         obj["isActive"] = alarm->isActive();
         obj["isAcknowledged"] = alarm->isAcknowledged();
+        obj["timestamp"] = alarm->getTimestamp();
+        obj["acknowledgedTime"] = alarm->getAcknowledgedTime();
         
         if (alarm->getSource()) {
-            obj["pointAddress"] = alarm->getSource()->getAddress();
             obj["pointName"] = alarm->getSource()->getName();
             obj["currentTemp"] = alarm->getSource()->getCurrentTemp();
+            obj["threshold"] = (alarm->getType() == AlarmType::HIGH_TEMPERATURE)
+                ? alarm->getSource()->getHighAlarmThreshold()
+                : alarm->getSource()->getLowAlarmThreshold();
         }
     }
     
@@ -938,3 +972,90 @@ bool TemperatureController::unbindSensorFromPointBySensor(Sensor* sensor) {
     return anyUnbound;
 }
 
+
+
+bool TemperatureController::addAlarm(AlarmType type, uint8_t pointAddress, AlarmPriority priority) {
+    MeasurementPoint* point = getMeasurementPoint(pointAddress);
+    if (!point) return false;
+    
+    // Check if alarm already exists
+    String configKey = "alarm_" + String(pointAddress) + "_" + String(static_cast<int>(type));
+    
+    for (auto alarm : _configuredAlarms) {
+        if (alarm->getConfigKey() == configKey) {
+            // Update existing
+            alarm->setPriority(priority);
+            alarm->setEnabled(true);
+            return true;
+        }
+    }
+    
+    // Create new alarm
+    Alarm* newAlarm = new Alarm(type, point, priority);
+    newAlarm->setConfigKey(configKey);
+    _configuredAlarms.push_back(newAlarm);
+    
+    Serial.printf("Added alarm configuration: %s\n", configKey.c_str());
+    return true;
+}
+
+bool TemperatureController::removeAlarm(const String& configKey) {
+    for (auto it = _configuredAlarms.begin(); it != _configuredAlarms.end(); ++it) {
+        if ((*it)->getConfigKey() == configKey) {
+            delete *it;
+            _configuredAlarms.erase(it);
+            Serial.printf("Removed alarm configuration: %s\n", configKey.c_str());
+            return true;
+        }
+    }
+    return false;
+}
+
+bool TemperatureController::updateAlarm(const String& configKey, AlarmPriority priority, bool enabled) {
+    Alarm* alarm = findAlarm(configKey);
+    if (!alarm) return false;
+    
+    alarm->setPriority(priority);
+    alarm->setEnabled(enabled);
+    Serial.printf("Updated alarm configuration: %s\n", configKey.c_str());
+    return true;
+}
+
+Alarm* TemperatureController::findAlarm(const String& configKey) {
+    for (auto alarm : _configuredAlarms) {
+        if (alarm->getConfigKey() == configKey) {
+            return alarm;
+        }
+    }
+    return nullptr;
+}
+
+Alarm* TemperatureController::getAlarmByIndex(int idx) {
+    return (idx >= 0 && idx < _configuredAlarms.size()) ? _configuredAlarms[idx] : nullptr;
+}
+
+
+
+// Placeholder methods for alarm handling scenarios
+void TemperatureController::handleCriticalAlarms() {
+    // TODO: Implement critical alarm handling scenario
+    // - Turn on both relays immediately
+    // - Red LED on
+    // - Display alarm
+    // - Wait for acknowledgment
+    // - 5-minute delay logic
+}
+
+void TemperatureController::handleHighPriorityAlarms() {
+    // TODO: Implement high priority alarm handling scenario
+    // - Different behavior than critical
+    // - Maybe only one relay, yellow LED
+}
+
+void TemperatureController::handleMediumPriorityAlarms() {
+    // TODO: Implement medium priority alarm handling scenario
+}
+
+void TemperatureController::handleLowPriorityAlarms() {
+    // TODO: Implement low priority alarm handling scenario
+}

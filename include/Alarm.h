@@ -76,6 +76,22 @@ public:
     bool operator<(const Alarm& other) const;
     bool operator==(const Alarm& other) const;
 
+    String getTypeString() const;
+    String getStageString() const;
+
+    // Configuration support
+    String getConfigKey() const;
+    void setConfigKey(const String& key);
+    bool isEnabled() const { return _enabled; }
+    void setEnabled(bool enabled) { _enabled = enabled; }
+    uint8_t getPointAddress() const { return _source ? _source->getAddress() : 255; }
+
+    void setPriority(AlarmPriority priority);
+    void setStage(AlarmStage stage);
+
+
+    
+
 private:
     AlarmType _type;
     AlarmStage _stage;
@@ -96,9 +112,11 @@ private:
     // Internal methods
     void _updateMessage();
     bool _checkCondition();
-    String _getTypeString() const;
-    String _getStageString() const;
+
     String _getPriorityString() const;
+
+    String _configKey;  // Format: "alarm_<point>_<type>"
+    bool _enabled;      // Whether this alarm is active in configuration
 };
 
 // Alarm comparison function for sorting by priority and timestamp
