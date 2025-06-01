@@ -181,13 +181,13 @@ String Alarm::getDisplayText() const {
     
     switch (_type) {
         case AlarmType::HIGH_TEMPERATURE:
-            text += "HIGH: " + String(_source->getCurrentTemp()) + "°C";
+            text += "H: " + String(_source->getCurrentTemp()) + "°C";
             break;
         case AlarmType::LOW_TEMPERATURE:
-            text += "LOW: " + String(_source->getCurrentTemp()) + "°C";
+            text += "L: " + String(_source->getCurrentTemp()) + "°C";
             break;
         case AlarmType::SENSOR_ERROR:
-            text += "ERROR: " + String(_source->getErrorStatus());
+            text += "E: " + String(_source->getErrorStatus());
             break;
         case AlarmType::SENSOR_DISCONNECTED:
             text += "DISCONNECTED";
