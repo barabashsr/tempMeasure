@@ -165,7 +165,7 @@ void TemperatureController::updateAlarms() {
                          i, dsPoints[i].getCurrentTemp(),
                          dsPoints[i].getHighAlarmThreshold(),
                          dsPoints[i].getLowAlarmThreshold());
-            _checkPointForAlarms(&dsPoints[i]);
+            //_checkPointForAlarms(&dsPoints[i]);
         }
     }
     
@@ -175,7 +175,7 @@ void TemperatureController::updateAlarms() {
                          i, ptPoints[i].getCurrentTemp(),
                          ptPoints[i].getHighAlarmThreshold(),
                          ptPoints[i].getLowAlarmThreshold());
-            _checkPointForAlarms(&ptPoints[i]);
+            //_checkPointForAlarms(&ptPoints[i]);
         }
     }
     
@@ -319,6 +319,17 @@ void TemperatureController::clearResolvedAlarms() {
         } else {
             ++it;
         }
+    }
+}
+
+void TemperatureController::clearConfiguredAlarms() {
+    for (auto it = _configuredAlarms.begin(); it != _configuredAlarms.end();) {
+            if (_currentDisplayedAlarm == *it) {
+                _currentDisplayedAlarm = nullptr;
+            }
+            Serial.printf("Manually clearing resolved alarm: %s\n", (*it)->getConfigKey().c_str());
+            delete *it;
+            it = _configuredAlarms.erase(it);
     }
 }
 

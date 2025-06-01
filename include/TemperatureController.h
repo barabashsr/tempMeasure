@@ -87,6 +87,7 @@ public:
     void acknowledgeHighestPriorityAlarm();
     void acknowledgeAllAlarms();
     void clearResolvedAlarms();
+    void clearConfiguredAlarms();
 
     // Alarm management (similar to sensor management)
     bool addAlarm(AlarmType type, uint8_t pointAddress, AlarmPriority priority);

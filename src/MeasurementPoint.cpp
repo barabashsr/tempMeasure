@@ -89,7 +89,7 @@ void MeasurementPoint::update() {
         // Example: ask the sensor for the latest temperature
         //if (boundSensor->readTemperature()) {
             currentTemp = boundSensor->getCurrentTemp();
-            Serial.printf("\nPoint: %d. %s. Sensor: %s. Temp: %d\n", getAddress(), getName(), boundSensor->getName(), currentTemp);
+            //Serial.printf("\nPoint: %d. %s. Sensor: %s. Temp: %d\n", getAddress(), getName(), boundSensor->getName(), currentTemp);
             if (currentTemp < minTemp) minTemp = currentTemp;
             if (currentTemp > maxTemp) maxTemp = currentTemp;
             errorStatus = boundSensor->getErrorStatus();

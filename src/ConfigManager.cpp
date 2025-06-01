@@ -10,7 +10,7 @@ const char* VARIABLES_DEF_YAML PROGMEM = R"~(
 Wifi settings:
   - st_ssid:
       label: WiFi SSID
-      default: Polza
+      default: Beeline_2G_F13F37
   - st_pass:
       label: WiFi Password
       default: 1122334455667788
@@ -896,82 +896,119 @@ void ConfigManager::saveAlarmsConfig() {
     Serial.println("Save alarms to config....");
     ConfigAssist alarmsConf("/alarms.ini", false);
     
-    // Clear existing config by iterating through all possible alarms
-    // (ConfigAssist doesn't have a clear method)
+    // Clear existing entries by setting them to empty strings
+    // ConfigAssist will treat empty strings as non-existent
+    for (int i = 0; i < 1000; i++) { // Check reasonable number of possible alarms
+        String alarmKey = "alarm" + String(i);
+        if (alarmsConf.exists(alarmKey + "_type")) {
+            alarmsConf[alarmKey + "_type"] = "";
+            alarmsConf[alarmKey + "_priority"] = "";
+            alarmsConf[alarmKey + "_point"] = "";
+            alarmsConf[alarmKey + "_enabled"] = "";
+        } else {
+            break; // No more entries to clear
+        }
+    }
     
+    // Save current alarms
+    int alarmIndex = 0;
     for (int i = 0; i < controller.getAlarmCount(); ++i) {
         Alarm* alarm = controller.getAlarmByIndex(i);
-        if (!alarm || !alarm->getSource()) continue;
+        if (!alarm) continue;
         
-        uint8_t pointAddr = alarm->getPointAddress();
-        String pointKey = (pointAddr < 50) ? "ds_" + String(pointAddr) : "pt_" + String(pointAddr - 50);
-        
-        String alarmTypeStr;
-        switch (alarm->getType()) {
-            case AlarmType::HIGH_TEMPERATURE:
-                alarmTypeStr = "_high_alarm";
-                break;
-            case AlarmType::LOW_TEMPERATURE:
-                alarmTypeStr = "_low_alarm";
-                break;
-            case AlarmType::SENSOR_ERROR:
-                alarmTypeStr = "_error_alarm";
-                break;
-            case AlarmType::SENSOR_DISCONNECTED:
-                alarmTypeStr = "_disconnect_alarm";
-                break;
-            default:
-                continue;
-        }
-        
-        alarmsConf[pointKey + alarmTypeStr + "_enabled"] = alarm->isEnabled() ? "true" : "false";
-        alarmsConf[pointKey + alarmTypeStr + "_priority"] = String(static_cast<int>(alarm->getPriority()));
+        String alarmKey = "alarm" + String(alarmIndex++);
+        alarmsConf[alarmKey + "_type"] = String(static_cast<int>(alarm->getType()));
+        alarmsConf[alarmKey + "_priority"] = String(static_cast<int>(alarm->getPriority()));
+        alarmsConf[alarmKey + "_point"] = String(alarm->getPointAddress());
+        alarmsConf[alarmKey + "_enabled"] = alarm->isEnabled() ? "1" : "0";
     }
     
     alarmsConf.saveConfigFile();
-    Serial.println("Alarms configuration saved");
+    Serial.printf("Saved %d alarms to config\n", alarmIndex);
 }
+
+
+
 
 void ConfigManager::loadAlarmsConfig() {
     Serial.println("Loading alarms configuration...");
     ConfigAssist alarmsConf("/alarms.ini", false);
     
-    // Load alarm configurations for all points
-    for (uint8_t pointAddr = 0; pointAddr < 60; ++pointAddr) {
-        String pointKey = (pointAddr < 50) ? "ds_" + String(pointAddr) : "pt_" + String(pointAddr - 50);
+    // Clear existing configured alarms first
+    for (auto alarm : controller.getConfiguredAlarms()) {
+        delete alarm;
+    }
+    controller.clearConfiguredAlarms();
+    
+    int loadedCount = 0;
+    int alarmIndex = 0;
+    
+    // Load alarms sequentially
+    while (true) {
+        String alarmKey = "alarm" + String(alarmIndex++);
         
-        // Check for high temperature alarm
-        String highKey = pointKey + "_high_alarm_enabled";
-        if (alarmsConf(highKey) == "true") {
-            String priorityKey = pointKey + "_high_alarm_priority";
-            AlarmPriority priority = static_cast<AlarmPriority>(alarmsConf(priorityKey).toInt());
-            controller.addAlarm(AlarmType::HIGH_TEMPERATURE, pointAddr, priority);
+        // Check if all required keys exist
+        String typeKey = alarmKey + "_type";
+        String priorityKey = alarmKey + "_priority";
+        String pointKey = alarmKey + "_point";
+        String enabledKey = alarmKey + "_enabled";
+        
+        if (!alarmsConf.exists(typeKey)) {
+            break; // No more alarms to load
         }
         
-        // Check for low temperature alarm
-        String lowKey = pointKey + "_low_alarm_enabled";
-        if (alarmsConf(lowKey) == "true") {
-            String priorityKey = pointKey + "_low_alarm_priority";
-            AlarmPriority priority = static_cast<AlarmPriority>(alarmsConf(priorityKey).toInt());
-            controller.addAlarm(AlarmType::LOW_TEMPERATURE, pointAddr, priority);
+        // Get values and validate they're not empty
+        String typeStr = alarmsConf(typeKey);
+        String priorityStr = alarmsConf(priorityKey);
+        String pointStr = alarmsConf(pointKey);
+        String enabledStr = alarmsConf(enabledKey);
+        
+        // Skip empty entries (these were cleared)
+        if (typeStr.isEmpty() || priorityStr.isEmpty() || 
+            pointStr.isEmpty() || enabledStr.isEmpty()) {
+            Serial.printf("Skipping empty alarm entry at index %d\n", alarmIndex - 1);
+            continue;
         }
         
-        // Check for sensor error alarm
-        String errorKey = pointKey + "_error_alarm_enabled";
-        if (alarmsConf(errorKey) == "true") {
-            String priorityKey = pointKey + "_error_alarm_priority";
-            AlarmPriority priority = static_cast<AlarmPriority>(alarmsConf(priorityKey).toInt());
-            controller.addAlarm(AlarmType::SENSOR_ERROR, pointAddr, priority);
+        // Convert and validate values
+        int type = typeStr.toInt();
+        int priority = priorityStr.toInt();
+        int pointAddress = pointStr.toInt();
+        bool enabled = (enabledStr == "1");
+        
+        // Validate enum ranges
+        if (type < 0 || type > 3 || priority < 0 || priority > 3) {
+            Serial.printf("Skipping alarm %d: invalid type (%d) or priority (%d)\n", 
+                         alarmIndex - 1, type, priority);
+            continue;
         }
         
-        // Check for sensor disconnect alarm
-        String disconnectKey = pointKey + "_disconnect_alarm_enabled";
-        if (alarmsConf(disconnectKey) == "true") {
-            String priorityKey = pointKey + "_disconnect_alarm_priority";
-            AlarmPriority priority = static_cast<AlarmPriority>(alarmsConf(priorityKey).toInt());
-            controller.addAlarm(AlarmType::SENSOR_DISCONNECTED, pointAddr, priority);
+        // Validate point address
+        if (pointAddress < 0 || pointAddress >= 60) {
+            Serial.printf("Skipping alarm %d: invalid point address (%d)\n", 
+                         alarmIndex - 1, pointAddress);
+            continue;
+        }
+        
+        // Create alarm
+        bool success = controller.addAlarm(
+            static_cast<AlarmType>(type),
+            pointAddress,
+            static_cast<AlarmPriority>(priority)
+        );
+        
+        if (success) {
+            // Set enabled state
+            Alarm* alarm = controller.findAlarm("alarm_" + String(pointAddress) + "_" + String(type));
+            if (alarm) {
+                alarm->setEnabled(enabled);
+                loadedCount++;
+                Serial.printf("Loaded alarm: type=%d, priority=%d, point=%d, enabled=%s\n",
+                             type, priority, pointAddress, enabled ? "true" : "false");
+            }
         }
     }
     
-    Serial.printf("Loaded alarm configurations\n");
+    Serial.printf("Loaded %d valid alarm configurations\n", loadedCount);
 }
+

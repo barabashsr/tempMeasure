@@ -317,6 +317,7 @@
     </div>
 
     <script>
+        const UPDATE_INTERVAL = 5000;
         let alarmsData = [];
         let sortColumn = -1;
         let sortDirection = 'asc';
@@ -324,7 +325,7 @@
         // Load alarms on page load
         document.addEventListener('DOMContentLoaded', function() {
             refreshAlarms();
-            setInterval(refreshAlarms, 30000); // Auto-refresh every 30 seconds
+            setInterval(refreshAlarms, UPDATE_INTERVAL); // Auto-refresh every 30 seconds
         });
 
         // Load alarms from API
@@ -402,9 +403,10 @@
                         ${alarm.isActive && !alarm.isAcknowledged ? 
                             `<button class="btn btn-warning" onclick="acknowledgeAlarm('${alarm.configKey}')">Acknowledge</button>` : 
                             ''}
-                        ${alarm.stage === 4 ? // RESOLVED
-                            `<button class="btn btn-danger" onclick="deleteAlarm('${alarm.configKey}')">Delete</button>` :
-                            ''}
+                        ${//alarm.stage === 4 ? // RESOLVED
+                            `<button class="btn btn-danger" onclick="deleteAlarm('${alarm.configKey}')">Delete</button>` //:
+                            //''
+                            }
                     </td>
                 </tr>
             `;
@@ -595,6 +597,8 @@
                 alert('Error clearing resolved alarms');
             }
         }
+
+        
     </script>
 </body>
 </html>

@@ -289,6 +289,7 @@
     </div>
 
     <script>
+        const UPDATE_INTERVAL = 5000;
         let currentPointAddress = null;
         let pointsData = [];
         let alarmsData = [];
@@ -589,7 +590,7 @@
         setInterval(() => {
             loadPoints();
             loadAlarms();
-        }, 30000);
+        }, UPDATE_INTERVAL);
     </script>
 </body>
 </html>
