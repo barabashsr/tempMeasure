@@ -88,6 +88,9 @@ public:
 
     void setPriority(AlarmPriority priority);
     void setStage(AlarmStage stage);
+    
+    void setHysteresis(int16_t hysteresis) { _hysteresis = hysteresis; }
+    int16_t getHysteresis() const { return _hysteresis; }
 
 
     
@@ -102,6 +105,8 @@ private:
     unsigned long _timestamp;        // When alarm was created
     unsigned long _acknowledgedTime; // When alarm was acknowledged
     unsigned long _clearedTime;      // When condition cleared
+
+    int16_t _hysteresis;  // Configurable hysteresis value
     
     // Configuration
     unsigned long _delayTime;        // Delay before auto-resolve

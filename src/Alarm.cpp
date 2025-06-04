@@ -2,7 +2,8 @@
 
 Alarm::Alarm(AlarmType type, MeasurementPoint* source, AlarmPriority priority)
     : _type(type), _stage(AlarmStage::NEW), _priority(priority), _source(source),
-      _timestamp(millis()), _acknowledgedTime(0), _clearedTime(0), _delayTime(5 * 60 * 1000), _enabled(true) // 5 minutes default
+      _timestamp(millis()), _acknowledgedTime(0), _clearedTime(0), 
+      _delayTime(5 * 60 * 1000), _enabled(true), _hysteresis(1) // Add _hysteresis(1) - 1 degree default
 {
     if (_source) {
         _configKey = "alarm_" + String(_source->getAddress()) + "_" + String(static_cast<int>(_type));
@@ -15,6 +16,7 @@ Alarm::Alarm(AlarmType type, MeasurementPoint* source, AlarmPriority priority)
                   _source ? _source->getAddress() : -1,
                   _source ? _source->getName().c_str() : "Unknown");
 }
+
 
 Alarm::~Alarm() {
     Serial.printf("Alarm destroyed: %s for point %d\n", 
@@ -67,127 +69,49 @@ void Alarm::reactivate() {
     }
 }
 
-bool Alarm::updateCondition() {
-    if (!_source) {
-        Serial.println("Alarm updateCondition: No source");
-        return true; // Keep alarm even without source
-    }
-    
-    bool conditionExists = _checkCondition();
-    AlarmStage oldStage = _stage;
-    
-    Serial.printf("Alarm update: Point %d, Type=%s, Stage=%s, Condition=%s\n",
-                  _source->getAddress(), getTypeString().c_str(), 
-                  getStageString().c_str(), conditionExists ? "EXISTS" : "CLEARED");
-    
-    switch (_stage) {
-        case AlarmStage::NEW:
-            if (conditionExists) {
-                _stage = AlarmStage::ACTIVE;
-                Serial.printf("Alarm %s: NEW -> ACTIVE\n", getTypeString().c_str());
-            } else {
-                // Condition cleared before becoming active
-                // resolve();
-                // Serial.printf("Alarm %s: NEW -> RESOLVED (condition cleared)\n", getTypeString().c_str());
-                // return true; // Keep resolved alarm
-            }
-            break;
-            
-        case AlarmStage::ACTIVE:
-            if (!conditionExists) {
-                clear();
-                Serial.printf("Alarm %s: ACTIVE -> CLEARED (condition no longer exists)\n", getTypeString().c_str());
-            }
-            break;
-            
-        case AlarmStage::ACKNOWLEDGED:
-            if (!conditionExists) {
-                clear();
-                Serial.printf("Alarm %s: ACKNOWLEDGED -> CLEARED (condition no longer exists)\n", getTypeString().c_str());
-            }
-            break;
-            
-        case AlarmStage::CLEARED:
-            if (conditionExists) {
-                // Condition returned, reactivate
-                _stage = _acknowledgedTime > 0 ? AlarmStage::ACKNOWLEDGED : AlarmStage::ACTIVE;
-                _clearedTime = 0;
-                Serial.printf("Alarm %s: CLEARED -> %s (condition returned)\n", 
-                             getTypeString().c_str(), getStageString().c_str());
-            } else {//if (isDelayElapsed()) {
-                resolve();
-                Serial.printf("Alarm %s: CLEARED -> RESOLVED (delay elapsed)\n", getTypeString().c_str());
-                return true; // Keep resolved alarm
-            }
-            break;
-            
-        case AlarmStage::RESOLVED:
-            if (conditionExists) {
-                _stage = AlarmStage::ACTIVE;
-                Serial.printf("Alarm %s: RESOLVED -> ACTIVE\n", getTypeString().c_str());
-            }
-            // } else {
-            //     // Condition cleared before becoming active
-            //     resolve();
-            //     Serial.printf("Alarm %s: NEW -> RESOLVED (condition cleared)\n", getTypeString().c_str());
-            //     return true; // Keep resolved alarm
-            // }
-            break;
-            
-            return true;
-    }
-    
-    if (oldStage != _stage) {
-        _updateMessage();
-    }
-    
-    return true; // Always keep alarm
-}
-
-
-
 bool Alarm::_checkCondition() {
     if (!_source) {
         Serial.println("Alarm: No source point");
         return false;
     }
-    const int HYSTERESIS = 2; // 1 degree hysteresis
     
+    int16_t currentTemp = _source->getCurrentTemp();
     bool condition = false;
     
     switch (_type) {
-        // case AlarmType::HIGH_TEMPERATURE:
-        //     condition = _source->getCurrentTemp() >= _source->getHighAlarmThreshold();
-        //     Serial.printf("HIGH_TEMP check: Point %d, Temp=%d, Threshold=%d, Condition=%s\n",
-        //                  _source->getAddress(), _source->getCurrentTemp(), 
-        //                  _source->getHighAlarmThreshold(), condition ? "TRUE" : "FALSE");
-        //     break;
-            
-        // case AlarmType::LOW_TEMPERATURE:
-        //     condition = _source->getCurrentTemp() <= _source->getLowAlarmThreshold();
-        //     Serial.printf("LOW_TEMP check: Point %d, Temp=%d, Threshold=%d, Condition=%s\n",
-        //                  _source->getAddress(), _source->getCurrentTemp(), 
-        //                  _source->getLowAlarmThreshold(), condition ? "TRUE" : "FALSE");
-        //     break;
-        
-
         case AlarmType::HIGH_TEMPERATURE:
-            if (_stage == AlarmStage::CLEARED) {
-                // When cleared, need temperature to go below threshold - hysteresis
-                return _source->getCurrentTemp() >= (_source->getHighAlarmThreshold() - HYSTERESIS);
-            } else {
-                // Normal check
-                return _source->getCurrentTemp() >= _source->getHighAlarmThreshold();
+            {
+                int16_t threshold = _source->getHighAlarmThreshold();
+                if (_stage == AlarmStage::CLEARED || _stage == AlarmStage::RESOLVED) {
+                    // When cleared/resolved, need temperature to drop below (threshold - hysteresis) to stay cleared
+                    // Return true if still above (threshold - hysteresis) = condition still exists
+                    condition = currentTemp > (threshold - _hysteresis);
+                } else {
+                    // Normal activation check: activate when >= threshold
+                    condition = currentTemp >= threshold;
+                }
+                Serial.printf("HIGH_TEMP check: Point %d, Temp=%d, Threshold=%d, Hysteresis=%d, Stage=%s, Condition=%s\n",
+                             _source->getAddress(), currentTemp, threshold, _hysteresis,
+                             getStageString().c_str(), condition ? "TRUE" : "FALSE");
             }
+            break;
             
         case AlarmType::LOW_TEMPERATURE:
-            if (_stage == AlarmStage::CLEARED) {
-                // When cleared, need temperature to go above threshold + hysteresis
-                return _source->getCurrentTemp() <= (_source->getLowAlarmThreshold() + HYSTERESIS);
-            } else {
-                // Normal check
-                return _source->getCurrentTemp() <= _source->getLowAlarmThreshold();
+            {
+                int16_t threshold = _source->getLowAlarmThreshold();
+                if (_stage == AlarmStage::CLEARED || _stage == AlarmStage::RESOLVED) {
+                    // When cleared/resolved, need temperature to rise above (threshold + hysteresis) to stay cleared
+                    // Return true if still below (threshold + hysteresis) = condition still exists
+                    condition = currentTemp < (threshold + _hysteresis);
+                } else {
+                    // Normal activation check: activate when <= threshold
+                    condition = currentTemp <= threshold;
+                }
+                Serial.printf("LOW_TEMP check: Point %d, Temp=%d, Threshold=%d, Hysteresis=%d, Stage=%s, Condition=%s\n",
+                             _source->getAddress(), currentTemp, threshold, _hysteresis,
+                             getStageString().c_str(), condition ? "TRUE" : "FALSE");
             }
+            break;
             
         case AlarmType::SENSOR_ERROR:
             condition = _source->getErrorStatus() != 0;
@@ -210,6 +134,74 @@ bool Alarm::_checkCondition() {
     
     return condition;
 }
+
+
+
+
+// bool Alarm::_checkCondition() {
+//     if (!_source) {
+//         Serial.println("Alarm: No source point");
+//         return false;
+//     }
+//     const int HYSTERESIS = 2; // 1 degree hysteresis
+    
+//     bool condition = false;
+    
+//     switch (_type) {
+//         // case AlarmType::HIGH_TEMPERATURE:
+//         //     condition = _source->getCurrentTemp() >= _source->getHighAlarmThreshold();
+//         //     Serial.printf("HIGH_TEMP check: Point %d, Temp=%d, Threshold=%d, Condition=%s\n",
+//         //                  _source->getAddress(), _source->getCurrentTemp(), 
+//         //                  _source->getHighAlarmThreshold(), condition ? "TRUE" : "FALSE");
+//         //     break;
+            
+//         // case AlarmType::LOW_TEMPERATURE:
+//         //     condition = _source->getCurrentTemp() <= _source->getLowAlarmThreshold();
+//         //     Serial.printf("LOW_TEMP check: Point %d, Temp=%d, Threshold=%d, Condition=%s\n",
+//         //                  _source->getAddress(), _source->getCurrentTemp(), 
+//         //                  _source->getLowAlarmThreshold(), condition ? "TRUE" : "FALSE");
+//         //     break;
+        
+
+//         case AlarmType::HIGH_TEMPERATURE:
+//             if (_stage == AlarmStage::CLEARED) {
+//                 // When cleared, need temperature to go below threshold - hysteresis
+//                 return _source->getCurrentTemp() >= (_source->getHighAlarmThreshold() - HYSTERESIS);
+//             } else {
+//                 // Normal check
+//                 return _source->getCurrentTemp() >= _source->getHighAlarmThreshold();
+//             }
+            
+//         case AlarmType::LOW_TEMPERATURE:
+//             if (_stage == AlarmStage::CLEARED) {
+//                 // When cleared, need temperature to go above threshold + hysteresis
+//                 return _source->getCurrentTemp() <= (_source->getLowAlarmThreshold() + HYSTERESIS);
+//             } else {
+//                 // Normal check
+//                 return _source->getCurrentTemp() <= _source->getLowAlarmThreshold();
+//             }
+            
+//         case AlarmType::SENSOR_ERROR:
+//             condition = _source->getErrorStatus() != 0;
+//             Serial.printf("SENSOR_ERROR check: Point %d, Error=%d, Condition=%s\n",
+//                          _source->getAddress(), _source->getErrorStatus(), 
+//                          condition ? "TRUE" : "FALSE");
+//             break;
+            
+//         case AlarmType::SENSOR_DISCONNECTED:
+//             condition = _source->getBoundSensor() == nullptr;
+//             Serial.printf("DISCONNECTED check: Point %d, Sensor=%p, Condition=%s\n",
+//                          _source->getAddress(), _source->getBoundSensor(), 
+//                          condition ? "TRUE" : "FALSE");
+//             break;
+            
+//         default:
+//             Serial.println("Unknown alarm type");
+//             return false;
+//     }
+    
+//     return condition;
+// }
 
 
 
@@ -324,3 +316,76 @@ void Alarm::setPriority(AlarmPriority priority){
 void Alarm::setStage(AlarmStage stage){
     _stage = stage;
 };
+
+bool Alarm::updateCondition() {
+    if (!_source) {
+        Serial.println("Alarm updateCondition: No source");
+        return true; // Keep alarm even without source
+    }
+    
+    bool conditionExists = _checkCondition();
+    AlarmStage oldStage = _stage;
+    
+    Serial.printf("Alarm update: Point %d, Type=%s, Stage=%s, Condition=%s\n",
+                  _source->getAddress(), getTypeString().c_str(), 
+                  getStageString().c_str(), conditionExists ? "EXISTS" : "CLEARED");
+    
+    switch (_stage) {
+        case AlarmStage::NEW:
+            if (conditionExists) {
+                _stage = AlarmStage::ACTIVE;
+                Serial.printf("Alarm %s: NEW -> ACTIVE\n", getTypeString().c_str());
+            } else {
+                // Condition cleared before becoming active
+                resolve();
+                Serial.printf("Alarm %s: NEW -> RESOLVED (condition cleared)\n", getTypeString().c_str());
+            }
+            break;
+            
+        case AlarmStage::ACTIVE:
+            if (!conditionExists) {
+                clear();
+                Serial.printf("Alarm %s: ACTIVE -> CLEARED (condition no longer exists)\n", getTypeString().c_str());
+            }
+            break;
+            
+        case AlarmStage::ACKNOWLEDGED:
+            if (!conditionExists) {
+                clear();
+                Serial.printf("Alarm %s: ACKNOWLEDGED -> CLEARED (condition no longer exists)\n", getTypeString().c_str());
+            }
+            break;
+            
+        case AlarmStage::CLEARED:
+            if (conditionExists) {
+                // Condition returned, reactivate
+                _stage = _acknowledgedTime > 0 ? AlarmStage::ACKNOWLEDGED : AlarmStage::ACTIVE;
+                _clearedTime = 0;
+                Serial.printf("Alarm %s: CLEARED -> %s (condition returned)\n", 
+                             getTypeString().c_str(), getStageString().c_str());
+            } else if (isDelayElapsed()) {
+                resolve();
+                Serial.printf("Alarm %s: CLEARED -> RESOLVED (delay elapsed)\n", getTypeString().c_str());
+            }
+            break;
+            
+        case AlarmStage::RESOLVED:
+            // ADD THIS CASE: Reactivate resolved alarms when condition returns
+            if (conditionExists) {
+                _stage = AlarmStage::ACTIVE;
+                _timestamp = millis(); // Reset timestamp
+                _acknowledgedTime = 0; // Reset acknowledged time
+                _clearedTime = 0;      // Reset cleared time
+                Serial.printf("Alarm %s: RESOLVED -> ACTIVE (condition returned)\n", getTypeString().c_str());
+            }
+            // If condition doesn't exist, stay resolved
+            break;
+    }
+    
+    if (oldStage != _stage) {
+        _updateMessage();
+    }
+    
+    return true; // Always keep alarm
+}
+

@@ -921,6 +921,7 @@ void ConfigManager::saveAlarmsConfig() {
         alarmsConf[alarmKey + "_priority"] = String(static_cast<int>(alarm->getPriority()));
         alarmsConf[alarmKey + "_point"] = String(alarm->getPointAddress());
         alarmsConf[alarmKey + "_enabled"] = alarm->isEnabled() ? "1" : "0";
+        alarmsConf[alarmKey + "_hysteresis"] = String(alarm->getHysteresis());
     }
     
     alarmsConf.saveConfigFile();
@@ -952,6 +953,9 @@ void ConfigManager::loadAlarmsConfig() {
         String priorityKey = alarmKey + "_priority";
         String pointKey = alarmKey + "_point";
         String enabledKey = alarmKey + "_enabled";
+        int16_t hysteresis = alarmsConf(alarmKey + "_hysteresis").toInt();
+        if (hysteresis == 0) hysteresis = 1; // Default to 1 if not set
+        
         
         if (!alarmsConf.exists(typeKey)) {
             break; // No more alarms to load
@@ -1002,9 +1006,10 @@ void ConfigManager::loadAlarmsConfig() {
             Alarm* alarm = controller.findAlarm("alarm_" + String(pointAddress) + "_" + String(type));
             if (alarm) {
                 alarm->setEnabled(enabled);
+                alarm->setHysteresis(hysteresis);
                 loadedCount++;
-                Serial.printf("Loaded alarm: type=%d, priority=%d, point=%d, enabled=%s\n",
-                             type, priority, pointAddress, enabled ? "true" : "false");
+                Serial.printf("Loaded alarm: type=%d, priority=%d, point=%d, enabled=%s, hyst=%d\n",
+                             type, priority, pointAddress, enabled ? "true" : "false", hysteresis);
             }
         }
     }
