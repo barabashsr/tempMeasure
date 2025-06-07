@@ -264,7 +264,28 @@
             <div id="csvStatus" style="margin-top: 10px; font-weight: bold;"></div>
         </div>
 
-        
+        <!-- Settings CSV Import/Export Section -->
+        <div class="settings-csv-section" style="margin: 20px 0; padding: 15px; border: 1px solid #ccc; border-radius: 5px; background-color: #f9f9f9;">
+            <h3>Device Settings Backup/Restore</h3>
+            
+            <!-- Export Button -->
+            <button id="exportSettingsBtn" class="btn btn-success" style="margin-right: 10px;">
+                📥 Export Device Settings to CSV
+            </button>
+            
+            <!-- Import Section -->
+            <input type="file" id="settingsFileInput" accept=".csv" style="display: none;">
+            <button id="importSettingsBtn" class="btn btn-warning">
+                📤 Import Device Settings from CSV
+            </button>
+            
+            <div id="settingsStatus" style="margin-top: 10px; font-weight: bold;"></div>
+            
+            <div style="margin-top: 10px; font-size: 12px; color: #666;">
+                <strong>Note:</strong> Device will restart automatically after importing settings to apply changes.
+            </div>
+        </div>
+
 
         
         <div class="dashboard">
@@ -671,6 +692,79 @@
             })
             .catch(error => {
                 document.getElementById('csvStatus').innerHTML = '<span style="color: red;">✗ Import failed: ' + error.message + '</span>';
+            });
+            
+            // Reset file input
+            event.target.value = '';
+        });
+
+        // Export Settings CSV functionality
+        document.getElementById('exportSettingsBtn').addEventListener('click', function() {
+            fetch('/api/settings/export', {
+                method: 'GET'
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.blob();
+                }
+                throw new Error('Settings export failed');
+            })
+            .then(blob => {
+                // Create download link
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'device_settings_' + new Date().toISOString().split('T')[0] + '.csv';
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+                document.body.removeChild(a);
+                
+                document.getElementById('settingsStatus').innerHTML = '<span style="color: green;">✓ Device settings exported successfully</span>';
+            })
+            .catch(error => {
+                document.getElementById('settingsStatus').innerHTML = '<span style="color: red;">✗ Export failed: ' + error.message + '</span>';
+            });
+        });
+
+        // Import Settings CSV functionality
+        document.getElementById('importSettingsBtn').addEventListener('click', function() {
+            document.getElementById('settingsFileInput').click();
+        });
+
+        document.getElementById('settingsFileInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            if (!file.name.toLowerCase().endsWith('.csv')) {
+                document.getElementById('settingsStatus').innerHTML = '<span style="color: red;">✗ Please select a CSV file</span>';
+                return;
+            }
+            
+            if (!confirm('Importing settings will restart the device. Continue?')) {
+                event.target.value = '';
+                return;
+            }
+            
+            const formData = new FormData();
+            formData.append('settingsFile', file);
+            
+            document.getElementById('settingsStatus').innerHTML = '<span style="color: blue;">⏳ Importing settings...</span>';
+            
+            fetch('/api/settings/import', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('settingsStatus').innerHTML = '<span style="color: green;">✓ Settings imported successfully. Device restarting...</span>';
+                } else {
+                    document.getElementById('settingsStatus').innerHTML = '<span style="color: red;">✗ Import failed: ' + data.error + '</span>';
+                }
+            })
+            .catch(error => {
+                document.getElementById('settingsStatus').innerHTML = '<span style="color: red;">✗ Import failed: ' + error.message + '</span>';
             });
             
             // Reset file input

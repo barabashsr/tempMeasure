@@ -54,7 +54,9 @@ Modbus settings:
 
 ConfigManager::ConfigManager(TemperatureController& tempController)
     : conf("/config.ini", VARIABLES_DEF_YAML),
-      controller(tempController), csvManager(controller),
+      controller(tempController), 
+      csvManager(controller),
+      settingsCSVManager(conf),
       portalActive(false) {
     
     instance = this;
@@ -223,6 +225,8 @@ bool ConfigManager::begin() {
             
             // Process the uploaded CSV
             if (csvManager.importPointsWithAlarmsFromCSV(csvContent)) {
+                saveAlarmsConfig();
+                savePointsConfig();
                 server->send(200, "application/json", "{\"success\":true}");
             } else {
                 String error = csvManager.getLastError();
@@ -727,6 +731,88 @@ bool ConfigManager::begin() {
         server->sendHeader("Access-Control-Allow-Headers", "Content-Type");
         server->send(204);
     });
+
+    // Settings CSV Export endpoint
+    server->on("/api/settings/export", HTTP_GET, [this]() {
+        String csvData = settingsCSVManager.exportSettingsToCSV();
+        
+        if (csvData.length() > 0) {
+            String filename = "device_settings_" + String(millis()) + ".csv";
+            server->sendHeader("Content-Type", "text/csv");
+            server->sendHeader("Content-Disposition", "attachment; filename=\"" + filename + "\"");
+            server->send(200, "text/csv", csvData);
+        } else {
+            server->send(500, "application/json", "{\"error\":\"Failed to generate settings CSV\"}");
+        }
+    });
+
+    // Settings CSV Import endpoint
+    server->on("/api/settings/import", HTTP_POST, [this]() {
+        // This will be called after file upload is complete
+    }, [this]() {
+        // Handle file upload
+        HTTPUpload& upload = server->upload();
+        static String csvContent;
+        
+        if (upload.status == UPLOAD_FILE_START) {
+            csvContent = "";
+            Serial.printf("Settings Upload Start: %s\n", upload.filename.c_str());
+        } else if (upload.status == UPLOAD_FILE_WRITE) {
+            csvContent += String((char*)upload.buf, upload.currentSize);
+        } else if (upload.status == UPLOAD_FILE_END) {
+            Serial.printf("Settings Upload End: %s (%u bytes)\n", upload.filename.c_str(), upload.totalSize);
+            
+            // Process the uploaded CSV
+            if (settingsCSVManager.importSettingsFromCSV(csvContent)) {
+                // Save configuration after successful import
+                conf.saveConfigFile();
+                server->send(200, "application/json", "{\"success\":true,\"message\":\"Settings imported successfully. Device will restart.\"}");
+                
+                // Restart device to apply new settings
+                delay(1000);
+                ESP.restart();
+            } else {
+                String error = settingsCSVManager.getLastError();
+                server->send(400, "application/json", "{\"success\":false,\"error\":\"" + error + "\"}");
+            }
+            csvContent = "";
+        }
+    });
+
+    // Settings CSV Import endpoint - NO RESTART VERSION
+    // server->on("/api/settings/import", HTTP_POST, [this]() {
+    //     // This will be called after file upload is complete
+    // }, [this]() {
+    //     // Handle file upload
+    //     HTTPUpload& upload = server->upload();
+    //     static String csvContent;
+        
+    //     if (upload.status == UPLOAD_FILE_START) {
+    //         csvContent = "";
+    //         Serial.printf("Settings Upload Start: %s\n", upload.filename.c_str());
+    //     } else if (upload.status == UPLOAD_FILE_WRITE) {
+    //         csvContent += String((char*)upload.buf, upload.currentSize);
+    //     } else if (upload.status == UPLOAD_FILE_END) {
+    //         Serial.printf("Settings Upload End: %s (%u bytes)\n", upload.filename.c_str(), upload.totalSize);
+            
+    //         // Process the uploaded CSV
+    //         if (settingsCSVManager.importSettingsFromCSV(csvContent)) {
+    //             // Save configuration after successful import
+    //             conf.saveConfigFile();
+                
+    //             // Apply settings that can be changed without restart
+    //             _applySettingsWithoutRestart();
+                
+    //             server->send(200, "application/json", "{\"success\":true,\"message\":\"Settings imported successfully.\"}");
+    //         } else {
+    //             String error = settingsCSVManager.getLastError();
+    //             server->send(400, "application/json", "{\"success\":false,\"error\":\"" + error + "\"}");
+    //         }
+    //         csvContent = "";
+    //     }
+    // });
+
+
     
     // Setup WiFi
     bool startAP = true;
@@ -1094,4 +1180,3 @@ void ConfigManager::loadAlarmsConfig() {
     
     Serial.printf("Loaded %d valid alarm configurations\n", loadedCount);
 }
-

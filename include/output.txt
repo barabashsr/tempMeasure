@@ -808,7 +808,7 @@ public:
 
 ================================================================================
 File: TemperatureController.h
-Size: 5.13 kB
+Size: 5.21 kB
 ================================================================================
 
 #pragma once
@@ -919,6 +919,8 @@ public:
     void handleHighPriorityAlarms();
     void handleMediumPriorityAlarms();
     void handleLowPriorityAlarms();
+
+    bool bindSensorToPointByBusNumber(uint8_t busNumber, uint8_t pointAddress);
 
 
 

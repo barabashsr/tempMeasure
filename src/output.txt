@@ -450,7 +450,7 @@ void CSVConfigManager::_exportPointToCSV(String& csv, MeasurementPoint* point, c
         if (sensor->getType() == SensorType::DS18B20) {
             romString = sensor->getDS18B20RomString();
         } else if (sensor->getType() == SensorType::PT1000) {
-            busNumber = String(sensor->getPT1000BusNumber()); // Changed from ChipSelectPin to BusNumber
+            busNumber = String(_controller.getSensorBus(sensor)); // Changed from ChipSelectPin to BusNumber
         }
     }
     
@@ -3511,7 +3511,7 @@ ModbusMessage TempModbusServer::writeMultipleRegistersWorker(ModbusMessage reque
 
 ================================================================================
 File: TemperatureController.cpp
-Size: 36.1 kB
+Size: 36.69 kB
 ================================================================================
 
 #include "TemperatureController.h"
@@ -4585,6 +4585,24 @@ void TemperatureController::handleMediumPriorityAlarms() {
 
 void TemperatureController::handleLowPriorityAlarms() {
     // TODO: Implement low priority alarm handling scenario
+}
+
+
+bool TemperatureController::bindSensorToPointByBusNumber(uint8_t busNumber, uint8_t pointAddress) {
+    // Find PT1000 sensor on the specified bus
+    for (auto sensor : sensors) {
+        if (sensor->getType() == SensorType::PT1000) {
+            uint8_t sensorBus = getSensorBus(sensor);
+            if (sensorBus == busNumber) {
+                MeasurementPoint* point = getMeasurementPoint(pointAddress);
+                if (point) {
+                    point->bindSensor(sensor);
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
 }
 
 ================================================================================

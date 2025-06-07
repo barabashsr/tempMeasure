@@ -8,12 +8,14 @@
 #include <LittleFS.h>
 #include "TemperatureController.h"
 #include "CSVConfigManager.h"
+#include "SettingsCSVManager.h"
 
 // YAML configuration definition
 extern const char* VARIABLES_DEF_YAML;
 
 class ConfigManager {
 private:
+    SettingsCSVManager settingsCSVManager;
     CSVConfigManager csvManager;
     ConfigAssist conf;
     ConfigAssistHelper* confHelper;
@@ -26,6 +28,7 @@ private:
     
     // Pointer to instance for callback functions
     static ConfigManager* instance;
+    void _applySettingsWithoutRestart();
     
     // Save sensor configuration to file
     //void saveSensorConfig();
