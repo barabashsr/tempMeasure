@@ -1070,3 +1070,21 @@ void TemperatureController::handleMediumPriorityAlarms() {
 void TemperatureController::handleLowPriorityAlarms() {
     // TODO: Implement low priority alarm handling scenario
 }
+
+
+bool TemperatureController::bindSensorToPointByBusNumber(uint8_t busNumber, uint8_t pointAddress) {
+    // Find PT1000 sensor on the specified bus
+    for (auto sensor : sensors) {
+        if (sensor->getType() == SensorType::PT1000) {
+            uint8_t sensorBus = getSensorBus(sensor);
+            if (sensorBus == busNumber) {
+                MeasurementPoint* point = getMeasurementPoint(pointAddress);
+                if (point) {
+                    point->bindSensor(sensor);
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
+}

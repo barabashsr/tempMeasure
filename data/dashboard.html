@@ -246,6 +246,24 @@
             <a href="/alarms.html">Alarms</a>
     
         </nav>
+        <!-- CSV Import/Export Section -->
+        <div class="csv-section" style="margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px;">
+            <h3>Configuration Backup/Restore</h3>
+            
+            <!-- Export Button -->
+            <button id="exportCsvBtn" class="btn btn-primary" style="margin-right: 10px;">
+                📥 Export Configuration to CSV
+            </button>
+            
+            <!-- Import Section -->
+            <input type="file" id="csvFileInput" accept=".csv" style="display: none;">
+            <button id="importCsvBtn" class="btn btn-secondary">
+                📤 Import Configuration from CSV
+            </button>
+            
+            <div id="csvStatus" style="margin-top: 10px; font-weight: bold;"></div>
+        </div>
+
         
 
         
@@ -586,6 +604,78 @@
         window.onload = fetchAndRenderPoints();
         // Optionally, set up periodic refresh if needed
         // setInterval(fetchAndRenderPoints, 10000);
+
+        // Export CSV functionality
+        document.getElementById('exportCsvBtn').addEventListener('click', function() {
+            fetch('/api/csv/export', {
+                method: 'GET'
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.blob();
+                }
+                throw new Error('Export failed');
+            })
+            .then(blob => {
+                // Create download link
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'temperature_config_' + new Date().toISOString().split('T')[0] + '.csv';
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+                document.body.removeChild(a);
+                
+                document.getElementById('csvStatus').innerHTML = '<span style="color: green;">✓ Configuration exported successfully</span>';
+            })
+            .catch(error => {
+                document.getElementById('csvStatus').innerHTML = '<span style="color: red;">✗ Export failed: ' + error.message + '</span>';
+            });
+        });
+
+        // Import CSV functionality
+        document.getElementById('importCsvBtn').addEventListener('click', function() {
+            document.getElementById('csvFileInput').click();
+        });
+
+        document.getElementById('csvFileInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            if (!file.name.toLowerCase().endsWith('.csv')) {
+                document.getElementById('csvStatus').innerHTML = '<span style="color: red;">✗ Please select a CSV file</span>';
+                return;
+            }
+            
+            const formData = new FormData();
+            formData.append('csvFile', file);
+            
+            document.getElementById('csvStatus').innerHTML = '<span style="color: blue;">⏳ Importing configuration...</span>';
+            
+            fetch('/api/csv/import', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('csvStatus').innerHTML = '<span style="color: green;">✓ Configuration imported successfully</span>';
+                    // Refresh the page to show updated data
+                    setTimeout(() => {
+                        location.reload();
+                    }, 2000);
+                } else {
+                    document.getElementById('csvStatus').innerHTML = '<span style="color: red;">✗ Import failed: ' + data.error + '</span>';
+                }
+            })
+            .catch(error => {
+                document.getElementById('csvStatus').innerHTML = '<span style="color: red;">✗ Import failed: ' + error.message + '</span>';
+            });
+            
+            // Reset file input
+            event.target.value = '';
+        });
     </script>
 </body>
 </html>

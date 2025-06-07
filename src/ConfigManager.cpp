@@ -54,7 +54,7 @@ Modbus settings:
 
 ConfigManager::ConfigManager(TemperatureController& tempController)
     : conf("/config.ini", VARIABLES_DEF_YAML),
-      controller(tempController),
+      controller(tempController), csvManager(controller),
       portalActive(false) {
     
     instance = this;
@@ -83,6 +83,8 @@ bool ConfigManager::begin() {
     conf.setRemotUpdateCallback(onConfigChanged);
     
     // IMPORTANT: Register custom routes BEFORE ConfigAssist setup
+
+
     
     // Add route for the main page
     server->on("/dashboard.html", HTTP_GET, [this]() {
@@ -155,6 +157,82 @@ bool ConfigManager::begin() {
             server->send(200, "text/html", "<html><body><h1>Temperature Monitoring System</h1><p><a href='/cfg'>Configuration</a></p><p><a href='/sensors.html'>Sensors</a></p></body></html>");
         }
     });
+
+    
+
+    // Combined points and alarms export
+    server->on("/api/export/config", HTTP_GET, [this]() {
+        String csv = csvManager.exportPointsWithAlarmsToCSV();
+        server->sendHeader("Content-Type", "text/csv");
+        server->sendHeader("Content-Disposition", "attachment; filename=config.csv");
+        server->send(200, "text/csv", csv);
+    });
+
+    // Combined points and alarms import
+    server->on("/api/import/config", HTTP_POST, [this]() {
+        if (!server->hasArg("plain")) {
+            server->send(400, "application/json", "{\"error\":\"No CSV data provided\"}");
+            return;
+        }
+        
+        bool success = csvManager.importPointsWithAlarmsFromCSV(server->arg("plain"));
+        if (success) {
+            savePointsConfig();
+            saveAlarmsConfig();
+            server->send(200, "application/json", "{\"status\":\"success\",\"message\":\"Configuration imported successfully\"}");
+        } else {
+            String error = csvManager.getLastError();
+            server->send(400, "application/json", "{\"status\":\"error\",\"message\":\"" + error + "\"}");
+        }
+    });
+
+
+    // Add these to your ConfigManager::begin() method after existing API endpoints
+
+    // CSV Export endpoint
+    server->on("/api/csv/export", HTTP_GET, [this]() {
+        CSVConfigManager csvManager(controller);
+        String csvData = csvManager.exportPointsWithAlarmsToCSV();
+        
+        if (csvData.length() > 0) {
+            String filename = "temperature_config_" + String(millis()) + ".csv";
+            server->sendHeader("Content-Type", "text/csv");
+            server->sendHeader("Content-Disposition", "attachment; filename=\"" + filename + "\"");
+            server->send(200, "text/csv", csvData);
+        } else {
+            server->send(500, "application/json", "{\"error\":\"Failed to generate CSV\"}");
+        }
+    });
+
+    // CSV Import endpoint
+   // In ConfigManager.cpp, update the CSV import endpoint:
+    server->on("/api/csv/import", HTTP_POST, [this]() {
+        // This will be called after file upload is complete
+    }, [this]() {
+        // Handle file upload
+        HTTPUpload& upload = server->upload();
+        static String csvContent;
+        
+        if (upload.status == UPLOAD_FILE_START) {
+            csvContent = "";
+            Serial.printf("Upload Start: %s\n", upload.filename.c_str());
+        } else if (upload.status == UPLOAD_FILE_WRITE) {
+            csvContent += String((char*)upload.buf, upload.currentSize);
+        } else if (upload.status == UPLOAD_FILE_END) {
+            Serial.printf("Upload End: %s (%u bytes)\n", upload.filename.c_str(), upload.totalSize);
+            
+            // Process the uploaded CSV
+            if (csvManager.importPointsWithAlarmsFromCSV(csvContent)) {
+                server->send(200, "application/json", "{\"success\":true}");
+            } else {
+                String error = csvManager.getLastError();
+                server->send(400, "application/json", "{\"success\":false,\"error\":\"" + error + "\"}");
+            }
+            csvContent = "";
+        }
+    });
+
+
 
 
     // API endpoints for sensor data

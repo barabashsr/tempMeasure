@@ -107,6 +107,8 @@ public:
     void handleMediumPriorityAlarms();
     void handleLowPriorityAlarms();
 
+    bool bindSensorToPointByBusNumber(uint8_t busNumber, uint8_t pointAddress);
+
 
 
 private:

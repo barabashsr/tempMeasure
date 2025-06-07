@@ -7,12 +7,14 @@
 #include <WebServer.h>
 #include <LittleFS.h>
 #include "TemperatureController.h"
+#include "CSVConfigManager.h"
 
 // YAML configuration definition
 extern const char* VARIABLES_DEF_YAML;
 
 class ConfigManager {
 private:
+    CSVConfigManager csvManager;
     ConfigAssist conf;
     ConfigAssistHelper* confHelper;
     TemperatureController& controller;
@@ -95,6 +97,8 @@ public:
     
     void saveAlarmsConfig();
     void loadAlarmsConfig();
+
+    CSVConfigManager& getCSVManager() { return csvManager; }
 };
 
 // Initialize static member

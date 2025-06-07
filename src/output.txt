@@ -1,0 +1,4753 @@
+
+================================================================================
+File: Alarm.cpp
+Size: 14.4 kB
+================================================================================
+
+#include "Alarm.h"
+
+Alarm::Alarm(AlarmType type, MeasurementPoint* source, AlarmPriority priority)
+    : _type(type), _stage(AlarmStage::NEW), _priority(priority), _source(source),
+      _timestamp(millis()), _acknowledgedTime(0), _clearedTime(0), 
+      _delayTime(5 * 60 * 1000), _enabled(true), _hysteresis(1) // Add _hysteresis(1) - 1 degree default
+{
+    if (_source) {
+        _configKey = "alarm_" + String(_source->getAddress()) + "_" + String(static_cast<int>(_type));
+    }
+
+    _updateMessage();
+    
+    Serial.printf("New alarm created: %s for point %d (%s)\n", 
+                  getTypeString().c_str(), 
+                  _source ? _source->getAddress() : -1,
+                  _source ? _source->getName().c_str() : "Unknown");
+}
+
+
+Alarm::~Alarm() {
+    Serial.printf("Alarm destroyed: %s for point %d\n", 
+                  getTypeString().c_str(), 
+                  _source ? _source->getAddress() : -1);
+}
+
+void Alarm::acknowledge() {
+    if (_stage == AlarmStage::NEW || _stage == AlarmStage::ACTIVE) {
+        _stage = AlarmStage::ACKNOWLEDGED;
+        _acknowledgedTime = millis();
+        _updateMessage();
+        
+        Serial.printf("Alarm acknowledged: %s for point %d\n", 
+                      getTypeString().c_str(), 
+                      _source ? _source->getAddress() : -1);
+    }
+}
+
+void Alarm::clear() {
+    if (_stage == AlarmStage::ACTIVE || _stage == AlarmStage::ACKNOWLEDGED) {
+        _stage = AlarmStage::CLEARED;
+        _clearedTime = millis();
+        _updateMessage();
+        
+        Serial.printf("Alarm cleared: %s for point %d\n", 
+                      getTypeString().c_str(), 
+                      _source ? _source->getAddress() : -1);
+    }
+}
+
+void Alarm::resolve() {
+    _stage = AlarmStage::RESOLVED;
+    _updateMessage();
+    
+    Serial.printf("Alarm resolved: %s for point %d\n", 
+                  getTypeString().c_str(), 
+                  _source ? _source->getAddress() : -1);
+}
+
+void Alarm::reactivate() {
+    if (_stage == AlarmStage::CLEARED) {
+        _stage = _acknowledgedTime > 0 ? AlarmStage::ACKNOWLEDGED : AlarmStage::ACTIVE;
+        _clearedTime = 0;
+        _updateMessage();
+        
+        Serial.printf("Alarm reactivated: %s for point %d\n", 
+                      getTypeString().c_str(), 
+                      _source ? _source->getAddress() : -1);
+    }
+}
+
+bool Alarm::_checkCondition() {
+    if (!_source) {
+        Serial.println("Alarm: No source point");
+        return false;
+    }
+    
+    int16_t currentTemp = _source->getCurrentTemp();
+    bool condition = false;
+    
+    switch (_type) {
+        case AlarmType::HIGH_TEMPERATURE:
+            {
+                int16_t threshold = _source->getHighAlarmThreshold();
+                if (_stage == AlarmStage::CLEARED || _stage == AlarmStage::RESOLVED) {
+                    // When cleared/resolved, need temperature to drop below (threshold - hysteresis) to stay cleared
+                    // Return true if still above (threshold - hysteresis) = condition still exists
+                    condition = currentTemp > (threshold - _hysteresis);
+                } else {
+                    // Normal activation check: activate when >= threshold
+                    condition = currentTemp >= threshold;
+                }
+                Serial.printf("HIGH_TEMP check: Point %d, Temp=%d, Threshold=%d, Hysteresis=%d, Stage=%s, Condition=%s\n",
+                             _source->getAddress(), currentTemp, threshold, _hysteresis,
+                             getStageString().c_str(), condition ? "TRUE" : "FALSE");
+            }
+            break;
+            
+        case AlarmType::LOW_TEMPERATURE:
+            {
+                int16_t threshold = _source->getLowAlarmThreshold();
+                if (_stage == AlarmStage::CLEARED || _stage == AlarmStage::RESOLVED) {
+                    // When cleared/resolved, need temperature to rise above (threshold + hysteresis) to stay cleared
+                    // Return true if still below (threshold + hysteresis) = condition still exists
+                    condition = currentTemp < (threshold + _hysteresis);
+                } else {
+                    // Normal activation check: activate when <= threshold
+                    condition = currentTemp <= threshold;
+                }
+                Serial.printf("LOW_TEMP check: Point %d, Temp=%d, Threshold=%d, Hysteresis=%d, Stage=%s, Condition=%s\n",
+                             _source->getAddress(), currentTemp, threshold, _hysteresis,
+                             getStageString().c_str(), condition ? "TRUE" : "FALSE");
+            }
+            break;
+            
+        case AlarmType::SENSOR_ERROR:
+            condition = _source->getErrorStatus() != 0;
+            Serial.printf("SENSOR_ERROR check: Point %d, Error=%d, Condition=%s\n",
+                         _source->getAddress(), _source->getErrorStatus(), 
+                         condition ? "TRUE" : "FALSE");
+            break;
+            
+        case AlarmType::SENSOR_DISCONNECTED:
+            condition = _source->getBoundSensor() == nullptr;
+            Serial.printf("DISCONNECTED check: Point %d, Sensor=%p, Condition=%s\n",
+                         _source->getAddress(), _source->getBoundSensor(), 
+                         condition ? "TRUE" : "FALSE");
+            break;
+            
+        default:
+            Serial.println("Unknown alarm type");
+            return false;
+    }
+    
+    return condition;
+}
+
+
+
+
+// bool Alarm::_checkCondition() {
+//     if (!_source) {
+//         Serial.println("Alarm: No source point");
+//         return false;
+//     }
+//     const int HYSTERESIS = 2; // 1 degree hysteresis
+    
+//     bool condition = false;
+    
+//     switch (_type) {
+//         // case AlarmType::HIGH_TEMPERATURE:
+//         //     condition = _source->getCurrentTemp() >= _source->getHighAlarmThreshold();
+//         //     Serial.printf("HIGH_TEMP check: Point %d, Temp=%d, Threshold=%d, Condition=%s\n",
+//         //                  _source->getAddress(), _source->getCurrentTemp(), 
+//         //                  _source->getHighAlarmThreshold(), condition ? "TRUE" : "FALSE");
+//         //     break;
+            
+//         // case AlarmType::LOW_TEMPERATURE:
+//         //     condition = _source->getCurrentTemp() <= _source->getLowAlarmThreshold();
+//         //     Serial.printf("LOW_TEMP check: Point %d, Temp=%d, Threshold=%d, Condition=%s\n",
+//         //                  _source->getAddress(), _source->getCurrentTemp(), 
+//         //                  _source->getLowAlarmThreshold(), condition ? "TRUE" : "FALSE");
+//         //     break;
+        
+
+//         case AlarmType::HIGH_TEMPERATURE:
+//             if (_stage == AlarmStage::CLEARED) {
+//                 // When cleared, need temperature to go below threshold - hysteresis
+//                 return _source->getCurrentTemp() >= (_source->getHighAlarmThreshold() - HYSTERESIS);
+//             } else {
+//                 // Normal check
+//                 return _source->getCurrentTemp() >= _source->getHighAlarmThreshold();
+//             }
+            
+//         case AlarmType::LOW_TEMPERATURE:
+//             if (_stage == AlarmStage::CLEARED) {
+//                 // When cleared, need temperature to go above threshold + hysteresis
+//                 return _source->getCurrentTemp() <= (_source->getLowAlarmThreshold() + HYSTERESIS);
+//             } else {
+//                 // Normal check
+//                 return _source->getCurrentTemp() <= _source->getLowAlarmThreshold();
+//             }
+            
+//         case AlarmType::SENSOR_ERROR:
+//             condition = _source->getErrorStatus() != 0;
+//             Serial.printf("SENSOR_ERROR check: Point %d, Error=%d, Condition=%s\n",
+//                          _source->getAddress(), _source->getErrorStatus(), 
+//                          condition ? "TRUE" : "FALSE");
+//             break;
+            
+//         case AlarmType::SENSOR_DISCONNECTED:
+//             condition = _source->getBoundSensor() == nullptr;
+//             Serial.printf("DISCONNECTED check: Point %d, Sensor=%p, Condition=%s\n",
+//                          _source->getAddress(), _source->getBoundSensor(), 
+//                          condition ? "TRUE" : "FALSE");
+//             break;
+            
+//         default:
+//             Serial.println("Unknown alarm type");
+//             return false;
+//     }
+    
+//     return condition;
+// }
+
+
+
+bool Alarm::isDelayElapsed() const {
+    if (_stage != AlarmStage::CLEARED || _clearedTime == 0) {
+        return false;
+    }
+    return (millis() - _clearedTime) >= _delayTime;
+}
+
+String Alarm::getDisplayText() const {
+    if (!_source) return "Unknown Alarm";
+    
+    String text = String(_source->getAddress()) + "." + _source->getName();
+    text += "\n";
+    
+    switch (_type) {
+        case AlarmType::HIGH_TEMPERATURE:
+            text += "H: " + String(_source->getCurrentTemp()) + "°C";
+            break;
+        case AlarmType::LOW_TEMPERATURE:
+            text += "L: " + String(_source->getCurrentTemp()) + "°C";
+            break;
+        case AlarmType::SENSOR_ERROR:
+            text += "E: " + String(_source->getErrorStatus());
+            break;
+        case AlarmType::SENSOR_DISCONNECTED:
+            text += "DISCONNECTED";
+            break;
+    }
+    
+    if (_stage == AlarmStage::ACKNOWLEDGED) {
+        text += " ACK";
+    }
+    
+    return text;
+}
+
+String Alarm::getStatusText() const {
+    String status = getTypeString() + " - " + getStageString();
+    if (_source) {
+        status += " (Point " + String(_source->getAddress()) + ")";
+    }
+    return status;
+}
+
+void Alarm::_updateMessage() {
+    _message = getDisplayText();
+}
+
+String Alarm::getTypeString() const {
+    switch (_type) {
+        case AlarmType::HIGH_TEMPERATURE: return "HIGH_TEMP";
+        case AlarmType::LOW_TEMPERATURE: return "LOW_TEMP";
+        case AlarmType::SENSOR_ERROR: return "SENSOR_ERROR";
+        case AlarmType::SENSOR_DISCONNECTED: return "DISCONNECTED";
+        default: return "UNKNOWN";
+    }
+}
+
+String Alarm::getStageString() const {
+    switch (_stage) {
+        case AlarmStage::NEW: return "NEW";
+        case AlarmStage::ACTIVE: return "ACTIVE";
+        case AlarmStage::ACKNOWLEDGED: return "ACKNOWLEDGED";
+        case AlarmStage::CLEARED: return "CLEARED";
+        case AlarmStage::RESOLVED: return "RESOLVED";
+        default: return "UNKNOWN";
+    }
+}
+
+String Alarm::_getPriorityString() const {
+    switch (_priority) {
+        case AlarmPriority::PRIORITY_LOW: return "LOW";
+        case AlarmPriority::PRIORITY_MEDIUM: return "MEDIUM";
+        case AlarmPriority::PRIORITY_HIGH: return "HIGH";
+        case AlarmPriority::PRIORITY_CRITICAL: return "CRITICAL";
+        default: return "UNKNOWN";
+    }
+}
+
+bool Alarm::operator<(const Alarm& other) const {
+    // Sort by priority first (higher priority first), then by timestamp (older first)
+    if (_priority != other._priority) {
+        return static_cast<int>(_priority) > static_cast<int>(other._priority);
+    }
+    return _timestamp < other._timestamp;
+}
+
+bool Alarm::operator==(const Alarm& other) const {
+    return _type == other._type && 
+           _source == other._source && 
+           _timestamp == other._timestamp;
+}
+
+
+
+String Alarm::getConfigKey() const {
+    return _configKey;
+}
+
+void Alarm::setConfigKey(const String& key) {
+    _configKey = key;
+}
+
+
+void Alarm::setPriority(AlarmPriority priority){
+    _priority = priority;
+    
+};
+
+void Alarm::setStage(AlarmStage stage){
+    _stage = stage;
+};
+
+bool Alarm::updateCondition() {
+    if (!_source) {
+        Serial.println("Alarm updateCondition: No source");
+        return true; // Keep alarm even without source
+    }
+    
+    bool conditionExists = _checkCondition();
+    AlarmStage oldStage = _stage;
+    
+    Serial.printf("Alarm update: Point %d, Type=%s, Stage=%s, Condition=%s\n",
+                  _source->getAddress(), getTypeString().c_str(), 
+                  getStageString().c_str(), conditionExists ? "EXISTS" : "CLEARED");
+    
+    switch (_stage) {
+        case AlarmStage::NEW:
+            if (conditionExists) {
+                _stage = AlarmStage::ACTIVE;
+                Serial.printf("Alarm %s: NEW -> ACTIVE\n", getTypeString().c_str());
+            } else {
+                // Condition cleared before becoming active
+                resolve();
+                Serial.printf("Alarm %s: NEW -> RESOLVED (condition cleared)\n", getTypeString().c_str());
+            }
+            break;
+            
+        case AlarmStage::ACTIVE:
+            if (!conditionExists) {
+                clear();
+                Serial.printf("Alarm %s: ACTIVE -> CLEARED (condition no longer exists)\n", getTypeString().c_str());
+            }
+            break;
+            
+        case AlarmStage::ACKNOWLEDGED:
+            if (!conditionExists) {
+                clear();
+                Serial.printf("Alarm %s: ACKNOWLEDGED -> CLEARED (condition no longer exists)\n", getTypeString().c_str());
+            }
+            break;
+            
+        case AlarmStage::CLEARED:
+            if (conditionExists) {
+                // Condition returned, reactivate
+                _stage = _acknowledgedTime > 0 ? AlarmStage::ACKNOWLEDGED : AlarmStage::ACTIVE;
+                _clearedTime = 0;
+                Serial.printf("Alarm %s: CLEARED -> %s (condition returned)\n", 
+                             getTypeString().c_str(), getStageString().c_str());
+            } else if (isDelayElapsed()) {
+                resolve();
+                Serial.printf("Alarm %s: CLEARED -> RESOLVED (delay elapsed)\n", getTypeString().c_str());
+            }
+            break;
+            
+        case AlarmStage::RESOLVED:
+            // ADD THIS CASE: Reactivate resolved alarms when condition returns
+            if (conditionExists) {
+                _stage = AlarmStage::ACTIVE;
+                _timestamp = millis(); // Reset timestamp
+                _acknowledgedTime = 0; // Reset acknowledged time
+                _clearedTime = 0;      // Reset cleared time
+                Serial.printf("Alarm %s: RESOLVED -> ACTIVE (condition returned)\n", getTypeString().c_str());
+            }
+            // If condition doesn't exist, stay resolved
+            break;
+    }
+    
+    if (oldStage != _stage) {
+        _updateMessage();
+    }
+    
+    return true; // Always keep alarm
+}
+
+
+
+================================================================================
+File: CSVConfigManager.cpp
+Size: 12.6 kB
+================================================================================
+
+#include "CSVConfigManager.h"
+#include <LittleFS.h>
+
+CSVConfigManager::CSVConfigManager(TemperatureController& controller) 
+    : _controller(controller), _lastError("") {
+}
+
+String CSVConfigManager::exportPointsWithAlarmsToCSV() {
+    // Create header with bus number instead of chip select
+    String csv = "PointAddress,PointName,PointType,CurrentTemp,MinTemp,MaxTemp,";
+    csv += "LowTempThreshold,HighTempThreshold,SensorROM,SensorBusNumber,";
+    csv += "HIGH_TEMPERATURE,LOW_TEMPERATURE,SENSOR_ERROR,SENSOR_DISCONNECTED\n";
+    
+    // Add sample line with point -1 showing all possible priorities
+    csv += "-1,SAMPLE_POINT,SAMPLE,0,0,0,0,0,,";
+    csv += ",CRITICAL,HIGH,MEDIUM,LOW\n";
+    
+    // Export DS18B20 points (0-49)
+    for (int i = 0; i < 50; i++) {
+        MeasurementPoint* point = _controller.getDS18B20Point(i);
+        if (point) {
+            _exportPointToCSV(csv, point, "DS18B20");
+        }
+    }
+    
+    // Export PT1000 points (50-59)
+    for (int i = 0; i < 10; i++) {
+        MeasurementPoint* point = _controller.getPT1000Point(i);
+        if (point) {
+            _exportPointToCSV(csv, point, "PT1000");
+        }
+    }
+    
+    return csv;
+}
+
+void CSVConfigManager::_exportPointToCSV(String& csv, MeasurementPoint* point, const String& pointType) {
+    if (!point) return;
+    
+    // Get bound sensor info
+    Sensor* sensor = point->getBoundSensor();
+    String romString = "";
+    String busNumber = "";
+    
+    if (sensor) {
+        if (sensor->getType() == SensorType::DS18B20) {
+            romString = sensor->getDS18B20RomString();
+        } else if (sensor->getType() == SensorType::PT1000) {
+            busNumber = String(sensor->getPT1000BusNumber()); // Changed from ChipSelectPin to BusNumber
+        }
+    }
+    
+    // Build the CSV row
+    csv += String(point->getAddress()) + ",";
+    csv += _escapeCSVField(point->getName()) + ",";
+    csv += pointType + ",";
+    csv += String(point->getCurrentTemp()) + ",";
+    csv += String(point->getMinTemp()) + ",";
+    csv += String(point->getMaxTemp()) + ",";
+    csv += String(point->getLowAlarmThreshold()) + ",";
+    csv += String(point->getHighAlarmThreshold()) + ",";
+    csv += _escapeCSVField(romString) + ",";
+    csv += busNumber + ","; // Changed variable name
+    
+    // Add alarm priorities for each type
+    csv += _getAlarmPriorityForPoint(point->getAddress(), AlarmType::HIGH_TEMPERATURE) + ",";
+    csv += _getAlarmPriorityForPoint(point->getAddress(), AlarmType::LOW_TEMPERATURE) + ",";
+    csv += _getAlarmPriorityForPoint(point->getAddress(), AlarmType::SENSOR_ERROR) + ",";
+    csv += _getAlarmPriorityForPoint(point->getAddress(), AlarmType::SENSOR_DISCONNECTED) + "\n";
+}
+
+
+bool CSVConfigManager::importPointsWithAlarmsFromCSV(const String& csvData) {
+    if (!validatePointsCSV(csvData)) {
+        return false;
+    }
+    
+    int lineStart = 0;
+    int lineEnd = csvData.indexOf('\n');
+    
+    // Skip header line
+    if (lineEnd == -1) {
+        _lastError = "Invalid CSV format";
+        return false;
+    }
+    lineStart = lineEnd + 1;
+    
+    // Skip sample line (point -1)
+    lineEnd = csvData.indexOf('\n', lineStart);
+    if (lineEnd == -1) {
+        _lastError = "Missing sample line";
+        return false;
+    }
+    lineStart = lineEnd + 1;
+    
+    // Clear existing alarms
+    _controller.clearConfiguredAlarms();
+    
+    // Parse each data line
+    while (lineStart < csvData.length()) {
+        lineEnd = csvData.indexOf('\n', lineStart);
+        if (lineEnd == -1) lineEnd = csvData.length();
+        
+        String line = csvData.substring(lineStart, lineEnd);
+        line.trim();
+        
+        if (line.length() > 0) {
+            if (!_parseCSVLine(line)) {
+                return false;
+            }
+        }
+        
+        lineStart = lineEnd + 1;
+    }
+    
+    return true;
+}
+
+
+bool CSVConfigManager::_parseAlarmFromCSV(int pointAddress, const String& alarmType, 
+                                         const String& priority, const String& enabled, 
+                                         const String& hysteresis) {
+    AlarmType type = _parseAlarmType(alarmType);
+    AlarmPriority prio = _parsePriority(priority);
+    bool isEnabled = (enabled.equalsIgnoreCase("true"));
+    int16_t hyst = hysteresis.toInt();
+    
+    // Add alarm to controller
+    if (_controller.addAlarm(type, pointAddress, prio)) {
+        // Find the alarm we just added and configure it
+        String configKey = "alarm_" + String(pointAddress) + "_" + String(static_cast<int>(type));
+        Alarm* alarm = _controller.findAlarm(configKey);
+        if (alarm) {
+            alarm->setEnabled(isEnabled);
+            alarm->setHysteresis(hyst);
+            return true;
+        }
+    }
+    
+    return false;
+}
+
+String CSVConfigManager::_escapeCSVField(const String& field) {
+    if (field.indexOf(',') >= 0 || field.indexOf('"') >= 0 || field.indexOf('\n') >= 0) {
+        String escaped = "\"";
+        for (int i = 0; i < field.length(); i++) {
+            if (field.charAt(i) == '"') {
+                escaped += "\"\"";
+            } else {
+                escaped += field.charAt(i);
+            }
+        }
+        escaped += "\"";
+        return escaped;
+    }
+    return field;
+}
+
+String CSVConfigManager::_unescapeCSVField(const String& field) {
+    if (field.startsWith("\"") && field.endsWith("\"")) {
+        String unescaped = field.substring(1, field.length() - 1);
+        unescaped.replace("\"\"", "\"");
+        return unescaped;
+    }
+    return field;
+}
+
+String CSVConfigManager::_getAlarmTypeString(AlarmType type) {
+    switch (type) {
+        case AlarmType::HIGH_TEMPERATURE: return "HIGH_TEMP";
+        case AlarmType::LOW_TEMPERATURE: return "LOW_TEMP";
+        case AlarmType::SENSOR_ERROR: return "SENSOR_ERROR";
+        case AlarmType::SENSOR_DISCONNECTED: return "DISCONNECTED";
+        default: return "UNKNOWN";
+    }
+}
+
+AlarmType CSVConfigManager::_parseAlarmType(const String& typeStr) {
+    if (typeStr == "HIGH_TEMP") return AlarmType::HIGH_TEMPERATURE;
+    if (typeStr == "LOW_TEMP") return AlarmType::LOW_TEMPERATURE;
+    if (typeStr == "SENSOR_ERROR") return AlarmType::SENSOR_ERROR;
+    if (typeStr == "DISCONNECTED") return AlarmType::SENSOR_DISCONNECTED;
+    return AlarmType::HIGH_TEMPERATURE; // Default
+}
+
+String CSVConfigManager::_getPriorityString(AlarmPriority priority) {
+    switch (priority) {
+        case AlarmPriority::PRIORITY_LOW: return "LOW";
+        case AlarmPriority::PRIORITY_MEDIUM: return "MEDIUM";
+        case AlarmPriority::PRIORITY_HIGH: return "HIGH";
+        case AlarmPriority::PRIORITY_CRITICAL: return "CRITICAL";
+        default: return "MEDIUM";
+    }
+}
+
+AlarmPriority CSVConfigManager::_parsePriority(const String& priorityStr) {
+    if (priorityStr == "LOW") return AlarmPriority::PRIORITY_LOW;
+    if (priorityStr == "MEDIUM") return AlarmPriority::PRIORITY_MEDIUM;
+    if (priorityStr == "HIGH") return AlarmPriority::PRIORITY_HIGH;
+    if (priorityStr == "CRITICAL") return AlarmPriority::PRIORITY_CRITICAL;
+    return AlarmPriority::PRIORITY_MEDIUM; // Default
+}
+
+bool CSVConfigManager::validatePointsCSV(const String& csvData) {
+    if (csvData.length() == 0) {
+        _lastError = "Empty CSV data";
+        return false;
+    }
+    
+    // Check for required headers
+    String requiredHeaders[] = {
+        "PointAddress", "PointName", "PointType", "CurrentTemp", "MinTemp", "MaxTemp",
+        "LowTempThreshold", "HighTempThreshold", "SensorROM", "SensorBusNumber", // Changed header
+        "HIGH_TEMPERATURE", "LOW_TEMPERATURE", "SENSOR_ERROR", "SENSOR_DISCONNECTED"
+    };
+    
+    int headerLine = csvData.indexOf('\n');
+    if (headerLine == -1) {
+        _lastError = "No header line found";
+        return false;
+    }
+    
+    String header = csvData.substring(0, headerLine);
+    for (const String& reqHeader : requiredHeaders) {
+        if (header.indexOf(reqHeader) == -1) {
+            _lastError = "Missing required header: " + reqHeader;
+            return false;
+        }
+    }
+    
+    return true;
+}
+
+
+
+bool CSVConfigManager::saveCSVToFile(const String& filename, const String& csvData) {
+    if (!LittleFS.begin()) {
+        _lastError = "Failed to mount filesystem";
+        return false;
+    }
+    
+    File file = LittleFS.open(filename, "w");
+    if (!file) {
+        _lastError = "Failed to open file for writing: " + filename;
+        return false;
+    }
+    
+    size_t written = file.print(csvData);
+    file.close();
+    
+    if (written != csvData.length()) {
+        _lastError = "Failed to write complete data to file";
+        return false;
+    }
+    
+    return true;
+}
+
+String CSVConfigManager::loadCSVFromFile(const String& filename) {
+    if (!LittleFS.begin()) {
+        _lastError = "Failed to mount filesystem";
+        return "";
+    }
+    
+    File file = LittleFS.open(filename, "r");
+    if (!file) {
+        _lastError = "Failed to open file for reading: " + filename;
+        return "";
+    }
+    
+    String content = file.readString();
+    file.close();
+    
+    return content;
+}
+
+// Placeholder implementations for sensor-specific methods
+String CSVConfigManager::exportSensorsToCSV() {
+    // Implementation for sensor export if needed
+    return "";
+}
+
+bool CSVConfigManager::importSensorsFromCSV(const String& csvData) {
+    // Implementation for sensor import if needed
+    return false;
+}
+
+
+bool CSVConfigManager::_parseCSVLine(const String& line) {
+    // Simple CSV parsing - split by commas
+    int fieldIndex = 0;
+    int startPos = 0;
+    String fields[14]; // 14 fields in our CSV format
+    
+    for (int i = 0; i <= line.length(); i++) {
+        if (i == line.length() || line.charAt(i) == ',') {
+            if (fieldIndex < 14) {
+                fields[fieldIndex] = line.substring(startPos, i);
+                fields[fieldIndex].trim();
+                // Remove quotes if present
+                if (fields[fieldIndex].startsWith("\"") && fields[fieldIndex].endsWith("\"")) {
+                    fields[fieldIndex] = fields[fieldIndex].substring(1, fields[fieldIndex].length() - 1);
+                }
+            }
+            fieldIndex++;
+            startPos = i + 1;
+        }
+    }
+    
+    if (fieldIndex < 14) {
+        _lastError = "Insufficient fields in CSV line";
+        return false;
+    }
+    
+    // Parse fields
+    int pointAddress = fields[0].toInt();
+    
+    // Skip sample line (point -1)
+    if (pointAddress == -1) {
+        return true;
+    }
+    
+    String pointName = fields[1];
+    String pointType = fields[2];
+    int16_t lowThreshold = fields[6].toInt();
+    int16_t highThreshold = fields[7].toInt();
+    String romString = fields[8];
+    String busNumberStr = fields[9]; // Changed from chipSelectStr
+    
+    // Update measurement point
+    MeasurementPoint* point = _controller.getMeasurementPoint(pointAddress);
+    if (point) {
+        point->setName(pointName);
+        point->setLowAlarmThreshold(lowThreshold);
+        point->setHighAlarmThreshold(highThreshold);
+        
+        // Bind sensor if specified
+        if (!romString.isEmpty()) {
+            _controller.bindSensorToPointByRom(romString, pointAddress);
+        } else if (!busNumberStr.isEmpty()) {
+            int busNumber = busNumberStr.toInt();
+            _controller.bindSensorToPointByBusNumber(busNumber, pointAddress); // Changed method name
+        }
+    }
+    
+    // Parse alarms for each type (rest remains the same)
+    String alarmPriorities[4] = {fields[10], fields[11], fields[12], fields[13]};
+    AlarmType alarmTypes[4] = {
+        AlarmType::HIGH_TEMPERATURE,
+        AlarmType::LOW_TEMPERATURE,
+        AlarmType::SENSOR_ERROR,
+        AlarmType::SENSOR_DISCONNECTED
+    };
+    
+    for (int i = 0; i < 4; i++) {
+        if (!alarmPriorities[i].isEmpty()) {
+            AlarmPriority priority = _parsePriority(alarmPriorities[i]);
+            if (!_controller.addAlarm(alarmTypes[i], pointAddress, priority)) {
+                _lastError = "Failed to add alarm for point " + String(pointAddress);
+                return false;
+            }
+        }
+    }
+    
+    return true;
+}
+
+
+String CSVConfigManager::_getAlarmPriorityForPoint(int pointAddress, AlarmType alarmType) {
+    // Find alarm of specific type for this point
+    for (int i = 0; i < _controller.getAlarmCount(); i++) {
+        Alarm* alarm = _controller.getAlarmByIndex(i);
+        if (alarm && alarm->getPointAddress() == pointAddress && alarm->getType() == alarmType) {
+            return _getPriorityString(alarm->getPriority());
+        }
+    }
+    return ""; // No alarm of this type for this point
+}
+
+
+================================================================================
+File: ConfigManager.cpp
+Size: 42.02 kB
+================================================================================
+
+#include "ConfigManager.h"
+#include <ArduinoJson.h>
+
+
+ConfigManager* ConfigManager::instance = nullptr;
+
+
+// YAML configuration definition
+const char* VARIABLES_DEF_YAML PROGMEM = R"~(
+Wifi settings:
+  - st_ssid:
+      label: WiFi SSID
+      default: Beeline_2G_F13F37
+  - st_pass:
+      label: WiFi Password
+      default: 1122334455667788
+  - host_name:
+      label: Device Hostname
+      default: 'temp-monitor-{mac}'
+
+Device settings:
+  - device_id:
+      label: Device ID
+      type: number
+      min: 1
+      max: 9999
+      default: 1000
+  - firmware_version:
+      label: Firmware Version
+      default: '1.0'
+      readonly: true
+  - measurement_period:
+      label: Measurement Period (seconds)
+      type: number
+      min: 1
+      max: 3600
+      default: 10
+
+Modbus settings:
+  - modbus_enabled:
+      label: Enable Modbus RTU
+      checked: true
+  - modbus_address:
+      label: Modbus Device Address
+      type: number
+      min: 1
+      max: 247
+      default: 1
+  - modbus_baud_rate:
+      label: Baud Rate
+      options: '4800', '9600', '19200', '38400', '57600', '115200'
+      default: '9600'
+)~";
+
+ConfigManager::ConfigManager(TemperatureController& tempController)
+    : conf("/config.ini", VARIABLES_DEF_YAML),
+      controller(tempController), csvManager(controller),
+      portalActive(false) {
+    
+    instance = this;
+    server = new WebServer(80);
+    confHelper = new ConfigAssistHelper(conf);
+}
+
+ConfigManager::~ConfigManager() {
+    if (server) {
+        delete server;
+    }
+    
+    if (confHelper) {
+        delete confHelper;
+    }
+}
+
+bool ConfigManager::begin() {
+    // Initialize LittleFS
+    if (!LittleFS.begin(true)) {
+        Serial.println("LittleFS mount failed");
+        return false;
+    }
+    
+    // Set callback function for configuration changes
+    conf.setRemotUpdateCallback(onConfigChanged);
+    
+    // IMPORTANT: Register custom routes BEFORE ConfigAssist setup
+
+
+    
+    // Add route for the main page
+    server->on("/dashboard.html", HTTP_GET, [this]() {
+        if (LittleFS.exists("/dashboard.html")) {
+            server->sendHeader("HTTP/1.1 200 OK", "");
+            server->sendHeader("Content-Type", "text/html");
+            server->sendHeader("Connection", "close");
+            server->sendHeader("Cache-Control", "max-age=3600");
+            File file = LittleFS.open("/dashboard.html", "r");
+            server->streamFile(file, "text/html");
+            file.close();
+        } else {
+            server->sendHeader("HTTP/1.1 200 OK", "");
+            server->sendHeader("Content-Type", "text/html");
+            server->sendHeader("Connection", "close");
+            server->send(200, "text/html", "<html><body><h1>Temperature Monitoring System</h1><p><a href='/cfg'>Configuration</a></p><p><a href='/sensors.html'>Sensors</a></p></body></html>");
+        }
+    });
+    
+    // Add route for the sensors page
+    server->on("/sensors.html", HTTP_GET, [this]() {
+        if (LittleFS.exists("/sensors.html")) {
+            server->sendHeader("HTTP/1.1 200 OK", "");
+            server->sendHeader("Content-Type", "text/html");
+            server->sendHeader("Connection", "close");
+            server->sendHeader("Cache-Control", "max-age=3600");
+            File file = LittleFS.open("/sensors.html", "r");
+            server->streamFile(file, "text/html");
+            file.close();
+        } else {
+            server->sendHeader("HTTP/1.1 200 OK", "");
+            server->sendHeader("Content-Type", "text/plain");
+            server->sendHeader("Connection", "close");
+            server->send(404, "text/plain", "Sensors page not found");
+        }
+    });
+    server->on("/points.html", HTTP_GET, [this]() {
+        if (LittleFS.exists("/points.html")) {
+            server->sendHeader("HTTP/1.1 200 OK", "");
+            server->sendHeader("Content-Type", "text/html");
+            server->sendHeader("Connection", "close");
+            server->sendHeader("Cache-Control", "max-age=3600");
+            File file = LittleFS.open("/points.html", "r");
+            server->streamFile(file, "text/html");
+            file.close();
+        } else {
+            server->sendHeader("HTTP/1.1 200 OK", "");
+            server->sendHeader("Content-Type", "text/plain");
+            server->sendHeader("Connection", "close");
+            server->send(404, "text/plain", "Points page not found");
+        }
+    });
+
+
+
+
+    server->on("/alarms.html", HTTP_GET, [this]() {
+        if (LittleFS.exists("/alarms.html")) {
+            server->sendHeader("HTTP/1.1 200 OK", "");
+            server->sendHeader("Content-Type", "text/html");
+            server->sendHeader("Connection", "close");
+            server->sendHeader("Cache-Control", "max-age=3600");
+            File file = LittleFS.open("/alarms.html", "r");
+            server->streamFile(file, "text/html");
+            file.close();
+        } else {
+            server->sendHeader("HTTP/1.1 200 OK", "");
+            server->sendHeader("Content-Type", "text/html");
+            server->sendHeader("Connection", "close");
+            server->send(200, "text/html", "<html><body><h1>Temperature Monitoring System</h1><p><a href='/cfg'>Configuration</a></p><p><a href='/sensors.html'>Sensors</a></p></body></html>");
+        }
+    });
+
+    
+
+    // Combined points and alarms export
+    server->on("/api/export/config", HTTP_GET, [this]() {
+        String csv = csvManager.exportPointsWithAlarmsToCSV();
+        server->sendHeader("Content-Type", "text/csv");
+        server->sendHeader("Content-Disposition", "attachment; filename=config.csv");
+        server->send(200, "text/csv", csv);
+    });
+
+    // Combined points and alarms import
+    server->on("/api/import/config", HTTP_POST, [this]() {
+        if (!server->hasArg("plain")) {
+            server->send(400, "application/json", "{\"error\":\"No CSV data provided\"}");
+            return;
+        }
+        
+        bool success = csvManager.importPointsWithAlarmsFromCSV(server->arg("plain"));
+        if (success) {
+            savePointsConfig();
+            saveAlarmsConfig();
+            server->send(200, "application/json", "{\"status\":\"success\",\"message\":\"Configuration imported successfully\"}");
+        } else {
+            String error = csvManager.getLastError();
+            server->send(400, "application/json", "{\"status\":\"error\",\"message\":\"" + error + "\"}");
+        }
+    });
+
+
+    // Add these to your ConfigManager::begin() method after existing API endpoints
+
+    // CSV Export endpoint
+    server->on("/api/csv/export", HTTP_GET, [this]() {
+        CSVConfigManager csvManager(controller);
+        String csvData = csvManager.exportPointsWithAlarmsToCSV();
+        
+        if (csvData.length() > 0) {
+            String filename = "temperature_config_" + String(millis()) + ".csv";
+            server->sendHeader("Content-Type", "text/csv");
+            server->sendHeader("Content-Disposition", "attachment; filename=\"" + filename + "\"");
+            server->send(200, "text/csv", csvData);
+        } else {
+            server->send(500, "application/json", "{\"error\":\"Failed to generate CSV\"}");
+        }
+    });
+
+    // CSV Import endpoint
+   // In ConfigManager.cpp, update the CSV import endpoint:
+    server->on("/api/csv/import", HTTP_POST, [this]() {
+        // This will be called after file upload is complete
+    }, [this]() {
+        // Handle file upload
+        HTTPUpload& upload = server->upload();
+        static String csvContent;
+        
+        if (upload.status == UPLOAD_FILE_START) {
+            csvContent = "";
+            Serial.printf("Upload Start: %s\n", upload.filename.c_str());
+        } else if (upload.status == UPLOAD_FILE_WRITE) {
+            csvContent += String((char*)upload.buf, upload.currentSize);
+        } else if (upload.status == UPLOAD_FILE_END) {
+            Serial.printf("Upload End: %s (%u bytes)\n", upload.filename.c_str(), upload.totalSize);
+            
+            // Process the uploaded CSV
+            if (csvManager.importPointsWithAlarmsFromCSV(csvContent)) {
+                server->send(200, "application/json", "{\"success\":true}");
+            } else {
+                String error = csvManager.getLastError();
+                server->send(400, "application/json", "{\"success\":false,\"error\":\"" + error + "\"}");
+            }
+            csvContent = "";
+        }
+    });
+
+
+
+
+    // API endpoints for sensor data
+    server->on("/api/sensors", HTTP_GET, [this]() {
+        server->sendHeader("HTTP/1.1 200 OK", "");
+        server->sendHeader("Content-Type", "application/json");
+        server->sendHeader("Connection", "close");
+        server->sendHeader("Access-Control-Allow-Origin", "*");
+        server->sendHeader("Cache-Control", "no-store");
+        server->send(200, "application/json", controller.getSensorsJson());
+    });
+    
+    server->on("/api/status", HTTP_GET, [this]() {
+        server->sendHeader("HTTP/1.1 200 OK", "");
+        server->sendHeader("Content-Type", "application/json");
+        server->sendHeader("Connection", "close");
+        server->sendHeader("Access-Control-Allow-Origin", "*");
+        server->sendHeader("Cache-Control", "no-store");
+        server->send(200, "application/json", controller.getSystemStatusJson());
+    });
+    
+    server->on("/api/reset-minmax", HTTP_POST, [this]() {
+        controller.resetMinMaxValues();
+        server->sendHeader("HTTP/1.1 200 OK", "");
+        server->sendHeader("Content-Type", "text/plain");
+        server->sendHeader("Connection", "close");
+        server->send(200, "text/plain", "Min/Max values reset");
+    });
+    
+    // API endpoint for sensor discovery
+    server->on("/api/discover", HTTP_POST, [this]() {
+        bool discoveredDS = controller.discoverDS18B20Sensors();
+        bool discoveredPT = controller.discoverPTSensors();
+        bool discovered = discoveredDS || discoveredPT;
+        
+        if (discovered) {
+
+            server->sendHeader("HTTP/1.1 200 OK", "");
+            server->sendHeader("Content-Type", "text/plain");
+            server->sendHeader("Connection", "close");
+            server->send(200, "text/plain", "Sensors discovered");
+        } else {
+            server->sendHeader("HTTP/1.1 404 Not Found", "");
+            server->sendHeader("Content-Type", "text/plain");
+            server->sendHeader("Connection", "close");
+            server->send(404, "text/plain", "No sensors found");
+        }
+    });
+
+    // GET points
+    server->on("/api/points", HTTP_GET, [this]() {
+        server->sendHeader("Content-Type", "application/json");
+        server->send(200, "application/json", controller.getPointsJson());
+    });
+
+    // PUT point update
+    server->on("/api/points", HTTP_PUT, [this]() {
+        if (!server->hasArg("plain")) {
+            server->send(400, "application/json", "{\"error\":\"No data\"}");
+            return;
+        }
+        DynamicJsonDocument doc(512);
+        DeserializationError err = deserializeJson(doc, server->arg("plain"));
+        if (err) {
+            server->send(400, "application/json", "{\"error\":\"Invalid JSON\"}");
+            return;
+        }
+        Serial.println("/api/points HTTP_PUT:" + doc.as<String>());
+        uint8_t address = doc["address"];
+        String name = doc["name"].as<String>();
+        int16_t low = doc["lowAlarmThreshold"];
+        int16_t high = doc["highAlarmThreshold"];
+
+
+        MeasurementPoint* point = controller.getMeasurementPoint(address);
+        if (!point) {
+            server->send(404, "application/json", "{\"error\":\"Point not found\"}");
+            return;
+        }
+        point->setName(name);
+        point->setLowAlarmThreshold(low);
+        point->setHighAlarmThreshold(high);
+        Serial.printf("Point: %s. LAS: %d, HAS: %d\n Delay....\n", point->getName(), point->getLowAlarmThreshold(), point->getHighAlarmThreshold());
+        delay(5000);
+        controller.applyConfigToRegisterMap();
+        // Save to config if needed
+        savePointsConfig(); // implement this to persist changes
+
+        server->send(200, "application/json", "{\"success\":true}");
+    });
+
+    
+    
+
+    // POST /api/sensor-bind
+    server->on("/api/sensor-bind", HTTP_POST, [this]() {
+        if (server->hasArg("plain")) {
+            DynamicJsonDocument doc(256);
+            
+            DeserializationError err = deserializeJson(doc, server->arg("plain"));
+            
+            if (!err) {
+                uint8_t pointAddress = doc["pointAddress"];
+                if (doc.containsKey("romString")) {
+                    Serial.println("ROM:\n" + doc.as<String>());
+                    String rom = doc["romString"].as<String>();
+                    if (controller.bindSensorToPointByRom(rom, pointAddress)) {
+                        //Serial.println("Save points to config ROM\n");
+                        savePointsConfig();
+                        server->send(200, "text/plain", "Bound");
+                        return;
+                    }
+                } else if (doc.containsKey("chipSelect")) {
+                    int cs = doc["chipSelect"];
+                    Serial.println("CS:\n" + doc.as<String>());
+                    if (controller.bindSensorToPointByChipSelect(cs, pointAddress)) {
+                        //Serial.println("Save points to config ROM\n");
+                        savePointsConfig();
+                        server->send(200, "text/plain", "Bound");
+                        return;
+                    }
+                }
+            }
+        }
+        server->send(400, "text/plain", "Bad Request");
+    });
+
+    // POST /api/sensor-unbind
+    server->on("/api/sensor-unbind", HTTP_POST, [this]() {
+        if (server->hasArg("plain")) {
+            DynamicJsonDocument doc(128);
+            DeserializationError err = deserializeJson(doc, server->arg("plain"));
+            if (!err) {
+                if (doc.containsKey("romString")) {
+                    String rom = doc["romString"].as<String>();
+                    // Find point bound to this ROM and unbind
+                    for (uint8_t i = 0; i < 50; ++i) {
+                        Sensor* bound = controller.getDS18B20Point(i)->getBoundSensor();
+                        if (bound && bound->getDS18B20RomString() == rom) {
+                            if(controller.unbindSensorFromPoint(i)){
+                                savePointsConfig();
+                            server->send(200, "text/plain", "Unbound");
+                            return;
+
+                            };
+                            
+                        }
+                    }
+                } else if (doc.containsKey("chipSelect")) {
+                    int cs = doc["chipSelect"];
+                    for (uint8_t i = 0; i < 10; ++i) {
+                        Sensor* bound = controller.getPT1000Point(i)->getBoundSensor();
+                        if (bound && bound->getPT1000ChipSelectPin() == cs) {
+                            if(controller.unbindSensorFromPoint(50 + i)){
+                                savePointsConfig();
+                                server->send(200, "text/plain", "Unbound");
+                                return;
+                            };
+
+                        }
+                    }
+                }
+            }
+        }
+        server->send(400, "text/plain", "Bad Request");
+    });
+
+
+
+
+
+    // Get alarms configuration
+    server->on("/api/alarms", HTTP_GET, [this]() {
+        server->sendHeader("Content-Type", "application/json");
+        server->sendHeader("Access-Control-Allow-Origin", "*");
+        server->send(200, "application/json", controller.getAlarmsJson());
+    });
+
+    // Add/Update alarm configuration
+    server->on("/api/alarms", HTTP_POST, [this]() {
+        if (!server->hasArg("plain")) {
+            server->send(400, "application/json", "{\"error\":\"No data\"}");
+            return;
+        }
+        
+        DynamicJsonDocument doc(512);
+        DeserializationError err = deserializeJson(doc, server->arg("plain"));
+        if (err) {
+            server->send(400, "application/json", "{\"error\":\"Invalid JSON\"}");
+            return;
+        }
+        
+        AlarmType type = static_cast<AlarmType>(doc["type"].as<int>());
+        uint8_t pointAddress = doc["pointAddress"].as<int>();
+        AlarmPriority priority = static_cast<AlarmPriority>(doc["priority"].as<int>());
+        
+        bool success = controller.addAlarm(type, pointAddress, priority);
+        if (success) {
+            saveAlarmsConfig();
+            server->send(200, "application/json", "{\"status\":\"success\"}");
+        } else {
+            server->send(400, "application/json", "{\"error\":\"Failed to add alarm\"}");
+        }
+    });
+
+    // Delete alarm configuration
+    server->on("/api/alarms", HTTP_DELETE, [this]() {
+        if (!server->hasArg("configKey")) {
+            server->send(400, "application/json", "{\"error\":\"No configKey provided\"}");
+            return;
+        }
+        
+        String configKey = server->arg("configKey");
+        bool success = controller.removeAlarm(configKey);
+        if (success) {
+            saveAlarmsConfig();
+            server->send(200, "application/json", "{\"status\":\"deleted\"}");
+        } else {
+            server->send(404, "application/json", "{\"error\":\"Alarm not found\"}");
+        }
+    });
+
+    // Add these endpoints to your setupWebServer() method in ConfigManager.cpp
+
+    // Get alarms configuration
+    server->on("/api/alarms", HTTP_GET, [this]() {
+        server->sendHeader("Content-Type", "application/json");
+        server->sendHeader("Access-Control-Allow-Origin", "*");
+        server->send(200, "application/json", controller.getAlarmsJson());
+    });
+
+    // Add/Update alarm configuration
+    server->on("/api/alarms", HTTP_POST, [this]() {
+        if (!server->hasArg("plain")) {
+            server->send(400, "application/json", "{\"error\":\"No data\"}");
+            return;
+        }
+        
+        DynamicJsonDocument doc(512);
+        DeserializationError err = deserializeJson(doc, server->arg("plain"));
+        if (err) {
+            server->send(400, "application/json", "{\"error\":\"Invalid JSON\"}");
+            return;
+        }
+        
+        AlarmType type = static_cast<AlarmType>(doc["type"].as<int>());
+        uint8_t pointAddress = doc["pointAddress"].as<int>();
+        AlarmPriority priority = static_cast<AlarmPriority>(doc["priority"].as<int>());
+        
+        bool success = controller.addAlarm(type, pointAddress, priority);
+        if (success) {
+            saveAlarmsConfig();
+            server->send(200, "application/json", "{\"status\":\"success\"}");
+        } else {
+            server->send(400, "application/json", "{\"error\":\"Failed to add alarm\"}");
+        }
+    });
+
+    // Update alarm configuration
+    server->on("/api/alarms", HTTP_PUT, [this]() {
+        if (!server->hasArg("plain")) {
+            server->send(400, "application/json", "{\"error\":\"No data\"}");
+            return;
+        }
+        
+        DynamicJsonDocument doc(512);
+        DeserializationError err = deserializeJson(doc, server->arg("plain"));
+        if (err) {
+            server->send(400, "application/json", "{\"error\":\"Invalid JSON\"}");
+            return;
+        }
+        
+        String configKey = doc["configKey"].as<String>();
+        AlarmPriority priority = static_cast<AlarmPriority>(doc["priority"].as<int>());
+        bool enabled = doc["enabled"].as<bool>();
+        
+        bool success = controller.updateAlarm(configKey, priority, enabled);
+        if (success) {
+            saveAlarmsConfig();
+            server->send(200, "application/json", "{\"status\":\"updated\"}");
+        } else {
+            server->send(404, "application/json", "{\"error\":\"Alarm not found\"}");
+        }
+    });
+
+    // Delete alarm configuration
+    server->on("/api/alarms", HTTP_DELETE, [this]() {
+        if (!server->hasArg("configKey")) {
+            server->send(400, "application/json", "{\"error\":\"No configKey provided\"}");
+            return;
+        }
+        
+        String configKey = server->arg("configKey");
+        bool success = controller.removeAlarm(configKey);
+        if (success) {
+            saveAlarmsConfig();
+            server->send(200, "application/json", "{\"status\":\"deleted\"}");
+        } else {
+            server->send(404, "application/json", "{\"error\":\"Alarm not found\"}");
+        }
+    });
+
+    // Acknowledge specific alarm
+    server->on("/api/alarms/acknowledge", HTTP_POST, [this]() {
+        if (!server->hasArg("plain")) {
+            server->send(400, "application/json", "{\"error\":\"No data\"}");
+            return;
+        }
+
+        DynamicJsonDocument doc(512);
+        DeserializationError err = deserializeJson(doc, server->arg("plain"));
+        if (err) {
+            server->send(400, "application/json", "{\"error\":\"Invalid JSON\"}");
+            return;
+        }
+
+        String configKey = doc["configKey"].as<String>();
+        
+        // Find alarm in configured alarms
+        Alarm* alarm = controller.findAlarm(configKey);
+        if (!alarm) {
+            server->send(404, "application/json", "{\"error\":\"Alarm not found\"}");
+            return;
+        }
+
+        // Find corresponding active alarm and acknowledge it
+        bool acknowledged = false;
+        for (auto activeAlarm : controller.getActiveAlarms()) {
+            if (activeAlarm->getSource() == alarm->getSource() && 
+                activeAlarm->getType() == alarm->getType()) {
+                activeAlarm->acknowledge();
+                acknowledged = true;
+                Serial.printf("Acknowledged alarm: %s for point %d\n", 
+                            activeAlarm->getTypeString().c_str(),
+                            activeAlarm->getSource()->getAddress());
+                break;
+            }
+        }
+
+        if (acknowledged) {
+            server->send(200, "application/json", "{\"status\":\"acknowledged\"}");
+        } else {
+            server->send(404, "application/json", "{\"error\":\"No active alarm found to acknowledge\"}");
+        }
+    });
+
+    // Acknowledge all active alarms
+    server->on("/api/alarms/acknowledge-all", HTTP_POST, [this]() {
+        std::vector<Alarm*> activeAlarms = controller.getActiveAlarms();
+        int acknowledgedCount = 0;
+        
+        for (auto alarm : activeAlarms) {
+            if (!alarm->isAcknowledged()) {
+                alarm->acknowledge();
+                acknowledgedCount++;
+                Serial.printf("Acknowledged alarm: %s for point %d\n", 
+                            alarm->getTypeString().c_str(),
+                            alarm->getSource() ? alarm->getSource()->getAddress() : -1);
+            }
+        }
+        
+        DynamicJsonDocument response(256);
+        response["status"] = "success";
+        response["acknowledgedCount"] = acknowledgedCount;
+        response["message"] = String(acknowledgedCount) + " alarms acknowledged";
+        
+        String output;
+        serializeJson(response, output);
+        server->send(200, "application/json", output);
+    });
+
+    // Clear resolved alarms
+    server->on("/api/alarms/clear-resolved", HTTP_POST, [this]() {
+        std::vector<Alarm*> configuredAlarms = controller.getConfiguredAlarms();
+        int clearedCount = 0;
+        
+        // Remove resolved alarms from configured alarms
+        for (auto it = configuredAlarms.begin(); it != configuredAlarms.end();) {
+            if ((*it)->isResolved()) {
+                String configKey = (*it)->getConfigKey();
+                bool removed = controller.removeAlarm(configKey);
+                if (removed) {
+                    clearedCount++;
+                    Serial.printf("Cleared resolved alarm: %s\n", configKey.c_str());
+                }
+                // Note: iterator is handled by removeAlarm method
+                it = configuredAlarms.begin(); // Restart iteration after removal
+            } else {
+                ++it;
+            }
+        }
+        
+        // Save configuration after clearing
+        if (clearedCount > 0) {
+            saveAlarmsConfig();
+        }
+        
+        DynamicJsonDocument response(256);
+        response["status"] = "success";
+        response["clearedCount"] = clearedCount;
+        response["message"] = String(clearedCount) + " resolved alarms cleared";
+        
+        String output;
+        serializeJson(response, output);
+        server->send(200, "application/json", output);
+    });
+
+    // Get active alarms only (for dashboard/monitoring)
+    server->on("/api/alarms/active", HTTP_GET, [this]() {
+        DynamicJsonDocument doc(4096);
+        JsonArray alarmArray = doc.createNestedArray("alarms");
+        
+        for (auto alarm : controller.getActiveAlarms()) {
+            JsonObject obj = alarmArray.createNestedObject();
+            obj["type"] = static_cast<int>(alarm->getType());
+            obj["stage"] = static_cast<int>(alarm->getStage());
+            obj["priority"] = static_cast<int>(alarm->getPriority());
+            obj["timestamp"] = alarm->getTimestamp();
+            obj["acknowledgedTime"] = alarm->getAcknowledgedTime();
+            obj["message"] = alarm->getMessage();
+            obj["isActive"] = alarm->isActive();
+            obj["isAcknowledged"] = alarm->isAcknowledged();
+            
+            if (alarm->getSource()) {
+                obj["pointAddress"] = alarm->getSource()->getAddress();
+                obj["pointName"] = alarm->getSource()->getName();
+                obj["currentTemp"] = alarm->getSource()->getCurrentTemp();
+            }
+        }
+        
+        String output;
+        serializeJson(doc, output);
+        server->sendHeader("Content-Type", "application/json");
+        server->sendHeader("Access-Control-Allow-Origin", "*");
+        server->send(200, "application/json", output);
+    });
+
+    // Get alarm statistics
+    server->on("/api/alarms/stats", HTTP_GET, [this]() {
+        std::vector<Alarm*> activeAlarms = controller.getActiveAlarms();
+        
+        int criticalCount = 0, highCount = 0, mediumCount = 0, lowCount = 0;
+        int newCount = 0, activeCount = 0, acknowledgedCount = 0;
+        
+        for (auto alarm : activeAlarms) {
+            // Count by priority
+            switch (alarm->getPriority()) {
+                case AlarmPriority::PRIORITY_CRITICAL: criticalCount++; break;
+                case AlarmPriority::PRIORITY_HIGH: highCount++; break;
+                case AlarmPriority::PRIORITY_MEDIUM: mediumCount++; break;
+                case AlarmPriority::PRIORITY_LOW: lowCount++; break;
+            }
+            
+            // Count by stage
+            switch (alarm->getStage()) {
+                case AlarmStage::NEW: newCount++; break;
+                case AlarmStage::ACTIVE: activeCount++; break;
+                case AlarmStage::ACKNOWLEDGED: acknowledgedCount++; break;
+                default: break;
+            }
+        }
+        
+        DynamicJsonDocument doc(512);
+        doc["totalActive"] = activeAlarms.size();
+        doc["totalConfigured"] = controller.getAlarmCount();
+        
+        JsonObject byPriority = doc.createNestedObject("byPriority");
+        byPriority["critical"] = criticalCount;
+        byPriority["high"] = highCount;
+        byPriority["medium"] = mediumCount;
+        byPriority["low"] = lowCount;
+        
+        JsonObject byStage = doc.createNestedObject("byStage");
+        byStage["new"] = newCount;
+        byStage["active"] = activeCount;
+        byStage["acknowledged"] = acknowledgedCount;
+        
+        String output;
+        serializeJson(doc, output);
+        server->sendHeader("Content-Type", "application/json");
+        server->sendHeader("Access-Control-Allow-Origin", "*");
+        server->send(200, "application/json", output);
+    });
+
+
+    
+    // Add CORS support for OPTIONS requests
+    server->on("/api/sensors", HTTP_OPTIONS, [this]() {
+        server->sendHeader("HTTP/1.1 204 No Content", "");
+        server->sendHeader("Access-Control-Allow-Origin", "*");
+        server->sendHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+        server->sendHeader("Access-Control-Allow-Headers", "Content-Type");
+        server->send(204);
+    });
+    
+    // Setup WiFi
+    bool startAP = true;
+    if (conf("st_ssid") != "" && conf("st_pass") != "") {
+        // Try to connect to WiFi if credentials are available
+        if (connectWiFi(10000)) {
+            startAP = false;
+        }
+    }
+    
+    // Setup ConfigAssist with web server AFTER registering custom routes
+    conf.setup(*server, startAP);
+    
+    // Start the web server
+    server->begin();
+    
+    // Load sensor configuration
+    //loadSensorConfig();
+    loadPointsConfig();
+    loadAlarmsConfig();
+    Serial.println("CM.begin(): Sensor data loaded:");
+    //Serial.println(controller.getSensorsJson());
+    
+    // Apply configuration to controller
+    controller.setDeviceId(getDeviceId());
+    Serial.println("Device ID set");
+    controller.setMeasurementPeriod(getMeasurementPeriod());
+    Serial.println("Measurement period set");
+    
+    return true;
+}
+
+void ConfigManager::update() {
+    // Handle client requests
+    server->handleClient();
+}
+
+bool ConfigManager::connectWiFi(int timeoutMs) {
+    // Use ConfigAssistHelper to connect to WiFi
+    bool connected = confHelper->connectToNetwork(timeoutMs, -1);
+    
+    if (connected) {
+        Serial.print("Connected to WiFi. IP: ");
+        Serial.println(WiFi.localIP().toString());
+    } else {
+        Serial.println("Failed to connect to WiFi");
+    }
+    
+    return connected;
+}
+
+void ConfigManager::onConfigChanged(String key) {
+    if (instance == nullptr) return;
+    
+    Serial.print("Config changed: ");
+    Serial.print(key);
+    Serial.print(" = ");
+    Serial.println(instance->conf(key));
+    
+    if (key == "device_id") {
+        instance->controller.setDeviceId(instance->conf(key).toInt());
+    } else if (key == "measurement_period") {
+        instance->controller.setMeasurementPeriod(instance->conf(key).toInt());
+    } else if (key == "reset_min_max") {
+        instance->resetMinMaxValues();
+    }
+}
+
+
+void ConfigManager::resetMinMaxValues() {
+    controller.resetMinMaxValues();
+}
+
+
+
+// Save all measurement points and their bindings
+void ConfigManager::savePointsConfig() {
+    Serial.println('Save points to config ....');
+    ConfigAssist pointsConf("/points2.ini", false);
+
+    // DS18B20 points
+    for (uint8_t i = 0; i < 50; ++i) {
+        MeasurementPoint* point = controller.getDS18B20Point(i);
+        if (!point) continue;
+        String key = "ds_" + String(point->getAddress());
+        pointsConf[key + "_name"] = point->getName();
+        pointsConf[key + "_low_alarm"] = String(point->getLowAlarmThreshold());
+        pointsConf[key + "_high_alarm"] = String(point->getHighAlarmThreshold());
+
+        Sensor* bound = point->getBoundSensor();
+        if (bound && bound->getType() == SensorType::DS18B20) {
+            pointsConf[key + "_sensor_rom"] = bound->getDS18B20RomString();
+            pointsConf[key + "_sensor_bus"] = controller.getSensorBus(bound);
+        } else {
+            pointsConf[key + "_sensor_rom"] = "";
+            pointsConf[key + "_sensor_bus"] = "";
+        }
+    }
+
+    // PT1000 points
+    for (uint8_t i = 0; i < 10; ++i) {
+        MeasurementPoint* point = controller.getPT1000Point(i);
+        if (!point) continue;
+        String key = "pt_" + String(point->getAddress());
+        pointsConf[key + "_name"] = point->getName();
+        pointsConf[key + "_low_alarm"] = String(point->getLowAlarmThreshold());
+        pointsConf[key + "_high_alarm"] = String(point->getHighAlarmThreshold());
+
+        Sensor* bound = point->getBoundSensor();
+        if (bound && bound->getType() == SensorType::PT1000) {
+            pointsConf[key + "_sensor_cs"] = String(bound->getPT1000ChipSelectPin());
+        } else {
+            pointsConf[key + "_sensor_cs"] = "";
+        }
+    }
+    pointsConf.saveConfigFile();
+}
+
+// // Load all measurement points and their bindings
+// void ConfigManager::loadPointsConfig() {
+//     ConfigAssist pointsConf("/points2.ini", false);
+
+//     // DS18B20 points
+//     for (uint8_t i = 0; i < 50; ++i) {
+//         String key = "ds_" + String(i);
+//         MeasurementPoint* point = controller.getDS18B20Point(i);
+//         if (!point) continue;
+//         point->setName(pointsConf(key + "_name"));
+//         point->setLowAlarmThreshold(pointsConf(key + "_low_alarm").toInt());
+//         point->setHighAlarmThreshold(pointsConf(key + "_high_alarm").toInt());
+//         String rom = pointsConf(key + "_sensor_rom");
+//         if (rom.length() == 16) {
+//             Serial.println("ROM from file: " + rom);
+//             controller.bindSensorToPointByRom(rom, i);
+//         } else {
+//             controller.unbindSensorFromPoint(i);
+//         }
+//     }
+
+//     // PT1000 points
+//     for (uint8_t i = 0; i < 10; ++i) {
+//         uint8_t address = 50 + i;
+//         String key = "pt_" + String(address);
+//         MeasurementPoint* point = controller.getPT1000Point(i);
+//         if (!point) continue;
+//         point->setName(pointsConf(key + "_name"));
+//         point->setLowAlarmThreshold(pointsConf(key + "_low_alarm").toInt());
+//         point->setHighAlarmThreshold(pointsConf(key + "_high_alarm").toInt());
+//         int cs = pointsConf(key + "_sensor_cs").toInt();
+//         if (cs > 0) {
+//             controller.bindSensorToPointByChipSelect(cs, address);
+//         } else {
+//             controller.unbindSensorFromPoint(address);
+//         }
+//     }
+// }
+
+void ConfigManager::loadPointsConfig() {
+    ConfigAssist pointsConf("/points2.ini", false);
+
+    // DS18B20 points
+    for (uint8_t i = 0; i < 50; ++i) {
+        String key = "ds_" + String(i);
+        MeasurementPoint* point = controller.getDS18B20Point(i);
+        if (!point) continue;
+        point->setName(pointsConf(key + "_name"));
+        point->setLowAlarmThreshold(pointsConf(key + "_low_alarm").toInt());
+        point->setHighAlarmThreshold(pointsConf(key + "_high_alarm").toInt());
+        uint8_t bus = pointsConf(key + "_sensor_bus").toInt();
+        String rom = pointsConf(key + "_sensor_rom");
+        if (rom.length() == 16) {
+            // Ensure the sensor exists and is initialized before binding
+            Sensor* sensor = controller.findSensorByRom(rom);
+            if (!sensor) {
+                uint8_t romArr[8];
+                for (int j = 0; j < 8; ++j)
+                    romArr[j] = strtol(rom.substring(j*2, j*2+2).c_str(), nullptr, 16);
+                String sensorName = "DS18B20_" + rom;
+                sensor = new Sensor(SensorType::DS18B20, 0, sensorName);
+                sensor->setupDS18B20(controller.getOneWirePin(bus), romArr);
+                if (!sensor->initialize()) {
+                    //sensor->setErrorStatus(0x01); // Mark as error (not connected)
+                }
+                controller.addSensor(sensor);
+            }
+            
+            controller.bindSensorToPointByRom(rom, i);
+        } else {
+            controller.unbindSensorFromPoint(i);
+        }
+    }
+
+    // PT1000 points
+    for (uint8_t i = 0; i < 10; ++i) {
+        uint8_t address = 50 + i;
+        String key = "pt_" + String(address);
+        MeasurementPoint* point = controller.getPT1000Point(i);
+        if (!point) continue;
+        point->setName(pointsConf(key + "_name"));
+        point->setLowAlarmThreshold(pointsConf(key + "_low_alarm").toInt());
+        point->setHighAlarmThreshold(pointsConf(key + "_high_alarm").toInt());
+        int cs = pointsConf(key + "_sensor_cs").toInt();
+        if (cs > 0) {
+            // Ensure the sensor exists and is initialized before binding
+            Sensor* sensor = controller.findSensorByChipSelect(cs);
+            if (!sensor) {
+                String sensorName = "PT1000_CS" + String(cs);
+                sensor = new Sensor(SensorType::PT1000, 0, sensorName);
+                sensor->setupPT1000(cs, i);
+                if (!sensor->initialize()) {
+                    //sensor->setErrorStatus(0x01); // Mark as error (not connected)
+                }
+                controller.addSensor(sensor);
+            }
+            controller.bindSensorToPointByChipSelect(cs, address);
+        } else {
+            controller.unbindSensorFromPoint(address);
+        }
+    }
+    controller.applyConfigToRegisterMap();
+}
+
+
+// Update a measurement point and its binding in config
+bool ConfigManager::updatePointInConfig(uint8_t address, const String& name, int16_t lowAlarm, int16_t highAlarm,
+                                        const String& ds18b20RomString, int pt1000ChipSelect) {
+    MeasurementPoint* point = controller.getMeasurementPoint(address);
+    if (!point) return false;
+    point->setName(name);
+    point->setLowAlarmThreshold(lowAlarm);
+    point->setHighAlarmThreshold(highAlarm);
+    if (!ds18b20RomString.isEmpty()) {
+        controller.bindSensorToPointByRom(ds18b20RomString, address);
+    } else if (pt1000ChipSelect >= 0) {
+        controller.bindSensorToPointByChipSelect(pt1000ChipSelect, address);
+    } else {
+        controller.unbindSensorFromPoint(address);
+    }
+    savePointsConfig();
+    return true;
+}
+
+
+void ConfigManager::saveAlarmsConfig() {
+    Serial.println("Save alarms to config....");
+    ConfigAssist alarmsConf("/alarms.ini", false);
+    
+    // Clear existing entries by setting them to empty strings
+    // ConfigAssist will treat empty strings as non-existent
+    for (int i = 0; i < 1000; i++) { // Check reasonable number of possible alarms
+        String alarmKey = "alarm" + String(i);
+        if (alarmsConf.exists(alarmKey + "_type")) {
+            alarmsConf[alarmKey + "_type"] = "";
+            alarmsConf[alarmKey + "_priority"] = "";
+            alarmsConf[alarmKey + "_point"] = "";
+            alarmsConf[alarmKey + "_enabled"] = "";
+        } else {
+            break; // No more entries to clear
+        }
+    }
+    
+    // Save current alarms
+    int alarmIndex = 0;
+    for (int i = 0; i < controller.getAlarmCount(); ++i) {
+        Alarm* alarm = controller.getAlarmByIndex(i);
+        if (!alarm) continue;
+        
+        String alarmKey = "alarm" + String(alarmIndex++);
+        alarmsConf[alarmKey + "_type"] = String(static_cast<int>(alarm->getType()));
+        alarmsConf[alarmKey + "_priority"] = String(static_cast<int>(alarm->getPriority()));
+        alarmsConf[alarmKey + "_point"] = String(alarm->getPointAddress());
+        alarmsConf[alarmKey + "_enabled"] = alarm->isEnabled() ? "1" : "0";
+        alarmsConf[alarmKey + "_hysteresis"] = String(alarm->getHysteresis());
+    }
+    
+    alarmsConf.saveConfigFile();
+    Serial.printf("Saved %d alarms to config\n", alarmIndex);
+}
+
+
+
+
+void ConfigManager::loadAlarmsConfig() {
+    Serial.println("Loading alarms configuration...");
+    ConfigAssist alarmsConf("/alarms.ini", false);
+    
+    // Clear existing configured alarms first
+    for (auto alarm : controller.getConfiguredAlarms()) {
+        delete alarm;
+    }
+    controller.clearConfiguredAlarms();
+    
+    int loadedCount = 0;
+    int alarmIndex = 0;
+    
+    // Load alarms sequentially
+    while (true) {
+        String alarmKey = "alarm" + String(alarmIndex++);
+        
+        // Check if all required keys exist
+        String typeKey = alarmKey + "_type";
+        String priorityKey = alarmKey + "_priority";
+        String pointKey = alarmKey + "_point";
+        String enabledKey = alarmKey + "_enabled";
+        int16_t hysteresis = alarmsConf(alarmKey + "_hysteresis").toInt();
+        if (hysteresis == 0) hysteresis = 1; // Default to 1 if not set
+        
+        
+        if (!alarmsConf.exists(typeKey)) {
+            break; // No more alarms to load
+        }
+        
+        // Get values and validate they're not empty
+        String typeStr = alarmsConf(typeKey);
+        String priorityStr = alarmsConf(priorityKey);
+        String pointStr = alarmsConf(pointKey);
+        String enabledStr = alarmsConf(enabledKey);
+        
+        // Skip empty entries (these were cleared)
+        if (typeStr.isEmpty() || priorityStr.isEmpty() || 
+            pointStr.isEmpty() || enabledStr.isEmpty()) {
+            Serial.printf("Skipping empty alarm entry at index %d\n", alarmIndex - 1);
+            continue;
+        }
+        
+        // Convert and validate values
+        int type = typeStr.toInt();
+        int priority = priorityStr.toInt();
+        int pointAddress = pointStr.toInt();
+        bool enabled = (enabledStr == "1");
+        
+        // Validate enum ranges
+        if (type < 0 || type > 3 || priority < 0 || priority > 3) {
+            Serial.printf("Skipping alarm %d: invalid type (%d) or priority (%d)\n", 
+                         alarmIndex - 1, type, priority);
+            continue;
+        }
+        
+        // Validate point address
+        if (pointAddress < 0 || pointAddress >= 60) {
+            Serial.printf("Skipping alarm %d: invalid point address (%d)\n", 
+                         alarmIndex - 1, pointAddress);
+            continue;
+        }
+        
+        // Create alarm
+        bool success = controller.addAlarm(
+            static_cast<AlarmType>(type),
+            pointAddress,
+            static_cast<AlarmPriority>(priority)
+        );
+        
+        if (success) {
+            // Set enabled state
+            Alarm* alarm = controller.findAlarm("alarm_" + String(pointAddress) + "_" + String(type));
+            if (alarm) {
+                alarm->setEnabled(enabled);
+                alarm->setHysteresis(hysteresis);
+                loadedCount++;
+                Serial.printf("Loaded alarm: type=%d, priority=%d, point=%d, enabled=%s, hyst=%d\n",
+                             type, priority, pointAddress, enabled ? "true" : "false", hysteresis);
+            }
+        }
+    }
+    
+    Serial.printf("Loaded %d valid alarm configurations\n", loadedCount);
+}
+
+
+
+================================================================================
+File: IndicatorInterface.cpp
+Size: 28.33 kB
+================================================================================
+
+#include "IndicatorInterface.h"
+
+// Static instance for interrupt handling
+IndicatorInterface* IndicatorInterface::_instance = nullptr;
+
+IndicatorInterface::IndicatorInterface(TwoWire& i2cBus, uint8_t pcf_i2cAddress, int intPin)
+    : _i2cBus(&i2cBus), _pcf_i2cAddress(pcf_i2cAddress), _intPin(intPin), _pcf8575(pcf_i2cAddress),
+      _directionMask(0x0000), _modeMask(0x0000), _currentState(0xFFFF), _lastState(0xFFFF),
+      _lastReadTime(0), _pollInterval(50), _interruptFlag(false), _useInterrupts(false),
+      _interruptCallback(nullptr),
+      _oledSleepDelay(30000), _oledLines(3), _textBufferSize(0), _oledOn(true),
+      _oledBlink(false), _blinkTimeOn(500), _blinkTimeOff(500), _lastBlinkTime(0),
+      _blinkState(true), _lastActivityTime(0), _oledSleeping(false),
+      _lastScrollTime(0), _scrollDelay(200), _charWidth(6), _lineHeight(12),
+      _maxCharsPerLine(21),
+      _savedTextBufferSize(0), _savedOledLines(3), _isBlinkingOK(false), 
+      _isBlinkingCross(false), _blinkDelayTime(500), _lastBlinkToggle(0), _blinkShowSpecial(true)  {
+    
+    // Set static instance for interrupt handling
+    _instance = this;
+    
+    // Configure interrupt usage
+    _useInterrupts = (intPin >= 0);
+
+    // Initialize scroll offsets
+    for (int i = 0; i < 5; i++) {
+        _scrollOffset[i] = 0;
+    }
+    
+}
+
+U8G2_SH1106_128X64_NONAME_F_HW_I2C IndicatorInterface::u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE);
+
+IndicatorInterface::~IndicatorInterface() {
+    if (_useInterrupts && _intPin >= 0) {
+        detachInterrupt(digitalPinToInterrupt(_intPin));
+    }
+    _instance = nullptr;
+}
+
+bool IndicatorInterface::begin() {
+    // Initialize I2C if not already done
+    if (!_i2cBus) {
+        return false;
+    }
+    
+    // Initialize PCF8575
+    if (!_pcf8575.begin()) {
+        return false;
+    }
+    
+    // Configure interrupt pin if specified
+    if (_useInterrupts) {
+        _configureInterruptPin();
+    }
+    
+    // Initialize all pins as inputs (HIGH state)
+    _pcf8575.write16(0xFFFF);
+    delay(100);
+    _clearInterrupt();
+    
+    // Read initial state
+    _currentState = _readPCF();
+    _lastState = _currentState;
+    _lastReadTime = millis();
+
+    //OLED INIT
+    u8g2.begin();
+    _initOLED();
+    
+    return true;
+}
+
+void IndicatorInterface::_configureInterruptPin() {
+    if (_intPin < 0) return;
+    
+    // Configure pin based on ESP32 capabilities
+    if (_intPin == 34 || _intPin == 35 || _intPin == 36 || _intPin == 39) {
+        // Input-only pins without internal pull-up
+        pinMode(_intPin, INPUT);
+        // Note: External pull-up resistor (4.7kΩ) required!
+    } else {
+        // Regular GPIO pins with internal pull-up
+        pinMode(_intPin, INPUT_PULLUP);
+    }
+    
+    // Attach interrupt
+    attachInterrupt(digitalPinToInterrupt(_intPin), _staticInterruptHandler, FALLING);
+}
+
+void IndicatorInterface::setDirection(uint16_t directionMask) {
+    _directionMask = directionMask;
+    
+    // Update PCF8575 state to reflect direction changes
+    uint16_t newState = _currentState;
+    
+    // Set input pins HIGH (input mode for PCF8575)
+    for (int i = 0; i < 16; i++) {
+        if (!isOutput(i)) {
+            newState |= (1 << i);
+        }
+    }
+    
+    _writePCF(newState);
+}
+
+void IndicatorInterface::setMode(uint16_t modeMask) {
+    _modeMask = modeMask;
+}
+
+void IndicatorInterface::setPortNames(const std::map<std::string, uint8_t>& portNames) {
+    _portNames = portNames;
+    
+    // Build reverse mapping
+    _portNumbers.clear();
+    for (const auto& pair : _portNames) {
+        _portNumbers[pair.second] = pair.first;
+    }
+}
+
+void IndicatorInterface::setPortName(const std::string& name, uint8_t portNumber) {
+    if (portNumber > 15) return;
+    
+    _portNames[name] = portNumber;
+    _portNumbers[portNumber] = name;
+}
+
+bool IndicatorInterface::writePort(const std::string& portName, bool state) {
+    auto it = _portNames.find(portName);
+    if (it == _portNames.end()) {
+        return false;
+    }
+    return writePort(it->second, state);
+}
+
+bool IndicatorInterface::writePort(uint8_t portNumber, bool state) {
+    if (portNumber > 15 || !isOutput(portNumber)) {
+        return false;
+    }
+    
+    // Apply mode logic (inversion if needed)
+    bool actualState = _applyModeLogic(portNumber, state);
+    
+    // Update current state
+    uint16_t newState = _currentState;
+    
+    // Always keep input pins HIGH
+    for (int i = 0; i < 16; i++) {
+        if (!isOutput(i)) {
+            newState |= (1 << i);
+        }
+    }
+    
+    // Set the specific output pin
+    if (actualState) {
+        newState |= (1 << portNumber);
+    } else {
+        newState &= ~(1 << portNumber);
+    }
+    
+    _writePCF(newState);
+    return true;
+}
+
+void IndicatorInterface::writePorts(uint16_t portMask) {
+    uint16_t newState = _currentState;
+    
+    // Apply direction mask - only write to outputs
+    for (int i = 0; i < 16; i++) {
+        if (isOutput(i)) {
+            bool state = (portMask >> i) & 0x01;
+            bool actualState = _applyModeLogic(i, state);
+            
+            if (actualState) {
+                newState |= (1 << i);
+            } else {
+                newState &= ~(1 << i);
+            }
+        } else {
+            // Keep input pins HIGH
+            newState |= (1 << i);
+        }
+    }
+    
+    _writePCF(newState);
+}
+
+void IndicatorInterface::setAllOutputs(bool state) {
+    uint16_t newState = _currentState;
+    
+    for (int i = 0; i < 16; i++) {
+        if (isOutput(i)) {
+            bool actualState = _applyModeLogic(i, state);
+            
+            if (actualState) {
+                newState |= (1 << i);
+            } else {
+                newState &= ~(1 << i);
+            }
+        } else {
+            // Keep input pins HIGH
+            newState |= (1 << i);
+        }
+    }
+    
+    _writePCF(newState);
+}
+
+void IndicatorInterface::setAllOutputsHigh() {
+    setAllOutputs(true);
+}
+
+void IndicatorInterface::setAllOutputsLow() {
+    setAllOutputs(false);
+}
+
+uint16_t IndicatorInterface::getCurrentState() {
+    if (_useInterrupts) {
+        // In interrupt mode, state is updated automatically
+        return _currentState;
+    } else {
+        // In polling mode, read current state
+        if (millis() - _lastReadTime >= _pollInterval) {
+            _updateState();
+        }
+        return _currentState;
+    }
+}
+
+bool IndicatorInterface::readPort(const std::string& portName) {
+    auto it = _portNames.find(portName);
+    if (it == _portNames.end()) {
+        return false;
+    }
+    return readPort(it->second);
+}
+
+bool IndicatorInterface::readPort(uint8_t portNumber) {
+    if (portNumber > 15) {
+        return false;
+    }
+    
+    uint16_t currentState = getCurrentState();
+    bool rawState = (currentState >> portNumber) & 0x01;
+    
+    // Apply mode logic (reverse inversion for reading)
+    return _reverseModeLogic(portNumber, rawState);
+}
+
+bool IndicatorInterface::isOutput(uint8_t portNumber) {
+    return (_directionMask >> portNumber) & 0x01;
+}
+
+bool IndicatorInterface::isInput(uint8_t portNumber) {
+    return !isOutput(portNumber);
+}
+
+bool IndicatorInterface::isInverted(uint8_t portNumber) {
+    return (_modeMask >> portNumber) & 0x01;
+}
+
+uint8_t IndicatorInterface::getPortNumber(const std::string& portName) {
+    auto it = _portNames.find(portName);
+    return (it != _portNames.end()) ? it->second : 255;
+}
+
+std::string IndicatorInterface::getPortName(uint8_t portNumber) {
+    auto it = _portNumbers.find(portNumber);
+    return (it != _portNumbers.end()) ? it->second : "";
+}
+
+// void IndicatorInterface::handleInterrupt() {
+//     if (_interruptFlag) {
+//         _interruptFlag = false;
+//         _updateState();
+//     }
+// }
+
+void IndicatorInterface::setInterruptCallback(void (*callback)(uint16_t currentState, uint16_t changedPins)) {
+    _interruptCallback = callback;
+}
+
+void IndicatorInterface::printPortStates() {
+    uint16_t state = getCurrentState();
+    
+    Serial.println("=== Port States ===");
+    Serial.print("Raw state: 0x");
+    Serial.println(state, HEX);
+    
+    for (int i = 15; i >= 0; i--) {
+        bool rawState = (state >> i) & 0x01;
+        bool logicalState = _reverseModeLogic(i, rawState);
+        
+        Serial.print("P");
+        Serial.print(i);
+        Serial.print(": ");
+        Serial.print(rawState ? "HIGH" : "LOW");
+        Serial.print(" (");
+        Serial.print(isOutput(i) ? "OUT" : "IN");
+        if (isInverted(i)) Serial.print(",INV");
+        Serial.print(") = ");
+        Serial.print(logicalState ? "TRUE" : "FALSE");
+        
+        std::string name = getPortName(i);
+        if (!name.empty()) {
+            Serial.print(" [");
+            Serial.print(name.c_str());
+            Serial.print("]");
+        }
+        Serial.println();
+    }
+}
+
+void IndicatorInterface::printConfiguration() {
+    Serial.println("=== Configuration ===");
+    Serial.print("I2C Address: 0x");
+    Serial.println(_pcf_i2cAddress, HEX);
+    Serial.print("INT Pin: ");
+    Serial.println(_intPin);
+    Serial.print("Use Interrupts: ");
+    Serial.println(_useInterrupts ? "YES" : "NO");
+    Serial.print("Direction Mask: 0x");
+    Serial.println(_directionMask, HEX);
+    Serial.print("Mode Mask: 0x");
+    Serial.println(_modeMask, HEX);
+    
+    Serial.println("Port Names:");
+    for (const auto& pair : _portNames) {
+        Serial.print("  ");
+        Serial.print(pair.first.c_str());
+        Serial.print(" = P");
+        Serial.println(pair.second);
+    }
+}
+
+// Private methods
+void IndicatorInterface::_updateState() {
+    uint16_t newState = _readPCF();
+    uint16_t changedPins = _currentState ^ newState;
+    
+    _lastState = _currentState;
+    _currentState = newState;
+    _lastReadTime = millis();
+    
+    // Call interrupt callback if pins changed
+    if (changedPins != 0 && _interruptCallback) {
+        _interruptCallback(_currentState, changedPins);
+    }
+}
+
+void IndicatorInterface::_clearInterrupt() {
+    _pcf8575.read16();
+    delay(1);
+    _pcf8575.read16();
+}
+
+uint16_t IndicatorInterface::_readPCF() {
+    return _pcf8575.read16();
+}
+
+void IndicatorInterface::_writePCF(uint16_t state) {
+    _pcf8575.write16(state);
+    delay(5);
+    _clearInterrupt();
+    _currentState = state;
+}
+
+bool IndicatorInterface::_applyModeLogic(uint8_t portNumber, bool state) {
+    // Fixed: Normal mode = no inversion, Inverted mode = invert
+    return isInverted(portNumber) ? !state : state;
+}
+
+bool IndicatorInterface::_reverseModeLogic(uint8_t portNumber, bool state) {
+    // Fixed: For reading, apply same logic as writing
+    return isInverted(portNumber) ? !state : state;
+}
+
+void IRAM_ATTR IndicatorInterface::_staticInterruptHandler() {
+    if (_instance) {
+        _instance->_interruptFlag = true;
+    }
+}
+
+
+void IndicatorInterface::setPortInverted(const std::string& portName, bool inverted) {
+    auto it = _portNames.find(portName);
+    if (it != _portNames.end()) {
+        setPortInverted(it->second, inverted);
+    }
+}
+
+void IndicatorInterface::setPortInverted(uint8_t portNumber, bool inverted) {
+    if (portNumber > 15) return;
+    
+    if (inverted) {
+        _modeMask |= (1 << portNumber);   // Set bit to 1 for inverted
+    } else {
+        _modeMask &= ~(1 << portNumber);  // Set bit to 0 for normal
+    }
+}
+
+
+void IndicatorInterface::_initOLED() {
+    u8g2.enableUTF8Print();
+    u8g2.clearBuffer();
+    _calculateDisplayParams();
+    u8g2.sendBuffer();
+    _lastActivityTime = millis();
+}
+
+void IndicatorInterface::setOledSleepDelay(long sleepDelay) {
+    _oledSleepDelay = sleepDelay;
+    _wakeOLED();
+}
+
+void IndicatorInterface::setOledMode(int lines) {
+    if (lines < 1) lines = 1;
+    if (lines > 5) lines = 5;
+    
+    _oledLines = lines;
+    _calculateDisplayParams();
+    _wakeOLED();
+}
+
+void IndicatorInterface::printText(String buffer[], int bufferSize) {
+    _textBufferSize = (bufferSize > 5) ? 5 : bufferSize;
+    
+    for (int i = 0; i < _textBufferSize; i++) {
+        _textBuffer[i] = buffer[i];
+        _scrollOffset[i] = 0;  // Reset scroll position
+    }
+    
+    // Clear unused lines
+    for (int i = _textBufferSize; i < 5; i++) {
+        _textBuffer[i] = "";
+        _scrollOffset[i] = 0;
+    }
+    
+    _updateOLEDDisplay();
+    _wakeOLED();
+}
+
+void IndicatorInterface::setOLEDblink(int timeOn, int timeOff, bool blinkOn) {
+    _oledBlink = blinkOn;
+    _blinkTimeOn = timeOn;
+    _blinkTimeOff = timeOff;
+    _lastBlinkTime = millis();
+    _blinkState = true;
+    
+    if (blinkOn) {
+        _wakeOLED();
+    }
+}
+
+void IndicatorInterface::setOLEDOff() {
+    _oledOn = false;
+    _oledBlink = false;
+    u8g2.setPowerSave(1);
+}
+
+void IndicatorInterface::setOLEDOn() {
+    _oledOn = true;
+    _oledSleeping = false;
+    u8g2.setPowerSave(0);
+    _updateOLEDDisplay();
+    _wakeOLED();
+}
+
+void IndicatorInterface::updateOLED() {
+    if (!_oledOn) return;
+    
+    _handleOLEDSleep();
+    if (_oledSleeping) return;
+    
+    // Handle special blinking first - if active, skip other operations
+    if (_isBlinkingOK || _isBlinkingCross) {
+        _handleSpecialBlink();
+        return;  // Don't handle regular blink/scroll when special blinking
+    }
+    
+    _handleOLEDBlink();
+    _handleScrolling();
+}
+
+// void IndicatorInterface::updateOLED() {
+//     if (!_oledOn) return;
+    
+//     _handleOLEDSleep();
+//     if (_oledSleeping) return;
+    
+//     _handleOLEDBlink();
+//     _handleSpecialBlink();  // Add this line
+//     _handleScrolling();
+// }
+
+
+
+void IndicatorInterface::_calculateDisplayParams() {
+    int displayHeight = u8g2.getDisplayHeight(); // 64 pixels
+    
+    // Calculate optimal line height for each mode to use full display height
+    switch (_oledLines) {
+        case 1:
+            // Use largest font and center it
+            u8g2.setFont(u8g2_font_10x20_t_cyrillic);
+            _lineHeight = displayHeight; // Full height for single line
+            _charWidth = 10;
+            _maxCharsPerLine = 12;
+            break;
+            
+        case 2:
+            // Use medium-large font
+            //u8g2.setFont(u8g2_font_9x15_t_cyrillic);
+            u8g2.setFont(u8g2_font_10x20_t_cyrillic);
+            _lineHeight = displayHeight / 2; // 32px per line
+            _charWidth = 9;
+            _maxCharsPerLine = 14;
+            break;
+            
+        case 3:
+            // Use medium font
+            //u8g2.setFont(u8g2_font_7x13_t_cyrillic);
+            // u8g2.setFont(u8g2_font_9x15_t_cyrillic);
+            u8g2.setFont(u8g2_font_10x20_t_cyrillic);
+            _lineHeight = displayHeight / 3; // ~21px per line
+            _charWidth = 7;
+            _maxCharsPerLine = 18;
+            break;
+            
+        case 4:
+            // Use smaller font
+            //u8g2.setFont(u8g2_font_5x7_t_cyrillic);
+            u8g2.setFont(u8g2_font_9x15_t_cyrillic);
+            _lineHeight = displayHeight / 4; // 16px per line
+            _charWidth = 5;
+            _maxCharsPerLine = 25;
+            break;
+            
+        case 5:
+        default:
+            // Use smallest font
+            u8g2.setFont(u8g2_font_9x15_t_cyrillic);
+            // u8g2.setFont(u8g2_font_4x6_t_cyrillic);
+            _lineHeight = displayHeight / 5; // ~12px per line
+            _charWidth = 4;
+            _maxCharsPerLine = 32;
+            break;
+    }
+}
+
+
+// void IndicatorInterface::_calculateDisplayParams() {
+//     // Set font based on number of lines
+//     switch (_oledLines) {
+//         case 1:
+//             u8g2.setFont(u8g2_font_10x20_t_cyrillic);
+//             _lineHeight = 24;
+//             _charWidth = 10;
+//             _maxCharsPerLine = 12;
+//             break;
+//         case 2:
+//             u8g2.setFont(u8g2_font_9x15_t_cyrillic);
+//             _lineHeight = 20;
+//             _charWidth = 9;
+//             _maxCharsPerLine = 14;
+//             break;
+//         case 3:
+//             u8g2.setFont(u8g2_font_7x13_t_cyrillic);
+//             _lineHeight = 16;
+//             _charWidth = 7;
+//             _maxCharsPerLine = 18;
+//             break;
+//         case 4:
+//             u8g2.setFont(u8g2_font_5x7_t_cyrillic);
+//             _lineHeight = 12;
+//             _charWidth = 6;
+//             _maxCharsPerLine = 21;
+//             break;
+//         case 5:
+//         default:
+//             u8g2.setFont(u8g2_font_4x6_t_cyrillic);
+//             _lineHeight = 10;
+//             _charWidth = 5;
+//             _maxCharsPerLine = 25;
+//             break;
+//     }
+// }
+
+void IndicatorInterface::_updateOLEDDisplay() {
+    if (!_oledOn || _oledSleeping) return;
+    
+    u8g2.clearBuffer();
+    _calculateDisplayParams();
+    
+    // Set font position to top for consistent positioning
+    u8g2.setFontPosTop();
+    
+    int displayHeight = u8g2.getDisplayHeight(); // 64 pixels
+    
+    for (int i = 0; i < _oledLines && i < _textBufferSize; i++) {
+        int yPos;
+        
+        if (_oledLines == 1) {
+            // Center single line vertically
+            int fontHeight = u8g2.getFontAscent() - u8g2.getFontDescent();
+            yPos = (displayHeight - fontHeight) / 2;
+        } else {
+            // Distribute lines evenly across display height
+            yPos = (i * displayHeight) / _oledLines;
+        }
+        
+        _drawTextLine(i, yPos);
+    }
+    
+    u8g2.sendBuffer();
+}
+
+
+void IndicatorInterface::_drawTextLine(int lineIndex, int yPos) {
+    if (lineIndex >= _textBufferSize || _textBuffer[lineIndex].length() == 0) {
+        return;
+    }
+    
+    String text = _textBuffer[lineIndex];
+    
+    // Check pixel width instead of character count
+    int textPixelWidth = u8g2.getUTF8Width(text.c_str());
+    int displayWidth = u8g2.getDisplayWidth();
+    
+    // Only scroll if text pixel width exceeds display width
+    if (textPixelWidth > displayWidth) {
+        // Create scrolling text with padding
+        String scrollText = text + "   " + text;  // Add spacing between repeats
+        
+        int scrollTextWidth = u8g2.getUTF8Width(scrollText.c_str());
+        int startPixel = _scrollOffset[lineIndex];
+        
+        // Calculate how much text to display
+        String displayText = "";
+        int currentWidth = 0;
+        int charIndex = 0;
+        
+        // Skip characters until we reach the scroll offset
+        while (charIndex < scrollText.length() && currentWidth < startPixel) {
+            String charStr = scrollText.substring(charIndex, charIndex + 1);
+            currentWidth += u8g2.getUTF8Width(charStr.c_str());
+            charIndex++;
+        }
+        
+        // Collect characters that fit on screen
+        currentWidth = 0;
+        int startChar = charIndex;
+        while (charIndex < scrollText.length() && currentWidth < displayWidth) {
+            String charStr = scrollText.substring(charIndex, charIndex + 1);
+            int charWidth = u8g2.getUTF8Width(charStr.c_str());
+            if (currentWidth + charWidth <= displayWidth) {
+                currentWidth += charWidth;
+                charIndex++;
+            } else {
+                break;
+            }
+        }
+        
+        displayText = scrollText.substring(startChar, charIndex);
+        u8g2.drawUTF8(0, yPos, displayText.c_str());
+    } else {
+        // Text fits on one line - display normally without scrolling
+        u8g2.drawUTF8(0, yPos, text.c_str());
+        
+    }
+}
+
+
+
+
+void IndicatorInterface::_handleOLEDSleep() {
+    if (_oledSleepDelay < 0) return;  // Never sleep
+    
+    if (!_oledSleeping && (millis() - _lastActivityTime) > _oledSleepDelay) {
+        _oledSleeping = true;
+        u8g2.setPowerSave(1);
+    }
+}
+
+void IndicatorInterface::_handleOLEDBlink() {
+    if (!_oledBlink || _oledSleeping) return;
+    
+    unsigned long currentTime = millis();
+    unsigned long elapsed = currentTime - _lastBlinkTime;
+    
+    if (_blinkState && elapsed > _blinkTimeOn) {
+        // Turn off
+        u8g2.setPowerSave(1);
+        _blinkState = false;
+        _lastBlinkTime = currentTime;
+    } else if (!_blinkState && elapsed > _blinkTimeOff) {
+        // Turn on
+        u8g2.setPowerSave(0);
+        _updateOLEDDisplay();
+        _blinkState = true;
+        _lastBlinkTime = currentTime;
+    }
+}
+
+void IndicatorInterface::_handleScrolling() {
+    if (_oledSleeping || _oledBlink) return;
+    
+    unsigned long currentTime = millis();
+    if (currentTime - _lastScrollTime < _scrollDelay) return;
+    
+    bool needsUpdate = false;
+    
+    for (int i = 0; i < _oledLines && i < _textBufferSize; i++) {
+        if (_textBuffer[i].length() > 0) {
+            int textPixelWidth = u8g2.getUTF8Width(_textBuffer[i].c_str());
+            int displayWidth = u8g2.getDisplayWidth();
+            
+            // Only scroll if text is wider than display
+            if (textPixelWidth > displayWidth) {
+                _scrollOffset[i] += 2;  // Scroll by 2 pixels each time
+                
+                // Reset scroll when we've scrolled through the entire text
+                String scrollText = _textBuffer[i] + "   " + _textBuffer[i];
+                int totalScrollWidth = u8g2.getUTF8Width(_textBuffer[i].c_str()) + 
+                                     u8g2.getUTF8Width("   ");
+                
+                if (_scrollOffset[i] >= totalScrollWidth) {
+                    _scrollOffset[i] = 0;
+                }
+                
+                needsUpdate = true;
+            }
+        }
+    }
+    
+    if (needsUpdate) {
+        _updateOLEDDisplay();
+        _lastScrollTime = currentTime;
+    }
+}
+
+void IndicatorInterface::_wakeOLED() {
+    if (_oledOn) {
+        _lastActivityTime = millis();
+        _oledSleeping = false;
+        u8g2.setPowerSave(0);
+    }
+}
+
+// Modify existing handleInterrupt() method to wake OLED:
+void IndicatorInterface::handleInterrupt() {
+    if (_interruptFlag) {
+        _interruptFlag = false;
+        _updateState();
+        _wakeOLED();  // Wake OLED on any interrupt
+    }
+}
+
+// Add this method to IndicatorInterface.cpp
+// void IndicatorInterface::_fixSH1106Offset() {
+//     // Set column start address to 2 for SH1106
+//     u8g2.sendF("ca", 0x10 | 0, 0x10 | 2);  // Set lower and higher column start address
+// }
+
+void IndicatorInterface::pushLine(String newLine) {
+    // Shift all lines down
+    for (int i = 4; i > 0; i--) {
+        _textBuffer[i] = _textBuffer[i-1];
+    }
+    
+    // Add new line at the top
+    _textBuffer[0] = newLine;
+    
+    // Ensure we have the right number of lines
+    if (_textBufferSize < _oledLines) {
+        _textBufferSize++;
+    } else {
+        _textBufferSize = _oledLines;
+    }
+    
+    // Reset scroll offsets
+    for (int i = 0; i < 5; i++) {
+        _scrollOffset[i] = 0;
+    }
+    
+    _updateOLEDDisplay();
+    _wakeOLED();
+}
+
+void IndicatorInterface::displayOK() {
+    // Remove this line: stopBlinking(); // Stop any current blinking
+    
+    u8g2.clearBuffer();
+    
+    // Use the largest available font for OK
+    u8g2.setFont(u8g2_font_logisoso42_tf);
+    u8g2.setFontPosCenter();
+    
+    // Calculate center position
+    int displayWidth = u8g2.getDisplayWidth();
+    int displayHeight = u8g2.getDisplayHeight();
+    
+    String okText = "OK";
+    int textWidth = u8g2.getUTF8Width(okText.c_str());
+    
+    int x = (displayWidth - textWidth) / 2;
+    int y = displayHeight / 2;
+    
+    // Draw OK in center
+    u8g2.drawUTF8(x, y + 5, okText.c_str());
+    
+    // Add a border around OK
+    u8g2.drawFrame(x - 5, y - u8g2.getFontAscent() / 2 - 5, 
+                   textWidth + 10, u8g2.getFontAscent() + u8g2.getFontDescent() + 20);
+    
+    u8g2.sendBuffer();
+    _wakeOLED();
+}
+
+void IndicatorInterface::displayCross() {
+    u8g2.clearBuffer();
+    
+    int displayWidth = u8g2.getDisplayWidth();
+    int displayHeight = u8g2.getDisplayHeight();
+    
+    // Calculate center and radius for circle
+    int centerX = displayWidth / 2;
+    int centerY = displayHeight / 2;
+    int radius = min(displayWidth, displayHeight) / 2 - 4;
+    
+    // Draw thicker circle by drawing multiple concentric circles
+    for (int r = radius; r > radius - 3; r--) {
+        u8g2.drawCircle(centerX, centerY, r);
+    }
+    
+    // Cross parameters - made smaller
+    int crossSize = (radius * 5) / 10;  // Reduced from 70% to 50% of radius
+    int thickness = 4;  // Cross arm thickness
+    int halfThickness = thickness / 2;
+    
+    // Draw main diagonal (top-left to bottom-right)
+    for (int i = -crossSize; i <= crossSize; i++) {
+        int x1 = centerX + i - halfThickness;
+        int y1 = centerY + i - halfThickness;
+        
+        // Draw small filled rectangles along the diagonal
+        u8g2.drawBox(x1, y1, thickness, thickness);
+    }
+    
+    // Draw anti-diagonal (top-right to bottom-left)
+    for (int i = -crossSize; i <= crossSize; i++) {
+        int x1 = centerX + i - halfThickness;
+        int y1 = centerY - i - halfThickness;
+        
+        // Draw small filled rectangles along the anti-diagonal
+        u8g2.drawBox(x1, y1, thickness, thickness);
+    }
+    
+    u8g2.sendBuffer();
+    _wakeOLED();
+}
+
+// void IndicatorInterface::displayCross() {
+//     // Remove this line: stopBlinking(); // Stop any current blinking
+    
+//     u8g2.clearBuffer();
+    
+//     int displayWidth = u8g2.getDisplayWidth();
+//     int displayHeight = u8g2.getDisplayHeight();
+    
+//     // Calculate center and radius for circle
+//     int centerX = displayWidth / 2;
+//     int centerY = displayHeight / 2;
+//     int radius = min(displayWidth, displayHeight) / 2 - 4;
+    
+//     // Draw circle
+//     u8g2.drawCircle(centerX, centerY, radius);
+    
+//     // Draw cross inside circle
+//     int crossSize = radius - 8;
+    
+//     // Draw X (cross) - make it thicker
+//     for (int offset = -1; offset <= 1; offset++) {
+//         u8g2.drawLine(centerX - crossSize + offset, centerY - crossSize, 
+//                       centerX + crossSize + offset, centerY + crossSize);
+//         u8g2.drawLine(centerX + crossSize + offset, centerY - crossSize, 
+//                       centerX - crossSize + offset, centerY + crossSize);
+//         u8g2.drawLine(centerX - crossSize, centerY - crossSize + offset, 
+//                       centerX + crossSize, centerY + crossSize + offset);
+//         u8g2.drawLine(centerX + crossSize, centerY - crossSize + offset, 
+//                       centerX - crossSize, centerY + crossSize + offset);
+//     }
+    
+//     u8g2.sendBuffer();
+//     _wakeOLED();
+// }
+
+
+void IndicatorInterface::blinkOK(int blinkDelay) {
+    // Stop any regular OLED blinking first
+    _oledBlink = false;
+    
+    _saveCurrentText();
+    _isBlinkingOK = true;
+    _isBlinkingCross = false;
+    _blinkDelayTime = blinkDelay;
+    _lastBlinkToggle = millis();
+    _blinkShowSpecial = true;
+    
+    displayOK();  // Start with OK showing
+}
+
+void IndicatorInterface::blinkCross(int blinkDelay) {
+    // Stop any regular OLED blinking first
+    _oledBlink = false;
+    
+    _saveCurrentText();
+    _isBlinkingOK = false;
+    _isBlinkingCross = true;
+    _blinkDelayTime = blinkDelay;
+    _lastBlinkToggle = millis();
+    _blinkShowSpecial = true;
+    
+    displayCross();  // Start with cross showing
+}
+
+
+void IndicatorInterface::stopBlinking() {
+    _isBlinkingOK = false;
+    _isBlinkingCross = false;
+    _restoreCurrentText();
+}
+
+void IndicatorInterface::_saveCurrentText() {
+    // Save current text buffer
+    for (int i = 0; i < 5; i++) {
+        _savedTextBuffer[i] = _textBuffer[i];
+    }
+    _savedTextBufferSize = _textBufferSize;
+    _savedOledLines = _oledLines;
+}
+
+void IndicatorInterface::_restoreCurrentText() {
+    // Restore saved text buffer
+    for (int i = 0; i < 5; i++) {
+        _textBuffer[i] = _savedTextBuffer[i];
+    }
+    _textBufferSize = _savedTextBufferSize;
+    _oledLines = _savedOledLines;
+    
+    _updateOLEDDisplay();
+}
+
+void IndicatorInterface::_handleSpecialBlink() {
+    if (!_isBlinkingOK && !_isBlinkingCross) return;
+    
+    unsigned long currentTime = millis();
+    if (currentTime - _lastBlinkToggle >= _blinkDelayTime) {
+        _blinkShowSpecial = !_blinkShowSpecial;
+        _lastBlinkToggle = currentTime;
+        
+        if (_blinkShowSpecial) {
+            // Show OK or Cross
+            if (_isBlinkingOK) {
+                displayOK();
+            } else if (_isBlinkingCross) {
+                displayCross();
+            }
+        } else {
+            // Show original text
+            _restoreCurrentText();
+        }
+    }
+}
+
+
+
+================================================================================
+File: MeasurementPoint.cpp
+Size: 3.07 kB
+================================================================================
+
+#include "MeasurementPoint.h"
+
+
+MeasurementPoint::MeasurementPoint(uint8_t address, const String& name)
+    : address(address),
+      name(name),
+      currentTemp(0),
+      minTemp(32767),
+      maxTemp(-32768),
+      lowAlarmThreshold(-10),
+      highAlarmThreshold(50),
+      alarmStatus(0),
+      errorStatus(0),
+      boundSensor(nullptr)
+      //oneWireBus(0)
+{
+    // Nothing else needed
+}
+
+MeasurementPoint::~MeasurementPoint() {
+    // Do not delete boundSensor here; ownership is external
+    boundSensor = nullptr;
+}
+
+uint8_t MeasurementPoint::getAddress() const {
+    return address;
+}
+
+String MeasurementPoint::getName() const {
+    return name;
+}
+
+int16_t MeasurementPoint::getCurrentTemp() const {
+    return currentTemp;
+}
+
+int16_t MeasurementPoint::getMinTemp() const {
+    return minTemp;
+}
+
+int16_t MeasurementPoint::getMaxTemp() const {
+    return maxTemp;
+}
+
+int16_t MeasurementPoint::getLowAlarmThreshold() const {
+    return lowAlarmThreshold;
+}
+
+int16_t MeasurementPoint::getHighAlarmThreshold() const {
+    return highAlarmThreshold;
+}
+
+uint8_t MeasurementPoint::getAlarmStatus() const {
+    return alarmStatus;
+}
+
+uint8_t MeasurementPoint::getErrorStatus() const {
+    return errorStatus;
+}
+
+void MeasurementPoint::setName(const String& newName) {
+    name = newName;
+}
+
+void MeasurementPoint::setLowAlarmThreshold(int16_t threshold) {
+    lowAlarmThreshold = threshold;
+    updateAlarmStatus();
+}
+
+void MeasurementPoint::setHighAlarmThreshold(int16_t threshold) {
+    highAlarmThreshold = threshold;
+    updateAlarmStatus();
+}
+
+void MeasurementPoint::bindSensor(Sensor* sensor) {
+    boundSensor = sensor;
+}
+
+void MeasurementPoint::unbindSensor() {
+    boundSensor = nullptr;
+}
+
+Sensor* MeasurementPoint::getBoundSensor() const {
+    return boundSensor;
+}
+
+void MeasurementPoint::update() {
+    if (boundSensor != nullptr) {
+        // Example: ask the sensor for the latest temperature
+        //if (boundSensor->readTemperature()) {
+            currentTemp = boundSensor->getCurrentTemp();
+            //Serial.printf("\nPoint: %d. %s. Sensor: %s. Temp: %d\n", getAddress(), getName(), boundSensor->getName(), currentTemp);
+            if (currentTemp < minTemp) minTemp = currentTemp;
+            if (currentTemp > maxTemp) maxTemp = currentTemp;
+            errorStatus = boundSensor->getErrorStatus();
+        //} else {
+            //errorStatus = boundSensor->getErrorStatus();
+        //}
+    } else {
+        errorStatus = 0x01; // Example: error code for "not bound"
+    }
+    updateAlarmStatus();
+}
+
+void MeasurementPoint::resetMinMaxTemp() {
+    minTemp = currentTemp;
+    maxTemp = currentTemp;
+}
+
+void MeasurementPoint::updateAlarmStatus() {
+    alarmStatus = 0;
+    if (errorStatus != 0) return;
+    if (currentTemp < lowAlarmThreshold) alarmStatus |= 0x01; // Low alarm bit
+    if (currentTemp > highAlarmThreshold) alarmStatus |= 0x02; // High alarm bit
+}
+
+// void MeasurementPoint::setOneWireBus(uint8_t bus) {
+//     oneWireBus = bus;
+
+// }
+// uint8_t MeasurementPoint::getOneWireBus() {
+//     return oneWireBus;
+
+// }
+
+
+================================================================================
+File: RegisterMap.cpp
+Size: 5.32 kB
+================================================================================
+
+#include "RegisterMap.h"
+
+RegisterMap::RegisterMap() {
+    deviceId = 1000;
+    firmwareVersion = 0x0100;
+    numActiveDS18B20 = 0;
+    numActivePT1000 = 0;
+    for (int i = 0; i < 7; i++) deviceStatus[i] = 0;
+    for (int i = 0; i < 60; i++) {
+        currentTemps[i] = 0;
+        minTemps[i] = 32767;
+        maxTemps[i] = -32768;
+        alarmStatus[i] = 0;
+        errorStatus[i] = 0;
+        lowAlarmThresholds[i] = -10;
+        highAlarmThresholds[i] = 50;
+    }
+}
+
+bool RegisterMap::isValidAddress(uint16_t address) {
+    if (address <= DEVICE_STATUS_END_REG) return true;
+    if (address >= CURRENT_TEMP_DS18B20_START_REG && address <= CURRENT_TEMP_PT1000_END_REG) return true;
+    if (address >= MIN_TEMP_DS18B20_START_REG && address <= MIN_TEMP_PT1000_END_REG) return true;
+    if (address >= MAX_TEMP_DS18B20_START_REG && address <= MAX_TEMP_PT1000_END_REG) return true;
+    if (address >= ALARM_STATUS_DS18B20_START_REG && address <= ALARM_STATUS_PT1000_END_REG) return true;
+    if (address >= ERROR_STATUS_DS18B20_START_REG && address <= ERROR_STATUS_PT1000_END_REG) return true;
+    if (address >= LOW_ALARM_DS18B20_START_REG && address <= LOW_ALARM_PT1000_END_REG) return true;
+    if (address >= HIGH_ALARM_DS18B20_START_REG && address <= HIGH_ALARM_PT1000_END_REG) return true;
+    return false;
+}
+
+bool RegisterMap::isReadOnlyRegister(uint16_t address) {
+    // Only alarm thresholds are writable
+    if (address >= LOW_ALARM_DS18B20_START_REG && address <= LOW_ALARM_PT1000_END_REG) return false;
+    if (address >= HIGH_ALARM_DS18B20_START_REG && address <= HIGH_ALARM_PT1000_END_REG) return false;
+    return true;
+}
+
+uint16_t RegisterMap::readHoldingRegister(uint16_t address) {
+    if (!isValidAddress(address)) return 0xFFFF;
+
+    if (address == DEVICE_ID_REG) return deviceId;
+    if (address == FIRMWARE_VERSION_REG) return firmwareVersion;
+    if (address == NUM_DS18B20_REG) return numActiveDS18B20;
+    if (address == NUM_PT1000_REG) return numActivePT1000;
+    if (address >= DEVICE_STATUS_START_REG && address <= DEVICE_STATUS_END_REG)
+        return deviceStatus[address - DEVICE_STATUS_START_REG];
+
+    // DS18B20 and PT1000 share the same arrays, just different index offsets
+    if (address >= CURRENT_TEMP_DS18B20_START_REG && address <= CURRENT_TEMP_PT1000_END_REG)
+        return currentTemps[address - CURRENT_TEMP_DS18B20_START_REG];
+    if (address >= MIN_TEMP_DS18B20_START_REG && address <= MIN_TEMP_PT1000_END_REG)
+        return minTemps[address - MIN_TEMP_DS18B20_START_REG];
+    if (address >= MAX_TEMP_DS18B20_START_REG && address <= MAX_TEMP_PT1000_END_REG)
+        return maxTemps[address - MAX_TEMP_DS18B20_START_REG];
+    if (address >= ALARM_STATUS_DS18B20_START_REG && address <= ALARM_STATUS_PT1000_END_REG)
+        return alarmStatus[address - ALARM_STATUS_DS18B20_START_REG];
+    if (address >= ERROR_STATUS_DS18B20_START_REG && address <= ERROR_STATUS_PT1000_END_REG)
+        return errorStatus[address - ERROR_STATUS_DS18B20_START_REG];
+    if (address >= LOW_ALARM_DS18B20_START_REG && address <= LOW_ALARM_PT1000_END_REG)
+        return lowAlarmThresholds[address - LOW_ALARM_DS18B20_START_REG];
+    if (address >= HIGH_ALARM_DS18B20_START_REG && address <= HIGH_ALARM_PT1000_END_REG)
+        return highAlarmThresholds[address - HIGH_ALARM_DS18B20_START_REG];
+
+    return 0xFFFF;
+}
+
+bool RegisterMap::writeHoldingRegister(uint16_t address, uint16_t value) {
+    if (!isValidAddress(address)) return false;
+    if (isReadOnlyRegister(address)) return false;
+
+    // Only alarm thresholds are writable
+    if (address >= LOW_ALARM_DS18B20_START_REG && address <= LOW_ALARM_PT1000_END_REG) {
+        lowAlarmThresholds[address - LOW_ALARM_DS18B20_START_REG] = static_cast<int16_t>(value);
+        return true;
+    }
+    if (address >= HIGH_ALARM_DS18B20_START_REG && address <= HIGH_ALARM_PT1000_END_REG) {
+        highAlarmThresholds[address - HIGH_ALARM_DS18B20_START_REG] = static_cast<int16_t>(value);
+        return true;
+    }
+    return false;
+}
+
+void RegisterMap::updateFromMeasurementPoint(const MeasurementPoint& point) {
+    uint8_t idx = point.getAddress();
+    // DS18B20: 0-49, PT1000: 50-59
+    if (idx < 60) {
+        currentTemps[idx] = point.getCurrentTemp();
+        minTemps[idx] = point.getMinTemp();
+        maxTemps[idx] = point.getMaxTemp();
+        alarmStatus[idx] = point.getAlarmStatus();
+        errorStatus[idx] = point.getErrorStatus();
+        // Thresholds are updated by config methods, not here
+    }
+}
+
+void RegisterMap::applyConfigToMeasurementPoint(MeasurementPoint& point) {
+    uint8_t idx = point.getAddress();
+    if (idx < 60) {
+        point.setLowAlarmThreshold(lowAlarmThresholds[idx]);
+        point.setHighAlarmThreshold(highAlarmThresholds[idx]);
+        //Serial.printf("applyConfigToMeasurementPoint(%d): LAS: %d, HAS: %d\n", idx, lowAlarmThresholds[idx], highAlarmThresholds[idx]);
+    }
+}
+
+void RegisterMap::applyConfigFromMeasurementPoint(const MeasurementPoint& point) {
+    uint8_t idx = point.getAddress();
+    if (idx < 60) {
+        lowAlarmThresholds[idx] = point.getLowAlarmThreshold();
+        highAlarmThresholds[idx] = point.getHighAlarmThreshold();
+        //Serial.printf("applyConfigFromMeasurementPoint(%d): LAS: %d, HAS: %d\n", idx, lowAlarmThresholds[idx], highAlarmThresholds[idx]);
+    }
+}
+
+
+================================================================================
+File: Sensor.cpp
+Size: 7.49 kB
+================================================================================
+
+#include "Sensor.h"
+
+//SPI PINs
+// #define SCK_PIN  14
+// #define MISO_PIN  12
+// #define MOSI_PIN  13
+
+Sensor::Sensor(SensorType type, uint8_t address, const String& name)
+    : address(address), name(name), type(type),
+      currentTemp(0), minTemp(32767), maxTemp(-32768),
+      lowAlarmThreshold(-40), highAlarmThreshold(85),
+      alarmStatus(0), errorStatus(0),
+      oneWire(nullptr), dallasTemperature(nullptr), max31865(nullptr)
+{
+    if (type == SensorType::DS18B20) {
+        connection.ds18b20.oneWirePin = 0;
+        memset(connection.ds18b20.oneWireAddress, 0, 8);
+    } else {
+        connection.pt1000.csPin = 0;
+        connection.pt1000.maxAddress = 0;
+    }
+}
+
+Sensor::~Sensor() {
+    if (oneWire != nullptr) {
+        delete oneWire;
+        oneWire = nullptr;
+    }
+    if (dallasTemperature != nullptr) {
+        delete dallasTemperature;
+        dallasTemperature = nullptr;
+    }
+    if (max31865 != nullptr) {
+        delete max31865;
+        max31865 = nullptr;
+    }
+}
+
+void Sensor::setupDS18B20(uint8_t pin, const uint8_t* deviceAddress) {
+    connection.ds18b20.oneWirePin = pin;
+    memcpy(connection.ds18b20.oneWireAddress, deviceAddress, 8);
+}
+
+void Sensor::setupPT1000(uint8_t csPin, uint8_t maxAddress) {
+    connection.pt1000.csPin = csPin;
+    connection.pt1000.maxAddress = maxAddress;
+}
+
+bool Sensor::initialize() {
+    if (type == SensorType::DS18B20) {
+        oneWire = new OneWire(connection.ds18b20.oneWirePin);
+        dallasTemperature = new DallasTemperature(oneWire);
+        dallasTemperature->begin();
+        DeviceAddress deviceAddress;
+        memcpy(deviceAddress, connection.ds18b20.oneWireAddress, 8);
+        dallasTemperature->setResolution(deviceAddress, 12);
+        return dallasTemperature->isConnected(deviceAddress);
+    } else if (type == SensorType::PT1000) {
+        max31865 = new Adafruit_MAX31865(connection.pt1000.csPin);
+        
+        // Try to begin the MAX31865
+        bool beginSuccess = max31865->begin(MAX31865_3WIRE); // Adjust for your wiring
+        
+        // if (!beginSuccess) {
+        //     errorStatus |= ERROR_COMMUNICATION;
+        //     return false;
+        // }
+        
+        // // Check for faults immediately after initialization
+        // uint8_t fault = max31865->readFault();
+        // if (fault) {
+        //     max31865->clearFault();
+        //     errorStatus |= ERROR_COMMUNICATION;
+        //     return false;
+        // }
+        
+        // // Read RTD value to verify communication
+        // uint16_t rtd = max31865->readRTD();
+        // if (rtd == 0 || rtd == 0xFFFF) {  // Common values when module is not connected
+        //     errorStatus |= ERROR_COMMUNICATION;
+        //     // return false;
+        // }
+        
+        // // Calculate resistance to check if it's within reasonable range for PT1000
+        // float ratio = rtd / 32768.0;
+        // float resistance = 4300.0 * ratio;  // Using RREF of 4300 for PT1000
+        
+        // // PT1000 should be roughly 1000 ohms at 0°C, with reasonable range between 800-1400 ohms
+        // // for normal temperature measurements (-50°C to +100°C)
+        // if (resistance < 800.0 || resistance > 2200.0) {
+        //     errorStatus |= ERROR_DISCONNECTED;
+        //     // return false;
+        // }
+        
+        return true;
+    }
+    return false;
+}
+
+bool Sensor::readTemperature() {
+    float tempC = 0.0;
+    bool success = false;
+    errorStatus &= ~(ERROR_COMMUNICATION | ERROR_OUT_OF_RANGE | ERROR_DISCONNECTED);
+
+    if (type == SensorType::DS18B20) {
+        if (dallasTemperature != nullptr) {
+            DeviceAddress deviceAddress;
+            memcpy(deviceAddress, connection.ds18b20.oneWireAddress, 8);
+            if (dallasTemperature->isConnected(deviceAddress)) {
+                dallasTemperature->requestTemperaturesByAddress(deviceAddress);
+                tempC = dallasTemperature->getTempC(deviceAddress);
+                if (tempC != DEVICE_DISCONNECTED_C) {
+                    success = true;
+                } else {
+                    errorStatus |= ERROR_DISCONNECTED;
+                }
+            } else {
+                errorStatus |= ERROR_COMMUNICATION;
+            }
+        }
+    } else if (type == SensorType::PT1000) {
+        if (max31865 != nullptr) {
+            uint8_t fault = max31865->readFault();
+            // if (fault) {
+            //     // if (fault & MAX31865_FAULT_HIGHTHRESH || fault & MAX31865_FAULT_LOWTHRESH) {
+            //     //     errorStatus |= ERROR_OUT_OF_RANGE;
+            //     // }
+                if (fault & (MAX31865_FAULT_REFINLOW | MAX31865_FAULT_REFINHIGH |
+                             MAX31865_FAULT_RTDINLOW | MAX31865_FAULT_OVUV)) {
+                    errorStatus |= ERROR_COMMUNICATION;
+                    max31865->clearFault();
+                
+                } else {
+                    tempC = max31865->temperature(1000.0, 4300.0); // PT1000: 1000 ohm at 0°C, adjust reference as needed
+                    success = true;
+                }
+        }
+    }
+
+    if (success) {
+        if (tempC < -40.0 || tempC > 200.0) {
+            errorStatus |= ERROR_OUT_OF_RANGE;
+        } else {
+            currentTemp = static_cast<int16_t>(round(tempC));
+            if (currentTemp < minTemp) minTemp = currentTemp;
+            if (currentTemp > maxTemp) maxTemp = currentTemp;
+        }
+    }
+    updateAlarmStatus();
+    return success;
+}
+
+SensorType Sensor::getType() const { return type; }
+uint8_t Sensor::getAddress() const { return address; }
+String Sensor::getName() const { return name; }
+void Sensor::setName(const String& newName) { name = newName; }
+
+int16_t Sensor::getCurrentTemp() const {return currentTemp; }
+int16_t Sensor::getMinTemp() const { return minTemp; }
+int16_t Sensor::getMaxTemp() const { return maxTemp; }
+int16_t Sensor::getLowAlarmThreshold() const { return lowAlarmThreshold; }
+int16_t Sensor::getHighAlarmThreshold() const { return highAlarmThreshold; }
+uint8_t Sensor::getAlarmStatus() const { return alarmStatus; }
+uint8_t Sensor::getErrorStatus() const { return errorStatus; }
+
+void Sensor::setAddress(uint8_t newAddress) { address = newAddress; }
+void Sensor::setLowAlarmThreshold(int16_t threshold) { lowAlarmThreshold = threshold; updateAlarmStatus(); }
+void Sensor::setHighAlarmThreshold(int16_t threshold) { highAlarmThreshold = threshold; updateAlarmStatus(); }
+
+const uint8_t* Sensor::getDS18B20Address() const {
+    if (type == SensorType::DS18B20) {
+        return connection.ds18b20.oneWireAddress;
+    }
+    return nullptr;
+}
+
+void Sensor::resetMinMaxTemp() {
+    minTemp = currentTemp;
+    maxTemp = currentTemp;
+}
+
+void Sensor::updateAlarmStatus() {
+    alarmStatus = 0;
+    if (errorStatus != 0) return;
+    if (currentTemp < lowAlarmThreshold) alarmStatus |= ALARM_LOW_TEMP;
+    if (currentTemp > highAlarmThreshold) alarmStatus |= ALARM_HIGH_TEMP;
+}
+
+
+uint8_t Sensor::getPT1000ChipSelectPin() const {
+    if (type == SensorType::PT1000) return connection.pt1000.csPin;
+    return 0;
+}
+
+String Sensor::getDS18B20RomString() const {
+    if (type != SensorType::DS18B20) return "";
+    char buf[17]; // 16 hex chars + null
+    const uint8_t* rom = connection.ds18b20.oneWireAddress;
+    for (int i = 0; i < 8; ++i) {
+        sprintf(buf + i*2, "%02X", rom[i]);
+    }
+    return String(buf);
+}
+
+void Sensor::getDS18B20RomArray(uint8_t out[8]) const {
+    if (type == SensorType::DS18B20) {
+        memcpy(out, connection.ds18b20.oneWireAddress, 8);
+    }
+}
+
+================================================================================
+File: TempModbusServer.cpp
+Size: 6.11 kB
+================================================================================
+
+#include "TempModbusServer.h"
+
+TempModbusServer::TempModbusServer(RegisterMap& regMap, 
+                                uint8_t id, 
+                                HardwareSerial& serialPort, 
+                                int rx, 
+                                int tx, 
+                                int de,
+                                int baud) 
+    : registerMap(regMap), serverID(id), serial(serialPort), 
+      rxPin(rx), txPin(tx), baudRate(baud), dePin(de) {
+    
+    // Create ModbusRTU server with 2000ms timeout
+    mbServer = new ModbusServerRTU(1000, dePin);
+    
+    // Set static pointer to register map for worker functions
+    registerMapPtr = &regMap;
+    
+}
+
+RegisterMap* TempModbusServer::registerMapPtr = nullptr;
+
+TempModbusServer::~TempModbusServer() {
+    if (mbServer) {
+        // No need to call stop() as it doesn't exist
+        delete mbServer;
+        mbServer = nullptr;
+    }
+}
+
+
+bool TempModbusServer::begin() {
+    // Prepare serial port for Modbus RTU
+    RTUutils::prepareHardwareSerial(serial);
+    Serial.println("Modbus begin1");
+    if (baudRate == 0) {
+        baudRate = 9600;
+    }
+    serial.begin(baudRate, SERIAL_8N1, rxPin, txPin);
+    Serial.println("Modbus begin2");
+    
+    // Register worker functions for different Modbus function codes
+    mbServer->registerWorker(serverID, READ_HOLD_REGISTER, &TempModbusServer::readHoldingRegistersWorker);
+    Serial.println("Modbus begin3");
+    mbServer->registerWorker(serverID, WRITE_HOLD_REGISTER, &TempModbusServer::writeHoldingRegisterWorker);
+    Serial.println("Modbus begin4");
+    mbServer->registerWorker(serverID, WRITE_MULT_REGISTERS, &TempModbusServer::writeMultipleRegistersWorker);
+    Serial.println("Modbus begin5");
+    
+    // Start ModbusRTU server - note that begin() returns void
+    mbServer->begin(serial);
+    return true; // Assume success since we can't check
+}
+
+
+void TempModbusServer::stop() {
+    // There is no stop() method in ModbusServerRTU
+    // You might want to implement any cleanup needed here
+}
+
+
+// Worker function for READ_HOLD_REGISTER (FC=03)
+ModbusMessage TempModbusServer::readHoldingRegistersWorker(ModbusMessage request) {
+    uint16_t address;           // Requested register address
+    uint16_t words;             // Requested number of registers
+    ModbusMessage response;     // Response message to be sent back
+    
+    // Get request values
+    request.get(2, address);
+    request.get(4, words);
+    
+    // Check if address and word count are valid
+    if (words > 0 && words <= 125) {  // Max 125 registers per request as per Modbus spec
+        // Set up response header
+        response.add(request.getServerID(), request.getFunctionCode(), (uint8_t)(words * 2));
+        
+        // Add requested register values to response
+        bool allValid = true;
+        for (uint16_t i = 0; i < words; i++) {
+            uint16_t regValue = registerMapPtr->readHoldingRegister(address + i);
+            
+            // Check if register read was successful - 0xFFFF is often used as an error indicator
+            if (regValue != 0xFFFF) {
+                response.add(regValue);
+            } else {
+                allValid = false;
+                break;
+            }
+        }
+        
+        // If any register was invalid, return error response
+        if (!allValid) {
+            response.clear();
+            response.setError(request.getServerID(), request.getFunctionCode(), ILLEGAL_DATA_ADDRESS);
+        }
+    } else {
+        // Invalid word count, return error response
+        response.setError(request.getServerID(), request.getFunctionCode(), ILLEGAL_DATA_ADDRESS);
+    }
+    
+    return response;
+}
+
+
+// Worker function for WRITE_HOLD_REGISTER (FC=06)
+ModbusMessage TempModbusServer::writeHoldingRegisterWorker(ModbusMessage request) {
+    uint16_t address;           // Register address to write
+    uint16_t value;             // Value to write
+    ModbusMessage response;     // Response message to be sent back
+    
+    // Get request values
+    request.get(2, address);
+    request.get(4, value);
+    
+    // Try to write the value to the register
+    if (registerMapPtr->writeHoldingRegister(address, value)) {
+        // Success - echo the request as response
+        return request;
+    } else {
+        // Failed - return error response
+        response.setError(request.getServerID(), request.getFunctionCode(), ILLEGAL_DATA_ADDRESS);
+        return response;
+    }
+}
+
+// Worker function for WRITE_MULT_REGISTERS (FC=16)
+ModbusMessage TempModbusServer::writeMultipleRegistersWorker(ModbusMessage request) {
+    uint16_t address;           // Starting register address
+    uint16_t words;             // Number of registers to write
+    uint8_t bytesCount;         // Number of data bytes in request
+    ModbusMessage response;     // Response message to be sent back
+    
+    // Get request values
+    request.get(2, address);
+    request.get(4, words);
+    request.get(6, bytesCount);
+    
+    // Check if word count is valid
+    if (words > 0 && words <= 123 && bytesCount == words * 2) {  // Max 123 registers per request
+        bool allWritten = true;
+        
+        // Write each register value
+        for (uint16_t i = 0; i < words; i++) {
+            uint16_t value;
+            request.get(7 + i * 2, value);
+            
+            if (!registerMapPtr->writeHoldingRegister(address + i, value)) {
+                allWritten = false;
+                break;
+            }
+        }
+        
+        if (allWritten) {
+            // Success - create response with address and word count
+            response.add(request.getServerID(), request.getFunctionCode());
+            response.add(address);
+            response.add(words);
+        } else {
+            // Failed to write at least one register
+            response.setError(request.getServerID(), request.getFunctionCode(), ILLEGAL_DATA_ADDRESS);
+        }
+    } else {
+        // Invalid word count or byte count
+        response.setError(request.getServerID(), request.getFunctionCode(), ILLEGAL_DATA_ADDRESS);
+    }
+    
+    return response;
+}
+
+
+================================================================================
+File: TemperatureController.cpp
+Size: 36.1 kB
+================================================================================
+
+#include "TemperatureController.h"
+
+TemperatureController::TemperatureController(uint8_t oneWirePin[4], uint8_t csPin[4], IndicatorInterface& indicator)
+    : measurementPeriodSeconds(10),
+      deviceId(1000),
+      firmwareVersion(0x0100),
+      lastMeasurementTime(0),
+      systemInitialized(false),
+      indicator(indicator),
+      _lastAlarmCheck(0),
+      _lastButtonState(true),
+      _lastButtonPressTime(0),
+      _currentDisplayedAlarm(nullptr),
+      _okDisplayStartTime(0),
+      _showingOK(false)
+{
+    // Initialize measurement points
+    for (uint8_t i = 0; i < 50; ++i)
+        dsPoints[i] = MeasurementPoint(i, "DS18B20_Point_" + String(i));
+    for (uint8_t i = 0; i < 10; ++i)
+        ptPoints[i] = MeasurementPoint(50 + i, "PT1000_Point_" + String(i));
+    
+    // Initialize bus pins
+    for (uint8_t i = 0; i < 4; i++) {
+        oneWireBusPin[i] = oneWirePin[i];
+        chipSelectPin[i] = csPin[i];
+    }
+    
+    // Initialize OneWire buses
+    for (int i = 0; i < 4; ++i) {
+        oneWireBuses[i] = new OneWire(oneWireBusPin[i]);
+        dallasSensors[i] = new DallasTemperature(oneWireBuses[i]);
+    }
+}
+
+TemperatureController::~TemperatureController() {
+    // Clean up sensors
+    for (auto sensor : sensors)
+        delete sensor;
+    sensors.clear();
+    
+ 
+    
+    // Clean up OneWire buses
+    for (int i = 0; i < 4; ++i) {
+        delete dallasSensors[i];
+        delete oneWireBuses[i];
+    }
+
+    // Clean up configured alarms
+    for (auto alarm : _configuredAlarms)
+        delete alarm;
+    _configuredAlarms.clear();
+}
+
+bool TemperatureController::begin() {
+    // Initialize register map
+    registerMap.writeHoldingRegister(0, deviceId);
+    registerMap.writeHoldingRegister(1, firmwareVersion);
+    registerMap.writeHoldingRegister(2, 0);
+    registerMap.writeHoldingRegister(3, 0);
+    for (int i = 4; i <= 10; i++)
+        registerMap.writeHoldingRegister(i, 0);
+    
+    Serial.println("Discovering sensors...");
+    discoverPTSensors();
+    Serial.println("Setting HMI...");
+    
+    // Initialize indicator interface
+    if (!indicator.begin()) {
+        Serial.println("Failed to initialize indicator interface!");
+        return false;
+    }
+    
+    // Configure ports
+    indicator.setDirection(0b0000000011111111); // P0-P7 as outputs
+    
+    // Set port names
+    indicator.setPortName("BUTTON", 15);
+    indicator.setPortName("Relay1", 0);
+    indicator.setPortName("Relay2", 1);
+    indicator.setPortName("Relay3", 2);
+    indicator.setPortName("GreenLED", 4);
+    indicator.setPortName("BlueLED", 5);
+    indicator.setPortName("YellowLED", 6);
+    indicator.setPortName("RedLED", 7);
+    
+    // Set individual port inversion for ULN2803
+    indicator.setPortInverted("Relay1", false);
+    indicator.setPortInverted("Relay2", false);
+    indicator.setPortInverted("Relay3", false);
+    indicator.setPortInverted("GreenLED", false);
+    indicator.setPortInverted("BlueLED", false);
+    indicator.setPortInverted("YellowLED", false);
+    indicator.setPortInverted("RedLED", false);
+    indicator.setPortInverted("BUTTON", false);
+    
+    // Turn off all LEDs initially
+    indicator.setAllOutputsLow();
+    
+    // Set interrupt callback
+    indicator.setInterruptCallback([](uint16_t currentState, uint16_t changedPins) {
+        Serial.print("PCF8575 Interrupt - State: 0x");
+        Serial.print(currentState, HEX);
+        Serial.print(", Changed: 0x");
+        Serial.println(changedPins, HEX);
+    });
+    
+    // Set normal operation display
+    indicator.setOledMode(3);
+    indicator.writePort("GreenLED", true); // Normal operation LED
+    
+    systemInitialized = true;
+    Serial.println("Setup complete!");
+    indicator.printConfiguration();
+    return true;
+}
+
+void TemperatureController::update() {
+    updateAllSensors();
+    readAllPoints();
+    
+    // Handle PCF8575 interrupts
+    indicator.handleInterrupt();
+    
+    // Update alarm system
+    updateAlarms();
+    
+    // Handle button presses
+    _checkButtonPress();
+    
+    // Handle alarm display and outputs
+    handleAlarmDisplay();
+    handleAlarmOutputs();
+    
+    // Update OLED
+    indicator.updateOLED();
+    
+    if (!systemInitialized) return;
+
+
+    unsigned long currentTime = millis();
+    if (currentTime - lastMeasurementTime >= measurementPeriodSeconds * 1000) {
+        
+        updateRegisterMap();
+        lastMeasurementTime = currentTime;
+        //applyConfigFromRegisterMap();
+    }
+}
+
+// Alarm Management Methods
+void TemperatureController::updateAlarms() {
+    unsigned long currentTime = millis();
+    if (currentTime - _lastAlarmCheck < _alarmCheckInterval) {
+        return;
+    }
+    _lastAlarmCheck = currentTime;
+    
+    Serial.println("=== Checking alarms with fresh sensor data ===");
+    
+    // Check all measurement points for NEW alarm conditions
+    for (uint8_t i = 0; i < 50; ++i) {
+        if (dsPoints[i].getBoundSensor() != nullptr) {
+            Serial.printf("DS Point %d: Temp=%d, High=%d, Low=%d\n",
+                         i, dsPoints[i].getCurrentTemp(),
+                         dsPoints[i].getHighAlarmThreshold(),
+                         dsPoints[i].getLowAlarmThreshold());
+            //_checkPointForAlarms(&dsPoints[i]);
+        }
+    }
+    
+    for (uint8_t i = 0; i < 10; ++i) {
+        if (ptPoints[i].getBoundSensor() != nullptr) {
+            Serial.printf("PT Point %d: Temp=%d, High=%d, Low=%d\n",
+                         i, ptPoints[i].getCurrentTemp(),
+                         ptPoints[i].getHighAlarmThreshold(),
+                         ptPoints[i].getLowAlarmThreshold());
+            //_checkPointForAlarms(&ptPoints[i]);
+        }
+    }
+    
+    // Update existing configured alarms (do NOT remove resolved alarms)
+    Serial.println("=== Updating existing alarms ===");
+    for (auto alarm : _configuredAlarms) {
+        if (alarm->isEnabled()) {
+            alarm->updateCondition();
+            // Do NOT check for resolved state or remove alarms here
+        }
+    }
+    
+    // Sort alarms by priority
+    std::sort(_configuredAlarms.begin(), _configuredAlarms.end(), AlarmComparator());
+    
+    Serial.printf("Active alarms count: %d\n", getActiveAlarms().size());
+    
+    // Debug: Print all current alarms
+    for (auto alarm : _configuredAlarms) {
+        if (alarm->isEnabled()) {
+            Serial.printf("  Alarm: %s, Stage: %s, Point: %d\n",
+                         alarm->getTypeString().c_str(),
+                         alarm->getStageString().c_str(),
+                         alarm->getSource() ? alarm->getSource()->getAddress() : -1);
+        }
+    }
+}
+
+
+
+
+void TemperatureController::_checkPointForAlarms(MeasurementPoint* point) {
+    if (!point || !point->getBoundSensor()) return;
+    
+    // Check for high temperature alarm
+    if (point->getCurrentTemp() >= point->getHighAlarmThreshold()) {
+        if (!_hasAlarmForPoint(point, AlarmType::HIGH_TEMPERATURE)) {
+            createAlarm(AlarmType::HIGH_TEMPERATURE, point, AlarmPriority::PRIORITY_HIGH);
+        }
+    }
+    
+    // Check for low temperature alarm
+    if (point->getCurrentTemp() <= point->getLowAlarmThreshold()) {
+        if (!_hasAlarmForPoint(point, AlarmType::LOW_TEMPERATURE)) {
+            createAlarm(AlarmType::LOW_TEMPERATURE, point, AlarmPriority::PRIORITY_MEDIUM);
+        }
+    }
+    
+    // Check for sensor error
+    if (point->getErrorStatus() != 0) {
+        if (!_hasAlarmForPoint(point, AlarmType::SENSOR_ERROR)) {
+            createAlarm(AlarmType::SENSOR_ERROR, point, AlarmPriority::PRIORITY_HIGH);
+        }
+    }
+}
+
+bool TemperatureController::_hasAlarmForPoint(MeasurementPoint* point, AlarmType type) {
+    for (auto alarm : _configuredAlarms) {
+        if (alarm->getSource() == point && 
+            alarm->getType() == type && 
+            alarm->isEnabled() &&
+            alarm->isActive()) {
+            return true;
+        }
+    }
+    return false;
+}
+
+
+void TemperatureController::createAlarm(AlarmType type, MeasurementPoint* source, AlarmPriority priority) {
+    // Check if this alarm already exists in configured alarms
+    String configKey = "alarm_" + String(source->getAddress()) + "_" + String(static_cast<int>(type));
+    
+    for (auto alarm : _configuredAlarms) {
+        if (alarm->getConfigKey() == configKey) {
+            // Alarm already exists, just enable it if it's disabled
+            if (!alarm->isEnabled()) {
+                alarm->setEnabled(true);
+                alarm->setStage(AlarmStage::NEW); // Reset stage
+            }
+            return;
+        }
+    }
+    
+    // Create new alarm and add to configured alarms
+    Alarm* newAlarm = new Alarm(type, source, priority);
+    newAlarm->setConfigKey(configKey);
+    _configuredAlarms.push_back(newAlarm);
+    
+    // Sort alarms by priority
+    std::sort(_configuredAlarms.begin(), _configuredAlarms.end(), AlarmComparator());
+}
+
+
+Alarm* TemperatureController::getHighestPriorityAlarm() const {
+    for (auto alarm : _configuredAlarms) {
+        if (alarm->isEnabled() && alarm->isActive()) {
+            return alarm;
+        }
+    }
+    return nullptr;
+}
+
+
+void TemperatureController::acknowledgeHighestPriorityAlarm() {
+    Alarm* alarm = getHighestPriorityAlarm();
+    if (alarm) {
+        alarm->acknowledge();
+        Serial.printf("Alarm acknowledged: %s\n", alarm->getStatusText().c_str());
+    }
+}
+
+void TemperatureController::acknowledgeAllAlarms() {
+    for (auto alarm : _configuredAlarms) {
+        if (alarm->isEnabled() && alarm->isActive() && !alarm->isAcknowledged()) {
+            alarm->acknowledge();
+        }
+    }
+}
+
+
+std::vector<Alarm*> TemperatureController::getActiveAlarms() const {
+    std::vector<Alarm*> activeAlarms;
+    for (auto alarm : _configuredAlarms) {
+        if (alarm->isEnabled() && alarm->isActive()) {
+            activeAlarms.push_back(alarm);
+        }
+    }
+    return activeAlarms;
+}
+
+void TemperatureController::clearResolvedAlarms() {
+    for (auto it = _configuredAlarms.begin(); it != _configuredAlarms.end();) {
+        if ((*it)->isResolved()) {
+            if (_currentDisplayedAlarm == *it) {
+                _currentDisplayedAlarm = nullptr;
+            }
+            Serial.printf("Manually clearing resolved alarm: %s\n", (*it)->getConfigKey().c_str());
+            delete *it;
+            it = _configuredAlarms.erase(it);
+        } else {
+            ++it;
+        }
+    }
+}
+
+void TemperatureController::clearConfiguredAlarms() {
+    for (auto it = _configuredAlarms.begin(); it != _configuredAlarms.end();) {
+            if (_currentDisplayedAlarm == *it) {
+                _currentDisplayedAlarm = nullptr;
+            }
+            Serial.printf("Manually clearing resolved alarm: %s\n", (*it)->getConfigKey().c_str());
+            delete *it;
+            it = _configuredAlarms.erase(it);
+    }
+}
+
+
+
+void TemperatureController::handleAlarmDisplay() {
+    Alarm* highestPriorityAlarm = getHighestPriorityAlarm();
+    
+    if (highestPriorityAlarm) {
+        // Display alarm
+        _currentDisplayedAlarm = highestPriorityAlarm;
+        _showingOK = false;
+        
+        indicator.setOledMode(2);
+        String displayText = highestPriorityAlarm->getDisplayText();
+        
+        // Split display text into lines
+        int newlineIndex = displayText.indexOf('\n');
+        String line1 = displayText.substring(0, newlineIndex);
+        String line2 = displayText.substring(newlineIndex + 1);
+        
+        String displayLines[2] = {line1, line2};
+        indicator.printText(displayLines, 2);
+        
+    } else if (_currentDisplayedAlarm && !_showingOK) {
+        // No more alarms, show OK for 1 minute
+        _showOKAndTurnOffOLED();
+        
+    } else if (_showingOK) {
+        // Check if OK display time has elapsed
+        if (millis() - _okDisplayStartTime >= 60000) { // 1 minute
+            indicator.setOLEDOff();
+            _showingOK = false;
+            _currentDisplayedAlarm = nullptr;
+        }
+        
+    } else {
+        // Normal operation - show normal display
+        _updateNormalDisplay();
+    }
+}
+
+void TemperatureController::handleAlarmOutputs() {
+    Alarm* highestPriorityAlarm = getHighestPriorityAlarm();
+    
+    if (highestPriorityAlarm) {
+        // Handle alarm outputs based on type and stage
+        if (highestPriorityAlarm->getType() == AlarmType::HIGH_TEMPERATURE) {
+            // High temperature alarm
+            indicator.writePort("RedLED", true);
+            indicator.writePort("GreenLED", false);
+            
+            if (!highestPriorityAlarm->isAcknowledged()) {
+                indicator.writePort("Relay1", true);
+            } else {
+                indicator.writePort("Relay1", false);
+            }
+            indicator.writePort("Relay2", true);
+        }
+        // Add other alarm type handling here
+        
+    } else {
+        // No active alarms - normal operation
+        indicator.writePort("GreenLED", true);
+        indicator.writePort("RedLED", false);
+        indicator.writePort("Relay1", false);
+        indicator.writePort("Relay2", false);
+    }
+}
+
+void TemperatureController::_checkButtonPress() {
+    bool currentButtonState = indicator.readPort("BUTTON");
+    
+    // Detect button press (HIGH to LOW transition)
+    if (_lastButtonState == true && currentButtonState == false) {
+        if ((millis() - _lastButtonPressTime) > _buttonDebounceDelay) {
+            Serial.println("BUTTON PRESS DETECTED!");
+            acknowledgeHighestPriorityAlarm();
+            _lastButtonPressTime = millis();
+        }
+    }
+    
+    _lastButtonState = currentButtonState;
+}
+
+void TemperatureController::_updateNormalDisplay() {
+    // Show normal system status
+    indicator.setOledMode(3);
+    String lines[3] = {
+        "System Normal",
+        "Temp Monitor",
+        "Ready"
+    };
+    indicator.printText(lines, 3);
+}
+
+void TemperatureController::_showOKAndTurnOffOLED() {
+    indicator.displayOK();
+    _okDisplayStartTime = millis();
+    _showingOK = true;
+}
+
+String TemperatureController::getAlarmsJson() {
+    DynamicJsonDocument doc(4096);
+    JsonArray alarmArray = doc.createNestedArray("alarms");
+    
+    for (auto alarm : _configuredAlarms) {
+        JsonObject obj = alarmArray.createNestedObject();
+        obj["configKey"] = alarm->getConfigKey();
+        obj["type"] = static_cast<int>(alarm->getType());
+        obj["priority"] = static_cast<int>(alarm->getPriority());
+        obj["enabled"] = alarm->isEnabled();
+        obj["pointAddress"] = alarm->getPointAddress();
+        obj["stage"] = static_cast<int>(alarm->getStage());
+        obj["isActive"] = alarm->isActive();
+        obj["isAcknowledged"] = alarm->isAcknowledged();
+        obj["timestamp"] = alarm->getTimestamp();
+        obj["acknowledgedTime"] = alarm->getAcknowledgedTime();
+        
+        if (alarm->getSource()) {
+            obj["pointName"] = alarm->getSource()->getName();
+            obj["currentTemp"] = alarm->getSource()->getCurrentTemp();
+            obj["threshold"] = (alarm->getType() == AlarmType::HIGH_TEMPERATURE)
+                ? alarm->getSource()->getHighAlarmThreshold()
+                : alarm->getSource()->getLowAlarmThreshold();
+        }
+    }
+    
+    String output;
+    serializeJson(doc, output);
+    return output;
+}
+
+
+// void TemperatureController::update() {
+//     updateAllSensors();
+    
+//     // Add this line - handle PCF8575 interrupts
+//     indicator.handleInterrupt();
+    
+//     // Handle alarm logic
+    
+    
+//     // Update OLED
+//     indicator.updateOLED();
+    
+//     if (!systemInitialized) return;
+    
+//     unsigned long currentTime = millis();
+//     if (currentTime - lastMeasurementTime >= measurementPeriodSeconds) {
+//         readAllPoints();
+//         updateRegisterMap();
+//         lastMeasurementTime = currentTime;
+//         applyConfigFromRegisterMap();
+//     }
+// }
+
+
+
+MeasurementPoint* TemperatureController::getMeasurementPoint(uint8_t address) {
+    if (isDS18B20Address(address))
+        return &dsPoints[address];
+    if (isPT1000Address(address))
+        return &ptPoints[address - 50];
+    return nullptr;
+}
+
+MeasurementPoint* TemperatureController::getDS18B20Point(uint8_t idx) {
+    return (idx < 50) ? &dsPoints[idx] : nullptr;
+}
+
+MeasurementPoint* TemperatureController::getPT1000Point(uint8_t idx) {
+    return (idx < 10) ? &ptPoints[idx] : nullptr;
+}
+
+bool TemperatureController::addSensor(Sensor* sensor) {
+    if (!sensor) return false;
+    // For DS18B20, check by ROM string
+    if (sensor->getType() == SensorType::DS18B20) {
+        String romStr = sensor->getDS18B20RomString();
+        if (findSensorByRom(romStr)) return false;
+    } else if (sensor->getType() == SensorType::PT1000) {
+        if (findSensorByChipSelect(sensor->getPT1000ChipSelectPin())) return false;
+    }
+    sensors.push_back(sensor);
+    if (sensor->getType() == SensorType::DS18B20)
+        registerMap.incrementActiveDS18B20();
+    else
+        registerMap.incrementActivePT1000();
+    return true;
+}
+
+bool TemperatureController::removeSensorByRom(const String& romString) {
+    for (auto it = sensors.begin(); it != sensors.end(); ++it) {
+        if ((*it)->getType() == SensorType::DS18B20 &&
+            (*it)->getDS18B20RomString() == romString) {
+            // Unbind from any point
+            for (uint8_t i = 0; i < 50; ++i) {
+                if (dsPoints[i].getBoundSensor() == *it)
+                    dsPoints[i].unbindSensor();
+            }
+            registerMap.decrementActiveDS18B20();
+            delete *it;
+            sensors.erase(it);
+            return true;
+        }
+    }
+    return false;
+}
+
+Sensor* TemperatureController::findSensorByRom(const String& romString) {
+    for (auto s : sensors) {
+            Serial.println("Sensor ROM" + s->getDS18B20RomString());
+        if (s->getType() == SensorType::DS18B20 &&
+            s->getDS18B20RomString() == romString)
+            return s;
+    }
+    return nullptr;
+}
+
+Sensor* TemperatureController::findSensorByChipSelect(uint8_t csPin) {
+    for (auto s : sensors)
+        if (s->getType() == SensorType::PT1000 &&
+            s->getPT1000ChipSelectPin() == csPin)
+            return s;
+    return nullptr;
+}
+
+Sensor* TemperatureController::getSensorByIndex(int idx) {
+    return (idx >= 0 && idx < sensors.size()) ? sensors[idx] : nullptr;
+}
+
+bool TemperatureController::bindSensorToPointByRom(const String& romString, uint8_t pointAddress) {
+    if(pointAddress > 49) return false;
+    Sensor* sensor = findSensorByRom(romString);
+    unbindSensorFromPointBySensor(sensor);
+    MeasurementPoint* point = getMeasurementPoint(pointAddress);
+    if (!sensor || !point) return false;
+    point->bindSensor(sensor);
+    return true;
+}
+
+bool TemperatureController::bindSensorToPointByChipSelect(uint8_t csPin, uint8_t pointAddress) {
+    Serial.printf("Point address: %d\n", pointAddress);
+    if((pointAddress < 50) || (pointAddress > 59)) 
+        return false;
+    Serial.printf("Point address: %d PASSED!\n", pointAddress);
+    Sensor* sensor = findSensorByChipSelect(csPin);
+    unbindSensorFromPointBySensor(sensor);
+    MeasurementPoint* point = getMeasurementPoint(pointAddress);
+    if (!sensor || !point) return false;
+    point->bindSensor(sensor);
+    return true;
+}
+
+bool TemperatureController::unbindSensorFromPoint(uint8_t pointAddress) {
+    MeasurementPoint* point = getMeasurementPoint(pointAddress);
+    if (!point) return false;
+    point->unbindSensor();
+    return true;
+}
+
+Sensor* TemperatureController::getBoundSensor(uint8_t pointAddress) {
+    MeasurementPoint* point = getMeasurementPoint(pointAddress);
+    return point ? point->getBoundSensor() : nullptr;
+}
+
+void TemperatureController::readAllPoints() {
+    for (uint8_t i = 0; i < 50; ++i)
+        dsPoints[i].update();
+    for (uint8_t i = 0; i < 10; ++i)
+        ptPoints[i].update();
+}
+
+void TemperatureController::updateRegisterMap() {
+    for (uint8_t i = 0; i < 50; ++i)
+        registerMap.updateFromMeasurementPoint(dsPoints[i]);
+    for (uint8_t i = 0; i < 10; ++i)
+        registerMap.updateFromMeasurementPoint(ptPoints[i]);
+}
+
+void TemperatureController::applyConfigFromRegisterMap() {
+    for (uint8_t i = 0; i < 50; ++i)
+        registerMap.applyConfigToMeasurementPoint(dsPoints[i]);
+    for (uint8_t i = 0; i < 10; ++i)
+        registerMap.applyConfigToMeasurementPoint(ptPoints[i]);
+}
+
+void TemperatureController::applyConfigToRegisterMap() {
+    for (uint8_t i = 0; i < 50; ++i)
+        registerMap.applyConfigFromMeasurementPoint(dsPoints[i]);
+    for (uint8_t i = 0; i < 10; ++i)
+        registerMap.applyConfigFromMeasurementPoint(ptPoints[i]);
+}
+
+bool TemperatureController::discoverDS18B20Sensors() {
+    bool anyAdded = false;
+    Serial.println("Discover method started...");
+    // OneWire oneWire[] = { OneWire(oneWireBusPin[0]), OneWire(oneWireBusPin[1]), OneWire(oneWireBusPin[2]), OneWire(oneWireBusPin[3]) };
+    // DallasTemperature dallasSensors[] = {DallasTemperature(&oneWire[0]), DallasTemperature(&oneWire[1]), DallasTemperature(&oneWire[2]), DallasTemperature(&oneWire[3])};
+    for (uint j = 0; j < 4; j++){
+        Serial.printf("Discover bus %d pin %d started...\n", j, oneWireBusPin[j]);
+        
+    //OneWire oneWire(oneWireBusPin[j]);
+    
+    dallasSensors[j]->begin();
+
+    int deviceCount = dallasSensors[j]->getDeviceCount();
+    Serial.printf("Devices on bus %d: %d\n", j, deviceCount);
+    if (deviceCount == 0) continue;
+
+    DeviceAddress sensorAddress;
+    
+
+    for (int i = 0; i < deviceCount; i++) {
+        if (dallasSensors[j]->getAddress(sensorAddress, i)) {
+            Serial.printf("Bus %d. Device %d of %d\n", j, i, deviceCount);
+            // Convert ROM to string for uniqueness
+            char buf[17];
+            for (int u = 0; u < 8; ++u) sprintf(buf + u*2, "%02X", sensorAddress[u]);
+            String romString(buf);
+            Serial.printf("ROM: %s\n", romString);
+
+            // Check if already exists
+            if (findSensorByRom(romString)){
+                if(getSensorBus(findSensorByRom(romString)) != j) {
+                    removeSensorByRom(romString);
+                    Serial.println("Device existed on enother bus. Deleting");
+                    //continue;
+
+                } else continue;
+
+            }
+             
+
+            String sensorName = "DS18B20_" + romString;
+            Sensor* newSensor = new Sensor(SensorType::DS18B20, 0, sensorName); // address field not used for DS
+            Serial.printf("Sensor created with name %s on bus %d\n", newSensor->getName(), getSensorBus(newSensor));
+
+            newSensor->setupDS18B20(oneWireBusPin[j], sensorAddress);
+            Serial.printf("Sensor %s set on bus %d/ pin %d\n", newSensor->getName(), getSensorBus(newSensor), newSensor->getOneWirePin());
+
+            if (newSensor->initialize()) {
+                sensors.push_back(newSensor);
+                registerMap.incrementActiveDS18B20();
+                anyAdded = true;
+                Serial.printf("Sensor %s set on bus %d/ pin %d status: Connected\n", newSensor->getName(), getSensorBus(newSensor), newSensor->getOneWirePin());
+
+            } else {
+                delete newSensor;
+            }
+        }
+    }
+    }
+    return anyAdded;
+}
+
+
+bool TemperatureController::discoverPTSensors() {
+    bool anyAdded = false;
+    Serial.println("Discover PT method started...");
+    for (uint j = 0; j < 4; j++){
+        Serial.printf("Bus: %d: PIN: %d", j, chipSelectPin[j]);
+    }
+    // OneWire oneWire[] = { OneWire(oneWireBusPin[0]), OneWire(oneWireBusPin[1]), OneWire(oneWireBusPin[2]), OneWire(oneWireBusPin[3]) };
+    // DallasTemperature dallasSensors[] = {DallasTemperature(&oneWire[0]), DallasTemperature(&oneWire[1]), DallasTemperature(&oneWire[2]), DallasTemperature(&oneWire[3])};
+    for (uint j = 0; j < 4; j++){
+        Serial.printf("Discover PT: bus %d pin %d started...\n", j, chipSelectPin[j]);
+        if(findSensorByChipSelect(chipSelectPin[j]) != nullptr){
+            Serial.printf("Sensor already discovered on bus %d\n", j);
+            continue;
+
+        }
+  
+        
+             
+
+            String sensorName = "PT1000_" + String(j);
+            Sensor* newSensor = new Sensor(SensorType::PT1000, j, sensorName); // address field not used for DS
+            Serial.printf("Sensor created with name %s on bus %d\n", newSensor->getName(), getSensorBus(newSensor));
+
+            newSensor->setupPT1000(chipSelectPin[j], j);
+            Serial.printf("Sensor %s set on bus %d/ pin %d\n", newSensor->getName(), getSensorBus(newSensor), newSensor->getPT1000ChipSelectPin());
+
+            if (newSensor->initialize()) {
+
+                
+
+
+                sensors.push_back(newSensor);
+                registerMap.incrementActivePT1000();
+                anyAdded = true;
+                Serial.printf("Sensor %s set on bus %d/ pin %d status: Connected\n", newSensor->getName(), getSensorBus(newSensor), newSensor->getPT1000ChipSelectPin());
+
+            } else {
+                delete newSensor;
+            }
+        
+    
+        }
+    return anyAdded;
+}
+
+
+String TemperatureController::getSensorsJson() {
+    DynamicJsonDocument doc(8192);
+    JsonArray sensorArray = doc.createNestedArray("sensors");
+
+    for (auto sensor : sensors) {
+        JsonObject obj = sensorArray.createNestedObject();
+        obj["type"] = (sensor->getType() == SensorType::DS18B20) ? "DS18B20" : "PT1000";
+        obj["name"] = sensor->getName();
+        obj["currentTemp"] = sensor->getCurrentTemp();
+        obj["minTemp"] = sensor->getMinTemp();
+        obj["maxTemp"] = sensor->getMaxTemp();
+        obj["lowAlarmThreshold"] = sensor->getLowAlarmThreshold();
+        obj["highAlarmThreshold"] = sensor->getHighAlarmThreshold();
+        obj["alarmStatus"] = sensor->getAlarmStatus();
+        obj["errorStatus"] = sensor->getErrorStatus();
+        obj["bus"] = getSensorBus(sensor);
+
+        if (sensor->getType() == SensorType::DS18B20) {
+            obj["romString"] = sensor->getDS18B20RomString();
+            JsonArray romArr = obj.createNestedArray("romArray");
+            uint8_t rom[8];
+            sensor->getDS18B20RomArray(rom);
+            for (int j = 0; j < 8; ++j) romArr.add(rom[j]);
+            
+        } else if (sensor->getType() == SensorType::PT1000) {
+            obj["chipSelectPin"] = sensor->getPT1000ChipSelectPin();
+        }
+
+        // Binding info
+        int boundPoint = -1;
+        if (sensor->getType() == SensorType::DS18B20) {
+            String romString = sensor->getDS18B20RomString();
+            for (uint8_t i = 0; i < 50; ++i) {
+                Sensor* bound = dsPoints[i].getBoundSensor();
+                if (bound && bound->getType() == SensorType::DS18B20 &&
+                    bound->getDS18B20RomString() == romString) {
+                    boundPoint = dsPoints[i].getAddress();
+                    break;
+                }
+            }
+        } else if (sensor->getType() == SensorType::PT1000) {
+            for (uint8_t i = 0; i < 10; ++i) {
+                Sensor* bound = ptPoints[i].getBoundSensor();
+                if (bound && bound == sensor) {
+                    boundPoint = ptPoints[i].getAddress();
+                    break;
+                }
+            }
+        }
+        if (boundPoint >= 0) obj["boundPoint"] = boundPoint;
+        else obj["boundPoint"] = nullptr;
+    }
+
+    String out;
+    serializeJson(doc, out);
+    return out;
+}
+
+String TemperatureController::getPointsJson() {
+    DynamicJsonDocument doc(8192);
+    JsonArray pointsArray = doc.createNestedArray("points");
+
+    // DS18B20 points
+    for (uint8_t i = 0; i < 50; ++i) { //Should be 50 instad of 2 here
+        MeasurementPoint& point = dsPoints[i];
+        JsonObject obj = pointsArray.createNestedObject();
+        obj["address"] = point.getAddress();
+        obj["name"] = point.getName();
+        obj["type"] = "DS18B20";
+        obj["currentTemp"] = point.getCurrentTemp();
+        obj["minTemp"] = point.getMinTemp();
+        obj["maxTemp"] = point.getMaxTemp();
+        obj["lowAlarmThreshold"] = point.getLowAlarmThreshold();
+        obj["highAlarmThreshold"] = point.getHighAlarmThreshold();
+        obj["alarmStatus"] = point.getAlarmStatus();
+        obj["errorStatus"] = point.getErrorStatus();
+        
+
+        Sensor* bound = point.getBoundSensor();
+        if (bound && bound->getType() == SensorType::DS18B20) {
+            obj["sensorType"] = "DS18B20";
+            obj["sensorRomString"] = bound->getDS18B20RomString();
+            JsonArray romArr = obj.createNestedArray("sensorRomArray");
+            uint8_t rom[8];
+            bound->getDS18B20RomArray(rom);
+            for (int j = 0; j < 8; ++j) romArr.add(rom[j]);
+            obj["bus"] = getSensorBus(bound);
+            
+        }
+    }
+
+    // PT1000 points
+    for (uint8_t i = 0; i < 10; ++i) { //should be 10 instaed of 1
+        MeasurementPoint& point = ptPoints[i];
+        JsonObject obj = pointsArray.createNestedObject();
+        obj["address"] = point.getAddress();
+        obj["name"] = point.getName();
+        obj["type"] = "PT1000";
+        obj["currentTemp"] = point.getCurrentTemp();
+        obj["minTemp"] = point.getMinTemp();
+        obj["maxTemp"] = point.getMaxTemp();
+        obj["lowAlarmThreshold"] = point.getLowAlarmThreshold();
+        obj["highAlarmThreshold"] = point.getHighAlarmThreshold();
+        obj["alarmStatus"] = point.getAlarmStatus();
+        obj["errorStatus"] = point.getErrorStatus();
+
+        Sensor* bound = point.getBoundSensor();
+        if (bound && bound->getType() == SensorType::PT1000) {
+            obj["sensorType"] = "PT1000";
+            obj["chipSelectPin"] = bound->getPT1000ChipSelectPin();
+            obj["bus"] = getSensorBus(bound);
+        }
+    }
+
+    String out;
+    serializeJson(doc, out);
+    return out;
+}
+
+String TemperatureController::getSystemStatusJson() {
+    DynamicJsonDocument doc(1024);
+    doc["deviceId"] = deviceId;
+    doc["firmwareVersion"] = firmwareVersion;
+    doc["ds18b20Count"] = getDS18B20Count();
+    doc["pt1000Count"] = getPT1000Count();
+    doc["measurementPeriod"] = measurementPeriodSeconds;
+    doc["uptime"] = millis() / 1000;
+
+    JsonArray statusArray = doc.createNestedArray("deviceStatus");
+    for (int i = 4; i <= 10; i++) {
+        statusArray.add(registerMap.readHoldingRegister(i));
+    }
+
+    String jsonString;
+    serializeJson(doc, jsonString);
+    return jsonString;
+}
+
+void TemperatureController::resetMinMaxValues() {
+    for (uint8_t i = 0; i < 50; ++i)
+        dsPoints[i].resetMinMaxTemp();
+    for (uint8_t i = 0; i < 10; ++i)
+        ptPoints[i].resetMinMaxTemp();
+}
+
+void TemperatureController::setDeviceId(uint16_t id) {
+    deviceId = id;
+    registerMap.writeHoldingRegister(0, deviceId);
+}
+
+uint16_t TemperatureController::getDeviceId() const { return deviceId; }
+
+void TemperatureController::setFirmwareVersion(uint16_t version) {
+    firmwareVersion = version;
+    registerMap.writeHoldingRegister(1, firmwareVersion);
+}
+
+uint16_t TemperatureController::getFirmwareVersion() const { return firmwareVersion; }
+
+void TemperatureController::setMeasurementPeriod(uint16_t seconds) {
+    measurementPeriodSeconds = seconds;
+}
+
+uint16_t TemperatureController::getMeasurementPeriod() const {
+    return measurementPeriodSeconds;
+}
+
+void TemperatureController::setOneWireBusPin(uint8_t pin, size_t bus) {
+    oneWireBusPin[bus] = pin;
+}
+
+int TemperatureController::getDS18B20Count() const {
+    int count = 0;
+    for (auto sensor : sensors) {
+        if (sensor->getType() == SensorType::DS18B20) {
+            count++;
+        }
+    }
+    return count;
+}
+
+int TemperatureController::getPT1000Count() const {
+    int count = 0;
+    for (auto sensor : sensors) {
+        if (sensor->getType() == SensorType::PT1000) {
+            count++;
+        }
+    }
+    return count;
+}
+
+void TemperatureController::updateAllSensors() {
+    for (auto sensor : sensors) {
+        sensor->readTemperature();
+    }
+}
+
+uint8_t TemperatureController::getOneWirePin(size_t bus) {
+    return oneWireBusPin[bus];
+}
+
+int TemperatureController::getSensorBus(Sensor* sensor) {
+    if (sensor->getType() == SensorType::DS18B20){
+        uint8_t pin = sensor->getOneWirePin();
+        for (int i = 0; i < 4; i++) {
+            if (oneWireBusPin[i] == pin) return i;
+        } 
+    } else if(sensor->getType() == SensorType::PT1000) {
+        uint8_t pin = sensor->getPT1000ChipSelectPin();
+        for (int i = 0; i < 4; i++) {
+            if (chipSelectPin[i] == pin) return i;
+        } 
+    }
+
+        return -1;
+
+    
+}
+
+
+
+bool TemperatureController::unbindSensorFromPointBySensor(Sensor* sensor) {
+    if (!sensor) return false;
+    
+    bool anyUnbound = false;
+    
+    // Search through all DS18B20 points
+    for (auto& point : dsPoints) {
+        if (point.getBoundSensor() == sensor) {
+            point.unbindSensor();
+            Serial.printf("Unbound sensor %s from DS18B20 point %d\n", 
+                         sensor->getName().c_str(), point.getAddress());
+            anyUnbound = true;
+        }
+    }
+    
+    // Search through all PT1000 points
+    for (auto& point : ptPoints) {
+        if (point.getBoundSensor() == sensor) {
+            point.unbindSensor();
+            Serial.printf("Unbound sensor %s from PT1000 point %d\n", 
+                         sensor->getName().c_str(), point.getAddress());
+            anyUnbound = true;
+        }
+    }
+    
+    return anyUnbound;
+}
+
+
+
+bool TemperatureController::addAlarm(AlarmType type, uint8_t pointAddress, AlarmPriority priority) {
+    MeasurementPoint* point = getMeasurementPoint(pointAddress);
+    if (!point) return false;
+    
+    // Check if alarm already exists
+    String configKey = "alarm_" + String(pointAddress) + "_" + String(static_cast<int>(type));
+    
+    for (auto alarm : _configuredAlarms) {
+        if (alarm->getConfigKey() == configKey) {
+            // Update existing
+            alarm->setPriority(priority);
+            alarm->setEnabled(true);
+            return true;
+        }
+    }
+    
+    // Create new alarm
+    Alarm* newAlarm = new Alarm(type, point, priority);
+    newAlarm->setConfigKey(configKey);
+    _configuredAlarms.push_back(newAlarm);
+    
+    Serial.printf("Added alarm configuration: %s\n", configKey.c_str());
+    return true;
+}
+
+bool TemperatureController::removeAlarm(const String& configKey) {
+    for (auto it = _configuredAlarms.begin(); it != _configuredAlarms.end(); ++it) {
+        if ((*it)->getConfigKey() == configKey) {
+            delete *it;
+            _configuredAlarms.erase(it);
+            Serial.printf("Removed alarm configuration: %s\n", configKey.c_str());
+            return true;
+        }
+    }
+    return false;
+}
+
+bool TemperatureController::updateAlarm(const String& configKey, AlarmPriority priority, bool enabled) {
+    Alarm* alarm = findAlarm(configKey);
+    if (!alarm) return false;
+    
+    alarm->setPriority(priority);
+    alarm->setEnabled(enabled);
+    Serial.printf("Updated alarm configuration: %s\n", configKey.c_str());
+    return true;
+}
+
+Alarm* TemperatureController::findAlarm(const String& configKey) {
+    for (auto alarm : _configuredAlarms) {
+        if (alarm->getConfigKey() == configKey) {
+            return alarm;
+        }
+    }
+    return nullptr;
+}
+
+Alarm* TemperatureController::getAlarmByIndex(int idx) {
+    return (idx >= 0 && idx < _configuredAlarms.size()) ? _configuredAlarms[idx] : nullptr;
+}
+
+
+
+// Placeholder methods for alarm handling scenarios
+void TemperatureController::handleCriticalAlarms() {
+    // TODO: Implement critical alarm handling scenario
+    // - Turn on both relays immediately
+    // - Red LED on
+    // - Display alarm
+    // - Wait for acknowledgment
+    // - 5-minute delay logic
+}
+
+void TemperatureController::handleHighPriorityAlarms() {
+    // TODO: Implement high priority alarm handling scenario
+    // - Different behavior than critical
+    // - Maybe only one relay, yellow LED
+}
+
+void TemperatureController::handleMediumPriorityAlarms() {
+    // TODO: Implement medium priority alarm handling scenario
+}
+
+void TemperatureController::handleLowPriorityAlarms() {
+    // TODO: Implement low priority alarm handling scenario
+}
+
+================================================================================
+File: main.cpp
+Size: 4.57 kB
+================================================================================
+
+#include <Arduino.h>
+#include "TemperatureController.h"
+#include "TempModbusServer.h"
+#include "ConfigManager.h"
+#include "IndicatorInterface.h"
+#include <SPI.h>
+
+
+
+// Create temperature controller
+
+//DS18B20 PINs
+#define BUS1_PIN  4
+#define BUS2_PIN  5
+#define BUS3_PIN  18
+#define BUS4_PIN  19
+
+//PT1000 PINs
+//SPI PINs
+#define SCK_PIN  14
+#define MISO_PIN  12
+#define MOSI_PIN  13
+
+#define CS1_PIN  32
+#define CS2_PIN  33
+#define CS3_PIN  26
+#define CS4_PIN  27
+
+
+//RS485 PINs
+#define RX_PIN  22 //to rxd
+#define TX_PIN  23 //to txd
+#define DE_PIN  -1
+
+
+
+// I2C pins for WROVER (avoiding conflicts)
+#define I2C_SDA 21  // Default SDA, available
+#define I2C_SCL 25  // Alternative SCL (GPIO 22 used by RS485)
+#define PCF_INT 34 // PCF expander interupt pin
+
+IndicatorInterface indicator(Wire, 0x20, PCF_INT);  // I2C address 0x20, INT pin 34
+
+
+
+
+uint8_t onwWirePins[4] = {BUS1_PIN,  BUS2_PIN, BUS3_PIN, BUS4_PIN};
+uint8_t csPins[4] = {CS1_PIN,  CS2_PIN, CS3_PIN, CS4_PIN};
+TemperatureController controller(onwWirePins, csPins, indicator);
+
+// Create configuration manager
+ConfigManager* configManager;
+
+// Create Modbus server
+TempModbusServer* modbusServer;
+
+void setup() {
+    // Initialize serial for debugging
+    Serial.begin(115200);
+    while (!Serial) {}
+        // Initialize I2C
+    Wire.begin(I2C_SDA, I2C_SCL);
+    Wire.setClock(100000);
+
+    SPI.begin(SCK_PIN, MISO_PIN, MOSI_PIN);  // SCK, MISO, MOSI, SS
+
+    // Configure all CS pins as OUTPUT
+    pinMode(CS1_PIN, OUTPUT);
+    pinMode(CS2_PIN, OUTPUT); 
+    pinMode(CS3_PIN, OUTPUT);
+    pinMode(CS4_PIN, OUTPUT);
+    //pinMode(CS5_PIN, OUTPUT);
+    
+    // Set all CS pins HIGH initially (inactive)
+    digitalWrite(CS1_PIN, HIGH);
+    digitalWrite(CS2_PIN, HIGH);
+    digitalWrite(CS3_PIN, HIGH);
+    digitalWrite(CS4_PIN, HIGH);
+    //digitalWrite(CS5_PIN, HIGH);
+
+
+
+    Serial.println("\nIndustrial Temperature Monitoring System");
+    Serial.println("--------------------------------------");
+    //controller = new TemperatureController(onwWirePins);
+    Serial.println("\nController created");
+    
+    // Initialize controller
+    controller.begin();
+    Serial.println("\nController begin");
+    
+    // Initialize configuration manager
+    configManager = new ConfigManager(controller);
+    if (!configManager->begin()) {
+        Serial.println("Failed to initialize configuration manager");
+    }
+    
+    // Apply configuration to controller
+    controller.setDeviceId(configManager->getDeviceId());
+    Serial.println("controller.setDeviceId(configManager->getDeviceId());");
+    controller.setMeasurementPeriod(configManager->getMeasurementPeriod()*1000);
+    Serial.println("controller.setMeasurementPeriod(configManager->getMeasurementPeriod());");
+    //controller.setOneWireBusPin(configManager->getOneWirePin());
+    Serial.println("controller.setOneWireBusPin(configManager->getOneWirePin());");
+    
+    //Discover DS18B20 sensors
+    controller.discoverDS18B20Sensors();
+    controller.discoverPTSensors();
+    // Initialize Modbus server if enabled in config
+    if (configManager->isModbusEnabled()) {
+        Serial.println("Init Modbus RTU server...");
+        modbusServer = new TempModbusServer(
+            controller.getRegisterMap(),
+            configManager->getModbusAddress(),
+            Serial2,
+            RX_PIN,
+            TX_PIN,
+            DE_PIN,
+            configManager->getModbusBaudRate()
+        );
+        Serial.println("Init Modbus RTU server!");
+
+        
+        if (modbusServer->begin()) {
+            Serial.println("Modbus RTU server started successfully");
+        } else {
+            Serial.println("Failed to start Modbus RTU server");
+        }
+    }
+
+
+    
+    Serial.println("\nSystem is now running...");
+}
+
+void loop() {
+    // Update configuration manager
+    configManager->update();
+    
+    // Update controller (reads sensors and updates register map)
+    controller.update();
+    
+    // Print status every 30 seconds if not in portal mode
+    static unsigned long lastPrintTime = 0;
+    if (!configManager->isPortalActive() && millis() - lastPrintTime > controller.getMeasurementPeriod()) {
+        //Serial.println("\nSensors Status:");
+        //Serial.println(controller.getSystemStatusJson());
+        //Serial.println(controller.getSensorsJson());
+        //Serial.println("\nPoints Status:");
+        //Serial.println(controller.getSystemStatusJson());
+        //Serial.println(controller.getPointsJson());
+        
+        lastPrintTime = millis();
+    }
+    
+    // Small delay to prevent CPU hogging
+    delay(100);
+}
+
