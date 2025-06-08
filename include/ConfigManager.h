@@ -102,7 +102,12 @@ public:
     void loadAlarmsConfig();
 
     CSVConfigManager& getCSVManager() { return csvManager; }
-};
+
+    uint16_t getAcknowledgedDelayCritical() { return conf("ack_delay_critical").toInt(); }
+    uint16_t getAcknowledgedDelayHigh() { return conf("ack_delay_high").toInt(); }
+    uint16_t getAcknowledgedDelayMedium() { return conf("ack_delay_medium").toInt(); }
+    uint16_t getAcknowledgedDelayLow() { return conf("ack_delay_low").toInt(); }
+    };
 
 // Initialize static member
 //ConfigManager* ConfigManager::instance = nullptr;

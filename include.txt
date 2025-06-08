@@ -1,7 +1,7 @@
 
 ================================================================================
 File: Alarm.h
-Size: 4.14 kB
+Size: 4.32 kB
 ================================================================================
 
 #pragma once
@@ -98,6 +98,10 @@ public:
     void setHysteresis(int16_t hysteresis) { _hysteresis = hysteresis; }
     int16_t getHysteresis() const { return _hysteresis; }
 
+    void setAcknowledgedDelay(unsigned long delay);
+    unsigned long getAcknowledgedDelay() const;
+    bool isAcknowledgedDelayElapsed() const;
+
 
     
 
@@ -128,6 +132,7 @@ private:
 
     String _configKey;  // Format: "alarm_<point>_<type>"
     bool _enabled;      // Whether this alarm is active in configuration
+    unsigned long _acknowledgedDelay; 
 };
 
 // Alarm comparison function for sorting by priority and timestamp
@@ -196,7 +201,7 @@ private:
 
 ================================================================================
 File: ConfigManager.h
-Size: 3.54 kB
+Size: 3.66 kB
 ================================================================================
 
 #ifndef CONFIG_MANAGER_H
@@ -209,12 +214,14 @@ Size: 3.54 kB
 #include <LittleFS.h>
 #include "TemperatureController.h"
 #include "CSVConfigManager.h"
+#include "SettingsCSVManager.h"
 
 // YAML configuration definition
 extern const char* VARIABLES_DEF_YAML;
 
 class ConfigManager {
 private:
+    SettingsCSVManager settingsCSVManager;
     CSVConfigManager csvManager;
     ConfigAssist conf;
     ConfigAssistHelper* confHelper;
@@ -227,6 +234,7 @@ private:
     
     // Pointer to instance for callback functions
     static ConfigManager* instance;
+    void _applySettingsWithoutRestart();
     
     // Save sensor configuration to file
     //void saveSensorConfig();
@@ -762,6 +770,39 @@ private:
 
 
 ================================================================================
+File: SettingsCSVManager.h
+Size: 640 B
+================================================================================
+
+#pragma once
+
+#include <Arduino.h>
+#include "ConfigAssist.h"
+
+class SettingsCSVManager {
+public:
+    SettingsCSVManager(ConfigAssist& config);
+    
+    // CSV export/import for settings
+    String exportSettingsToCSV();
+    bool importSettingsFromCSV(const String& csvData);
+    
+    // Validation
+    bool validateSettingsCSV(const String& csvData);
+    String getLastError() const { return _lastError; }
+
+private:
+    ConfigAssist& _config;
+    String _lastError;
+    
+    // Helper methods
+    String _escapeCSVField(const String& field);
+    String _unescapeCSVField(const String& field);
+    bool _parseCSVLine(const String& line);
+};
+
+
+================================================================================
 File: TempModbusServer.h
 Size: 1.01 kB
 ================================================================================
@@ -808,7 +849,7 @@ public:
 
 ================================================================================
 File: TemperatureController.h
-Size: 5.21 kB
+Size: 6.01 kB
 ================================================================================
 
 #pragma once
@@ -923,6 +964,22 @@ public:
     bool bindSensorToPointByBusNumber(uint8_t busNumber, uint8_t pointAddress);
 
 
+    // Setters for acknowledged delays
+    void setAcknowledgedDelayCritical(unsigned long delay);
+    void setAcknowledgedDelayHigh(unsigned long delay);
+    void setAcknowledgedDelayMedium(unsigned long delay);
+    void setAcknowledgedDelayLow(unsigned long delay);
+    
+    // Getters for acknowledged delays
+    unsigned long getAcknowledgedDelayCritical() const;
+    unsigned long getAcknowledgedDelayHigh() const;
+    unsigned long getAcknowledgedDelayMedium() const;
+    unsigned long getAcknowledgedDelayLow() const;
+    
+    // Method to apply delays to existing alarms
+    void applyAcknowledgedDelaysToAlarms();
+
+
 
 private:
     // Hardware components
@@ -969,6 +1026,11 @@ private:
     void _checkButtonPress();
     void _updateNormalDisplay();
     void _showOKAndTurnOffOLED();
+
+    unsigned long _acknowledgedDelayCritical;
+    unsigned long _acknowledgedDelayHigh;
+    unsigned long _acknowledgedDelayMedium;
+    unsigned long _acknowledgedDelayLow;
 
     
 };

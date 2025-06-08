@@ -110,6 +110,22 @@ public:
     bool bindSensorToPointByBusNumber(uint8_t busNumber, uint8_t pointAddress);
 
 
+    // Setters for acknowledged delays
+    void setAcknowledgedDelayCritical(unsigned long delay);
+    void setAcknowledgedDelayHigh(unsigned long delay);
+    void setAcknowledgedDelayMedium(unsigned long delay);
+    void setAcknowledgedDelayLow(unsigned long delay);
+    
+    // Getters for acknowledged delays
+    unsigned long getAcknowledgedDelayCritical() const;
+    unsigned long getAcknowledgedDelayHigh() const;
+    unsigned long getAcknowledgedDelayMedium() const;
+    unsigned long getAcknowledgedDelayLow() const;
+    
+    // Method to apply delays to existing alarms
+    void applyAcknowledgedDelaysToAlarms();
+
+
 
 private:
     // Hardware components
@@ -156,6 +172,11 @@ private:
     void _checkButtonPress();
     void _updateNormalDisplay();
     void _showOKAndTurnOffOLED();
+
+    unsigned long _acknowledgedDelayCritical;
+    unsigned long _acknowledgedDelayHigh;
+    unsigned long _acknowledgedDelayMedium;
+    unsigned long _acknowledgedDelayLow;
 
     
 };

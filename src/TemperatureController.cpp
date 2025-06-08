@@ -12,7 +12,11 @@ TemperatureController::TemperatureController(uint8_t oneWirePin[4], uint8_t csPi
       _lastButtonPressTime(0),
       _currentDisplayedAlarm(nullptr),
       _okDisplayStartTime(0),
-      _showingOK(false)
+      _showingOK(false),
+      _acknowledgedDelayCritical(0.5 * 60 * 1000),   // 5 minutes for critical
+      _acknowledgedDelayHigh(0.5 * 60 * 1000),      // 10 minutes for high
+      _acknowledgedDelayMedium(0.5 * 60 * 1000),    // 15 minutes for medium
+      _acknowledgedDelayLow(0.5 * 60 * 1000)        // 30 minutes for low
 {
     // Initialize measurement points
     for (uint8_t i = 0; i < 50; ++i)
@@ -1003,6 +1007,27 @@ bool TemperatureController::addAlarm(AlarmType type, uint8_t pointAddress, Alarm
     
     // Create new alarm
     Alarm* newAlarm = new Alarm(type, point, priority);
+    if (newAlarm) {
+        unsigned long delay;
+        switch (priority) {
+            case AlarmPriority::PRIORITY_CRITICAL:
+                delay = _acknowledgedDelayCritical;
+                break;
+            case AlarmPriority::PRIORITY_HIGH:
+                delay = _acknowledgedDelayHigh;
+                break;
+            case AlarmPriority::PRIORITY_MEDIUM:
+                delay = _acknowledgedDelayMedium;
+                break;
+            case AlarmPriority::PRIORITY_LOW:
+                delay = _acknowledgedDelayLow;
+                break;
+            default:
+                delay = _acknowledgedDelayMedium;
+                break;
+        }
+        newAlarm->setAcknowledgedDelay(delay);
+    }
     newAlarm->setConfigKey(configKey);
     _configuredAlarms.push_back(newAlarm);
     
@@ -1087,4 +1112,93 @@ bool TemperatureController::bindSensorToPointByBusNumber(uint8_t busNumber, uint
         }
     }
     return false;
+}
+
+
+
+
+// Implement the setter methods
+void TemperatureController::setAcknowledgedDelayCritical(unsigned long delay) {
+    _acknowledgedDelayCritical = delay;
+    applyAcknowledgedDelaysToAlarms();
+}
+
+void TemperatureController::setAcknowledgedDelayHigh(unsigned long delay) {
+    _acknowledgedDelayHigh = delay;
+    applyAcknowledgedDelaysToAlarms();
+}
+
+void TemperatureController::setAcknowledgedDelayMedium(unsigned long delay) {
+    _acknowledgedDelayMedium = delay;
+    applyAcknowledgedDelaysToAlarms();
+}
+
+void TemperatureController::setAcknowledgedDelayLow(unsigned long delay) {
+    _acknowledgedDelayLow = delay;
+    applyAcknowledgedDelaysToAlarms();
+}
+
+// Implement the getter methods
+unsigned long TemperatureController::getAcknowledgedDelayCritical() const {
+    return _acknowledgedDelayCritical;
+}
+
+unsigned long TemperatureController::getAcknowledgedDelayHigh() const {
+    return _acknowledgedDelayHigh;
+}
+
+unsigned long TemperatureController::getAcknowledgedDelayMedium() const {
+    return _acknowledgedDelayMedium;
+}
+
+unsigned long TemperatureController::getAcknowledgedDelayLow() const {
+    return _acknowledgedDelayLow;
+}
+
+// Method to apply delays to all existing alarms
+void TemperatureController::applyAcknowledgedDelaysToAlarms() {
+    for (auto alarm : _configuredAlarms) {
+        unsigned long delay;
+        switch (alarm->getPriority()) {
+            case AlarmPriority::PRIORITY_CRITICAL:
+                delay = _acknowledgedDelayCritical;
+                break;
+            case AlarmPriority::PRIORITY_HIGH:
+                delay = _acknowledgedDelayHigh;
+                break;
+            case AlarmPriority::PRIORITY_MEDIUM:
+                delay = _acknowledgedDelayMedium;
+                break;
+            case AlarmPriority::PRIORITY_LOW:
+                delay = _acknowledgedDelayLow;
+                break;
+            default:
+                delay = _acknowledgedDelayMedium; // Default fallback
+                break;
+        }
+        alarm->setAcknowledgedDelay(delay);
+    }
+    
+    // Also apply to active alarms
+    // for (auto alarm : _activeAlarms) {
+    //     unsigned long delay;
+    //     switch (alarm->getPriority()) {
+    //         case AlarmPriority::PRIORITY_CRITICAL:
+    //             delay = _acknowledgedDelayCritical;
+    //             break;
+    //         case AlarmPriority::PRIORITY_HIGH:
+    //             delay = _acknowledgedDelayHigh;
+    //             break;
+    //         case AlarmPriority::PRIORITY_MEDIUM:
+    //             delay = _acknowledgedDelayMedium;
+    //             break;
+    //         case AlarmPriority::PRIORITY_LOW:
+    //             delay = _acknowledgedDelayLow;
+    //             break;
+    //         default:
+    //             delay = _acknowledgedDelayMedium;
+    //             break;
+    //     }
+    //     alarm->setAcknowledgedDelay(delay);
+    // }
 }

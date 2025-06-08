@@ -7,50 +7,76 @@ ConfigManager* ConfigManager::instance = nullptr;
 
 // YAML configuration definition
 const char* VARIABLES_DEF_YAML PROGMEM = R"~(
-Wifi settings:
-  - st_ssid:
-      label: WiFi SSID
-      default: Beeline_2G_F13F37
-  - st_pass:
-      label: WiFi Password
-      default: 1122334455667788
-  - host_name:
-      label: Device Hostname
-      default: 'temp-monitor-{mac}'
-
-Device settings:
-  - device_id:
-      label: Device ID
-      type: number
-      min: 1
-      max: 9999
-      default: 1000
-  - firmware_version:
-      label: Firmware Version
-      default: '1.0'
-      readonly: true
-  - measurement_period:
-      label: Measurement Period (seconds)
-      type: number
-      min: 1
-      max: 3600
-      default: 10
-
-Modbus settings:
-  - modbus_enabled:
-      label: Enable Modbus RTU
-      checked: true
-  - modbus_address:
-      label: Modbus Device Address
-      type: number
-      min: 1
-      max: 247
-      default: 1
-  - modbus_baud_rate:
-      label: Baud Rate
-      options: '4800', '9600', '19200', '38400', '57600', '115200'
-      default: '9600'
-)~";
+    Wifi settings:
+      - st_ssid:
+          label: WiFi SSID
+          default: Beeline_2G_F13F37
+      - st_pass:
+          label: WiFi Password
+          default: 1122334455667788
+      - host_name:
+          label: Device Hostname
+          default: 'temp-monitor-{mac}'
+    
+    Device settings:
+      - device_id:
+          label: Device ID
+          type: number
+          min: 1
+          max: 9999
+          default: 1000
+      - firmware_version:
+          label: Firmware Version
+          default: '1.0'
+          readonly: true
+      - measurement_period:
+          label: Measurement Period (seconds)
+          type: number
+          min: 1
+          max: 3600
+          default: 10
+    
+    Alarm Acknowledged Delays:
+      - ack_delay_critical:
+          label: Critical Alarm Acknowledged Delay (minutes)
+          type: number
+          min: 1
+          max: 1440
+          default: 5
+      - ack_delay_high:
+          label: High Priority Alarm Acknowledged Delay (minutes)
+          type: number
+          min: 1
+          max: 1440
+          default: 10
+      - ack_delay_medium:
+          label: Medium Priority Alarm Acknowledged Delay (minutes)
+          type: number
+          min: 1
+          max: 1440
+          default: 15
+      - ack_delay_low:
+          label: Low Priority Alarm Acknowledged Delay (minutes)
+          type: number
+          min: 1
+          max: 1440
+          default: 30
+    
+    Modbus settings:
+      - modbus_enabled:
+          label: Enable Modbus RTU
+          checked: true
+      - modbus_address:
+          label: Modbus Device Address
+          type: number
+          min: 1
+          max: 247
+          default: 1
+      - modbus_baud_rate:
+          label: Baud Rate
+          options: '4800', '9600', '19200', '38400', '57600', '115200'
+          default: '9600'
+    )~";
 
 ConfigManager::ConfigManager(TemperatureController& tempController)
     : conf("/config.ini", VARIABLES_DEF_YAML),
@@ -779,6 +805,85 @@ bool ConfigManager::begin() {
         }
     });
 
+
+    // Add these API endpoints in ConfigManager::begin() after existing endpoints
+
+// Get acknowledged delays
+    server->on("/api/alarms/delays", HTTP_GET, [this]() {
+        DynamicJsonDocument doc(512);
+        doc["critical"] = getAcknowledgedDelayCritical();
+        doc["high"] = getAcknowledgedDelayHigh();
+        doc["medium"] = getAcknowledgedDelayMedium();
+        doc["low"] = getAcknowledgedDelayLow();
+        
+        String output;
+        serializeJson(doc, output);
+        server->sendHeader("Content-Type", "application/json");
+        server->sendHeader("Access-Control-Allow-Origin", "*");
+        server->send(200, "application/json", output);
+    });
+
+    // Update acknowledged delays
+    server->on("/api/alarms/delays", HTTP_PUT, [this]() {
+        if (!server->hasArg("plain")) {
+            server->send(400, "application/json", "{\"error\":\"No data\"}");
+            return;
+        }
+        
+        DynamicJsonDocument doc(512);
+        DeserializationError err = deserializeJson(doc, server->arg("plain"));
+        if (err) {
+            server->send(400, "application/json", "{\"error\":\"Invalid JSON\"}");
+            return;
+        }
+        
+        bool updated = false;
+        
+        if (doc.containsKey("critical")) {
+            int minutes = doc["critical"].as<int>();
+            if (minutes >= 1 && minutes <= 1440) {
+                conf["ack_delay_critical"] = String(minutes);
+                controller.setAcknowledgedDelayCritical(minutes * 60 * 1000);
+                updated = true;
+            }
+        }
+        
+        if (doc.containsKey("high")) {
+            int minutes = doc["high"].as<int>();
+            if (minutes >= 1 && minutes <= 1440) {
+                conf["ack_delay_high"] = String(minutes);
+                controller.setAcknowledgedDelayHigh(minutes * 60 * 1000);
+                updated = true;
+            }
+        }
+        
+        if (doc.containsKey("medium")) {
+            int minutes = doc["medium"].as<int>();
+            if (minutes >= 1 && minutes <= 1440) {
+                conf["ack_delay_medium"] = String(minutes);
+                controller.setAcknowledgedDelayMedium(minutes * 60 * 1000);
+                updated = true;
+            }
+        }
+        
+        if (doc.containsKey("low")) {
+            int minutes = doc["low"].as<int>();
+            if (minutes >= 1 && minutes <= 1440) {
+                conf["ack_delay_low"] = String(minutes);
+                controller.setAcknowledgedDelayLow(minutes * 60 * 1000);
+                updated = true;
+            }
+        }
+        
+        if (updated) {
+            conf.saveConfigFile();
+            server->send(200, "application/json", "{\"status\":\"updated\"}");
+        } else {
+            server->send(400, "application/json", "{\"error\":\"No valid delays provided\"}");
+        }
+    });
+
+
     // Settings CSV Import endpoint - NO RESTART VERSION
     // server->on("/api/settings/import", HTTP_POST, [this]() {
     //     // This will be called after file upload is complete
@@ -841,6 +946,13 @@ bool ConfigManager::begin() {
     Serial.println("Device ID set");
     controller.setMeasurementPeriod(getMeasurementPeriod());
     Serial.println("Measurement period set");
+
+    // Load acknowledged delays from configuration
+    controller.setAcknowledgedDelayCritical(getAcknowledgedDelayCritical() * 60 * 1000);
+    controller.setAcknowledgedDelayHigh(getAcknowledgedDelayHigh() * 60 * 1000);
+    controller.setAcknowledgedDelayMedium(getAcknowledgedDelayMedium() * 60 * 1000);
+    controller.setAcknowledgedDelayLow(getAcknowledgedDelayLow() * 60 * 1000);
+    Serial.println("Acknowledged delays configured");
     
     return true;
 }
@@ -864,6 +976,7 @@ bool ConfigManager::connectWiFi(int timeoutMs) {
     return connected;
 }
 
+// Update the onConfigChanged method in ConfigManager.cpp
 void ConfigManager::onConfigChanged(String key) {
     if (instance == nullptr) return;
     
@@ -878,8 +991,25 @@ void ConfigManager::onConfigChanged(String key) {
         instance->controller.setMeasurementPeriod(instance->conf(key).toInt());
     } else if (key == "reset_min_max") {
         instance->resetMinMaxValues();
+    } else if (key == "ack_delay_critical") {
+        unsigned long delayMs = instance->conf(key).toInt() * 60 * 1000; // Convert minutes to milliseconds
+        instance->controller.setAcknowledgedDelayCritical(delayMs);
+        Serial.printf("Set critical acknowledged delay to %lu ms (%d minutes)\n", delayMs, instance->conf(key).toInt());
+    } else if (key == "ack_delay_high") {
+        unsigned long delayMs = instance->conf(key).toInt() * 60 * 1000;
+        instance->controller.setAcknowledgedDelayHigh(delayMs);
+        Serial.printf("Set high acknowledged delay to %lu ms (%d minutes)\n", delayMs, instance->conf(key).toInt());
+    } else if (key == "ack_delay_medium") {
+        unsigned long delayMs = instance->conf(key).toInt() * 60 * 1000;
+        instance->controller.setAcknowledgedDelayMedium(delayMs);
+        Serial.printf("Set medium acknowledged delay to %lu ms (%d minutes)\n", delayMs, instance->conf(key).toInt());
+    } else if (key == "ack_delay_low") {
+        unsigned long delayMs = instance->conf(key).toInt() * 60 * 1000;
+        instance->controller.setAcknowledgedDelayLow(delayMs);
+        Serial.printf("Set low acknowledged delay to %lu ms (%d minutes)\n", delayMs, instance->conf(key).toInt());
     }
 }
+
 
 
 void ConfigManager::resetMinMaxValues() {

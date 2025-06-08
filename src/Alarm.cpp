@@ -2,7 +2,8 @@
 
 Alarm::Alarm(AlarmType type, MeasurementPoint* source, AlarmPriority priority)
     : _type(type), _stage(AlarmStage::NEW), _priority(priority), _source(source),
-      _timestamp(millis()), _acknowledgedTime(0), _clearedTime(0), 
+      _timestamp(millis()), _acknowledgedTime(0), _clearedTime(0),
+      _acknowledgedDelay(10 * 60 * 1000), // Default 10 minutes 
       _delayTime(5 * 60 * 1000), _enabled(true), _hysteresis(1) // Add _hysteresis(1) - 1 degree default
 {
     if (_source) {
@@ -317,6 +318,7 @@ void Alarm::setStage(AlarmStage stage){
     _stage = stage;
 };
 
+// Modify the updateCondition method to handle acknowledged timeout
 bool Alarm::updateCondition() {
     if (!_source) {
         Serial.println("Alarm updateCondition: No source");
@@ -353,6 +355,10 @@ bool Alarm::updateCondition() {
             if (!conditionExists) {
                 clear();
                 Serial.printf("Alarm %s: ACKNOWLEDGED -> CLEARED (condition no longer exists)\n", getTypeString().c_str());
+            } else if (isAcknowledgedDelayElapsed()) {
+                // NEW: Return to ACTIVE if acknowledged delay has elapsed and condition still exists
+                _stage = AlarmStage::ACTIVE;
+                Serial.printf("Alarm %s: ACKNOWLEDGED -> ACTIVE (acknowledged delay elapsed)\n", getTypeString().c_str());
             }
             break;
             
@@ -370,7 +376,7 @@ bool Alarm::updateCondition() {
             break;
             
         case AlarmStage::RESOLVED:
-            // ADD THIS CASE: Reactivate resolved alarms when condition returns
+            // Reactivate resolved alarms when condition returns
             if (conditionExists) {
                 _stage = AlarmStage::ACTIVE;
                 _timestamp = millis(); // Reset timestamp
@@ -378,7 +384,6 @@ bool Alarm::updateCondition() {
                 _clearedTime = 0;      // Reset cleared time
                 Serial.printf("Alarm %s: RESOLVED -> ACTIVE (condition returned)\n", getTypeString().c_str());
             }
-            // If condition doesn't exist, stay resolved
             break;
     }
     
@@ -389,3 +394,19 @@ bool Alarm::updateCondition() {
     return true; // Always keep alarm
 }
 
+
+// Add these new methods to Alarm.cpp
+void Alarm::setAcknowledgedDelay(unsigned long delay) {
+    _acknowledgedDelay = delay;
+}
+
+unsigned long Alarm::getAcknowledgedDelay() const {
+    return _acknowledgedDelay;
+}
+
+bool Alarm::isAcknowledgedDelayElapsed() const {
+    if (_stage != AlarmStage::ACKNOWLEDGED || _acknowledgedTime == 0) {
+        return false;
+    }
+    return (millis() - _acknowledgedTime) >= _acknowledgedDelay;
+}

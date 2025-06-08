@@ -92,6 +92,10 @@ public:
     void setHysteresis(int16_t hysteresis) { _hysteresis = hysteresis; }
     int16_t getHysteresis() const { return _hysteresis; }
 
+    void setAcknowledgedDelay(unsigned long delay);
+    unsigned long getAcknowledgedDelay() const;
+    bool isAcknowledgedDelayElapsed() const;
+
 
     
 
@@ -122,6 +126,7 @@ private:
 
     String _configKey;  // Format: "alarm_<point>_<type>"
     bool _enabled;      // Whether this alarm is active in configuration
+    unsigned long _acknowledgedDelay; 
 };
 
 // Alarm comparison function for sorting by priority and timestamp

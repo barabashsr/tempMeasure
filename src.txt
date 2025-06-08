@@ -1,14 +1,15 @@
 
 ================================================================================
 File: Alarm.cpp
-Size: 14.4 kB
+Size: 15.22 kB
 ================================================================================
 
 #include "Alarm.h"
 
 Alarm::Alarm(AlarmType type, MeasurementPoint* source, AlarmPriority priority)
     : _type(type), _stage(AlarmStage::NEW), _priority(priority), _source(source),
-      _timestamp(millis()), _acknowledgedTime(0), _clearedTime(0), 
+      _timestamp(millis()), _acknowledgedTime(0), _clearedTime(0),
+      _acknowledgedDelay(10 * 60 * 1000), // Default 10 minutes 
       _delayTime(5 * 60 * 1000), _enabled(true), _hysteresis(1) // Add _hysteresis(1) - 1 degree default
 {
     if (_source) {
@@ -323,6 +324,7 @@ void Alarm::setStage(AlarmStage stage){
     _stage = stage;
 };
 
+// Modify the updateCondition method to handle acknowledged timeout
 bool Alarm::updateCondition() {
     if (!_source) {
         Serial.println("Alarm updateCondition: No source");
@@ -359,6 +361,10 @@ bool Alarm::updateCondition() {
             if (!conditionExists) {
                 clear();
                 Serial.printf("Alarm %s: ACKNOWLEDGED -> CLEARED (condition no longer exists)\n", getTypeString().c_str());
+            } else if (isAcknowledgedDelayElapsed()) {
+                // NEW: Return to ACTIVE if acknowledged delay has elapsed and condition still exists
+                _stage = AlarmStage::ACTIVE;
+                Serial.printf("Alarm %s: ACKNOWLEDGED -> ACTIVE (acknowledged delay elapsed)\n", getTypeString().c_str());
             }
             break;
             
@@ -376,7 +382,7 @@ bool Alarm::updateCondition() {
             break;
             
         case AlarmStage::RESOLVED:
-            // ADD THIS CASE: Reactivate resolved alarms when condition returns
+            // Reactivate resolved alarms when condition returns
             if (conditionExists) {
                 _stage = AlarmStage::ACTIVE;
                 _timestamp = millis(); // Reset timestamp
@@ -384,7 +390,6 @@ bool Alarm::updateCondition() {
                 _clearedTime = 0;      // Reset cleared time
                 Serial.printf("Alarm %s: RESOLVED -> ACTIVE (condition returned)\n", getTypeString().c_str());
             }
-            // If condition doesn't exist, stay resolved
             break;
     }
     
@@ -396,6 +401,21 @@ bool Alarm::updateCondition() {
 }
 
 
+// Add these new methods to Alarm.cpp
+void Alarm::setAcknowledgedDelay(unsigned long delay) {
+    _acknowledgedDelay = delay;
+}
+
+unsigned long Alarm::getAcknowledgedDelay() const {
+    return _acknowledgedDelay;
+}
+
+bool Alarm::isAcknowledgedDelayElapsed() const {
+    if (_stage != AlarmStage::ACKNOWLEDGED || _acknowledgedTime == 0) {
+        return false;
+    }
+    return (millis() - _acknowledgedTime) >= _acknowledgedDelay;
+}
 
 ================================================================================
 File: CSVConfigManager.cpp
@@ -784,7 +804,7 @@ String CSVConfigManager::_getAlarmPriorityForPoint(int pointAddress, AlarmType a
 
 ================================================================================
 File: ConfigManager.cpp
-Size: 42.02 kB
+Size: 45.89 kB
 ================================================================================
 
 #include "ConfigManager.h"
@@ -843,7 +863,9 @@ Modbus settings:
 
 ConfigManager::ConfigManager(TemperatureController& tempController)
     : conf("/config.ini", VARIABLES_DEF_YAML),
-      controller(tempController), csvManager(controller),
+      controller(tempController), 
+      csvManager(controller),
+      settingsCSVManager(conf),
       portalActive(false) {
     
     instance = this;
@@ -1012,6 +1034,8 @@ bool ConfigManager::begin() {
             
             // Process the uploaded CSV
             if (csvManager.importPointsWithAlarmsFromCSV(csvContent)) {
+                saveAlarmsConfig();
+                savePointsConfig();
                 server->send(200, "application/json", "{\"success\":true}");
             } else {
                 String error = csvManager.getLastError();
@@ -1516,6 +1540,88 @@ bool ConfigManager::begin() {
         server->sendHeader("Access-Control-Allow-Headers", "Content-Type");
         server->send(204);
     });
+
+    // Settings CSV Export endpoint
+    server->on("/api/settings/export", HTTP_GET, [this]() {
+        String csvData = settingsCSVManager.exportSettingsToCSV();
+        
+        if (csvData.length() > 0) {
+            String filename = "device_settings_" + String(millis()) + ".csv";
+            server->sendHeader("Content-Type", "text/csv");
+            server->sendHeader("Content-Disposition", "attachment; filename=\"" + filename + "\"");
+            server->send(200, "text/csv", csvData);
+        } else {
+            server->send(500, "application/json", "{\"error\":\"Failed to generate settings CSV\"}");
+        }
+    });
+
+    // Settings CSV Import endpoint
+    server->on("/api/settings/import", HTTP_POST, [this]() {
+        // This will be called after file upload is complete
+    }, [this]() {
+        // Handle file upload
+        HTTPUpload& upload = server->upload();
+        static String csvContent;
+        
+        if (upload.status == UPLOAD_FILE_START) {
+            csvContent = "";
+            Serial.printf("Settings Upload Start: %s\n", upload.filename.c_str());
+        } else if (upload.status == UPLOAD_FILE_WRITE) {
+            csvContent += String((char*)upload.buf, upload.currentSize);
+        } else if (upload.status == UPLOAD_FILE_END) {
+            Serial.printf("Settings Upload End: %s (%u bytes)\n", upload.filename.c_str(), upload.totalSize);
+            
+            // Process the uploaded CSV
+            if (settingsCSVManager.importSettingsFromCSV(csvContent)) {
+                // Save configuration after successful import
+                conf.saveConfigFile();
+                server->send(200, "application/json", "{\"success\":true,\"message\":\"Settings imported successfully. Device will restart.\"}");
+                
+                // Restart device to apply new settings
+                delay(1000);
+                ESP.restart();
+            } else {
+                String error = settingsCSVManager.getLastError();
+                server->send(400, "application/json", "{\"success\":false,\"error\":\"" + error + "\"}");
+            }
+            csvContent = "";
+        }
+    });
+
+    // Settings CSV Import endpoint - NO RESTART VERSION
+    // server->on("/api/settings/import", HTTP_POST, [this]() {
+    //     // This will be called after file upload is complete
+    // }, [this]() {
+    //     // Handle file upload
+    //     HTTPUpload& upload = server->upload();
+    //     static String csvContent;
+        
+    //     if (upload.status == UPLOAD_FILE_START) {
+    //         csvContent = "";
+    //         Serial.printf("Settings Upload Start: %s\n", upload.filename.c_str());
+    //     } else if (upload.status == UPLOAD_FILE_WRITE) {
+    //         csvContent += String((char*)upload.buf, upload.currentSize);
+    //     } else if (upload.status == UPLOAD_FILE_END) {
+    //         Serial.printf("Settings Upload End: %s (%u bytes)\n", upload.filename.c_str(), upload.totalSize);
+            
+    //         // Process the uploaded CSV
+    //         if (settingsCSVManager.importSettingsFromCSV(csvContent)) {
+    //             // Save configuration after successful import
+    //             conf.saveConfigFile();
+                
+    //             // Apply settings that can be changed without restart
+    //             _applySettingsWithoutRestart();
+                
+    //             server->send(200, "application/json", "{\"success\":true,\"message\":\"Settings imported successfully.\"}");
+    //         } else {
+    //             String error = settingsCSVManager.getLastError();
+    //             server->send(400, "application/json", "{\"success\":false,\"error\":\"" + error + "\"}");
+    //         }
+    //         csvContent = "";
+    //     }
+    // });
+
+
     
     // Setup WiFi
     bool startAP = true;
@@ -1883,7 +1989,6 @@ void ConfigManager::loadAlarmsConfig() {
     
     Serial.printf("Loaded %d valid alarm configurations\n", loadedCount);
 }
-
 
 
 ================================================================================
@@ -3335,6 +3440,168 @@ void Sensor::getDS18B20RomArray(uint8_t out[8]) const {
 }
 
 ================================================================================
+File: SettingsCSVManager.cpp
+Size: 4.72 kB
+================================================================================
+
+#include "SettingsCSVManager.h"
+
+SettingsCSVManager::SettingsCSVManager(ConfigAssist& config) 
+    : _config(config), _lastError("") {
+}
+
+String SettingsCSVManager::exportSettingsToCSV() {
+    String csv = "Setting,Value,Description\n";
+    
+    // Device Configuration
+    csv += "device_id," + _escapeCSVField(_config("device_id")) + ",Modbus device identifier (1-9999)\n";
+    csv += "firmware_version," + _escapeCSVField(_config("firmware_version")) + ",Firmware version (read-only)\n";
+    csv += "measurement_period," + _escapeCSVField(_config("measurement_period")) + ",Measurement period in seconds (1-3600)\n";
+    csv += "host_name," + _escapeCSVField(_config("host_name")) + ",Device network hostname\n";
+    
+    // WiFi Settings
+    csv += "st_ssid," + _escapeCSVField(_config("st_ssid")) + ",WiFi network name\n";
+    csv += "st_pass," + _escapeCSVField(_config("st_pass")) + ",WiFi network password\n";
+    
+    // Modbus Settings
+    csv += "modbus_enabled," + _escapeCSVField(_config("modbus_enabled")) + ",Enable/disable Modbus RTU\n";
+    csv += "modbus_address," + _escapeCSVField(_config("modbus_address")) + ",Modbus device address (1-247)\n";
+    csv += "modbus_baud_rate," + _escapeCSVField(_config("modbus_baud_rate")) + ",Modbus communication speed\n";
+    
+    return csv;
+}
+
+bool SettingsCSVManager::importSettingsFromCSV(const String& csvData) {
+    if (!validateSettingsCSV(csvData)) {
+        return false;
+    }
+    
+    int lineStart = 0;
+    int lineEnd = csvData.indexOf('\n');
+    
+    // Skip header line
+    if (lineEnd == -1) {
+        _lastError = "Invalid CSV format";
+        return false;
+    }
+    lineStart = lineEnd + 1;
+    
+    // Parse each data line
+    while (lineStart < csvData.length()) {
+        lineEnd = csvData.indexOf('\n', lineStart);
+        if (lineEnd == -1) lineEnd = csvData.length();
+        
+        String line = csvData.substring(lineStart, lineEnd);
+        line.trim();
+        
+        if (line.length() > 0) {
+            if (!_parseCSVLine(line)) {
+                return false;
+            }
+        }
+        
+        lineStart = lineEnd + 1;
+    }
+    
+    return true;
+}
+
+bool SettingsCSVManager::_parseCSVLine(const String& line) {
+    int firstComma = line.indexOf(',');
+    int secondComma = line.indexOf(',', firstComma + 1);
+    
+    if (firstComma == -1 || secondComma == -1) {
+        _lastError = "Invalid CSV line format";
+        return false;
+    }
+    
+    String setting = line.substring(0, firstComma);
+    String value = line.substring(firstComma + 1, secondComma);
+    
+    setting.trim();
+    value = _unescapeCSVField(value);
+    
+    // Skip firmware_version as it's read-only
+    if (setting == "firmware_version") {
+        return true;
+    }
+    
+    // Validate settings exist in config
+    String validSettings[] = {
+        "device_id", "measurement_period", "host_name",
+        "st_ssid", "st_pass", "modbus_enabled", 
+        "modbus_address", "modbus_baud_rate"
+    };
+    
+    bool isValid = false;
+    for (const String& validSetting : validSettings) {
+        if (setting == validSetting) {
+            isValid = true;
+            break;
+        }
+    }
+    
+    if (!isValid) {
+        _lastError = "Unknown setting: " + setting;
+        return false;
+    }
+    
+    // Set the configuration value
+    _config[setting] = value;
+    
+    return true;
+}
+
+String SettingsCSVManager::_escapeCSVField(const String& field) {
+    if (field.indexOf(',') >= 0 || field.indexOf('"') >= 0 || field.indexOf('\n') >= 0) {
+        String escaped = "\"";
+        for (int i = 0; i < field.length(); i++) {
+            if (field.charAt(i) == '"') {
+                escaped += "\"\"";
+            } else {
+                escaped += field.charAt(i);
+            }
+        }
+        escaped += "\"";
+        return escaped;
+    }
+    return field;
+}
+
+String SettingsCSVManager::_unescapeCSVField(const String& field) {
+    String result = field;
+    result.trim();
+    if (result.startsWith("\"") && result.endsWith("\"")) {
+        result = result.substring(1, result.length() - 1);
+        result.replace("\"\"", "\"");
+    }
+    return result;
+}
+
+bool SettingsCSVManager::validateSettingsCSV(const String& csvData) {
+    if (csvData.length() == 0) {
+        _lastError = "Empty CSV data";
+        return false;
+    }
+    
+    // Check for header line
+    int headerLine = csvData.indexOf('\n');
+    if (headerLine == -1) {
+        _lastError = "No header line found";
+        return false;
+    }
+    
+    String header = csvData.substring(0, headerLine);
+    if (header.indexOf("Setting") == -1 || header.indexOf("Value") == -1) {
+        _lastError = "Invalid header format";
+        return false;
+    }
+    
+    return true;
+}
+
+
+================================================================================
 File: TempModbusServer.cpp
 Size: 6.11 kB
 ================================================================================
@@ -3511,7 +3778,7 @@ ModbusMessage TempModbusServer::writeMultipleRegistersWorker(ModbusMessage reque
 
 ================================================================================
 File: TemperatureController.cpp
-Size: 36.69 kB
+Size: 40.59 kB
 ================================================================================
 
 #include "TemperatureController.h"
@@ -3528,7 +3795,11 @@ TemperatureController::TemperatureController(uint8_t oneWirePin[4], uint8_t csPi
       _lastButtonPressTime(0),
       _currentDisplayedAlarm(nullptr),
       _okDisplayStartTime(0),
-      _showingOK(false)
+      _showingOK(false),
+      _acknowledgedDelayCritical(0.5 * 60 * 1000),   // 5 minutes for critical
+      _acknowledgedDelayHigh(0.5 * 60 * 1000),      // 10 minutes for high
+      _acknowledgedDelayMedium(0.5 * 60 * 1000),    // 15 minutes for medium
+      _acknowledgedDelayLow(0.5 * 60 * 1000)        // 30 minutes for low
 {
     // Initialize measurement points
     for (uint8_t i = 0; i < 50; ++i)
@@ -4519,6 +4790,27 @@ bool TemperatureController::addAlarm(AlarmType type, uint8_t pointAddress, Alarm
     
     // Create new alarm
     Alarm* newAlarm = new Alarm(type, point, priority);
+    if (newAlarm) {
+        unsigned long delay;
+        switch (priority) {
+            case AlarmPriority::PRIORITY_CRITICAL:
+                delay = _acknowledgedDelayCritical;
+                break;
+            case AlarmPriority::PRIORITY_HIGH:
+                delay = _acknowledgedDelayHigh;
+                break;
+            case AlarmPriority::PRIORITY_MEDIUM:
+                delay = _acknowledgedDelayMedium;
+                break;
+            case AlarmPriority::PRIORITY_LOW:
+                delay = _acknowledgedDelayLow;
+                break;
+            default:
+                delay = _acknowledgedDelayMedium;
+                break;
+        }
+        newAlarm->setAcknowledgedDelay(delay);
+    }
     newAlarm->setConfigKey(configKey);
     _configuredAlarms.push_back(newAlarm);
     
@@ -4603,6 +4895,95 @@ bool TemperatureController::bindSensorToPointByBusNumber(uint8_t busNumber, uint
         }
     }
     return false;
+}
+
+
+
+
+// Implement the setter methods
+void TemperatureController::setAcknowledgedDelayCritical(unsigned long delay) {
+    _acknowledgedDelayCritical = delay;
+    applyAcknowledgedDelaysToAlarms();
+}
+
+void TemperatureController::setAcknowledgedDelayHigh(unsigned long delay) {
+    _acknowledgedDelayHigh = delay;
+    applyAcknowledgedDelaysToAlarms();
+}
+
+void TemperatureController::setAcknowledgedDelayMedium(unsigned long delay) {
+    _acknowledgedDelayMedium = delay;
+    applyAcknowledgedDelaysToAlarms();
+}
+
+void TemperatureController::setAcknowledgedDelayLow(unsigned long delay) {
+    _acknowledgedDelayLow = delay;
+    applyAcknowledgedDelaysToAlarms();
+}
+
+// Implement the getter methods
+unsigned long TemperatureController::getAcknowledgedDelayCritical() const {
+    return _acknowledgedDelayCritical;
+}
+
+unsigned long TemperatureController::getAcknowledgedDelayHigh() const {
+    return _acknowledgedDelayHigh;
+}
+
+unsigned long TemperatureController::getAcknowledgedDelayMedium() const {
+    return _acknowledgedDelayMedium;
+}
+
+unsigned long TemperatureController::getAcknowledgedDelayLow() const {
+    return _acknowledgedDelayLow;
+}
+
+// Method to apply delays to all existing alarms
+void TemperatureController::applyAcknowledgedDelaysToAlarms() {
+    for (auto alarm : _configuredAlarms) {
+        unsigned long delay;
+        switch (alarm->getPriority()) {
+            case AlarmPriority::PRIORITY_CRITICAL:
+                delay = _acknowledgedDelayCritical;
+                break;
+            case AlarmPriority::PRIORITY_HIGH:
+                delay = _acknowledgedDelayHigh;
+                break;
+            case AlarmPriority::PRIORITY_MEDIUM:
+                delay = _acknowledgedDelayMedium;
+                break;
+            case AlarmPriority::PRIORITY_LOW:
+                delay = _acknowledgedDelayLow;
+                break;
+            default:
+                delay = _acknowledgedDelayMedium; // Default fallback
+                break;
+        }
+        alarm->setAcknowledgedDelay(delay);
+    }
+    
+    // Also apply to active alarms
+    // for (auto alarm : _activeAlarms) {
+    //     unsigned long delay;
+    //     switch (alarm->getPriority()) {
+    //         case AlarmPriority::PRIORITY_CRITICAL:
+    //             delay = _acknowledgedDelayCritical;
+    //             break;
+    //         case AlarmPriority::PRIORITY_HIGH:
+    //             delay = _acknowledgedDelayHigh;
+    //             break;
+    //         case AlarmPriority::PRIORITY_MEDIUM:
+    //             delay = _acknowledgedDelayMedium;
+    //             break;
+    //         case AlarmPriority::PRIORITY_LOW:
+    //             delay = _acknowledgedDelayLow;
+    //             break;
+    //         default:
+    //             delay = _acknowledgedDelayMedium;
+    //             break;
+    //     }
+    //     alarm->setAcknowledgedDelay(delay);
+    // }
 }
 
 ================================================================================
