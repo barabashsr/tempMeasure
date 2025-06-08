@@ -23,4 +23,8 @@ private:
     String _escapeCSVField(const String& field);
     String _unescapeCSVField(const String& field);
     bool _parseCSVLine(const String& line);
+    
+    // Add these helper methods for acknowledged delays
+    void _exportAcknowledgedDelays(String& csv);
+    bool _importAcknowledgedDelays(const String& key, const String& value);
 };

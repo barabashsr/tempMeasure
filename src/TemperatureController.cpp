@@ -452,6 +452,7 @@ String TemperatureController::getAlarmsJson() {
         obj["isAcknowledged"] = alarm->isAcknowledged();
         obj["timestamp"] = alarm->getTimestamp();
         obj["acknowledgedTime"] = alarm->getAcknowledgedTime();
+        obj["acknowledgedTimeLeft"] = alarm->getAcknowledgedTimeLeft();
         
         if (alarm->getSource()) {
             obj["pointName"] = alarm->getSource()->getName();

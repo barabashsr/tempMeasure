@@ -410,3 +410,16 @@ bool Alarm::isAcknowledgedDelayElapsed() const {
     }
     return (millis() - _acknowledgedTime) >= _acknowledgedDelay;
 }
+
+unsigned long Alarm::getAcknowledgedTimeLeft() const {
+    if (_stage != AlarmStage::ACKNOWLEDGED || _acknowledgedTime == 0) {
+        return 0; // No time left if not acknowledged
+    }
+    
+    unsigned long elapsed = millis() - _acknowledgedTime;
+    if (elapsed >= _acknowledgedDelay) {
+        return 0; // Time already elapsed
+    }
+    
+    return _acknowledgedDelay - elapsed; // Time remaining in milliseconds
+}

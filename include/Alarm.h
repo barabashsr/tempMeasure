@@ -95,6 +95,7 @@ public:
     void setAcknowledgedDelay(unsigned long delay);
     unsigned long getAcknowledgedDelay() const;
     bool isAcknowledgedDelayElapsed() const;
+    unsigned long getAcknowledgedTimeLeft() const;
 
 
     

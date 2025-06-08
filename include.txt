@@ -201,7 +201,7 @@ private:
 
 ================================================================================
 File: ConfigManager.h
-Size: 3.66 kB
+Size: 4.01 kB
 ================================================================================
 
 #ifndef CONFIG_MANAGER_H
@@ -308,7 +308,12 @@ public:
     void loadAlarmsConfig();
 
     CSVConfigManager& getCSVManager() { return csvManager; }
-};
+
+    uint16_t getAcknowledgedDelayCritical() { return conf("ack_delay_critical").toInt(); }
+    uint16_t getAcknowledgedDelayHigh() { return conf("ack_delay_high").toInt(); }
+    uint16_t getAcknowledgedDelayMedium() { return conf("ack_delay_medium").toInt(); }
+    uint16_t getAcknowledgedDelayLow() { return conf("ack_delay_low").toInt(); }
+    };
 
 // Initialize static member
 //ConfigManager* ConfigManager::instance = nullptr;
@@ -771,7 +776,7 @@ private:
 
 ================================================================================
 File: SettingsCSVManager.h
-Size: 640 B
+Size: 826 B
 ================================================================================
 
 #pragma once
@@ -799,6 +804,10 @@ private:
     String _escapeCSVField(const String& field);
     String _unescapeCSVField(const String& field);
     bool _parseCSVLine(const String& line);
+    
+    // Add these helper methods for acknowledged delays
+    void _exportAcknowledgedDelays(String& csv);
+    bool _importAcknowledgedDelays(const String& key, const String& value);
 };
 
 
