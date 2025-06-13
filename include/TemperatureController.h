@@ -195,6 +195,13 @@ private:
     bool _comparePriority(AlarmPriority alarmPriority, AlarmPriority targetPriority, const String& comparison) const;
     bool _compareStage(AlarmStage alarmStage, AlarmStage targetStage, const String& comparison) const;
 
+    // Blinking control for low priority alarms
+    bool _lowPriorityBlinkState = false;
+    unsigned long _lastLowPriorityBlinkTime = 0;
+    const unsigned long _blinkOnTime = 2000;   // 2 seconds on
+    const unsigned long _blinkOffTime = 30000; // 30 seconds off
+    void _handleLowPriorityBlinking();
+
 
     
 };

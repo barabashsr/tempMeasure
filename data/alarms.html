@@ -262,10 +262,12 @@
                 <select id="statusFilter" onchange="filterTable()">
                     <option value="">All Statuses</option>
                     <option value="NEW">New</option>
-                    <option value="ACTIVE">Active</option>
-                    <option value="ACKNOWLEDGED">Acknowledged</option>
                     <option value="CLEARED">Cleared</option>
                     <option value="RESOLVED">Resolved</option>
+                    <option value="ACKNOWLEDGED">Acknowledged</option>
+                    <option value="ACTIVE">Active</option>
+
+
                 </select>
             </div>
 
@@ -439,7 +441,7 @@
         }
 
         function getStageText(stage) {
-            const stages = ['NEW', 'ACTIVE', 'ACKNOWLEDGED', 'CLEARED', 'RESOLVED'];
+            const stages = ['NEW', 'CLEARED', 'RESOLVED', 'ACKNOWLEDGED', 'ACTIVE'];
             return stages[stage] || 'UNKNOWN';
         }
 

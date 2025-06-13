@@ -410,7 +410,10 @@ void TemperatureController::handleAlarmOutputs() {
     bool newRelay1 = getAlarmCount(AlarmStage::ACTIVE) > 0;
     
     // HIGH or CRITICAL priority alarms in ACKNOWLEDGED or ACTIVE states
-    bool newRelay2 = getAlarmCount(AlarmPriority::PRIORITY_HIGH, AlarmStage::ACKNOWLEDGED, ">=", ">=") > 0;
+    bool highPriorityRelay2 = getAlarmCount(AlarmPriority::PRIORITY_HIGH, AlarmStage::ACKNOWLEDGED, ">=", ">=") > 0;
+    
+    // LOW priority alarms in ACKNOWLEDGED or ACTIVE states (for blinking)
+    bool lowPriorityExists = getAlarmCount(AlarmPriority::PRIORITY_LOW, AlarmStage::ACKNOWLEDGED, "==", ">=") > 0;
     
     // CRITICAL priority alarms in ACKNOWLEDGED or ACTIVE states  
     bool newRedLed = getAlarmCount(AlarmPriority::PRIORITY_CRITICAL, AlarmStage::ACKNOWLEDGED, "==", ">=") > 0;
@@ -419,7 +422,27 @@ void TemperatureController::handleAlarmOutputs() {
     bool newYellowLed = getAlarmCount(AlarmPriority::PRIORITY_HIGH, AlarmStage::ACKNOWLEDGED, "==", ">=") > 0;
     
     // MEDIUM priority alarms in ACKNOWLEDGED or ACTIVE states
-    bool newBlueLed = getAlarmCount(AlarmPriority::PRIORITY_MEDIUM, AlarmStage::ACKNOWLEDGED, "==", ">=") > 0;
+    bool mediumPriorityBlueLed = getAlarmCount(AlarmPriority::PRIORITY_MEDIUM, AlarmStage::ACKNOWLEDGED, "==", ">=") > 0;
+    
+    // Handle blinking for low priority alarms
+    bool lowPriorityBlinkRelay2 = false;
+    bool lowPriorityBlinkBlueLed = false;
+    
+    if (lowPriorityExists) {
+        _handleLowPriorityBlinking();
+        
+        if (_lowPriorityBlinkState) {
+            // Only blink relay2 if it's not already on from higher priority alarms
+            if (!highPriorityRelay2) {
+                lowPriorityBlinkRelay2 = true;
+            }
+            lowPriorityBlinkBlueLed = true;
+        }
+    }
+    
+    // Calculate final states
+    bool newRelay2 = highPriorityRelay2 || lowPriorityBlinkRelay2;
+    bool newBlueLed = mediumPriorityBlueLed || lowPriorityBlinkBlueLed;
     
     // Only update outputs if state has changed
     if (newRelay1 != _relay1State) {
@@ -1353,5 +1376,25 @@ bool TemperatureController::_compareStage(AlarmStage alarmStage, AlarmStage targ
         return alarmValue != targetValue;
     } else { // Default to "==" or "eq"
         return alarmValue == targetValue;
+    }
+}
+
+
+void TemperatureController::_handleLowPriorityBlinking() {
+    unsigned long currentTime = millis();
+    unsigned long elapsed = currentTime - _lastLowPriorityBlinkTime;
+    
+    if (_lowPriorityBlinkState) {
+        // Currently ON - check if we should turn OFF
+        if (elapsed >= _blinkOnTime) {
+            _lowPriorityBlinkState = false;
+            _lastLowPriorityBlinkTime = currentTime;
+        }
+    } else {
+        // Currently OFF - check if we should turn ON
+        if (elapsed >= _blinkOffTime) {
+            _lowPriorityBlinkState = true;
+            _lastLowPriorityBlinkTime = currentTime;
+        }
     }
 }
