@@ -15,6 +15,9 @@
 class TemperatureController {
 public:
     TemperatureController(uint8_t oneWirePin[4], uint8_t csPin[4], IndicatorInterface& indicator);
+
+    
+
     ~TemperatureController();
     
     bool begin();
@@ -135,6 +138,9 @@ public:
 
 
 
+
+
+
 private:
     // Hardware components
     IndicatorInterface& indicator;
@@ -201,6 +207,24 @@ private:
     const unsigned long _blinkOnTime = 2000;   // 2 seconds on
     const unsigned long _blinkOffTime = 30000; // 30 seconds off
     void _handleLowPriorityBlinking();
+
+
+    // Display management for alarms
+    std::vector<Alarm*> _activeAlarmsQueue;
+    std::vector<Alarm*> _acknowledgedAlarmsQueue;
+    int _currentActiveAlarmIndex;
+    int _currentAcknowledgedAlarmIndex;
+    unsigned long _lastAlarmDisplayTime;
+    unsigned long _acknowledgedAlarmDisplayDelay;
+    bool _displayingActiveAlarm;
+    
+    // Helper methods for alarm display
+    void _updateAlarmQueues();
+    void _displayNextActiveAlarm();
+    void _displayNextAcknowledgedAlarm();
+    void _handleAlarmDisplayRotation();
+
+    String _getPriorityString(AlarmPriority priority) const; 
 
 
     

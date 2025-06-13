@@ -1,22 +1,22 @@
 #include "TemperatureController.h"
 
 TemperatureController::TemperatureController(uint8_t oneWirePin[4], uint8_t csPin[4], IndicatorInterface& indicator)
-    : measurementPeriodSeconds(10),
-      deviceId(1000),
-      firmwareVersion(0x0100),
-      lastMeasurementTime(0),
-      systemInitialized(false),
-      indicator(indicator),
-      _lastAlarmCheck(0),
-      _lastButtonState(true),
-      _lastButtonPressTime(0),
-      _currentDisplayedAlarm(nullptr),
-      _okDisplayStartTime(0),
-      _showingOK(false),
-      _acknowledgedDelayCritical(0.5 * 60 * 1000),   // 5 minutes for critical
-      _acknowledgedDelayHigh(0.5 * 60 * 1000),      // 10 minutes for high
-      _acknowledgedDelayMedium(0.5 * 60 * 1000),    // 15 minutes for medium
-      _acknowledgedDelayLow(0.5 * 60 * 1000)        // 30 minutes for low
+: indicator(indicator), 
+measurementPeriodSeconds(10), 
+deviceId(1), 
+firmwareVersion(0x0100),
+lastMeasurementTime(0), 
+systemInitialized(false), 
+_lastAlarmCheck(0),
+_lastButtonState(false), 
+_lastButtonPressTime(0), 
+_currentDisplayedAlarm(nullptr),
+_okDisplayStartTime(0), 
+_showingOK(false),
+
+_currentActiveAlarmIndex(0), _currentAcknowledgedAlarmIndex(0),
+_lastAlarmDisplayTime(0), _acknowledgedAlarmDisplayDelay(5000), // 5 seconds
+_displayingActiveAlarm(false)
 {
     // Initialize measurement points
     for (uint8_t i = 0; i < 50; ++i)
@@ -339,42 +339,42 @@ void TemperatureController::clearConfiguredAlarms() {
 
 
 
-void TemperatureController::handleAlarmDisplay() {
-    Alarm* highestPriorityAlarm = getHighestPriorityAlarm();
+// void TemperatureController::handleAlarmDisplay() {
+//     Alarm* highestPriorityAlarm = getHighestPriorityAlarm();
     
-    if (highestPriorityAlarm) {
-        // Display alarm
-        _currentDisplayedAlarm = highestPriorityAlarm;
-        _showingOK = false;
+//     if (highestPriorityAlarm) {
+//         // Display alarm
+//         _currentDisplayedAlarm = highestPriorityAlarm;
+//         _showingOK = false;
         
-        indicator.setOledMode(2);
-        String displayText = highestPriorityAlarm->getDisplayText();
+//         indicator.setOledMode(2);
+//         String displayText = highestPriorityAlarm->getDisplayText();
         
-        // Split display text into lines
-        int newlineIndex = displayText.indexOf('\n');
-        String line1 = displayText.substring(0, newlineIndex);
-        String line2 = displayText.substring(newlineIndex + 1);
+//         // Split display text into lines
+//         int newlineIndex = displayText.indexOf('\n');
+//         String line1 = displayText.substring(0, newlineIndex);
+//         String line2 = displayText.substring(newlineIndex + 1);
         
-        String displayLines[2] = {line1, line2};
-        indicator.printText(displayLines, 2);
+//         String displayLines[2] = {line1, line2};
+//         indicator.printText(displayLines, 2);
         
-    } else if (_currentDisplayedAlarm && !_showingOK) {
-        // No more alarms, show OK for 1 minute
-        _showOKAndTurnOffOLED();
+//     } else if (_currentDisplayedAlarm && !_showingOK) {
+//         // No more alarms, show OK for 1 minute
+//         _showOKAndTurnOffOLED();
         
-    } else if (_showingOK) {
-        // Check if OK display time has elapsed
-        if (millis() - _okDisplayStartTime >= 60000) { // 1 minute
-            indicator.setOLEDOff();
-            _showingOK = false;
-            _currentDisplayedAlarm = nullptr;
-        }
+//     } else if (_showingOK) {
+//         // Check if OK display time has elapsed
+//         if (millis() - _okDisplayStartTime >= 60000) { // 1 minute
+//             indicator.setOLEDOff();
+//             _showingOK = false;
+//             _currentDisplayedAlarm = nullptr;
+//         }
         
-    } else {
-        // Normal operation - show normal display
-        _updateNormalDisplay();
-    }
-}
+//     } else {
+//         // Normal operation - show normal display
+//         _updateNormalDisplay();
+//     }
+// }
 
 // void TemperatureController::handleAlarmOutputs() {
 //     Alarm* highestPriorityAlarm = getHighestPriorityAlarm();
@@ -476,20 +476,20 @@ void TemperatureController::handleAlarmOutputs() {
 
 
 
-void TemperatureController::_checkButtonPress() {
-    bool currentButtonState = indicator.readPort("BUTTON");
+// void TemperatureController::_checkButtonPress() {
+//     bool currentButtonState = indicator.readPort("BUTTON");
     
-    // Detect button press (HIGH to LOW transition)
-    if (_lastButtonState == true && currentButtonState == false) {
-        if ((millis() - _lastButtonPressTime) > _buttonDebounceDelay) {
-            Serial.println("BUTTON PRESS DETECTED!");
-            acknowledgeHighestPriorityAlarm();
-            _lastButtonPressTime = millis();
-        }
-    }
+//     // Detect button press (HIGH to LOW transition)
+//     if (_lastButtonState == true && currentButtonState == false) {
+//         if ((millis() - _lastButtonPressTime) > _buttonDebounceDelay) {
+//             Serial.println("BUTTON PRESS DETECTED!");
+//             acknowledgeHighestPriorityAlarm();
+//             _lastButtonPressTime = millis();
+//         }
+//     }
     
-    _lastButtonState = currentButtonState;
-}
+//     _lastButtonState = currentButtonState;
+// }
 
 void TemperatureController::_updateNormalDisplay() {
     // Show normal system status
@@ -1399,5 +1399,198 @@ void TemperatureController::_handleLowPriorityBlinking() {
             _lowPriorityBlinkState = true;
             _lastLowPriorityBlinkTime = currentTime;
         }
+    }
+}
+
+
+void TemperatureController::handleAlarmDisplay() {
+    // Update alarm queues
+    _updateAlarmQueues();
+    
+    // Handle button press for acknowledgment
+    _checkButtonPress();
+    
+    // Handle alarm display rotation
+    _handleAlarmDisplayRotation();
+    
+    // Update indicator blinking
+    indicator.updateBlinking();
+}
+
+void TemperatureController::_updateAlarmQueues() {
+    _activeAlarmsQueue.clear();
+    _acknowledgedAlarmsQueue.clear();
+    
+    // Get all active alarms from the system
+    std::vector<Alarm*> allActiveAlarms = getActiveAlarms();
+    
+    // Separate alarms into active and acknowledged queues
+    for (auto alarm : allActiveAlarms) {
+        if (!alarm) continue;
+        
+        if (alarm->getStage() == AlarmStage::ACTIVE) {
+            _activeAlarmsQueue.push_back(alarm);
+        } else if (alarm->getStage() == AlarmStage::ACKNOWLEDGED) {
+            _acknowledgedAlarmsQueue.push_back(alarm);
+        }
+    }
+    
+    // Sort active alarms by priority (highest first), then by timestamp (oldest first)
+    std::sort(_activeAlarmsQueue.begin(), _activeAlarmsQueue.end(), 
+              [](const Alarm* a, const Alarm* b) {
+                  if (a->getPriority() != b->getPriority()) {
+                      return static_cast<int>(a->getPriority()) > static_cast<int>(b->getPriority());
+                  }
+                  return a->getTimestamp() < b->getTimestamp();
+              });
+    
+    // Sort acknowledged alarms by priority (highest first), then by timestamp (oldest first)
+    std::sort(_acknowledgedAlarmsQueue.begin(), _acknowledgedAlarmsQueue.end(),
+              [](const Alarm* a, const Alarm* b) {
+                  if (a->getPriority() != b->getPriority()) {
+                      return static_cast<int>(a->getPriority()) > static_cast<int>(b->getPriority());
+                  }
+                  return a->getTimestamp() < b->getTimestamp();
+              });
+}
+void TemperatureController::_displayNextActiveAlarm() {
+    if (_activeAlarmsQueue.empty()) return;
+    
+    if (_currentActiveAlarmIndex >= _activeAlarmsQueue.size()) {
+        _currentActiveAlarmIndex = 0;
+    }
+    
+    _currentDisplayedAlarm = _activeAlarmsQueue[_currentActiveAlarmIndex];
+    _showingOK = false;
+    
+    // Ensure OLED is turned on whenever an alarm is displayed
+    indicator.setOLEDOn();
+    indicator.setOledMode(2);
+    String displayText = _currentDisplayedAlarm->getDisplayText();
+    
+    int newlineIndex = displayText.indexOf('\n');
+    String line1 = displayText.substring(0, newlineIndex);
+    String line2 = displayText.substring(newlineIndex + 1);
+    
+    String displayLines[2] = {line1, line2};
+    indicator.printText(displayLines, 2);
+    
+    Serial.printf("Displaying active alarm: %s\n", displayText.c_str());
+}
+
+void TemperatureController::_displayNextAcknowledgedAlarm() {
+    if (_acknowledgedAlarmsQueue.empty()) return;
+    
+    _currentAcknowledgedAlarmIndex = (_currentAcknowledgedAlarmIndex + 1) % _acknowledgedAlarmsQueue.size();
+    
+    _currentDisplayedAlarm = _acknowledgedAlarmsQueue[_currentAcknowledgedAlarmIndex];
+    _lastAlarmDisplayTime = millis();
+    _showingOK = false;
+    
+    // Ensure OLED is turned on whenever an alarm is displayed
+    indicator.setOLEDOn();
+    indicator.setOledMode(2);
+    String displayText = _currentDisplayedAlarm->getDisplayText();
+    
+    int newlineIndex = displayText.indexOf('\n');
+    String line1 = displayText.substring(0, newlineIndex);
+    String line2 = displayText.substring(newlineIndex + 1);
+    
+    String displayLines[2] = {line1, line2};
+    indicator.printText(displayLines, 2);
+    
+    Serial.printf("Displaying acknowledged alarm: %s (%d/%d)\n",
+                  displayText.c_str(),
+                  _currentAcknowledgedAlarmIndex + 1,
+                  _acknowledgedAlarmsQueue.size());
+}
+
+void TemperatureController::_handleAlarmDisplayRotation() {
+    unsigned long currentTime = millis();
+    
+    // Priority 1: Display active alarms first
+    if (!_activeAlarmsQueue.empty()) {
+        _displayingActiveAlarm = true;
+        _currentAcknowledgedAlarmIndex = 0;
+        
+        // Always turn on OLED when there are active alarms
+        indicator.setOLEDOn();
+        _displayNextActiveAlarm();
+        
+        if (_currentDisplayedAlarm && _currentDisplayedAlarm->getStage() == AlarmStage::ACKNOWLEDGED) {
+            _currentActiveAlarmIndex++;
+            if (_currentActiveAlarmIndex >= _activeAlarmsQueue.size()) {
+                _currentActiveAlarmIndex = 0;
+            }
+        }
+        return;
+    }
+    
+    // Priority 2: Display acknowledged alarms in round-robin
+    if (!_acknowledgedAlarmsQueue.empty()) {
+        _displayingActiveAlarm = false;
+        
+        // Always turn on OLED when there are acknowledged alarms
+        indicator.setOLEDOn();
+        
+        if (_currentDisplayedAlarm == nullptr || 
+            _currentDisplayedAlarm->getStage() != AlarmStage::ACKNOWLEDGED ||
+            currentTime - _lastAlarmDisplayTime >= _acknowledgedAlarmDisplayDelay) {
+            _displayNextAcknowledgedAlarm();
+        }
+        return;
+    }
+    
+    // No alarms to display - show OK and turn off OLED
+    if (_currentDisplayedAlarm && !_showingOK) {
+        _showOKAndTurnOffOLED();
+    } else if (_showingOK) {
+        if (currentTime - _okDisplayStartTime >= 60000) {
+            indicator.setOLEDOff();
+            _showingOK = false;
+            _currentDisplayedAlarm = nullptr;
+        }
+    } else {
+        _updateNormalDisplay();
+    }
+}
+
+void TemperatureController::_checkButtonPress() {
+    // Use the existing indicator interface button reading with built-in debouncing
+    bool currentButtonState = indicator.readPort("BUTTON");
+    
+    // Detect button press (button pressed = true based on your configuration)
+    if (currentButtonState && !_lastButtonState) {
+        // Button was just pressed
+        if (_displayingActiveAlarm && _currentDisplayedAlarm && 
+            _currentDisplayedAlarm->getStage() == AlarmStage::ACTIVE) {
+            
+            _currentDisplayedAlarm->acknowledge();
+            
+            Serial.printf("Button pressed - Acknowledged alarm: %s\n",
+                          _currentDisplayedAlarm->getDisplayText().c_str());
+            
+            // Move to next active alarm or switch to acknowledged display
+            _currentActiveAlarmIndex++;
+            if (_currentActiveAlarmIndex >= _activeAlarmsQueue.size()) {
+                _currentActiveAlarmIndex = 0;
+            }
+            
+            // Force immediate update of display
+            _lastAlarmDisplayTime = 0;
+        }
+    }
+    
+    _lastButtonState = currentButtonState;
+}
+
+// Helper method to get priority string
+String TemperatureController::_getPriorityString(AlarmPriority priority) const {
+    switch (priority) {
+        case AlarmPriority::PRIORITY_LOW: return "LOW";
+        case AlarmPriority::PRIORITY_MEDIUM: return "MEDIUM";
+        case AlarmPriority::PRIORITY_HIGH: return "HIGH";
+        case AlarmPriority::PRIORITY_CRITICAL: return "CRITICAL";
+        default: return "UNKNOWN";
     }
 }
