@@ -1,7 +1,7 @@
 
 ================================================================================
 File: alarms.html
-Size: 21.11 kB
+Size: 22.1 kB
 ================================================================================
 
 <!DOCTYPE html>
@@ -311,12 +311,13 @@ Size: 21.11 kB
                     <th class="sortable" onclick="sortTable(6)">Threshold</th>
                     <th class="sortable" onclick="sortTable(7)">Created</th>
                     <th class="sortable" onclick="sortTable(8)">Acknowledged</th>
+                    <th class="sortable" onclick="sortTable(9)">Time Left</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td colspan="10" class="no-alarms">Loading alarms...</td>
+                    <td colspan="11" class="no-alarms">Loading alarms...</td>
                 </tr>
             </tbody>
         </table>
@@ -376,11 +377,12 @@ Size: 21.11 kB
         }
 
         // Display alarms in table
+        
         function displayAlarms() {
             const tbody = document.querySelector('#alarmsTable tbody');
             
             if (alarmsData.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="10" class="no-alarms">No alarms configured</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="11" class="no-alarms">No alarms configured</td></tr>';
                 return;
             }
 
@@ -388,11 +390,15 @@ Size: 21.11 kB
             filterTable(); // Apply current filters
         }
 
+
         // Create table row for alarm
         function createAlarmRow(alarm) {
             const createdDate = new Date(alarm.timestamp).toLocaleString();
             const acknowledgedDate = alarm.acknowledgedTime ? 
                 new Date(alarm.acknowledgedTime).toLocaleString() : '-';
+            
+            // Format time left for acknowledged alarms
+            const timeLeft = formatTimeLeft(alarm.acknowledgedTimeLeft, alarm.stage);
 
             return `
                 <tr data-priority="${alarm.priority}" data-status="${getStageText(alarm.stage)}" data-type="${alarm.type}">
@@ -405,18 +411,17 @@ Size: 21.11 kB
                     <td>${alarm.threshold !== undefined ? alarm.threshold + '°C' : 'N/A'}</td>
                     <td><span class="timestamp">${createdDate}</span></td>
                     <td><span class="timestamp">${acknowledgedDate}</span></td>
+                    <td><span class="timestamp">${timeLeft}</span></td>
                     <td>
                         ${alarm.isActive && !alarm.isAcknowledged ? 
                             `<button class="btn btn-warning" onclick="acknowledgeAlarm('${alarm.configKey}')">Acknowledge</button>` : 
                             ''}
-                        ${//alarm.stage === 4 ? // RESOLVED
-                            `<button class="btn btn-danger" onclick="deleteAlarm('${alarm.configKey}')">Delete</button>` //:
-                            //''
-                            }
+                        ${`<button class="btn btn-danger" onclick="deleteAlarm('${alarm.configKey}')">Delete</button>`}
                     </td>
                 </tr>
             `;
         }
+
 
         // Helper functions
         function getTypeText(type) {
@@ -602,6 +607,25 @@ Size: 21.11 kB
                 console.error('Error clearing resolved alarms:', error);
                 alert('Error clearing resolved alarms');
             }
+        }
+
+
+        function formatTimeLeft(timeLeftMs, stage) {
+            // Only show time left for acknowledged alarms
+            if (stage !== 2 || !timeLeftMs || timeLeftMs <= 0) { // 2 = ACKNOWLEDGED
+                return '-';
+            }
+            
+            // Convert milliseconds to seconds
+            const totalSeconds = Math.floor(timeLeftMs / 1000);
+            
+            // Calculate hours, minutes, and seconds
+            const hours = Math.floor(totalSeconds / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const seconds = totalSeconds % 60;
+            
+            // Format as HH:MM:SS
+            return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
         }
 
         

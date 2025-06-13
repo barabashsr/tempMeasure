@@ -17,10 +17,12 @@ enum class AlarmType {
 
 enum class AlarmStage {
     NEW,                    // Just triggered
-    ACTIVE,                 // Confirmed and active
-    ACKNOWLEDGED,           // Operator acknowledged
     CLEARED,                // Condition cleared but still in delay
-    RESOLVED                // Fully resolved
+    RESOLVED,                // Fully resolved
+    ACKNOWLEDGED,           // Operator acknowledged
+    ACTIVE                 // Confirmed and active
+
+
 };
 
 enum class AlarmPriority {

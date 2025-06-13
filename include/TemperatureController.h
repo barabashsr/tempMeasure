@@ -125,6 +125,14 @@ public:
     // Method to apply delays to existing alarms
     void applyAcknowledgedDelaysToAlarms();
 
+    // int getAlarmCount(AlarmPriority priority) const;
+    // int getAlarmCount(AlarmStage stage) const;
+    int getAlarmCount(AlarmPriority priority, AlarmStage stage) const;
+    // Add these method declarations to TemperatureController.h
+    int getAlarmCount(AlarmPriority priority, const String& comparison = "==") const;
+    int getAlarmCount(AlarmStage stage, const String& comparison = "==") const;
+    int getAlarmCount(AlarmPriority priority, AlarmStage stage, const String& priorityComparison = "==", const String& stageComparison = "==") const;
+
 
 
 private:
@@ -177,6 +185,16 @@ private:
     unsigned long _acknowledgedDelayHigh;
     unsigned long _acknowledgedDelayMedium;
     unsigned long _acknowledgedDelayLow;
+
+    bool _relay1State = false;
+    bool _relay2State = false;
+    bool _redLedState = false;
+    bool _yellowLedState = false;
+    bool _blueLedState = false;
+
+    bool _comparePriority(AlarmPriority alarmPriority, AlarmPriority targetPriority, const String& comparison) const;
+    bool _compareStage(AlarmStage alarmStage, AlarmStage targetStage, const String& comparison) const;
+
 
     
 };

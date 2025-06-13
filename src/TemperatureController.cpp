@@ -376,33 +376,79 @@ void TemperatureController::handleAlarmDisplay() {
     }
 }
 
-void TemperatureController::handleAlarmOutputs() {
-    Alarm* highestPriorityAlarm = getHighestPriorityAlarm();
+// void TemperatureController::handleAlarmOutputs() {
+//     Alarm* highestPriorityAlarm = getHighestPriorityAlarm();
     
-    if (highestPriorityAlarm) {
-        // Handle alarm outputs based on type and stage
-        if (highestPriorityAlarm->getType() == AlarmType::HIGH_TEMPERATURE) {
-            // High temperature alarm
-            indicator.writePort("RedLED", true);
-            indicator.writePort("GreenLED", false);
+//     if (highestPriorityAlarm) {
+//         // Handle alarm outputs based on type and stage
+//         if (highestPriorityAlarm->getType() == AlarmType::HIGH_TEMPERATURE) {
+//             // High temperature alarm
+//             indicator.writePort("RedLED", true);
+//             indicator.writePort("GreenLED", false);
             
-            if (!highestPriorityAlarm->isAcknowledged()) {
-                indicator.writePort("Relay1", true);
-            } else {
-                indicator.writePort("Relay1", false);
-            }
-            indicator.writePort("Relay2", true);
-        }
-        // Add other alarm type handling here
+//             if (!highestPriorityAlarm->isAcknowledged()) {
+//                 indicator.writePort("Relay1", true);
+//             } else {
+//                 indicator.writePort("Relay1", false);
+//             }
+//             indicator.writePort("Relay2", true);
+//         }
+//         // Add other alarm type handling here
         
-    } else {
-        // No active alarms - normal operation
-        indicator.writePort("GreenLED", true);
-        indicator.writePort("RedLED", false);
-        indicator.writePort("Relay1", false);
-        indicator.writePort("Relay2", false);
+//     } else {
+//         // No active alarms - normal operation
+//         indicator.writePort("GreenLED", true);
+//         indicator.writePort("RedLED", false);
+//         indicator.writePort("Relay1", false);
+//         indicator.writePort("Relay2", false);
+//     }
+// }
+
+
+void TemperatureController::handleAlarmOutputs() {
+    // Calculate new output states using enhanced getAlarmCount methods
+    bool newRelay1 = getAlarmCount(AlarmStage::ACTIVE) > 0;
+    
+    // HIGH or CRITICAL priority alarms in ACKNOWLEDGED or ACTIVE states
+    bool newRelay2 = getAlarmCount(AlarmPriority::PRIORITY_HIGH, AlarmStage::ACKNOWLEDGED, ">=", ">=") > 0;
+    
+    // CRITICAL priority alarms in ACKNOWLEDGED or ACTIVE states  
+    bool newRedLed = getAlarmCount(AlarmPriority::PRIORITY_CRITICAL, AlarmStage::ACKNOWLEDGED, "==", ">=") > 0;
+    
+    // HIGH priority alarms in ACKNOWLEDGED or ACTIVE states
+    bool newYellowLed = getAlarmCount(AlarmPriority::PRIORITY_HIGH, AlarmStage::ACKNOWLEDGED, "==", ">=") > 0;
+    
+    // MEDIUM priority alarms in ACKNOWLEDGED or ACTIVE states
+    bool newBlueLed = getAlarmCount(AlarmPriority::PRIORITY_MEDIUM, AlarmStage::ACKNOWLEDGED, "==", ">=") > 0;
+    
+    // Only update outputs if state has changed
+    if (newRelay1 != _relay1State) {
+        indicator.writePort("Relay1", newRelay1);
+        _relay1State = newRelay1;
+    }
+    
+    if (newRelay2 != _relay2State) {
+        indicator.writePort("Relay2", newRelay2);
+        _relay2State = newRelay2;
+    }
+    
+    if (newRedLed != _redLedState) {
+        indicator.writePort("RedLED", newRedLed);
+        _redLedState = newRedLed;
+    }
+    
+    if (newYellowLed != _yellowLedState) {
+        indicator.writePort("YellowLED", newYellowLed);
+        _yellowLedState = newYellowLed;
+    }
+    
+    if (newBlueLed != _blueLedState) {
+        indicator.writePort("BlueLED", newBlueLed);
+        _blueLedState = newBlueLed;
     }
 }
+
+
 
 void TemperatureController::_checkButtonPress() {
     bool currentButtonState = indicator.readPort("BUTTON");
@@ -1202,4 +1248,110 @@ void TemperatureController::applyAcknowledgedDelaysToAlarms() {
     //     }
     //     alarm->setAcknowledgedDelay(delay);
     // }
+}
+
+// int TemperatureController::getAlarmCount(AlarmPriority priority) const {
+//     int count = 0;
+//     for (auto alarm : _configuredAlarms) {
+//         if (alarm->isEnabled() && alarm->getPriority() == priority) {
+//             count++;
+//         }
+//     }
+//     return count;
+// }
+
+// int TemperatureController::getAlarmCount(AlarmStage stage) const {
+//     int count = 0;
+//     for (auto alarm : _configuredAlarms) {
+//         if (alarm->isEnabled() && alarm->getStage() == stage) {
+//             count++;
+//         }
+//     }
+//     return count;
+// }
+
+int TemperatureController::getAlarmCount(AlarmPriority priority, AlarmStage stage) const {
+    int count = 0;
+    for (auto alarm : _configuredAlarms) {
+        if (alarm->isEnabled() && 
+            alarm->getPriority() == priority && 
+            alarm->getStage() == stage) {
+            count++;
+        }
+    }
+    return count;
+}
+
+// Add these method implementations to TemperatureController.cpp
+int TemperatureController::getAlarmCount(AlarmPriority priority, const String& comparison) const {
+    int count = 0;
+    for (auto alarm : _configuredAlarms) {
+        if (alarm->isEnabled() && _comparePriority(alarm->getPriority(), priority, comparison)) {
+            count++;
+        }
+    }
+    return count;
+}
+
+int TemperatureController::getAlarmCount(AlarmStage stage, const String& comparison) const {
+    int count = 0;
+    for (auto alarm : _configuredAlarms) {
+        if (alarm->isEnabled() && _compareStage(alarm->getStage(), stage, comparison)) {
+            count++;
+        }
+    }
+    return count;
+}
+
+int TemperatureController::getAlarmCount(AlarmPriority priority, AlarmStage stage, 
+                                       const String& priorityComparison, 
+                                       const String& stageComparison) const {
+    int count = 0;
+    for (auto alarm : _configuredAlarms) {
+        if (alarm->isEnabled() && 
+            _comparePriority(alarm->getPriority(), priority, priorityComparison) &&
+            _compareStage(alarm->getStage(), stage, stageComparison)) {
+            count++;
+        }
+    }
+    return count;
+}
+
+// Add these helper method implementations to TemperatureController.cpp
+bool TemperatureController::_comparePriority(AlarmPriority alarmPriority, AlarmPriority targetPriority, const String& comparison) const {
+    int alarmValue = static_cast<int>(alarmPriority);
+    int targetValue = static_cast<int>(targetPriority);
+    
+    if (comparison == ">" || comparison == "gt") {
+        return alarmValue > targetValue;
+    } else if (comparison == ">=" || comparison == "gte") {
+        return alarmValue >= targetValue;
+    } else if (comparison == "<" || comparison == "lt") {
+        return alarmValue < targetValue;
+    } else if (comparison == "<=" || comparison == "lte") {
+        return alarmValue <= targetValue;
+    } else if (comparison == "!=" || comparison == "ne") {
+        return alarmValue != targetValue;
+    } else { // Default to "==" or "eq"
+        return alarmValue == targetValue;
+    }
+}
+
+bool TemperatureController::_compareStage(AlarmStage alarmStage, AlarmStage targetStage, const String& comparison) const {
+    int alarmValue = static_cast<int>(alarmStage);
+    int targetValue = static_cast<int>(targetStage);
+    
+    if (comparison == ">" || comparison == "gt") {
+        return alarmValue > targetValue;
+    } else if (comparison == ">=" || comparison == "gte") {
+        return alarmValue >= targetValue;
+    } else if (comparison == "<" || comparison == "lt") {
+        return alarmValue < targetValue;
+    } else if (comparison == "<=" || comparison == "lte") {
+        return alarmValue <= targetValue;
+    } else if (comparison == "!=" || comparison == "ne") {
+        return alarmValue != targetValue;
+    } else { // Default to "==" or "eq"
+        return alarmValue == targetValue;
+    }
 }

@@ -1,7 +1,7 @@
 
 ================================================================================
 File: Alarm.h
-Size: 4.32 kB
+Size: 4.37 kB
 ================================================================================
 
 #pragma once
@@ -23,10 +23,12 @@ enum class AlarmType {
 
 enum class AlarmStage {
     NEW,                    // Just triggered
-    ACTIVE,                 // Confirmed and active
-    ACKNOWLEDGED,           // Operator acknowledged
     CLEARED,                // Condition cleared but still in delay
-    RESOLVED                // Fully resolved
+    RESOLVED,                // Fully resolved
+    ACKNOWLEDGED,           // Operator acknowledged
+    ACTIVE                 // Confirmed and active
+
+
 };
 
 enum class AlarmPriority {
@@ -101,6 +103,7 @@ public:
     void setAcknowledgedDelay(unsigned long delay);
     unsigned long getAcknowledgedDelay() const;
     bool isAcknowledgedDelayElapsed() const;
+    unsigned long getAcknowledgedTimeLeft() const;
 
 
     
@@ -858,7 +861,7 @@ public:
 
 ================================================================================
 File: TemperatureController.h
-Size: 6.01 kB
+Size: 6.94 kB
 ================================================================================
 
 #pragma once
@@ -988,6 +991,14 @@ public:
     // Method to apply delays to existing alarms
     void applyAcknowledgedDelaysToAlarms();
 
+    int getAlarmCount(AlarmPriority priority) const;
+    int getAlarmCount(AlarmStage stage) const;
+    int getAlarmCount(AlarmPriority priority, AlarmStage stage) const;
+    // Add these method declarations to TemperatureController.h
+    int getAlarmCount(AlarmPriority priority, const String& comparison = "==") const;
+    int getAlarmCount(AlarmStage stage, const String& comparison = "==") const;
+    int getAlarmCount(AlarmPriority priority, AlarmStage stage, const String& priorityComparison = "==", const String& stageComparison = "==") const;
+
 
 
 private:
@@ -1040,6 +1051,16 @@ private:
     unsigned long _acknowledgedDelayHigh;
     unsigned long _acknowledgedDelayMedium;
     unsigned long _acknowledgedDelayLow;
+
+    bool _relay1State = false;
+    bool _relay2State = false;
+    bool _redLedState = false;
+    bool _yellowLedState = false;
+    bool _blueLedState = false;
+
+    bool _comparePriority(AlarmPriority alarmPriority, AlarmPriority targetPriority, const String& comparison) const;
+    bool _compareStage(AlarmStage alarmStage, AlarmStage targetStage, const String& comparison) const;
+
 
     
 };
