@@ -482,6 +482,12 @@ void IndicatorInterface::updateOLED() {
     _handleScrolling();
 }
 
+void IndicatorInterface::update() {
+    updateBlinking();
+    updateOLED();
+}
+
+
 // void IndicatorInterface::updateOLED() {
 //     if (!_oledOn) return;
     
@@ -973,3 +979,72 @@ void IndicatorInterface::_handleSpecialBlink() {
     }
 }
 
+
+
+void IndicatorInterface::startBlinking(const std::string& portName, unsigned long onTime, unsigned long offTime) {
+    // Check if port is already blinking
+    for (auto& blinkPort : _blinkingPorts) {
+        if (blinkPort.portName == portName) {
+            // Update existing blinking parameters
+            blinkPort.onTime = onTime;
+            blinkPort.offTime = offTime;
+            blinkPort.isActive = true;
+            return;
+        }
+    }
+    
+    // Add new blinking port
+    BlinkingPort newBlink;
+    newBlink.portName = portName;
+    newBlink.onTime = onTime;
+    newBlink.offTime = offTime;
+    newBlink.lastToggleTime = millis();
+    newBlink.currentState = true;  // Start with ON
+    newBlink.isActive = true;
+    
+    _blinkingPorts.push_back(newBlink);
+    
+    // Set initial state to ON
+    writePort(portName, true);
+}
+
+void IndicatorInterface::stopBlinking(const std::string& portName) {
+    for (auto it = _blinkingPorts.begin(); it != _blinkingPorts.end(); ++it) {
+        if (it->portName == portName) {
+            it->isActive = false;
+            // Turn off the port when stopping blink
+            writePort(portName, false);
+            _blinkingPorts.erase(it);
+            return;
+        }
+    }
+}
+
+void IndicatorInterface::updateBlinking() {
+    unsigned long currentTime = millis();
+    
+    for (auto& blinkPort : _blinkingPorts) {
+        if (!blinkPort.isActive) continue;
+        
+        unsigned long elapsed = currentTime - blinkPort.lastToggleTime;
+        unsigned long targetTime = blinkPort.currentState ? blinkPort.onTime : blinkPort.offTime;
+        
+        if (elapsed >= targetTime) {
+            // Toggle state
+            blinkPort.currentState = !blinkPort.currentState;
+            blinkPort.lastToggleTime = currentTime;
+            
+            // Update hardware
+            writePort(blinkPort.portName, blinkPort.currentState);
+        }
+    }
+}
+
+bool IndicatorInterface::isBlinking(const std::string& portName) {
+    for (const auto& blinkPort : _blinkingPorts) {
+        if (blinkPort.portName == portName && blinkPort.isActive) {
+            return true;
+        }
+    }
+    return false;
+}

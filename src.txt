@@ -2137,7 +2137,7 @@ void ConfigManager::loadAlarmsConfig() {
 
 ================================================================================
 File: IndicatorInterface.cpp
-Size: 28.33 kB
+Size: 30.57 kB
 ================================================================================
 
 #include "IndicatorInterface.h"
@@ -2623,6 +2623,12 @@ void IndicatorInterface::updateOLED() {
     _handleOLEDBlink();
     _handleScrolling();
 }
+
+void IndicatorInterface::update() {
+    updateBlinking();
+    updateOLED();
+}
+
 
 // void IndicatorInterface::updateOLED() {
 //     if (!_oledOn) return;
@@ -3115,6 +3121,75 @@ void IndicatorInterface::_handleSpecialBlink() {
     }
 }
 
+
+
+void IndicatorInterface::startBlinking(const std::string& portName, unsigned long onTime, unsigned long offTime) {
+    // Check if port is already blinking
+    for (auto& blinkPort : _blinkingPorts) {
+        if (blinkPort.portName == portName) {
+            // Update existing blinking parameters
+            blinkPort.onTime = onTime;
+            blinkPort.offTime = offTime;
+            blinkPort.isActive = true;
+            return;
+        }
+    }
+    
+    // Add new blinking port
+    BlinkingPort newBlink;
+    newBlink.portName = portName;
+    newBlink.onTime = onTime;
+    newBlink.offTime = offTime;
+    newBlink.lastToggleTime = millis();
+    newBlink.currentState = true;  // Start with ON
+    newBlink.isActive = true;
+    
+    _blinkingPorts.push_back(newBlink);
+    
+    // Set initial state to ON
+    writePort(portName, true);
+}
+
+void IndicatorInterface::stopBlinking(const std::string& portName) {
+    for (auto it = _blinkingPorts.begin(); it != _blinkingPorts.end(); ++it) {
+        if (it->portName == portName) {
+            it->isActive = false;
+            // Turn off the port when stopping blink
+            writePort(portName, false);
+            _blinkingPorts.erase(it);
+            return;
+        }
+    }
+}
+
+void IndicatorInterface::updateBlinking() {
+    unsigned long currentTime = millis();
+    
+    for (auto& blinkPort : _blinkingPorts) {
+        if (!blinkPort.isActive) continue;
+        
+        unsigned long elapsed = currentTime - blinkPort.lastToggleTime;
+        unsigned long targetTime = blinkPort.currentState ? blinkPort.onTime : blinkPort.offTime;
+        
+        if (elapsed >= targetTime) {
+            // Toggle state
+            blinkPort.currentState = !blinkPort.currentState;
+            blinkPort.lastToggleTime = currentTime;
+            
+            // Update hardware
+            writePort(blinkPort.portName, blinkPort.currentState);
+        }
+    }
+}
+
+bool IndicatorInterface::isBlinking(const std::string& portName) {
+    for (const auto& blinkPort : _blinkingPorts) {
+        if (blinkPort.portName == portName && blinkPort.isActive) {
+            return true;
+        }
+    }
+    return false;
+}
 
 
 ================================================================================
@@ -3954,7 +4029,7 @@ ModbusMessage TempModbusServer::writeMultipleRegistersWorker(ModbusMessage reque
 
 ================================================================================
 File: TemperatureController.cpp
-Size: 47.77 kB
+Size: 48.11 kB
 ================================================================================
 
 #include "TemperatureController.h"
@@ -4097,7 +4172,7 @@ void TemperatureController::update() {
     handleAlarmOutputs();
     
     // Update OLED
-    indicator.updateOLED();
+    indicator.update();
     
     if (!systemInitialized) return;
 
@@ -4384,32 +4459,33 @@ void TemperatureController::handleAlarmOutputs() {
     bool mediumPriorityBlueLed = getAlarmCount(AlarmPriority::PRIORITY_MEDIUM, AlarmStage::ACKNOWLEDGED, "==", ">=") > 0;
     
     // Handle blinking for low priority alarms
-    bool lowPriorityBlinkRelay2 = false;
-    bool lowPriorityBlinkBlueLed = false;
-    
     if (lowPriorityExists) {
-        _handleLowPriorityBlinking();
-        
-        if (_lowPriorityBlinkState) {
-            // Only blink relay2 if it's not already on from higher priority alarms
-            if (!highPriorityRelay2) {
-                lowPriorityBlinkRelay2 = true;
-            }
-            lowPriorityBlinkBlueLed = true;
+        // Start blinking if not already blinking
+        if (!highPriorityRelay2 && !indicator.isBlinking("Relay2")) {
+            indicator.startBlinking("Relay2", 1000, 5000);  // 2s on, 30s off
         }
+        
+        if (!indicator.isBlinking("BlueLED")) {
+            indicator.startBlinking("BlueLED", 500, 500);    // 500ms on, 500ms off
+        }
+    } else {
+        // Stop blinking if no low priority alarms
+        indicator.stopBlinking("Relay2");
+        indicator.stopBlinking("BlueLED");
     }
     
-    // Calculate final states
-    bool newRelay2 = highPriorityRelay2 || lowPriorityBlinkRelay2;
-    bool newBlueLed = mediumPriorityBlueLed || lowPriorityBlinkBlueLed;
+    // Calculate final states (excluding blinking ports)
+    bool newRelay2 = highPriorityRelay2;  // Don't set if blinking
+    bool newBlueLed = mediumPriorityBlueLed;  // Don't set if blinking
     
-    // Only update outputs if state has changed
+    // Only update non-blinking outputs if state has changed
     if (newRelay1 != _relay1State) {
         indicator.writePort("Relay1", newRelay1);
         _relay1State = newRelay1;
     }
     
-    if (newRelay2 != _relay2State) {
+    // Only control Relay2 directly if not blinking for low priority
+    if (!indicator.isBlinking("Relay2") && newRelay2 != _relay2State) {
         indicator.writePort("Relay2", newRelay2);
         _relay2State = newRelay2;
     }
@@ -4424,11 +4500,13 @@ void TemperatureController::handleAlarmOutputs() {
         _yellowLedState = newYellowLed;
     }
     
-    if (newBlueLed != _blueLedState) {
+    // Only control BlueLED directly if not blinking for low priority
+    if (!indicator.isBlinking("BlueLED") && newBlueLed != _blueLedState) {
         indicator.writePort("BlueLED", newBlueLed);
         _blueLedState = newBlueLed;
     }
 }
+
 
 
 

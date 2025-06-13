@@ -138,7 +138,7 @@ void TemperatureController::update() {
     handleAlarmOutputs();
     
     // Update OLED
-    indicator.updateOLED();
+    indicator.update();
     
     if (!systemInitialized) return;
 
@@ -425,32 +425,33 @@ void TemperatureController::handleAlarmOutputs() {
     bool mediumPriorityBlueLed = getAlarmCount(AlarmPriority::PRIORITY_MEDIUM, AlarmStage::ACKNOWLEDGED, "==", ">=") > 0;
     
     // Handle blinking for low priority alarms
-    bool lowPriorityBlinkRelay2 = false;
-    bool lowPriorityBlinkBlueLed = false;
-    
     if (lowPriorityExists) {
-        _handleLowPriorityBlinking();
-        
-        if (_lowPriorityBlinkState) {
-            // Only blink relay2 if it's not already on from higher priority alarms
-            if (!highPriorityRelay2) {
-                lowPriorityBlinkRelay2 = true;
-            }
-            lowPriorityBlinkBlueLed = true;
+        // Start blinking if not already blinking
+        if (!highPriorityRelay2 && !indicator.isBlinking("Relay2")) {
+            indicator.startBlinking("Relay2", 1000, 5000);  // 2s on, 30s off
         }
+        
+        if (!indicator.isBlinking("BlueLED")) {
+            indicator.startBlinking("BlueLED", 500, 500);    // 500ms on, 500ms off
+        }
+    } else {
+        // Stop blinking if no low priority alarms
+        indicator.stopBlinking("Relay2");
+        indicator.stopBlinking("BlueLED");
     }
     
-    // Calculate final states
-    bool newRelay2 = highPriorityRelay2 || lowPriorityBlinkRelay2;
-    bool newBlueLed = mediumPriorityBlueLed || lowPriorityBlinkBlueLed;
+    // Calculate final states (excluding blinking ports)
+    bool newRelay2 = highPriorityRelay2;  // Don't set if blinking
+    bool newBlueLed = mediumPriorityBlueLed;  // Don't set if blinking
     
-    // Only update outputs if state has changed
+    // Only update non-blinking outputs if state has changed
     if (newRelay1 != _relay1State) {
         indicator.writePort("Relay1", newRelay1);
         _relay1State = newRelay1;
     }
     
-    if (newRelay2 != _relay2State) {
+    // Only control Relay2 directly if not blinking for low priority
+    if (!indicator.isBlinking("Relay2") && newRelay2 != _relay2State) {
         indicator.writePort("Relay2", newRelay2);
         _relay2State = newRelay2;
     }
@@ -465,11 +466,13 @@ void TemperatureController::handleAlarmOutputs() {
         _yellowLedState = newYellowLed;
     }
     
-    if (newBlueLed != _blueLedState) {
+    // Only control BlueLED directly if not blinking for low priority
+    if (!indicator.isBlinking("BlueLED") && newBlueLed != _blueLedState) {
         indicator.writePort("BlueLED", newBlueLed);
         _blueLedState = newBlueLed;
     }
 }
+
 
 
 

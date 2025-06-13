@@ -7,9 +7,18 @@
 #include <string>
 #include "PCF8575.h"
 #include <U8g2lib.h>
+#include <vector>
 
 class IndicatorInterface {
 public:
+    struct BlinkingPort {
+        std::string portName;
+        unsigned long onTime;
+        unsigned long offTime;
+        unsigned long lastToggleTime;
+        bool currentState;
+        bool isActive;
+    };
     // Constructor
     IndicatorInterface(TwoWire& i2cBus, uint8_t pcf_i2cAddress, int intPin = -1);
     
@@ -18,6 +27,7 @@ public:
     
     // Initialization
     bool begin();
+    void update();
     
     // Configuration setters
     void setDirection(uint16_t directionMask);          // 0 = input, 1 = output
@@ -74,8 +84,18 @@ public:
     void blinkCross(int blinkDelay);                    // Blink between cross and previous text
     void stopBlinking();                                // Stop any blinking and restore text
 
+    void startBlinking(const std::string& portName, unsigned long onTime, unsigned long offTime);
+    void stopBlinking(const std::string& portName);
+    void updateBlinking();
+    bool isBlinking(const std::string& portName);
+
 
 private:
+
+
+
+    std::vector<BlinkingPort> _blinkingPorts;
+
     // Hardware configuration
     TwoWire* _i2cBus;
     uint8_t _pcf_i2cAddress;
