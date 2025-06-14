@@ -5,6 +5,7 @@
 #include "IndicatorInterface.h"
 #include <SPI.h>
 #include "TimeManager.h"
+#include "LoggerManager.h"
 
 
 
@@ -27,7 +28,7 @@
 #define CS3_PIN  26
 #define CS4_PIN  27
 
-#define CS5_PIN_TF_CARD  2
+#define CS5_PIN_TF_CARD  0
 
 
 //RS485 PINs
@@ -58,6 +59,8 @@ ConfigManager* configManager;
 TempModbusServer* modbusServer;
 
 TimeManager timeManager(I2C_SDA, I2C_SCL);
+
+LoggerManager logger(controller, timeManager, SD);
 
 void setup() {
     // Initialize serial for debugging
@@ -146,6 +149,22 @@ void setup() {
         }
     }
 
+    // Initialize SD card
+    if (!SD.begin(CS5_PIN_TF_CARD)) {
+        Serial.println("SD Card initialization failed");
+        return;
+    }
+    
+    // Initialize logger
+    if (!logger.begin()) {
+        Serial.println("Logger initialization failed");
+    }
+    
+    // Configure logging
+    logger.setLogFrequency(2000);  // Log every 30 seconds
+    logger.setDailyFiles(true);     // Create new file each day
+    logger.setEnabled(true);        // Enable logging
+
 
 
 
@@ -173,6 +192,7 @@ void loop() {
         
         lastPrintTime = millis();
     }
+    logger.update();
     
     // Small delay to prevent CPU hogging
     delay(100);

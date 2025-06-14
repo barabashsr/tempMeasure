@@ -6,7 +6,7 @@
 #define SCK_PIN  14
 #define MISO_PIN  12
 #define MOSI_PIN  13
-#define CS5_PIN_TF_CARD  5
+#define CS5_PIN_TF_CARD  0
 
 #define SD_CS 5  // Chip Select pin
 
@@ -43,7 +43,7 @@ void setup() {
     SPI.begin(SCK_PIN, MISO_PIN, MOSI_PIN);  // SCK, MISO, MOSI, SS
     
     // Initialize SD card
-    if (!SD.begin(CS5_PIN_TF_CARD)) {
+    if (!SD.begin(CS5_PIN_TF_CARD, SPI)) {
         Serial.println("Card Mount Failed");
         return;
     }
