@@ -34,6 +34,24 @@ private:
     String _getCurrentDateString();
     String _getCurrentTimeString();
     
+
+    bool _recoverFromExistingFiles();
+    String _findLatestFileForDate(const String& dateStr);
+    int _extractSequenceNumber(const String& filename);
+    String _readHeaderFromFile(const String& filename);
+    std::vector<String> _getFilesForDate(const String& dateStr);
+    int _findHighestSequenceForDate(const String& dateStr);
+
+    // Header change detection
+    String _lastGeneratedHeader;
+    bool _headerChanged;
+    int _fileSequenceNumber;
+    
+    // New private methods
+    bool _hasHeaderChanged();
+    String _generateLogFileNameWithSequence();
+    void _incrementSequenceNumber();
+    
 public:
     LoggerManager(TemperatureController& controller, TimeManager& timeManager, fs::FS& filesystem);
     ~LoggerManager();
@@ -68,6 +86,10 @@ public:
     
     // Error handling
     String getLastError() const;
+
+    void forceNewFile();
+    int getCurrentSequenceNumber() const;
+    void resetSequenceNumber();
     
 private:
     String _lastError;

@@ -149,6 +149,12 @@ void setup() {
         }
     }
 
+    // Configure logging
+    logger.setLogDirectory("/logs"); 
+    logger.setLogFrequency(2000);  // Log every 30 seconds
+    logger.setDailyFiles(true);     // Create new file each day
+    logger.setEnabled(true);        // Enable logging
+
     // Initialize SD card
     if (!SD.begin(CS5_PIN_TF_CARD)) {
         Serial.println("SD Card initialization failed");
@@ -160,11 +166,7 @@ void setup() {
         Serial.println("Logger initialization failed");
     }
     
-    // Configure logging
-    logger.setLogDirectory("/logs"); 
-    logger.setLogFrequency(2000);  // Log every 30 seconds
-    logger.setDailyFiles(true);     // Create new file each day
-    logger.setEnabled(true);        // Enable logging
+    
 
 
 
