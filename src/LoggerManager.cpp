@@ -3,7 +3,7 @@
 LoggerManager::LoggerManager(TemperatureController& controller, TimeManager& timeManager, fs::FS& filesystem)
     : _controller(&controller), _timeManager(&timeManager), _fs(&filesystem),
       _logFrequency(60000), _lastLogTime(0), _headerWritten(false),
-      _enabled(true), _logDirectory("/logs"), _dailyFiles(true), _lastError("") {
+      _enabled(true), _logDirectory(""), _dailyFiles(true), _lastError("") {
 }
 
 LoggerManager::~LoggerManager() {
@@ -134,7 +134,14 @@ String LoggerManager::getLastError() const {
 
 String LoggerManager::_generateLogFileName() {
     String dateStr = _getCurrentDateString();
-    String filename = _logDirectory + "/temp_log_" + dateStr + ".csv";
+    String filename;
+    
+    if (_logDirectory.isEmpty()) {
+        filename = "/temp_log_" + dateStr + ".csv";  // Root directory
+    } else {
+        filename = _logDirectory + "/temp_log_" + dateStr + ".csv";
+    }
+    
     return filename;
 }
 
@@ -231,18 +238,24 @@ String LoggerManager::_escapeCSVField(const String& field) {
 }
 
 bool LoggerManager::_ensureDirectoryExists() {
-    // Check if directory exists, create if it doesn't
+    // For SD card, always use root directory
+    if (_logDirectory.isEmpty() || _logDirectory == "/") {
+        return true; // Root directory always exists
+    }
+    
+    // Try to check if custom directory exists, but don't fail if it doesn't
     File dir = _fs->open(_logDirectory.c_str());
     if (!dir) {
-        // Try to create directory (note: SD library may not support mkdir)
-        Serial.printf("Log directory %s does not exist\n", _logDirectory.c_str());
-        return true; // Continue anyway, files will be created in root if needed
+        Serial.printf("Directory %s does not exist, using root directory\n", _logDirectory.c_str());
+        _logDirectory = ""; // Fall back to root
+        return true;
     }
     
     if (!dir.isDirectory()) {
         dir.close();
-        _lastError = "Log path exists but is not a directory";
-        return false;
+        Serial.printf("Path %s exists but is not a directory, using root\n", _logDirectory.c_str());
+        _logDirectory = ""; // Fall back to root
+        return true;
     }
     
     dir.close();

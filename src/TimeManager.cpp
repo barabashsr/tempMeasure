@@ -119,7 +119,7 @@ bool TimeManager::setTimeFromCompileTime() {
 DateTime TimeManager::getCurrentTime() {
     if (_rtcConnected) {
         DateTime utcTime = _rtc.now();
-        return _applyTimezone(utcTime);
+        return utcTime; //_applyTimezone(utcTime);
     }
     return DateTime((uint32_t)0); // Explicitly cast to uint32_t
 }

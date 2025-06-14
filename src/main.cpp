@@ -161,6 +161,7 @@ void setup() {
     }
     
     // Configure logging
+    logger.setLogDirectory("/logs"); 
     logger.setLogFrequency(2000);  // Log every 30 seconds
     logger.setDailyFiles(true);     // Create new file each day
     logger.setEnabled(true);        // Enable logging
