@@ -1,0 +1,43 @@
+
+#include "TimeManager.h"
+
+
+
+#define I2C_SDA 21  // Default SDA, available
+#define I2C_SCL 25  // Alternative SCL (GPIO 22 used by RS485)
+
+TimeManager timeManager(I2C_SDA, I2C_SCL); // SDA=21, SCL=22
+
+void setup() {
+    Serial.begin(115200);
+    
+    // Initialize WiFi first
+    WiFi.begin("your_ssid", "your_password");
+    
+    // Initialize time manager
+    if (timeManager.begin()) {
+        Serial.println("TimeManager initialized successfully");
+        
+        // Set timezone (GMT+3 for Moscow)
+        timeManager.setTimezone(3, 0);
+        
+        // Sync with NTP when WiFi connects
+        if (WiFi.status() == WL_CONNECTED) {
+            timeManager.setTimeFromNTP();
+        }
+    }
+}
+
+void loop() {
+    // Update time manager (handles automatic NTP sync)
+    timeManager.update();
+    
+    // Get current time
+    String currentTime = timeManager.getFormattedTime();
+    Serial.println("Current time: " + currentTime);
+    
+    // Get JSON status for web interface
+    String timeJSON = timeManager.getTimeJSON();
+    
+    delay(1000);
+}

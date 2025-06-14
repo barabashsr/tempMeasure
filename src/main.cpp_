@@ -4,6 +4,7 @@
 #include "ConfigManager.h"
 #include "IndicatorInterface.h"
 #include <SPI.h>
+#include "TimeManager.h"
 
 
 
@@ -25,6 +26,8 @@
 #define CS2_PIN  33
 #define CS3_PIN  26
 #define CS4_PIN  27
+
+#define CS5_PIN_TF_CARD  2
 
 
 //RS485 PINs
@@ -53,6 +56,8 @@ ConfigManager* configManager;
 
 // Create Modbus server
 TempModbusServer* modbusServer;
+
+TimeManager timeManager(I2C_SDA, I2C_SCL);
 
 void setup() {
     // Initialize serial for debugging
@@ -128,6 +133,21 @@ void setup() {
         }
     }
 
+    // Initialize time manager
+    if (timeManager.begin()) {
+        Serial.println("TimeManager initialized successfully");
+        
+        // Set timezone (GMT+3 for Moscow)
+        timeManager.setTimezone(3, 0);
+        
+        // Sync with NTP when WiFi connects
+        if (WiFi.status() == WL_CONNECTED) {
+            timeManager.setTimeFromNTP();
+        }
+    }
+
+
+
 
     
     Serial.println("\nSystem is now running...");
@@ -135,6 +155,7 @@ void setup() {
 
 void loop() {
     // Update configuration manager
+    timeManager.update();
     configManager->update();
     
     // Update controller (reads sensors and updates register map)

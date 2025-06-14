@@ -364,27 +364,29 @@ bool Alarm::updateCondition() {
             
         case AlarmStage::CLEARED:
             if (conditionExists) {
-                // Condition returned, reactivate
-                _stage = _acknowledgedTime > 0 ? AlarmStage::ACKNOWLEDGED : AlarmStage::ACTIVE;
+                // Condition returned, always reactivate to ACTIVE state
+                _stage = AlarmStage::ACTIVE;
                 _clearedTime = 0;
-                Serial.printf("Alarm %s: CLEARED -> %s (condition returned)\n", 
-                             getTypeString().c_str(), getStageString().c_str());
+                Serial.printf("Alarm %s: CLEARED -> ACTIVE (condition returned)\n", 
+                             getTypeString().c_str());
             } else if (isDelayElapsed()) {
                 resolve();
                 Serial.printf("Alarm %s: CLEARED -> RESOLVED (delay elapsed)\n", getTypeString().c_str());
             }
             break;
+        
             
         case AlarmStage::RESOLVED:
             // Reactivate resolved alarms when condition returns
             if (conditionExists) {
-                _stage = AlarmStage::ACTIVE;
+                _stage = AlarmStage::ACTIVE;  // Always go to ACTIVE, not ACKNOWLEDGED
                 _timestamp = millis(); // Reset timestamp
                 _acknowledgedTime = 0; // Reset acknowledged time
                 _clearedTime = 0;      // Reset cleared time
                 Serial.printf("Alarm %s: RESOLVED -> ACTIVE (condition returned)\n", getTypeString().c_str());
             }
             break;
+        
     }
     
     if (oldStage != _stage) {

@@ -1,7 +1,7 @@
 
 ================================================================================
 File: Alarm.cpp
-Size: 15.64 kB
+Size: 15.65 kB
 ================================================================================
 
 #include "Alarm.h"
@@ -370,27 +370,29 @@ bool Alarm::updateCondition() {
             
         case AlarmStage::CLEARED:
             if (conditionExists) {
-                // Condition returned, reactivate
-                _stage = _acknowledgedTime > 0 ? AlarmStage::ACKNOWLEDGED : AlarmStage::ACTIVE;
+                // Condition returned, always reactivate to ACTIVE state
+                _stage = AlarmStage::ACTIVE;
                 _clearedTime = 0;
-                Serial.printf("Alarm %s: CLEARED -> %s (condition returned)\n", 
-                             getTypeString().c_str(), getStageString().c_str());
+                Serial.printf("Alarm %s: CLEARED -> ACTIVE (condition returned)\n", 
+                             getTypeString().c_str());
             } else if (isDelayElapsed()) {
                 resolve();
                 Serial.printf("Alarm %s: CLEARED -> RESOLVED (delay elapsed)\n", getTypeString().c_str());
             }
             break;
+        
             
         case AlarmStage::RESOLVED:
             // Reactivate resolved alarms when condition returns
             if (conditionExists) {
-                _stage = AlarmStage::ACTIVE;
+                _stage = AlarmStage::ACTIVE;  // Always go to ACTIVE, not ACKNOWLEDGED
                 _timestamp = millis(); // Reset timestamp
                 _acknowledgedTime = 0; // Reset acknowledged time
                 _clearedTime = 0;      // Reset cleared time
                 Serial.printf("Alarm %s: RESOLVED -> ACTIVE (condition returned)\n", getTypeString().c_str());
             }
             break;
+        
     }
     
     if (oldStage != _stage) {
@@ -2137,7 +2139,7 @@ void ConfigManager::loadAlarmsConfig() {
 
 ================================================================================
 File: IndicatorInterface.cpp
-Size: 30.57 kB
+Size: 29.62 kB
 ================================================================================
 
 #include "IndicatorInterface.h"
@@ -2565,11 +2567,14 @@ void IndicatorInterface::setOledMode(int lines) {
 }
 
 void IndicatorInterface::printText(String buffer[], int bufferSize) {
-    _textBufferSize = (bufferSize > 5) ? 5 : bufferSize;
+    _textBufferSize = min(bufferSize, 5);
     
     for (int i = 0; i < _textBufferSize; i++) {
-        _textBuffer[i] = buffer[i];
-        _scrollOffset[i] = 0;  // Reset scroll position
+        // Only reset scroll offset if the text actually changed
+        if (_textBuffer[i] != buffer[i]) {
+            _textBuffer[i] = buffer[i];
+            _scrollOffset[i] = 0; // Reset only when text changes
+        }
     }
     
     // Clear unused lines
@@ -2578,9 +2583,11 @@ void IndicatorInterface::printText(String buffer[], int bufferSize) {
         _scrollOffset[i] = 0;
     }
     
-    _updateOLEDDisplay();
+    _lastActivityTime = millis();
     _wakeOLED();
+    _updateOLEDDisplay();
 }
+
 
 void IndicatorInterface::setOLEDblink(int timeOn, int timeOff, bool blinkOn) {
     _oledBlink = blinkOn;
@@ -2765,58 +2772,39 @@ void IndicatorInterface::_updateOLEDDisplay() {
 
 
 void IndicatorInterface::_drawTextLine(int lineIndex, int yPos) {
-    if (lineIndex >= _textBufferSize || _textBuffer[lineIndex].length() == 0) {
-        return;
-    }
+    if (lineIndex >= _textBufferSize) return;
     
     String text = _textBuffer[lineIndex];
+    int textLength = text.length();
     
-    // Check pixel width instead of character count
-    int textPixelWidth = u8g2.getUTF8Width(text.c_str());
-    int displayWidth = u8g2.getDisplayWidth();
-    
-    // Only scroll if text pixel width exceeds display width
-    if (textPixelWidth > displayWidth) {
-        // Create scrolling text with padding
-        String scrollText = text + "   " + text;  // Add spacing between repeats
-        
-        int scrollTextWidth = u8g2.getUTF8Width(scrollText.c_str());
-        int startPixel = _scrollOffset[lineIndex];
-        
-        // Calculate how much text to display
-        String displayText = "";
-        int currentWidth = 0;
-        int charIndex = 0;
-        
-        // Skip characters until we reach the scroll offset
-        while (charIndex < scrollText.length() && currentWidth < startPixel) {
-            String charStr = scrollText.substring(charIndex, charIndex + 1);
-            currentWidth += u8g2.getUTF8Width(charStr.c_str());
-            charIndex++;
-        }
-        
-        // Collect characters that fit on screen
-        currentWidth = 0;
-        int startChar = charIndex;
-        while (charIndex < scrollText.length() && currentWidth < displayWidth) {
-            String charStr = scrollText.substring(charIndex, charIndex + 1);
-            int charWidth = u8g2.getUTF8Width(charStr.c_str());
-            if (currentWidth + charWidth <= displayWidth) {
-                currentWidth += charWidth;
-                charIndex++;
-            } else {
-                break;
-            }
-        }
-        
-        displayText = scrollText.substring(startChar, charIndex);
-        u8g2.drawUTF8(0, yPos, displayText.c_str());
+    if (textLength <= _maxCharsPerLine) {
+        // Short text - display normally
+        u8g2.drawStr(0, yPos, text.c_str());
     } else {
-        // Text fits on one line - display normally without scrolling
-        u8g2.drawUTF8(0, yPos, text.c_str());
+        // Long text - apply scrolling
+        int offset = _scrollOffset[lineIndex];
+        String displayText;
         
+        if (offset < 0) {
+            // Smooth entry from left with spaces
+            int spaceCount = -offset;
+            displayText = String(' ', spaceCount) + text;
+            displayText = displayText.substring(0, _maxCharsPerLine);
+        } else if (offset <= textLength - _maxCharsPerLine) {
+            // Normal scrolling within text
+            displayText = text.substring(offset, offset + _maxCharsPerLine);
+        } else {
+            // Smooth exit with trailing spaces
+            int spaceCount = offset - (textLength - _maxCharsPerLine);
+            displayText = text.substring(textLength - _maxCharsPerLine);
+            displayText += String(' ', min(spaceCount, _maxCharsPerLine));
+            displayText = displayText.substring(0, _maxCharsPerLine);
+        }
+        
+        u8g2.drawStr(0, yPos, displayText.c_str());
     }
 }
+
 
 
 
@@ -2851,41 +2839,36 @@ void IndicatorInterface::_handleOLEDBlink() {
 }
 
 void IndicatorInterface::_handleScrolling() {
-    if (_oledSleeping || _oledBlink) return;
-    
-    unsigned long currentTime = millis();
-    if (currentTime - _lastScrollTime < _scrollDelay) return;
+    if (millis() - _lastScrollTime < _scrollDelay) return;
     
     bool needsUpdate = false;
     
-    for (int i = 0; i < _oledLines && i < _textBufferSize; i++) {
-        if (_textBuffer[i].length() > 0) {
-            int textPixelWidth = u8g2.getUTF8Width(_textBuffer[i].c_str());
-            int displayWidth = u8g2.getDisplayWidth();
+    for (int i = 0; i < _textBufferSize; i++) {
+        int textLength = _textBuffer[i].length();
+        
+        if (textLength > _maxCharsPerLine) {
+            _scrollOffset[i]++;
             
-            // Only scroll if text is wider than display
-            if (textPixelWidth > displayWidth) {
-                _scrollOffset[i] += 2;  // Scroll by 2 pixels each time
-                
-                // Reset scroll when we've scrolled through the entire text
-                String scrollText = _textBuffer[i] + "   " + _textBuffer[i];
-                int totalScrollWidth = u8g2.getUTF8Width(_textBuffer[i].c_str()) + 
-                                     u8g2.getUTF8Width("   ");
-                
-                if (_scrollOffset[i] >= totalScrollWidth) {
-                    _scrollOffset[i] = 0;
-                }
-                
-                needsUpdate = true;
+            // Add pause at the end before wrapping - this prevents immediate reset
+            int maxScroll = textLength - _maxCharsPerLine + 5; // +5 for pause at end
+            
+            if (_scrollOffset[i] > maxScroll) {
+                _scrollOffset[i] = 0; // Start from negative for smooth entry
             }
+            needsUpdate = true;
+        } else {
+            // Only reset offset for short lines
+            _scrollOffset[i] = 0;
         }
     }
     
     if (needsUpdate) {
+        _lastScrollTime = millis();
         _updateOLEDDisplay();
-        _lastScrollTime = currentTime;
     }
 }
+
+
 
 void IndicatorInterface::_wakeOLED() {
     if (_oledOn) {
