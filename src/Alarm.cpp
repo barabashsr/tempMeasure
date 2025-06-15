@@ -68,22 +68,35 @@ Alarm::~Alarm() {
 
 void Alarm::acknowledge() {
     if (_stage == AlarmStage::NEW || _stage == AlarmStage::ACTIVE) {
+        String oldStage = getStageString();
         _stage = AlarmStage::ACKNOWLEDGED;
         _acknowledgedTime = millis();
         _updateMessage();
         
-        // LOG: Alarm acknowledgment
+        // LOG: Manual acknowledgment
         String source_ = "ALARM_" + String(_source ? _source->getAddress() : -1);
         String description = "Alarm acknowledged: " + getTypeString() + 
                             " for point " + String(_source ? _source->getAddress() : -1) + 
                             " (" + (_source ? _source->getName() : "Unknown") + ")";
         LoggerManager::info(source_, description);
         
+        // LOG: Alarm state change
+        if (_source) {
+            int16_t currentTemp = _source->getCurrentTemp();
+            int16_t threshold = (_type == AlarmType::HIGH_TEMPERATURE) ? 
+                               _source->getHighAlarmThreshold() : _source->getLowAlarmThreshold();
+            
+            LoggerManager::logAlarmStateChange(_source->getAddress(), _source->getName(),
+                                             getTypeString(), _getPriorityString(),
+                                             oldStage, "ACKNOWLEDGED", currentTemp, threshold);
+        }
+        
         Serial.printf("Alarm acknowledged: %s for point %d\n", 
                       getTypeString().c_str(), 
                       _source ? _source->getAddress() : -1);
     }
 }
+
 
 
 void Alarm::clear() {
@@ -442,17 +455,44 @@ bool Alarm::updateCondition() {
     String baseDescription = getTypeString() + " alarm for point " + 
                             String(_source->getAddress()) + " (" + _source->getName() + ")";
     
+    // Get current temperature and threshold for logging
+    int16_t currentTemp = _source->getCurrentTemp();
+    int16_t threshold = 0;
+    
+    switch (_type) {
+        case AlarmType::HIGH_TEMPERATURE:
+            threshold = _source->getHighAlarmThreshold();
+            break;
+        case AlarmType::LOW_TEMPERATURE:
+            threshold = _source->getLowAlarmThreshold();
+            break;
+        case AlarmType::SENSOR_ERROR:
+        case AlarmType::SENSOR_DISCONNECTED:
+            threshold = 0; // Not applicable for these alarm types
+            break;
+    }
+    
     switch (_stage) {
         case AlarmStage::NEW:
             if (conditionExists) {
                 _stage = AlarmStage::ACTIVE;
+                
                 // LOG: NEW -> ACTIVE
                 LoggerManager::error(source_, baseDescription + " activated");
+                LoggerManager::logAlarmStateChange(_source->getAddress(), _source->getName(),
+                                                 getTypeString(), _getPriorityString(),
+                                                 "NEW", "ACTIVE", currentTemp, threshold);
+                
                 Serial.printf("Alarm %s: NEW -> ACTIVE\n", getTypeString().c_str());
             } else {
                 resolve();
+                
                 // LOG: NEW -> RESOLVED
                 LoggerManager::info(source_, baseDescription + " resolved before activation");
+                LoggerManager::logAlarmStateChange(_source->getAddress(), _source->getName(),
+                                                 getTypeString(), _getPriorityString(),
+                                                 "NEW", "RESOLVED", currentTemp, threshold);
+                
                 Serial.printf("Alarm %s: NEW -> RESOLVED (condition cleared)\n", getTypeString().c_str());
             }
             break;
@@ -460,8 +500,13 @@ bool Alarm::updateCondition() {
         case AlarmStage::ACTIVE:
             if (!conditionExists) {
                 clear();
+                
                 // LOG: ACTIVE -> CLEARED
                 LoggerManager::info(source_, baseDescription + " condition cleared");
+                LoggerManager::logAlarmStateChange(_source->getAddress(), _source->getName(),
+                                                 getTypeString(), _getPriorityString(),
+                                                 "ACTIVE", "CLEARED", currentTemp, threshold);
+                
                 Serial.printf("Alarm %s: ACTIVE -> CLEARED (condition no longer exists)\n", getTypeString().c_str());
             }
             break;
@@ -469,13 +514,23 @@ bool Alarm::updateCondition() {
         case AlarmStage::ACKNOWLEDGED:
             if (!conditionExists) {
                 clear();
+                
                 // LOG: ACKNOWLEDGED -> CLEARED
                 LoggerManager::info(source_, baseDescription + " condition cleared while acknowledged");
+                LoggerManager::logAlarmStateChange(_source->getAddress(), _source->getName(),
+                                                 getTypeString(), _getPriorityString(),
+                                                 "ACKNOWLEDGED", "CLEARED", currentTemp, threshold);
+                
                 Serial.printf("Alarm %s: ACKNOWLEDGED -> CLEARED (condition no longer exists)\n", getTypeString().c_str());
             } else if (isAcknowledgedDelayElapsed()) {
                 _stage = AlarmStage::ACTIVE;
+                
                 // LOG: ACKNOWLEDGED -> ACTIVE (timeout)
                 LoggerManager::warning(source_, baseDescription + " acknowledgment timeout - returned to active");
+                LoggerManager::logAlarmStateChange(_source->getAddress(), _source->getName(),
+                                                 getTypeString(), _getPriorityString(),
+                                                 "ACKNOWLEDGED", "ACTIVE", currentTemp, threshold);
+                
                 Serial.printf("Alarm %s: ACKNOWLEDGED -> ACTIVE (acknowledged delay elapsed)\n", getTypeString().c_str());
             }
             break;
@@ -484,13 +539,23 @@ bool Alarm::updateCondition() {
             if (conditionExists) {
                 _stage = AlarmStage::ACTIVE;
                 _clearedTime = 0;
+                
                 // LOG: CLEARED -> ACTIVE (condition returned)
                 LoggerManager::warning(source_, baseDescription + " condition returned");
+                LoggerManager::logAlarmStateChange(_source->getAddress(), _source->getName(),
+                                                 getTypeString(), _getPriorityString(),
+                                                 "CLEARED", "ACTIVE", currentTemp, threshold);
+                
                 Serial.printf("Alarm %s: CLEARED -> ACTIVE (condition returned)\n", getTypeString().c_str());
             } else if (isDelayElapsed()) {
                 resolve();
+                
                 // LOG: CLEARED -> RESOLVED (delay elapsed)
                 LoggerManager::info(source_, baseDescription + " auto-resolved after delay");
+                LoggerManager::logAlarmStateChange(_source->getAddress(), _source->getName(),
+                                                 getTypeString(), _getPriorityString(),
+                                                 "CLEARED", "RESOLVED", currentTemp, threshold);
+                
                 Serial.printf("Alarm %s: CLEARED -> RESOLVED (delay elapsed)\n", getTypeString().c_str());
             }
             break;
@@ -501,8 +566,13 @@ bool Alarm::updateCondition() {
                 _timestamp = millis();
                 _acknowledgedTime = 0;
                 _clearedTime = 0;
+                
                 // LOG: RESOLVED -> ACTIVE (condition returned)
                 LoggerManager::error(source_, baseDescription + " reoccurred after resolution");
+                LoggerManager::logAlarmStateChange(_source->getAddress(), _source->getName(),
+                                                 getTypeString(), _getPriorityString(),
+                                                 "RESOLVED", "ACTIVE", currentTemp, threshold);
+                
                 Serial.printf("Alarm %s: RESOLVED -> ACTIVE (condition returned)\n", getTypeString().c_str());
             }
             break;

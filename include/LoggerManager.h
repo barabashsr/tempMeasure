@@ -71,6 +71,25 @@ private:
     bool _writeEventRow(const String& timestamp, const String& source, 
                        const String& description, const String& priority);
     bool _ensureEventLogExists();
+
+    // Alarm state logging
+    bool _alarmStateLoggingEnabled;
+    String _alarmStateLogDirectory;
+    String _currentAlarmStateLogFile;
+    String _lastAlarmStateLogDate;
+    
+    // Alarm state logging methods
+    String _generateAlarmStateLogFileName();
+    bool _writeAlarmStateHeader();
+    bool _ensureAlarmStateLogExists();
+    bool _writeAlarmStateRow(const String& timestamp, int pointNumber, const String& pointName,
+        const String& alarmType, const String& alarmPriority,
+        const String& previousState, const String& newState,
+        int16_t currentTemp, int16_t threshold);
+
+    
+    bool _isSDCardAvailable();
+
     
 public:
     LoggerManager(TemperatureController& controller, TimeManager& timeManager, fs::FS& filesystem);
@@ -148,6 +167,30 @@ public:
         String getCurrentEventLogFile() const;
         std::vector<String> getEventLogFiles();
         bool deleteEventLogFile(const String& filename);
+
+
+    // Alarm state logging configuration
+    void setAlarmStateLoggingEnabled(bool enabled);
+    bool isAlarmStateLoggingEnabled() const;
+    void setAlarmStateLogDirectory(const String& directory);
+    String getAlarmStateLogDirectory() const;
+    
+    // Static method for alarm state logging
+    static bool logAlarmStateChange(int pointNumber, const String& pointName, 
+                                   const String& alarmType, const String& alarmPriority,
+                                   const String& previousState, const String& newState,
+                                   int16_t currentTemp, int16_t threshold);
+    
+    // Instance method for alarm state logging
+    bool logAlarmState(int pointNumber, const String& pointName, 
+                      const String& alarmType, const String& alarmPriority,
+                      const String& previousState, const String& newState,
+                      int16_t currentTemp, int16_t threshold);
+    
+    // Alarm state log management
+    String getCurrentAlarmStateLogFile() const;
+    std::vector<String> getAlarmStateLogFiles();
+    bool deleteAlarmStateLogFile(const String& filename);
     
 private:
     String _lastError;

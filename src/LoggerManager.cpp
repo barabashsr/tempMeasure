@@ -10,15 +10,19 @@ LoggerManager::LoggerManager(TemperatureController& controller, TimeManager& tim
       _logFrequency(60000), _lastLogTime(0), _headerWritten(false),
       _enabled(true), _logDirectory(""), _dailyFiles(true), _lastError(""),
       _lastGeneratedHeader(""), _headerChanged(false), _fileSequenceNumber(0),
-      _eventLoggingEnabled(true), _eventLogDirectory(""), _currentEventLogFile(""), _lastEventLogDate("") {
+      _eventLoggingEnabled(true), _eventLogDirectory(""), _currentEventLogFile(""), _lastEventLogDate(""),
+      _alarmStateLoggingEnabled(true), _alarmStateLogDirectory(""), _currentAlarmStateLogFile(""), _lastAlarmStateLogDate("") {
         _instance = this;
 }
+
 
 LoggerManager::~LoggerManager() {
     closeCurrentFile();
 }
 
 bool LoggerManager::begin() {
+    if (!_enabled) return false;
+    if(_enabled) {
     if (!_ensureDirectoryExists()) {
         _lastError = "Failed to create log directory";
         return false;
@@ -38,30 +42,36 @@ bool LoggerManager::begin() {
     // Generate log file name with recovered sequence number
     _currentLogFile = _generateLogFileNameWithSequence();
     _lastLogDate = _getCurrentDateString();
-    
-    // Initialize event logging
-    // if (_eventLoggingEnabled) {
-    //     _lastEventLogDate = _getCurrentDateString();
-    //     _currentEventLogFile = _generateEventLogFileName();
+   
+    // Initialize alarm state logging
+    if (_alarmStateLoggingEnabled) {
+        _lastAlarmStateLogDate = _getCurrentDateString();
+        _currentAlarmStateLogFile = _generateAlarmStateLogFileName();
         
-    //     if (!_ensureEventLogExists()) {
-    //         Serial.println("Warning: Could not initialize event log file");
-    //     } else {
-    //         Serial.printf("Event logging initialized. Event log file: %s\n", _currentEventLogFile.c_str());
-            
-    //         // Log system startup event
-    //         logInfo("SYSTEM", "LoggerManager initialized successfully");
-    //     }
-    // }
+        if (!_ensureAlarmStateLogExists()) {
+            Serial.println("Warning: Could not initialize alarm state log file");
+        } else {
+            Serial.printf("Alarm state logging initialized. Log file: %s\n", _currentAlarmStateLogFile.c_str());
+            logInfo("SYSTEM", "LoggerManager alarm state logging initialized successfully");
+        }
+    }
     
     Serial.printf("LoggerManager initialized. Log file: %s\n", _currentLogFile.c_str());
     Serial.printf("File sequence number: %d\n", _fileSequenceNumber);
     Serial.printf("Log frequency: %lu ms\n", _logFrequency);
+    } else {
+        Serial.println("No SD card");
+        _enabled = false;
+        return false;
+    }
     
     return true;
 }
 
 bool LoggerManager::init() {
+    //if (!_enabled) return false;
+    if(_enabled) {
+
     if (!_ensureDirectoryExists()) {
         _lastError = "Failed to create log directory";
         return false;
@@ -83,7 +93,13 @@ bool LoggerManager::init() {
     }
     
     Serial.printf("LoggerManager event logging initialized. Log file: %s\n", _currentLogFile.c_str());
-    
+    } else {
+        Serial.println("No SD card");
+        _enabled = false;
+        return false;
+        
+
+    }
     
     return true;
 }
@@ -219,6 +235,7 @@ String LoggerManager::_generateLogFileName() {
 }
 
 String LoggerManager::_generateLogFileNameWithSequence() {
+    
     String dateStr = _getCurrentDateString();
     String filename;
     
@@ -261,6 +278,7 @@ String LoggerManager::_generateCSVHeader() {
 }
 
 bool LoggerManager::_writeHeader() {
+    if (!_enabled) return false;
     File file = _fs->open(_currentLogFile.c_str(), FILE_WRITE);
     if (!file) {
         _lastError = "Failed to open log file for header writing: " + _currentLogFile;
@@ -281,6 +299,7 @@ bool LoggerManager::_writeHeader() {
 }
 
 bool LoggerManager::_writeDataRow() {
+    if (!_enabled) return false;
     File file = _fs->open(_currentLogFile.c_str(), FILE_APPEND);
     if (!file) {
         _lastError = "Failed to open log file for data writing: " + _currentLogFile;
@@ -332,6 +351,7 @@ String LoggerManager::_escapeCSVField(const String& field) {
 }
 
 bool LoggerManager::_ensureDirectoryExists() {
+    if (!_enabled) return false;
     // For SD card, always use root directory
     if (_logDirectory.isEmpty() || _logDirectory == "/") {
         return true; // Root directory always exists
@@ -383,6 +403,7 @@ String LoggerManager::_getCurrentTimeString() {
 }
 
 std::vector<String> LoggerManager::getLogFiles() {
+
     std::vector<String> files;
     
     File dir = _fs->open(_logDirectory.c_str());
@@ -403,11 +424,13 @@ std::vector<String> LoggerManager::getLogFiles() {
 }
 
 bool LoggerManager::deleteLogFile(const String& filename) {
+    if (!_enabled) return false;
     String fullPath = _logDirectory + "/" + filename;
     return _fs->remove(fullPath.c_str());
 }
 
 size_t LoggerManager::getLogFileSize() const {
+    if (!_enabled) return -1;
     File file = _fs->open(_currentLogFile.c_str(), FILE_READ);
     if (!file) return 0;
     
@@ -449,6 +472,7 @@ void LoggerManager::_incrementSequenceNumber() {
 
 
 void LoggerManager::forceNewFile() {
+    if (!_enabled) return;
     _incrementSequenceNumber();
     createNewLogFile();
     Serial.println("Manually forced new log file creation");
@@ -464,6 +488,7 @@ void LoggerManager::resetSequenceNumber() {
 }
 
 bool LoggerManager::_recoverFromExistingFiles() {
+    if (!_enabled) return false;
     String currentDate = _getCurrentDateString();
     
     // Find all files for today
@@ -524,6 +549,7 @@ bool LoggerManager::_recoverFromExistingFiles() {
 }
 
 std::vector<String> LoggerManager::_getFilesForDate(const String& dateStr) {
+
     std::vector<String> files;
     
     // Open directory (root if _logDirectory is empty)
@@ -603,6 +629,7 @@ int LoggerManager::_extractSequenceNumber(const String& filename) {
 }
 
 String LoggerManager::_readHeaderFromFile(const String& filename) {
+
     File file = _fs->open(filename.c_str(), FILE_READ);
     if (!file) {
         Serial.printf("Could not open file for header reading: %s\n", filename.c_str());
@@ -631,6 +658,7 @@ String LoggerManager::_readHeaderFromFile(const String& filename) {
 
 
 bool LoggerManager::createNewLogFile() {
+    if (!_enabled) return false;
     closeCurrentFile();
     
     // Generate new filename with current sequence number
@@ -670,6 +698,7 @@ String LoggerManager::getEventLogDirectory() const {
 
 // Main event logging method
 bool LoggerManager::logEvent(const String& source, const String& description, const String& priority) {
+    if (!_enabled) return false;
     if (!_eventLoggingEnabled) return false;
     
     // Check if we need a new event log file for today
@@ -693,18 +722,22 @@ bool LoggerManager::logEvent(const String& source, const String& description, co
 
 // Convenience methods for different priority levels
 bool LoggerManager::logInfo(const String& source, const String& description) {
+    if (!_enabled) return false;
     return logEvent(source, description, "INFO");
 }
 
 bool LoggerManager::logWarning(const String& source, const String& description) {
+    if (!_enabled) return false;
     return logEvent(source, description, "WARNING");
 }
 
 bool LoggerManager::logError(const String& source, const String& description) {
+    if (!_enabled) return false;
     return logEvent(source, description, "ERROR");
 }
 
 bool LoggerManager::logCritical(const String& source, const String& description) {
+    if (!_enabled) return false;
     return logEvent(source, description, "CRITICAL");
 }
 
@@ -714,6 +747,7 @@ String LoggerManager::getCurrentEventLogFile() const {
 }
 
 std::vector<String> LoggerManager::getEventLogFiles() {
+
     std::vector<String> files;
     
     String dirPath = _eventLogDirectory.isEmpty() ? "/" : _eventLogDirectory;
@@ -740,6 +774,7 @@ std::vector<String> LoggerManager::getEventLogFiles() {
 }
 
 bool LoggerManager::deleteEventLogFile(const String& filename) {
+    if (!_enabled) return false;
     String fullPath = _eventLogDirectory.isEmpty() ? "/" : _eventLogDirectory;
     if (!fullPath.endsWith("/")) fullPath += "/";
     fullPath += filename;
@@ -766,6 +801,7 @@ String LoggerManager::_generateEventLogFileName() {
 
 
 bool LoggerManager::_ensureEventLogExists() {
+    if (!_enabled) return false;
     // Check if event log file exists
     File file = _fs->open(_currentEventLogFile.c_str(), FILE_READ);
     if (file) {
@@ -778,6 +814,7 @@ bool LoggerManager::_ensureEventLogExists() {
 }
 
 bool LoggerManager::_writeEventHeader() {
+    if (!_enabled) return false;
     File file = _fs->open(_currentEventLogFile.c_str(), FILE_WRITE);
     if (!file) {
         _lastError = "Failed to open event log file for header writing: " + _currentEventLogFile;
@@ -799,6 +836,7 @@ bool LoggerManager::_writeEventHeader() {
 
 bool LoggerManager::_writeEventRow(const String& timestamp, const String& source, 
                                   const String& description, const String& priority) {
+    if (!_enabled) return false;
     File file = _fs->open(_currentEventLogFile.c_str(), FILE_APPEND);
     if (!file) {
         _lastError = "Failed to open event log file for writing: " + _currentEventLogFile;
@@ -822,5 +860,207 @@ bool LoggerManager::_writeEventRow(const String& timestamp, const String& source
     // Also print to serial for debugging
     Serial.printf("[%s] %s: %s (%s)\n", timestamp.c_str(), source.c_str(), description.c_str(), priority.c_str());
     
+    return true;
+}
+
+
+// Alarm state logging configuration methods
+void LoggerManager::setAlarmStateLoggingEnabled(bool enabled) {
+    _alarmStateLoggingEnabled = enabled;
+    Serial.printf("Alarm state logging %s\n", enabled ? "enabled" : "disabled");
+}
+
+bool LoggerManager::isAlarmStateLoggingEnabled() const {
+    return _alarmStateLoggingEnabled;
+}
+
+void LoggerManager::setAlarmStateLogDirectory(const String& directory) {
+    _alarmStateLogDirectory = directory;
+    if (!_alarmStateLogDirectory.startsWith("/") && !_alarmStateLogDirectory.isEmpty()) {
+        _alarmStateLogDirectory = "/" + _alarmStateLogDirectory;
+    }
+}
+
+String LoggerManager::getAlarmStateLogDirectory() const {
+    return _alarmStateLogDirectory;
+}
+
+// Static method for alarm state logging
+bool LoggerManager::logAlarmStateChange(int pointNumber, const String& pointName, 
+                                       const String& alarmType, const String& alarmPriority,
+                                       const String& previousState, const String& newState,
+                                       int16_t currentTemp, int16_t threshold) {
+    
+    return _instance ? _instance->logAlarmState(pointNumber, pointName, alarmType, alarmPriority,
+                                               previousState, newState, currentTemp, threshold) : false;
+}
+
+// Instance method for alarm state logging
+bool LoggerManager::logAlarmState(int pointNumber, const String& pointName, 
+                                 const String& alarmType, const String& alarmPriority,
+                                 const String& previousState, const String& newState,
+                                 int16_t currentTemp, int16_t threshold) {
+    if (!_enabled) return false;
+    if (!_alarmStateLoggingEnabled) return false;
+    
+    // Check if we need a new alarm state log file for today
+    String currentDate = _getCurrentDateString();
+    if (currentDate != _lastAlarmStateLogDate) {
+        _lastAlarmStateLogDate = currentDate;
+        _currentAlarmStateLogFile = _generateAlarmStateLogFileName();
+    }
+    
+    // Ensure alarm state log file exists
+    if (!_ensureAlarmStateLogExists()) {
+        return false;
+    }
+    
+    // Generate timestamp
+    String timestamp = _getCurrentDateString() + " " + _getCurrentTimeString();
+    
+    // Write alarm state row
+    return _writeAlarmStateRow(timestamp, pointNumber, pointName, alarmType, alarmPriority,
+                              previousState, newState, currentTemp, threshold);
+}
+
+// Private methods for alarm state logging
+String LoggerManager::_generateAlarmStateLogFileName() {
+
+    String dateStr = _getCurrentDateString();
+    String filename;
+    
+    if (_alarmStateLogDirectory.isEmpty()) {
+        filename = "/alarm_states_" + dateStr + ".csv";
+    } else {
+        String dir = _alarmStateLogDirectory;
+        if (!dir.startsWith("/")) {
+            dir = "/" + dir;
+        }
+        filename = dir + "/alarm_states_" + dateStr + ".csv";
+    }
+    
+    return filename;
+}
+
+bool LoggerManager::_ensureAlarmStateLogExists() {
+    if (!_enabled) return false;
+    // Check if alarm state log file exists
+    File file = _fs->open(_currentAlarmStateLogFile.c_str(), FILE_READ);
+    if (file) {
+        file.close();
+        return true; // File exists
+    }
+    
+    // File doesn't exist, create it with header
+    return _writeAlarmStateHeader();
+}
+
+bool LoggerManager::_writeAlarmStateHeader() {
+    if (!_enabled) return false;
+    File file = _fs->open(_currentAlarmStateLogFile.c_str(), FILE_WRITE);
+    if (!file) {
+        _lastError = "Failed to open alarm state log file for header writing: " + _currentAlarmStateLogFile;
+        return false;
+    }
+    
+    String header = "Timestamp,PointNumber,PointName,AlarmType,AlarmPriority,PreviousState,NewState,CurrentTemperature,Threshold\n";
+    size_t written = file.print(header);
+    file.close();
+    
+    if (written != header.length()) {
+        _lastError = "Failed to write complete alarm state log header";
+        return false;
+    }
+    
+    Serial.printf("Alarm state log header written to %s\n", _currentAlarmStateLogFile.c_str());
+    return true;
+}
+
+bool LoggerManager::_writeAlarmStateRow(const String& timestamp, int pointNumber, const String& pointName,
+                                       const String& alarmType, const String& alarmPriority,
+                                       const String& previousState, const String& newState,
+                                       int16_t currentTemp, int16_t threshold) {
+    if (!_enabled) return false;
+    File file = _fs->open(_currentAlarmStateLogFile.c_str(), FILE_APPEND);
+    if (!file) {
+        _lastError = "Failed to open alarm state log file for writing: " + _currentAlarmStateLogFile;
+        return false;
+    }
+    
+    // Build alarm state row with proper CSV escaping
+    String alarmStateRow = _escapeCSVField(timestamp) + "," + 
+                          String(pointNumber) + "," +
+                          _escapeCSVField(pointName) + "," + 
+                          _escapeCSVField(alarmType) + "," + 
+                          _escapeCSVField(alarmPriority) + "," + 
+                          _escapeCSVField(previousState) + "," + 
+                          _escapeCSVField(newState) + "," + 
+                          String(currentTemp) + "," + 
+                          String(threshold) + "\n";
+    
+    size_t written = file.print(alarmStateRow);
+    file.close();
+    
+    if (written != alarmStateRow.length()) {
+        _lastError = "Failed to write complete alarm state log row";
+        return false;
+    }
+    
+    // Also print to serial for debugging
+    Serial.printf("[ALARM_STATE] %s: Point %d (%s) %s %s: %s -> %s (Temp: %d, Threshold: %d)\n", 
+                 timestamp.c_str(), pointNumber, pointName.c_str(), alarmType.c_str(), 
+                 alarmPriority.c_str(), previousState.c_str(), newState.c_str(), currentTemp, threshold);
+    
+    return true;
+}
+
+// Alarm state log management
+String LoggerManager::getCurrentAlarmStateLogFile() const {
+    return _currentAlarmStateLogFile;
+}
+
+std::vector<String> LoggerManager::getAlarmStateLogFiles() {
+
+    std::vector<String> files;
+    
+    String dirPath = _alarmStateLogDirectory.isEmpty() ? "/" : _alarmStateLogDirectory;
+    File dir = _fs->open(dirPath.c_str());
+    
+    if (!dir || !dir.isDirectory()) {
+        return files;
+    }
+    
+    File file = dir.openNextFile();
+    while (file) {
+        String filename = String(file.name());
+        if (filename.startsWith("alarm_states_") && filename.endsWith(".csv")) {
+            String fullPath = dirPath;
+            if (!fullPath.endsWith("/")) fullPath += "/";
+            fullPath += filename;
+            files.push_back(fullPath);
+        }
+        file = dir.openNextFile();
+    }
+    
+    dir.close();
+    return files;
+}
+
+bool LoggerManager::deleteAlarmStateLogFile(const String& filename) {
+    String fullPath = _alarmStateLogDirectory.isEmpty() ? "/" : _alarmStateLogDirectory;
+    if (!fullPath.endsWith("/")) fullPath += "/";
+    fullPath += filename;
+    return _fs->remove(fullPath.c_str());
+}
+
+
+// Add to LoggerManager.cpp:
+bool LoggerManager::_isSDCardAvailable() {
+    // Try to open the filesystem
+    File testFile = _fs->open("/");
+    if (!testFile) {
+        return false;
+    }
+    testFile.close();
     return true;
 }
