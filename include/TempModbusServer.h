@@ -4,6 +4,7 @@
 #include <Arduino.h>
 #include "ModbusServerRTU.h"
 #include "RegisterMap.h"
+#include "LoggerManager.h"
 
 class TempModbusServer {
 private:

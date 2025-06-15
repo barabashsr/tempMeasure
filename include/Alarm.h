@@ -3,6 +3,7 @@
 #include <Arduino.h>
 #include <vector>
 #include "MeasurementPoint.h"
+#include "LoggerManager.h"
 
 // Forward declaration
 class MeasurementPoint;
@@ -85,13 +86,13 @@ public:
     String getConfigKey() const;
     void setConfigKey(const String& key);
     bool isEnabled() const { return _enabled; }
-    void setEnabled(bool enabled) { _enabled = enabled; }
+    void setEnabled(bool enabled);
     uint8_t getPointAddress() const { return _source ? _source->getAddress() : 255; }
 
     void setPriority(AlarmPriority priority);
     void setStage(AlarmStage stage);
     
-    void setHysteresis(int16_t hysteresis) { _hysteresis = hysteresis; }
+    void setHysteresis(int16_t hysteresis);
     int16_t getHysteresis() const { return _hysteresis; }
 
     void setAcknowledgedDelay(unsigned long delay);
@@ -130,6 +131,7 @@ private:
     String _configKey;  // Format: "alarm_<point>_<type>"
     bool _enabled;      // Whether this alarm is active in configuration
     unsigned long _acknowledgedDelay; 
+    String _getPriorityString(AlarmPriority priority) const;
 };
 
 // Alarm comparison function for sorting by priority and timestamp

@@ -14,9 +14,9 @@ TimeManager::~TimeManager() {
     }
 }
 
-bool TimeManager::begin() {
+bool TimeManager::init() {
     // Initialize I2C
-    Wire.begin(_sdaPin, _sclPin);
+    //Wire.begin(_sdaPin, _sclPin);
     
     // Initialize RTC
     if (!_rtc.begin()) {
@@ -34,6 +34,37 @@ bool TimeManager::begin() {
     } else {
         _timeSet = true;
     }
+    
+    // // Initialize NTP
+    // _initializeNTP();
+    
+    // // Load saved configuration
+    // loadConfig();
+    
+    // Serial.println("TimeManager: Initialized successfully");
+    return true;
+}
+
+bool TimeManager::begin() {
+    // Initialize I2C
+    // Wire.begin(_sdaPin, _sclPin);
+    
+    // // Initialize RTC
+    // if (!_rtc.begin()) {
+    //     Serial.println("TimeManager: Couldn't find RTC");
+    //     _rtcConnected = false;
+    //     return false;
+    // }
+    
+    // _rtcConnected = true;
+    
+    // // Check if RTC lost power and set compile time if needed
+    // if (_rtc.lostPower()) {
+    //     Serial.println("TimeManager: RTC lost power, setting compile time");
+    //     setTimeFromCompileTime();
+    // } else {
+    //     _timeSet = true;
+    // }
     
     // Initialize NTP
     _initializeNTP();

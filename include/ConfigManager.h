@@ -9,6 +9,7 @@
 #include "TemperatureController.h"
 #include "CSVConfigManager.h"
 #include "SettingsCSVManager.h"
+#include "LoggerManager.h" 
 
 // YAML configuration definition
 extern const char* VARIABLES_DEF_YAML;

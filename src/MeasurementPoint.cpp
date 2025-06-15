@@ -59,16 +59,39 @@ uint8_t MeasurementPoint::getErrorStatus() const {
 }
 
 void MeasurementPoint::setName(const String& newName) {
-    name = newName;
+    if (newName != name) {
+        String oldName = name.isEmpty() ? "Point_" + String(address) : name;
+        name = newName;
+        LoggerManager::info("POINT_CONFIG", 
+            "Point " + String(address) + " name changed from '" + 
+            oldName + "' to '" + name + "'");
+    }
+    //name = newName;
 }
 
 void MeasurementPoint::setLowAlarmThreshold(int16_t threshold) {
-    lowAlarmThreshold = threshold;
+
+    if (lowAlarmThreshold != threshold) {
+        LoggerManager::info("POINT_CONFIG", 
+            "Point " + String(address) + " (" + name + 
+            ") low alarm threshold changed from " + String(lowAlarmThreshold) + 
+            "°C to " + String(threshold) + "°C");
+        lowAlarmThreshold = threshold;
+    }
+
+    //lowAlarmThreshold = threshold;
     updateAlarmStatus();
 }
 
 void MeasurementPoint::setHighAlarmThreshold(int16_t threshold) {
-    highAlarmThreshold = threshold;
+    if (highAlarmThreshold != threshold) {
+        LoggerManager::info("POINT_CONFIG", 
+            "Point " + String(address) + " (" + name + 
+            ") high alarm threshold changed from " + String(highAlarmThreshold) + 
+            "°C to " + String(threshold) + "°C");
+        highAlarmThreshold = threshold;
+    }
+    //highAlarmThreshold = threshold;
     updateAlarmStatus();
 }
 

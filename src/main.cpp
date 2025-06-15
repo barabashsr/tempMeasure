@@ -72,6 +72,45 @@ void setup() {
 
     SPI.begin(SCK_PIN, MISO_PIN, MOSI_PIN);  // SCK, MISO, MOSI, SS
 
+
+
+    // Initialize time manager
+    if (timeManager.init()) {
+        Serial.println("TimeManager initialized successfully");
+        
+        // Set timezone (GMT+3 for Moscow)
+        timeManager.setTimezone(3, 0);
+        
+  
+    }
+
+    // Configure logging
+    logger.setLogDirectory("/logs"); 
+    logger.setEventLogDirectory("/logs");
+    logger.setLogFrequency(2000);  // Log every 30 seconds
+    logger.setDailyFiles(true);     // Create new file each day
+    logger.setEnabled(true);        // Enable logging
+
+    // Initialize SD card
+    if (!SD.begin(CS5_PIN_TF_CARD)) {
+        Serial.println("SD Card initialization failed");
+        return;
+    }
+    
+    // Initialize logger
+    if (!logger.init()) {
+        Serial.println("Logger initialization failed");
+    } else {
+        Serial.println("Logger initialized successfully");
+    }
+    
+    logger.info("SYSTEM", "Temperature controller started");
+
+
+
+
+    
+
     // Configure all CS pins as OUTPUT
     pinMode(CS1_PIN, OUTPUT);
     pinMode(CS2_PIN, OUTPUT); 
@@ -136,40 +175,18 @@ void setup() {
         }
     }
 
-    // Initialize time manager
-    if (timeManager.begin()) {
-        Serial.println("TimeManager initialized successfully");
-        
-        // Set timezone (GMT+3 for Moscow)
-        timeManager.setTimezone(3, 0);
-        
-        // Sync with NTP when WiFi connects
-        if (WiFi.status() == WL_CONNECTED) {
+
+    if(timeManager.begin()){
+          // Sync with NTP when WiFi connects
+          if (WiFi.status() == WL_CONNECTED) {
             timeManager.setTimeFromNTP();
         }
     }
-
-    // Configure logging
-    logger.setLogDirectory("/logs"); 
-    logger.setLogFrequency(2000);  // Log every 30 seconds
-    logger.setDailyFiles(true);     // Create new file each day
-    logger.setEnabled(true);        // Enable logging
-
-    // Initialize SD card
-    if (!SD.begin(CS5_PIN_TF_CARD)) {
-        Serial.println("SD Card initialization failed");
-        return;
-    }
     
-    // Initialize logger
-    if (!logger.begin()) {
-        Serial.println("Logger initialization failed");
-    }
+    logger.begin();
+
+
     
-    
-
-
-
 
     
     Serial.println("\nSystem is now running...");

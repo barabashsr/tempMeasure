@@ -1,10 +1,17 @@
 #include "LoggerManager.h"
+#include "TemperatureController.h"  // Full include in .cpp file
+#include "MeasurementPoint.h"       // Add this include
+
+
+LoggerManager* LoggerManager::_instance = nullptr;
 
 LoggerManager::LoggerManager(TemperatureController& controller, TimeManager& timeManager, fs::FS& filesystem)
     : _controller(&controller), _timeManager(&timeManager), _fs(&filesystem),
       _logFrequency(60000), _lastLogTime(0), _headerWritten(false),
       _enabled(true), _logDirectory(""), _dailyFiles(true), _lastError(""),
-      _lastGeneratedHeader(""), _headerChanged(false), _fileSequenceNumber(0) {
+      _lastGeneratedHeader(""), _headerChanged(false), _fileSequenceNumber(0),
+      _eventLoggingEnabled(true), _eventLogDirectory(""), _currentEventLogFile(""), _lastEventLogDate("") {
+        _instance = this;
 }
 
 LoggerManager::~LoggerManager() {
@@ -20,6 +27,9 @@ bool LoggerManager::begin() {
     // Recover from existing files after reboot
     if (!_recoverFromExistingFiles()) {
         Serial.println("Warning: Could not recover from existing files, starting fresh");
+        // Initialize fresh
+        _fileSequenceNumber = 0;
+        _headerWritten = false;
     }
     
     // Generate current header for comparison
@@ -29,12 +39,55 @@ bool LoggerManager::begin() {
     _currentLogFile = _generateLogFileNameWithSequence();
     _lastLogDate = _getCurrentDateString();
     
+    // Initialize event logging
+    // if (_eventLoggingEnabled) {
+    //     _lastEventLogDate = _getCurrentDateString();
+    //     _currentEventLogFile = _generateEventLogFileName();
+        
+    //     if (!_ensureEventLogExists()) {
+    //         Serial.println("Warning: Could not initialize event log file");
+    //     } else {
+    //         Serial.printf("Event logging initialized. Event log file: %s\n", _currentEventLogFile.c_str());
+            
+    //         // Log system startup event
+    //         logInfo("SYSTEM", "LoggerManager initialized successfully");
+    //     }
+    // }
+    
     Serial.printf("LoggerManager initialized. Log file: %s\n", _currentLogFile.c_str());
     Serial.printf("File sequence number: %d\n", _fileSequenceNumber);
     Serial.printf("Log frequency: %lu ms\n", _logFrequency);
     
     return true;
 }
+
+bool LoggerManager::init() {
+    if (!_ensureDirectoryExists()) {
+        _lastError = "Failed to create log directory";
+        return false;
+    }
+    
+    // Initialize event logging
+    if (_eventLoggingEnabled) {
+        _lastEventLogDate = _getCurrentDateString();
+        _currentEventLogFile = _generateEventLogFileName();
+        
+        if (!_ensureEventLogExists()) {
+            Serial.println("Warning: Could not initialize event log file");
+        } else {
+            Serial.printf("Event logging initialized. Event log file: %s\n", _currentEventLogFile.c_str());
+            
+            // Log system startup event
+            logInfo("SYSTEM", "LoggerManager event logging initialized successfully");
+        }
+    }
+    
+    Serial.printf("LoggerManager event logging initialized. Log file: %s\n", _currentLogFile.c_str());
+    
+    
+    return true;
+}
+
 
 
 void LoggerManager::setLogFrequency(unsigned long frequencyMs) {
@@ -80,15 +133,22 @@ void LoggerManager::update() {
     
     unsigned long currentTime = millis();
     
-    // Check if it's time to log
+    // Check if it's time to log temperature data
     if (currentTime - _lastLogTime >= _logFrequency) {
-        // Check if we need a new daily file
+        // Check if we need new daily files
         if (_dailyFiles) {
             String currentDate = _getCurrentDateString();
             if (currentDate != _lastLogDate) {
                 // New day - recover from existing files for new date
                 _recoverFromExistingFiles();
                 _lastLogDate = currentDate;
+                
+                // Also update event log file for new day
+                if (_eventLoggingEnabled && currentDate != _lastEventLogDate) {
+                    _lastEventLogDate = currentDate;
+                    _currentEventLogFile = _generateEventLogFileName();
+                    logInfo("SYSTEM", "New day - event log file created: " + _currentEventLogFile);
+                }
             }
         }
         
@@ -97,11 +157,17 @@ void LoggerManager::update() {
             Serial.println("Header changed - creating new log file");
             _incrementSequenceNumber();
             createNewLogFile();
+            
+            // Log the configuration change event
+            if (_eventLoggingEnabled) {
+                logWarning("CONFIG", "Measurement point configuration changed - new data log file created");
+            }
         }
         
         logDataNow();
     }
 }
+
 
 
 
@@ -156,14 +222,21 @@ String LoggerManager::_generateLogFileNameWithSequence() {
     String dateStr = _getCurrentDateString();
     String filename;
     
+    // Always ensure we have a valid path starting with /
     if (_logDirectory.isEmpty()) {
         filename = "/temp_log_" + dateStr + "_" + String(_fileSequenceNumber) + ".csv";
     } else {
-        filename = _logDirectory + "/temp_log_" + dateStr + "_" + String(_fileSequenceNumber) + ".csv";
+        // Ensure _logDirectory starts with /
+        String dir = _logDirectory;
+        if (!dir.startsWith("/")) {
+            dir = "/" + dir;
+        }
+        filename = dir + "/temp_log_" + dateStr + "_" + String(_fileSequenceNumber) + ".csv";
     }
     
     return filename;
 }
+
 
 
 String LoggerManager::_generateCSVHeader() {
@@ -569,5 +642,185 @@ bool LoggerManager::createNewLogFile() {
     
     Serial.printf("Created new log file: %s (sequence: %d)\n", 
                  _currentLogFile.c_str(), _fileSequenceNumber);
+    return true;
+}
+
+
+
+// Event logging configuration methods
+void LoggerManager::setEventLoggingEnabled(bool enabled) {
+    _eventLoggingEnabled = enabled;
+    Serial.printf("Event logging %s\n", enabled ? "enabled" : "disabled");
+}
+
+bool LoggerManager::isEventLoggingEnabled() const {
+    return _eventLoggingEnabled;
+}
+
+void LoggerManager::setEventLogDirectory(const String& directory) {
+    _eventLogDirectory = directory;
+    if (!_eventLogDirectory.startsWith("/")) {
+        _eventLogDirectory = "/" + _eventLogDirectory;
+    }
+}
+
+String LoggerManager::getEventLogDirectory() const {
+    return _eventLogDirectory;
+}
+
+// Main event logging method
+bool LoggerManager::logEvent(const String& source, const String& description, const String& priority) {
+    if (!_eventLoggingEnabled) return false;
+    
+    // Check if we need a new event log file for today
+    String currentDate = _getCurrentDateString();
+    if (currentDate != _lastEventLogDate) {
+        _lastEventLogDate = currentDate;
+        _currentEventLogFile = _generateEventLogFileName();
+    }
+    
+    // Ensure event log file exists
+    if (!_ensureEventLogExists()) {
+        return false;
+    }
+    
+    // Generate timestamp
+    String timestamp = _getCurrentDateString() + " " + _getCurrentTimeString();
+    
+    // Write event row
+    return _writeEventRow(timestamp, source, description, priority);
+}
+
+// Convenience methods for different priority levels
+bool LoggerManager::logInfo(const String& source, const String& description) {
+    return logEvent(source, description, "INFO");
+}
+
+bool LoggerManager::logWarning(const String& source, const String& description) {
+    return logEvent(source, description, "WARNING");
+}
+
+bool LoggerManager::logError(const String& source, const String& description) {
+    return logEvent(source, description, "ERROR");
+}
+
+bool LoggerManager::logCritical(const String& source, const String& description) {
+    return logEvent(source, description, "CRITICAL");
+}
+
+// Event log file management
+String LoggerManager::getCurrentEventLogFile() const {
+    return _currentEventLogFile;
+}
+
+std::vector<String> LoggerManager::getEventLogFiles() {
+    std::vector<String> files;
+    
+    String dirPath = _eventLogDirectory.isEmpty() ? "/" : _eventLogDirectory;
+    File dir = _fs->open(dirPath.c_str());
+    
+    if (!dir || !dir.isDirectory()) {
+        return files;
+    }
+    
+    File file = dir.openNextFile();
+    while (file) {
+        String filename = String(file.name());
+        if (filename.startsWith("events_") && filename.endsWith(".csv")) {
+            String fullPath = dirPath;
+            if (!fullPath.endsWith("/")) fullPath += "/";
+            fullPath += filename;
+            files.push_back(fullPath);
+        }
+        file = dir.openNextFile();
+    }
+    
+    dir.close();
+    return files;
+}
+
+bool LoggerManager::deleteEventLogFile(const String& filename) {
+    String fullPath = _eventLogDirectory.isEmpty() ? "/" : _eventLogDirectory;
+    if (!fullPath.endsWith("/")) fullPath += "/";
+    fullPath += filename;
+    return _fs->remove(fullPath.c_str());
+}
+
+// Private event logging methods
+String LoggerManager::_generateEventLogFileName() {
+    String dateStr = _getCurrentDateString();
+    String filename;
+    
+    if (_eventLogDirectory.isEmpty()) {
+        filename = "/events_" + dateStr + ".csv";  // Always start with /
+    } else {
+        String dir = _eventLogDirectory;
+        if (!dir.startsWith("/")) {
+            dir = "/" + dir;
+        }
+        filename = dir + "/events_" + dateStr + ".csv";
+    }
+    
+    return filename;
+}
+
+
+bool LoggerManager::_ensureEventLogExists() {
+    // Check if event log file exists
+    File file = _fs->open(_currentEventLogFile.c_str(), FILE_READ);
+    if (file) {
+        file.close();
+        return true; // File exists
+    }
+    
+    // File doesn't exist, create it with header
+    return _writeEventHeader();
+}
+
+bool LoggerManager::_writeEventHeader() {
+    File file = _fs->open(_currentEventLogFile.c_str(), FILE_WRITE);
+    if (!file) {
+        _lastError = "Failed to open event log file for header writing: " + _currentEventLogFile;
+        return false;
+    }
+    
+    String header = "Timestamp,Source,Description,Priority\n";
+    size_t written = file.print(header);
+    file.close();
+    
+    if (written != header.length()) {
+        _lastError = "Failed to write complete event log header";
+        return false;
+    }
+    
+    Serial.printf("Event log header written to %s\n", _currentEventLogFile.c_str());
+    return true;
+}
+
+bool LoggerManager::_writeEventRow(const String& timestamp, const String& source, 
+                                  const String& description, const String& priority) {
+    File file = _fs->open(_currentEventLogFile.c_str(), FILE_APPEND);
+    if (!file) {
+        _lastError = "Failed to open event log file for writing: " + _currentEventLogFile;
+        return false;
+    }
+    
+    // Build event row with proper CSV escaping
+    String eventRow = _escapeCSVField(timestamp) + "," + 
+                     _escapeCSVField(source) + "," + 
+                     _escapeCSVField(description) + "," + 
+                     _escapeCSVField(priority) + "\n";
+    
+    size_t written = file.print(eventRow);
+    file.close();
+    
+    if (written != eventRow.length()) {
+        _lastError = "Failed to write complete event log row";
+        return false;
+    }
+    
+    // Also print to serial for debugging
+    Serial.printf("[%s] %s: %s (%s)\n", timestamp.c_str(), source.c_str(), description.c_str(), priority.c_str());
+    
     return true;
 }

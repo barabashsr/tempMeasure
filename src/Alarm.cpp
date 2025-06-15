@@ -1,16 +1,42 @@
 #include "Alarm.h"
+#include "LoggerManager.h" 
+
+// Alarm::Alarm(AlarmType type, MeasurementPoint* source, AlarmPriority priority)
+//     : _type(type), _stage(AlarmStage::NEW), _priority(priority), _source(source),
+//       _timestamp(millis()), _acknowledgedTime(0), _clearedTime(0),
+//       _acknowledgedDelay(10 * 60 * 1000), // Default 10 minutes 
+//       _delayTime(5 * 60 * 1000), _enabled(true), _hysteresis(1) // Add _hysteresis(1) - 1 degree default
+// {
+//     if (_source) {
+//         _configKey = "alarm_" + String(_source->getAddress()) + "_" + String(static_cast<int>(_type));
+//     }
+
+//     _updateMessage();
+    
+//     Serial.printf("New alarm created: %s for point %d (%s)\n", 
+//                   getTypeString().c_str(), 
+//                   _source ? _source->getAddress() : -1,
+//                   _source ? _source->getName().c_str() : "Unknown");
+// }
 
 Alarm::Alarm(AlarmType type, MeasurementPoint* source, AlarmPriority priority)
     : _type(type), _stage(AlarmStage::NEW), _priority(priority), _source(source),
       _timestamp(millis()), _acknowledgedTime(0), _clearedTime(0),
-      _acknowledgedDelay(10 * 60 * 1000), // Default 10 minutes 
-      _delayTime(5 * 60 * 1000), _enabled(true), _hysteresis(1) // Add _hysteresis(1) - 1 degree default
+      _acknowledgedDelay(10 * 60 * 1000), _delayTime(5 * 60 * 1000), 
+      _enabled(true), _hysteresis(1)
 {
     if (_source) {
         _configKey = "alarm_" + String(_source->getAddress()) + "_" + String(static_cast<int>(_type));
     }
 
     _updateMessage();
+    
+    // LOG: Alarm creation
+    String source_ = "ALARM_" + String(_source ? _source->getAddress() : -1);
+    String description = "New alarm created: " + getTypeString() + 
+                        " for point " + String(_source ? _source->getAddress() : -1) + 
+                        " (" + (_source ? _source->getName() : "Unknown") + ")";
+    LoggerManager::info(source_, description);
     
     Serial.printf("New alarm created: %s for point %d (%s)\n", 
                   getTypeString().c_str(), 
@@ -19,11 +45,26 @@ Alarm::Alarm(AlarmType type, MeasurementPoint* source, AlarmPriority priority)
 }
 
 
+
+
+// Alarm::~Alarm() {
+//     Serial.printf("Alarm destroyed: %s for point %d\n", 
+//                   getTypeString().c_str(), 
+//                   _source ? _source->getAddress() : -1);
+// }
+
 Alarm::~Alarm() {
+    // LOG: Alarm destruction
+    String source_ = "ALARM_" + String(_source ? _source->getAddress() : -1);
+    String description = "Alarm destroyed: " + getTypeString() + 
+                        " for point " + String(_source ? _source->getAddress() : -1);
+    LoggerManager::info(source_, description);
+    
     Serial.printf("Alarm destroyed: %s for point %d\n", 
                   getTypeString().c_str(), 
                   _source ? _source->getAddress() : -1);
 }
+
 
 void Alarm::acknowledge() {
     if (_stage == AlarmStage::NEW || _stage == AlarmStage::ACTIVE) {
@@ -31,17 +72,32 @@ void Alarm::acknowledge() {
         _acknowledgedTime = millis();
         _updateMessage();
         
+        // LOG: Alarm acknowledgment
+        String source_ = "ALARM_" + String(_source ? _source->getAddress() : -1);
+        String description = "Alarm acknowledged: " + getTypeString() + 
+                            " for point " + String(_source ? _source->getAddress() : -1) + 
+                            " (" + (_source ? _source->getName() : "Unknown") + ")";
+        LoggerManager::info(source_, description);
+        
         Serial.printf("Alarm acknowledged: %s for point %d\n", 
                       getTypeString().c_str(), 
                       _source ? _source->getAddress() : -1);
     }
 }
 
+
 void Alarm::clear() {
     if (_stage == AlarmStage::ACTIVE || _stage == AlarmStage::ACKNOWLEDGED) {
         _stage = AlarmStage::CLEARED;
         _clearedTime = millis();
         _updateMessage();
+        
+        // LOG: Alarm cleared
+        String source_ = "ALARM_" + String(_source ? _source->getAddress() : -1);
+        String description = "Alarm cleared: " + getTypeString() + 
+                            " for point " + String(_source ? _source->getAddress() : -1) + 
+                            " (" + (_source ? _source->getName() : "Unknown") + ")";
+        LoggerManager::info(source_, description);
         
         Serial.printf("Alarm cleared: %s for point %d\n", 
                       getTypeString().c_str(), 
@@ -53,16 +109,31 @@ void Alarm::resolve() {
     _stage = AlarmStage::RESOLVED;
     _updateMessage();
     
+    // LOG: Alarm resolved
+    String source_ = "ALARM_" + String(_source ? _source->getAddress() : -1);
+    String description = "Alarm resolved: " + getTypeString() + 
+                        " for point " + String(_source ? _source->getAddress() : -1) + 
+                        " (" + (_source ? _source->getName() : "Unknown") + ")";
+    LoggerManager::info(source_, description);
+    
     Serial.printf("Alarm resolved: %s for point %d\n", 
                   getTypeString().c_str(), 
                   _source ? _source->getAddress() : -1);
 }
+
 
 void Alarm::reactivate() {
     if (_stage == AlarmStage::CLEARED) {
         _stage = _acknowledgedTime > 0 ? AlarmStage::ACKNOWLEDGED : AlarmStage::ACTIVE;
         _clearedTime = 0;
         _updateMessage();
+        
+        // LOG: Alarm reactivated
+        String source_ = "ALARM_" + String(_source ? _source->getAddress() : -1);
+        String description = "Alarm reactivated: " + getTypeString() + 
+                            " for point " + String(_source ? _source->getAddress() : -1) + 
+                            " (" + (_source ? _source->getName() : "Unknown") + ")";
+        LoggerManager::warning(source_, description);
         
         Serial.printf("Alarm reactivated: %s for point %d\n", 
                       getTypeString().c_str(), 
@@ -308,11 +379,46 @@ void Alarm::setConfigKey(const String& key) {
     _configKey = key;
 }
 
+void Alarm::setPriority(AlarmPriority priority) {
+    if (_priority != priority) {
+        AlarmPriority oldPriority = _priority;
+        _priority = priority;
+        
+        // LOG: Priority change
+        String source_ = "CONFIG_" + String(_source ? _source->getAddress() : -1);
+        String description = "Alarm priority changed from " + _getPriorityString(oldPriority) + 
+                            " to " + _getPriorityString(priority) + 
+                            " for " + getTypeString() + " alarm";
+        LoggerManager::info(source_, description);
+    }
+}
 
-void Alarm::setPriority(AlarmPriority priority){
-    _priority = priority;
-    
-};
+void Alarm::setHysteresis(int16_t hysteresis) {
+    if (_hysteresis != hysteresis) {
+        int16_t oldHysteresis = _hysteresis;
+        _hysteresis = hysteresis;
+        
+        // LOG: Hysteresis change
+        String source_ = "CONFIG_" + String(_source ? _source->getAddress() : -1);
+        String description = "Alarm hysteresis changed from " + String(oldHysteresis) + 
+                            " to " + String(hysteresis) + 
+                            " for " + getTypeString() + " alarm";
+        LoggerManager::info(source_, description);
+    }
+}
+
+void Alarm::setEnabled(bool enabled) {
+    if (_enabled != enabled) {
+        _enabled = enabled;
+        
+        // LOG: Enable/disable change
+        String source_ = "CONFIG_" + String(_source ? _source->getAddress() : -1);
+        String description = getTypeString() + " alarm " + (enabled ? "enabled" : "disabled");
+        LoggerManager::info(source_, description);
+    }
+}
+
+
 
 void Alarm::setStage(AlarmStage stage){
     _stage = stage;
@@ -322,7 +428,7 @@ void Alarm::setStage(AlarmStage stage){
 bool Alarm::updateCondition() {
     if (!_source) {
         Serial.println("Alarm updateCondition: No source");
-        return true; // Keep alarm even without source
+        return true;
     }
     
     bool conditionExists = _checkCondition();
@@ -332,14 +438,21 @@ bool Alarm::updateCondition() {
                   _source->getAddress(), getTypeString().c_str(), 
                   getStageString().c_str(), conditionExists ? "EXISTS" : "CLEARED");
     
+    String source_ = "ALARM_" + String(_source->getAddress());
+    String baseDescription = getTypeString() + " alarm for point " + 
+                            String(_source->getAddress()) + " (" + _source->getName() + ")";
+    
     switch (_stage) {
         case AlarmStage::NEW:
             if (conditionExists) {
                 _stage = AlarmStage::ACTIVE;
+                // LOG: NEW -> ACTIVE
+                LoggerManager::error(source_, baseDescription + " activated");
                 Serial.printf("Alarm %s: NEW -> ACTIVE\n", getTypeString().c_str());
             } else {
-                // Condition cleared before becoming active
                 resolve();
+                // LOG: NEW -> RESOLVED
+                LoggerManager::info(source_, baseDescription + " resolved before activation");
                 Serial.printf("Alarm %s: NEW -> RESOLVED (condition cleared)\n", getTypeString().c_str());
             }
             break;
@@ -347,6 +460,8 @@ bool Alarm::updateCondition() {
         case AlarmStage::ACTIVE:
             if (!conditionExists) {
                 clear();
+                // LOG: ACTIVE -> CLEARED
+                LoggerManager::info(source_, baseDescription + " condition cleared");
                 Serial.printf("Alarm %s: ACTIVE -> CLEARED (condition no longer exists)\n", getTypeString().c_str());
             }
             break;
@@ -354,46 +469,50 @@ bool Alarm::updateCondition() {
         case AlarmStage::ACKNOWLEDGED:
             if (!conditionExists) {
                 clear();
+                // LOG: ACKNOWLEDGED -> CLEARED
+                LoggerManager::info(source_, baseDescription + " condition cleared while acknowledged");
                 Serial.printf("Alarm %s: ACKNOWLEDGED -> CLEARED (condition no longer exists)\n", getTypeString().c_str());
             } else if (isAcknowledgedDelayElapsed()) {
-                // NEW: Return to ACTIVE if acknowledged delay has elapsed and condition still exists
                 _stage = AlarmStage::ACTIVE;
+                // LOG: ACKNOWLEDGED -> ACTIVE (timeout)
+                LoggerManager::warning(source_, baseDescription + " acknowledgment timeout - returned to active");
                 Serial.printf("Alarm %s: ACKNOWLEDGED -> ACTIVE (acknowledged delay elapsed)\n", getTypeString().c_str());
             }
             break;
             
         case AlarmStage::CLEARED:
             if (conditionExists) {
-                // Condition returned, always reactivate to ACTIVE state
                 _stage = AlarmStage::ACTIVE;
                 _clearedTime = 0;
-                Serial.printf("Alarm %s: CLEARED -> ACTIVE (condition returned)\n", 
-                             getTypeString().c_str());
+                // LOG: CLEARED -> ACTIVE (condition returned)
+                LoggerManager::warning(source_, baseDescription + " condition returned");
+                Serial.printf("Alarm %s: CLEARED -> ACTIVE (condition returned)\n", getTypeString().c_str());
             } else if (isDelayElapsed()) {
                 resolve();
+                // LOG: CLEARED -> RESOLVED (delay elapsed)
+                LoggerManager::info(source_, baseDescription + " auto-resolved after delay");
                 Serial.printf("Alarm %s: CLEARED -> RESOLVED (delay elapsed)\n", getTypeString().c_str());
             }
             break;
         
-            
         case AlarmStage::RESOLVED:
-            // Reactivate resolved alarms when condition returns
             if (conditionExists) {
-                _stage = AlarmStage::ACTIVE;  // Always go to ACTIVE, not ACKNOWLEDGED
-                _timestamp = millis(); // Reset timestamp
-                _acknowledgedTime = 0; // Reset acknowledged time
-                _clearedTime = 0;      // Reset cleared time
+                _stage = AlarmStage::ACTIVE;
+                _timestamp = millis();
+                _acknowledgedTime = 0;
+                _clearedTime = 0;
+                // LOG: RESOLVED -> ACTIVE (condition returned)
+                LoggerManager::error(source_, baseDescription + " reoccurred after resolution");
                 Serial.printf("Alarm %s: RESOLVED -> ACTIVE (condition returned)\n", getTypeString().c_str());
             }
             break;
-        
     }
     
     if (oldStage != _stage) {
         _updateMessage();
     }
     
-    return true; // Always keep alarm
+    return true;
 }
 
 
@@ -424,4 +543,15 @@ unsigned long Alarm::getAcknowledgedTimeLeft() const {
     }
     
     return _acknowledgedDelay - elapsed; // Time remaining in milliseconds
+}
+
+
+String Alarm::_getPriorityString(AlarmPriority priority) const {
+    switch (priority) {
+        case AlarmPriority::PRIORITY_LOW: return "LOW";
+        case AlarmPriority::PRIORITY_MEDIUM: return "MEDIUM";
+        case AlarmPriority::PRIORITY_HIGH: return "HIGH";
+        case AlarmPriority::PRIORITY_CRITICAL: return "CRITICAL";
+        default: return "UNKNOWN";
+    }
 }

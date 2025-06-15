@@ -227,5 +227,9 @@ private:
     String _getPriorityString(AlarmPriority priority) const; 
 
 
+    String _getAlarmTypeString(AlarmType type) const;
+    
+    //String _getPriorityString(AlarmPriority priority) const;
+
     
 };

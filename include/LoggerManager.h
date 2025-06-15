@@ -4,11 +4,18 @@
 #include <Arduino.h>
 #include "FS.h"
 #include "SD.h"
-#include "TemperatureController.h"
+//#include "TemperatureController.h"
 #include "TimeManager.h"
+#include <vector>
+#include "LoggerManager.h"
+
+// Add forward declaration instead
+class TemperatureController;  // Forward declaration
+class MeasurementPoint;
 
 class LoggerManager {
 private:
+    static LoggerManager* _instance;
     TemperatureController* _controller;
     TimeManager* _timeManager;
     fs::FS* _fs;
@@ -51,12 +58,45 @@ private:
     bool _hasHeaderChanged();
     String _generateLogFileNameWithSequence();
     void _incrementSequenceNumber();
+
+    // Event logging
+    bool _eventLoggingEnabled;
+    String _eventLogDirectory;
+    String _currentEventLogFile;
+    String _lastEventLogDate;
+    
+    // Event logging methods
+    String _generateEventLogFileName();
+    bool _writeEventHeader();
+    bool _writeEventRow(const String& timestamp, const String& source, 
+                       const String& description, const String& priority);
+    bool _ensureEventLogExists();
     
 public:
     LoggerManager(TemperatureController& controller, TimeManager& timeManager, fs::FS& filesystem);
     ~LoggerManager();
+
+    static LoggerManager* getInstance() { return _instance; }
+    
+    // Add these static convenience methods
+    static bool info(const String& source, const String& description) {
+        return _instance ? _instance->logInfo(source, description) : false;
+    }
+    
+    static bool warning(const String& source, const String& description) {
+        return _instance ? _instance->logWarning(source, description) : false;
+    }
+    
+    static bool error(const String& source, const String& description) {
+        return _instance ? _instance->logError(source, description) : false;
+    }
+    
+    static bool critical(const String& source, const String& description) {
+        return _instance ? _instance->logCritical(source, description) : false;
+    }
     
     // Initialization
+    bool init(); 
     bool begin();
     
     // Configuration methods
@@ -90,6 +130,24 @@ public:
     void forceNewFile();
     int getCurrentSequenceNumber() const;
     void resetSequenceNumber();
+
+        // Event logging configuration
+        void setEventLoggingEnabled(bool enabled);
+        bool isEventLoggingEnabled() const;
+        void setEventLogDirectory(const String& directory);
+        String getEventLogDirectory() const;
+        
+        // Event logging methods
+        bool logEvent(const String& source, const String& description, const String& priority = "INFO");
+        bool logInfo(const String& source, const String& description);
+        bool logWarning(const String& source, const String& description);
+        bool logError(const String& source, const String& description);
+        bool logCritical(const String& source, const String& description);
+        
+        // Event log management
+        String getCurrentEventLogFile() const;
+        std::vector<String> getEventLogFiles();
+        bool deleteEventLogFile(const String& filename);
     
 private:
     String _lastError;

@@ -1,22 +1,48 @@
 
 ================================================================================
 File: Alarm.cpp
-Size: 15.65 kB
+Size: 21.72 kB
 ================================================================================
 
 #include "Alarm.h"
+#include "LoggerManager.h" 
+
+// Alarm::Alarm(AlarmType type, MeasurementPoint* source, AlarmPriority priority)
+//     : _type(type), _stage(AlarmStage::NEW), _priority(priority), _source(source),
+//       _timestamp(millis()), _acknowledgedTime(0), _clearedTime(0),
+//       _acknowledgedDelay(10 * 60 * 1000), // Default 10 minutes 
+//       _delayTime(5 * 60 * 1000), _enabled(true), _hysteresis(1) // Add _hysteresis(1) - 1 degree default
+// {
+//     if (_source) {
+//         _configKey = "alarm_" + String(_source->getAddress()) + "_" + String(static_cast<int>(_type));
+//     }
+
+//     _updateMessage();
+    
+//     Serial.printf("New alarm created: %s for point %d (%s)\n", 
+//                   getTypeString().c_str(), 
+//                   _source ? _source->getAddress() : -1,
+//                   _source ? _source->getName().c_str() : "Unknown");
+// }
 
 Alarm::Alarm(AlarmType type, MeasurementPoint* source, AlarmPriority priority)
     : _type(type), _stage(AlarmStage::NEW), _priority(priority), _source(source),
       _timestamp(millis()), _acknowledgedTime(0), _clearedTime(0),
-      _acknowledgedDelay(10 * 60 * 1000), // Default 10 minutes 
-      _delayTime(5 * 60 * 1000), _enabled(true), _hysteresis(1) // Add _hysteresis(1) - 1 degree default
+      _acknowledgedDelay(10 * 60 * 1000), _delayTime(5 * 60 * 1000), 
+      _enabled(true), _hysteresis(1)
 {
     if (_source) {
         _configKey = "alarm_" + String(_source->getAddress()) + "_" + String(static_cast<int>(_type));
     }
 
     _updateMessage();
+    
+    // LOG: Alarm creation
+    String source_ = "ALARM_" + String(_source ? _source->getAddress() : -1);
+    String description = "New alarm created: " + getTypeString() + 
+                        " for point " + String(_source ? _source->getAddress() : -1) + 
+                        " (" + (_source ? _source->getName() : "Unknown") + ")";
+    LoggerManager::info(source_, description);
     
     Serial.printf("New alarm created: %s for point %d (%s)\n", 
                   getTypeString().c_str(), 
@@ -25,11 +51,26 @@ Alarm::Alarm(AlarmType type, MeasurementPoint* source, AlarmPriority priority)
 }
 
 
+
+
+// Alarm::~Alarm() {
+//     Serial.printf("Alarm destroyed: %s for point %d\n", 
+//                   getTypeString().c_str(), 
+//                   _source ? _source->getAddress() : -1);
+// }
+
 Alarm::~Alarm() {
+    // LOG: Alarm destruction
+    String source_ = "ALARM_" + String(_source ? _source->getAddress() : -1);
+    String description = "Alarm destroyed: " + getTypeString() + 
+                        " for point " + String(_source ? _source->getAddress() : -1);
+    LoggerManager::info(source_, description);
+    
     Serial.printf("Alarm destroyed: %s for point %d\n", 
                   getTypeString().c_str(), 
                   _source ? _source->getAddress() : -1);
 }
+
 
 void Alarm::acknowledge() {
     if (_stage == AlarmStage::NEW || _stage == AlarmStage::ACTIVE) {
@@ -37,17 +78,32 @@ void Alarm::acknowledge() {
         _acknowledgedTime = millis();
         _updateMessage();
         
+        // LOG: Alarm acknowledgment
+        String source_ = "ALARM_" + String(_source ? _source->getAddress() : -1);
+        String description = "Alarm acknowledged: " + getTypeString() + 
+                            " for point " + String(_source ? _source->getAddress() : -1) + 
+                            " (" + (_source ? _source->getName() : "Unknown") + ")";
+        LoggerManager::info(source_, description);
+        
         Serial.printf("Alarm acknowledged: %s for point %d\n", 
                       getTypeString().c_str(), 
                       _source ? _source->getAddress() : -1);
     }
 }
 
+
 void Alarm::clear() {
     if (_stage == AlarmStage::ACTIVE || _stage == AlarmStage::ACKNOWLEDGED) {
         _stage = AlarmStage::CLEARED;
         _clearedTime = millis();
         _updateMessage();
+        
+        // LOG: Alarm cleared
+        String source_ = "ALARM_" + String(_source ? _source->getAddress() : -1);
+        String description = "Alarm cleared: " + getTypeString() + 
+                            " for point " + String(_source ? _source->getAddress() : -1) + 
+                            " (" + (_source ? _source->getName() : "Unknown") + ")";
+        LoggerManager::info(source_, description);
         
         Serial.printf("Alarm cleared: %s for point %d\n", 
                       getTypeString().c_str(), 
@@ -59,16 +115,31 @@ void Alarm::resolve() {
     _stage = AlarmStage::RESOLVED;
     _updateMessage();
     
+    // LOG: Alarm resolved
+    String source_ = "ALARM_" + String(_source ? _source->getAddress() : -1);
+    String description = "Alarm resolved: " + getTypeString() + 
+                        " for point " + String(_source ? _source->getAddress() : -1) + 
+                        " (" + (_source ? _source->getName() : "Unknown") + ")";
+    LoggerManager::info(source_, description);
+    
     Serial.printf("Alarm resolved: %s for point %d\n", 
                   getTypeString().c_str(), 
                   _source ? _source->getAddress() : -1);
 }
+
 
 void Alarm::reactivate() {
     if (_stage == AlarmStage::CLEARED) {
         _stage = _acknowledgedTime > 0 ? AlarmStage::ACKNOWLEDGED : AlarmStage::ACTIVE;
         _clearedTime = 0;
         _updateMessage();
+        
+        // LOG: Alarm reactivated
+        String source_ = "ALARM_" + String(_source ? _source->getAddress() : -1);
+        String description = "Alarm reactivated: " + getTypeString() + 
+                            " for point " + String(_source ? _source->getAddress() : -1) + 
+                            " (" + (_source ? _source->getName() : "Unknown") + ")";
+        LoggerManager::warning(source_, description);
         
         Serial.printf("Alarm reactivated: %s for point %d\n", 
                       getTypeString().c_str(), 
@@ -314,11 +385,46 @@ void Alarm::setConfigKey(const String& key) {
     _configKey = key;
 }
 
+void Alarm::setPriority(AlarmPriority priority) {
+    if (_priority != priority) {
+        AlarmPriority oldPriority = _priority;
+        _priority = priority;
+        
+        // LOG: Priority change
+        String source_ = "CONFIG_" + String(_source ? _source->getAddress() : -1);
+        String description = "Alarm priority changed from " + _getPriorityString(oldPriority) + 
+                            " to " + _getPriorityString(priority) + 
+                            " for " + getTypeString() + " alarm";
+        LoggerManager::info(source_, description);
+    }
+}
 
-void Alarm::setPriority(AlarmPriority priority){
-    _priority = priority;
-    
-};
+void Alarm::setHysteresis(int16_t hysteresis) {
+    if (_hysteresis != hysteresis) {
+        int16_t oldHysteresis = _hysteresis;
+        _hysteresis = hysteresis;
+        
+        // LOG: Hysteresis change
+        String source_ = "CONFIG_" + String(_source ? _source->getAddress() : -1);
+        String description = "Alarm hysteresis changed from " + String(oldHysteresis) + 
+                            " to " + String(hysteresis) + 
+                            " for " + getTypeString() + " alarm";
+        LoggerManager::info(source_, description);
+    }
+}
+
+void Alarm::setEnabled(bool enabled) {
+    if (_enabled != enabled) {
+        _enabled = enabled;
+        
+        // LOG: Enable/disable change
+        String source_ = "CONFIG_" + String(_source ? _source->getAddress() : -1);
+        String description = getTypeString() + " alarm " + (enabled ? "enabled" : "disabled");
+        LoggerManager::info(source_, description);
+    }
+}
+
+
 
 void Alarm::setStage(AlarmStage stage){
     _stage = stage;
@@ -328,7 +434,7 @@ void Alarm::setStage(AlarmStage stage){
 bool Alarm::updateCondition() {
     if (!_source) {
         Serial.println("Alarm updateCondition: No source");
-        return true; // Keep alarm even without source
+        return true;
     }
     
     bool conditionExists = _checkCondition();
@@ -338,14 +444,21 @@ bool Alarm::updateCondition() {
                   _source->getAddress(), getTypeString().c_str(), 
                   getStageString().c_str(), conditionExists ? "EXISTS" : "CLEARED");
     
+    String source_ = "ALARM_" + String(_source->getAddress());
+    String baseDescription = getTypeString() + " alarm for point " + 
+                            String(_source->getAddress()) + " (" + _source->getName() + ")";
+    
     switch (_stage) {
         case AlarmStage::NEW:
             if (conditionExists) {
                 _stage = AlarmStage::ACTIVE;
+                // LOG: NEW -> ACTIVE
+                LoggerManager::error(source_, baseDescription + " activated");
                 Serial.printf("Alarm %s: NEW -> ACTIVE\n", getTypeString().c_str());
             } else {
-                // Condition cleared before becoming active
                 resolve();
+                // LOG: NEW -> RESOLVED
+                LoggerManager::info(source_, baseDescription + " resolved before activation");
                 Serial.printf("Alarm %s: NEW -> RESOLVED (condition cleared)\n", getTypeString().c_str());
             }
             break;
@@ -353,6 +466,8 @@ bool Alarm::updateCondition() {
         case AlarmStage::ACTIVE:
             if (!conditionExists) {
                 clear();
+                // LOG: ACTIVE -> CLEARED
+                LoggerManager::info(source_, baseDescription + " condition cleared");
                 Serial.printf("Alarm %s: ACTIVE -> CLEARED (condition no longer exists)\n", getTypeString().c_str());
             }
             break;
@@ -360,46 +475,50 @@ bool Alarm::updateCondition() {
         case AlarmStage::ACKNOWLEDGED:
             if (!conditionExists) {
                 clear();
+                // LOG: ACKNOWLEDGED -> CLEARED
+                LoggerManager::info(source_, baseDescription + " condition cleared while acknowledged");
                 Serial.printf("Alarm %s: ACKNOWLEDGED -> CLEARED (condition no longer exists)\n", getTypeString().c_str());
             } else if (isAcknowledgedDelayElapsed()) {
-                // NEW: Return to ACTIVE if acknowledged delay has elapsed and condition still exists
                 _stage = AlarmStage::ACTIVE;
+                // LOG: ACKNOWLEDGED -> ACTIVE (timeout)
+                LoggerManager::warning(source_, baseDescription + " acknowledgment timeout - returned to active");
                 Serial.printf("Alarm %s: ACKNOWLEDGED -> ACTIVE (acknowledged delay elapsed)\n", getTypeString().c_str());
             }
             break;
             
         case AlarmStage::CLEARED:
             if (conditionExists) {
-                // Condition returned, always reactivate to ACTIVE state
                 _stage = AlarmStage::ACTIVE;
                 _clearedTime = 0;
-                Serial.printf("Alarm %s: CLEARED -> ACTIVE (condition returned)\n", 
-                             getTypeString().c_str());
+                // LOG: CLEARED -> ACTIVE (condition returned)
+                LoggerManager::warning(source_, baseDescription + " condition returned");
+                Serial.printf("Alarm %s: CLEARED -> ACTIVE (condition returned)\n", getTypeString().c_str());
             } else if (isDelayElapsed()) {
                 resolve();
+                // LOG: CLEARED -> RESOLVED (delay elapsed)
+                LoggerManager::info(source_, baseDescription + " auto-resolved after delay");
                 Serial.printf("Alarm %s: CLEARED -> RESOLVED (delay elapsed)\n", getTypeString().c_str());
             }
             break;
         
-            
         case AlarmStage::RESOLVED:
-            // Reactivate resolved alarms when condition returns
             if (conditionExists) {
-                _stage = AlarmStage::ACTIVE;  // Always go to ACTIVE, not ACKNOWLEDGED
-                _timestamp = millis(); // Reset timestamp
-                _acknowledgedTime = 0; // Reset acknowledged time
-                _clearedTime = 0;      // Reset cleared time
+                _stage = AlarmStage::ACTIVE;
+                _timestamp = millis();
+                _acknowledgedTime = 0;
+                _clearedTime = 0;
+                // LOG: RESOLVED -> ACTIVE (condition returned)
+                LoggerManager::error(source_, baseDescription + " reoccurred after resolution");
                 Serial.printf("Alarm %s: RESOLVED -> ACTIVE (condition returned)\n", getTypeString().c_str());
             }
             break;
-        
     }
     
     if (oldStage != _stage) {
         _updateMessage();
     }
     
-    return true; // Always keep alarm
+    return true;
 }
 
 
@@ -430,6 +549,17 @@ unsigned long Alarm::getAcknowledgedTimeLeft() const {
     }
     
     return _acknowledgedDelay - elapsed; // Time remaining in milliseconds
+}
+
+
+String Alarm::_getPriorityString(AlarmPriority priority) const {
+    switch (priority) {
+        case AlarmPriority::PRIORITY_LOW: return "LOW";
+        case AlarmPriority::PRIORITY_MEDIUM: return "MEDIUM";
+        case AlarmPriority::PRIORITY_HIGH: return "HIGH";
+        case AlarmPriority::PRIORITY_CRITICAL: return "CRITICAL";
+        default: return "UNKNOWN";
+    }
 }
 
 
@@ -820,7 +950,7 @@ String CSVConfigManager::_getAlarmPriorityForPoint(int pointAddress, AlarmType a
 
 ================================================================================
 File: ConfigManager.cpp
-Size: 51.38 kB
+Size: 52.79 kB
 ================================================================================
 
 #include "ConfigManager.h"
@@ -1068,19 +1198,25 @@ bool ConfigManager::begin() {
         
         if (upload.status == UPLOAD_FILE_START) {
             csvContent = "";
+            LoggerManager::info("CONFIG_IMPORT", 
+                "CSV upload started - filename: " + String(upload.filename.c_str()));
             Serial.printf("Upload Start: %s\n", upload.filename.c_str());
         } else if (upload.status == UPLOAD_FILE_WRITE) {
             csvContent += String((char*)upload.buf, upload.currentSize);
         } else if (upload.status == UPLOAD_FILE_END) {
             Serial.printf("Upload End: %s (%u bytes)\n", upload.filename.c_str(), upload.totalSize);
+            LoggerManager::info("CONFIG_IMPORT", 
+                "CSV upload completed - size: " + String(upload.totalSize) + " bytes");
             
             // Process the uploaded CSV
             if (csvManager.importPointsWithAlarmsFromCSV(csvContent)) {
                 saveAlarmsConfig();
                 savePointsConfig();
+                LoggerManager::info("CONFIG_IMPORT", "CSV import successful");
                 server->send(200, "application/json", "{\"success\":true}");
             } else {
                 String error = csvManager.getLastError();
+                LoggerManager::error("CONFIG_IMPORT", "CSV import failed: " + error);
                 server->send(400, "application/json", "{\"success\":false,\"error\":\"" + error + "\"}");
             }
             csvContent = "";
@@ -1742,16 +1878,28 @@ bool ConfigManager::begin() {
     //     }
     // });
 
-
+ // WiFi setup logging
+ bool startAP = true;
+ if (conf("st_ssid") != "" && conf("st_pass") != "") {
+     LoggerManager::info("CONFIG", "Attempting WiFi connection to: " + String(conf("st_ssid")));
+     if (connectWiFi(10000)) {
+         startAP = false;
+         LoggerManager::info("CONFIG", "WiFi connected successfully - IP: " + WiFi.localIP().toString());
+     } else {
+         LoggerManager::warning("CONFIG", "WiFi connection failed, starting AP mode");
+     }
+ } else {
+     LoggerManager::info("CONFIG", "No WiFi credentials configured, starting AP mode");
+ }
     
     // Setup WiFi
-    bool startAP = true;
-    if (conf("st_ssid") != "" && conf("st_pass") != "") {
-        // Try to connect to WiFi if credentials are available
-        if (connectWiFi(10000)) {
-            startAP = false;
-        }
-    }
+    // bool startAP = true;
+    // if (conf("st_ssid") != "" && conf("st_pass") != "") {
+    //     // Try to connect to WiFi if credentials are available
+    //     if (connectWiFi(10000)) {
+    //         startAP = false;
+    //     }
+    // }
     
     // Setup ConfigAssist with web server AFTER registering custom routes
     conf.setup(*server, startAP);
@@ -1768,16 +1916,19 @@ bool ConfigManager::begin() {
     
     // Apply configuration to controller
     controller.setDeviceId(getDeviceId());
-    Serial.println("Device ID set");
+    LoggerManager::info("CONFIG", "Device ID set to: " + String(getDeviceId()));
+    
     controller.setMeasurementPeriod(getMeasurementPeriod());
-    Serial.println("Measurement period set");
+    LoggerManager::info("CONFIG", "Measurement period set to: " + String(getMeasurementPeriod()) + " seconds");
 
-    // Load acknowledged delays from configuration
+    // Load acknowledged delays
     controller.setAcknowledgedDelayCritical(getAcknowledgedDelayCritical() * 60 * 1000);
     controller.setAcknowledgedDelayHigh(getAcknowledgedDelayHigh() * 60 * 1000);
     controller.setAcknowledgedDelayMedium(getAcknowledgedDelayMedium() * 60 * 1000);
     controller.setAcknowledgedDelayLow(getAcknowledgedDelayLow() * 60 * 1000);
-    Serial.println("Acknowledged delays configured");
+    LoggerManager::info("CONFIG", "Acknowledged delays configured");
+    
+    LoggerManager::info("CONFIG", "ConfigManager initialization completed successfully");
     
     return true;
 }
@@ -1845,6 +1996,7 @@ void ConfigManager::resetMinMaxValues() {
 
 // Save all measurement points and their bindings
 void ConfigManager::savePointsConfig() {
+    LoggerManager::info("CONFIG_SAVE", "Saving points configuration to /points2.ini");
     Serial.println('Save points to config ....');
     ConfigAssist pointsConf("/points2.ini", false);
 
@@ -1927,6 +2079,7 @@ void ConfigManager::savePointsConfig() {
 
 void ConfigManager::loadPointsConfig() {
     ConfigAssist pointsConf("/points2.ini", false);
+    LoggerManager::info("CONFIG_LOAD", "Loading points configuration from /points2.ini");
 
     // DS18B20 points
     for (uint8_t i = 0; i < 50; ++i) {
@@ -2136,13 +2289,13 @@ void ConfigManager::loadAlarmsConfig() {
     Serial.printf("Loaded %d valid alarm configurations\n", loadedCount);
 }
 
-
 ================================================================================
 File: IndicatorInterface.cpp
-Size: 29.62 kB
+Size: 29.81 kB
 ================================================================================
 
 #include "IndicatorInterface.h"
+
 
 // Static instance for interrupt handling
 IndicatorInterface* IndicatorInterface::_instance = nullptr;
@@ -3107,6 +3260,8 @@ void IndicatorInterface::_handleSpecialBlink() {
 
 
 void IndicatorInterface::startBlinking(const std::string& portName, unsigned long onTime, unsigned long offTime) {
+    LoggerManager::info("INDICATION", 
+        String(portName.c_str()) + " start blinking");
     // Check if port is already blinking
     for (auto& blinkPort : _blinkingPorts) {
         if (blinkPort.portName == portName) {
@@ -3134,6 +3289,8 @@ void IndicatorInterface::startBlinking(const std::string& portName, unsigned lon
 }
 
 void IndicatorInterface::stopBlinking(const std::string& portName) {
+    LoggerManager::info("INDICATION", 
+        String(portName.c_str()) + " stop blinking");
     for (auto it = _blinkingPorts.begin(); it != _blinkingPorts.end(); ++it) {
         if (it->portName == portName) {
             it->isActive = false;
@@ -3177,16 +3334,23 @@ bool IndicatorInterface::isBlinking(const std::string& portName) {
 
 ================================================================================
 File: LoggerManager.cpp
-Size: 16.75 kB
+Size: 25.04 kB
 ================================================================================
 
 #include "LoggerManager.h"
+#include "TemperatureController.h"  // Full include in .cpp file
+#include "MeasurementPoint.h"       // Add this include
+
+
+LoggerManager* LoggerManager::_instance = nullptr;
 
 LoggerManager::LoggerManager(TemperatureController& controller, TimeManager& timeManager, fs::FS& filesystem)
     : _controller(&controller), _timeManager(&timeManager), _fs(&filesystem),
       _logFrequency(60000), _lastLogTime(0), _headerWritten(false),
       _enabled(true), _logDirectory(""), _dailyFiles(true), _lastError(""),
-      _lastGeneratedHeader(""), _headerChanged(false), _fileSequenceNumber(0) {
+      _lastGeneratedHeader(""), _headerChanged(false), _fileSequenceNumber(0),
+      _eventLoggingEnabled(true), _eventLogDirectory(""), _currentEventLogFile(""), _lastEventLogDate("") {
+        _instance = this;
 }
 
 LoggerManager::~LoggerManager() {
@@ -3202,6 +3366,9 @@ bool LoggerManager::begin() {
     // Recover from existing files after reboot
     if (!_recoverFromExistingFiles()) {
         Serial.println("Warning: Could not recover from existing files, starting fresh");
+        // Initialize fresh
+        _fileSequenceNumber = 0;
+        _headerWritten = false;
     }
     
     // Generate current header for comparison
@@ -3211,12 +3378,55 @@ bool LoggerManager::begin() {
     _currentLogFile = _generateLogFileNameWithSequence();
     _lastLogDate = _getCurrentDateString();
     
+    // Initialize event logging
+    // if (_eventLoggingEnabled) {
+    //     _lastEventLogDate = _getCurrentDateString();
+    //     _currentEventLogFile = _generateEventLogFileName();
+        
+    //     if (!_ensureEventLogExists()) {
+    //         Serial.println("Warning: Could not initialize event log file");
+    //     } else {
+    //         Serial.printf("Event logging initialized. Event log file: %s\n", _currentEventLogFile.c_str());
+            
+    //         // Log system startup event
+    //         logInfo("SYSTEM", "LoggerManager initialized successfully");
+    //     }
+    // }
+    
     Serial.printf("LoggerManager initialized. Log file: %s\n", _currentLogFile.c_str());
     Serial.printf("File sequence number: %d\n", _fileSequenceNumber);
     Serial.printf("Log frequency: %lu ms\n", _logFrequency);
     
     return true;
 }
+
+bool LoggerManager::init() {
+    if (!_ensureDirectoryExists()) {
+        _lastError = "Failed to create log directory";
+        return false;
+    }
+    
+    // Initialize event logging
+    if (_eventLoggingEnabled) {
+        _lastEventLogDate = _getCurrentDateString();
+        _currentEventLogFile = _generateEventLogFileName();
+        
+        if (!_ensureEventLogExists()) {
+            Serial.println("Warning: Could not initialize event log file");
+        } else {
+            Serial.printf("Event logging initialized. Event log file: %s\n", _currentEventLogFile.c_str());
+            
+            // Log system startup event
+            logInfo("SYSTEM", "LoggerManager event logging initialized successfully");
+        }
+    }
+    
+    Serial.printf("LoggerManager event logging initialized. Log file: %s\n", _currentLogFile.c_str());
+    
+    
+    return true;
+}
+
 
 
 void LoggerManager::setLogFrequency(unsigned long frequencyMs) {
@@ -3262,15 +3472,22 @@ void LoggerManager::update() {
     
     unsigned long currentTime = millis();
     
-    // Check if it's time to log
+    // Check if it's time to log temperature data
     if (currentTime - _lastLogTime >= _logFrequency) {
-        // Check if we need a new daily file
+        // Check if we need new daily files
         if (_dailyFiles) {
             String currentDate = _getCurrentDateString();
             if (currentDate != _lastLogDate) {
                 // New day - recover from existing files for new date
                 _recoverFromExistingFiles();
                 _lastLogDate = currentDate;
+                
+                // Also update event log file for new day
+                if (_eventLoggingEnabled && currentDate != _lastEventLogDate) {
+                    _lastEventLogDate = currentDate;
+                    _currentEventLogFile = _generateEventLogFileName();
+                    logInfo("SYSTEM", "New day - event log file created: " + _currentEventLogFile);
+                }
             }
         }
         
@@ -3279,11 +3496,17 @@ void LoggerManager::update() {
             Serial.println("Header changed - creating new log file");
             _incrementSequenceNumber();
             createNewLogFile();
+            
+            // Log the configuration change event
+            if (_eventLoggingEnabled) {
+                logWarning("CONFIG", "Measurement point configuration changed - new data log file created");
+            }
         }
         
         logDataNow();
     }
 }
+
 
 
 
@@ -3338,14 +3561,21 @@ String LoggerManager::_generateLogFileNameWithSequence() {
     String dateStr = _getCurrentDateString();
     String filename;
     
+    // Always ensure we have a valid path starting with /
     if (_logDirectory.isEmpty()) {
         filename = "/temp_log_" + dateStr + "_" + String(_fileSequenceNumber) + ".csv";
     } else {
-        filename = _logDirectory + "/temp_log_" + dateStr + "_" + String(_fileSequenceNumber) + ".csv";
+        // Ensure _logDirectory starts with /
+        String dir = _logDirectory;
+        if (!dir.startsWith("/")) {
+            dir = "/" + dir;
+        }
+        filename = dir + "/temp_log_" + dateStr + "_" + String(_fileSequenceNumber) + ".csv";
     }
     
     return filename;
 }
+
 
 
 String LoggerManager::_generateCSVHeader() {
@@ -3755,9 +3985,189 @@ bool LoggerManager::createNewLogFile() {
 }
 
 
+
+// Event logging configuration methods
+void LoggerManager::setEventLoggingEnabled(bool enabled) {
+    _eventLoggingEnabled = enabled;
+    Serial.printf("Event logging %s\n", enabled ? "enabled" : "disabled");
+}
+
+bool LoggerManager::isEventLoggingEnabled() const {
+    return _eventLoggingEnabled;
+}
+
+void LoggerManager::setEventLogDirectory(const String& directory) {
+    _eventLogDirectory = directory;
+    if (!_eventLogDirectory.startsWith("/")) {
+        _eventLogDirectory = "/" + _eventLogDirectory;
+    }
+}
+
+String LoggerManager::getEventLogDirectory() const {
+    return _eventLogDirectory;
+}
+
+// Main event logging method
+bool LoggerManager::logEvent(const String& source, const String& description, const String& priority) {
+    if (!_eventLoggingEnabled) return false;
+    
+    // Check if we need a new event log file for today
+    String currentDate = _getCurrentDateString();
+    if (currentDate != _lastEventLogDate) {
+        _lastEventLogDate = currentDate;
+        _currentEventLogFile = _generateEventLogFileName();
+    }
+    
+    // Ensure event log file exists
+    if (!_ensureEventLogExists()) {
+        return false;
+    }
+    
+    // Generate timestamp
+    String timestamp = _getCurrentDateString() + " " + _getCurrentTimeString();
+    
+    // Write event row
+    return _writeEventRow(timestamp, source, description, priority);
+}
+
+// Convenience methods for different priority levels
+bool LoggerManager::logInfo(const String& source, const String& description) {
+    return logEvent(source, description, "INFO");
+}
+
+bool LoggerManager::logWarning(const String& source, const String& description) {
+    return logEvent(source, description, "WARNING");
+}
+
+bool LoggerManager::logError(const String& source, const String& description) {
+    return logEvent(source, description, "ERROR");
+}
+
+bool LoggerManager::logCritical(const String& source, const String& description) {
+    return logEvent(source, description, "CRITICAL");
+}
+
+// Event log file management
+String LoggerManager::getCurrentEventLogFile() const {
+    return _currentEventLogFile;
+}
+
+std::vector<String> LoggerManager::getEventLogFiles() {
+    std::vector<String> files;
+    
+    String dirPath = _eventLogDirectory.isEmpty() ? "/" : _eventLogDirectory;
+    File dir = _fs->open(dirPath.c_str());
+    
+    if (!dir || !dir.isDirectory()) {
+        return files;
+    }
+    
+    File file = dir.openNextFile();
+    while (file) {
+        String filename = String(file.name());
+        if (filename.startsWith("events_") && filename.endsWith(".csv")) {
+            String fullPath = dirPath;
+            if (!fullPath.endsWith("/")) fullPath += "/";
+            fullPath += filename;
+            files.push_back(fullPath);
+        }
+        file = dir.openNextFile();
+    }
+    
+    dir.close();
+    return files;
+}
+
+bool LoggerManager::deleteEventLogFile(const String& filename) {
+    String fullPath = _eventLogDirectory.isEmpty() ? "/" : _eventLogDirectory;
+    if (!fullPath.endsWith("/")) fullPath += "/";
+    fullPath += filename;
+    return _fs->remove(fullPath.c_str());
+}
+
+// Private event logging methods
+String LoggerManager::_generateEventLogFileName() {
+    String dateStr = _getCurrentDateString();
+    String filename;
+    
+    if (_eventLogDirectory.isEmpty()) {
+        filename = "/events_" + dateStr + ".csv";  // Always start with /
+    } else {
+        String dir = _eventLogDirectory;
+        if (!dir.startsWith("/")) {
+            dir = "/" + dir;
+        }
+        filename = dir + "/events_" + dateStr + ".csv";
+    }
+    
+    return filename;
+}
+
+
+bool LoggerManager::_ensureEventLogExists() {
+    // Check if event log file exists
+    File file = _fs->open(_currentEventLogFile.c_str(), FILE_READ);
+    if (file) {
+        file.close();
+        return true; // File exists
+    }
+    
+    // File doesn't exist, create it with header
+    return _writeEventHeader();
+}
+
+bool LoggerManager::_writeEventHeader() {
+    File file = _fs->open(_currentEventLogFile.c_str(), FILE_WRITE);
+    if (!file) {
+        _lastError = "Failed to open event log file for header writing: " + _currentEventLogFile;
+        return false;
+    }
+    
+    String header = "Timestamp,Source,Description,Priority\n";
+    size_t written = file.print(header);
+    file.close();
+    
+    if (written != header.length()) {
+        _lastError = "Failed to write complete event log header";
+        return false;
+    }
+    
+    Serial.printf("Event log header written to %s\n", _currentEventLogFile.c_str());
+    return true;
+}
+
+bool LoggerManager::_writeEventRow(const String& timestamp, const String& source, 
+                                  const String& description, const String& priority) {
+    File file = _fs->open(_currentEventLogFile.c_str(), FILE_APPEND);
+    if (!file) {
+        _lastError = "Failed to open event log file for writing: " + _currentEventLogFile;
+        return false;
+    }
+    
+    // Build event row with proper CSV escaping
+    String eventRow = _escapeCSVField(timestamp) + "," + 
+                     _escapeCSVField(source) + "," + 
+                     _escapeCSVField(description) + "," + 
+                     _escapeCSVField(priority) + "\n";
+    
+    size_t written = file.print(eventRow);
+    file.close();
+    
+    if (written != eventRow.length()) {
+        _lastError = "Failed to write complete event log row";
+        return false;
+    }
+    
+    // Also print to serial for debugging
+    Serial.printf("[%s] %s: %s (%s)\n", timestamp.c_str(), source.c_str(), description.c_str(), priority.c_str());
+    
+    return true;
+}
+
+
 ================================================================================
 File: MeasurementPoint.cpp
-Size: 3.07 kB
+Size: 4.01 kB
 ================================================================================
 
 #include "MeasurementPoint.h"
@@ -3821,16 +4231,39 @@ uint8_t MeasurementPoint::getErrorStatus() const {
 }
 
 void MeasurementPoint::setName(const String& newName) {
-    name = newName;
+    if (newName != name) {
+        String oldName = name.isEmpty() ? "Point_" + String(address) : name;
+        name = newName;
+        LoggerManager::info("POINT_CONFIG", 
+            "Point " + String(address) + " name changed from '" + 
+            oldName + "' to '" + name + "'");
+    }
+    //name = newName;
 }
 
 void MeasurementPoint::setLowAlarmThreshold(int16_t threshold) {
-    lowAlarmThreshold = threshold;
+
+    if (lowAlarmThreshold != threshold) {
+        LoggerManager::info("POINT_CONFIG", 
+            "Point " + String(address) + " (" + name + 
+            ") low alarm threshold changed from " + String(lowAlarmThreshold) + 
+            "°C to " + String(threshold) + "°C");
+        lowAlarmThreshold = threshold;
+    }
+
+    //lowAlarmThreshold = threshold;
     updateAlarmStatus();
 }
 
 void MeasurementPoint::setHighAlarmThreshold(int16_t threshold) {
-    highAlarmThreshold = threshold;
+    if (highAlarmThreshold != threshold) {
+        LoggerManager::info("POINT_CONFIG", 
+            "Point " + String(address) + " (" + name + 
+            ") high alarm threshold changed from " + String(highAlarmThreshold) + 
+            "°C to " + String(threshold) + "°C");
+        highAlarmThreshold = threshold;
+    }
+    //highAlarmThreshold = threshold;
     updateAlarmStatus();
 }
 
@@ -4417,28 +4850,36 @@ String SettingsCSVManager::_unescapeCSVField(const String& field) {
 
 ================================================================================
 File: TempModbusServer.cpp
-Size: 6.11 kB
+Size: 14.97 kB
 ================================================================================
 
 #include "TempModbusServer.h"
 
 TempModbusServer::TempModbusServer(RegisterMap& regMap, 
-                                uint8_t id, 
-                                HardwareSerial& serialPort, 
-                                int rx, 
-                                int tx, 
-                                int de,
-                                int baud) 
-    : registerMap(regMap), serverID(id), serial(serialPort), 
-      rxPin(rx), txPin(tx), baudRate(baud), dePin(de) {
-    
-    // Create ModbusRTU server with 2000ms timeout
-    mbServer = new ModbusServerRTU(1000, dePin);
-    
-    // Set static pointer to register map for worker functions
-    registerMapPtr = &regMap;
-    
+    uint8_t id, 
+    HardwareSerial& serialPort, 
+    int rx, 
+    int tx, 
+    int de,
+    int baud) 
+: registerMap(regMap), serverID(id), serial(serialPort), 
+rxPin(rx), txPin(tx), baudRate(baud), dePin(de) {
+
+// Create ModbusRTU server with 2000ms timeout
+mbServer = new ModbusServerRTU(1000, dePin);
+
+// Set static pointer to register map for worker functions
+registerMapPtr = &regMap;
+
+// LOG: Modbus server creation
+LoggerManager::info("MODBUS", 
+"Modbus server created - ID: " + String(id) + 
+", Baud: " + String(baud) + 
+", RX: " + String(rx) + 
+", TX: " + String(tx) + 
+", DE: " + String(de));
 }
+
 
 RegisterMap* TempModbusServer::registerMapPtr = nullptr;
 
@@ -4451,28 +4892,70 @@ TempModbusServer::~TempModbusServer() {
 }
 
 
+// bool TempModbusServer::begin() {
+//     // Prepare serial port for Modbus RTU
+//     RTUutils::prepareHardwareSerial(serial);
+//     Serial.println("Modbus begin1");
+//     if (baudRate == 0) {
+//         baudRate = 9600;
+//     }
+//     serial.begin(baudRate, SERIAL_8N1, rxPin, txPin);
+//     Serial.println("Modbus begin2");
+    
+//     // Register worker functions for different Modbus function codes
+//     mbServer->registerWorker(serverID, READ_HOLD_REGISTER, &TempModbusServer::readHoldingRegistersWorker);
+//     Serial.println("Modbus begin3");
+//     mbServer->registerWorker(serverID, WRITE_HOLD_REGISTER, &TempModbusServer::writeHoldingRegisterWorker);
+//     Serial.println("Modbus begin4");
+//     mbServer->registerWorker(serverID, WRITE_MULT_REGISTERS, &TempModbusServer::writeMultipleRegistersWorker);
+//     Serial.println("Modbus begin5");
+    
+//     // Start ModbusRTU server - note that begin() returns void
+//     mbServer->begin(serial);
+//     return true; // Assume success since we can't check
+// }
+
 bool TempModbusServer::begin() {
+    LoggerManager::info("MODBUS", "Starting Modbus RTU server initialization");
+    
     // Prepare serial port for Modbus RTU
     RTUutils::prepareHardwareSerial(serial);
     Serial.println("Modbus begin1");
+    
     if (baudRate == 0) {
         baudRate = 9600;
+        LoggerManager::warning("MODBUS", "Baud rate was 0, defaulting to 9600");
     }
+    
     serial.begin(baudRate, SERIAL_8N1, rxPin, txPin);
+    LoggerManager::info("MODBUS", 
+        "Serial port initialized - Baud: " + String(baudRate) + 
+        ", RX: " + String(rxPin) + 
+        ", TX: " + String(txPin));
     Serial.println("Modbus begin2");
     
     // Register worker functions for different Modbus function codes
     mbServer->registerWorker(serverID, READ_HOLD_REGISTER, &TempModbusServer::readHoldingRegistersWorker);
+    LoggerManager::info("MODBUS", "Registered READ_HOLD_REGISTER worker (FC=03)");
     Serial.println("Modbus begin3");
+    
     mbServer->registerWorker(serverID, WRITE_HOLD_REGISTER, &TempModbusServer::writeHoldingRegisterWorker);
+    LoggerManager::info("MODBUS", "Registered WRITE_HOLD_REGISTER worker (FC=06)");
     Serial.println("Modbus begin4");
+    
     mbServer->registerWorker(serverID, WRITE_MULT_REGISTERS, &TempModbusServer::writeMultipleRegistersWorker);
+    LoggerManager::info("MODBUS", "Registered WRITE_MULT_REGISTERS worker (FC=16)");
     Serial.println("Modbus begin5");
     
     // Start ModbusRTU server - note that begin() returns void
     mbServer->begin(serial);
+    
+    LoggerManager::info("MODBUS", 
+        "Modbus RTU server started successfully - Server ID: " + String(serverID));
+    
     return true; // Assume success since we can't check
 }
+
 
 
 void TempModbusServer::stop() {
@@ -4482,6 +4965,47 @@ void TempModbusServer::stop() {
 
 
 // Worker function for READ_HOLD_REGISTER (FC=03)
+// ModbusMessage TempModbusServer::readHoldingRegistersWorker(ModbusMessage request) {
+//     uint16_t address;           // Requested register address
+//     uint16_t words;             // Requested number of registers
+//     ModbusMessage response;     // Response message to be sent back
+    
+//     // Get request values
+//     request.get(2, address);
+//     request.get(4, words);
+    
+//     // Check if address and word count are valid
+//     if (words > 0 && words <= 125) {  // Max 125 registers per request as per Modbus spec
+//         // Set up response header
+//         response.add(request.getServerID(), request.getFunctionCode(), (uint8_t)(words * 2));
+        
+//         // Add requested register values to response
+//         bool allValid = true;
+//         for (uint16_t i = 0; i < words; i++) {
+//             uint16_t regValue = registerMapPtr->readHoldingRegister(address + i);
+            
+//             // Check if register read was successful - 0xFFFF is often used as an error indicator
+//             if (regValue != 0xFFFF) {
+//                 response.add(regValue);
+//             } else {
+//                 allValid = false;
+//                 break;
+//             }
+//         }
+        
+//         // If any register was invalid, return error response
+//         if (!allValid) {
+//             response.clear();
+//             response.setError(request.getServerID(), request.getFunctionCode(), ILLEGAL_DATA_ADDRESS);
+//         }
+//     } else {
+//         // Invalid word count, return error response
+//         response.setError(request.getServerID(), request.getFunctionCode(), ILLEGAL_DATA_ADDRESS);
+//     }
+    
+//     return response;
+// }
+
 ModbusMessage TempModbusServer::readHoldingRegistersWorker(ModbusMessage request) {
     uint16_t address;           // Requested register address
     uint16_t words;             // Requested number of registers
@@ -4491,6 +5015,12 @@ ModbusMessage TempModbusServer::readHoldingRegistersWorker(ModbusMessage request
     request.get(2, address);
     request.get(4, words);
     
+    // LOG: Read request received
+    LoggerManager::info("MODBUS_READ", 
+        "Read request - Address: " + String(address) + 
+        ", Count: " + String(words) + 
+        ", Client ID: " + String(request.getServerID()));
+    
     // Check if address and word count are valid
     if (words > 0 && words <= 125) {  // Max 125 registers per request as per Modbus spec
         // Set up response header
@@ -4498,14 +5028,23 @@ ModbusMessage TempModbusServer::readHoldingRegistersWorker(ModbusMessage request
         
         // Add requested register values to response
         bool allValid = true;
+        String readValues = "";
+        
         for (uint16_t i = 0; i < words; i++) {
             uint16_t regValue = registerMapPtr->readHoldingRegister(address + i);
             
             // Check if register read was successful - 0xFFFF is often used as an error indicator
             if (regValue != 0xFFFF) {
                 response.add(regValue);
+                if (i < 5) { // Log first 5 values to avoid spam
+                    readValues += String(address + i) + ":" + String(regValue) + " ";
+                } else if (i == 5) {
+                    readValues += "...";
+                }
             } else {
                 allValid = false;
+                LoggerManager::error("MODBUS_READ", 
+                    "Failed to read register " + String(address + i));
                 break;
             }
         }
@@ -4514,17 +5053,46 @@ ModbusMessage TempModbusServer::readHoldingRegistersWorker(ModbusMessage request
         if (!allValid) {
             response.clear();
             response.setError(request.getServerID(), request.getFunctionCode(), ILLEGAL_DATA_ADDRESS);
+            LoggerManager::error("MODBUS_READ", 
+                "Read failed - Invalid register address range: " + 
+                String(address) + "-" + String(address + words - 1));
+        } else {
+            LoggerManager::info("MODBUS_READ", 
+                "Read successful - " + String(words) + " registers: " + readValues);
         }
     } else {
         // Invalid word count, return error response
         response.setError(request.getServerID(), request.getFunctionCode(), ILLEGAL_DATA_ADDRESS);
+        LoggerManager::error("MODBUS_READ", 
+            "Read failed - Invalid word count: " + String(words) + " (max 125)");
     }
     
     return response;
 }
 
 
+
 // Worker function for WRITE_HOLD_REGISTER (FC=06)
+// ModbusMessage TempModbusServer::writeHoldingRegisterWorker(ModbusMessage request) {
+//     uint16_t address;           // Register address to write
+//     uint16_t value;             // Value to write
+//     ModbusMessage response;     // Response message to be sent back
+    
+//     // Get request values
+//     request.get(2, address);
+//     request.get(4, value);
+    
+//     // Try to write the value to the register
+//     if (registerMapPtr->writeHoldingRegister(address, value)) {
+//         // Success - echo the request as response
+//         return request;
+//     } else {
+//         // Failed - return error response
+//         response.setError(request.getServerID(), request.getFunctionCode(), ILLEGAL_DATA_ADDRESS);
+//         return response;
+//     }
+// }
+
 ModbusMessage TempModbusServer::writeHoldingRegisterWorker(ModbusMessage request) {
     uint16_t address;           // Register address to write
     uint16_t value;             // Value to write
@@ -4534,18 +5102,71 @@ ModbusMessage TempModbusServer::writeHoldingRegisterWorker(ModbusMessage request
     request.get(2, address);
     request.get(4, value);
     
+    // LOG: Write request received
+    LoggerManager::info("MODBUS_WRITE", 
+        "Write single register - Address: " + String(address) + 
+        ", Value: " + String(value) + 
+        ", Client ID: " + String(request.getServerID()));
+    
     // Try to write the value to the register
     if (registerMapPtr->writeHoldingRegister(address, value)) {
         // Success - echo the request as response
+        LoggerManager::info("MODBUS_WRITE", 
+            "Write successful - Register " + String(address) + " = " + String(value));
         return request;
     } else {
         // Failed - return error response
         response.setError(request.getServerID(), request.getFunctionCode(), ILLEGAL_DATA_ADDRESS);
+        LoggerManager::error("MODBUS_WRITE", 
+            "Write failed - Invalid register address: " + String(address));
         return response;
     }
 }
 
+
 // Worker function for WRITE_MULT_REGISTERS (FC=16)
+// ModbusMessage TempModbusServer::writeMultipleRegistersWorker(ModbusMessage request) {
+//     uint16_t address;           // Starting register address
+//     uint16_t words;             // Number of registers to write
+//     uint8_t bytesCount;         // Number of data bytes in request
+//     ModbusMessage response;     // Response message to be sent back
+    
+//     // Get request values
+//     request.get(2, address);
+//     request.get(4, words);
+//     request.get(6, bytesCount);
+    
+//     // Check if word count is valid
+//     if (words > 0 && words <= 123 && bytesCount == words * 2) {  // Max 123 registers per request
+//         bool allWritten = true;
+        
+//         // Write each register value
+//         for (uint16_t i = 0; i < words; i++) {
+//             uint16_t value;
+//             request.get(7 + i * 2, value);
+            
+//             if (!registerMapPtr->writeHoldingRegister(address + i, value)) {
+//                 allWritten = false;
+//                 break;
+//             }
+//         }
+        
+//         if (allWritten) {
+//             // Success - create response with address and word count
+//             response.add(request.getServerID(), request.getFunctionCode());
+//             response.add(address);
+//             response.add(words);
+//         } else {
+//             // Failed to write at least one register
+//             response.setError(request.getServerID(), request.getFunctionCode(), ILLEGAL_DATA_ADDRESS);
+//         }
+//     } else {
+//         // Invalid word count or byte count
+//         response.setError(request.getServerID(), request.getFunctionCode(), ILLEGAL_DATA_ADDRESS);
+//     }
+    
+//     return response;
+// }
 ModbusMessage TempModbusServer::writeMultipleRegistersWorker(ModbusMessage request) {
     uint16_t address;           // Starting register address
     uint16_t words;             // Number of registers to write
@@ -4557,17 +5178,33 @@ ModbusMessage TempModbusServer::writeMultipleRegistersWorker(ModbusMessage reque
     request.get(4, words);
     request.get(6, bytesCount);
     
+    // LOG: Multiple write request received
+    LoggerManager::info("MODBUS_WRITE", 
+        "Write multiple registers - Start: " + String(address) + 
+        ", Count: " + String(words) + 
+        ", Bytes: " + String(bytesCount) + 
+        ", Client ID: " + String(request.getServerID()));
+    
     // Check if word count is valid
     if (words > 0 && words <= 123 && bytesCount == words * 2) {  // Max 123 registers per request
         bool allWritten = true;
+        String writeValues = "";
         
         // Write each register value
         for (uint16_t i = 0; i < words; i++) {
             uint16_t value;
             request.get(7 + i * 2, value);
             
-            if (!registerMapPtr->writeHoldingRegister(address + i, value)) {
+            if (registerMapPtr->writeHoldingRegister(address + i, value)) {
+                if (i < 5) { // Log first 5 values to avoid spam
+                    writeValues += String(address + i) + ":" + String(value) + " ";
+                } else if (i == 5) {
+                    writeValues += "...";
+                }
+            } else {
                 allWritten = false;
+                LoggerManager::error("MODBUS_WRITE", 
+                    "Failed to write register " + String(address + i) + " = " + String(value));
                 break;
             }
         }
@@ -4577,13 +5214,21 @@ ModbusMessage TempModbusServer::writeMultipleRegistersWorker(ModbusMessage reque
             response.add(request.getServerID(), request.getFunctionCode());
             response.add(address);
             response.add(words);
+            LoggerManager::info("MODBUS_WRITE", 
+                "Multiple write successful - " + String(words) + " registers: " + writeValues);
         } else {
             // Failed to write at least one register
             response.setError(request.getServerID(), request.getFunctionCode(), ILLEGAL_DATA_ADDRESS);
+            LoggerManager::error("MODBUS_WRITE", 
+                "Multiple write failed - Error writing to register range: " + 
+                String(address) + "-" + String(address + words - 1));
         }
     } else {
         // Invalid word count or byte count
         response.setError(request.getServerID(), request.getFunctionCode(), ILLEGAL_DATA_ADDRESS);
+        LoggerManager::error("MODBUS_WRITE", 
+            "Multiple write failed - Invalid parameters: Words=" + String(words) + 
+            ", Bytes=" + String(bytesCount) + " (expected " + String(words * 2) + ")");
     }
     
     return response;
@@ -4592,7 +5237,7 @@ ModbusMessage TempModbusServer::writeMultipleRegistersWorker(ModbusMessage reque
 
 ================================================================================
 File: TemperatureController.cpp
-Size: 55.16 kB
+Size: 65.54 kB
 ================================================================================
 
 #include "TemperatureController.h"
@@ -4714,6 +5359,8 @@ bool TemperatureController::begin() {
     systemInitialized = true;
     Serial.println("Setup complete!");
     indicator.printConfiguration();
+    LoggerManager::info("SYSTEM", 
+        "TemperatureController started");
     return true;
 }
 
@@ -5000,41 +5647,61 @@ void TemperatureController::clearConfiguredAlarms() {
 //         indicator.writePort("Relay2", false);
 //     }
 // }
-
-
 void TemperatureController::handleAlarmOutputs() {
+    // Calculate alarm counts for logging
+    int activeAlarms = getAlarmCount(AlarmStage::ACTIVE);
+    int highPriorityAlarms = getAlarmCount(AlarmPriority::PRIORITY_HIGH, AlarmStage::ACKNOWLEDGED, ">=", ">=");
+    int lowPriorityAlarms = getAlarmCount(AlarmPriority::PRIORITY_LOW, AlarmStage::ACKNOWLEDGED, "==", ">=");
+    int criticalAlarms = getAlarmCount(AlarmPriority::PRIORITY_CRITICAL, AlarmStage::ACKNOWLEDGED, "==", ">=");
+    int mediumAlarms = getAlarmCount(AlarmPriority::PRIORITY_MEDIUM, AlarmStage::ACKNOWLEDGED, "==", ">=");
+    
     // Calculate new output states using enhanced getAlarmCount methods
-    bool newRelay1 = getAlarmCount(AlarmStage::ACTIVE) > 0;
-    
-    // HIGH or CRITICAL priority alarms in ACKNOWLEDGED or ACTIVE states
-    bool highPriorityRelay2 = getAlarmCount(AlarmPriority::PRIORITY_HIGH, AlarmStage::ACKNOWLEDGED, ">=", ">=") > 0;
-    
-    // LOW priority alarms in ACKNOWLEDGED or ACTIVE states (for blinking)
-    bool lowPriorityExists = getAlarmCount(AlarmPriority::PRIORITY_LOW, AlarmStage::ACKNOWLEDGED, "==", ">=") > 0;
-    
-    // CRITICAL priority alarms in ACKNOWLEDGED or ACTIVE states  
-    bool newRedLed = getAlarmCount(AlarmPriority::PRIORITY_CRITICAL, AlarmStage::ACKNOWLEDGED, "==", ">=") > 0;
-    
-    // HIGH priority alarms in ACKNOWLEDGED or ACTIVE states
+    bool newRelay1 = activeAlarms > 0;
+    bool highPriorityRelay2 = highPriorityAlarms > 0;
+    bool lowPriorityExists = lowPriorityAlarms > 0;
+    bool newRedLed = criticalAlarms > 0;
     bool newYellowLed = getAlarmCount(AlarmPriority::PRIORITY_HIGH, AlarmStage::ACKNOWLEDGED, "==", ">=") > 0;
+    bool mediumPriorityBlueLed = mediumAlarms > 0;
     
-    // MEDIUM priority alarms in ACKNOWLEDGED or ACTIVE states
-    bool mediumPriorityBlueLed = getAlarmCount(AlarmPriority::PRIORITY_MEDIUM, AlarmStage::ACKNOWLEDGED, "==", ">=") > 0;
+    // Log alarm summary if there are any changes or active alarms
+    static unsigned long lastSummaryLog = 0;
+    unsigned long now = millis();
+    if (now - lastSummaryLog > 30000 || // Log every 30 seconds
+        (activeAlarms > 0 && now - lastSummaryLog > 5000)) { // Or every 5 seconds if alarms active
+        
+        String summary = "Alarm summary - Active: " + String(activeAlarms) + 
+                        ", High: " + String(highPriorityAlarms) + 
+                        ", Medium: " + String(mediumAlarms) + 
+                        ", Low: " + String(lowPriorityAlarms) + 
+                        ", Critical: " + String(criticalAlarms);
+        LoggerManager::info("ALARM_OUTPUT", summary);
+        lastSummaryLog = now;
+    }
     
     // Handle blinking for low priority alarms
     if (lowPriorityExists) {
         // Start blinking if not already blinking
         if (!highPriorityRelay2 && !indicator.isBlinking("Relay2")) {
+            LoggerManager::info("INDICATION", 
+                "Starting Relay2 blinking for " + String(lowPriorityAlarms) + " low priority alarms");
             indicator.startBlinking("Relay2", 1000, 5000);  // 2s on, 30s off
         }
         
         if (!indicator.isBlinking("BlueLED")) {
+            LoggerManager::info("INDICATION", 
+                "Starting BlueLED blinking for " + String(lowPriorityAlarms) + " low priority alarms");
             indicator.startBlinking("BlueLED", 500, 500);    // 500ms on, 500ms off
         }
     } else {
         // Stop blinking if no low priority alarms
-        indicator.stopBlinking("Relay2");
-        indicator.stopBlinking("BlueLED");
+        if (indicator.isBlinking("Relay2")) {
+            LoggerManager::info("INDICATION", "Stopping Relay2 blinking - no low priority alarms");
+            indicator.stopBlinking("Relay2");
+        }
+        if (indicator.isBlinking("BlueLED")) {
+            LoggerManager::info("INDICATION", "Stopping BlueLED blinking - no low priority alarms");
+            indicator.stopBlinking("BlueLED");
+        }
     }
     
     // Calculate final states (excluding blinking ports)
@@ -5043,32 +5710,128 @@ void TemperatureController::handleAlarmOutputs() {
     
     // Only update non-blinking outputs if state has changed
     if (newRelay1 != _relay1State) {
+        String reason = newRelay1 ? 
+            ("Activated - " + String(activeAlarms) + " active alarms") : 
+            "Deactivated - no active alarms";
+        LoggerManager::info("INDICATION", "Relay1 " + reason);
+        
         indicator.writePort("Relay1", newRelay1);
         _relay1State = newRelay1;
     }
     
     // Only control Relay2 directly if not blinking for low priority
     if (!indicator.isBlinking("Relay2") && newRelay2 != _relay2State) {
+        String reason = newRelay2 ? 
+            ("Activated - " + String(highPriorityAlarms) + " high/critical priority alarms") : 
+            "Deactivated - no high/critical priority alarms";
+        LoggerManager::info("INDICATION", "Relay2 " + reason);
+        
         indicator.writePort("Relay2", newRelay2);
         _relay2State = newRelay2;
     }
     
     if (newRedLed != _redLedState) {
+        String reason = newRedLed ? 
+            ("ON - " + String(criticalAlarms) + " critical alarms") : 
+            "OFF - no critical alarms";
+        LoggerManager::info("INDICATION", "RedLED " + reason);
+        
         indicator.writePort("RedLED", newRedLed);
         _redLedState = newRedLed;
     }
     
     if (newYellowLed != _yellowLedState) {
+        String reason = newYellowLed ? 
+            ("ON - high priority alarms present") : 
+            "OFF - no high priority alarms";
+        LoggerManager::info("INDICATION", "YellowLED " + reason);
+        
         indicator.writePort("YellowLED", newYellowLed);
         _yellowLedState = newYellowLed;
     }
     
     // Only control BlueLED directly if not blinking for low priority
     if (!indicator.isBlinking("BlueLED") && newBlueLed != _blueLedState) {
+        String reason = newBlueLed ? 
+            ("ON - " + String(mediumAlarms) + " medium priority alarms") : 
+            "OFF - no medium priority alarms";
+        LoggerManager::info("INDICATION", "BlueLED " + reason);
+        
         indicator.writePort("BlueLED", newBlueLed);
         _blueLedState = newBlueLed;
     }
 }
+
+
+// void TemperatureController::handleAlarmOutputs() {
+//     // Calculate new output states using enhanced getAlarmCount methods
+//     bool newRelay1 = getAlarmCount(AlarmStage::ACTIVE) > 0;
+    
+//     // HIGH or CRITICAL priority alarms in ACKNOWLEDGED or ACTIVE states
+//     bool highPriorityRelay2 = getAlarmCount(AlarmPriority::PRIORITY_HIGH, AlarmStage::ACKNOWLEDGED, ">=", ">=") > 0;
+    
+//     // LOW priority alarms in ACKNOWLEDGED or ACTIVE states (for blinking)
+//     bool lowPriorityExists = getAlarmCount(AlarmPriority::PRIORITY_LOW, AlarmStage::ACKNOWLEDGED, "==", ">=") > 0;
+    
+//     // CRITICAL priority alarms in ACKNOWLEDGED or ACTIVE states  
+//     bool newRedLed = getAlarmCount(AlarmPriority::PRIORITY_CRITICAL, AlarmStage::ACKNOWLEDGED, "==", ">=") > 0;
+    
+//     // HIGH priority alarms in ACKNOWLEDGED or ACTIVE states
+//     bool newYellowLed = getAlarmCount(AlarmPriority::PRIORITY_HIGH, AlarmStage::ACKNOWLEDGED, "==", ">=") > 0;
+    
+//     // MEDIUM priority alarms in ACKNOWLEDGED or ACTIVE states
+//     bool mediumPriorityBlueLed = getAlarmCount(AlarmPriority::PRIORITY_MEDIUM, AlarmStage::ACKNOWLEDGED, "==", ">=") > 0;
+    
+//     // Handle blinking for low priority alarms
+//     if (lowPriorityExists) {
+//         // Start blinking if not already blinking
+//         if (!highPriorityRelay2 && !indicator.isBlinking("Relay2")) {
+//             indicator.startBlinking("Relay2", 1000, 5000);  // 2s on, 30s off
+            
+
+//         }
+        
+//         if (!indicator.isBlinking("BlueLED")) {
+//             indicator.startBlinking("BlueLED", 500, 500);    // 500ms on, 500ms off
+//         }
+//     } else {
+//         // Stop blinking if no low priority alarms
+//         indicator.stopBlinking("Relay2");
+//         indicator.stopBlinking("BlueLED");
+//     }
+    
+//     // Calculate final states (excluding blinking ports)
+//     bool newRelay2 = highPriorityRelay2;  // Don't set if blinking
+//     bool newBlueLed = mediumPriorityBlueLed;  // Don't set if blinking
+    
+//     // Only update non-blinking outputs if state has changed
+//     if (newRelay1 != _relay1State) {
+//         indicator.writePort("Relay1", newRelay1);
+//         _relay1State = newRelay1;
+//     }
+    
+//     // Only control Relay2 directly if not blinking for low priority
+//     if (!indicator.isBlinking("Relay2") && newRelay2 != _relay2State) {
+//         indicator.writePort("Relay2", newRelay2);
+//         _relay2State = newRelay2;
+//     }
+    
+//     if (newRedLed != _redLedState) {
+//         indicator.writePort("RedLED", newRedLed);
+//         _redLedState = newRedLed;
+//     }
+    
+//     if (newYellowLed != _yellowLedState) {
+//         indicator.writePort("YellowLED", newYellowLed);
+//         _yellowLedState = newYellowLed;
+//     }
+    
+//     // Only control BlueLED directly if not blinking for low priority
+//     if (!indicator.isBlinking("BlueLED") && newBlueLed != _blueLedState) {
+//         indicator.writePort("BlueLED", newBlueLed);
+//         _blueLedState = newBlueLed;
+//     }
+// }
 
 
 
@@ -5241,8 +6004,25 @@ bool TemperatureController::bindSensorToPointByRom(const String& romString, uint
     Sensor* sensor = findSensorByRom(romString);
     unbindSensorFromPointBySensor(sensor);
     MeasurementPoint* point = getMeasurementPoint(pointAddress);
-    if (!sensor || !point) return false;
-    point->bindSensor(sensor);
+    if (!sensor || !point){
+        LoggerManager::warning("BINDING", 
+            "Failed to bind sensor " + romString + " to point " + String(pointAddress));
+        
+        return false;} 
+
+        point->bindSensor(sensor);
+    
+
+
+        String pointName = point->getName().isEmpty() ? 
+            "Point_" + String(pointAddress) : point->getName();
+        LoggerManager::info("BINDING", 
+            "Sensor " + romString + " bound to point " + String(pointAddress) + 
+            " (" + pointName + ")");
+
+
+
+
     return true;
 }
 
@@ -5254,14 +6034,40 @@ bool TemperatureController::bindSensorToPointByChipSelect(uint8_t csPin, uint8_t
     Sensor* sensor = findSensorByChipSelect(csPin);
     unbindSensorFromPointBySensor(sensor);
     MeasurementPoint* point = getMeasurementPoint(pointAddress);
-    if (!sensor || !point) return false;
+    if (!sensor || !point) {
+        
+        LoggerManager::warning("BINDING", 
+            "Failed to bind PT1000 sensor CS" + String(csPin) + 
+            " to point " + String(pointAddress));
+        return false;}
     point->bindSensor(sensor);
+    String pointName = point->getName().isEmpty() ? 
+            "Point_" + String(pointAddress) : point->getName();
+        LoggerManager::info("BINDING", 
+            "PT1000 sensor CS" + String(csPin) + " bound to point " + 
+            String(pointAddress) + " (" + pointName + ")");
     return true;
 }
 
 bool TemperatureController::unbindSensorFromPoint(uint8_t pointAddress) {
     MeasurementPoint* point = getMeasurementPoint(pointAddress);
-    if (!point) return false;
+    if (!point) {
+        LoggerManager::error("BINDING", 
+            "Faild to unbound sensor from point " + String(pointAddress) + 
+            " (" + point->getName() + ")");
+        return false;
+    }
+
+    if (point->getBoundSensor()) {
+        String sensorInfo = point->getBoundSensor()->getType() == SensorType::DS18B20 ? 
+        point->getBoundSensor()->getDS18B20RomString() : 
+            "CS" + String(point->getBoundSensor()->getPT1000ChipSelectPin());
+        
+        LoggerManager::info("BINDING", 
+            "Sensor " + sensorInfo + " unbound from point " + String(pointAddress) + 
+            " (" + point->getName() + ")");
+    }
+
     point->unbindSensor();
     return true;
 }
@@ -5302,6 +6108,8 @@ void TemperatureController::applyConfigToRegisterMap() {
 bool TemperatureController::discoverDS18B20Sensors() {
     bool anyAdded = false;
     Serial.println("Discover method started...");
+    LoggerManager::info("DISCOVERY", "Starting DS18B20 sensor discovery");
+    uint totalFound = 0;
     // OneWire oneWire[] = { OneWire(oneWireBusPin[0]), OneWire(oneWireBusPin[1]), OneWire(oneWireBusPin[2]), OneWire(oneWireBusPin[3]) };
     // DallasTemperature dallasSensors[] = {DallasTemperature(&oneWire[0]), DallasTemperature(&oneWire[1]), DallasTemperature(&oneWire[2]), DallasTemperature(&oneWire[3])};
     for (uint j = 0; j < 4; j++){
@@ -5314,8 +6122,13 @@ bool TemperatureController::discoverDS18B20Sensors() {
     int deviceCount = dallasSensors[j]->getDeviceCount();
     Serial.printf("Devices on bus %d: %d\n", j, deviceCount);
     if (deviceCount == 0) continue;
+    totalFound += deviceCount;
 
     DeviceAddress sensorAddress;
+    if (deviceCount > 0) {
+        LoggerManager::info("DISCOVERY", 
+            "Found " + String(deviceCount) + " DS18B20 sensors on bus " + String(j));
+        }
     
 
     for (int i = 0; i < deviceCount; i++) {
@@ -5351,6 +6164,7 @@ bool TemperatureController::discoverDS18B20Sensors() {
                 registerMap.incrementActiveDS18B20();
                 anyAdded = true;
                 Serial.printf("Sensor %s set on bus %d/ pin %d status: Connected\n", newSensor->getName(), getSensorBus(newSensor), newSensor->getOneWirePin());
+                
 
             } else {
                 delete newSensor;
@@ -5358,6 +6172,10 @@ bool TemperatureController::discoverDS18B20Sensors() {
         }
     }
     }
+
+    LoggerManager::info("DISCOVERY", 
+        "DS18B20 discovery completed. Total sensors: " + String(totalFound));
+
     return anyAdded;
 }
 
@@ -5365,6 +6183,7 @@ bool TemperatureController::discoverDS18B20Sensors() {
 bool TemperatureController::discoverPTSensors() {
     bool anyAdded = false;
     Serial.println("Discover PT method started...");
+    LoggerManager::info("DISCOVERY", "Starting PT1000 sensor discovery");
     for (uint j = 0; j < 4; j++){
         Serial.printf("Bus: %d: PIN: %d", j, chipSelectPin[j]);
     }
@@ -5372,6 +6191,8 @@ bool TemperatureController::discoverPTSensors() {
     // DallasTemperature dallasSensors[] = {DallasTemperature(&oneWire[0]), DallasTemperature(&oneWire[1]), DallasTemperature(&oneWire[2]), DallasTemperature(&oneWire[3])};
     for (uint j = 0; j < 4; j++){
         Serial.printf("Discover PT: bus %d pin %d started...\n", j, chipSelectPin[j]);
+        
+
         if(findSensorByChipSelect(chipSelectPin[j]) != nullptr){
             Serial.printf("Sensor already discovered on bus %d\n", j);
             continue;
@@ -5387,6 +6208,7 @@ bool TemperatureController::discoverPTSensors() {
 
             newSensor->setupPT1000(chipSelectPin[j], j);
             Serial.printf("Sensor %s set on bus %d/ pin %d\n", newSensor->getName(), getSensorBus(newSensor), newSensor->getPT1000ChipSelectPin());
+            
 
             if (newSensor->initialize()) {
 
@@ -5397,6 +6219,8 @@ bool TemperatureController::discoverPTSensors() {
                 registerMap.incrementActivePT1000();
                 anyAdded = true;
                 Serial.printf("Sensor %s set on bus %d/ pin %d status: Connected\n", newSensor->getName(), getSensorBus(newSensor), newSensor->getPT1000ChipSelectPin());
+                LoggerManager::info("DISCOVERY", 
+                    "Added PT1000 sensor on bus: " + String(getSensorBus(newSensor)) + ", CS pin: " + String(newSensor->getPT1000ChipSelectPin()));
 
             } else {
                 delete newSensor;
@@ -5547,6 +6371,7 @@ String TemperatureController::getSystemStatusJson() {
 }
 
 void TemperatureController::resetMinMaxValues() {
+    LoggerManager::info("SYSTEM", "Min/Max temperature values reset");
     for (uint8_t i = 0; i < 50; ++i)
         dsPoints[i].resetMinMaxTemp();
     for (uint8_t i = 0; i < 10; ++i)
@@ -5554,8 +6379,11 @@ void TemperatureController::resetMinMaxValues() {
 }
 
 void TemperatureController::setDeviceId(uint16_t id) {
+    uint16_t oldId = deviceId;
     deviceId = id;
     registerMap.writeHoldingRegister(0, deviceId);
+    LoggerManager::info("CONFIG", 
+        "Device ID changed from " + String(oldId) + " to " + String(deviceId));
 }
 
 uint16_t TemperatureController::getDeviceId() const { return deviceId; }
@@ -5569,6 +6397,13 @@ uint16_t TemperatureController::getFirmwareVersion() const { return firmwareVers
 
 void TemperatureController::setMeasurementPeriod(uint16_t seconds) {
     measurementPeriodSeconds = seconds;
+    if (measurementPeriodSeconds != seconds) {
+        uint16_t oldPeriod = measurementPeriodSeconds;
+        measurementPeriodSeconds = seconds;
+        LoggerManager::info("CONFIG", 
+            "Measurement period changed from " + String(oldPeriod) + 
+            "s to " + String(measurementPeriodSeconds) + "s");
+    }
 }
 
 uint16_t TemperatureController::getMeasurementPeriod() const {
@@ -5602,6 +6437,26 @@ int TemperatureController::getPT1000Count() const {
 void TemperatureController::updateAllSensors() {
     for (auto sensor : sensors) {
         sensor->readTemperature();
+    }
+
+    for (auto& sensor : sensors) {
+        if (sensor->getErrorStatus() != 0) {
+            static std::map<Sensor*, unsigned long> lastErrorLog;
+            unsigned long now = millis();
+            
+            // Only log errors every 5 minutes to avoid spam
+            if (lastErrorLog[sensor] == 0 || (now - lastErrorLog[sensor]) > 300000) {
+                String sensorId = sensor->getType() == SensorType::DS18B20 ? 
+                    sensor->getDS18B20RomString() : 
+                    "BUS " + String(getSensorBus(sensor));
+                
+                LoggerManager::error("SENSOR", 
+                    "Sensor error detected: " + sensorId + 
+                    " (Error code: " + String(sensor->getErrorStatus()) + ")");
+                
+                lastErrorLog[sensor] = now;
+            }
+        }
     }
 }
 
@@ -5702,15 +6557,30 @@ bool TemperatureController::addAlarm(AlarmType type, uint8_t pointAddress, Alarm
     _configuredAlarms.push_back(newAlarm);
     
     Serial.printf("Added alarm configuration: %s\n", configKey.c_str());
+    if (newAlarm) {
+        MeasurementPoint* point = getMeasurementPoint(pointAddress);
+        String pointName = point ? point->getName() : "Unknown";
+        LoggerManager::info("ALARM_CONFIG", 
+            "Added " + newAlarm->getTypeString() + " alarm for point " + 
+            String(pointAddress) + " (" + pointName + ") with priority " + 
+            _getPriorityString(priority));
+    } else {
+        LoggerManager::warning("ALARM_CONFIG", 
+            "Failed to add " + newAlarm->getTypeString() + " alarm for point " + 
+            String(pointAddress));
+    }
     return true;
 }
 
 bool TemperatureController::removeAlarm(const String& configKey) {
     for (auto it = _configuredAlarms.begin(); it != _configuredAlarms.end(); ++it) {
         if ((*it)->getConfigKey() == configKey) {
+            
             delete *it;
             _configuredAlarms.erase(it);
             Serial.printf("Removed alarm configuration: %s\n", configKey.c_str());
+            LoggerManager::info("ALARM_CONFIG", 
+                "Removed alarm configuration: " + String(configKey.c_str()));
             return true;
         }
     }
@@ -6182,20 +7052,35 @@ void TemperatureController::_checkButtonPress() {
 }
 
 // Helper method to get priority string
-String TemperatureController::_getPriorityString(AlarmPriority priority) const {
-    switch (priority) {
-        case AlarmPriority::PRIORITY_LOW: return "LOW";
-        case AlarmPriority::PRIORITY_MEDIUM: return "MEDIUM";
-        case AlarmPriority::PRIORITY_HIGH: return "HIGH";
-        case AlarmPriority::PRIORITY_CRITICAL: return "CRITICAL";
-        default: return "UNKNOWN";
+
+
+
+
+
+    String TemperatureController::_getAlarmTypeString(AlarmType type) const {
+        switch (type) {
+            case AlarmType::HIGH_TEMPERATURE: return "HIGH_TEMP";
+            case AlarmType::LOW_TEMPERATURE: return "LOW_TEMP";
+            case AlarmType::SENSOR_ERROR: return "SENSOR_ERROR";
+            case AlarmType::SENSOR_DISCONNECTED: return "DISCONNECTED";
+            default: return "UNKNOWN";
+        }
     }
-}
+    
+    String TemperatureController::_getPriorityString(AlarmPriority priority) const {
+        switch (priority) {
+            case AlarmPriority::PRIORITY_LOW: return "LOW";
+            case AlarmPriority::PRIORITY_MEDIUM: return "MEDIUM";
+            case AlarmPriority::PRIORITY_HIGH: return "HIGH";
+            case AlarmPriority::PRIORITY_CRITICAL: return "CRITICAL";
+            default: return "UNKNOWN";
+        }
+    }
 
 
 ================================================================================
 File: TimeManager.cpp
-Size: 10.64 kB
+Size: 11.43 kB
 ================================================================================
 
 #include "TimeManager.h"
@@ -6214,9 +7099,9 @@ TimeManager::~TimeManager() {
     }
 }
 
-bool TimeManager::begin() {
+bool TimeManager::init() {
     // Initialize I2C
-    Wire.begin(_sdaPin, _sclPin);
+    //Wire.begin(_sdaPin, _sclPin);
     
     // Initialize RTC
     if (!_rtc.begin()) {
@@ -6234,6 +7119,37 @@ bool TimeManager::begin() {
     } else {
         _timeSet = true;
     }
+    
+    // // Initialize NTP
+    // _initializeNTP();
+    
+    // // Load saved configuration
+    // loadConfig();
+    
+    // Serial.println("TimeManager: Initialized successfully");
+    return true;
+}
+
+bool TimeManager::begin() {
+    // Initialize I2C
+    // Wire.begin(_sdaPin, _sclPin);
+    
+    // // Initialize RTC
+    // if (!_rtc.begin()) {
+    //     Serial.println("TimeManager: Couldn't find RTC");
+    //     _rtcConnected = false;
+    //     return false;
+    // }
+    
+    // _rtcConnected = true;
+    
+    // // Check if RTC lost power and set compile time if needed
+    // if (_rtc.lostPower()) {
+    //     Serial.println("TimeManager: RTC lost power, setting compile time");
+    //     setTimeFromCompileTime();
+    // } else {
+    //     _timeSet = true;
+    // }
     
     // Initialize NTP
     _initializeNTP();
@@ -6600,7 +7516,7 @@ String TimeManager::_formatDateTime(DateTime dt, const String& format) {
 
 ================================================================================
 File: main.cpp
-Size: 5.69 kB
+Size: 5.94 kB
 ================================================================================
 
 #include <Arduino.h>
@@ -6677,6 +7593,45 @@ void setup() {
 
     SPI.begin(SCK_PIN, MISO_PIN, MOSI_PIN);  // SCK, MISO, MOSI, SS
 
+
+
+    // Initialize time manager
+    if (timeManager.init()) {
+        Serial.println("TimeManager initialized successfully");
+        
+        // Set timezone (GMT+3 for Moscow)
+        timeManager.setTimezone(3, 0);
+        
+  
+    }
+
+    // Configure logging
+    logger.setLogDirectory("/logs"); 
+    logger.setEventLogDirectory("/logs");
+    logger.setLogFrequency(2000);  // Log every 30 seconds
+    logger.setDailyFiles(true);     // Create new file each day
+    logger.setEnabled(true);        // Enable logging
+
+    // Initialize SD card
+    if (!SD.begin(CS5_PIN_TF_CARD)) {
+        Serial.println("SD Card initialization failed");
+        return;
+    }
+    
+    // Initialize logger
+    if (!logger.init()) {
+        Serial.println("Logger initialization failed");
+    } else {
+        Serial.println("Logger initialized successfully");
+    }
+    
+    logger.info("SYSTEM", "Temperature controller started");
+
+
+
+
+    
+
     // Configure all CS pins as OUTPUT
     pinMode(CS1_PIN, OUTPUT);
     pinMode(CS2_PIN, OUTPUT); 
@@ -6741,40 +7696,18 @@ void setup() {
         }
     }
 
-    // Initialize time manager
-    if (timeManager.begin()) {
-        Serial.println("TimeManager initialized successfully");
-        
-        // Set timezone (GMT+3 for Moscow)
-        timeManager.setTimezone(3, 0);
-        
-        // Sync with NTP when WiFi connects
-        if (WiFi.status() == WL_CONNECTED) {
+
+    if(timeManager.begin()){
+          // Sync with NTP when WiFi connects
+          if (WiFi.status() == WL_CONNECTED) {
             timeManager.setTimeFromNTP();
         }
     }
-
-    // Configure logging
-    logger.setLogDirectory("/logs"); 
-    logger.setLogFrequency(2000);  // Log every 30 seconds
-    logger.setDailyFiles(true);     // Create new file each day
-    logger.setEnabled(true);        // Enable logging
-
-    // Initialize SD card
-    if (!SD.begin(CS5_PIN_TF_CARD)) {
-        Serial.println("SD Card initialization failed");
-        return;
-    }
     
-    // Initialize logger
-    if (!logger.begin()) {
-        Serial.println("Logger initialization failed");
-    }
+    logger.begin();
+
+
     
-    
-
-
-
 
     
     Serial.println("\nSystem is now running...");

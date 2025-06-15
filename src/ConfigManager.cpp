@@ -243,19 +243,25 @@ bool ConfigManager::begin() {
         
         if (upload.status == UPLOAD_FILE_START) {
             csvContent = "";
+            LoggerManager::info("CONFIG_IMPORT", 
+                "CSV upload started - filename: " + String(upload.filename.c_str()));
             Serial.printf("Upload Start: %s\n", upload.filename.c_str());
         } else if (upload.status == UPLOAD_FILE_WRITE) {
             csvContent += String((char*)upload.buf, upload.currentSize);
         } else if (upload.status == UPLOAD_FILE_END) {
             Serial.printf("Upload End: %s (%u bytes)\n", upload.filename.c_str(), upload.totalSize);
+            LoggerManager::info("CONFIG_IMPORT", 
+                "CSV upload completed - size: " + String(upload.totalSize) + " bytes");
             
             // Process the uploaded CSV
             if (csvManager.importPointsWithAlarmsFromCSV(csvContent)) {
                 saveAlarmsConfig();
                 savePointsConfig();
+                LoggerManager::info("CONFIG_IMPORT", "CSV import successful");
                 server->send(200, "application/json", "{\"success\":true}");
             } else {
                 String error = csvManager.getLastError();
+                LoggerManager::error("CONFIG_IMPORT", "CSV import failed: " + error);
                 server->send(400, "application/json", "{\"success\":false,\"error\":\"" + error + "\"}");
             }
             csvContent = "";
@@ -917,16 +923,28 @@ bool ConfigManager::begin() {
     //     }
     // });
 
-
+ // WiFi setup logging
+ bool startAP = true;
+ if (conf("st_ssid") != "" && conf("st_pass") != "") {
+     LoggerManager::info("CONFIG", "Attempting WiFi connection to: " + String(conf("st_ssid")));
+     if (connectWiFi(10000)) {
+         startAP = false;
+         LoggerManager::info("CONFIG", "WiFi connected successfully - IP: " + WiFi.localIP().toString());
+     } else {
+         LoggerManager::warning("CONFIG", "WiFi connection failed, starting AP mode");
+     }
+ } else {
+     LoggerManager::info("CONFIG", "No WiFi credentials configured, starting AP mode");
+ }
     
     // Setup WiFi
-    bool startAP = true;
-    if (conf("st_ssid") != "" && conf("st_pass") != "") {
-        // Try to connect to WiFi if credentials are available
-        if (connectWiFi(10000)) {
-            startAP = false;
-        }
-    }
+    // bool startAP = true;
+    // if (conf("st_ssid") != "" && conf("st_pass") != "") {
+    //     // Try to connect to WiFi if credentials are available
+    //     if (connectWiFi(10000)) {
+    //         startAP = false;
+    //     }
+    // }
     
     // Setup ConfigAssist with web server AFTER registering custom routes
     conf.setup(*server, startAP);
@@ -943,16 +961,19 @@ bool ConfigManager::begin() {
     
     // Apply configuration to controller
     controller.setDeviceId(getDeviceId());
-    Serial.println("Device ID set");
+    LoggerManager::info("CONFIG", "Device ID set to: " + String(getDeviceId()));
+    
     controller.setMeasurementPeriod(getMeasurementPeriod());
-    Serial.println("Measurement period set");
+    LoggerManager::info("CONFIG", "Measurement period set to: " + String(getMeasurementPeriod()) + " seconds");
 
-    // Load acknowledged delays from configuration
+    // Load acknowledged delays
     controller.setAcknowledgedDelayCritical(getAcknowledgedDelayCritical() * 60 * 1000);
     controller.setAcknowledgedDelayHigh(getAcknowledgedDelayHigh() * 60 * 1000);
     controller.setAcknowledgedDelayMedium(getAcknowledgedDelayMedium() * 60 * 1000);
     controller.setAcknowledgedDelayLow(getAcknowledgedDelayLow() * 60 * 1000);
-    Serial.println("Acknowledged delays configured");
+    LoggerManager::info("CONFIG", "Acknowledged delays configured");
+    
+    LoggerManager::info("CONFIG", "ConfigManager initialization completed successfully");
     
     return true;
 }
@@ -1020,6 +1041,7 @@ void ConfigManager::resetMinMaxValues() {
 
 // Save all measurement points and their bindings
 void ConfigManager::savePointsConfig() {
+    LoggerManager::info("CONFIG_SAVE", "Saving points configuration to /points2.ini");
     Serial.println('Save points to config ....');
     ConfigAssist pointsConf("/points2.ini", false);
 
@@ -1102,6 +1124,7 @@ void ConfigManager::savePointsConfig() {
 
 void ConfigManager::loadPointsConfig() {
     ConfigAssist pointsConf("/points2.ini", false);
+    LoggerManager::info("CONFIG_LOAD", "Loading points configuration from /points2.ini");
 
     // DS18B20 points
     for (uint8_t i = 0; i < 50; ++i) {

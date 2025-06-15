@@ -18,6 +18,7 @@ public:
     
     // Initialization
     bool begin();
+    bool init();
     
     // Time setting methods
     bool setTimeFromNTP(const char* ntpServer = "pool.ntp.org");

@@ -1,7 +1,7 @@
 
 ================================================================================
 File: Alarm.h
-Size: 4.37 kB
+Size: 4.41 kB
 ================================================================================
 
 #pragma once
@@ -9,6 +9,7 @@ Size: 4.37 kB
 #include <Arduino.h>
 #include <vector>
 #include "MeasurementPoint.h"
+#include "LoggerManager.h"
 
 // Forward declaration
 class MeasurementPoint;
@@ -91,13 +92,13 @@ public:
     String getConfigKey() const;
     void setConfigKey(const String& key);
     bool isEnabled() const { return _enabled; }
-    void setEnabled(bool enabled) { _enabled = enabled; }
+    void setEnabled(bool enabled);
     uint8_t getPointAddress() const { return _source ? _source->getAddress() : 255; }
 
     void setPriority(AlarmPriority priority);
     void setStage(AlarmStage stage);
     
-    void setHysteresis(int16_t hysteresis) { _hysteresis = hysteresis; }
+    void setHysteresis(int16_t hysteresis);
     int16_t getHysteresis() const { return _hysteresis; }
 
     void setAcknowledgedDelay(unsigned long delay);
@@ -136,6 +137,7 @@ private:
     String _configKey;  // Format: "alarm_<point>_<type>"
     bool _enabled;      // Whether this alarm is active in configuration
     unsigned long _acknowledgedDelay; 
+    String _getPriorityString(AlarmPriority priority) const;
 };
 
 // Alarm comparison function for sorting by priority and timestamp
@@ -204,7 +206,7 @@ private:
 
 ================================================================================
 File: ConfigManager.h
-Size: 4.01 kB
+Size: 4.04 kB
 ================================================================================
 
 #ifndef CONFIG_MANAGER_H
@@ -218,6 +220,7 @@ Size: 4.01 kB
 #include "TemperatureController.h"
 #include "CSVConfigManager.h"
 #include "SettingsCSVManager.h"
+#include "LoggerManager.h" 
 
 // YAML configuration definition
 extern const char* VARIABLES_DEF_YAML;
@@ -326,7 +329,7 @@ public:
 
 ================================================================================
 File: IndicatorInterface.h
-Size: 6.03 kB
+Size: 6.05 kB
 ================================================================================
 
 #ifndef INDICATOR_INTERFACE_H
@@ -339,6 +342,7 @@ Size: 6.03 kB
 #include "PCF8575.h"
 #include <U8g2lib.h>
 #include <vector>
+#include "LoggerManager.h"
 
 class IndicatorInterface {
 public:
@@ -519,7 +523,7 @@ private:
 
 ================================================================================
 File: LoggerManager.h
-Size: 2.93 kB
+Size: 5.2 kB
 ================================================================================
 
 #ifndef LOGGERMANAGER_H
@@ -528,11 +532,18 @@ Size: 2.93 kB
 #include <Arduino.h>
 #include "FS.h"
 #include "SD.h"
-#include "TemperatureController.h"
+//#include "TemperatureController.h"
 #include "TimeManager.h"
+#include <vector>
+#include "LoggerManager.h"
+
+// Add forward declaration instead
+class TemperatureController;  // Forward declaration
+class MeasurementPoint;
 
 class LoggerManager {
 private:
+    static LoggerManager* _instance;
     TemperatureController* _controller;
     TimeManager* _timeManager;
     fs::FS* _fs;
@@ -575,12 +586,45 @@ private:
     bool _hasHeaderChanged();
     String _generateLogFileNameWithSequence();
     void _incrementSequenceNumber();
+
+    // Event logging
+    bool _eventLoggingEnabled;
+    String _eventLogDirectory;
+    String _currentEventLogFile;
+    String _lastEventLogDate;
+    
+    // Event logging methods
+    String _generateEventLogFileName();
+    bool _writeEventHeader();
+    bool _writeEventRow(const String& timestamp, const String& source, 
+                       const String& description, const String& priority);
+    bool _ensureEventLogExists();
     
 public:
     LoggerManager(TemperatureController& controller, TimeManager& timeManager, fs::FS& filesystem);
     ~LoggerManager();
+
+    static LoggerManager* getInstance() { return _instance; }
+    
+    // Add these static convenience methods
+    static bool info(const String& source, const String& description) {
+        return _instance ? _instance->logInfo(source, description) : false;
+    }
+    
+    static bool warning(const String& source, const String& description) {
+        return _instance ? _instance->logWarning(source, description) : false;
+    }
+    
+    static bool error(const String& source, const String& description) {
+        return _instance ? _instance->logError(source, description) : false;
+    }
+    
+    static bool critical(const String& source, const String& description) {
+        return _instance ? _instance->logCritical(source, description) : false;
+    }
     
     // Initialization
+    bool init(); 
     bool begin();
     
     // Configuration methods
@@ -614,6 +658,24 @@ public:
     void forceNewFile();
     int getCurrentSequenceNumber() const;
     void resetSequenceNumber();
+
+        // Event logging configuration
+        void setEventLoggingEnabled(bool enabled);
+        bool isEventLoggingEnabled() const;
+        void setEventLogDirectory(const String& directory);
+        String getEventLogDirectory() const;
+        
+        // Event logging methods
+        bool logEvent(const String& source, const String& description, const String& priority = "INFO");
+        bool logInfo(const String& source, const String& description);
+        bool logWarning(const String& source, const String& description);
+        bool logError(const String& source, const String& description);
+        bool logCritical(const String& source, const String& description);
+        
+        // Event log management
+        String getCurrentEventLogFile() const;
+        std::vector<String> getEventLogFiles();
+        bool deleteEventLogFile(const String& filename);
     
 private:
     String _lastError;
@@ -624,7 +686,7 @@ private:
 
 ================================================================================
 File: MeasurementPoint.h
-Size: 1.95 kB
+Size: 1.98 kB
 ================================================================================
 
 #ifndef MEASUREMENT_POINT_H
@@ -632,6 +694,7 @@ Size: 1.95 kB
 
 #include <Arduino.h>
 #include "Sensor.h"
+#include "LoggerManager.h"
 
 
 
@@ -941,7 +1004,7 @@ private:
 
 ================================================================================
 File: TempModbusServer.h
-Size: 1.01 kB
+Size: 1.03 kB
 ================================================================================
 
 #ifndef TEMP_MODBUS_SERVER_H
@@ -950,6 +1013,7 @@ Size: 1.01 kB
 #include <Arduino.h>
 #include "ModbusServerRTU.h"
 #include "RegisterMap.h"
+#include "LoggerManager.h"
 
 class TempModbusServer {
 private:
@@ -986,7 +1050,7 @@ public:
 
 ================================================================================
 File: TemperatureController.h
-Size: 7.85 kB
+Size: 7.97 kB
 ================================================================================
 
 #pragma once
@@ -1218,13 +1282,17 @@ private:
     String _getPriorityString(AlarmPriority priority) const; 
 
 
+    String _getAlarmTypeString(AlarmType type) const;
+    
+    //String _getPriorityString(AlarmPriority priority) const;
+
     
 };
 
 
 ================================================================================
 File: TimeManager.h
-Size: 2.93 kB
+Size: 2.95 kB
 ================================================================================
 
 #pragma once
@@ -1247,6 +1315,7 @@ public:
     
     // Initialization
     bool begin();
+    bool init();
     
     // Time setting methods
     bool setTimeFromNTP(const char* ntpServer = "pool.ntp.org");

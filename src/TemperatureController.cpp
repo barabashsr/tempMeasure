@@ -117,6 +117,8 @@ bool TemperatureController::begin() {
     systemInitialized = true;
     Serial.println("Setup complete!");
     indicator.printConfiguration();
+    LoggerManager::info("SYSTEM", 
+        "TemperatureController started");
     return true;
 }
 
@@ -403,41 +405,61 @@ void TemperatureController::clearConfiguredAlarms() {
 //         indicator.writePort("Relay2", false);
 //     }
 // }
-
-
 void TemperatureController::handleAlarmOutputs() {
+    // Calculate alarm counts for logging
+    int activeAlarms = getAlarmCount(AlarmStage::ACTIVE);
+    int highPriorityAlarms = getAlarmCount(AlarmPriority::PRIORITY_HIGH, AlarmStage::ACKNOWLEDGED, ">=", ">=");
+    int lowPriorityAlarms = getAlarmCount(AlarmPriority::PRIORITY_LOW, AlarmStage::ACKNOWLEDGED, "==", ">=");
+    int criticalAlarms = getAlarmCount(AlarmPriority::PRIORITY_CRITICAL, AlarmStage::ACKNOWLEDGED, "==", ">=");
+    int mediumAlarms = getAlarmCount(AlarmPriority::PRIORITY_MEDIUM, AlarmStage::ACKNOWLEDGED, "==", ">=");
+    
     // Calculate new output states using enhanced getAlarmCount methods
-    bool newRelay1 = getAlarmCount(AlarmStage::ACTIVE) > 0;
-    
-    // HIGH or CRITICAL priority alarms in ACKNOWLEDGED or ACTIVE states
-    bool highPriorityRelay2 = getAlarmCount(AlarmPriority::PRIORITY_HIGH, AlarmStage::ACKNOWLEDGED, ">=", ">=") > 0;
-    
-    // LOW priority alarms in ACKNOWLEDGED or ACTIVE states (for blinking)
-    bool lowPriorityExists = getAlarmCount(AlarmPriority::PRIORITY_LOW, AlarmStage::ACKNOWLEDGED, "==", ">=") > 0;
-    
-    // CRITICAL priority alarms in ACKNOWLEDGED or ACTIVE states  
-    bool newRedLed = getAlarmCount(AlarmPriority::PRIORITY_CRITICAL, AlarmStage::ACKNOWLEDGED, "==", ">=") > 0;
-    
-    // HIGH priority alarms in ACKNOWLEDGED or ACTIVE states
+    bool newRelay1 = activeAlarms > 0;
+    bool highPriorityRelay2 = highPriorityAlarms > 0;
+    bool lowPriorityExists = lowPriorityAlarms > 0;
+    bool newRedLed = criticalAlarms > 0;
     bool newYellowLed = getAlarmCount(AlarmPriority::PRIORITY_HIGH, AlarmStage::ACKNOWLEDGED, "==", ">=") > 0;
+    bool mediumPriorityBlueLed = mediumAlarms > 0;
     
-    // MEDIUM priority alarms in ACKNOWLEDGED or ACTIVE states
-    bool mediumPriorityBlueLed = getAlarmCount(AlarmPriority::PRIORITY_MEDIUM, AlarmStage::ACKNOWLEDGED, "==", ">=") > 0;
+    // Log alarm summary if there are any changes or active alarms
+    static unsigned long lastSummaryLog = 0;
+    unsigned long now = millis();
+    if (now - lastSummaryLog > 30000 || // Log every 30 seconds
+        (activeAlarms > 0 && now - lastSummaryLog > 5000)) { // Or every 5 seconds if alarms active
+        
+        String summary = "Alarm summary - Active: " + String(activeAlarms) + 
+                        ", High: " + String(highPriorityAlarms) + 
+                        ", Medium: " + String(mediumAlarms) + 
+                        ", Low: " + String(lowPriorityAlarms) + 
+                        ", Critical: " + String(criticalAlarms);
+        LoggerManager::info("ALARM_OUTPUT", summary);
+        lastSummaryLog = now;
+    }
     
     // Handle blinking for low priority alarms
     if (lowPriorityExists) {
         // Start blinking if not already blinking
         if (!highPriorityRelay2 && !indicator.isBlinking("Relay2")) {
+            LoggerManager::info("INDICATION", 
+                "Starting Relay2 blinking for " + String(lowPriorityAlarms) + " low priority alarms");
             indicator.startBlinking("Relay2", 1000, 5000);  // 2s on, 30s off
         }
         
         if (!indicator.isBlinking("BlueLED")) {
+            LoggerManager::info("INDICATION", 
+                "Starting BlueLED blinking for " + String(lowPriorityAlarms) + " low priority alarms");
             indicator.startBlinking("BlueLED", 500, 500);    // 500ms on, 500ms off
         }
     } else {
         // Stop blinking if no low priority alarms
-        indicator.stopBlinking("Relay2");
-        indicator.stopBlinking("BlueLED");
+        if (indicator.isBlinking("Relay2")) {
+            LoggerManager::info("INDICATION", "Stopping Relay2 blinking - no low priority alarms");
+            indicator.stopBlinking("Relay2");
+        }
+        if (indicator.isBlinking("BlueLED")) {
+            LoggerManager::info("INDICATION", "Stopping BlueLED blinking - no low priority alarms");
+            indicator.stopBlinking("BlueLED");
+        }
     }
     
     // Calculate final states (excluding blinking ports)
@@ -446,32 +468,128 @@ void TemperatureController::handleAlarmOutputs() {
     
     // Only update non-blinking outputs if state has changed
     if (newRelay1 != _relay1State) {
+        String reason = newRelay1 ? 
+            ("Activated - " + String(activeAlarms) + " active alarms") : 
+            "Deactivated - no active alarms";
+        LoggerManager::info("INDICATION", "Relay1 " + reason);
+        
         indicator.writePort("Relay1", newRelay1);
         _relay1State = newRelay1;
     }
     
     // Only control Relay2 directly if not blinking for low priority
     if (!indicator.isBlinking("Relay2") && newRelay2 != _relay2State) {
+        String reason = newRelay2 ? 
+            ("Activated - " + String(highPriorityAlarms) + " high/critical priority alarms") : 
+            "Deactivated - no high/critical priority alarms";
+        LoggerManager::info("INDICATION", "Relay2 " + reason);
+        
         indicator.writePort("Relay2", newRelay2);
         _relay2State = newRelay2;
     }
     
     if (newRedLed != _redLedState) {
+        String reason = newRedLed ? 
+            ("ON - " + String(criticalAlarms) + " critical alarms") : 
+            "OFF - no critical alarms";
+        LoggerManager::info("INDICATION", "RedLED " + reason);
+        
         indicator.writePort("RedLED", newRedLed);
         _redLedState = newRedLed;
     }
     
     if (newYellowLed != _yellowLedState) {
+        String reason = newYellowLed ? 
+            ("ON - high priority alarms present") : 
+            "OFF - no high priority alarms";
+        LoggerManager::info("INDICATION", "YellowLED " + reason);
+        
         indicator.writePort("YellowLED", newYellowLed);
         _yellowLedState = newYellowLed;
     }
     
     // Only control BlueLED directly if not blinking for low priority
     if (!indicator.isBlinking("BlueLED") && newBlueLed != _blueLedState) {
+        String reason = newBlueLed ? 
+            ("ON - " + String(mediumAlarms) + " medium priority alarms") : 
+            "OFF - no medium priority alarms";
+        LoggerManager::info("INDICATION", "BlueLED " + reason);
+        
         indicator.writePort("BlueLED", newBlueLed);
         _blueLedState = newBlueLed;
     }
 }
+
+
+// void TemperatureController::handleAlarmOutputs() {
+//     // Calculate new output states using enhanced getAlarmCount methods
+//     bool newRelay1 = getAlarmCount(AlarmStage::ACTIVE) > 0;
+    
+//     // HIGH or CRITICAL priority alarms in ACKNOWLEDGED or ACTIVE states
+//     bool highPriorityRelay2 = getAlarmCount(AlarmPriority::PRIORITY_HIGH, AlarmStage::ACKNOWLEDGED, ">=", ">=") > 0;
+    
+//     // LOW priority alarms in ACKNOWLEDGED or ACTIVE states (for blinking)
+//     bool lowPriorityExists = getAlarmCount(AlarmPriority::PRIORITY_LOW, AlarmStage::ACKNOWLEDGED, "==", ">=") > 0;
+    
+//     // CRITICAL priority alarms in ACKNOWLEDGED or ACTIVE states  
+//     bool newRedLed = getAlarmCount(AlarmPriority::PRIORITY_CRITICAL, AlarmStage::ACKNOWLEDGED, "==", ">=") > 0;
+    
+//     // HIGH priority alarms in ACKNOWLEDGED or ACTIVE states
+//     bool newYellowLed = getAlarmCount(AlarmPriority::PRIORITY_HIGH, AlarmStage::ACKNOWLEDGED, "==", ">=") > 0;
+    
+//     // MEDIUM priority alarms in ACKNOWLEDGED or ACTIVE states
+//     bool mediumPriorityBlueLed = getAlarmCount(AlarmPriority::PRIORITY_MEDIUM, AlarmStage::ACKNOWLEDGED, "==", ">=") > 0;
+    
+//     // Handle blinking for low priority alarms
+//     if (lowPriorityExists) {
+//         // Start blinking if not already blinking
+//         if (!highPriorityRelay2 && !indicator.isBlinking("Relay2")) {
+//             indicator.startBlinking("Relay2", 1000, 5000);  // 2s on, 30s off
+            
+
+//         }
+        
+//         if (!indicator.isBlinking("BlueLED")) {
+//             indicator.startBlinking("BlueLED", 500, 500);    // 500ms on, 500ms off
+//         }
+//     } else {
+//         // Stop blinking if no low priority alarms
+//         indicator.stopBlinking("Relay2");
+//         indicator.stopBlinking("BlueLED");
+//     }
+    
+//     // Calculate final states (excluding blinking ports)
+//     bool newRelay2 = highPriorityRelay2;  // Don't set if blinking
+//     bool newBlueLed = mediumPriorityBlueLed;  // Don't set if blinking
+    
+//     // Only update non-blinking outputs if state has changed
+//     if (newRelay1 != _relay1State) {
+//         indicator.writePort("Relay1", newRelay1);
+//         _relay1State = newRelay1;
+//     }
+    
+//     // Only control Relay2 directly if not blinking for low priority
+//     if (!indicator.isBlinking("Relay2") && newRelay2 != _relay2State) {
+//         indicator.writePort("Relay2", newRelay2);
+//         _relay2State = newRelay2;
+//     }
+    
+//     if (newRedLed != _redLedState) {
+//         indicator.writePort("RedLED", newRedLed);
+//         _redLedState = newRedLed;
+//     }
+    
+//     if (newYellowLed != _yellowLedState) {
+//         indicator.writePort("YellowLED", newYellowLed);
+//         _yellowLedState = newYellowLed;
+//     }
+    
+//     // Only control BlueLED directly if not blinking for low priority
+//     if (!indicator.isBlinking("BlueLED") && newBlueLed != _blueLedState) {
+//         indicator.writePort("BlueLED", newBlueLed);
+//         _blueLedState = newBlueLed;
+//     }
+// }
 
 
 
@@ -644,8 +762,25 @@ bool TemperatureController::bindSensorToPointByRom(const String& romString, uint
     Sensor* sensor = findSensorByRom(romString);
     unbindSensorFromPointBySensor(sensor);
     MeasurementPoint* point = getMeasurementPoint(pointAddress);
-    if (!sensor || !point) return false;
-    point->bindSensor(sensor);
+    if (!sensor || !point){
+        LoggerManager::warning("BINDING", 
+            "Failed to bind sensor " + romString + " to point " + String(pointAddress));
+        
+        return false;} 
+
+        point->bindSensor(sensor);
+    
+
+
+        String pointName = point->getName().isEmpty() ? 
+            "Point_" + String(pointAddress) : point->getName();
+        LoggerManager::info("BINDING", 
+            "Sensor " + romString + " bound to point " + String(pointAddress) + 
+            " (" + pointName + ")");
+
+
+
+
     return true;
 }
 
@@ -657,14 +792,40 @@ bool TemperatureController::bindSensorToPointByChipSelect(uint8_t csPin, uint8_t
     Sensor* sensor = findSensorByChipSelect(csPin);
     unbindSensorFromPointBySensor(sensor);
     MeasurementPoint* point = getMeasurementPoint(pointAddress);
-    if (!sensor || !point) return false;
+    if (!sensor || !point) {
+        
+        LoggerManager::warning("BINDING", 
+            "Failed to bind PT1000 sensor CS" + String(csPin) + 
+            " to point " + String(pointAddress));
+        return false;}
     point->bindSensor(sensor);
+    String pointName = point->getName().isEmpty() ? 
+            "Point_" + String(pointAddress) : point->getName();
+        LoggerManager::info("BINDING", 
+            "PT1000 sensor CS" + String(csPin) + " bound to point " + 
+            String(pointAddress) + " (" + pointName + ")");
     return true;
 }
 
 bool TemperatureController::unbindSensorFromPoint(uint8_t pointAddress) {
     MeasurementPoint* point = getMeasurementPoint(pointAddress);
-    if (!point) return false;
+    if (!point) {
+        LoggerManager::error("BINDING", 
+            "Faild to unbound sensor from point " + String(pointAddress) + 
+            " (" + point->getName() + ")");
+        return false;
+    }
+
+    if (point->getBoundSensor()) {
+        String sensorInfo = point->getBoundSensor()->getType() == SensorType::DS18B20 ? 
+        point->getBoundSensor()->getDS18B20RomString() : 
+            "CS" + String(point->getBoundSensor()->getPT1000ChipSelectPin());
+        
+        LoggerManager::info("BINDING", 
+            "Sensor " + sensorInfo + " unbound from point " + String(pointAddress) + 
+            " (" + point->getName() + ")");
+    }
+
     point->unbindSensor();
     return true;
 }
@@ -705,6 +866,8 @@ void TemperatureController::applyConfigToRegisterMap() {
 bool TemperatureController::discoverDS18B20Sensors() {
     bool anyAdded = false;
     Serial.println("Discover method started...");
+    LoggerManager::info("DISCOVERY", "Starting DS18B20 sensor discovery");
+    uint totalFound = 0;
     // OneWire oneWire[] = { OneWire(oneWireBusPin[0]), OneWire(oneWireBusPin[1]), OneWire(oneWireBusPin[2]), OneWire(oneWireBusPin[3]) };
     // DallasTemperature dallasSensors[] = {DallasTemperature(&oneWire[0]), DallasTemperature(&oneWire[1]), DallasTemperature(&oneWire[2]), DallasTemperature(&oneWire[3])};
     for (uint j = 0; j < 4; j++){
@@ -717,8 +880,13 @@ bool TemperatureController::discoverDS18B20Sensors() {
     int deviceCount = dallasSensors[j]->getDeviceCount();
     Serial.printf("Devices on bus %d: %d\n", j, deviceCount);
     if (deviceCount == 0) continue;
+    totalFound += deviceCount;
 
     DeviceAddress sensorAddress;
+    if (deviceCount > 0) {
+        LoggerManager::info("DISCOVERY", 
+            "Found " + String(deviceCount) + " DS18B20 sensors on bus " + String(j));
+        }
     
 
     for (int i = 0; i < deviceCount; i++) {
@@ -754,6 +922,7 @@ bool TemperatureController::discoverDS18B20Sensors() {
                 registerMap.incrementActiveDS18B20();
                 anyAdded = true;
                 Serial.printf("Sensor %s set on bus %d/ pin %d status: Connected\n", newSensor->getName(), getSensorBus(newSensor), newSensor->getOneWirePin());
+                
 
             } else {
                 delete newSensor;
@@ -761,6 +930,10 @@ bool TemperatureController::discoverDS18B20Sensors() {
         }
     }
     }
+
+    LoggerManager::info("DISCOVERY", 
+        "DS18B20 discovery completed. Total sensors: " + String(totalFound));
+
     return anyAdded;
 }
 
@@ -768,6 +941,7 @@ bool TemperatureController::discoverDS18B20Sensors() {
 bool TemperatureController::discoverPTSensors() {
     bool anyAdded = false;
     Serial.println("Discover PT method started...");
+    LoggerManager::info("DISCOVERY", "Starting PT1000 sensor discovery");
     for (uint j = 0; j < 4; j++){
         Serial.printf("Bus: %d: PIN: %d", j, chipSelectPin[j]);
     }
@@ -775,6 +949,8 @@ bool TemperatureController::discoverPTSensors() {
     // DallasTemperature dallasSensors[] = {DallasTemperature(&oneWire[0]), DallasTemperature(&oneWire[1]), DallasTemperature(&oneWire[2]), DallasTemperature(&oneWire[3])};
     for (uint j = 0; j < 4; j++){
         Serial.printf("Discover PT: bus %d pin %d started...\n", j, chipSelectPin[j]);
+        
+
         if(findSensorByChipSelect(chipSelectPin[j]) != nullptr){
             Serial.printf("Sensor already discovered on bus %d\n", j);
             continue;
@@ -790,6 +966,7 @@ bool TemperatureController::discoverPTSensors() {
 
             newSensor->setupPT1000(chipSelectPin[j], j);
             Serial.printf("Sensor %s set on bus %d/ pin %d\n", newSensor->getName(), getSensorBus(newSensor), newSensor->getPT1000ChipSelectPin());
+            
 
             if (newSensor->initialize()) {
 
@@ -800,6 +977,8 @@ bool TemperatureController::discoverPTSensors() {
                 registerMap.incrementActivePT1000();
                 anyAdded = true;
                 Serial.printf("Sensor %s set on bus %d/ pin %d status: Connected\n", newSensor->getName(), getSensorBus(newSensor), newSensor->getPT1000ChipSelectPin());
+                LoggerManager::info("DISCOVERY", 
+                    "Added PT1000 sensor on bus: " + String(getSensorBus(newSensor)) + ", CS pin: " + String(newSensor->getPT1000ChipSelectPin()));
 
             } else {
                 delete newSensor;
@@ -950,6 +1129,7 @@ String TemperatureController::getSystemStatusJson() {
 }
 
 void TemperatureController::resetMinMaxValues() {
+    LoggerManager::info("SYSTEM", "Min/Max temperature values reset");
     for (uint8_t i = 0; i < 50; ++i)
         dsPoints[i].resetMinMaxTemp();
     for (uint8_t i = 0; i < 10; ++i)
@@ -957,8 +1137,11 @@ void TemperatureController::resetMinMaxValues() {
 }
 
 void TemperatureController::setDeviceId(uint16_t id) {
+    uint16_t oldId = deviceId;
     deviceId = id;
     registerMap.writeHoldingRegister(0, deviceId);
+    LoggerManager::info("CONFIG", 
+        "Device ID changed from " + String(oldId) + " to " + String(deviceId));
 }
 
 uint16_t TemperatureController::getDeviceId() const { return deviceId; }
@@ -972,6 +1155,13 @@ uint16_t TemperatureController::getFirmwareVersion() const { return firmwareVers
 
 void TemperatureController::setMeasurementPeriod(uint16_t seconds) {
     measurementPeriodSeconds = seconds;
+    if (measurementPeriodSeconds != seconds) {
+        uint16_t oldPeriod = measurementPeriodSeconds;
+        measurementPeriodSeconds = seconds;
+        LoggerManager::info("CONFIG", 
+            "Measurement period changed from " + String(oldPeriod) + 
+            "s to " + String(measurementPeriodSeconds) + "s");
+    }
 }
 
 uint16_t TemperatureController::getMeasurementPeriod() const {
@@ -1005,6 +1195,26 @@ int TemperatureController::getPT1000Count() const {
 void TemperatureController::updateAllSensors() {
     for (auto sensor : sensors) {
         sensor->readTemperature();
+    }
+
+    for (auto& sensor : sensors) {
+        if (sensor->getErrorStatus() != 0) {
+            static std::map<Sensor*, unsigned long> lastErrorLog;
+            unsigned long now = millis();
+            
+            // Only log errors every 5 minutes to avoid spam
+            if (lastErrorLog[sensor] == 0 || (now - lastErrorLog[sensor]) > 300000) {
+                String sensorId = sensor->getType() == SensorType::DS18B20 ? 
+                    sensor->getDS18B20RomString() : 
+                    "BUS " + String(getSensorBus(sensor));
+                
+                LoggerManager::error("SENSOR", 
+                    "Sensor error detected: " + sensorId + 
+                    " (Error code: " + String(sensor->getErrorStatus()) + ")");
+                
+                lastErrorLog[sensor] = now;
+            }
+        }
     }
 }
 
@@ -1105,15 +1315,30 @@ bool TemperatureController::addAlarm(AlarmType type, uint8_t pointAddress, Alarm
     _configuredAlarms.push_back(newAlarm);
     
     Serial.printf("Added alarm configuration: %s\n", configKey.c_str());
+    if (newAlarm) {
+        MeasurementPoint* point = getMeasurementPoint(pointAddress);
+        String pointName = point ? point->getName() : "Unknown";
+        LoggerManager::info("ALARM_CONFIG", 
+            "Added " + newAlarm->getTypeString() + " alarm for point " + 
+            String(pointAddress) + " (" + pointName + ") with priority " + 
+            _getPriorityString(priority));
+    } else {
+        LoggerManager::warning("ALARM_CONFIG", 
+            "Failed to add " + newAlarm->getTypeString() + " alarm for point " + 
+            String(pointAddress));
+    }
     return true;
 }
 
 bool TemperatureController::removeAlarm(const String& configKey) {
     for (auto it = _configuredAlarms.begin(); it != _configuredAlarms.end(); ++it) {
         if ((*it)->getConfigKey() == configKey) {
+            
             delete *it;
             _configuredAlarms.erase(it);
             Serial.printf("Removed alarm configuration: %s\n", configKey.c_str());
+            LoggerManager::info("ALARM_CONFIG", 
+                "Removed alarm configuration: " + String(configKey.c_str()));
             return true;
         }
     }
@@ -1585,12 +1810,27 @@ void TemperatureController::_checkButtonPress() {
 }
 
 // Helper method to get priority string
-String TemperatureController::_getPriorityString(AlarmPriority priority) const {
-    switch (priority) {
-        case AlarmPriority::PRIORITY_LOW: return "LOW";
-        case AlarmPriority::PRIORITY_MEDIUM: return "MEDIUM";
-        case AlarmPriority::PRIORITY_HIGH: return "HIGH";
-        case AlarmPriority::PRIORITY_CRITICAL: return "CRITICAL";
-        default: return "UNKNOWN";
+
+
+
+
+
+    String TemperatureController::_getAlarmTypeString(AlarmType type) const {
+        switch (type) {
+            case AlarmType::HIGH_TEMPERATURE: return "HIGH_TEMP";
+            case AlarmType::LOW_TEMPERATURE: return "LOW_TEMP";
+            case AlarmType::SENSOR_ERROR: return "SENSOR_ERROR";
+            case AlarmType::SENSOR_DISCONNECTED: return "DISCONNECTED";
+            default: return "UNKNOWN";
+        }
     }
-}
+    
+    String TemperatureController::_getPriorityString(AlarmPriority priority) const {
+        switch (priority) {
+            case AlarmPriority::PRIORITY_LOW: return "LOW";
+            case AlarmPriority::PRIORITY_MEDIUM: return "MEDIUM";
+            case AlarmPriority::PRIORITY_HIGH: return "HIGH";
+            case AlarmPriority::PRIORITY_CRITICAL: return "CRITICAL";
+            default: return "UNKNOWN";
+        }
+    }

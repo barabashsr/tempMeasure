@@ -1,5 +1,6 @@
 #include "IndicatorInterface.h"
 
+
 // Static instance for interrupt handling
 IndicatorInterface* IndicatorInterface::_instance = nullptr;
 
@@ -963,6 +964,8 @@ void IndicatorInterface::_handleSpecialBlink() {
 
 
 void IndicatorInterface::startBlinking(const std::string& portName, unsigned long onTime, unsigned long offTime) {
+    LoggerManager::info("INDICATION", 
+        String(portName.c_str()) + " start blinking");
     // Check if port is already blinking
     for (auto& blinkPort : _blinkingPorts) {
         if (blinkPort.portName == portName) {
@@ -990,6 +993,8 @@ void IndicatorInterface::startBlinking(const std::string& portName, unsigned lon
 }
 
 void IndicatorInterface::stopBlinking(const std::string& portName) {
+    LoggerManager::info("INDICATION", 
+        String(portName.c_str()) + " stop blinking");
     for (auto it = _blinkingPorts.begin(); it != _blinkingPorts.end(); ++it) {
         if (it->portName == portName) {
             it->isActive = false;
