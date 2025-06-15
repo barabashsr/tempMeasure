@@ -30,6 +30,14 @@ private:
     // Pointer to instance for callback functions
     static ConfigManager* instance;
     void _applySettingsWithoutRestart();
+
+    void basicAPI();
+    void sensorAPI();
+    void csvImportExportAPI();
+    void pointsAPI();
+    void alarmsAPI();
+    void logsAPI();
+
     
     // Save sensor configuration to file
     //void saveSensorConfig();

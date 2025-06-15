@@ -113,815 +113,44 @@ bool ConfigManager::begin() {
     // IMPORTANT: Register custom routes BEFORE ConfigAssist setup
 
 
+    basicAPI();
+    sensorAPI();
+    csvImportExportAPI();
+    pointsAPI();
+    alarmsAPI();
+    logsAPI();
     
-    // Add route for the main page
-    server->on("/dashboard.html", HTTP_GET, [this]() {
-        if (LittleFS.exists("/dashboard.html")) {
-            server->sendHeader("HTTP/1.1 200 OK", "");
-            server->sendHeader("Content-Type", "text/html");
-            server->sendHeader("Connection", "close");
-            server->sendHeader("Cache-Control", "max-age=3600");
-            File file = LittleFS.open("/dashboard.html", "r");
-            server->streamFile(file, "text/html");
-            file.close();
-        } else {
-            server->sendHeader("HTTP/1.1 200 OK", "");
-            server->sendHeader("Content-Type", "text/html");
-            server->sendHeader("Connection", "close");
-            server->send(200, "text/html", "<html><body><h1>Temperature Monitoring System</h1><p><a href='/cfg'>Configuration</a></p><p><a href='/sensors.html'>Sensors</a></p></body></html>");
-        }
-    });
-    
-    // Add route for the sensors page
-    server->on("/sensors.html", HTTP_GET, [this]() {
-        if (LittleFS.exists("/sensors.html")) {
-            server->sendHeader("HTTP/1.1 200 OK", "");
-            server->sendHeader("Content-Type", "text/html");
-            server->sendHeader("Connection", "close");
-            server->sendHeader("Cache-Control", "max-age=3600");
-            File file = LittleFS.open("/sensors.html", "r");
-            server->streamFile(file, "text/html");
-            file.close();
-        } else {
-            server->sendHeader("HTTP/1.1 200 OK", "");
-            server->sendHeader("Content-Type", "text/plain");
-            server->sendHeader("Connection", "close");
-            server->send(404, "text/plain", "Sensors page not found");
-        }
-    });
-    server->on("/points.html", HTTP_GET, [this]() {
-        if (LittleFS.exists("/points.html")) {
-            server->sendHeader("HTTP/1.1 200 OK", "");
-            server->sendHeader("Content-Type", "text/html");
-            server->sendHeader("Connection", "close");
-            server->sendHeader("Cache-Control", "max-age=3600");
-            File file = LittleFS.open("/points.html", "r");
-            server->streamFile(file, "text/html");
-            file.close();
-        } else {
-            server->sendHeader("HTTP/1.1 200 OK", "");
-            server->sendHeader("Content-Type", "text/plain");
-            server->sendHeader("Connection", "close");
-            server->send(404, "text/plain", "Points page not found");
-        }
-    });
-
-
-
-
-    server->on("/alarms.html", HTTP_GET, [this]() {
-        if (LittleFS.exists("/alarms.html")) {
-            server->sendHeader("HTTP/1.1 200 OK", "");
-            server->sendHeader("Content-Type", "text/html");
-            server->sendHeader("Connection", "close");
-            server->sendHeader("Cache-Control", "max-age=3600");
-            File file = LittleFS.open("/alarms.html", "r");
-            server->streamFile(file, "text/html");
-            file.close();
-        } else {
-            server->sendHeader("HTTP/1.1 200 OK", "");
-            server->sendHeader("Content-Type", "text/html");
-            server->sendHeader("Connection", "close");
-            server->send(200, "text/html", "<html><body><h1>Temperature Monitoring System</h1><p><a href='/cfg'>Configuration</a></p><p><a href='/sensors.html'>Sensors</a></p></body></html>");
-        }
-    });
 
     
 
-    // Combined points and alarms export
-    server->on("/api/export/config", HTTP_GET, [this]() {
-        String csv = csvManager.exportPointsWithAlarmsToCSV();
-        server->sendHeader("Content-Type", "text/csv");
-        server->sendHeader("Content-Disposition", "attachment; filename=config.csv");
-        server->send(200, "text/csv", csv);
-    });
-
-    // Combined points and alarms import
-    server->on("/api/import/config", HTTP_POST, [this]() {
-        if (!server->hasArg("plain")) {
-            server->send(400, "application/json", "{\"error\":\"No CSV data provided\"}");
-            return;
-        }
-        
-        bool success = csvManager.importPointsWithAlarmsFromCSV(server->arg("plain"));
-        if (success) {
-            savePointsConfig();
-            saveAlarmsConfig();
-            server->send(200, "application/json", "{\"status\":\"success\",\"message\":\"Configuration imported successfully\"}");
-        } else {
-            String error = csvManager.getLastError();
-            server->send(400, "application/json", "{\"status\":\"error\",\"message\":\"" + error + "\"}");
-        }
-    });
-
-
-    // Add these to your ConfigManager::begin() method after existing API endpoints
-
-    // CSV Export endpoint
-    server->on("/api/csv/export", HTTP_GET, [this]() {
-        CSVConfigManager csvManager(controller);
-        String csvData = csvManager.exportPointsWithAlarmsToCSV();
-        
-        if (csvData.length() > 0) {
-            String filename = "temperature_config_" + String(millis()) + ".csv";
-            server->sendHeader("Content-Type", "text/csv");
-            server->sendHeader("Content-Disposition", "attachment; filename=\"" + filename + "\"");
-            server->send(200, "text/csv", csvData);
-        } else {
-            server->send(500, "application/json", "{\"error\":\"Failed to generate CSV\"}");
-        }
-    });
-
-    // CSV Import endpoint
-   // In ConfigManager.cpp, update the CSV import endpoint:
-    server->on("/api/csv/import", HTTP_POST, [this]() {
-        // This will be called after file upload is complete
-    }, [this]() {
-        // Handle file upload
-        HTTPUpload& upload = server->upload();
-        static String csvContent;
-        
-        if (upload.status == UPLOAD_FILE_START) {
-            csvContent = "";
-            LoggerManager::info("CONFIG_IMPORT", 
-                "CSV upload started - filename: " + String(upload.filename.c_str()));
-            Serial.printf("Upload Start: %s\n", upload.filename.c_str());
-        } else if (upload.status == UPLOAD_FILE_WRITE) {
-            csvContent += String((char*)upload.buf, upload.currentSize);
-        } else if (upload.status == UPLOAD_FILE_END) {
-            Serial.printf("Upload End: %s (%u bytes)\n", upload.filename.c_str(), upload.totalSize);
-            LoggerManager::info("CONFIG_IMPORT", 
-                "CSV upload completed - size: " + String(upload.totalSize) + " bytes");
-            
-            // Process the uploaded CSV
-            if (csvManager.importPointsWithAlarmsFromCSV(csvContent)) {
-                saveAlarmsConfig();
-                savePointsConfig();
-                LoggerManager::info("CONFIG_IMPORT", "CSV import successful");
-                server->send(200, "application/json", "{\"success\":true}");
-            } else {
-                String error = csvManager.getLastError();
-                LoggerManager::error("CONFIG_IMPORT", "CSV import failed: " + error);
-                server->send(400, "application/json", "{\"success\":false,\"error\":\"" + error + "\"}");
-            }
-            csvContent = "";
-        }
-    });
+   
 
 
 
 
-    // API endpoints for sensor data
-    server->on("/api/sensors", HTTP_GET, [this]() {
-        server->sendHeader("HTTP/1.1 200 OK", "");
-        server->sendHeader("Content-Type", "application/json");
-        server->sendHeader("Connection", "close");
-        server->sendHeader("Access-Control-Allow-Origin", "*");
-        server->sendHeader("Cache-Control", "no-store");
-        server->send(200, "application/json", controller.getSensorsJson());
-    });
     
-    server->on("/api/status", HTTP_GET, [this]() {
-        server->sendHeader("HTTP/1.1 200 OK", "");
-        server->sendHeader("Content-Type", "application/json");
-        server->sendHeader("Connection", "close");
-        server->sendHeader("Access-Control-Allow-Origin", "*");
-        server->sendHeader("Cache-Control", "no-store");
-        server->send(200, "application/json", controller.getSystemStatusJson());
-    });
+
     
-    server->on("/api/reset-minmax", HTTP_POST, [this]() {
-        controller.resetMinMaxValues();
-        server->sendHeader("HTTP/1.1 200 OK", "");
-        server->sendHeader("Content-Type", "text/plain");
-        server->sendHeader("Connection", "close");
-        server->send(200, "text/plain", "Min/Max values reset");
-    });
-    
-    // API endpoint for sensor discovery
-    server->on("/api/discover", HTTP_POST, [this]() {
-        bool discoveredDS = controller.discoverDS18B20Sensors();
-        bool discoveredPT = controller.discoverPTSensors();
-        bool discovered = discoveredDS || discoveredPT;
-        
-        if (discovered) {
-
-            server->sendHeader("HTTP/1.1 200 OK", "");
-            server->sendHeader("Content-Type", "text/plain");
-            server->sendHeader("Connection", "close");
-            server->send(200, "text/plain", "Sensors discovered");
-        } else {
-            server->sendHeader("HTTP/1.1 404 Not Found", "");
-            server->sendHeader("Content-Type", "text/plain");
-            server->sendHeader("Connection", "close");
-            server->send(404, "text/plain", "No sensors found");
-        }
-    });
-
-    // GET points
-    server->on("/api/points", HTTP_GET, [this]() {
-        server->sendHeader("Content-Type", "application/json");
-        server->send(200, "application/json", controller.getPointsJson());
-    });
-
-    // PUT point update
-    server->on("/api/points", HTTP_PUT, [this]() {
-        if (!server->hasArg("plain")) {
-            server->send(400, "application/json", "{\"error\":\"No data\"}");
-            return;
-        }
-        DynamicJsonDocument doc(512);
-        DeserializationError err = deserializeJson(doc, server->arg("plain"));
-        if (err) {
-            server->send(400, "application/json", "{\"error\":\"Invalid JSON\"}");
-            return;
-        }
-        Serial.println("/api/points HTTP_PUT:" + doc.as<String>());
-        uint8_t address = doc["address"];
-        String name = doc["name"].as<String>();
-        int16_t low = doc["lowAlarmThreshold"];
-        int16_t high = doc["highAlarmThreshold"];
-
-
-        MeasurementPoint* point = controller.getMeasurementPoint(address);
-        if (!point) {
-            server->send(404, "application/json", "{\"error\":\"Point not found\"}");
-            return;
-        }
-        point->setName(name);
-        point->setLowAlarmThreshold(low);
-        point->setHighAlarmThreshold(high);
-        Serial.printf("Point: %s. LAS: %d, HAS: %d\n Delay....\n", point->getName(), point->getLowAlarmThreshold(), point->getHighAlarmThreshold());
-        delay(5000);
-        controller.applyConfigToRegisterMap();
-        // Save to config if needed
-        savePointsConfig(); // implement this to persist changes
-
-        server->send(200, "application/json", "{\"success\":true}");
-    });
 
     
     
 
-    // POST /api/sensor-bind
-    server->on("/api/sensor-bind", HTTP_POST, [this]() {
-        if (server->hasArg("plain")) {
-            DynamicJsonDocument doc(256);
-            
-            DeserializationError err = deserializeJson(doc, server->arg("plain"));
-            
-            if (!err) {
-                uint8_t pointAddress = doc["pointAddress"];
-                if (doc.containsKey("romString")) {
-                    Serial.println("ROM:\n" + doc.as<String>());
-                    String rom = doc["romString"].as<String>();
-                    if (controller.bindSensorToPointByRom(rom, pointAddress)) {
-                        //Serial.println("Save points to config ROM\n");
-                        savePointsConfig();
-                        server->send(200, "text/plain", "Bound");
-                        return;
-                    }
-                } else if (doc.containsKey("chipSelect")) {
-                    int cs = doc["chipSelect"];
-                    Serial.println("CS:\n" + doc.as<String>());
-                    if (controller.bindSensorToPointByChipSelect(cs, pointAddress)) {
-                        //Serial.println("Save points to config ROM\n");
-                        savePointsConfig();
-                        server->send(200, "text/plain", "Bound");
-                        return;
-                    }
-                }
-            }
-        }
-        server->send(400, "text/plain", "Bad Request");
-    });
-
-    // POST /api/sensor-unbind
-    server->on("/api/sensor-unbind", HTTP_POST, [this]() {
-        if (server->hasArg("plain")) {
-            DynamicJsonDocument doc(128);
-            DeserializationError err = deserializeJson(doc, server->arg("plain"));
-            if (!err) {
-                if (doc.containsKey("romString")) {
-                    String rom = doc["romString"].as<String>();
-                    // Find point bound to this ROM and unbind
-                    for (uint8_t i = 0; i < 50; ++i) {
-                        Sensor* bound = controller.getDS18B20Point(i)->getBoundSensor();
-                        if (bound && bound->getDS18B20RomString() == rom) {
-                            if(controller.unbindSensorFromPoint(i)){
-                                savePointsConfig();
-                            server->send(200, "text/plain", "Unbound");
-                            return;
-
-                            };
-                            
-                        }
-                    }
-                } else if (doc.containsKey("chipSelect")) {
-                    int cs = doc["chipSelect"];
-                    for (uint8_t i = 0; i < 10; ++i) {
-                        Sensor* bound = controller.getPT1000Point(i)->getBoundSensor();
-                        if (bound && bound->getPT1000ChipSelectPin() == cs) {
-                            if(controller.unbindSensorFromPoint(50 + i)){
-                                savePointsConfig();
-                                server->send(200, "text/plain", "Unbound");
-                                return;
-                            };
-
-                        }
-                    }
-                }
-            }
-        }
-        server->send(400, "text/plain", "Bad Request");
-    });
+    
 
 
 
-
-
-    // Get alarms configuration
-    server->on("/api/alarms", HTTP_GET, [this]() {
-        server->sendHeader("Content-Type", "application/json");
-        server->sendHeader("Access-Control-Allow-Origin", "*");
-        server->send(200, "application/json", controller.getAlarmsJson());
-    });
-
-    // Add/Update alarm configuration
-    server->on("/api/alarms", HTTP_POST, [this]() {
-        if (!server->hasArg("plain")) {
-            server->send(400, "application/json", "{\"error\":\"No data\"}");
-            return;
-        }
-        
-        DynamicJsonDocument doc(512);
-        DeserializationError err = deserializeJson(doc, server->arg("plain"));
-        if (err) {
-            server->send(400, "application/json", "{\"error\":\"Invalid JSON\"}");
-            return;
-        }
-        
-        AlarmType type = static_cast<AlarmType>(doc["type"].as<int>());
-        uint8_t pointAddress = doc["pointAddress"].as<int>();
-        AlarmPriority priority = static_cast<AlarmPriority>(doc["priority"].as<int>());
-        
-        bool success = controller.addAlarm(type, pointAddress, priority);
-        if (success) {
-            saveAlarmsConfig();
-            server->send(200, "application/json", "{\"status\":\"success\"}");
-        } else {
-            server->send(400, "application/json", "{\"error\":\"Failed to add alarm\"}");
-        }
-    });
-
-    // Delete alarm configuration
-    server->on("/api/alarms", HTTP_DELETE, [this]() {
-        if (!server->hasArg("configKey")) {
-            server->send(400, "application/json", "{\"error\":\"No configKey provided\"}");
-            return;
-        }
-        
-        String configKey = server->arg("configKey");
-        bool success = controller.removeAlarm(configKey);
-        if (success) {
-            saveAlarmsConfig();
-            server->send(200, "application/json", "{\"status\":\"deleted\"}");
-        } else {
-            server->send(404, "application/json", "{\"error\":\"Alarm not found\"}");
-        }
-    });
-
-    // Add these endpoints to your setupWebServer() method in ConfigManager.cpp
-
-    // Get alarms configuration
-    server->on("/api/alarms", HTTP_GET, [this]() {
-        server->sendHeader("Content-Type", "application/json");
-        server->sendHeader("Access-Control-Allow-Origin", "*");
-        server->send(200, "application/json", controller.getAlarmsJson());
-    });
-
-    // Add/Update alarm configuration
-    server->on("/api/alarms", HTTP_POST, [this]() {
-        if (!server->hasArg("plain")) {
-            server->send(400, "application/json", "{\"error\":\"No data\"}");
-            return;
-        }
-        
-        DynamicJsonDocument doc(512);
-        DeserializationError err = deserializeJson(doc, server->arg("plain"));
-        if (err) {
-            server->send(400, "application/json", "{\"error\":\"Invalid JSON\"}");
-            return;
-        }
-        
-        AlarmType type = static_cast<AlarmType>(doc["type"].as<int>());
-        uint8_t pointAddress = doc["pointAddress"].as<int>();
-        AlarmPriority priority = static_cast<AlarmPriority>(doc["priority"].as<int>());
-        
-        bool success = controller.addAlarm(type, pointAddress, priority);
-        if (success) {
-            saveAlarmsConfig();
-            server->send(200, "application/json", "{\"status\":\"success\"}");
-        } else {
-            server->send(400, "application/json", "{\"error\":\"Failed to add alarm\"}");
-        }
-    });
-
-    // Update alarm configuration
-    server->on("/api/alarms", HTTP_PUT, [this]() {
-        if (!server->hasArg("plain")) {
-            server->send(400, "application/json", "{\"error\":\"No data\"}");
-            return;
-        }
-        
-        DynamicJsonDocument doc(512);
-        DeserializationError err = deserializeJson(doc, server->arg("plain"));
-        if (err) {
-            server->send(400, "application/json", "{\"error\":\"Invalid JSON\"}");
-            return;
-        }
-        
-        String configKey = doc["configKey"].as<String>();
-        AlarmPriority priority = static_cast<AlarmPriority>(doc["priority"].as<int>());
-        bool enabled = doc["enabled"].as<bool>();
-        
-        bool success = controller.updateAlarm(configKey, priority, enabled);
-        if (success) {
-            saveAlarmsConfig();
-            server->send(200, "application/json", "{\"status\":\"updated\"}");
-        } else {
-            server->send(404, "application/json", "{\"error\":\"Alarm not found\"}");
-        }
-    });
-
-    // Delete alarm configuration
-    server->on("/api/alarms", HTTP_DELETE, [this]() {
-        if (!server->hasArg("configKey")) {
-            server->send(400, "application/json", "{\"error\":\"No configKey provided\"}");
-            return;
-        }
-        
-        String configKey = server->arg("configKey");
-        bool success = controller.removeAlarm(configKey);
-        if (success) {
-            saveAlarmsConfig();
-            server->send(200, "application/json", "{\"status\":\"deleted\"}");
-        } else {
-            server->send(404, "application/json", "{\"error\":\"Alarm not found\"}");
-        }
-    });
-
-    // Acknowledge specific alarm
-    server->on("/api/alarms/acknowledge", HTTP_POST, [this]() {
-        if (!server->hasArg("plain")) {
-            server->send(400, "application/json", "{\"error\":\"No data\"}");
-            return;
-        }
-
-        DynamicJsonDocument doc(512);
-        DeserializationError err = deserializeJson(doc, server->arg("plain"));
-        if (err) {
-            server->send(400, "application/json", "{\"error\":\"Invalid JSON\"}");
-            return;
-        }
-
-        String configKey = doc["configKey"].as<String>();
-        
-        // Find alarm in configured alarms
-        Alarm* alarm = controller.findAlarm(configKey);
-        if (!alarm) {
-            server->send(404, "application/json", "{\"error\":\"Alarm not found\"}");
-            return;
-        }
-
-        // Find corresponding active alarm and acknowledge it
-        bool acknowledged = false;
-        for (auto activeAlarm : controller.getActiveAlarms()) {
-            if (activeAlarm->getSource() == alarm->getSource() && 
-                activeAlarm->getType() == alarm->getType()) {
-                activeAlarm->acknowledge();
-                acknowledged = true;
-                Serial.printf("Acknowledged alarm: %s for point %d\n", 
-                            activeAlarm->getTypeString().c_str(),
-                            activeAlarm->getSource()->getAddress());
-                break;
-            }
-        }
-
-        if (acknowledged) {
-            server->send(200, "application/json", "{\"status\":\"acknowledged\"}");
-        } else {
-            server->send(404, "application/json", "{\"error\":\"No active alarm found to acknowledge\"}");
-        }
-    });
-
-    // Acknowledge all active alarms
-    server->on("/api/alarms/acknowledge-all", HTTP_POST, [this]() {
-        std::vector<Alarm*> activeAlarms = controller.getActiveAlarms();
-        int acknowledgedCount = 0;
-        
-        for (auto alarm : activeAlarms) {
-            if (!alarm->isAcknowledged()) {
-                alarm->acknowledge();
-                acknowledgedCount++;
-                Serial.printf("Acknowledged alarm: %s for point %d\n", 
-                            alarm->getTypeString().c_str(),
-                            alarm->getSource() ? alarm->getSource()->getAddress() : -1);
-            }
-        }
-        
-        DynamicJsonDocument response(256);
-        response["status"] = "success";
-        response["acknowledgedCount"] = acknowledgedCount;
-        response["message"] = String(acknowledgedCount) + " alarms acknowledged";
-        
-        String output;
-        serializeJson(response, output);
-        server->send(200, "application/json", output);
-    });
-
-    // Clear resolved alarms
-    server->on("/api/alarms/clear-resolved", HTTP_POST, [this]() {
-        std::vector<Alarm*> configuredAlarms = controller.getConfiguredAlarms();
-        int clearedCount = 0;
-        
-        // Remove resolved alarms from configured alarms
-        for (auto it = configuredAlarms.begin(); it != configuredAlarms.end();) {
-            if ((*it)->isResolved()) {
-                String configKey = (*it)->getConfigKey();
-                bool removed = controller.removeAlarm(configKey);
-                if (removed) {
-                    clearedCount++;
-                    Serial.printf("Cleared resolved alarm: %s\n", configKey.c_str());
-                }
-                // Note: iterator is handled by removeAlarm method
-                it = configuredAlarms.begin(); // Restart iteration after removal
-            } else {
-                ++it;
-            }
-        }
-        
-        // Save configuration after clearing
-        if (clearedCount > 0) {
-            saveAlarmsConfig();
-        }
-        
-        DynamicJsonDocument response(256);
-        response["status"] = "success";
-        response["clearedCount"] = clearedCount;
-        response["message"] = String(clearedCount) + " resolved alarms cleared";
-        
-        String output;
-        serializeJson(response, output);
-        server->send(200, "application/json", output);
-    });
-
-    // Get active alarms only (for dashboard/monitoring)
-    server->on("/api/alarms/active", HTTP_GET, [this]() {
-        DynamicJsonDocument doc(4096);
-        JsonArray alarmArray = doc.createNestedArray("alarms");
-        
-        for (auto alarm : controller.getActiveAlarms()) {
-            JsonObject obj = alarmArray.createNestedObject();
-            obj["type"] = static_cast<int>(alarm->getType());
-            obj["stage"] = static_cast<int>(alarm->getStage());
-            obj["priority"] = static_cast<int>(alarm->getPriority());
-            obj["timestamp"] = alarm->getTimestamp();
-            obj["acknowledgedTime"] = alarm->getAcknowledgedTime();
-            obj["message"] = alarm->getMessage();
-            obj["isActive"] = alarm->isActive();
-            obj["isAcknowledged"] = alarm->isAcknowledged();
-            
-            if (alarm->getSource()) {
-                obj["pointAddress"] = alarm->getSource()->getAddress();
-                obj["pointName"] = alarm->getSource()->getName();
-                obj["currentTemp"] = alarm->getSource()->getCurrentTemp();
-            }
-        }
-        
-        String output;
-        serializeJson(doc, output);
-        server->sendHeader("Content-Type", "application/json");
-        server->sendHeader("Access-Control-Allow-Origin", "*");
-        server->send(200, "application/json", output);
-    });
-
-    // Get alarm statistics
-    server->on("/api/alarms/stats", HTTP_GET, [this]() {
-        std::vector<Alarm*> activeAlarms = controller.getActiveAlarms();
-        
-        int criticalCount = 0, highCount = 0, mediumCount = 0, lowCount = 0;
-        int newCount = 0, activeCount = 0, acknowledgedCount = 0;
-        
-        for (auto alarm : activeAlarms) {
-            // Count by priority
-            switch (alarm->getPriority()) {
-                case AlarmPriority::PRIORITY_CRITICAL: criticalCount++; break;
-                case AlarmPriority::PRIORITY_HIGH: highCount++; break;
-                case AlarmPriority::PRIORITY_MEDIUM: mediumCount++; break;
-                case AlarmPriority::PRIORITY_LOW: lowCount++; break;
-            }
-            
-            // Count by stage
-            switch (alarm->getStage()) {
-                case AlarmStage::NEW: newCount++; break;
-                case AlarmStage::ACTIVE: activeCount++; break;
-                case AlarmStage::ACKNOWLEDGED: acknowledgedCount++; break;
-                default: break;
-            }
-        }
-        
-        DynamicJsonDocument doc(512);
-        doc["totalActive"] = activeAlarms.size();
-        doc["totalConfigured"] = controller.getAlarmCount();
-        
-        JsonObject byPriority = doc.createNestedObject("byPriority");
-        byPriority["critical"] = criticalCount;
-        byPriority["high"] = highCount;
-        byPriority["medium"] = mediumCount;
-        byPriority["low"] = lowCount;
-        
-        JsonObject byStage = doc.createNestedObject("byStage");
-        byStage["new"] = newCount;
-        byStage["active"] = activeCount;
-        byStage["acknowledged"] = acknowledgedCount;
-        
-        String output;
-        serializeJson(doc, output);
-        server->sendHeader("Content-Type", "application/json");
-        server->sendHeader("Access-Control-Allow-Origin", "*");
-        server->send(200, "application/json", output);
-    });
 
 
     
-    // Add CORS support for OPTIONS requests
-    server->on("/api/sensors", HTTP_OPTIONS, [this]() {
-        server->sendHeader("HTTP/1.1 204 No Content", "");
-        server->sendHeader("Access-Control-Allow-Origin", "*");
-        server->sendHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-        server->sendHeader("Access-Control-Allow-Headers", "Content-Type");
-        server->send(204);
-    });
-
-    // Settings CSV Export endpoint
-    server->on("/api/settings/export", HTTP_GET, [this]() {
-        String csvData = settingsCSVManager.exportSettingsToCSV();
-        
-        if (csvData.length() > 0) {
-            String filename = "device_settings_" + String(millis()) + ".csv";
-            server->sendHeader("Content-Type", "text/csv");
-            server->sendHeader("Content-Disposition", "attachment; filename=\"" + filename + "\"");
-            server->send(200, "text/csv", csvData);
-        } else {
-            server->send(500, "application/json", "{\"error\":\"Failed to generate settings CSV\"}");
-        }
-    });
-
-    // Settings CSV Import endpoint
-    server->on("/api/settings/import", HTTP_POST, [this]() {
-        // This will be called after file upload is complete
-    }, [this]() {
-        // Handle file upload
-        HTTPUpload& upload = server->upload();
-        static String csvContent;
-        
-        if (upload.status == UPLOAD_FILE_START) {
-            csvContent = "";
-            Serial.printf("Settings Upload Start: %s\n", upload.filename.c_str());
-        } else if (upload.status == UPLOAD_FILE_WRITE) {
-            csvContent += String((char*)upload.buf, upload.currentSize);
-        } else if (upload.status == UPLOAD_FILE_END) {
-            Serial.printf("Settings Upload End: %s (%u bytes)\n", upload.filename.c_str(), upload.totalSize);
-            
-            // Process the uploaded CSV
-            if (settingsCSVManager.importSettingsFromCSV(csvContent)) {
-                // Save configuration after successful import
-                conf.saveConfigFile();
-                server->send(200, "application/json", "{\"success\":true,\"message\":\"Settings imported successfully. Device will restart.\"}");
-                
-                // Restart device to apply new settings
-                delay(1000);
-                ESP.restart();
-            } else {
-                String error = settingsCSVManager.getLastError();
-                server->send(400, "application/json", "{\"success\":false,\"error\":\"" + error + "\"}");
-            }
-            csvContent = "";
-        }
-    });
 
 
-    // Add these API endpoints in ConfigManager::begin() after existing endpoints
+    
+    
 
-// Get acknowledged delays
-    server->on("/api/alarms/delays", HTTP_GET, [this]() {
-        DynamicJsonDocument doc(512);
-        doc["critical"] = getAcknowledgedDelayCritical();
-        doc["high"] = getAcknowledgedDelayHigh();
-        doc["medium"] = getAcknowledgedDelayMedium();
-        doc["low"] = getAcknowledgedDelayLow();
-        
-        String output;
-        serializeJson(doc, output);
-        server->sendHeader("Content-Type", "application/json");
-        server->sendHeader("Access-Control-Allow-Origin", "*");
-        server->send(200, "application/json", output);
-    });
-
-    // Update acknowledged delays
-    server->on("/api/alarms/delays", HTTP_PUT, [this]() {
-        if (!server->hasArg("plain")) {
-            server->send(400, "application/json", "{\"error\":\"No data\"}");
-            return;
-        }
-        
-        DynamicJsonDocument doc(512);
-        DeserializationError err = deserializeJson(doc, server->arg("plain"));
-        if (err) {
-            server->send(400, "application/json", "{\"error\":\"Invalid JSON\"}");
-            return;
-        }
-        
-        bool updated = false;
-        
-        if (doc.containsKey("critical")) {
-            int minutes = doc["critical"].as<int>();
-            if (minutes >= 1 && minutes <= 1440) {
-                conf["ack_delay_critical"] = String(minutes);
-                controller.setAcknowledgedDelayCritical(minutes * 60 * 1000);
-                updated = true;
-            }
-        }
-        
-        if (doc.containsKey("high")) {
-            int minutes = doc["high"].as<int>();
-            if (minutes >= 1 && minutes <= 1440) {
-                conf["ack_delay_high"] = String(minutes);
-                controller.setAcknowledgedDelayHigh(minutes * 60 * 1000);
-                updated = true;
-            }
-        }
-        
-        if (doc.containsKey("medium")) {
-            int minutes = doc["medium"].as<int>();
-            if (minutes >= 1 && minutes <= 1440) {
-                conf["ack_delay_medium"] = String(minutes);
-                controller.setAcknowledgedDelayMedium(minutes * 60 * 1000);
-                updated = true;
-            }
-        }
-        
-        if (doc.containsKey("low")) {
-            int minutes = doc["low"].as<int>();
-            if (minutes >= 1 && minutes <= 1440) {
-                conf["ack_delay_low"] = String(minutes);
-                controller.setAcknowledgedDelayLow(minutes * 60 * 1000);
-                updated = true;
-            }
-        }
-        
-        if (updated) {
-            conf.saveConfigFile();
-            server->send(200, "application/json", "{\"status\":\"updated\"}");
-        } else {
-            server->send(400, "application/json", "{\"error\":\"No valid delays provided\"}");
-        }
-    });
+    
 
 
-    // Settings CSV Import endpoint - NO RESTART VERSION
-    // server->on("/api/settings/import", HTTP_POST, [this]() {
-    //     // This will be called after file upload is complete
-    // }, [this]() {
-    //     // Handle file upload
-    //     HTTPUpload& upload = server->upload();
-    //     static String csvContent;
-        
-    //     if (upload.status == UPLOAD_FILE_START) {
-    //         csvContent = "";
-    //         Serial.printf("Settings Upload Start: %s\n", upload.filename.c_str());
-    //     } else if (upload.status == UPLOAD_FILE_WRITE) {
-    //         csvContent += String((char*)upload.buf, upload.currentSize);
-    //     } else if (upload.status == UPLOAD_FILE_END) {
-    //         Serial.printf("Settings Upload End: %s (%u bytes)\n", upload.filename.c_str(), upload.totalSize);
-            
-    //         // Process the uploaded CSV
-    //         if (settingsCSVManager.importSettingsFromCSV(csvContent)) {
-    //             // Save configuration after successful import
-    //             conf.saveConfigFile();
-                
-    //             // Apply settings that can be changed without restart
-    //             _applySettingsWithoutRestart();
-                
-    //             server->send(200, "application/json", "{\"success\":true,\"message\":\"Settings imported successfully.\"}");
-    //         } else {
-    //             String error = settingsCSVManager.getLastError();
-    //             server->send(400, "application/json", "{\"success\":false,\"error\":\"" + error + "\"}");
-    //         }
-    //         csvContent = "";
-    //     }
-    // });
+    
 
  // WiFi setup logging
  bool startAP = true;
@@ -1333,3 +562,796 @@ void ConfigManager::loadAlarmsConfig() {
     
     Serial.printf("Loaded %d valid alarm configurations\n", loadedCount);
 }
+
+void ConfigManager::basicAPI(){
+
+    // Add route for the main page
+    server->on("/dashboard.html", HTTP_GET, [this]() {
+        if (LittleFS.exists("/dashboard.html")) {
+            server->sendHeader("HTTP/1.1 200 OK", "");
+            server->sendHeader("Content-Type", "text/html");
+            server->sendHeader("Connection", "close");
+            server->sendHeader("Cache-Control", "max-age=3600");
+            File file = LittleFS.open("/dashboard.html", "r");
+            server->streamFile(file, "text/html");
+            file.close();
+        } else {
+            server->sendHeader("HTTP/1.1 200 OK", "");
+            server->sendHeader("Content-Type", "text/html");
+            server->sendHeader("Connection", "close");
+            server->send(200, "text/html", "<html><body><h1>Temperature Monitoring System</h1><p><a href='/cfg'>Configuration</a></p><p><a href='/sensors.html'>Sensors</a></p></body></html>");
+        }
+    });
+    
+    // Add route for the sensors page
+    server->on("/sensors.html", HTTP_GET, [this]() {
+        if (LittleFS.exists("/sensors.html")) {
+            server->sendHeader("HTTP/1.1 200 OK", "");
+            server->sendHeader("Content-Type", "text/html");
+            server->sendHeader("Connection", "close");
+            server->sendHeader("Cache-Control", "max-age=3600");
+            File file = LittleFS.open("/sensors.html", "r");
+            server->streamFile(file, "text/html");
+            file.close();
+        } else {
+            server->sendHeader("HTTP/1.1 200 OK", "");
+            server->sendHeader("Content-Type", "text/plain");
+            server->sendHeader("Connection", "close");
+            server->send(404, "text/plain", "Sensors page not found");
+        }
+    });
+    server->on("/points.html", HTTP_GET, [this]() {
+        if (LittleFS.exists("/points.html")) {
+            server->sendHeader("HTTP/1.1 200 OK", "");
+            server->sendHeader("Content-Type", "text/html");
+            server->sendHeader("Connection", "close");
+            server->sendHeader("Cache-Control", "max-age=3600");
+            File file = LittleFS.open("/points.html", "r");
+            server->streamFile(file, "text/html");
+            file.close();
+        } else {
+            server->sendHeader("HTTP/1.1 200 OK", "");
+            server->sendHeader("Content-Type", "text/plain");
+            server->sendHeader("Connection", "close");
+            server->send(404, "text/plain", "Points page not found");
+        }
+    });
+
+
+
+
+    server->on("/alarms.html", HTTP_GET, [this]() {
+        if (LittleFS.exists("/alarms.html")) {
+            server->sendHeader("HTTP/1.1 200 OK", "");
+            server->sendHeader("Content-Type", "text/html");
+            server->sendHeader("Connection", "close");
+            server->sendHeader("Cache-Control", "max-age=3600");
+            File file = LittleFS.open("/alarms.html", "r");
+            server->streamFile(file, "text/html");
+            file.close();
+        } else {
+            server->sendHeader("HTTP/1.1 200 OK", "");
+            server->sendHeader("Content-Type", "text/html");
+            server->sendHeader("Connection", "close");
+            server->send(200, "text/html", "<html><body><h1>Temperature Monitoring System</h1><p><a href='/cfg'>Configuration</a></p><p><a href='/sensors.html'>Sensors</a></p></body></html>");
+        }
+    });
+
+    server->on("/alarm-history.html", HTTP_GET, [this]() {
+        if (LittleFS.exists("/alarm-history.html")) {
+            server->sendHeader("HTTP/1.1 200 OK", "");
+            server->sendHeader("Content-Type", "text/html");
+            server->sendHeader("Connection", "close");
+            server->sendHeader("Cache-Control", "max-age=3600");
+            File file = LittleFS.open("/alarm-history.html", "r");
+            server->streamFile(file, "text/html");
+            file.close();
+        } else {
+            server->sendHeader("HTTP/1.1 200 OK", "");
+            server->sendHeader("Content-Type", "text/html");
+            server->sendHeader("Connection", "close");
+            server->send(200, "text/html", "<html><body><h1>Temperature Monitoring System</h1><p><a href='/cfg'>Configuration</a></p><p><a href='/sensors.html'>Sensors</a></p></body></html>");
+        }
+    });
+
+    // Add CORS support for OPTIONS requests
+    server->on("/api/sensors", HTTP_OPTIONS, [this]() {
+        server->sendHeader("HTTP/1.1 204 No Content", "");
+        server->sendHeader("Access-Control-Allow-Origin", "*");
+        server->sendHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+        server->sendHeader("Access-Control-Allow-Headers", "Content-Type");
+        server->send(204);
+    });
+
+};
+void ConfigManager::sensorAPI(){
+    // API endpoints for sensor data
+    server->on("/api/sensors", HTTP_GET, [this]() {
+        server->sendHeader("HTTP/1.1 200 OK", "");
+        server->sendHeader("Content-Type", "application/json");
+        server->sendHeader("Connection", "close");
+        server->sendHeader("Access-Control-Allow-Origin", "*");
+        server->sendHeader("Cache-Control", "no-store");
+        server->send(200, "application/json", controller.getSensorsJson());
+    });
+    
+    server->on("/api/status", HTTP_GET, [this]() {
+        server->sendHeader("HTTP/1.1 200 OK", "");
+        server->sendHeader("Content-Type", "application/json");
+        server->sendHeader("Connection", "close");
+        server->sendHeader("Access-Control-Allow-Origin", "*");
+        server->sendHeader("Cache-Control", "no-store");
+        server->send(200, "application/json", controller.getSystemStatusJson());
+    });
+    
+    server->on("/api/reset-minmax", HTTP_POST, [this]() {
+        controller.resetMinMaxValues();
+        server->sendHeader("HTTP/1.1 200 OK", "");
+        server->sendHeader("Content-Type", "text/plain");
+        server->sendHeader("Connection", "close");
+        server->send(200, "text/plain", "Min/Max values reset");
+    });
+    
+    // API endpoint for sensor discovery
+    server->on("/api/discover", HTTP_POST, [this]() {
+        bool discoveredDS = controller.discoverDS18B20Sensors();
+        bool discoveredPT = controller.discoverPTSensors();
+        bool discovered = discoveredDS || discoveredPT;
+        
+        if (discovered) {
+
+            server->sendHeader("HTTP/1.1 200 OK", "");
+            server->sendHeader("Content-Type", "text/plain");
+            server->sendHeader("Connection", "close");
+            server->send(200, "text/plain", "Sensors discovered");
+        } else {
+            server->sendHeader("HTTP/1.1 404 Not Found", "");
+            server->sendHeader("Content-Type", "text/plain");
+            server->sendHeader("Connection", "close");
+            server->send(404, "text/plain", "No sensors found");
+        }
+    });
+
+    // POST /api/sensor-bind
+    server->on("/api/sensor-bind", HTTP_POST, [this]() {
+        if (server->hasArg("plain")) {
+            DynamicJsonDocument doc(256);
+            
+            DeserializationError err = deserializeJson(doc, server->arg("plain"));
+            
+            if (!err) {
+                uint8_t pointAddress = doc["pointAddress"];
+                if (doc.containsKey("romString")) {
+                    Serial.println("ROM:\n" + doc.as<String>());
+                    String rom = doc["romString"].as<String>();
+                    if (controller.bindSensorToPointByRom(rom, pointAddress)) {
+                        //Serial.println("Save points to config ROM\n");
+                        savePointsConfig();
+                        server->send(200, "text/plain", "Bound");
+                        return;
+                    }
+                } else if (doc.containsKey("chipSelect")) {
+                    int cs = doc["chipSelect"];
+                    Serial.println("CS:\n" + doc.as<String>());
+                    if (controller.bindSensorToPointByChipSelect(cs, pointAddress)) {
+                        //Serial.println("Save points to config ROM\n");
+                        savePointsConfig();
+                        server->send(200, "text/plain", "Bound");
+                        return;
+                    }
+                }
+            }
+        }
+        server->send(400, "text/plain", "Bad Request");
+    });
+
+    // POST /api/sensor-unbind
+    server->on("/api/sensor-unbind", HTTP_POST, [this]() {
+        if (server->hasArg("plain")) {
+            DynamicJsonDocument doc(128);
+            DeserializationError err = deserializeJson(doc, server->arg("plain"));
+            if (!err) {
+                if (doc.containsKey("romString")) {
+                    String rom = doc["romString"].as<String>();
+                    // Find point bound to this ROM and unbind
+                    for (uint8_t i = 0; i < 50; ++i) {
+                        Sensor* bound = controller.getDS18B20Point(i)->getBoundSensor();
+                        if (bound && bound->getDS18B20RomString() == rom) {
+                            if(controller.unbindSensorFromPoint(i)){
+                                savePointsConfig();
+                            server->send(200, "text/plain", "Unbound");
+                            return;
+
+                            };
+                            
+                        }
+                    }
+                } else if (doc.containsKey("chipSelect")) {
+                    int cs = doc["chipSelect"];
+                    for (uint8_t i = 0; i < 10; ++i) {
+                        Sensor* bound = controller.getPT1000Point(i)->getBoundSensor();
+                        if (bound && bound->getPT1000ChipSelectPin() == cs) {
+                            if(controller.unbindSensorFromPoint(50 + i)){
+                                savePointsConfig();
+                                server->send(200, "text/plain", "Unbound");
+                                return;
+                            };
+
+                        }
+                    }
+                }
+            }
+        }
+        server->send(400, "text/plain", "Bad Request");
+    });
+
+
+
+};
+void ConfigManager::csvImportExportAPI(){
+
+     // Combined points and alarms export
+     server->on("/api/export/config", HTTP_GET, [this]() {
+        String csv = csvManager.exportPointsWithAlarmsToCSV();
+        server->sendHeader("Content-Type", "text/csv");
+        server->sendHeader("Content-Disposition", "attachment; filename=config.csv");
+        server->send(200, "text/csv", csv);
+    });
+
+    // Combined points and alarms import
+    server->on("/api/import/config", HTTP_POST, [this]() {
+        if (!server->hasArg("plain")) {
+            server->send(400, "application/json", "{\"error\":\"No CSV data provided\"}");
+            return;
+        }
+        
+        bool success = csvManager.importPointsWithAlarmsFromCSV(server->arg("plain"));
+        if (success) {
+            savePointsConfig();
+            saveAlarmsConfig();
+            server->send(200, "application/json", "{\"status\":\"success\",\"message\":\"Configuration imported successfully\"}");
+        } else {
+            String error = csvManager.getLastError();
+            server->send(400, "application/json", "{\"status\":\"error\",\"message\":\"" + error + "\"}");
+        }
+    });
+
+
+    // Add these to your ConfigManager::begin() method after existing API endpoints
+
+    // CSV Export endpoint
+    server->on("/api/csv/export", HTTP_GET, [this]() {
+        CSVConfigManager csvManager(controller);
+        String csvData = csvManager.exportPointsWithAlarmsToCSV();
+        
+        if (csvData.length() > 0) {
+            String filename = "temperature_config_" + String(millis()) + ".csv";
+            server->sendHeader("Content-Type", "text/csv");
+            server->sendHeader("Content-Disposition", "attachment; filename=\"" + filename + "\"");
+            server->send(200, "text/csv", csvData);
+        } else {
+            server->send(500, "application/json", "{\"error\":\"Failed to generate CSV\"}");
+        }
+    });
+
+    // CSV Import endpoint
+   // In ConfigManager.cpp, update the CSV import endpoint:
+    server->on("/api/csv/import", HTTP_POST, [this]() {
+        // This will be called after file upload is complete
+    }, [this]() {
+        // Handle file upload
+        HTTPUpload& upload = server->upload();
+        static String csvContent;
+        
+        if (upload.status == UPLOAD_FILE_START) {
+            csvContent = "";
+            LoggerManager::info("CONFIG_IMPORT", 
+                "CSV upload started - filename: " + String(upload.filename.c_str()));
+            Serial.printf("Upload Start: %s\n", upload.filename.c_str());
+        } else if (upload.status == UPLOAD_FILE_WRITE) {
+            csvContent += String((char*)upload.buf, upload.currentSize);
+        } else if (upload.status == UPLOAD_FILE_END) {
+            Serial.printf("Upload End: %s (%u bytes)\n", upload.filename.c_str(), upload.totalSize);
+            LoggerManager::info("CONFIG_IMPORT", 
+                "CSV upload completed - size: " + String(upload.totalSize) + " bytes");
+            
+            // Process the uploaded CSV
+            if (csvManager.importPointsWithAlarmsFromCSV(csvContent)) {
+                saveAlarmsConfig();
+                savePointsConfig();
+                LoggerManager::info("CONFIG_IMPORT", "CSV import successful");
+                server->send(200, "application/json", "{\"success\":true}");
+            } else {
+                String error = csvManager.getLastError();
+                LoggerManager::error("CONFIG_IMPORT", "CSV import failed: " + error);
+                server->send(400, "application/json", "{\"success\":false,\"error\":\"" + error + "\"}");
+            }
+            csvContent = "";
+        }
+    });
+    // Settings CSV Export endpoint
+    server->on("/api/settings/export", HTTP_GET, [this]() {
+        String csvData = settingsCSVManager.exportSettingsToCSV();
+        
+        if (csvData.length() > 0) {
+            String filename = "device_settings_" + String(millis()) + ".csv";
+            server->sendHeader("Content-Type", "text/csv");
+            server->sendHeader("Content-Disposition", "attachment; filename=\"" + filename + "\"");
+            server->send(200, "text/csv", csvData);
+        } else {
+            server->send(500, "application/json", "{\"error\":\"Failed to generate settings CSV\"}");
+        }
+    });
+
+    // Settings CSV Import endpoint
+    server->on("/api/settings/import", HTTP_POST, [this]() {
+        // This will be called after file upload is complete
+    }, [this]() {
+        // Handle file upload
+        HTTPUpload& upload = server->upload();
+        static String csvContent;
+        
+        if (upload.status == UPLOAD_FILE_START) {
+            csvContent = "";
+            Serial.printf("Settings Upload Start: %s\n", upload.filename.c_str());
+        } else if (upload.status == UPLOAD_FILE_WRITE) {
+            csvContent += String((char*)upload.buf, upload.currentSize);
+        } else if (upload.status == UPLOAD_FILE_END) {
+            Serial.printf("Settings Upload End: %s (%u bytes)\n", upload.filename.c_str(), upload.totalSize);
+            
+            // Process the uploaded CSV
+            if (settingsCSVManager.importSettingsFromCSV(csvContent)) {
+                // Save configuration after successful import
+                conf.saveConfigFile();
+                server->send(200, "application/json", "{\"success\":true,\"message\":\"Settings imported successfully. Device will restart.\"}");
+                
+                // Restart device to apply new settings
+                delay(1000);
+                ESP.restart();
+            } else {
+                String error = settingsCSVManager.getLastError();
+                server->send(400, "application/json", "{\"success\":false,\"error\":\"" + error + "\"}");
+            }
+            csvContent = "";
+        }
+    });
+
+};
+void ConfigManager::pointsAPI(){
+    // GET points
+    server->on("/api/points", HTTP_GET, [this]() {
+        server->sendHeader("Content-Type", "application/json");
+        server->send(200, "application/json", controller.getPointsJson());
+    });
+
+    // PUT point update
+    server->on("/api/points", HTTP_PUT, [this]() {
+        if (!server->hasArg("plain")) {
+            server->send(400, "application/json", "{\"error\":\"No data\"}");
+            return;
+        }
+        DynamicJsonDocument doc(512);
+        DeserializationError err = deserializeJson(doc, server->arg("plain"));
+        if (err) {
+            server->send(400, "application/json", "{\"error\":\"Invalid JSON\"}");
+            return;
+        }
+        Serial.println("/api/points HTTP_PUT:" + doc.as<String>());
+        uint8_t address = doc["address"];
+        String name = doc["name"].as<String>();
+        int16_t low = doc["lowAlarmThreshold"];
+        int16_t high = doc["highAlarmThreshold"];
+
+
+        MeasurementPoint* point = controller.getMeasurementPoint(address);
+        if (!point) {
+            server->send(404, "application/json", "{\"error\":\"Point not found\"}");
+            return;
+        }
+        point->setName(name);
+        point->setLowAlarmThreshold(low);
+        point->setHighAlarmThreshold(high);
+        Serial.printf("Point: %s. LAS: %d, HAS: %d\n Delay....\n", point->getName(), point->getLowAlarmThreshold(), point->getHighAlarmThreshold());
+        delay(5000);
+        controller.applyConfigToRegisterMap();
+        // Save to config if needed
+        savePointsConfig(); // implement this to persist changes
+
+        server->send(200, "application/json", "{\"success\":true}");
+    });
+
+};
+void ConfigManager::alarmsAPI(){
+
+    // Get alarms configuration
+    server->on("/api/alarms", HTTP_GET, [this]() {
+        server->sendHeader("Content-Type", "application/json");
+        server->sendHeader("Access-Control-Allow-Origin", "*");
+        server->send(200, "application/json", controller.getAlarmsJson());
+    });
+
+    // Add/Update alarm configuration
+    server->on("/api/alarms", HTTP_POST, [this]() {
+        if (!server->hasArg("plain")) {
+            server->send(400, "application/json", "{\"error\":\"No data\"}");
+            return;
+        }
+        
+        DynamicJsonDocument doc(512);
+        DeserializationError err = deserializeJson(doc, server->arg("plain"));
+        if (err) {
+            server->send(400, "application/json", "{\"error\":\"Invalid JSON\"}");
+            return;
+        }
+        
+        AlarmType type = static_cast<AlarmType>(doc["type"].as<int>());
+        uint8_t pointAddress = doc["pointAddress"].as<int>();
+        AlarmPriority priority = static_cast<AlarmPriority>(doc["priority"].as<int>());
+        
+        bool success = controller.addAlarm(type, pointAddress, priority);
+        if (success) {
+            saveAlarmsConfig();
+            server->send(200, "application/json", "{\"status\":\"success\"}");
+        } else {
+            server->send(400, "application/json", "{\"error\":\"Failed to add alarm\"}");
+        }
+    });
+
+    // Delete alarm configuration
+    server->on("/api/alarms", HTTP_DELETE, [this]() {
+        if (!server->hasArg("configKey")) {
+            server->send(400, "application/json", "{\"error\":\"No configKey provided\"}");
+            return;
+        }
+        
+        String configKey = server->arg("configKey");
+        bool success = controller.removeAlarm(configKey);
+        if (success) {
+            saveAlarmsConfig();
+            server->send(200, "application/json", "{\"status\":\"deleted\"}");
+        } else {
+            server->send(404, "application/json", "{\"error\":\"Alarm not found\"}");
+        }
+    });
+
+    // Add these endpoints to your setupWebServer() method in ConfigManager.cpp
+
+    // Get alarms configuration
+    server->on("/api/alarms", HTTP_GET, [this]() {
+        server->sendHeader("Content-Type", "application/json");
+        server->sendHeader("Access-Control-Allow-Origin", "*");
+        server->send(200, "application/json", controller.getAlarmsJson());
+    });
+
+    // Add/Update alarm configuration
+    server->on("/api/alarms", HTTP_POST, [this]() {
+        if (!server->hasArg("plain")) {
+            server->send(400, "application/json", "{\"error\":\"No data\"}");
+            return;
+        }
+        
+        DynamicJsonDocument doc(512);
+        DeserializationError err = deserializeJson(doc, server->arg("plain"));
+        if (err) {
+            server->send(400, "application/json", "{\"error\":\"Invalid JSON\"}");
+            return;
+        }
+        
+        AlarmType type = static_cast<AlarmType>(doc["type"].as<int>());
+        uint8_t pointAddress = doc["pointAddress"].as<int>();
+        AlarmPriority priority = static_cast<AlarmPriority>(doc["priority"].as<int>());
+        
+        bool success = controller.addAlarm(type, pointAddress, priority);
+        if (success) {
+            saveAlarmsConfig();
+            server->send(200, "application/json", "{\"status\":\"success\"}");
+        } else {
+            server->send(400, "application/json", "{\"error\":\"Failed to add alarm\"}");
+        }
+    });
+
+    // Update alarm configuration
+    server->on("/api/alarms", HTTP_PUT, [this]() {
+        if (!server->hasArg("plain")) {
+            server->send(400, "application/json", "{\"error\":\"No data\"}");
+            return;
+        }
+        
+        DynamicJsonDocument doc(512);
+        DeserializationError err = deserializeJson(doc, server->arg("plain"));
+        if (err) {
+            server->send(400, "application/json", "{\"error\":\"Invalid JSON\"}");
+            return;
+        }
+        
+        String configKey = doc["configKey"].as<String>();
+        AlarmPriority priority = static_cast<AlarmPriority>(doc["priority"].as<int>());
+        bool enabled = doc["enabled"].as<bool>();
+        
+        bool success = controller.updateAlarm(configKey, priority, enabled);
+        if (success) {
+            saveAlarmsConfig();
+            server->send(200, "application/json", "{\"status\":\"updated\"}");
+        } else {
+            server->send(404, "application/json", "{\"error\":\"Alarm not found\"}");
+        }
+    });
+
+    // Delete alarm configuration
+    server->on("/api/alarms", HTTP_DELETE, [this]() {
+        if (!server->hasArg("configKey")) {
+            server->send(400, "application/json", "{\"error\":\"No configKey provided\"}");
+            return;
+        }
+        
+        String configKey = server->arg("configKey");
+        bool success = controller.removeAlarm(configKey);
+        if (success) {
+            saveAlarmsConfig();
+            server->send(200, "application/json", "{\"status\":\"deleted\"}");
+        } else {
+            server->send(404, "application/json", "{\"error\":\"Alarm not found\"}");
+        }
+    });
+
+    // Acknowledge specific alarm
+    server->on("/api/alarms/acknowledge", HTTP_POST, [this]() {
+        if (!server->hasArg("plain")) {
+            server->send(400, "application/json", "{\"error\":\"No data\"}");
+            return;
+        }
+
+        DynamicJsonDocument doc(512);
+        DeserializationError err = deserializeJson(doc, server->arg("plain"));
+        if (err) {
+            server->send(400, "application/json", "{\"error\":\"Invalid JSON\"}");
+            return;
+        }
+
+        String configKey = doc["configKey"].as<String>();
+        
+        // Find alarm in configured alarms
+        Alarm* alarm = controller.findAlarm(configKey);
+        if (!alarm) {
+            server->send(404, "application/json", "{\"error\":\"Alarm not found\"}");
+            return;
+        }
+
+        // Find corresponding active alarm and acknowledge it
+        bool acknowledged = false;
+        for (auto activeAlarm : controller.getActiveAlarms()) {
+            if (activeAlarm->getSource() == alarm->getSource() && 
+                activeAlarm->getType() == alarm->getType()) {
+                activeAlarm->acknowledge();
+                acknowledged = true;
+                Serial.printf("Acknowledged alarm: %s for point %d\n", 
+                            activeAlarm->getTypeString().c_str(),
+                            activeAlarm->getSource()->getAddress());
+                break;
+            }
+        }
+
+        if (acknowledged) {
+            server->send(200, "application/json", "{\"status\":\"acknowledged\"}");
+        } else {
+            server->send(404, "application/json", "{\"error\":\"No active alarm found to acknowledge\"}");
+        }
+    });
+
+    // Acknowledge all active alarms
+    server->on("/api/alarms/acknowledge-all", HTTP_POST, [this]() {
+        std::vector<Alarm*> activeAlarms = controller.getActiveAlarms();
+        int acknowledgedCount = 0;
+        
+        for (auto alarm : activeAlarms) {
+            if (!alarm->isAcknowledged()) {
+                alarm->acknowledge();
+                acknowledgedCount++;
+                Serial.printf("Acknowledged alarm: %s for point %d\n", 
+                            alarm->getTypeString().c_str(),
+                            alarm->getSource() ? alarm->getSource()->getAddress() : -1);
+            }
+        }
+        
+        DynamicJsonDocument response(256);
+        response["status"] = "success";
+        response["acknowledgedCount"] = acknowledgedCount;
+        response["message"] = String(acknowledgedCount) + " alarms acknowledged";
+        
+        String output;
+        serializeJson(response, output);
+        server->send(200, "application/json", output);
+    });
+
+    // Clear resolved alarms
+    server->on("/api/alarms/clear-resolved", HTTP_POST, [this]() {
+        std::vector<Alarm*> configuredAlarms = controller.getConfiguredAlarms();
+        int clearedCount = 0;
+        
+        // Remove resolved alarms from configured alarms
+        for (auto it = configuredAlarms.begin(); it != configuredAlarms.end();) {
+            if ((*it)->isResolved()) {
+                String configKey = (*it)->getConfigKey();
+                bool removed = controller.removeAlarm(configKey);
+                if (removed) {
+                    clearedCount++;
+                    Serial.printf("Cleared resolved alarm: %s\n", configKey.c_str());
+                }
+                // Note: iterator is handled by removeAlarm method
+                it = configuredAlarms.begin(); // Restart iteration after removal
+            } else {
+                ++it;
+            }
+        }
+        
+        // Save configuration after clearing
+        if (clearedCount > 0) {
+            saveAlarmsConfig();
+        }
+        
+        DynamicJsonDocument response(256);
+        response["status"] = "success";
+        response["clearedCount"] = clearedCount;
+        response["message"] = String(clearedCount) + " resolved alarms cleared";
+        
+        String output;
+        serializeJson(response, output);
+        server->send(200, "application/json", output);
+    });
+
+    // Get active alarms only (for dashboard/monitoring)
+    server->on("/api/alarms/active", HTTP_GET, [this]() {
+        DynamicJsonDocument doc(4096);
+        JsonArray alarmArray = doc.createNestedArray("alarms");
+        
+        for (auto alarm : controller.getActiveAlarms()) {
+            JsonObject obj = alarmArray.createNestedObject();
+            obj["type"] = static_cast<int>(alarm->getType());
+            obj["stage"] = static_cast<int>(alarm->getStage());
+            obj["priority"] = static_cast<int>(alarm->getPriority());
+            obj["timestamp"] = alarm->getTimestamp();
+            obj["acknowledgedTime"] = alarm->getAcknowledgedTime();
+            obj["message"] = alarm->getMessage();
+            obj["isActive"] = alarm->isActive();
+            obj["isAcknowledged"] = alarm->isAcknowledged();
+            
+            if (alarm->getSource()) {
+                obj["pointAddress"] = alarm->getSource()->getAddress();
+                obj["pointName"] = alarm->getSource()->getName();
+                obj["currentTemp"] = alarm->getSource()->getCurrentTemp();
+            }
+        }
+        
+        String output;
+        serializeJson(doc, output);
+        server->sendHeader("Content-Type", "application/json");
+        server->sendHeader("Access-Control-Allow-Origin", "*");
+        server->send(200, "application/json", output);
+    });
+
+    // Get alarm statistics
+    server->on("/api/alarms/stats", HTTP_GET, [this]() {
+        std::vector<Alarm*> activeAlarms = controller.getActiveAlarms();
+        
+        int criticalCount = 0, highCount = 0, mediumCount = 0, lowCount = 0;
+        int newCount = 0, activeCount = 0, acknowledgedCount = 0;
+        
+        for (auto alarm : activeAlarms) {
+            // Count by priority
+            switch (alarm->getPriority()) {
+                case AlarmPriority::PRIORITY_CRITICAL: criticalCount++; break;
+                case AlarmPriority::PRIORITY_HIGH: highCount++; break;
+                case AlarmPriority::PRIORITY_MEDIUM: mediumCount++; break;
+                case AlarmPriority::PRIORITY_LOW: lowCount++; break;
+            }
+            
+            // Count by stage
+            switch (alarm->getStage()) {
+                case AlarmStage::NEW: newCount++; break;
+                case AlarmStage::ACTIVE: activeCount++; break;
+                case AlarmStage::ACKNOWLEDGED: acknowledgedCount++; break;
+                default: break;
+            }
+        }
+        
+        DynamicJsonDocument doc(512);
+        doc["totalActive"] = activeAlarms.size();
+        doc["totalConfigured"] = controller.getAlarmCount();
+        
+        JsonObject byPriority = doc.createNestedObject("byPriority");
+        byPriority["critical"] = criticalCount;
+        byPriority["high"] = highCount;
+        byPriority["medium"] = mediumCount;
+        byPriority["low"] = lowCount;
+        
+        JsonObject byStage = doc.createNestedObject("byStage");
+        byStage["new"] = newCount;
+        byStage["active"] = activeCount;
+        byStage["acknowledged"] = acknowledgedCount;
+        
+        String output;
+        serializeJson(doc, output);
+        server->sendHeader("Content-Type", "application/json");
+        server->sendHeader("Access-Control-Allow-Origin", "*");
+        server->send(200, "application/json", output);
+    });
+
+    // Get acknowledged delays
+    server->on("/api/alarms/delays", HTTP_GET, [this]() {
+        DynamicJsonDocument doc(512);
+        doc["critical"] = getAcknowledgedDelayCritical();
+        doc["high"] = getAcknowledgedDelayHigh();
+        doc["medium"] = getAcknowledgedDelayMedium();
+        doc["low"] = getAcknowledgedDelayLow();
+        
+        String output;
+        serializeJson(doc, output);
+        server->sendHeader("Content-Type", "application/json");
+        server->sendHeader("Access-Control-Allow-Origin", "*");
+        server->send(200, "application/json", output);
+    });
+
+    // Update acknowledged delays
+    server->on("/api/alarms/delays", HTTP_PUT, [this]() {
+        if (!server->hasArg("plain")) {
+            server->send(400, "application/json", "{\"error\":\"No data\"}");
+            return;
+        }
+        
+        DynamicJsonDocument doc(512);
+        DeserializationError err = deserializeJson(doc, server->arg("plain"));
+        if (err) {
+            server->send(400, "application/json", "{\"error\":\"Invalid JSON\"}");
+            return;
+        }
+        
+        bool updated = false;
+        
+        if (doc.containsKey("critical")) {
+            int minutes = doc["critical"].as<int>();
+            if (minutes >= 1 && minutes <= 1440) {
+                conf["ack_delay_critical"] = String(minutes);
+                controller.setAcknowledgedDelayCritical(minutes * 60 * 1000);
+                updated = true;
+            }
+        }
+        
+        if (doc.containsKey("high")) {
+            int minutes = doc["high"].as<int>();
+            if (minutes >= 1 && minutes <= 1440) {
+                conf["ack_delay_high"] = String(minutes);
+                controller.setAcknowledgedDelayHigh(minutes * 60 * 1000);
+                updated = true;
+            }
+        }
+        
+        if (doc.containsKey("medium")) {
+            int minutes = doc["medium"].as<int>();
+            if (minutes >= 1 && minutes <= 1440) {
+                conf["ack_delay_medium"] = String(minutes);
+                controller.setAcknowledgedDelayMedium(minutes * 60 * 1000);
+                updated = true;
+            }
+        }
+        
+        if (doc.containsKey("low")) {
+            int minutes = doc["low"].as<int>();
+            if (minutes >= 1 && minutes <= 1440) {
+                conf["ack_delay_low"] = String(minutes);
+                controller.setAcknowledgedDelayLow(minutes * 60 * 1000);
+                updated = true;
+            }
+        }
+        
+        if (updated) {
+            conf.saveConfigFile();
+            server->send(200, "application/json", "{\"status\":\"updated\"}");
+        } else {
+            server->send(400, "application/json", "{\"error\":\"No valid delays provided\"}");
+        }
+    });
+
+};
+void ConfigManager::logsAPI(){
+
+};
