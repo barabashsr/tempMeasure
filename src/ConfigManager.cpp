@@ -112,6 +112,12 @@ bool ConfigManager::begin() {
     
     // IMPORTANT: Register custom routes BEFORE ConfigAssist setup
 
+    if(server) {
+        Serial.println("!!!!!!!!!!!!!SERVER STARTED!!!!!!!!!!!!");
+    } else {
+        Serial.println("!!!!!!!!!!!!!SERVER FAILED!!!!!!!!!!!!");
+    }
+
 
     basicAPI();
     sensorAPI();
@@ -575,6 +581,7 @@ void ConfigManager::basicAPI(){
             File file = LittleFS.open("/dashboard.html", "r");
             server->streamFile(file, "text/html");
             file.close();
+            Serial.println("SERVER: /dashboard.html");
         } else {
             server->sendHeader("HTTP/1.1 200 OK", "");
             server->sendHeader("Content-Type", "text/html");
@@ -593,6 +600,7 @@ void ConfigManager::basicAPI(){
             File file = LittleFS.open("/sensors.html", "r");
             server->streamFile(file, "text/html");
             file.close();
+            Serial.println("SERVER: /sensors.html");
         } else {
             server->sendHeader("HTTP/1.1 200 OK", "");
             server->sendHeader("Content-Type", "text/plain");
@@ -608,6 +616,7 @@ void ConfigManager::basicAPI(){
             server->sendHeader("Cache-Control", "max-age=3600");
             File file = LittleFS.open("/points.html", "r");
             server->streamFile(file, "text/html");
+            Serial.println("SERVER: /points.html");
             file.close();
         } else {
             server->sendHeader("HTTP/1.1 200 OK", "");
@@ -629,6 +638,7 @@ void ConfigManager::basicAPI(){
             File file = LittleFS.open("/alarms.html", "r");
             server->streamFile(file, "text/html");
             file.close();
+            Serial.println("SERVER: /alarms.html");
         } else {
             server->sendHeader("HTTP/1.1 200 OK", "");
             server->sendHeader("Content-Type", "text/html");
@@ -646,6 +656,7 @@ void ConfigManager::basicAPI(){
             File file = LittleFS.open("/alarm-history.html", "r");
             server->streamFile(file, "text/html");
             file.close();
+            Serial.println("SERVER: /alarm-history.html");
         } else {
             server->sendHeader("HTTP/1.1 200 OK", "");
             server->sendHeader("Content-Type", "text/html");
@@ -1352,6 +1363,63 @@ void ConfigManager::alarmsAPI(){
     });
 
 };
-void ConfigManager::logsAPI(){
 
-};
+
+void ConfigManager::logsAPI() {
+    // Get alarm history
+    server->on("/api/alarm-history", HTTP_GET, [this]() {
+        String startDate = server->arg("start");
+        String endDate = server->arg("end");
+        
+        if (startDate.isEmpty() || endDate.isEmpty()) {
+            server->send(400, "application/json", "{\"success\":false,\"error\":\"Missing date parameters\"}");
+            return;
+        }
+        
+        // Use static method
+        String historyJson = LoggerManager::getAlarmHistoryJson(startDate, endDate);
+        server->sendHeader("Content-Type", "application/json");
+        server->sendHeader("Access-Control-Allow-Origin", "*");
+        server->send(200, "application/json", historyJson);
+    });
+    
+    // Export alarm history as CSV
+    server->on("/api/alarm-history/export", HTTP_GET, [this]() {
+        String startDate = server->arg("start");
+        String endDate = server->arg("end");
+        
+        if (startDate.isEmpty() || endDate.isEmpty()) {
+            server->send(400, "application/json", "{\"success\":false,\"error\":\"Missing date parameters\"}");
+            return;
+        }
+        
+        // Use static method
+        String csvData = LoggerManager::getAlarmHistoryCsv(startDate, endDate);
+        
+        if (csvData.length() > 0) {
+            String filename = "alarm_history_" + startDate + "_to_" + endDate + ".csv";
+            server->sendHeader("Content-Type", "text/csv");
+            server->sendHeader("Content-Disposition", "attachment; filename=\"" + filename + "\"");
+            server->send(200, "text/csv", csvData);
+        } else {
+            server->send(404, "application/json", "{\"success\":false,\"error\":\"No alarm history found\"}");
+        }
+    });
+    
+    // Get available alarm log files
+    server->on("/api/alarm-history/files", HTTP_GET, [this]() {
+        DynamicJsonDocument doc(2048);
+        JsonArray filesArray = doc.createNestedArray("files");
+        
+        std::vector<String> files = LoggerManager::getAlarmStateLogFiles();
+        for (const String& file : files) {
+            filesArray.add(file);
+        }
+        
+        String output;
+        serializeJson(doc, output);
+        server->sendHeader("Content-Type", "application/json");
+        server->sendHeader("Access-Control-Allow-Origin", "*");
+        server->send(200, "application/json", output);
+    });
+}

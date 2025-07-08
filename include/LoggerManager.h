@@ -189,11 +189,19 @@ public:
     
     // Alarm state log management
     String getCurrentAlarmStateLogFile() const;
-    std::vector<String> getAlarmStateLogFiles();
+    static std::vector<String> getAlarmStateLogFiles();
     bool deleteAlarmStateLogFile(const String& filename);
+
+        // Static alarm history retrieval methods
+    static String getAlarmHistoryJson(const String& startDate, const String& endDate);
+    static String getAlarmHistoryCsv(const String& startDate, const String& endDate);
     
 private:
     String _lastError;
+    // Make helper methods static too
+    static std::vector<String> _getAlarmLogFilesInRange(const String& startDate, const String& endDate);
+    static bool _parseAlarmStateLogEntry(const String& line, DynamicJsonDocument& entry);
+    static String _normalizeDate(const String& dateStr);
 };
 
 #endif // LOGGERMANAGER_H

@@ -206,15 +206,6 @@
             color: white;
             border-color: #007bff;
         }
-        .state-transition {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        .state-arrow {
-            color: #6c757d;
-            font-weight: bold;
-        }
     </style>
 </head>
 <body>
@@ -253,10 +244,10 @@
                 <label>Filter by Type:</label>
                 <select id="typeFilter" onchange="filterTable()">
                     <option value="">All Types</option>
-                    <option value="HIGH_TEMP">High Temperature</option>
-                    <option value="LOW_TEMP">Low Temperature</option>
-                    <option value="SENSOR_ERROR">Sensor Error</option>
-                    <option value="DISCONNECTED">Sensor Disconnected</option>
+                    <option value="0">High Temperature</option>
+                    <option value="1">Low Temperature</option>
+                    <option value="2">Sensor Error</option>
+                    <option value="3">Sensor Disconnected</option>
                 </select>
             </div>
 
@@ -264,22 +255,10 @@
                 <label>Filter by Priority:</label>
                 <select id="priorityFilter" onchange="filterTable()">
                     <option value="">All Priorities</option>
-                    <option value="CRITICAL">Critical</option>
-                    <option value="HIGH">High</option>
-                    <option value="MEDIUM">Medium</option>
-                    <option value="LOW">Low</option>
-                </select>
-            </div>
-
-            <div class="filter-group">
-                <label>Filter by State:</label>
-                <select id="stateFilter" onchange="filterTable()">
-                    <option value="">All States</option>
-                    <option value="NEW">New</option>
-                    <option value="ACTIVE">Active</option>
-                    <option value="ACKNOWLEDGED">Acknowledged</option>
-                    <option value="CLEARED">Cleared</option>
-                    <option value="RESOLVED">Resolved</option>
+                    <option value="3">Critical</option>
+                    <option value="2">High</option>
+                    <option value="1">Medium</option>
+                    <option value="0">Low</option>
                 </select>
             </div>
         </div>
@@ -288,19 +267,20 @@
         <table id="historyTable">
             <thead>
                 <tr>
-                    <th class="sortable" onclick="sortTable(0)">Timestamp</th>
-                    <th class="sortable" onclick="sortTable(1)">Point</th>
-                    <th class="sortable" onclick="sortTable(2)">Point Name</th>
-                    <th class="sortable" onclick="sortTable(3)">Type</th>
-                    <th class="sortable" onclick="sortTable(4)">Priority</th>
-                    <th class="sortable" onclick="sortTable(5)">State Change</th>
-                    <th class="sortable" onclick="sortTable(6)">Temperature</th>
-                    <th class="sortable" onclick="sortTable(7)">Threshold</th>
+                    <th class="sortable" onclick="sortTable(0)">Point</th>
+                    <th class="sortable" onclick="sortTable(1)">Point Name</th>
+                    <th class="sortable" onclick="sortTable(2)">Type</th>
+                    <th class="sortable" onclick="sortTable(3)">Priority</th>
+                    <th class="sortable" onclick="sortTable(4)">Event</th>
+                    <th class="sortable" onclick="sortTable(5)">Temperature</th>
+                    <th class="sortable" onclick="sortTable(6)">Threshold</th>
+                    <th class="sortable" onclick="sortTable(7)">Timestamp</th>
+                    <th class="sortable" onclick="sortTable(8)">Duration</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td colspan="8" class="no-history">Select a date range and click "Load History" to view alarm events</td>
+                    <td colspan="9" class="no-history">Select a date range and click "Load History" to view alarm events</td>
                 </tr>
             </tbody>
         </table>
@@ -386,7 +366,7 @@
             } catch (error) {
                 console.error('Error loading alarm history:', error);
                 document.querySelector('#historyTable tbody').innerHTML = 
-                    '<tr><td colspan="8" class="no-history">Error loading alarm history: ' + error.message + '</td></tr>';
+                    '<tr><td colspan="9" class="no-history">Error loading alarm history: ' + error.message + '</td></tr>';
             }
         }
 
@@ -395,7 +375,7 @@
             const tbody = document.querySelector('#historyTable tbody');
             
             if (historyData.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="8" class="no-history">No alarm history found for the selected date range</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="9" class="no-history">No alarm history found for the selected date range</td></tr>';
                 document.getElementById('pagination').style.display = 'none';
                 return;
             }
@@ -408,42 +388,67 @@
         function createHistoryRow(entry) {
             const row = document.createElement('tr');
             
+            const timestamp = new Date(entry.timestamp).toLocaleString();
+            const duration = formatDuration(entry.duration);
+            
             row.innerHTML = `
-                <td><span class="timestamp">${entry.timestamp}</span></td>
-                <td>${entry.pointNumber}</td>
+                <td>${entry.pointAddress}</td>
                 <td>${entry.pointName || 'Unknown'}</td>
-                <td><span class="alarm-type ${getTypeClass(entry.alarmType)}">${entry.alarmType}</span></td>
-                <td><span class="priority-${entry.alarmPriority.toLowerCase()}">${entry.alarmPriority}</span></td>
-                <td>
-                    <div class="state-transition">
-                        <span class="status-${entry.previousState.toLowerCase()}">${entry.previousState}</span>
-                        <span class="state-arrow">→</span>
-                        <span class="status-${entry.newState.toLowerCase()}">${entry.newState}</span>
-                    </div>
-                </td>
-                <td>${entry.currentTemperature !== undefined ? entry.currentTemperature + '°C' : 'N/A'}</td>
+                <td><span class="alarm-type ${getTypeClass(entry.alarmType)}">${getTypeText(entry.alarmType)}</span></td>
+                <td><span class="priority-${getPriorityClass(entry.priority)}">${getPriorityText(entry.priority)}</span></td>
+                <td>${entry.event}</td>
+                <td>${entry.temperature !== undefined ? entry.temperature + '°C' : 'N/A'}</td>
                 <td>${entry.threshold !== undefined ? entry.threshold + '°C' : 'N/A'}</td>
+                <td><span class="timestamp">${timestamp}</span></td>
+                <td>${duration}</td>
             `;
             
             // Set data attributes for filtering
-            row.dataset.point = entry.pointNumber;
+            row.dataset.point = entry.pointAddress;
             row.dataset.type = entry.alarmType;
-            row.dataset.priority = entry.alarmPriority;
-            row.dataset.previousState = entry.previousState;
-            row.dataset.newState = entry.newState;
+            row.dataset.priority = entry.priority;
             
             return row;
         }
 
         // Helper functions
+        function getTypeText(type) {
+            const types = ['High Temp', 'Low Temp', 'Sensor Error', 'Disconnected'];
+            return types[type] || 'Unknown';
+        }
+
         function getTypeClass(type) {
-            const typeClasses = {
-                'HIGH_TEMP': 'type-high-temp',
-                'LOW_TEMP': 'type-low-temp',
-                'SENSOR_ERROR': 'type-sensor-error',
-                'DISCONNECTED': 'type-sensor-disconnected'
-            };
-            return typeClasses[type] || '';
+            const classes = ['type-high-temp', 'type-low-temp', 'type-sensor-error', 'type-sensor-disconnected'];
+            return classes[type] || '';
+        }
+
+        function getPriorityText(priority) {
+            const priorities = ['Low', 'Medium', 'High', 'Critical'];
+            return priorities[priority] || 'Unknown';
+        }
+
+        function getPriorityClass(priority) {
+            const classes = ['low', 'medium', 'high', 'critical'];
+            return classes[priority] || 'low';
+        }
+
+        function formatDuration(durationMs) {
+            if (!durationMs || durationMs <= 0) return '-';
+            
+            const seconds = Math.floor(durationMs / 1000);
+            const minutes = Math.floor(seconds / 60);
+            const hours = Math.floor(minutes / 60);
+            const days = Math.floor(hours / 24);
+            
+            if (days > 0) {
+                return `${days}d ${hours % 24}h ${minutes % 60}m`;
+            } else if (hours > 0) {
+                return `${hours}h ${minutes % 60}m`;
+            } else if (minutes > 0) {
+                return `${minutes}m ${seconds % 60}s`;
+            } else {
+                return `${seconds}s`;
+            }
         }
 
         // Filter table function
@@ -451,15 +456,13 @@
             const pointFilter = document.getElementById('pointFilter').value;
             const typeFilter = document.getElementById('typeFilter').value;
             const priorityFilter = document.getElementById('priorityFilter').value;
-            const stateFilter = document.getElementById('stateFilter').value;
             
             filteredData = historyData.filter(entry => {
-                const pointMatch = !pointFilter || entry.pointNumber == pointFilter;
-                const typeMatch = !typeFilter || entry.alarmType === typeFilter;
-                const priorityMatch = !priorityFilter || entry.alarmPriority === priorityFilter;
-                const stateMatch = !stateFilter || entry.previousState === stateFilter || entry.newState === stateFilter;
+                const pointMatch = !pointFilter || entry.pointAddress == pointFilter;
+                const typeMatch = !typeFilter || entry.alarmType == typeFilter;
+                const priorityMatch = !priorityFilter || entry.priority == priorityFilter;
                 
-                return pointMatch && typeMatch && priorityMatch && stateMatch;
+                return pointMatch && typeMatch && priorityMatch;
             });
             
             currentPage = 1;
@@ -474,15 +477,12 @@
             const pageData = filteredData.slice(startIndex, endIndex);
             
             if (pageData.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="8" class="no-history">No alarm history matches the current filters</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="9" class="no-history">No alarm history matches the current filters</td></tr>';
                 document.getElementById('pagination').style.display = 'none';
                 return;
             }
             
-            tbody.innerHTML = '';
-            pageData.forEach(entry => {
-                tbody.appendChild(createHistoryRow(entry));
-            });
+            tbody.innerHTML = pageData.map(entry => createHistoryRow(entry).outerHTML).join('');
             
             // Update pagination
             const totalPages = Math.ceil(filteredData.length / itemsPerPage);
@@ -533,37 +533,41 @@
                 let aValue, bValue;
                 
                 switch (columnIndex) {
-                    case 0: // Timestamp
-                        aValue = new Date(a.timestamp);
-                        bValue = new Date(b.timestamp);
+                    case 0: // Point
+                        aValue = a.pointAddress;
+                        bValue = b.pointAddress;
                         break;
-                    case 1: // Point
-                        aValue = a.pointNumber;
-                        bValue = b.pointNumber;
-                        break;
-                    case 2: // Point Name
+                    case 1: // Point Name
                         aValue = a.pointName || '';
                         bValue = b.pointName || '';
                         break;
-                    case 3: // Type
-                        aValue = a.alarmType;
-                        bValue = b.alarmType;
+                    case 2: // Type
+                        aValue = getTypeText(a.alarmType);
+                        bValue = getTypeText(b.alarmType);
                         break;
-                    case 4: // Priority
-                        aValue = a.alarmPriority;
-                        bValue = b.alarmPriority;
+                    case 3: // Priority
+                        aValue = a.priority;
+                        bValue = b.priority;
                         break;
-                    case 5: // State Change
-                        aValue = a.newState;
-                        bValue = b.newState;
+                    case 4: // Event
+                        aValue = a.event;
+                        bValue = b.event;
                         break;
-                    case 6: // Temperature
-                        aValue = a.currentTemperature || 0;
-                        bValue = b.currentTemperature || 0;
+                    case 5: // Temperature
+                        aValue = a.temperature || 0;
+                        bValue = b.temperature || 0;
                         break;
-                    case 7: // Threshold
+                    case 6: // Threshold
                         aValue = a.threshold || 0;
                         bValue = b.threshold || 0;
+                        break;
+                    case 7: // Timestamp
+                        aValue = new Date(a.timestamp);
+                        bValue = new Date(b.timestamp);
+                        break;
+                    case 8: // Duration
+                        aValue = a.duration || 0;
+                        bValue = b.duration || 0;
                         break;
                     default:
                         return 0;

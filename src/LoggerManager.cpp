@@ -1023,8 +1023,8 @@ std::vector<String> LoggerManager::getAlarmStateLogFiles() {
 
     std::vector<String> files;
     
-    String dirPath = _alarmStateLogDirectory.isEmpty() ? "/" : _alarmStateLogDirectory;
-    File dir = _fs->open(dirPath.c_str());
+    String dirPath = _instance->_alarmStateLogDirectory.isEmpty() ? "/" : _instance->_alarmStateLogDirectory;
+    File dir = _instance->_fs->open(dirPath.c_str());
     
     if (!dir || !dir.isDirectory()) {
         return files;
@@ -1063,4 +1063,239 @@ bool LoggerManager::_isSDCardAvailable() {
     }
     testFile.close();
     return true;
+}
+
+
+String LoggerManager::getAlarmHistoryJson(const String& startDate, const String& endDate) {
+    if (!_instance) {
+        return "{\"success\":false,\"error\":\"LoggerManager not initialized\"}";
+    }
+    
+    DynamicJsonDocument doc(16384); // Large document for history
+    doc["success"] = true;
+    JsonArray historyArray = doc.createNestedArray("history");
+    
+    // Get all alarm log files in the date range
+    std::vector<String> files = _getAlarmLogFilesInRange(startDate, endDate);
+    
+    if (files.empty()) {
+        doc["success"] = false;
+        doc["error"] = "No alarm log files found in the specified date range";
+        String output;
+        serializeJson(doc, output);
+        return output;
+    }
+    
+    // Read and parse each file
+    for (const String& filename : files) {
+        String fullPath = _instance->_alarmStateLogDirectory.isEmpty() ? "/" : _instance->_alarmStateLogDirectory;
+        if (!fullPath.endsWith("/")) fullPath += "/";
+        fullPath += filename;
+        
+        File file = _instance->_fs->open(fullPath.c_str(), FILE_READ);
+        if (!file) {
+            continue;
+        }
+        
+        // Skip header line
+        if (file.available()) {
+            file.readStringUntil('\n');
+        }
+        
+        // Read data lines
+        while (file.available()) {
+            String line = file.readStringUntil('\n');
+            line.trim();
+            if (line.isEmpty()) continue;
+            
+            DynamicJsonDocument entryDoc(512);
+            if (_parseAlarmStateLogEntry(line, entryDoc)) {
+                JsonObject entry = historyArray.createNestedObject();
+                entry["timestamp"] = entryDoc["timestamp"];
+                entry["pointNumber"] = entryDoc["pointNumber"];
+                entry["pointName"] = entryDoc["pointName"];
+                entry["alarmType"] = entryDoc["alarmType"];
+                entry["alarmPriority"] = entryDoc["alarmPriority"];
+                entry["previousState"] = entryDoc["previousState"];
+                entry["newState"] = entryDoc["newState"];
+                entry["currentTemperature"] = entryDoc["currentTemperature"];
+                entry["threshold"] = entryDoc["threshold"];
+            }
+        }
+        
+        file.close();
+    }
+    
+    doc["totalEntries"] = historyArray.size();
+    
+    String output;
+    serializeJson(doc, output);
+    return output;
+}
+
+String LoggerManager::getAlarmHistoryCsv(const String& startDate, const String& endDate) {
+    if (!_instance) {
+        return "";
+    }
+    
+    String csv = "Timestamp,PointNumber,PointName,AlarmType,AlarmPriority,PreviousState,NewState,CurrentTemperature,Threshold\n";
+    
+    // Get all alarm log files in the date range
+    std::vector<String> files = _getAlarmLogFilesInRange(startDate, endDate);
+    
+    if (files.empty()) {
+        return "";
+    }
+    
+    // Read and merge data from all files
+    for (const String& filename : files) {
+        String fullPath = _instance->_alarmStateLogDirectory.isEmpty() ? "/" : _instance->_alarmStateLogDirectory;
+        if (!fullPath.endsWith("/")) fullPath += "/";
+        fullPath += filename;
+        
+        File file = _instance->_fs->open(fullPath.c_str(), FILE_READ);
+        if (!file) {
+            continue;
+        }
+        
+        // Skip header line
+        if (file.available()) {
+            file.readStringUntil('\n');
+        }
+        
+        // Copy data lines
+        while (file.available()) {
+            String line = file.readStringUntil('\n');
+            line.trim();
+            if (!line.isEmpty()) {
+                csv += line + "\n";
+            }
+        }
+        
+        file.close();
+    }
+    
+    return csv;
+}
+
+std::vector<String> LoggerManager::_getAlarmLogFilesInRange(const String& startDate, const String& endDate) {
+    std::vector<String> matchingFiles;
+    
+    if (!_instance) {
+        return matchingFiles;
+    }
+    
+    String dirPath = _instance->_alarmStateLogDirectory.isEmpty() ? "/" : _instance->_alarmStateLogDirectory;
+    File dir = _instance->_fs->open(dirPath.c_str());
+    
+    if (!dir || !dir.isDirectory()) {
+        return matchingFiles;
+    }
+    
+    String normalizedStart = _normalizeDate(startDate);
+    String normalizedEnd = _normalizeDate(endDate);
+    
+    File file = dir.openNextFile();
+    while (file) {
+        String filename = String(file.name());
+        
+        // Check if it's an alarm state log file
+        if (filename.startsWith("alarm_states_") && filename.endsWith(".csv")) {
+            // Extract date from filename (alarm_states_YYYY-MM-DD.csv)
+            int dateStart = filename.indexOf('_', 13) + 1; // After "alarm_states_"
+            int dateEnd = filename.lastIndexOf('.');
+            
+            if (dateStart > 0 && dateEnd > dateStart) {
+                String fileDate = filename.substring(dateStart - 13, dateEnd);
+                fileDate = fileDate.substring(13); // Remove "alarm_states_" prefix
+                
+                // Check if date is within range
+                if (fileDate >= normalizedStart && fileDate <= normalizedEnd) {
+                    matchingFiles.push_back(filename);
+                }
+            }
+        }
+        
+        file = dir.openNextFile();
+    }
+    
+    dir.close();
+    
+    // Sort files by date
+    std::sort(matchingFiles.begin(), matchingFiles.end());
+    
+    return matchingFiles;
+}
+
+bool LoggerManager::_parseAlarmStateLogEntry(const String& line, DynamicJsonDocument& entry) {
+    // This method doesn't need instance access, so it can remain unchanged
+    // Parse CSV line: Timestamp,PointNumber,PointName,AlarmType,AlarmPriority,PreviousState,NewState,CurrentTemperature,Threshold
+    int fieldIndex = 0;
+    int startPos = 0;
+    String fields[9];
+    bool inQuotes = false;
+    
+    for (int i = 0; i <= line.length(); i++) {
+        char c = (i < line.length()) ? line.charAt(i) : ',';
+        
+        if (c == '"') {
+            inQuotes = !inQuotes;
+        } else if (c == ',' && !inQuotes) {
+            if (fieldIndex < 9) {
+                fields[fieldIndex] = line.substring(startPos, i);
+                // Remove quotes if present
+                if (fields[fieldIndex].startsWith("\"") && fields[fieldIndex].endsWith("\"")) {
+                    fields[fieldIndex] = fields[fieldIndex].substring(1, fields[fieldIndex].length() - 1);
+                }
+                fields[fieldIndex].trim();
+            }
+            fieldIndex++;
+            startPos = i + 1;
+        }
+    }
+    
+    if (fieldIndex < 8) { // We need at least 9 fields (0-8)
+        return false;
+    }
+    
+    // Parse fields into JSON
+    entry["timestamp"] = fields[0];
+    entry["pointNumber"] = fields[1].toInt();
+    entry["pointName"] = fields[2];
+    entry["alarmType"] = fields[3];
+    entry["alarmPriority"] = fields[4];
+    entry["previousState"] = fields[5];
+    entry["newState"] = fields[6];
+    entry["currentTemperature"] = fields[7].toInt();
+    entry["threshold"] = fields[8].toInt();
+    
+    return true;
+}
+
+String LoggerManager::_normalizeDate(const String& dateStr) {
+    // This method doesn't need instance access, so it can remain unchanged
+    // Ensure date is in YYYY-MM-DD format
+    String normalized = dateStr;
+    normalized.trim();
+    
+    // If date contains slashes, replace with dashes
+    normalized.replace("/", "-");
+    
+    // Ensure proper formatting with leading zeros
+    int firstDash = normalized.indexOf('-');
+    int secondDash = normalized.lastIndexOf('-');
+    
+    if (firstDash > 0 && secondDash > firstDash) {
+        String year = normalized.substring(0, firstDash);
+        String month = normalized.substring(firstDash + 1, secondDash);
+        String day = normalized.substring(secondDash + 1);
+        
+        // Pad with zeros if needed
+        if (month.length() == 1) month = "0" + month;
+        if (day.length() == 1) day = "0" + day;
+        
+        normalized = year + "-" + month + "-" + day;
+    }
+    
+    return normalized;
 }
