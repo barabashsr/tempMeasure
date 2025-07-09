@@ -126,7 +126,7 @@ public:
     void setDailyFiles(bool enabled);
     bool isDailyFiles() const;
     void setLogDirectory(const String& directory);
-    String getLogDirectory() const;
+    static String getLogDirectory();
     
     // Logging methods
     void update();                  // Call this in main loop
@@ -136,7 +136,7 @@ public:
     // File management
     String getCurrentLogFile() const;
     bool closeCurrentFile();
-    std::vector<String> getLogFiles();
+    static std::vector<String> getLogFiles();
     bool deleteLogFile(const String& filename);
     
     // Statistics
@@ -189,16 +189,56 @@ public:
     
     // Alarm state log management
     String getCurrentAlarmStateLogFile() const;
-    static std::vector<String> getAlarmStateLogFiles();
+    //static std::vector<String> getAlarmStateLogFiles();
     bool deleteAlarmStateLogFile(const String& filename);
 
         // Static alarm history retrieval methods
+    // static String getAlarmHistoryJson(const String& startDate, const String& endDate);
+    // static String getAlarmHistoryCsv(const String& startDate, const String& endDate);
+    
+    // Event log retrieval methods
+    // static String getEventLogsJson(const String& startDate, const String& endDate);
+    // static String getEventLogsCsv(const String& startDate, const String& endDate);
+
+    // Static event log retrieval methods
+    static String getEventLogsJson(const String& startDate, const String& endDate);
+    static String getEventLogsCsv(const String& startDate, const String& endDate);
+    static String getEventLogStatsJson(const String& startDate, const String& endDate);
+    //static std::vector<String> getEventLogFilesStatic();
+    
+    // Static alarm history retrieval methods (already existing)
     static String getAlarmHistoryJson(const String& startDate, const String& endDate);
     static String getAlarmHistoryCsv(const String& startDate, const String& endDate);
+
+    // Static methods for file operations
+    //static std::vector<String> getLogFiles();
+    static std::vector<String> getEventLogFilesStatic();
+    static std::vector<String> getAlarmStateLogFiles();
+    
+    // Static methods for file information
+    static bool getFileInfo(const String& filename, const String& type, size_t& fileSize, String& date);
+    
+    // Static methods for file streaming
+    static File openLogFile(const String& filename, const String& type);
+    static String getLogDirectoryPath(const String& type);
+    
     
 private:
     String _lastError;
     // Make helper methods static too
+    // static std::vector<String> _getAlarmLogFilesInRange(const String& startDate, const String& endDate);
+    // static bool _parseAlarmStateLogEntry(const String& line, DynamicJsonDocument& entry);
+    // static String _normalizeDate(const String& dateStr);
+
+    // Helper methods for event logs
+    // static std::vector<String> _getEventLogFilesInRange(const String& startDate, const String& endDate);
+    // static bool _parseEventLogEntry(const String& line, DynamicJsonDocument& entry);
+
+    // Static helper methods for event logs
+    static std::vector<String> _getEventLogFilesInRange(const String& startDate, const String& endDate);
+    static bool _parseEventLogEntry(const String& line, DynamicJsonDocument& entry);
+    
+    // Make existing helper methods static too (if not already)
     static std::vector<String> _getAlarmLogFilesInRange(const String& startDate, const String& endDate);
     static bool _parseAlarmStateLogEntry(const String& line, DynamicJsonDocument& entry);
     static String _normalizeDate(const String& dateStr);

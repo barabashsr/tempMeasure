@@ -125,6 +125,7 @@ bool ConfigManager::begin() {
     pointsAPI();
     alarmsAPI();
     logsAPI();
+    downloadAPI();
     
 
     
@@ -664,6 +665,44 @@ void ConfigManager::basicAPI(){
             server->send(200, "text/html", "<html><body><h1>Temperature Monitoring System</h1><p><a href='/cfg'>Configuration</a></p><p><a href='/sensors.html'>Sensors</a></p></body></html>");
         }
     });
+
+    server->on("/event-logs.html", HTTP_GET, [this]() {
+        if (LittleFS.exists("/event-logs.html")) {
+            server->sendHeader("HTTP/1.1 200 OK", "");
+            server->sendHeader("Content-Type", "text/html");
+            server->sendHeader("Connection", "close");
+            server->sendHeader("Cache-Control", "max-age=3600");
+            File file = LittleFS.open("/event-logs.html", "r");
+            server->streamFile(file, "text/html");
+            Serial.println("SERVER: /event-logs.html");
+            file.close();
+        } else {
+            server->sendHeader("HTTP/1.1 200 OK", "");
+            server->sendHeader("Content-Type", "text/plain");
+            server->sendHeader("Connection", "close");
+            server->send(404, "text/plain", "event-logs page not found");
+        }
+    });
+
+    server->on("/download-logs.html", HTTP_GET, [this]() {
+        if (LittleFS.exists("/download-logs.html")) {
+            server->sendHeader("HTTP/1.1 200 OK", "");
+            server->sendHeader("Content-Type", "text/html");
+            server->sendHeader("Connection", "close");
+            server->sendHeader("Cache-Control", "max-age=3600");
+            File file = LittleFS.open("/download-logs.html", "r");
+            server->streamFile(file, "text/html");
+            Serial.println("SERVER: /download-logs.html");
+            file.close();
+        } else {
+            server->sendHeader("HTTP/1.1 200 OK", "");
+            server->sendHeader("Content-Type", "text/plain");
+            server->sendHeader("Connection", "close");
+            server->send(404, "text/plain", "download-logs page not found");
+        }
+    });
+
+    
 
     // Add CORS support for OPTIONS requests
     server->on("/api/sensors", HTTP_OPTIONS, [this]() {
@@ -1364,6 +1403,7 @@ void ConfigManager::alarmsAPI(){
 
 };
 
+// Add these methods to your ConfigManager.cpp file in the logsAPI() function
 
 void ConfigManager::logsAPI() {
     // Get alarm history
@@ -1421,5 +1461,281 @@ void ConfigManager::logsAPI() {
         server->sendHeader("Content-Type", "application/json");
         server->sendHeader("Access-Control-Allow-Origin", "*");
         server->send(200, "application/json", output);
+    });
+
+    // NEW EVENT LOG ENDPOINTS
+    
+    // Get event logs
+    server->on("/api/event-logs", HTTP_GET, [this]() {
+        String startDate = server->arg("start");
+        String endDate = server->arg("end");
+        
+        if (startDate.isEmpty() || endDate.isEmpty()) {
+            server->send(400, "application/json", "{\"success\":false,\"error\":\"Missing date parameters\"}");
+            return;
+        }
+        
+        String eventLogsJson = LoggerManager::getEventLogsJson(startDate, endDate);
+        server->sendHeader("Content-Type", "application/json");
+        server->sendHeader("Access-Control-Allow-Origin", "*");
+        server->send(200, "application/json", eventLogsJson);
+    });
+    
+    // Export event logs as CSV
+    server->on("/api/event-logs/export", HTTP_GET, [this]() {
+        String startDate = server->arg("start");
+        String endDate = server->arg("end");
+        
+        if (startDate.isEmpty() || endDate.isEmpty()) {
+            server->send(400, "application/json", "{\"success\":false,\"error\":\"Missing date parameters\"}");
+            return;
+        }
+        
+        String csvData = LoggerManager::getEventLogsCsv(startDate, endDate);
+        
+        if (csvData.length() > 0) {
+            String filename = "event_logs_" + startDate + "_to_" + endDate + ".csv";
+            server->sendHeader("Content-Type", "text/csv");
+            server->sendHeader("Content-Disposition", "attachment; filename=\"" + filename + "\"");
+            server->send(200, "text/csv", csvData);
+        } else {
+            server->send(404, "application/json", "{\"success\":false,\"error\":\"No event logs found\"}");
+        }
+    });
+    
+    // Get available event log files
+    server->on("/api/event-logs/files", HTTP_GET, [this]() {
+        DynamicJsonDocument doc(2048);
+        JsonArray filesArray = doc.createNestedArray("files");
+        
+        std::vector<String> files = LoggerManager::getEventLogFilesStatic();
+        for (const String& file : files) {
+            filesArray.add(file);
+        }
+        
+        String output;
+        serializeJson(doc, output);
+        server->sendHeader("Content-Type", "application/json");
+        server->sendHeader("Access-Control-Allow-Origin", "*");
+        server->send(200, "application/json", output);
+    });
+    
+    // Get event log statistics
+    server->on("/api/event-logs/stats", HTTP_GET, [this]() {
+        String startDate = server->arg("start");
+        String endDate = server->arg("end");
+        
+        if (startDate.isEmpty() || endDate.isEmpty()) {
+            server->send(400, "application/json", "{\"success\":false,\"error\":\"Missing date parameters\"}");
+            return;
+        }
+        
+        String statsJson = LoggerManager::getEventLogStatsJson(startDate, endDate);
+        server->sendHeader("Content-Type", "application/json");
+        server->sendHeader("Access-Control-Allow-Origin", "*");
+        server->send(200, "application/json", statsJson);
+    });
+}
+
+void ConfigManager::downloadAPI() {
+    // API endpoint to list all data log files
+    server->on("/api/data-log-files", HTTP_GET, [this]() {
+        DynamicJsonDocument doc(4096);
+        doc["success"] = true;
+        JsonArray filesArray = doc.createNestedArray("files");
+        
+        // Get list of temperature data log files
+        std::vector<String> files = LoggerManager::getLogFiles();
+        for (const String& filename : files) {
+            JsonObject fileObj = filesArray.createNestedObject();
+            fileObj["filename"] = filename;
+            
+            // Get file info using static method
+            size_t fileSize;
+            String date;
+            if (LoggerManager::getFileInfo(filename, "data", fileSize, date)) {
+                fileObj["size"] = fileSize;
+                fileObj["date"] = date;
+            } else {
+                fileObj["size"] = 0;
+                fileObj["date"] = "";
+            }
+        }
+        
+        String output;
+        serializeJson(doc, output);
+        
+        server->sendHeader("Content-Type", "application/json");
+        server->sendHeader("Access-Control-Allow-Origin", "*");
+        server->sendHeader("Cache-Control", "no-store");
+        server->send(200, "application/json", output);
+    });
+
+    // API endpoint to list event log files
+    server->on("/api/event-log-files", HTTP_GET, [this]() {
+        DynamicJsonDocument doc(4096);
+        doc["success"] = true;
+        JsonArray filesArray = doc.createNestedArray("files");
+        
+        // Get list of event log files
+        std::vector<String> files = LoggerManager::getEventLogFilesStatic();
+        for (const String& filename : files) {
+            JsonObject fileObj = filesArray.createNestedObject();
+            fileObj["filename"] = filename;
+            
+            // Get file info using static method
+            size_t fileSize;
+            String date;
+            if (LoggerManager::getFileInfo(filename, "event", fileSize, date)) {
+                fileObj["size"] = fileSize;
+                fileObj["date"] = date;
+            } else {
+                fileObj["size"] = 0;
+                fileObj["date"] = "";
+            }
+        }
+        
+        String output;
+        serializeJson(doc, output);
+        
+        server->sendHeader("Content-Type", "application/json");
+        server->sendHeader("Access-Control-Allow-Origin", "*");
+        server->sendHeader("Cache-Control", "no-store");
+        server->send(200, "application/json", output);
+    });
+
+    // API endpoint to list alarm log files
+    server->on("/api/alarm-log-files", HTTP_GET, [this]() {
+        DynamicJsonDocument doc(4096);
+        doc["success"] = true;
+        JsonArray filesArray = doc.createNestedArray("files");
+        
+        // Get list of alarm state log files
+        std::vector<String> files = LoggerManager::getAlarmStateLogFiles();
+        for (const String& filename : files) {
+            JsonObject fileObj = filesArray.createNestedObject();
+            fileObj["filename"] = filename;
+            
+            // Get file info using static method
+            size_t fileSize;
+            String date;
+            if (LoggerManager::getFileInfo(filename, "alarm", fileSize, date)) {
+                fileObj["size"] = fileSize;
+                fileObj["date"] = date;
+            } else {
+                fileObj["size"] = 0;
+                fileObj["date"] = "";
+            }
+        }
+        
+        String output;
+        serializeJson(doc, output);
+        
+        server->sendHeader("Content-Type", "application/json");
+        server->sendHeader("Access-Control-Allow-Origin", "*");
+        server->sendHeader("Cache-Control", "no-store");
+        server->send(200, "application/json", output);
+    });
+
+    // API endpoint to download temperature data log files
+    server->on("/api/data-log-download", HTTP_GET, [this]() {
+        String filename = server->arg("file");
+        
+        if (filename.isEmpty()) {
+            server->send(400, "text/plain", "Missing file parameter");
+            return;
+        }
+        
+        // Security check - only allow files that start with "temp_log_" and end with ".csv"
+        if (!filename.startsWith("temp_log_") || !filename.endsWith(".csv")) {
+            server->send(403, "text/plain", "Invalid file type");
+            return;
+        }
+        
+        // Open file using static method
+        File file = LoggerManager::openLogFile(filename, "data");
+        if (!file) {
+            server->send(404, "text/plain", "File not found");
+            return;
+        }
+        
+        // Set headers for file download
+        server->sendHeader("Content-Type", "text/csv");
+        server->sendHeader("Content-Disposition", "attachment; filename=" + filename);
+        server->sendHeader("Access-Control-Allow-Origin", "*");
+        
+        // Stream the file directly
+        server->streamFile(file, "text/csv");
+        file.close();
+        
+        Serial.printf("Downloaded data log file: %s\n", filename.c_str());
+    });
+
+    // API endpoint to download event log files
+    server->on("/api/event-log-download", HTTP_GET, [this]() {
+        String filename = server->arg("file");
+        
+        if (filename.isEmpty()) {
+            server->send(400, "text/plain", "Missing file parameter");
+            return;
+        }
+        
+        // Security check - only allow files that start with "events_" and end with ".csv"
+        if (!filename.startsWith("events_") || !filename.endsWith(".csv")) {
+            server->send(403, "text/plain", "Invalid file type");
+            return;
+        }
+        
+        // Open file using static method
+        File file = LoggerManager::openLogFile(filename, "event");
+        if (!file) {
+            server->send(404, "text/plain", "File not found");
+            return;
+        }
+        
+        // Set headers for file download
+        server->sendHeader("Content-Type", "text/csv");
+        server->sendHeader("Content-Disposition", "attachment; filename=" + filename);
+        server->sendHeader("Access-Control-Allow-Origin", "*");
+        
+        // Stream the file directly
+        server->streamFile(file, "text/csv");
+        file.close();
+        
+        Serial.printf("Downloaded event log file: %s\n", filename.c_str());
+    });
+
+    // API endpoint to download alarm state log files
+    server->on("/api/alarm-log-download", HTTP_GET, [this]() {
+        String filename = server->arg("file");
+        
+        if (filename.isEmpty()) {
+            server->send(400, "text/plain", "Missing file parameter");
+            return;
+        }
+        
+        // Security check - only allow files that start with "alarm_states_" and end with ".csv"
+        if (!filename.startsWith("alarm_states_") || !filename.endsWith(".csv")) {
+            server->send(403, "text/plain", "Invalid file type");
+            return;
+        }
+        
+        // Open file using static method
+        File file = LoggerManager::openLogFile(filename, "alarm");
+        if (!file) {
+            server->send(404, "text/plain", "File not found");
+            return;
+        }
+        
+        // Set headers for file download
+        server->sendHeader("Content-Type", "text/csv");
+        server->sendHeader("Content-Disposition", "attachment; filename=" + filename);
+        server->sendHeader("Access-Control-Allow-Origin", "*");
+        
+        // Stream the file directly
+        server->streamFile(file, "text/csv");
+        file.close();
+        
+        Serial.printf("Downloaded alarm state log file: %s\n", filename.c_str());
     });
 }

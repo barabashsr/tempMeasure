@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Logs - Temperature Controller</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #667eea;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-links a:hover {
+            background-color: #f0f0f0;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .card-header h3 {
+            color: #333;
+            font-size: 1.2em;
+        }
+
+        .filters {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .filter-group label {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .filter-group select,
+        .filter-group input {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background: #5a6fd8;
+        }
+
+        .btn-success {
+            background: #28a745;
+        }
+
+        .btn-success:hover {
+            background: #218838;
+        }
+
+        .btn-sm {
+            padding: 5px 10px;
+            font-size: 12px;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .table th,
+        .table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .status {
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .status.loading {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .file-type-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .file-type-data {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .file-type-event {
+            background: #fff3e0;
+            color: #f57c00;
+        }
+
+        .file-type-alarm {
+            background: #ffebee;
+            color: #d32f2f;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .filters {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📥 Download Log Files</h1>
+            <div class="nav-links">
+                <a href="/">🏠 Home</a>
+                <a href="/sensors.html">🌡️ Sensors</a>
+                <a href="/points.html">📍 Points</a>
+                <a href="/alarms.html">🚨 Alarms</a>
+                <a href="/alarm-history.html">📊 Alarm History</a>
+                <a href="/event-logs.html">📋 Event Logs</a>
+                <a href="/configuration.html">⚙️ Configuration</a>
+            </div>
+        </div>
+
+        <!-- Statistics -->
+        <div class="card">
+            <div class="card-header">
+                <h3>📊 File Statistics</h3>
+            </div>
+            <div class="stats" id="fileStats">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalFiles">0</div>
+                    <div class="stat-label">Total Files</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="dataFiles">0</div>
+                    <div class="stat-label">Data Files</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="eventFiles">0</div>
+                    <div class="stat-label">Event Files</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="alarmFiles">0</div>
+                    <div class="stat-label">Alarm Files</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="totalSize">0 KB</div>
+                    <div class="stat-label">Total Size</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="card">
+            <div class="card-header">
+                <h3>🔍 Filter Files</h3>
+            </div>
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="logTypeFilter">Log Type:</label>
+                    <select id="logTypeFilter">
+                        <option value="all">All Types</option>
+                        <option value="data">Temperature Data</option>
+                        <option value="event">Event Logs</option>
+                        <option value="alarm">Alarm States</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="dateFromFilter">Date From:</label>
+                    <input type="date" id="dateFromFilter">
+                </div>
+                <div class="filter-group">
+                    <label for="dateToFilter">Date To:</label>
+                    <input type="date" id="dateToFilter">
+                </div>
+                <div class="filter-group">
+                    <label for="sizeFilter">Min Size (KB):</label>
+                    <input type="number" id="sizeFilter" min="0" placeholder="0">
+                </div>
+                <div class="filter-group">
+                    <label>&nbsp;</label>
+                    <button class="btn" onclick="applyFilters()">🔍 Apply Filters</button>
+                </div>
+                <div class="filter-group">
+                    <label>&nbsp;</label>
+                    <button class="btn" onclick="clearFilters()">🔄 Clear Filters</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- File List -->
+        <div class="card">
+            <div class="card-header">
+                <h3>📁 Available Files</h3>
+                <button class="btn" onclick="refreshFileList()" style="float: right;">🔄 Refresh</button>
+            </div>
+            
+            <div id="statusMessage"></div>
+            
+            <div id="fileListContainer">
+                <p>Click "Refresh" to load available files</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let allFiles = [];
+        let filteredFiles = [];
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set default date range (last 30 days)
+            const today = new Date();
+            const thirtyDaysAgo = new Date(today.getTime() - (30 * 24 * 60 * 60 * 1000));
+            
+            document.getElementById('dateToFilter').value = today.toISOString().split('T')[0];
+            document.getElementById('dateFromFilter').value = thirtyDaysAgo.toISOString().split('T')[0];
+            
+            refreshFileList();
+        });
+
+        function showStatus(message, type = 'loading') {
+            const statusDiv = document.getElementById('statusMessage');
+            statusDiv.innerHTML = `<div class="status ${type}">${message}</div>`;
+        }
+
+        function hideStatus() {
+            document.getElementById('statusMessage').innerHTML = '';
+        }
+
+        async function refreshFileList() {
+            showStatus('🔄 Loading file list...', 'loading');
+            
+            try {
+                // Load all file types
+                const [dataFiles, eventFiles, alarmFiles] = await Promise.all([
+                    fetch('/api/data-log-files').then(r => r.json()),
+                    fetch('/api/event-log-files').then(r => r.json()),
+                    fetch('/api/alarm-log-files').then(r => r.json())
+                ]);
+
+                allFiles = [];
+
+                // Process data files
+                if (dataFiles.success) {
+                    dataFiles.files.forEach(file => {
+                        allFiles.push({
+                            ...file,
+                            type: 'data',
+                            typeLabel: 'Temperature Data'
+                        });
+                    });
+                }
+
+                // Process event files
+                if (eventFiles.success) {
+                    eventFiles.files.forEach(file => {
+                        allFiles.push({
+                            ...file,
+                            type: 'event',
+                            typeLabel: 'Event Log'
+                        });
+                    });
+                }
+
+                // Process alarm files
+                if (alarmFiles.success) {
+                    alarmFiles.files.forEach(file => {
+                        allFiles.push({
+                            ...file,
+                            type: 'alarm',
+                            typeLabel: 'Alarm State'
+                        });
+                    });
+                }
+
+                updateStatistics();
+                applyFilters();
+                hideStatus();
+
+            } catch (error) {
+                console.error('Error loading file list:', error);
+                showStatus('❌ Error loading file list', 'error');
+            }
+        }
+
+        function updateStatistics() {
+            const stats = {
+                total: allFiles.length,
+                data: allFiles.filter(f => f.type === 'data').length,
+                event: allFiles.filter(f => f.type === 'event').length,
+                alarm: allFiles.filter(f => f.type === 'alarm').length,
+                totalSize: allFiles.reduce((sum, f) => sum + (f.size || 0), 0)
+            };
+
+            document.getElementById('totalFiles').textContent = stats.total;
+            document.getElementById('dataFiles').textContent = stats.data;
+            document.getElementById('eventFiles').textContent = stats.event;
+            document.getElementById('alarmFiles').textContent = stats.alarm;
+            document.getElementById('totalSize').textContent = Math.round(stats.totalSize / 1024) + ' KB';
+        }
+
+        function applyFilters() {
+            const typeFilter = document.getElementById('logTypeFilter').value;
+            const dateFrom = document.getElementById('dateFromFilter').value;
+            const dateTo = document.getElementById('dateToFilter').value;
+            const minSize = parseInt(document.getElementById('sizeFilter').value) || 0;
+
+            filteredFiles = allFiles.filter(file => {
+                // Type filter
+                if (typeFilter !== 'all' && file.type !== typeFilter) {
+                    return false;
+                }
+
+                // Date filter
+                if (file.date) {
+                    if (dateFrom && file.date < dateFrom) return false;
+                    if (dateTo && file.date > dateTo) return false;
+                }
+
+                // Size filter
+                if (file.size && (file.size / 1024) < minSize) {
+                    return false;
+                }
+
+                return true;
+            });
+
+            displayFileList();
+        }
+
+        function clearFilters() {
+            document.getElementById('logTypeFilter').value = 'all';
+            document.getElementById('dateFromFilter').value = '';
+            document.getElementById('dateToFilter').value = '';
+            document.getElementById('sizeFilter').value = '';
+            
+            filteredFiles = [...allFiles];
+            displayFileList();
+        }
+
+        function displayFileList() {
+            const container = document.getElementById('fileListContainer');
+            
+            if (filteredFiles.length === 0) {
+                container.innerHTML = '<p>No files match the current filters</p>';
+                return;
+            }
+
+            // Sort files by date (newest first)
+            filteredFiles.sort((a, b) => {
+                if (a.date && b.date) {
+                    return b.date.localeCompare(a.date);
+                }
+                return b.filename.localeCompare(a.filename);
+            });
+
+            let html = '<table class="table">';
+            html += '<thead><tr><th>Type</th><th>Date</th><th>Filename</th><th>Size</th><th>Action</th></tr></thead>';
+            html += '<tbody>';
+
+            filteredFiles.forEach(file => {
+                const sizeKB = file.size ? Math.round(file.size / 1024) : 0;
+                const typeClass = `file-type-${file.type}`;
+                
+                html += `<tr>
+                    <td><span class="file-type-badge ${typeClass}">${file.typeLabel}</span></td>
+                    <td>${file.date || 'Unknown'}</td>
+                    <td>${file.filename}</td>
+                    <td>${sizeKB} KB</td>
+                    <td>
+                        <button onclick="downloadFile('${file.filename}', '${file.type}')" 
+                                class="btn btn-sm btn-success">📥 Download</button>
+                    </td>
+                </tr>`;
+            });
+
+            html += '</tbody></table>';
+            container.innerHTML = html;
+        }
+
+        function downloadFile(filename, type) {
+            let downloadUrl;
+            
+            switch(type) {
+                case 'data':
+                    downloadUrl = `/api/data-log-download?file=${encodeURIComponent(filename)}`;
+                    break;
+                case 'event':
+                    downloadUrl = `/api/event-log-download?file=${encodeURIComponent(filename)}`;
+                    break;
+                case 'alarm':
+                    downloadUrl = `/api/alarm-log-download?file=${encodeURIComponent(filename)}`;
+                    break;
+                default:
+                    console.error('Unknown file type:', type);
+                    return;
+            }
+
+            // Create temporary link and trigger download
+            const link = document.createElement('a');
+            link.href = downloadUrl;
+            link.download = filename;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            console.log(`Downloading ${type} file: ${filename}`);
+            showStatus(`📥 Downloading ${filename}...`, 'success');
+            
+            // Hide status after 3 seconds
+            setTimeout(hideStatus, 3000);
+        }
+    </script>
+</body>
+</html>

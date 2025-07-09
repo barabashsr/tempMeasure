@@ -37,6 +37,7 @@ private:
     void pointsAPI();
     void alarmsAPI();
     void logsAPI();
+    void downloadAPI();
 
     
     // Save sensor configuration to file

@@ -140,8 +140,8 @@ void LoggerManager::setLogDirectory(const String& directory) {
     }
 }
 
-String LoggerManager::getLogDirectory() const {
-    return _logDirectory;
+String LoggerManager::getLogDirectory() {
+    return _instance->_logDirectory;
 }
 
 void LoggerManager::update() {
@@ -402,26 +402,7 @@ String LoggerManager::_getCurrentTimeString() {
     }
 }
 
-std::vector<String> LoggerManager::getLogFiles() {
 
-    std::vector<String> files;
-    
-    File dir = _fs->open(_logDirectory.c_str());
-    if (!dir || !dir.isDirectory()) {
-        return files;
-    }
-    
-    File file = dir.openNextFile();
-    while (file) {
-        if (!file.isDirectory() && String(file.name()).endsWith(".csv")) {
-            files.push_back(String(file.name()));
-        }
-        file = dir.openNextFile();
-    }
-    
-    dir.close();
-    return files;
-}
 
 bool LoggerManager::deleteLogFile(const String& filename) {
     if (!_enabled) return false;
@@ -1019,32 +1000,32 @@ String LoggerManager::getCurrentAlarmStateLogFile() const {
     return _currentAlarmStateLogFile;
 }
 
-std::vector<String> LoggerManager::getAlarmStateLogFiles() {
+// std::vector<String> LoggerManager::getAlarmStateLogFiles() {
 
-    std::vector<String> files;
+//     std::vector<String> files;
     
-    String dirPath = _instance->_alarmStateLogDirectory.isEmpty() ? "/" : _instance->_alarmStateLogDirectory;
-    File dir = _instance->_fs->open(dirPath.c_str());
+//     String dirPath = _instance->_alarmStateLogDirectory.isEmpty() ? "/" : _instance->_alarmStateLogDirectory;
+//     File dir = _instance->_fs->open(dirPath.c_str());
     
-    if (!dir || !dir.isDirectory()) {
-        return files;
-    }
+//     if (!dir || !dir.isDirectory()) {
+//         return files;
+//     }
     
-    File file = dir.openNextFile();
-    while (file) {
-        String filename = String(file.name());
-        if (filename.startsWith("alarm_states_") && filename.endsWith(".csv")) {
-            String fullPath = dirPath;
-            if (!fullPath.endsWith("/")) fullPath += "/";
-            fullPath += filename;
-            files.push_back(fullPath);
-        }
-        file = dir.openNextFile();
-    }
+//     File file = dir.openNextFile();
+//     while (file) {
+//         String filename = String(file.name());
+//         if (filename.startsWith("alarm_states_") && filename.endsWith(".csv")) {
+//             String fullPath = dirPath;
+//             if (!fullPath.endsWith("/")) fullPath += "/";
+//             fullPath += filename;
+//             files.push_back(fullPath);
+//         }
+//         file = dir.openNextFile();
+//     }
     
-    dir.close();
-    return files;
-}
+//     dir.close();
+//     return files;
+// }
 
 bool LoggerManager::deleteAlarmStateLogFile(const String& filename) {
     String fullPath = _alarmStateLogDirectory.isEmpty() ? "/" : _alarmStateLogDirectory;
@@ -1319,3 +1300,678 @@ String LoggerManager::_normalizeDate(const String& dateStr) {
     
     return normalized;
 }
+
+// String LoggerManager::getEventLogsJson(const String& startDate, const String& endDate) {
+//     if (!_instance) {
+//         return "{\"success\":false,\"error\":\"LoggerManager not initialized\"}";
+//     }
+    
+//     DynamicJsonDocument doc(16384); // Large document for logs
+//     doc["success"] = true;
+//     JsonArray logsArray = doc.createNestedArray("logs");
+    
+//     // Get all event log files in the date range
+//     std::vector<String> files = _getEventLogFilesInRange(startDate, endDate);
+    
+//     if (files.empty()) {
+//         doc["success"] = false;
+//         doc["error"] = "No event log files found in the specified date range";
+//         String output;
+//         serializeJson(doc, output);
+//         return output;
+//     }
+    
+//     // Read and parse each file
+//     for (const String& filename : files) {
+//         String fullPath = _instance->_eventLogDirectory.isEmpty() ? "/" : _instance->_eventLogDirectory;
+//         if (!fullPath.endsWith("/")) fullPath += "/";
+//         fullPath += filename;
+        
+//         Serial.printf("Opening event log file: %s\n", fullPath.c_str());
+        
+//         File file = _instance->_fs->open(fullPath.c_str(), FILE_READ);
+//         if (!file) {
+//             Serial.printf("Failed to open event log file: %s\n", fullPath.c_str());
+//             continue;
+//         }
+        
+//         // Skip header line
+//         if (file.available()) {
+//             file.readStringUntil('\n');
+//         }
+        
+//         // Read data lines
+//         while (file.available()) {
+//             String line = file.readStringUntil('\n');
+//             line.trim();
+//             if (line.isEmpty()) continue;
+            
+//             DynamicJsonDocument entryDoc(512);
+//             if (_parseEventLogEntry(line, entryDoc)) {
+//                 JsonObject entry = logsArray.createNestedObject();
+//                 entry["timestamp"] = entryDoc["timestamp"];
+//                 entry["source"] = entryDoc["source"];
+//                 entry["description"] = entryDoc["description"];
+//                 entry["priority"] = entryDoc["priority"];
+//             }
+//         }
+        
+//         file.close();
+//     }
+    
+//     doc["totalEntries"] = logsArray.size();
+    
+//     String output;
+//     serializeJson(doc, output);
+//     return output;
+// }
+
+// String LoggerManager::getEventLogsCsv(const String& startDate, const String& endDate) {
+//     if (!_instance) {
+//         return "";
+//     }
+    
+//     String csv = "Timestamp,Source,Description,Priority\n";
+    
+//     // Get all event log files in the date range
+//     std::vector<String> files = _getEventLogFilesInRange(startDate, endDate);
+    
+//     if (files.empty()) {
+//         return "";
+//     }
+    
+//     // Read and merge data from all files
+//     for (const String& filename : files) {
+//         String fullPath = _instance->_eventLogDirectory.isEmpty() ? "/" : _instance->_eventLogDirectory;
+//         if (!fullPath.endsWith("/")) fullPath += "/";
+//         fullPath += filename;
+        
+//         File file = _instance->_fs->open(fullPath.c_str(), FILE_READ);
+//         if (!file) {
+//             continue;
+//         }
+        
+//         // Skip header line
+//         if (file.available()) {
+//             file.readStringUntil('\n');
+//         }
+        
+//         // Copy data lines
+//         while (file.available()) {
+//             String line = file.readStringUntil('\n');
+//             line.trim();
+//             if (!line.isEmpty()) {
+//                 csv += line + "\n";
+//             }
+//         }
+        
+//         file.close();
+//     }
+    
+//     return csv;
+// }
+
+// std::vector<String> LoggerManager::_getEventLogFilesInRange(const String& startDate, const String& endDate) {
+//     std::vector<String> matchingFiles;
+    
+//     if (!_instance) {
+//         return matchingFiles;
+//     }
+    
+//     String dirPath = _instance->_eventLogDirectory.isEmpty() ? "/" : _instance->_eventLogDirectory;
+//     Serial.printf("Searching for event log files in directory: %s\n", dirPath.c_str());
+//     File dir = _instance->_fs->open(dirPath.c_str());
+    
+//     if (!dir || !dir.isDirectory()) {
+//         Serial.printf("Could not open directory: %s\n", dirPath.c_str());
+//         return matchingFiles;
+//     }
+    
+//     String normalizedStart = _normalizeDate(startDate);
+//     Serial.printf("Normalized start date: %s\n", normalizedStart.c_str());
+//     String normalizedEnd = _normalizeDate(endDate);
+//     Serial.printf("Normalized end date: %s\n", normalizedEnd.c_str());
+    
+//     File file = dir.openNextFile();
+//     while (file) {
+//         String filename = String(file.name());
+//         Serial.printf("Checking file: %s\n", filename.c_str());
+        
+//         // Check if it's an event log file
+//         if (filename.startsWith("events_") && filename.endsWith(".csv")) {
+//             // Extract date from filename (events_YYYY-MM-DD.csv)
+//             String fileDate = filename.substring(7); // Remove "events_" prefix
+//             fileDate = fileDate.substring(0, fileDate.lastIndexOf('.')); // Remove .csv extension
+            
+//             Serial.printf("Extracted file date: %s\n", fileDate.c_str());
+            
+//             // Check if date is within range
+//             if (fileDate >= normalizedStart && fileDate <= normalizedEnd) {
+//                 Serial.printf("File date %s is within range [%s, %s]\n", fileDate.c_str(), normalizedStart.c_str(), normalizedEnd.c_str());
+//                 matchingFiles.push_back(filename);
+//             }
+//         }
+        
+//         file = dir.openNextFile();
+//     }
+    
+//     dir.close();
+    
+//     Serial.printf("Found %d matching event log files\n", matchingFiles.size());
+    
+//     // Sort files by date
+//     std::sort(matchingFiles.begin(), matchingFiles.end());
+    
+//     return matchingFiles;
+// }
+
+// bool LoggerManager::_parseEventLogEntry(const String& line, DynamicJsonDocument& entry) {
+//     // Parse CSV line: Timestamp,Source,Description,Priority
+//     int fieldIndex = 0;
+//     int startPos = 0;
+//     String fields[4];
+//     bool inQuotes = false;
+    
+//     for (int i = 0; i <= line.length(); i++) {
+//         char c = (i < line.length()) ? line.charAt(i) : ',';
+        
+//         if (c == '"') {
+//             inQuotes = !inQuotes;
+//         } else if (c == ',' && !inQuotes) {
+//             if (fieldIndex < 4) {
+//                 fields[fieldIndex] = line.substring(startPos, i);
+//                 // Remove quotes if present
+//                 if (fields[fieldIndex].startsWith("\"") && fields[fieldIndex].endsWith("\"")) {
+//                     fields[fieldIndex] = fields[fieldIndex].substring(1, fields[fieldIndex].length() - 1);
+//                 }
+//                 fields[fieldIndex].trim();
+//             }
+//             fieldIndex++;
+//             startPos = i + 1;
+//         }
+//     }
+    
+//     if (fieldIndex < 3) { // We need at least 4 fields (0-3)
+//         return false;
+//     }
+    
+//     // Parse fields into JSON
+//     entry["timestamp"] = fields[0];
+//     entry["source"] = fields[1];
+//     entry["description"] = fields[2];
+//     entry["priority"] = fields[3];
+    
+//     return true;
+// }
+
+
+// Add these methods to your LoggerManager.cpp file
+
+// Static method to get event logs as JSON
+String LoggerManager::getEventLogsJson(const String& startDate, const String& endDate) {
+    if (!_instance) {
+        return "{\"success\":false,\"error\":\"LoggerManager not initialized\"}";
+    }
+    
+    DynamicJsonDocument doc(16384); // Large document for logs
+    doc["success"] = true;
+    JsonArray logsArray = doc.createNestedArray("logs");
+    
+    // Get all event log files in the date range
+    std::vector<String> files = _getEventLogFilesInRange(startDate, endDate);
+    
+    if (files.empty()) {
+        doc["success"] = false;
+        doc["error"] = "No event log files found in the specified date range";
+        String output;
+        serializeJson(doc, output);
+        return output;
+    }
+    
+    // Read and parse each file
+    for (const String& filename : files) {
+        String fullPath = _instance->_eventLogDirectory.isEmpty() ? "/" : _instance->_eventLogDirectory;
+        if (!fullPath.endsWith("/")) fullPath += "/";
+        fullPath += filename;
+        
+        Serial.printf("Opening event log file: %s\n", fullPath.c_str());
+        
+        File file = _instance->_fs->open(fullPath.c_str(), FILE_READ);
+        if (!file) {
+            Serial.printf("Failed to open event log file: %s\n", fullPath.c_str());
+            continue;
+        }
+        
+        // Skip header line
+        if (file.available()) {
+            file.readStringUntil('\n');
+        }
+        
+        // Read data lines
+        while (file.available()) {
+            String line = file.readStringUntil('\n');
+            line.trim();
+            if (line.isEmpty()) continue;
+            
+            DynamicJsonDocument entryDoc(512);
+            if (_parseEventLogEntry(line, entryDoc)) {
+                JsonObject entry = logsArray.createNestedObject();
+                entry["timestamp"] = entryDoc["timestamp"];
+                entry["source"] = entryDoc["source"];
+                entry["description"] = entryDoc["description"];
+                entry["priority"] = entryDoc["priority"];
+            }
+        }
+        
+        file.close();
+    }
+    
+    doc["totalEntries"] = logsArray.size();
+    
+    String output;
+    serializeJson(doc, output);
+    return output;
+}
+
+// Static method to get event logs as CSV
+String LoggerManager::getEventLogsCsv(const String& startDate, const String& endDate) {
+    if (!_instance) {
+        return "";
+    }
+    
+    String csv = "Timestamp,Source,Description,Priority\n";
+    
+    // Get all event log files in the date range
+    std::vector<String> files = _getEventLogFilesInRange(startDate, endDate);
+    
+    if (files.empty()) {
+        return "";
+    }
+    
+    // Read and merge data from all files
+    for (const String& filename : files) {
+        String fullPath = _instance->_eventLogDirectory.isEmpty() ? "/" : _instance->_eventLogDirectory;
+        if (!fullPath.endsWith("/")) fullPath += "/";
+        fullPath += filename;
+        
+        File file = _instance->_fs->open(fullPath.c_str(), FILE_READ);
+        if (!file) {
+            continue;
+        }
+        
+        // Skip header line
+        if (file.available()) {
+            file.readStringUntil('\n');
+        }
+        
+        // Copy data lines
+        while (file.available()) {
+            String line = file.readStringUntil('\n');
+            line.trim();
+            if (!line.isEmpty()) {
+                csv += line + "\n";
+            }
+        }
+        
+        file.close();
+    }
+    
+    return csv;
+}
+
+// Static method to get event log files in range
+std::vector<String> LoggerManager::_getEventLogFilesInRange(const String& startDate, const String& endDate) {
+    std::vector<String> matchingFiles;
+    
+    if (!_instance) {
+        return matchingFiles;
+    }
+    
+    String dirPath = _instance->_eventLogDirectory.isEmpty() ? "/" : _instance->_eventLogDirectory;
+    Serial.printf("Searching for event log files in directory: %s\n", dirPath.c_str());
+    File dir = _instance->_fs->open(dirPath.c_str());
+    
+    if (!dir || !dir.isDirectory()) {
+        Serial.printf("Could not open directory: %s\n", dirPath.c_str());
+        return matchingFiles;
+    }
+    
+    String normalizedStart = _normalizeDate(startDate);
+    Serial.printf("Normalized start date: %s\n", normalizedStart.c_str());
+    String normalizedEnd = _normalizeDate(endDate);
+    Serial.printf("Normalized end date: %s\n", normalizedEnd.c_str());
+    
+    File file = dir.openNextFile();
+    while (file) {
+        String filename = String(file.name());
+        Serial.printf("Checking file: %s\n", filename.c_str());
+        
+        // Check if it's an event log file
+        if (filename.startsWith("events_") && filename.endsWith(".csv")) {
+            // Extract date from filename (events_YYYY-MM-DD.csv)
+            String fileDate = filename.substring(7); // Remove "events_" prefix
+            fileDate = fileDate.substring(0, fileDate.lastIndexOf('.')); // Remove .csv extension
+            
+            Serial.printf("Extracted file date: %s\n", fileDate.c_str());
+            
+            // Check if date is within range
+            if (fileDate >= normalizedStart && fileDate <= normalizedEnd) {
+                Serial.printf("File date %s is within range [%s, %s]\n", fileDate.c_str(), normalizedStart.c_str(), normalizedEnd.c_str());
+                matchingFiles.push_back(filename);
+            }
+        }
+        
+        file = dir.openNextFile();
+    }
+    
+    dir.close();
+    
+    Serial.printf("Found %d matching event log files\n", matchingFiles.size());
+    
+    // Sort files by date
+    std::sort(matchingFiles.begin(), matchingFiles.end());
+    
+    return matchingFiles;
+}
+
+// Static method to parse event log entry
+bool LoggerManager::_parseEventLogEntry(const String& line, DynamicJsonDocument& entry) {
+    // Parse CSV line: Timestamp,Source,Description,Priority
+    int fieldIndex = 0;
+    int startPos = 0;
+    String fields[4];
+    bool inQuotes = false;
+    
+    for (int i = 0; i <= line.length(); i++) {
+        char c = (i < line.length()) ? line.charAt(i) : ',';
+        
+        if (c == '"') {
+            inQuotes = !inQuotes;
+        } else if (c == ',' && !inQuotes) {
+            if (fieldIndex < 4) {
+                fields[fieldIndex] = line.substring(startPos, i);
+                // Remove quotes if present
+                if (fields[fieldIndex].startsWith("\"") && fields[fieldIndex].endsWith("\"")) {
+                    fields[fieldIndex] = fields[fieldIndex].substring(1, fields[fieldIndex].length() - 1);
+                }
+                fields[fieldIndex].trim();
+            }
+            fieldIndex++;
+            startPos = i + 1;
+        }
+    }
+    
+    if (fieldIndex < 3) { // We need at least 4 fields (0-3)
+        return false;
+    }
+    
+    // Parse fields into JSON
+    entry["timestamp"] = fields[0];
+    entry["source"] = fields[1];
+    entry["description"] = fields[2];
+    entry["priority"] = fields[3];
+    
+    return true;
+}
+
+// Static method to get event log statistics
+String LoggerManager::getEventLogStatsJson(const String& startDate, const String& endDate) {
+    if (!_instance) {
+        return "{\"success\":false,\"error\":\"LoggerManager not initialized\"}";
+    }
+    
+    DynamicJsonDocument doc(1024);
+    doc["success"] = true;
+    
+    // Initialize counters
+    int totalEntries = 0;
+    int criticalCount = 0;
+    int errorCount = 0;
+    int warningCount = 0;
+    int infoCount = 0;
+    
+    // Get all event log files in the date range
+    std::vector<String> files = _getEventLogFilesInRange(startDate, endDate);
+    
+    // Count entries by priority
+    for (const String& filename : files) {
+        String fullPath = _instance->_eventLogDirectory.isEmpty() ? "/" : _instance->_eventLogDirectory;
+        if (!fullPath.endsWith("/")) fullPath += "/";
+        fullPath += filename;
+        
+        File file = _instance->_fs->open(fullPath.c_str(), FILE_READ);
+        if (!file) {
+            continue;
+        }
+        
+        // Skip header line
+        if (file.available()) {
+            file.readStringUntil('\n');
+        }
+        
+        // Read data lines
+        while (file.available()) {
+            String line = file.readStringUntil('\n');
+            line.trim();
+            if (line.isEmpty()) continue;
+            
+            totalEntries++;
+            
+            // Quick parse to get priority (last field)
+            int lastComma = line.lastIndexOf(',');
+            if (lastComma != -1) {
+                String priority = line.substring(lastComma + 1);
+                priority.trim();
+                
+                // Remove quotes if present
+                if (priority.startsWith("\"") && priority.endsWith("\"")) {
+                    priority = priority.substring(1, priority.length() - 1);
+                }
+                
+                if (priority == "CRITICAL") {
+                    criticalCount++;
+                } else if (priority == "ERROR") {
+                    errorCount++;
+                } else if (priority == "WARNING") {
+                    warningCount++;
+                } else if (priority == "INFO") {
+                    infoCount++;
+                }
+            }
+        }
+        
+        file.close();
+    }
+    
+    // Build statistics JSON
+    doc["totalEntries"] = totalEntries;
+    doc["dateRange"]["start"] = startDate;
+    doc["dateRange"]["end"] = endDate;
+    doc["filesFound"] = files.size();
+    
+    JsonObject priorityStats = doc.createNestedObject("priorityStats");
+    priorityStats["critical"] = criticalCount;
+    priorityStats["error"] = errorCount;
+    priorityStats["warning"] = warningCount;
+    priorityStats["info"] = infoCount;
+    
+    String output;
+    serializeJson(doc, output);
+    return output;
+}
+
+// Static method to get event log files
+std::vector<String> LoggerManager::getEventLogFilesStatic() {
+    std::vector<String> files;
+    
+    if (!_instance) {
+        return files;
+    }
+    
+    String dirPath = _instance->_eventLogDirectory.isEmpty() ? "/" : _instance->_eventLogDirectory;
+    File dir = _instance->_fs->open(dirPath.c_str());
+    
+    if (!dir || !dir.isDirectory()) {
+        return files;
+    }
+    
+    File file = dir.openNextFile();
+    while (file) {
+        String filename = String(file.name());
+        if (filename.startsWith("events_") && filename.endsWith(".csv")) {
+            files.push_back(filename);
+        }
+        file = dir.openNextFile();
+    }
+    
+    dir.close();
+    
+    // Sort files by date
+    std::sort(files.begin(), files.end());
+    
+    return files;
+}
+
+
+
+// Static method to get temperature data log files
+std::vector<String> LoggerManager::getLogFiles() {
+    std::vector<String> files;
+    if (!_instance) {
+        return files;
+    }
+    
+    String dirPath = _instance->_logDirectory.isEmpty() ? "/" : _instance->_logDirectory;
+    File dir = _instance->_fs->open(dirPath.c_str());
+    if (!dir || !dir.isDirectory()) {
+        return files;
+    }
+    
+    File file = dir.openNextFile();
+    while (file) {
+        String filename = String(file.name());
+        if (filename.startsWith("temp_log_") && filename.endsWith(".csv")) {
+            files.push_back(filename);
+        }
+        file = dir.openNextFile();
+    }
+    
+    dir.close();
+    std::sort(files.begin(), files.end());
+    return files;
+}
+
+// Static method to get alarm state log files
+std::vector<String> LoggerManager::getAlarmStateLogFiles() {
+    std::vector<String> files;
+    if (!_instance) {
+        return files;
+    }
+    
+    String dirPath = _instance->_alarmStateLogDirectory.isEmpty() ? "/" : _instance->_alarmStateLogDirectory;
+    File dir = _instance->_fs->open(dirPath.c_str());
+    if (!dir || !dir.isDirectory()) {
+        return files;
+    }
+    
+    File file = dir.openNextFile();
+    while (file) {
+        String filename = String(file.name());
+        if (filename.startsWith("alarm_states_") && filename.endsWith(".csv")) {
+            files.push_back(filename);
+        }
+        file = dir.openNextFile();
+    }
+    
+    dir.close();
+    std::sort(files.begin(), files.end());
+    return files;
+}
+
+// Static method to get file information
+bool LoggerManager::getFileInfo(const String& filename, const String& type, size_t& fileSize, String& date) {
+    if (!_instance) {
+        return false;
+    }
+    
+    String dirPath = getLogDirectoryPath(type);
+    String fullPath = dirPath;
+    if (!fullPath.endsWith("/") && !fullPath.isEmpty()) fullPath += "/";
+    fullPath += filename;
+    
+    File file = _instance->_fs->open(fullPath.c_str(), FILE_READ);
+    if (!file) {
+        return false;
+    }
+    
+    fileSize = file.size();
+    file.close();
+    
+    // Extract date from filename based on type
+    if (type == "data" && filename.startsWith("temp_log_") && filename.endsWith(".csv")) {
+        int firstUnderscore = filename.indexOf('_', 5); // Skip "temp_"
+        int secondUnderscore = filename.indexOf('_', firstUnderscore + 1);
+        if (firstUnderscore > 0 && secondUnderscore > firstUnderscore) {
+            date = filename.substring(firstUnderscore + 1, secondUnderscore);
+        }
+    } else if (type == "event" && filename.startsWith("events_") && filename.endsWith(".csv")) {
+        date = filename.substring(7, filename.length() - 4);
+    } else if (type == "alarm" && filename.startsWith("alarm_states_") && filename.endsWith(".csv")) {
+        date = filename.substring(13, filename.length() - 4);
+    }
+    
+    return true;
+}
+
+// Static method to open log files
+File LoggerManager::openLogFile(const String& filename, const String& type) {
+    if (!_instance) {
+        return File();
+    }
+    
+    String dirPath = getLogDirectoryPath(type);
+    String fullPath = dirPath;
+    if (!fullPath.endsWith("/") && !fullPath.isEmpty()) fullPath += "/";
+    fullPath += filename;
+    
+    return _instance->_fs->open(fullPath.c_str(), FILE_READ);
+}
+
+// Static method to get directory path for different log types
+String LoggerManager::getLogDirectoryPath(const String& type) {
+    if (!_instance) {
+        return "/";
+    }
+    
+    if (type == "data") {
+        return _instance->_logDirectory.isEmpty() ? "/" : _instance->_logDirectory;
+    } else if (type == "event") {
+        return _instance->_eventLogDirectory.isEmpty() ? "/" : _instance->_eventLogDirectory;
+    } else if (type == "alarm") {
+        return _instance->_alarmStateLogDirectory.isEmpty() ? "/" : _instance->_alarmStateLogDirectory;
+    }
+    
+    return "/";
+}
+
+
+// std::vector<String> LoggerManager::getLogFiles() {
+
+//     std::vector<String> files;
+    
+//     File dir = _fs->open(_logDirectory.c_str());
+//     if (!dir || !dir.isDirectory()) {
+//         return files;
+//     }
+    
+//     File file = dir.openNextFile();
+//     while (file) {
+//         if (!file.isDirectory() && String(file.name()).endsWith(".csv")) {
+//             files.push_back(String(file.name()));
+//         }
+//         file = dir.openNextFile();
+//     }
+    
+//     dir.close();
+//     return files;
+// }
