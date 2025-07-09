@@ -1087,13 +1087,26 @@ String LoggerManager::getAlarmHistoryJson(const String& startDate, const String&
     }
     
     // Read and parse each file
+    // for (const String& filename : files) {
+    //     String fullPath = _instance->_alarmStateLogDirectory.isEmpty() ? "/" : _instance->_alarmStateLogDirectory;
+    //     if (!fullPath.endsWith("/")) fullPath += "/";
+    //     fullPath += filename;
+        
+    //     File file = _instance->_fs->open(fullPath.c_str(), FILE_READ);
+    //     if (!file) {
+    //         continue;
+    //     }
+
     for (const String& filename : files) {
         String fullPath = _instance->_alarmStateLogDirectory.isEmpty() ? "/" : _instance->_alarmStateLogDirectory;
         if (!fullPath.endsWith("/")) fullPath += "/";
         fullPath += filename;
         
+        Serial.printf("Opening file: %s\n", fullPath.c_str());
+        
         File file = _instance->_fs->open(fullPath.c_str(), FILE_READ);
         if (!file) {
+            Serial.printf("Failed to open file: %s\n", fullPath.c_str());
             continue;
         }
         
@@ -1186,33 +1199,39 @@ std::vector<String> LoggerManager::_getAlarmLogFilesInRange(const String& startD
     }
     
     String dirPath = _instance->_alarmStateLogDirectory.isEmpty() ? "/" : _instance->_alarmStateLogDirectory;
+    Serial.printf("Searching for alarm log files in directory: %s\n", dirPath.c_str());
     File dir = _instance->_fs->open(dirPath.c_str());
     
     if (!dir || !dir.isDirectory()) {
+        Serial.printf("Could not open directory: %s\n", dirPath.c_str());
         return matchingFiles;
     }
     
     String normalizedStart = _normalizeDate(startDate);
+    Serial.printf("Normalized start date: %s\n", normalizedStart.c_str());
     String normalizedEnd = _normalizeDate(endDate);
+    Serial.printf("Normalized end date: %s\n", normalizedEnd.c_str());
     
     File file = dir.openNextFile();
     while (file) {
         String filename = String(file.name());
+        Serial.printf("Checking file: %s\n", filename.c_str());
         
         // Check if it's an alarm state log file
         if (filename.startsWith("alarm_states_") && filename.endsWith(".csv")) {
             // Extract date from filename (alarm_states_YYYY-MM-DD.csv)
-            int dateStart = filename.indexOf('_', 13) + 1; // After "alarm_states_"
-            int dateEnd = filename.lastIndexOf('.');
+            // The date starts after "alarm_states_" which is 13 characters
+            String fileDate = filename.substring(13); // Remove "alarm_states_" prefix
+            fileDate = fileDate.substring(0, fileDate.lastIndexOf('.')); // Remove .csv extension
             
-            if (dateStart > 0 && dateEnd > dateStart) {
-                String fileDate = filename.substring(dateStart - 13, dateEnd);
-                fileDate = fileDate.substring(13); // Remove "alarm_states_" prefix
-                
-                // Check if date is within range
-                if (fileDate >= normalizedStart && fileDate <= normalizedEnd) {
-                    matchingFiles.push_back(filename);
-                }
+            Serial.printf("Extracted file date: %s\n", fileDate.c_str());
+            
+            // Check if date is within range
+            if (fileDate >= normalizedStart && fileDate <= normalizedEnd) {
+                Serial.printf("File date %s is within range [%s, %s]\n", fileDate.c_str(), normalizedStart.c_str(), normalizedEnd.c_str());
+                matchingFiles.push_back(filename);
+            } else {
+                Serial.printf("File date %s is outside range [%s, %s]\n", fileDate.c_str(), normalizedStart.c_str(), normalizedEnd.c_str());
             }
         }
         
@@ -1221,12 +1240,13 @@ std::vector<String> LoggerManager::_getAlarmLogFilesInRange(const String& startD
     
     dir.close();
     
+    Serial.printf("Found %d matching files\n", matchingFiles.size());
+    
     // Sort files by date
     std::sort(matchingFiles.begin(), matchingFiles.end());
     
     return matchingFiles;
 }
-
 bool LoggerManager::_parseAlarmStateLogEntry(const String& line, DynamicJsonDocument& entry) {
     // This method doesn't need instance access, so it can remain unchanged
     // Parse CSV line: Timestamp,PointNumber,PointName,AlarmType,AlarmPriority,PreviousState,NewState,CurrentTemperature,Threshold
