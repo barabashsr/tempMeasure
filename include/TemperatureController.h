@@ -130,7 +130,6 @@ public:
 
     // int getAlarmCount(AlarmPriority priority) const;
     // int getAlarmCount(AlarmStage stage) const;
-    int getAlarmCount(AlarmPriority priority, AlarmStage stage) const;
     // Add these method declarations to TemperatureController.h
     int getAlarmCount(AlarmPriority priority, const String& comparison = "==") const;
     int getAlarmCount(AlarmStage stage, const String& comparison = "==") const;

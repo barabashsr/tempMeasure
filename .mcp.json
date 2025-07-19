@@ -1,0 +1,39 @@
+{
+    "mcpServers": {
+      "filesystem": {
+        "command": "npx",
+        "args": [
+          "mcp-server-filesystem",
+          "/Users/sergeybarabash/robo",
+          "/Users/sergeybarabash/robo/Claude_desktop",
+          "/Users/sergeybarabash/.platformio"
+        ]
+      },
+      "MCP_DOCKER": {
+        "command": "docker",
+        "args": ["run", "-i", "--rm", "alpine/socat", "STDIO", "TCP:host.docker.internal:8811"]
+      },
+      "n8n-mcp": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "--init",
+        "-e", "MCP_MODE=stdio",
+        "-e", "LOG_LEVEL=error",
+        "-e", "DISABLE_CONSOLE_OUTPUT=true",
+        "-e", "N8N_API_URL=https://vpn.fedoseev.one/",
+        "-e", "N8N_API_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyNTY1NTI3ZS02MDNiLTQ1ZmItOWRjNC1lMGYyZWRiNzA1ZDQiLCJpc3MiOiJuOG4iLCJhdWQiOiJwdWJsaWMtYXBpIiwiaWF0IjoxNzUyODY4ODA2LCJleHAiOjE3NTc5NzAwMDB9.gBU91Tp3Mk_x6QUesN7wQ1xsutnEFI4jpYhxruTdN6E",
+        "ghcr.io/czlonkowski/n8n-mcp:latest"
+      ]
+    },
+    "context7": {
+      "command": "npx",
+      "args": [
+        "@upstash/context7-mcp"
+      ]
+    }
+    
+    }
+  }

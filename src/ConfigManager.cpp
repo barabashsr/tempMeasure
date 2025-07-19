@@ -278,7 +278,7 @@ void ConfigManager::resetMinMaxValues() {
 // Save all measurement points and their bindings
 void ConfigManager::savePointsConfig() {
     LoggerManager::info("CONFIG_SAVE", "Saving points configuration to /points2.ini");
-    Serial.println('Save points to config ....');
+    Serial.println("Save points to config ....");
     ConfigAssist pointsConf("/points2.ini", false);
 
     // DS18B20 points
@@ -1399,6 +1399,148 @@ void ConfigManager::alarmsAPI(){
         } else {
             server->send(400, "application/json", "{\"error\":\"No valid delays provided\"}");
         }
+    });
+
+    // GET /api/alarm-config - Get alarm configuration for all measurement points
+    server->on("/api/alarm-config", HTTP_GET, [this]() {
+        DynamicJsonDocument doc(8192); // Increased size for all points
+        JsonArray pointsArray = doc.createNestedArray("points");
+        
+        // Get DS18B20 points (0-49)
+        for (uint8_t i = 0; i < 50; ++i) {
+            MeasurementPoint* point = controller.getMeasurementPoint(i);
+            if (!point) continue;
+            
+            JsonObject pointObj = pointsArray.createNestedObject();
+            pointObj["address"] = point->getAddress();
+            pointObj["name"] = point->getName();
+            pointObj["currentTemp"] = point->getCurrentTemp();
+            pointObj["sensorBound"] = (point->getBoundSensor() != nullptr);
+            pointObj["lowThreshold"] = point->getLowAlarmThreshold();
+            pointObj["highThreshold"] = point->getHighAlarmThreshold();
+            // For now, set default priorities and hysteresis since MeasurementPoint doesn't store these
+            pointObj["lowPriority"] = 2; // Medium priority as default
+            pointObj["highPriority"] = 3; // High priority as default
+            pointObj["errorPriority"] = 3; // High priority as default
+            pointObj["hysteresis"] = 2; // Default hysteresis
+        }
+        
+        // Get PT1000 points (50-59)
+        for (uint8_t i = 50; i < 60; ++i) {
+            MeasurementPoint* point = controller.getMeasurementPoint(i);
+            if (!point) continue;
+            
+            JsonObject pointObj = pointsArray.createNestedObject();
+            pointObj["address"] = point->getAddress();
+            pointObj["name"] = point->getName();
+            pointObj["currentTemp"] = point->getCurrentTemp();
+            pointObj["sensorBound"] = (point->getBoundSensor() != nullptr);
+            pointObj["lowThreshold"] = point->getLowAlarmThreshold();
+            pointObj["highThreshold"] = point->getHighAlarmThreshold();
+            // For now, set default priorities and hysteresis since MeasurementPoint doesn't store these
+            pointObj["lowPriority"] = 2; // Medium priority as default
+            pointObj["highPriority"] = 3; // High priority as default
+            pointObj["errorPriority"] = 3; // High priority as default
+            pointObj["hysteresis"] = 2; // Default hysteresis
+        }
+        
+        String output;
+        serializeJson(doc, output);
+        
+        server->sendHeader("Content-Type", "application/json");
+        server->sendHeader("Access-Control-Allow-Origin", "*");
+        server->send(200, "application/json", output);
+    });
+
+    // POST /api/alarm-config - Update alarm configuration for multiple points
+    server->on("/api/alarm-config", HTTP_POST, [this]() {
+        if (!server->hasArg("plain")) {
+            server->send(400, "application/json", "{\"error\":\"No data provided\"}");
+            return;
+        }
+        
+        DynamicJsonDocument doc(8192); // Large enough for multiple points
+        DeserializationError err = deserializeJson(doc, server->arg("plain"));
+        if (err) {
+            server->send(400, "application/json", "{\"error\":\"Invalid JSON format\"}");
+            return;
+        }
+        
+        if (!doc.containsKey("changes") || !doc["changes"].is<JsonArray>()) {
+            server->send(400, "application/json", "{\"error\":\"Missing or invalid 'changes' array\"}");
+            return;
+        }
+        
+        JsonArray changes = doc["changes"];
+        int updatedCount = 0;
+        int errorCount = 0;
+        String errors = "";
+        
+        // Apply changes to each point
+        for (JsonVariant changeVar : changes) {
+            JsonObject change = changeVar.as<JsonObject>();
+            
+            if (!change.containsKey("address")) {
+                errorCount++;
+                errors += "Missing address in change entry; ";
+                continue;
+            }
+            
+            uint8_t address = change["address"];
+            MeasurementPoint* point = controller.getMeasurementPoint(address);
+            
+            if (!point) {
+                errorCount++;
+                errors += "Point " + String(address) + " not found; ";
+                continue;
+            }
+            
+            try {
+                // Update point name if provided
+                if (change.containsKey("name")) {
+                    point->setName(change["name"].as<String>());
+                }
+                
+                // Update thresholds if provided
+                if (change.containsKey("lowThreshold")) {
+                    point->setLowAlarmThreshold(change["lowThreshold"].as<int16_t>());
+                }
+                if (change.containsKey("highThreshold")) {
+                    point->setHighAlarmThreshold(change["highThreshold"].as<int16_t>());
+                }
+                
+                // TODO: Priority and hysteresis configuration will be handled through alarm system
+                // For now, we only update name and thresholds since MeasurementPoint doesn't store priorities/hysteresis
+                // Note: Priority and hysteresis are managed through configured alarms in the alarm system
+                
+                updatedCount++;
+                
+            } catch (...) {
+                errorCount++;
+                errors += "Error updating point " + String(address) + "; ";
+            }
+        }
+        
+        // Apply configuration to register map and save
+        if (updatedCount > 0) {
+            controller.applyConfigToRegisterMap();
+            savePointsConfig(); // Save the updated configuration
+        }
+        
+        // Send response
+        DynamicJsonDocument response(1024);
+        response["success"] = (errorCount == 0);
+        response["updatedCount"] = updatedCount;
+        response["errorCount"] = errorCount;
+        response["message"] = String(updatedCount) + " points updated successfully";
+        
+        if (errorCount > 0) {
+            response["errors"] = errors;
+        }
+        
+        String output;
+        serializeJson(response, output);
+        server->send((errorCount == 0) ? 200 : 207, "application/json", output); // 207 = Multi-Status
     });
 
 };

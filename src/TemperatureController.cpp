@@ -406,117 +406,132 @@ void TemperatureController::clearConfiguredAlarms() {
 //     }
 // }
 void TemperatureController::handleAlarmOutputs() {
-    // Calculate alarm counts for logging
-    int activeAlarms = getAlarmCount(AlarmStage::ACTIVE);
-    int highPriorityAlarms = getAlarmCount(AlarmPriority::PRIORITY_HIGH, AlarmStage::ACKNOWLEDGED, ">=", ">=");
-    int lowPriorityAlarms = getAlarmCount(AlarmPriority::PRIORITY_LOW, AlarmStage::ACKNOWLEDGED, "==", ">=");
-    int criticalAlarms = getAlarmCount(AlarmPriority::PRIORITY_CRITICAL, AlarmStage::ACKNOWLEDGED, "==", ">=");
-    int mediumAlarms = getAlarmCount(AlarmPriority::PRIORITY_MEDIUM, AlarmStage::ACKNOWLEDGED, "==", ">=");
+    // Get alarm counts by priority and stage for precise control
+    int criticalActive = getAlarmCount(AlarmPriority::PRIORITY_CRITICAL, AlarmStage::ACTIVE);
+    int criticalAcknowledged = getAlarmCount(AlarmPriority::PRIORITY_CRITICAL, AlarmStage::ACKNOWLEDGED);
+    int highActive = getAlarmCount(AlarmPriority::PRIORITY_HIGH, AlarmStage::ACTIVE);
+    int highAcknowledged = getAlarmCount(AlarmPriority::PRIORITY_HIGH, AlarmStage::ACKNOWLEDGED);
+    int mediumActive = getAlarmCount(AlarmPriority::PRIORITY_MEDIUM, AlarmStage::ACTIVE);
+    int mediumAcknowledged = getAlarmCount(AlarmPriority::PRIORITY_MEDIUM, AlarmStage::ACKNOWLEDGED);
+    int lowActive = getAlarmCount(AlarmPriority::PRIORITY_LOW, AlarmStage::ACTIVE);
+    int lowAcknowledged = getAlarmCount(AlarmPriority::PRIORITY_LOW, AlarmStage::ACKNOWLEDGED);
     
-    // Calculate new output states using enhanced getAlarmCount methods
-    bool newRelay1 = activeAlarms > 0;
-    bool highPriorityRelay2 = highPriorityAlarms > 0;
-    bool lowPriorityExists = lowPriorityAlarms > 0;
-    bool newRedLed = criticalAlarms > 0;
-    bool newYellowLed = getAlarmCount(AlarmPriority::PRIORITY_HIGH, AlarmStage::ACKNOWLEDGED, "==", ">=") > 0;
-    bool mediumPriorityBlueLed = mediumAlarms > 0;
+    // Determine highest priority alarm state for output control
+    bool hasCritical = (criticalActive + criticalAcknowledged) > 0;
+    bool hasHigh = (highActive + highAcknowledged) > 0;
+    bool hasMedium = (mediumActive + mediumAcknowledged) > 0;
+    bool hasLow = (lowActive + lowAcknowledged) > 0;
     
-    // Log alarm summary if there are any changes or active alarms
+    // Determine if alarms are acknowledged
+    bool criticalAcknowledgedOnly = (criticalActive == 0 && criticalAcknowledged > 0);
+    bool highAcknowledgedOnly = (highActive == 0 && highAcknowledged > 0);
+    bool mediumAcknowledgedOnly = (mediumActive == 0 && mediumAcknowledged > 0);
+    
+    // Apply alarm notification logic based on priority and acknowledgment state
+    // Following the specification table from PLANNING_RESULTS.md
+    
+    bool relay1State = false; // Siren
+    bool relay2State = false; // Flash beacon
+    bool redLedState = false;
+    bool yellowLedState = false;
+    bool blueLedState = false;
+    
+    // Stop all blinking first - we'll restart as needed
+    indicator.stopBlinking("Relay2");
+    indicator.stopBlinking("YellowLED");
+    
+    if (hasCritical) {
+        if (criticalAcknowledgedOnly) {
+            // CRITICAL acknowledged: Beacon ON (constant)
+            relay2State = true;
+        } else {
+            // CRITICAL active: Siren ON + Beacon ON (constant)
+            relay1State = true;
+            relay2State = true;
+        }
+        // Red LED always on for critical alarms
+        redLedState = true;
+        yellowLedState = true; // Both LEDs for critical
+    } else if (hasHigh) {
+        if (highAcknowledgedOnly) {
+            // HIGH acknowledged: Beacon ON (blink 2s on/30s off)
+            indicator.startBlinking("Relay2", 2000, 30000);
+        } else {
+            // HIGH active: Beacon ON (constant)
+            relay2State = true;
+        }
+        // Red LED for high priority (when not acknowledged)
+        redLedState = !highAcknowledgedOnly;
+        yellowLedState = true;
+    } else if (hasMedium) {
+        if (!mediumAcknowledgedOnly) {
+            // MEDIUM active: Beacon ON (blink 2s on/30s off)
+            indicator.startBlinking("Relay2", 2000, 30000);
+        }
+        // MEDIUM acknowledged: Beacon OFF (no relay action)
+        // Yellow LED blinking for medium priority
+        if (!mediumAcknowledgedOnly) {
+            indicator.startBlinking("YellowLED", 2000, 30000);
+        }
+    } else if (hasLow) {
+        // LOW priority: No relay action (as per specification)
+        // No LED indication for low priority
+    }
+    
+    // Log alarm summary periodically
     static unsigned long lastSummaryLog = 0;
     unsigned long now = millis();
     if (now - lastSummaryLog > 30000 || // Log every 30 seconds
-        (activeAlarms > 0 && now - lastSummaryLog > 5000)) { // Or every 5 seconds if alarms active
+        (hasCritical || hasHigh || hasMedium) && now - lastSummaryLog > 5000) { // Or every 5 seconds if significant alarms
         
-        String summary = "Alarm summary - Active: " + String(activeAlarms) + 
-                        ", High: " + String(highPriorityAlarms) + 
-                        ", Medium: " + String(mediumAlarms) + 
-                        ", Low: " + String(lowPriorityAlarms) + 
-                        ", Critical: " + String(criticalAlarms);
+        String summary = "Alarm summary - Critical: " + String(criticalActive) + "/" + String(criticalAcknowledged) + 
+                        ", High: " + String(highActive) + "/" + String(highAcknowledged) + 
+                        ", Medium: " + String(mediumActive) + "/" + String(mediumAcknowledged) + 
+                        ", Low: " + String(lowActive) + "/" + String(lowAcknowledged);
         LoggerManager::info("ALARM_OUTPUT", summary);
         lastSummaryLog = now;
     }
     
-    // Handle blinking for low priority alarms
-    if (lowPriorityExists) {
-        // Start blinking if not already blinking
-        if (!highPriorityRelay2 && !indicator.isBlinking("Relay2")) {
-            LoggerManager::info("INDICATION", 
-                "Starting Relay2 blinking for " + String(lowPriorityAlarms) + " low priority alarms");
-            indicator.startBlinking("Relay2", 1000, 5000);  // 2s on, 30s off
-        }
-        
-        if (!indicator.isBlinking("BlueLED")) {
-            LoggerManager::info("INDICATION", 
-                "Starting BlueLED blinking for " + String(lowPriorityAlarms) + " low priority alarms");
-            indicator.startBlinking("BlueLED", 500, 500);    // 500ms on, 500ms off
-        }
-    } else {
-        // Stop blinking if no low priority alarms
-        if (indicator.isBlinking("Relay2")) {
-            LoggerManager::info("INDICATION", "Stopping Relay2 blinking - no low priority alarms");
-            indicator.stopBlinking("Relay2");
-        }
-        if (indicator.isBlinking("BlueLED")) {
-            LoggerManager::info("INDICATION", "Stopping BlueLED blinking - no low priority alarms");
-            indicator.stopBlinking("BlueLED");
-        }
+    // Update relay states (only if not blinking)
+    if (!indicator.isBlinking("Relay1") && relay1State != _relay1State) {
+        LoggerManager::info("INDICATION", 
+            "Relay1 (Siren) state change: " + String(_relay1State ? "ON" : "OFF") + 
+            " -> " + String(relay1State ? "ON" : "OFF"));
+        indicator.writePort("Relay1", relay1State);
+        _relay1State = relay1State;
     }
     
-    // Calculate final states (excluding blinking ports)
-    bool newRelay2 = highPriorityRelay2;  // Don't set if blinking
-    bool newBlueLed = mediumPriorityBlueLed;  // Don't set if blinking
-    
-    // Only update non-blinking outputs if state has changed
-    if (newRelay1 != _relay1State) {
-        String reason = newRelay1 ? 
-            ("Activated - " + String(activeAlarms) + " active alarms") : 
-            "Deactivated - no active alarms";
-        LoggerManager::info("INDICATION", "Relay1 " + reason);
-        
-        indicator.writePort("Relay1", newRelay1);
-        _relay1State = newRelay1;
+    if (!indicator.isBlinking("Relay2") && relay2State != _relay2State) {
+        LoggerManager::info("INDICATION", 
+            "Relay2 (Beacon) state change: " + String(_relay2State ? "ON" : "OFF") + 
+            " -> " + String(relay2State ? "ON" : "OFF"));
+        indicator.writePort("Relay2", relay2State);
+        _relay2State = relay2State;
     }
     
-    // Only control Relay2 directly if not blinking for low priority
-    if (!indicator.isBlinking("Relay2") && newRelay2 != _relay2State) {
-        String reason = newRelay2 ? 
-            ("Activated - " + String(highPriorityAlarms) + " high/critical priority alarms") : 
-            "Deactivated - no high/critical priority alarms";
-        LoggerManager::info("INDICATION", "Relay2 " + reason);
-        
-        indicator.writePort("Relay2", newRelay2);
-        _relay2State = newRelay2;
+    // Update LED states (only if not blinking)
+    if (redLedState != _redLedState) {
+        LoggerManager::info("INDICATION", 
+            "Red LED state change: " + String(_redLedState ? "ON" : "OFF") + 
+            " -> " + String(redLedState ? "ON" : "OFF"));
+        indicator.writePort("RedLED", redLedState);
+        _redLedState = redLedState;
     }
     
-    if (newRedLed != _redLedState) {
-        String reason = newRedLed ? 
-            ("ON - " + String(criticalAlarms) + " critical alarms") : 
-            "OFF - no critical alarms";
-        LoggerManager::info("INDICATION", "RedLED " + reason);
-        
-        indicator.writePort("RedLED", newRedLed);
-        _redLedState = newRedLed;
+    if (!indicator.isBlinking("YellowLED") && yellowLedState != _yellowLedState) {
+        LoggerManager::info("INDICATION", 
+            "Yellow LED state change: " + String(_yellowLedState ? "ON" : "OFF") + 
+            " -> " + String(yellowLedState ? "ON" : "OFF"));
+        indicator.writePort("YellowLED", yellowLedState);
+        _yellowLedState = yellowLedState;
     }
     
-    if (newYellowLed != _yellowLedState) {
-        String reason = newYellowLed ? 
-            ("ON - high priority alarms present") : 
-            "OFF - no high priority alarms";
-        LoggerManager::info("INDICATION", "YellowLED " + reason);
-        
-        indicator.writePort("YellowLED", newYellowLed);
-        _yellowLedState = newYellowLed;
-    }
-    
-    // Only control BlueLED directly if not blinking for low priority
-    if (!indicator.isBlinking("BlueLED") && newBlueLed != _blueLedState) {
-        String reason = newBlueLed ? 
-            ("ON - " + String(mediumAlarms) + " medium priority alarms") : 
-            "OFF - no medium priority alarms";
-        LoggerManager::info("INDICATION", "BlueLED " + reason);
-        
-        indicator.writePort("BlueLED", newBlueLed);
-        _blueLedState = newBlueLed;
+    if (blueLedState != _blueLedState) {
+        LoggerManager::info("INDICATION", 
+            "Blue LED state change: " + String(_blueLedState ? "ON" : "OFF") + 
+            " -> " + String(blueLedState ? "ON" : "OFF"));
+        indicator.writePort("BlueLED", blueLedState);
+        _blueLedState = blueLedState;
     }
 }
 
@@ -1521,17 +1536,6 @@ void TemperatureController::applyAcknowledgedDelaysToAlarms() {
 //     return count;
 // }
 
-int TemperatureController::getAlarmCount(AlarmPriority priority, AlarmStage stage) const {
-    int count = 0;
-    for (auto alarm : _configuredAlarms) {
-        if (alarm->isEnabled() && 
-            alarm->getPriority() == priority && 
-            alarm->getStage() == stage) {
-            count++;
-        }
-    }
-    return count;
-}
 
 // Add these method implementations to TemperatureController.cpp
 int TemperatureController::getAlarmCount(AlarmPriority priority, const String& comparison) const {

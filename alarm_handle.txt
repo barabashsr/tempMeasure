@@ -1,5 +1,0 @@
-Ok. Now it works excellent. Thank you.
-The next step - we need to handle alarms properly. In the device the "loud" indication is with relays 1 and 2 - there is a siren  on the relay 1 and a blinking beacon on relay2, green, yellow, blue and red LEDs are on teh device, so we need to use two kinds of indication separately and there are different scenarios for different alarm priorities as well. Lets solve the loud notification first. I think we should put all the alarms into a sort of stack sorted by priority and a stage within each priority. If there are any alarms within the group, we handle the loud notification this way:
-1. Critical and High priority unacknowledged - siren and beacon is on constantly
-2. Medium and Low priority unacknowledged, Critical and High priority active acknowledged beacon is on constantly
-3. No Critical and High priority, Medium and Low priority acknowledged beacon is on 
