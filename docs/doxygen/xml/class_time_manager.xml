@@ -1,0 +1,1318 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="class_time_manager" kind="class" language="C++" prot="public">
+    <compoundname>TimeManager</compoundname>
+    <includes refid="_time_manager_8h" local="no">TimeManager.h</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_time_manager_1abe00ffc1b0527b13103868d587e30f23" prot="private" static="no" mutable="no">
+        <type>RTC_DS3231</type>
+        <definition>RTC_DS3231 TimeManager::_rtc</definition>
+        <argsstring></argsstring>
+        <name>_rtc</name>
+        <qualifiedname>TimeManager::_rtc</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="84" column="16" bodyfile="include/TimeManager.h" bodystart="84" bodyend="-1"/>
+        <referencedby refid="class_time_manager_1af26310b8838458517cd61ad871d03fc7" compoundref="_time_manager_8cpp" startline="286" endline="292">clearAlarm1</referencedby>
+        <referencedby refid="class_time_manager_1a8d7894074cbb9dd466cd2c218b744168" compoundref="_time_manager_8cpp" startline="294" endline="300">clearAlarm2</referencedby>
+        <referencedby refid="class_time_manager_1a4bc24c6c9776775c16055ba25e673089" compoundref="_time_manager_8cpp" startline="323" endline="327">disableSquareWave</referencedby>
+        <referencedby refid="class_time_manager_1ae2b19037230f000c12d75168ea40cefa" compoundref="_time_manager_8cpp" startline="317" endline="321">enableSquareWave</referencedby>
+        <referencedby refid="class_time_manager_1a2667b0243b7db24b3055c2b00e2837ba" compoundref="_time_manager_8cpp" startline="150" endline="156">getCurrentTime</referencedby>
+        <referencedby refid="class_time_manager_1afdc18d9b5c9e07146b3abd9e4af0f4b6" compoundref="_time_manager_8cpp" startline="346" endline="366">getStatusJSON</referencedby>
+        <referencedby refid="class_time_manager_1adb489fdf49aad1223fdb325ed3bb9619" compoundref="_time_manager_8cpp" startline="265" endline="270">getTemperature</referencedby>
+        <referencedby refid="class_time_manager_1a6c39a89bae258b11871c63d289ef60ce" compoundref="_time_manager_8cpp" startline="174" endline="179">getUnixTime</referencedby>
+        <referencedby refid="class_time_manager_1a8103064c75b5a937ccbf410aff2847d5" compoundref="_time_manager_8cpp" startline="257" endline="259">hasLostPower</referencedby>
+        <referencedby refid="class_time_manager_1a5c53a7007744c2ab4b6a53ecf5f423c4" compoundref="_time_manager_8cpp" startline="17" endline="46">init</referencedby>
+        <referencedby refid="class_time_manager_1ae74ce0171feb70ca84ee79c8edda311b" compoundref="_time_manager_8cpp" startline="303" endline="308">isAlarm1Triggered</referencedby>
+        <referencedby refid="class_time_manager_1a2f3285d092bf9e23abe1cdf0b592354e" compoundref="_time_manager_8cpp" startline="310" endline="315">isAlarm2Triggered</referencedby>
+        <referencedby refid="class_time_manager_1a0ea1ccc33811c5115d7b5e73f57a862f" compoundref="_time_manager_8cpp" startline="272" endline="277">setAlarm1</referencedby>
+        <referencedby refid="class_time_manager_1a23c8d05d709d6ffd0a0fedd13aea5586" compoundref="_time_manager_8cpp" startline="279" endline="284">setAlarm2</referencedby>
+        <referencedby refid="class_time_manager_1afebf49e57d461818ded70cf5c6cecf2a" compoundref="_time_manager_8cpp" startline="124" endline="133">setTime</referencedby>
+        <referencedby refid="class_time_manager_1ab71114506bbeb9b897af93cb0465294f" compoundref="_time_manager_8cpp" startline="140" endline="148">setTimeFromCompileTime</referencedby>
+        <referencedby refid="class_time_manager_1accdbd3c07d63d6ed1f96fddbc4bf2e00" compoundref="_time_manager_8cpp" startline="88" endline="117">setTimeFromNTP</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_time_manager_1a68632ca74aebeea31326a1d4dda13789" prot="private" static="no" mutable="no">
+        <type>WiFiUDP</type>
+        <definition>WiFiUDP TimeManager::_ntpUDP</definition>
+        <argsstring></argsstring>
+        <name>_ntpUDP</name>
+        <qualifiedname>TimeManager::_ntpUDP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="85" column="13" bodyfile="include/TimeManager.h" bodystart="85" bodyend="-1"/>
+        <referencedby refid="class_time_manager_1a2160202e65568b360b4bdfbe7ff7ff96" compoundref="_time_manager_8cpp" startline="79" endline="86">_initializeNTP</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_time_manager_1a739105709a6e8e786a685ea67a917bbf" prot="private" static="no" mutable="no">
+        <type>NTPClient *</type>
+        <definition>NTPClient* TimeManager::_timeClient</definition>
+        <argsstring></argsstring>
+        <name>_timeClient</name>
+        <qualifiedname>TimeManager::_timeClient</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="86" column="15" bodyfile="include/TimeManager.h" bodystart="86" bodyend="-1"/>
+        <referencedby refid="class_time_manager_1a2160202e65568b360b4bdfbe7ff7ff96" compoundref="_time_manager_8cpp" startline="79" endline="86">_initializeNTP</referencedby>
+        <referencedby refid="class_time_manager_1aa4f1390fd27f84729c731e5898d68b95" compoundref="_time_manager_8cpp" startline="213" endline="218">setNTPUpdateInterval</referencedby>
+        <referencedby refid="class_time_manager_1accdbd3c07d63d6ed1f96fddbc4bf2e00" compoundref="_time_manager_8cpp" startline="88" endline="117">setTimeFromNTP</referencedby>
+        <referencedby refid="class_time_manager_1a866d39aaf7eaab03c654d15d112097b0" compoundref="_time_manager_8cpp" startline="181" endline="187">setTimezone</referencedby>
+        <referencedby refid="class_time_manager_1a26c74aae85b05e3c6fe59fec05f06b6b" compoundref="_time_manager_8cpp" startline="189" endline="194">setTimezoneOffset</referencedby>
+        <referencedby refid="class_time_manager_1aa03eb7df81514b59d22b6b0aecb4c1c8" compoundref="_time_manager_8cpp" startline="4" endline="9">TimeManager</referencedby>
+        <referencedby refid="class_time_manager_1a579b1b9e3d323dcc030c100992f7ed8a" compoundref="_time_manager_8cpp" startline="11" endline="15">~TimeManager</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_time_manager_1af0846c8eb1d45c8f30a2043a148af1f1" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int TimeManager::_sdaPin</definition>
+        <argsstring></argsstring>
+        <name>_sdaPin</name>
+        <qualifiedname>TimeManager::_sdaPin</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="89" column="9" bodyfile="include/TimeManager.h" bodystart="89" bodyend="-1"/>
+        <referencedby refid="class_time_manager_1aa03eb7df81514b59d22b6b0aecb4c1c8" compoundref="_time_manager_8cpp" startline="4" endline="9">TimeManager</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_time_manager_1a4cb8c5836f8e4648ac0b9f87fc0024ce" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int TimeManager::_sclPin</definition>
+        <argsstring></argsstring>
+        <name>_sclPin</name>
+        <qualifiedname>TimeManager::_sclPin</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="90" column="9" bodyfile="include/TimeManager.h" bodystart="90" bodyend="-1"/>
+        <referencedby refid="class_time_manager_1aa03eb7df81514b59d22b6b0aecb4c1c8" compoundref="_time_manager_8cpp" startline="4" endline="9">TimeManager</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_time_manager_1a8465c87729bf008167ed4171c4868175" prot="private" static="no" mutable="no">
+        <type>long</type>
+        <definition>long TimeManager::_timezoneOffset</definition>
+        <argsstring></argsstring>
+        <name>_timezoneOffset</name>
+        <qualifiedname>TimeManager::_timezoneOffset</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="91" column="10" bodyfile="include/TimeManager.h" bodystart="91" bodyend="-1"/>
+        <referencedby refid="class_time_manager_1a3473025dc159e3ad5d1ab5a11750cd13" compoundref="_time_manager_8cpp" startline="409" endline="411">_applyTimezone</referencedby>
+        <referencedby refid="class_time_manager_1a2160202e65568b360b4bdfbe7ff7ff96" compoundref="_time_manager_8cpp" startline="79" endline="86">_initializeNTP</referencedby>
+        <referencedby refid="class_time_manager_1a3c7bc3ee8da90e3785ee834b9c28dbe2" compoundref="_time_manager_8cpp" startline="413" endline="415">_removeTimezone</referencedby>
+        <referencedby refid="class_time_manager_1ad8222e9629445d97b543eb491b3fd4f6" compoundref="_time_manager_8cpp" startline="329" endline="344">getTimeJSON</referencedby>
+        <referencedby refid="class_time_manager_1a850a0272030e42056077934b4e5dcd9c" compoundref="_time_manager_8cpp" startline="196" endline="198">getTimezoneHours</referencedby>
+        <referencedby refid="class_time_manager_1ae587839d07c8a9bed0eb2870ba94d48d" compoundref="_time_manager_8cpp" startline="200" endline="202">getTimezoneMinutes</referencedby>
+        <referencedby refid="class_time_manager_1a0b4bc35eb5d7f78589f56149b75dc2ad" compoundref="_time_manager_8cpp" startline="204" endline="206">getTimezoneOffset</referencedby>
+        <referencedby refid="class_time_manager_1a9d5fe35fd4ba97491afde4647421d010" compoundref="_time_manager_8cpp" startline="383" endline="402">loadConfig</referencedby>
+        <referencedby refid="class_time_manager_1a406cdbcc898066a40d4757aa145d5f24" compoundref="_time_manager_8cpp" startline="368" endline="381">saveConfig</referencedby>
+        <referencedby refid="class_time_manager_1a866d39aaf7eaab03c654d15d112097b0" compoundref="_time_manager_8cpp" startline="181" endline="187">setTimezone</referencedby>
+        <referencedby refid="class_time_manager_1a26c74aae85b05e3c6fe59fec05f06b6b" compoundref="_time_manager_8cpp" startline="189" endline="194">setTimezoneOffset</referencedby>
+        <referencedby refid="class_time_manager_1aa03eb7df81514b59d22b6b0aecb4c1c8" compoundref="_time_manager_8cpp" startline="4" endline="9">TimeManager</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_time_manager_1a3204ca6c3f394fdf73bd1868cdb3c8ed" prot="private" static="no" mutable="no">
+        <type>String</type>
+        <definition>String TimeManager::_ntpServer</definition>
+        <argsstring></argsstring>
+        <name>_ntpServer</name>
+        <qualifiedname>TimeManager::_ntpServer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="92" column="12" bodyfile="include/TimeManager.h" bodystart="92" bodyend="-1"/>
+        <referencedby refid="class_time_manager_1a2160202e65568b360b4bdfbe7ff7ff96" compoundref="_time_manager_8cpp" startline="79" endline="86">_initializeNTP</referencedby>
+        <referencedby refid="class_time_manager_1a40c7f96f06e8c025eadc3c9962ab42e2" compoundref="_time_manager_8cpp" startline="220" endline="222">getNTPServer</referencedby>
+        <referencedby refid="class_time_manager_1afdc18d9b5c9e07146b3abd9e4af0f4b6" compoundref="_time_manager_8cpp" startline="346" endline="366">getStatusJSON</referencedby>
+        <referencedby refid="class_time_manager_1a9d5fe35fd4ba97491afde4647421d010" compoundref="_time_manager_8cpp" startline="383" endline="402">loadConfig</referencedby>
+        <referencedby refid="class_time_manager_1a406cdbcc898066a40d4757aa145d5f24" compoundref="_time_manager_8cpp" startline="368" endline="381">saveConfig</referencedby>
+        <referencedby refid="class_time_manager_1aef071f85874c744b35768bc95bff7772" compoundref="_time_manager_8cpp" startline="208" endline="211">setNTPServer</referencedby>
+        <referencedby refid="class_time_manager_1accdbd3c07d63d6ed1f96fddbc4bf2e00" compoundref="_time_manager_8cpp" startline="88" endline="117">setTimeFromNTP</referencedby>
+        <referencedby refid="class_time_manager_1aa03eb7df81514b59d22b6b0aecb4c1c8" compoundref="_time_manager_8cpp" startline="4" endline="9">TimeManager</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_time_manager_1a3ac1cfec4f2aa4b41516835424a0bdd9" prot="private" static="no" mutable="no">
+        <type>unsigned long</type>
+        <definition>unsigned long TimeManager::_ntpUpdateInterval</definition>
+        <argsstring></argsstring>
+        <name>_ntpUpdateInterval</name>
+        <qualifiedname>TimeManager::_ntpUpdateInterval</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="93" column="19" bodyfile="include/TimeManager.h" bodystart="93" bodyend="-1"/>
+        <referencedby refid="class_time_manager_1a2160202e65568b360b4bdfbe7ff7ff96" compoundref="_time_manager_8cpp" startline="79" endline="86">_initializeNTP</referencedby>
+        <referencedby refid="class_time_manager_1a9d5fe35fd4ba97491afde4647421d010" compoundref="_time_manager_8cpp" startline="383" endline="402">loadConfig</referencedby>
+        <referencedby refid="class_time_manager_1a406cdbcc898066a40d4757aa145d5f24" compoundref="_time_manager_8cpp" startline="368" endline="381">saveConfig</referencedby>
+        <referencedby refid="class_time_manager_1aa4f1390fd27f84729c731e5898d68b95" compoundref="_time_manager_8cpp" startline="213" endline="218">setNTPUpdateInterval</referencedby>
+        <referencedby refid="class_time_manager_1aa03eb7df81514b59d22b6b0aecb4c1c8" compoundref="_time_manager_8cpp" startline="4" endline="9">TimeManager</referencedby>
+        <referencedby refid="class_time_manager_1a97d902b19861efc099141eeb846671a3" compoundref="_time_manager_8cpp" startline="224" endline="235">update</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_time_manager_1a04560dd9d6c3d1adb6fe164e522fabb2" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool TimeManager::_ntpSyncEnabled</definition>
+        <argsstring></argsstring>
+        <name>_ntpSyncEnabled</name>
+        <qualifiedname>TimeManager::_ntpSyncEnabled</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="94" column="10" bodyfile="include/TimeManager.h" bodystart="94" bodyend="-1"/>
+        <referencedby refid="class_time_manager_1abea66b0164e784f99d918914828e16cb" compoundref="_time_manager_8cpp" startline="245" endline="247">enableNTPSync</referencedby>
+        <referencedby refid="class_time_manager_1afdc18d9b5c9e07146b3abd9e4af0f4b6" compoundref="_time_manager_8cpp" startline="346" endline="366">getStatusJSON</referencedby>
+        <referencedby refid="class_time_manager_1a0dfabdbd0cd8684ec23d107cd6e8c330" compoundref="_time_manager_8cpp" startline="241" endline="243">isNTPSyncEnabled</referencedby>
+        <referencedby refid="class_time_manager_1a9d5fe35fd4ba97491afde4647421d010" compoundref="_time_manager_8cpp" startline="383" endline="402">loadConfig</referencedby>
+        <referencedby refid="class_time_manager_1a406cdbcc898066a40d4757aa145d5f24" compoundref="_time_manager_8cpp" startline="368" endline="381">saveConfig</referencedby>
+        <referencedby refid="class_time_manager_1aa03eb7df81514b59d22b6b0aecb4c1c8" compoundref="_time_manager_8cpp" startline="4" endline="9">TimeManager</referencedby>
+        <referencedby refid="class_time_manager_1a97d902b19861efc099141eeb846671a3" compoundref="_time_manager_8cpp" startline="224" endline="235">update</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_time_manager_1a2fd2603fd69673cc8a31ae3ed658329d" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool TimeManager::_rtcConnected</definition>
+        <argsstring></argsstring>
+        <name>_rtcConnected</name>
+        <qualifiedname>TimeManager::_rtcConnected</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="97" column="10" bodyfile="include/TimeManager.h" bodystart="97" bodyend="-1"/>
+        <referencedby refid="class_time_manager_1af26310b8838458517cd61ad871d03fc7" compoundref="_time_manager_8cpp" startline="286" endline="292">clearAlarm1</referencedby>
+        <referencedby refid="class_time_manager_1a8d7894074cbb9dd466cd2c218b744168" compoundref="_time_manager_8cpp" startline="294" endline="300">clearAlarm2</referencedby>
+        <referencedby refid="class_time_manager_1a4bc24c6c9776775c16055ba25e673089" compoundref="_time_manager_8cpp" startline="323" endline="327">disableSquareWave</referencedby>
+        <referencedby refid="class_time_manager_1ae2b19037230f000c12d75168ea40cefa" compoundref="_time_manager_8cpp" startline="317" endline="321">enableSquareWave</referencedby>
+        <referencedby refid="class_time_manager_1a2667b0243b7db24b3055c2b00e2837ba" compoundref="_time_manager_8cpp" startline="150" endline="156">getCurrentTime</referencedby>
+        <referencedby refid="class_time_manager_1afdc18d9b5c9e07146b3abd9e4af0f4b6" compoundref="_time_manager_8cpp" startline="346" endline="366">getStatusJSON</referencedby>
+        <referencedby refid="class_time_manager_1adb489fdf49aad1223fdb325ed3bb9619" compoundref="_time_manager_8cpp" startline="265" endline="270">getTemperature</referencedby>
+        <referencedby refid="class_time_manager_1a6c39a89bae258b11871c63d289ef60ce" compoundref="_time_manager_8cpp" startline="174" endline="179">getUnixTime</referencedby>
+        <referencedby refid="class_time_manager_1a8103064c75b5a937ccbf410aff2847d5" compoundref="_time_manager_8cpp" startline="257" endline="259">hasLostPower</referencedby>
+        <referencedby refid="class_time_manager_1a5c53a7007744c2ab4b6a53ecf5f423c4" compoundref="_time_manager_8cpp" startline="17" endline="46">init</referencedby>
+        <referencedby refid="class_time_manager_1ae74ce0171feb70ca84ee79c8edda311b" compoundref="_time_manager_8cpp" startline="303" endline="308">isAlarm1Triggered</referencedby>
+        <referencedby refid="class_time_manager_1a2f3285d092bf9e23abe1cdf0b592354e" compoundref="_time_manager_8cpp" startline="310" endline="315">isAlarm2Triggered</referencedby>
+        <referencedby refid="class_time_manager_1ae3c0b16328c19adc8214841717cd09de" compoundref="_time_manager_8cpp" startline="249" endline="251">isRTCConnected</referencedby>
+        <referencedby refid="class_time_manager_1a0ea1ccc33811c5115d7b5e73f57a862f" compoundref="_time_manager_8cpp" startline="272" endline="277">setAlarm1</referencedby>
+        <referencedby refid="class_time_manager_1a23c8d05d709d6ffd0a0fedd13aea5586" compoundref="_time_manager_8cpp" startline="279" endline="284">setAlarm2</referencedby>
+        <referencedby refid="class_time_manager_1afebf49e57d461818ded70cf5c6cecf2a" compoundref="_time_manager_8cpp" startline="124" endline="133">setTime</referencedby>
+        <referencedby refid="class_time_manager_1ab71114506bbeb9b897af93cb0465294f" compoundref="_time_manager_8cpp" startline="140" endline="148">setTimeFromCompileTime</referencedby>
+        <referencedby refid="class_time_manager_1accdbd3c07d63d6ed1f96fddbc4bf2e00" compoundref="_time_manager_8cpp" startline="88" endline="117">setTimeFromNTP</referencedby>
+        <referencedby refid="class_time_manager_1aa03eb7df81514b59d22b6b0aecb4c1c8" compoundref="_time_manager_8cpp" startline="4" endline="9">TimeManager</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_time_manager_1a6978db6d8292e1f7a8ba6af137c851a3" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool TimeManager::_timeSet</definition>
+        <argsstring></argsstring>
+        <name>_timeSet</name>
+        <qualifiedname>TimeManager::_timeSet</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="98" column="10" bodyfile="include/TimeManager.h" bodystart="98" bodyend="-1"/>
+        <referencedby refid="class_time_manager_1afdc18d9b5c9e07146b3abd9e4af0f4b6" compoundref="_time_manager_8cpp" startline="346" endline="366">getStatusJSON</referencedby>
+        <referencedby refid="class_time_manager_1a5c53a7007744c2ab4b6a53ecf5f423c4" compoundref="_time_manager_8cpp" startline="17" endline="46">init</referencedby>
+        <referencedby refid="class_time_manager_1ab13afaa962e7d3b5d3c22e759d154a62" compoundref="_time_manager_8cpp" startline="253" endline="255">isTimeSet</referencedby>
+        <referencedby refid="class_time_manager_1afebf49e57d461818ded70cf5c6cecf2a" compoundref="_time_manager_8cpp" startline="124" endline="133">setTime</referencedby>
+        <referencedby refid="class_time_manager_1ab71114506bbeb9b897af93cb0465294f" compoundref="_time_manager_8cpp" startline="140" endline="148">setTimeFromCompileTime</referencedby>
+        <referencedby refid="class_time_manager_1accdbd3c07d63d6ed1f96fddbc4bf2e00" compoundref="_time_manager_8cpp" startline="88" endline="117">setTimeFromNTP</referencedby>
+        <referencedby refid="class_time_manager_1aa03eb7df81514b59d22b6b0aecb4c1c8" compoundref="_time_manager_8cpp" startline="4" endline="9">TimeManager</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_time_manager_1a4966f27d6d3f21e42af6d0e381b1b8f4" prot="private" static="no" mutable="no">
+        <type>unsigned long</type>
+        <definition>unsigned long TimeManager::_lastNTPSync</definition>
+        <argsstring></argsstring>
+        <name>_lastNTPSync</name>
+        <qualifiedname>TimeManager::_lastNTPSync</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="99" column="19" bodyfile="include/TimeManager.h" bodystart="99" bodyend="-1"/>
+        <referencedby refid="class_time_manager_1a1bb6d3e9ae8ce79ad424e4ca803efe2e" compoundref="_time_manager_8cpp" startline="261" endline="263">getLastNTPSync</referencedby>
+        <referencedby refid="class_time_manager_1afdc18d9b5c9e07146b3abd9e4af0f4b6" compoundref="_time_manager_8cpp" startline="346" endline="366">getStatusJSON</referencedby>
+        <referencedby refid="class_time_manager_1accdbd3c07d63d6ed1f96fddbc4bf2e00" compoundref="_time_manager_8cpp" startline="88" endline="117">setTimeFromNTP</referencedby>
+        <referencedby refid="class_time_manager_1aa03eb7df81514b59d22b6b0aecb4c1c8" compoundref="_time_manager_8cpp" startline="4" endline="9">TimeManager</referencedby>
+        <referencedby refid="class_time_manager_1a97d902b19861efc099141eeb846671a3" compoundref="_time_manager_8cpp" startline="224" endline="235">update</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_time_manager_1a3c84248b3f7274facf6297f0ce59253d" prot="private" static="no" mutable="no">
+        <type>unsigned long</type>
+        <definition>unsigned long TimeManager::_lastNTPAttempt</definition>
+        <argsstring></argsstring>
+        <name>_lastNTPAttempt</name>
+        <qualifiedname>TimeManager::_lastNTPAttempt</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="100" column="19" bodyfile="include/TimeManager.h" bodystart="100" bodyend="-1"/>
+        <referencedby refid="class_time_manager_1aa03eb7df81514b59d22b6b0aecb4c1c8" compoundref="_time_manager_8cpp" startline="4" endline="9">TimeManager</referencedby>
+        <referencedby refid="class_time_manager_1a97d902b19861efc099141eeb846671a3" compoundref="_time_manager_8cpp" startline="224" endline="235">update</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_time_manager_1aa03eb7df81514b59d22b6b0aecb4c1c8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>TimeManager::TimeManager</definition>
+        <argsstring>(int sdaPin=21, int sclPin=22)</argsstring>
+        <name>TimeManager</name>
+        <qualifiedname>TimeManager::TimeManager</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>sdaPin</declname>
+          <defval>21</defval>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>sclPin</declname>
+          <defval>22</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="14" column="5" bodyfile="src/TimeManager.cpp" bodystart="4" bodyend="9"/>
+        <references refid="class_time_manager_1a3c84248b3f7274facf6297f0ce59253d" compoundref="_time_manager_8h" startline="100">_lastNTPAttempt</references>
+        <references refid="class_time_manager_1a4966f27d6d3f21e42af6d0e381b1b8f4" compoundref="_time_manager_8h" startline="99">_lastNTPSync</references>
+        <references refid="class_time_manager_1a3204ca6c3f394fdf73bd1868cdb3c8ed" compoundref="_time_manager_8h" startline="92">_ntpServer</references>
+        <references refid="class_time_manager_1a04560dd9d6c3d1adb6fe164e522fabb2" compoundref="_time_manager_8h" startline="94">_ntpSyncEnabled</references>
+        <references refid="class_time_manager_1a3ac1cfec4f2aa4b41516835424a0bdd9" compoundref="_time_manager_8h" startline="93">_ntpUpdateInterval</references>
+        <references refid="class_time_manager_1a2fd2603fd69673cc8a31ae3ed658329d" compoundref="_time_manager_8h" startline="97">_rtcConnected</references>
+        <references refid="class_time_manager_1a4cb8c5836f8e4648ac0b9f87fc0024ce" compoundref="_time_manager_8h" startline="90">_sclPin</references>
+        <references refid="class_time_manager_1af0846c8eb1d45c8f30a2043a148af1f1" compoundref="_time_manager_8h" startline="89">_sdaPin</references>
+        <references refid="class_time_manager_1a739105709a6e8e786a685ea67a917bbf" compoundref="_time_manager_8h" startline="86">_timeClient</references>
+        <references refid="class_time_manager_1a6978db6d8292e1f7a8ba6af137c851a3" compoundref="_time_manager_8h" startline="98">_timeSet</references>
+        <references refid="class_time_manager_1a8465c87729bf008167ed4171c4868175" compoundref="_time_manager_8h" startline="91">_timezoneOffset</references>
+      </memberdef>
+      <memberdef kind="function" id="class_time_manager_1a579b1b9e3d323dcc030c100992f7ed8a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>TimeManager::~TimeManager</definition>
+        <argsstring>()</argsstring>
+        <name>~TimeManager</name>
+        <qualifiedname>TimeManager::~TimeManager</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="17" column="5" bodyfile="src/TimeManager.cpp" bodystart="11" bodyend="15"/>
+        <references refid="class_time_manager_1a739105709a6e8e786a685ea67a917bbf" compoundref="_time_manager_8h" startline="86">_timeClient</references>
+      </memberdef>
+      <memberdef kind="function" id="class_time_manager_1aa535067588a39cafa8ac49f8e342bd08" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool TimeManager::begin</definition>
+        <argsstring>()</argsstring>
+        <name>begin</name>
+        <qualifiedname>TimeManager::begin</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="20" column="10" bodyfile="src/TimeManager.cpp" bodystart="48" bodyend="77"/>
+        <references refid="class_time_manager_1a2160202e65568b360b4bdfbe7ff7ff96" compoundref="_time_manager_8cpp" startline="79" endline="86">_initializeNTP</references>
+        <references refid="class_time_manager_1a9d5fe35fd4ba97491afde4647421d010" compoundref="_time_manager_8cpp" startline="383" endline="402">loadConfig</references>
+      </memberdef>
+      <memberdef kind="function" id="class_time_manager_1a5c53a7007744c2ab4b6a53ecf5f423c4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool TimeManager::init</definition>
+        <argsstring>()</argsstring>
+        <name>init</name>
+        <qualifiedname>TimeManager::init</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="21" column="10" bodyfile="src/TimeManager.cpp" bodystart="17" bodyend="46"/>
+        <references refid="class_time_manager_1abe00ffc1b0527b13103868d587e30f23" compoundref="_time_manager_8h" startline="84">_rtc</references>
+        <references refid="class_time_manager_1a2fd2603fd69673cc8a31ae3ed658329d" compoundref="_time_manager_8h" startline="97">_rtcConnected</references>
+        <references refid="class_time_manager_1a6978db6d8292e1f7a8ba6af137c851a3" compoundref="_time_manager_8h" startline="98">_timeSet</references>
+        <references refid="class_time_manager_1ab71114506bbeb9b897af93cb0465294f" compoundref="_time_manager_8cpp" startline="140" endline="148">setTimeFromCompileTime</references>
+      </memberdef>
+      <memberdef kind="function" id="class_time_manager_1accdbd3c07d63d6ed1f96fddbc4bf2e00" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool TimeManager::setTimeFromNTP</definition>
+        <argsstring>(const char *ntpServer=&quot;pool.ntp.org&quot;)</argsstring>
+        <name>setTimeFromNTP</name>
+        <qualifiedname>TimeManager::setTimeFromNTP</qualifiedname>
+        <param>
+          <type>const char *</type>
+          <declname>ntpServer</declname>
+          <defval>&quot;pool.ntp.org&quot;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="24" column="10" bodyfile="src/TimeManager.cpp" bodystart="88" bodyend="117"/>
+        <references refid="class_time_manager_1a2160202e65568b360b4bdfbe7ff7ff96" compoundref="_time_manager_8cpp" startline="79" endline="86">_initializeNTP</references>
+        <references refid="class_time_manager_1a57cb32331258b5e8692ef477657dd318" compoundref="_time_manager_8cpp" startline="405" endline="407">_isWiFiConnected</references>
+        <references refid="class_time_manager_1a4966f27d6d3f21e42af6d0e381b1b8f4" compoundref="_time_manager_8h" startline="99">_lastNTPSync</references>
+        <references refid="class_time_manager_1a3204ca6c3f394fdf73bd1868cdb3c8ed" compoundref="_time_manager_8h" startline="92">_ntpServer</references>
+        <references refid="class_time_manager_1abe00ffc1b0527b13103868d587e30f23" compoundref="_time_manager_8h" startline="84">_rtc</references>
+        <references refid="class_time_manager_1a2fd2603fd69673cc8a31ae3ed658329d" compoundref="_time_manager_8h" startline="97">_rtcConnected</references>
+        <references refid="class_time_manager_1a739105709a6e8e786a685ea67a917bbf" compoundref="_time_manager_8h" startline="86">_timeClient</references>
+        <references refid="class_time_manager_1a6978db6d8292e1f7a8ba6af137c851a3" compoundref="_time_manager_8h" startline="98">_timeSet</references>
+        <references refid="class_time_manager_1a06dd5ab29990377c81538d99ba7ccf31" compoundref="_time_manager_8cpp" startline="159" endline="162">getFormattedTime</references>
+        <referencedby refid="class_time_manager_1aa8a8cc016ebb9ceabc4fee347a49cbdb" compoundref="_time_manager_8cpp" startline="237" endline="239">syncWithNTP</referencedby>
+        <referencedby refid="class_time_manager_1a97d902b19861efc099141eeb846671a3" compoundref="_time_manager_8cpp" startline="224" endline="235">update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_time_manager_1af04febfb916666add72562e2d09e5a4f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool TimeManager::setTime</definition>
+        <argsstring>(int year, int month, int day, int hour, int minute, int second)</argsstring>
+        <name>setTime</name>
+        <qualifiedname>TimeManager::setTime</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>year</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>month</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>day</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>hour</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>minute</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>second</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="25" column="10" bodyfile="src/TimeManager.cpp" bodystart="119" bodyend="122"/>
+        <references refid="class_time_manager_1af04febfb916666add72562e2d09e5a4f" compoundref="_time_manager_8cpp" startline="119" endline="122">setTime</references>
+        <referencedby refid="class_time_manager_1af04febfb916666add72562e2d09e5a4f" compoundref="_time_manager_8cpp" startline="119" endline="122">setTime</referencedby>
+        <referencedby refid="class_time_manager_1a2c0e88f3f6d491aecea922149947be48" compoundref="_time_manager_8cpp" startline="135" endline="138">setTimeFromUnix</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_time_manager_1afebf49e57d461818ded70cf5c6cecf2a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool TimeManager::setTime</definition>
+        <argsstring>(DateTime dateTime)</argsstring>
+        <name>setTime</name>
+        <qualifiedname>TimeManager::setTime</qualifiedname>
+        <param>
+          <type>DateTime</type>
+          <declname>dateTime</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="26" column="10" bodyfile="src/TimeManager.cpp" bodystart="124" bodyend="133"/>
+        <references refid="class_time_manager_1abcaf17b6da72a3a2f2566d940ce5ce8d" compoundref="_time_manager_8cpp" startline="417" endline="429">_formatDateTime</references>
+        <references refid="class_time_manager_1abe00ffc1b0527b13103868d587e30f23" compoundref="_time_manager_8h" startline="84">_rtc</references>
+        <references refid="class_time_manager_1a2fd2603fd69673cc8a31ae3ed658329d" compoundref="_time_manager_8h" startline="97">_rtcConnected</references>
+        <references refid="class_time_manager_1a6978db6d8292e1f7a8ba6af137c851a3" compoundref="_time_manager_8h" startline="98">_timeSet</references>
+      </memberdef>
+      <memberdef kind="function" id="class_time_manager_1a2c0e88f3f6d491aecea922149947be48" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool TimeManager::setTimeFromUnix</definition>
+        <argsstring>(uint32_t unixTime)</argsstring>
+        <name>setTimeFromUnix</name>
+        <qualifiedname>TimeManager::setTimeFromUnix</qualifiedname>
+        <param>
+          <type>uint32_t</type>
+          <declname>unixTime</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="27" column="10" bodyfile="src/TimeManager.cpp" bodystart="135" bodyend="138"/>
+        <references refid="class_time_manager_1af04febfb916666add72562e2d09e5a4f" compoundref="_time_manager_8cpp" startline="119" endline="122">setTime</references>
+      </memberdef>
+      <memberdef kind="function" id="class_time_manager_1ab71114506bbeb9b897af93cb0465294f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool TimeManager::setTimeFromCompileTime</definition>
+        <argsstring>()</argsstring>
+        <name>setTimeFromCompileTime</name>
+        <qualifiedname>TimeManager::setTimeFromCompileTime</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="28" column="10" bodyfile="src/TimeManager.cpp" bodystart="140" bodyend="148"/>
+        <references refid="class_time_manager_1abe00ffc1b0527b13103868d587e30f23" compoundref="_time_manager_8h" startline="84">_rtc</references>
+        <references refid="class_time_manager_1a2fd2603fd69673cc8a31ae3ed658329d" compoundref="_time_manager_8h" startline="97">_rtcConnected</references>
+        <references refid="class_time_manager_1a6978db6d8292e1f7a8ba6af137c851a3" compoundref="_time_manager_8h" startline="98">_timeSet</references>
+        <referencedby refid="class_time_manager_1a5c53a7007744c2ab4b6a53ecf5f423c4" compoundref="_time_manager_8cpp" startline="17" endline="46">init</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_time_manager_1a2667b0243b7db24b3055c2b00e2837ba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DateTime</type>
+        <definition>DateTime TimeManager::getCurrentTime</definition>
+        <argsstring>()</argsstring>
+        <name>getCurrentTime</name>
+        <qualifiedname>TimeManager::getCurrentTime</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="31" column="14" bodyfile="src/TimeManager.cpp" bodystart="150" bodyend="156"/>
+        <references refid="class_time_manager_1abe00ffc1b0527b13103868d587e30f23" compoundref="_time_manager_8h" startline="84">_rtc</references>
+        <references refid="class_time_manager_1a2fd2603fd69673cc8a31ae3ed658329d" compoundref="_time_manager_8h" startline="97">_rtcConnected</references>
+        <referencedby refid="class_time_manager_1a558c17fb7adf5fe7556a7052c971d99f" compoundref="_time_manager_8cpp" startline="169" endline="172">getDateString</referencedby>
+        <referencedby refid="class_time_manager_1a06dd5ab29990377c81538d99ba7ccf31" compoundref="_time_manager_8cpp" startline="159" endline="162">getFormattedTime</referencedby>
+        <referencedby refid="class_time_manager_1ad8222e9629445d97b543eb491b3fd4f6" compoundref="_time_manager_8cpp" startline="329" endline="344">getTimeJSON</referencedby>
+        <referencedby refid="class_time_manager_1aea04045a244a479fed907fd05d64d100" compoundref="_time_manager_8cpp" startline="164" endline="167">getTimeString</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_time_manager_1a06dd5ab29990377c81538d99ba7ccf31" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>String</type>
+        <definition>String TimeManager::getFormattedTime</definition>
+        <argsstring>(const String &amp;format=&quot;YYYY-MM-DD hh:mm:ss&quot;)</argsstring>
+        <name>getFormattedTime</name>
+        <qualifiedname>TimeManager::getFormattedTime</qualifiedname>
+        <param>
+          <type>const String &amp;</type>
+          <declname>format</declname>
+          <defval>&quot;YYYY-MM-DD hh:mm:ss&quot;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="32" column="12" bodyfile="src/TimeManager.cpp" bodystart="159" bodyend="162"/>
+        <references refid="class_time_manager_1abcaf17b6da72a3a2f2566d940ce5ce8d" compoundref="_time_manager_8cpp" startline="417" endline="429">_formatDateTime</references>
+        <references refid="class_time_manager_1a2667b0243b7db24b3055c2b00e2837ba" compoundref="_time_manager_8cpp" startline="150" endline="156">getCurrentTime</references>
+        <referencedby refid="class_time_manager_1ad8222e9629445d97b543eb491b3fd4f6" compoundref="_time_manager_8cpp" startline="329" endline="344">getTimeJSON</referencedby>
+        <referencedby refid="class_time_manager_1accdbd3c07d63d6ed1f96fddbc4bf2e00" compoundref="_time_manager_8cpp" startline="88" endline="117">setTimeFromNTP</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_time_manager_1aea04045a244a479fed907fd05d64d100" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>String</type>
+        <definition>String TimeManager::getTimeString</definition>
+        <argsstring>()</argsstring>
+        <name>getTimeString</name>
+        <qualifiedname>TimeManager::getTimeString</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="33" column="12" bodyfile="src/TimeManager.cpp" bodystart="164" bodyend="167"/>
+        <references refid="class_time_manager_1abcaf17b6da72a3a2f2566d940ce5ce8d" compoundref="_time_manager_8cpp" startline="417" endline="429">_formatDateTime</references>
+        <references refid="class_time_manager_1a2667b0243b7db24b3055c2b00e2837ba" compoundref="_time_manager_8cpp" startline="150" endline="156">getCurrentTime</references>
+        <referencedby refid="class_time_manager_1ad8222e9629445d97b543eb491b3fd4f6" compoundref="_time_manager_8cpp" startline="329" endline="344">getTimeJSON</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_time_manager_1a558c17fb7adf5fe7556a7052c971d99f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>String</type>
+        <definition>String TimeManager::getDateString</definition>
+        <argsstring>()</argsstring>
+        <name>getDateString</name>
+        <qualifiedname>TimeManager::getDateString</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="34" column="12" bodyfile="src/TimeManager.cpp" bodystart="169" bodyend="172"/>
+        <references refid="class_time_manager_1abcaf17b6da72a3a2f2566d940ce5ce8d" compoundref="_time_manager_8cpp" startline="417" endline="429">_formatDateTime</references>
+        <references refid="class_time_manager_1a2667b0243b7db24b3055c2b00e2837ba" compoundref="_time_manager_8cpp" startline="150" endline="156">getCurrentTime</references>
+        <referencedby refid="class_time_manager_1ad8222e9629445d97b543eb491b3fd4f6" compoundref="_time_manager_8cpp" startline="329" endline="344">getTimeJSON</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_time_manager_1a6c39a89bae258b11871c63d289ef60ce" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>uint32_t TimeManager::getUnixTime</definition>
+        <argsstring>()</argsstring>
+        <name>getUnixTime</name>
+        <qualifiedname>TimeManager::getUnixTime</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="35" column="14" bodyfile="src/TimeManager.cpp" bodystart="174" bodyend="179"/>
+        <references refid="class_time_manager_1abe00ffc1b0527b13103868d587e30f23" compoundref="_time_manager_8h" startline="84">_rtc</references>
+        <references refid="class_time_manager_1a2fd2603fd69673cc8a31ae3ed658329d" compoundref="_time_manager_8h" startline="97">_rtcConnected</references>
+      </memberdef>
+      <memberdef kind="function" id="class_time_manager_1a866d39aaf7eaab03c654d15d112097b0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void TimeManager::setTimezone</definition>
+        <argsstring>(int offsetHours, int offsetMinutes=0)</argsstring>
+        <name>setTimezone</name>
+        <qualifiedname>TimeManager::setTimezone</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>offsetHours</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>offsetMinutes</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="38" column="10" bodyfile="src/TimeManager.cpp" bodystart="181" bodyend="187"/>
+        <references refid="class_time_manager_1a739105709a6e8e786a685ea67a917bbf" compoundref="_time_manager_8h" startline="86">_timeClient</references>
+        <references refid="class_time_manager_1a8465c87729bf008167ed4171c4868175" compoundref="_time_manager_8h" startline="91">_timezoneOffset</references>
+      </memberdef>
+      <memberdef kind="function" id="class_time_manager_1a26c74aae85b05e3c6fe59fec05f06b6b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void TimeManager::setTimezoneOffset</definition>
+        <argsstring>(long offsetSeconds)</argsstring>
+        <name>setTimezoneOffset</name>
+        <qualifiedname>TimeManager::setTimezoneOffset</qualifiedname>
+        <param>
+          <type>long</type>
+          <declname>offsetSeconds</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="39" column="10" bodyfile="src/TimeManager.cpp" bodystart="189" bodyend="194"/>
+        <references refid="class_time_manager_1a739105709a6e8e786a685ea67a917bbf" compoundref="_time_manager_8h" startline="86">_timeClient</references>
+        <references refid="class_time_manager_1a8465c87729bf008167ed4171c4868175" compoundref="_time_manager_8h" startline="91">_timezoneOffset</references>
+      </memberdef>
+      <memberdef kind="function" id="class_time_manager_1a850a0272030e42056077934b4e5dcd9c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int TimeManager::getTimezoneHours</definition>
+        <argsstring>()</argsstring>
+        <name>getTimezoneHours</name>
+        <qualifiedname>TimeManager::getTimezoneHours</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="40" column="9" bodyfile="src/TimeManager.cpp" bodystart="196" bodyend="198"/>
+        <references refid="class_time_manager_1a8465c87729bf008167ed4171c4868175" compoundref="_time_manager_8h" startline="91">_timezoneOffset</references>
+        <referencedby refid="class_time_manager_1ad8222e9629445d97b543eb491b3fd4f6" compoundref="_time_manager_8cpp" startline="329" endline="344">getTimeJSON</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_time_manager_1ae587839d07c8a9bed0eb2870ba94d48d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int TimeManager::getTimezoneMinutes</definition>
+        <argsstring>()</argsstring>
+        <name>getTimezoneMinutes</name>
+        <qualifiedname>TimeManager::getTimezoneMinutes</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="41" column="9" bodyfile="src/TimeManager.cpp" bodystart="200" bodyend="202"/>
+        <references refid="class_time_manager_1a8465c87729bf008167ed4171c4868175" compoundref="_time_manager_8h" startline="91">_timezoneOffset</references>
+        <referencedby refid="class_time_manager_1ad8222e9629445d97b543eb491b3fd4f6" compoundref="_time_manager_8cpp" startline="329" endline="344">getTimeJSON</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_time_manager_1a0b4bc35eb5d7f78589f56149b75dc2ad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>long</type>
+        <definition>long TimeManager::getTimezoneOffset</definition>
+        <argsstring>()</argsstring>
+        <name>getTimezoneOffset</name>
+        <qualifiedname>TimeManager::getTimezoneOffset</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="42" column="10" bodyfile="src/TimeManager.cpp" bodystart="204" bodyend="206"/>
+        <references refid="class_time_manager_1a8465c87729bf008167ed4171c4868175" compoundref="_time_manager_8h" startline="91">_timezoneOffset</references>
+      </memberdef>
+      <memberdef kind="function" id="class_time_manager_1aef071f85874c744b35768bc95bff7772" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void TimeManager::setNTPServer</definition>
+        <argsstring>(const String &amp;server)</argsstring>
+        <name>setNTPServer</name>
+        <qualifiedname>TimeManager::setNTPServer</qualifiedname>
+        <param>
+          <type>const String &amp;</type>
+          <declname>server</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="45" column="10" bodyfile="src/TimeManager.cpp" bodystart="208" bodyend="211"/>
+        <references refid="class_time_manager_1a2160202e65568b360b4bdfbe7ff7ff96" compoundref="_time_manager_8cpp" startline="79" endline="86">_initializeNTP</references>
+        <references refid="class_time_manager_1a3204ca6c3f394fdf73bd1868cdb3c8ed" compoundref="_time_manager_8h" startline="92">_ntpServer</references>
+      </memberdef>
+      <memberdef kind="function" id="class_time_manager_1aa4f1390fd27f84729c731e5898d68b95" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void TimeManager::setNTPUpdateInterval</definition>
+        <argsstring>(unsigned long intervalMs)</argsstring>
+        <name>setNTPUpdateInterval</name>
+        <qualifiedname>TimeManager::setNTPUpdateInterval</qualifiedname>
+        <param>
+          <type>unsigned long</type>
+          <declname>intervalMs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="46" column="10" bodyfile="src/TimeManager.cpp" bodystart="213" bodyend="218"/>
+        <references refid="class_time_manager_1a3ac1cfec4f2aa4b41516835424a0bdd9" compoundref="_time_manager_8h" startline="93">_ntpUpdateInterval</references>
+        <references refid="class_time_manager_1a739105709a6e8e786a685ea67a917bbf" compoundref="_time_manager_8h" startline="86">_timeClient</references>
+      </memberdef>
+      <memberdef kind="function" id="class_time_manager_1a40c7f96f06e8c025eadc3c9962ab42e2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>String</type>
+        <definition>String TimeManager::getNTPServer</definition>
+        <argsstring>()</argsstring>
+        <name>getNTPServer</name>
+        <qualifiedname>TimeManager::getNTPServer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="47" column="12" bodyfile="src/TimeManager.cpp" bodystart="220" bodyend="222"/>
+        <references refid="class_time_manager_1a3204ca6c3f394fdf73bd1868cdb3c8ed" compoundref="_time_manager_8h" startline="92">_ntpServer</references>
+      </memberdef>
+      <memberdef kind="function" id="class_time_manager_1a97d902b19861efc099141eeb846671a3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void TimeManager::update</definition>
+        <argsstring>()</argsstring>
+        <name>update</name>
+        <qualifiedname>TimeManager::update</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="50" column="10" bodyfile="src/TimeManager.cpp" bodystart="224" bodyend="235"/>
+        <references refid="class_time_manager_1a57cb32331258b5e8692ef477657dd318" compoundref="_time_manager_8cpp" startline="405" endline="407">_isWiFiConnected</references>
+        <references refid="class_time_manager_1a3c84248b3f7274facf6297f0ce59253d" compoundref="_time_manager_8h" startline="100">_lastNTPAttempt</references>
+        <references refid="class_time_manager_1a4966f27d6d3f21e42af6d0e381b1b8f4" compoundref="_time_manager_8h" startline="99">_lastNTPSync</references>
+        <references refid="class_time_manager_1a04560dd9d6c3d1adb6fe164e522fabb2" compoundref="_time_manager_8h" startline="94">_ntpSyncEnabled</references>
+        <references refid="class_time_manager_1a3ac1cfec4f2aa4b41516835424a0bdd9" compoundref="_time_manager_8h" startline="93">_ntpUpdateInterval</references>
+        <references refid="class_time_manager_1accdbd3c07d63d6ed1f96fddbc4bf2e00" compoundref="_time_manager_8cpp" startline="88" endline="117">setTimeFromNTP</references>
+      </memberdef>
+      <memberdef kind="function" id="class_time_manager_1aa8a8cc016ebb9ceabc4fee347a49cbdb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool TimeManager::syncWithNTP</definition>
+        <argsstring>()</argsstring>
+        <name>syncWithNTP</name>
+        <qualifiedname>TimeManager::syncWithNTP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="51" column="10" bodyfile="src/TimeManager.cpp" bodystart="237" bodyend="239"/>
+        <references refid="class_time_manager_1accdbd3c07d63d6ed1f96fddbc4bf2e00" compoundref="_time_manager_8cpp" startline="88" endline="117">setTimeFromNTP</references>
+      </memberdef>
+      <memberdef kind="function" id="class_time_manager_1a0dfabdbd0cd8684ec23d107cd6e8c330" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool TimeManager::isNTPSyncEnabled</definition>
+        <argsstring>()</argsstring>
+        <name>isNTPSyncEnabled</name>
+        <qualifiedname>TimeManager::isNTPSyncEnabled</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="52" column="10" bodyfile="src/TimeManager.cpp" bodystart="241" bodyend="243"/>
+        <references refid="class_time_manager_1a04560dd9d6c3d1adb6fe164e522fabb2" compoundref="_time_manager_8h" startline="94">_ntpSyncEnabled</references>
+      </memberdef>
+      <memberdef kind="function" id="class_time_manager_1abea66b0164e784f99d918914828e16cb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void TimeManager::enableNTPSync</definition>
+        <argsstring>(bool enable)</argsstring>
+        <name>enableNTPSync</name>
+        <qualifiedname>TimeManager::enableNTPSync</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>enable</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="53" column="10" bodyfile="src/TimeManager.cpp" bodystart="245" bodyend="247"/>
+        <references refid="class_time_manager_1a04560dd9d6c3d1adb6fe164e522fabb2" compoundref="_time_manager_8h" startline="94">_ntpSyncEnabled</references>
+      </memberdef>
+      <memberdef kind="function" id="class_time_manager_1ae3c0b16328c19adc8214841717cd09de" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool TimeManager::isRTCConnected</definition>
+        <argsstring>()</argsstring>
+        <name>isRTCConnected</name>
+        <qualifiedname>TimeManager::isRTCConnected</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="56" column="10" bodyfile="src/TimeManager.cpp" bodystart="249" bodyend="251"/>
+        <references refid="class_time_manager_1a2fd2603fd69673cc8a31ae3ed658329d" compoundref="_time_manager_8h" startline="97">_rtcConnected</references>
+      </memberdef>
+      <memberdef kind="function" id="class_time_manager_1ab13afaa962e7d3b5d3c22e759d154a62" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool TimeManager::isTimeSet</definition>
+        <argsstring>()</argsstring>
+        <name>isTimeSet</name>
+        <qualifiedname>TimeManager::isTimeSet</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="57" column="10" bodyfile="src/TimeManager.cpp" bodystart="253" bodyend="255"/>
+        <references refid="class_time_manager_1a6978db6d8292e1f7a8ba6af137c851a3" compoundref="_time_manager_8h" startline="98">_timeSet</references>
+      </memberdef>
+      <memberdef kind="function" id="class_time_manager_1a8103064c75b5a937ccbf410aff2847d5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool TimeManager::hasLostPower</definition>
+        <argsstring>()</argsstring>
+        <name>hasLostPower</name>
+        <qualifiedname>TimeManager::hasLostPower</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="58" column="10" bodyfile="src/TimeManager.cpp" bodystart="257" bodyend="259"/>
+        <references refid="class_time_manager_1abe00ffc1b0527b13103868d587e30f23" compoundref="_time_manager_8h" startline="84">_rtc</references>
+        <references refid="class_time_manager_1a2fd2603fd69673cc8a31ae3ed658329d" compoundref="_time_manager_8h" startline="97">_rtcConnected</references>
+        <referencedby refid="class_time_manager_1afdc18d9b5c9e07146b3abd9e4af0f4b6" compoundref="_time_manager_8cpp" startline="346" endline="366">getStatusJSON</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_time_manager_1a1bb6d3e9ae8ce79ad424e4ca803efe2e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>unsigned long</type>
+        <definition>unsigned long TimeManager::getLastNTPSync</definition>
+        <argsstring>()</argsstring>
+        <name>getLastNTPSync</name>
+        <qualifiedname>TimeManager::getLastNTPSync</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="59" column="19" bodyfile="src/TimeManager.cpp" bodystart="261" bodyend="263"/>
+        <references refid="class_time_manager_1a4966f27d6d3f21e42af6d0e381b1b8f4" compoundref="_time_manager_8h" startline="99">_lastNTPSync</references>
+      </memberdef>
+      <memberdef kind="function" id="class_time_manager_1adb489fdf49aad1223fdb325ed3bb9619" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float TimeManager::getTemperature</definition>
+        <argsstring>()</argsstring>
+        <name>getTemperature</name>
+        <qualifiedname>TimeManager::getTemperature</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="60" column="11" bodyfile="src/TimeManager.cpp" bodystart="265" bodyend="270"/>
+        <references refid="class_time_manager_1abe00ffc1b0527b13103868d587e30f23" compoundref="_time_manager_8h" startline="84">_rtc</references>
+        <references refid="class_time_manager_1a2fd2603fd69673cc8a31ae3ed658329d" compoundref="_time_manager_8h" startline="97">_rtcConnected</references>
+      </memberdef>
+      <memberdef kind="function" id="class_time_manager_1a0ea1ccc33811c5115d7b5e73f57a862f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool TimeManager::setAlarm1</definition>
+        <argsstring>(DateTime alarmTime, Ds3231Alarm1Mode mode=DS3231_A1_Hour)</argsstring>
+        <name>setAlarm1</name>
+        <qualifiedname>TimeManager::setAlarm1</qualifiedname>
+        <param>
+          <type>DateTime</type>
+          <declname>alarmTime</declname>
+        </param>
+        <param>
+          <type>Ds3231Alarm1Mode</type>
+          <declname>mode</declname>
+          <defval>DS3231_A1_Hour</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="63" column="10" bodyfile="src/TimeManager.cpp" bodystart="272" bodyend="277"/>
+        <references refid="class_time_manager_1abe00ffc1b0527b13103868d587e30f23" compoundref="_time_manager_8h" startline="84">_rtc</references>
+        <references refid="class_time_manager_1a2fd2603fd69673cc8a31ae3ed658329d" compoundref="_time_manager_8h" startline="97">_rtcConnected</references>
+      </memberdef>
+      <memberdef kind="function" id="class_time_manager_1a23c8d05d709d6ffd0a0fedd13aea5586" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool TimeManager::setAlarm2</definition>
+        <argsstring>(DateTime alarmTime, Ds3231Alarm2Mode mode=DS3231_A2_Hour)</argsstring>
+        <name>setAlarm2</name>
+        <qualifiedname>TimeManager::setAlarm2</qualifiedname>
+        <param>
+          <type>DateTime</type>
+          <declname>alarmTime</declname>
+        </param>
+        <param>
+          <type>Ds3231Alarm2Mode</type>
+          <declname>mode</declname>
+          <defval>DS3231_A2_Hour</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="64" column="10" bodyfile="src/TimeManager.cpp" bodystart="279" bodyend="284"/>
+        <references refid="class_time_manager_1abe00ffc1b0527b13103868d587e30f23" compoundref="_time_manager_8h" startline="84">_rtc</references>
+        <references refid="class_time_manager_1a2fd2603fd69673cc8a31ae3ed658329d" compoundref="_time_manager_8h" startline="97">_rtcConnected</references>
+      </memberdef>
+      <memberdef kind="function" id="class_time_manager_1af26310b8838458517cd61ad871d03fc7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool TimeManager::clearAlarm1</definition>
+        <argsstring>()</argsstring>
+        <name>clearAlarm1</name>
+        <qualifiedname>TimeManager::clearAlarm1</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="65" column="10" bodyfile="src/TimeManager.cpp" bodystart="286" bodyend="292"/>
+        <references refid="class_time_manager_1abe00ffc1b0527b13103868d587e30f23" compoundref="_time_manager_8h" startline="84">_rtc</references>
+        <references refid="class_time_manager_1a2fd2603fd69673cc8a31ae3ed658329d" compoundref="_time_manager_8h" startline="97">_rtcConnected</references>
+      </memberdef>
+      <memberdef kind="function" id="class_time_manager_1a8d7894074cbb9dd466cd2c218b744168" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool TimeManager::clearAlarm2</definition>
+        <argsstring>()</argsstring>
+        <name>clearAlarm2</name>
+        <qualifiedname>TimeManager::clearAlarm2</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="66" column="10" bodyfile="src/TimeManager.cpp" bodystart="294" bodyend="300"/>
+        <references refid="class_time_manager_1abe00ffc1b0527b13103868d587e30f23" compoundref="_time_manager_8h" startline="84">_rtc</references>
+        <references refid="class_time_manager_1a2fd2603fd69673cc8a31ae3ed658329d" compoundref="_time_manager_8h" startline="97">_rtcConnected</references>
+      </memberdef>
+      <memberdef kind="function" id="class_time_manager_1ae74ce0171feb70ca84ee79c8edda311b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool TimeManager::isAlarm1Triggered</definition>
+        <argsstring>()</argsstring>
+        <name>isAlarm1Triggered</name>
+        <qualifiedname>TimeManager::isAlarm1Triggered</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="67" column="10" bodyfile="src/TimeManager.cpp" bodystart="303" bodyend="308"/>
+        <references refid="class_time_manager_1abe00ffc1b0527b13103868d587e30f23" compoundref="_time_manager_8h" startline="84">_rtc</references>
+        <references refid="class_time_manager_1a2fd2603fd69673cc8a31ae3ed658329d" compoundref="_time_manager_8h" startline="97">_rtcConnected</references>
+        <referencedby refid="class_time_manager_1afdc18d9b5c9e07146b3abd9e4af0f4b6" compoundref="_time_manager_8cpp" startline="346" endline="366">getStatusJSON</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_time_manager_1a2f3285d092bf9e23abe1cdf0b592354e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool TimeManager::isAlarm2Triggered</definition>
+        <argsstring>()</argsstring>
+        <name>isAlarm2Triggered</name>
+        <qualifiedname>TimeManager::isAlarm2Triggered</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="68" column="10" bodyfile="src/TimeManager.cpp" bodystart="310" bodyend="315"/>
+        <references refid="class_time_manager_1abe00ffc1b0527b13103868d587e30f23" compoundref="_time_manager_8h" startline="84">_rtc</references>
+        <references refid="class_time_manager_1a2fd2603fd69673cc8a31ae3ed658329d" compoundref="_time_manager_8h" startline="97">_rtcConnected</references>
+        <referencedby refid="class_time_manager_1afdc18d9b5c9e07146b3abd9e4af0f4b6" compoundref="_time_manager_8cpp" startline="346" endline="366">getStatusJSON</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_time_manager_1ae2b19037230f000c12d75168ea40cefa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void TimeManager::enableSquareWave</definition>
+        <argsstring>(Ds3231SqwPinMode mode=DS3231_SquareWave1Hz)</argsstring>
+        <name>enableSquareWave</name>
+        <qualifiedname>TimeManager::enableSquareWave</qualifiedname>
+        <param>
+          <type>Ds3231SqwPinMode</type>
+          <declname>mode</declname>
+          <defval>DS3231_SquareWave1Hz</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="71" column="10" bodyfile="src/TimeManager.cpp" bodystart="317" bodyend="321"/>
+        <references refid="class_time_manager_1abe00ffc1b0527b13103868d587e30f23" compoundref="_time_manager_8h" startline="84">_rtc</references>
+        <references refid="class_time_manager_1a2fd2603fd69673cc8a31ae3ed658329d" compoundref="_time_manager_8h" startline="97">_rtcConnected</references>
+      </memberdef>
+      <memberdef kind="function" id="class_time_manager_1a4bc24c6c9776775c16055ba25e673089" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void TimeManager::disableSquareWave</definition>
+        <argsstring>()</argsstring>
+        <name>disableSquareWave</name>
+        <qualifiedname>TimeManager::disableSquareWave</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="72" column="10" bodyfile="src/TimeManager.cpp" bodystart="323" bodyend="327"/>
+        <references refid="class_time_manager_1abe00ffc1b0527b13103868d587e30f23" compoundref="_time_manager_8h" startline="84">_rtc</references>
+        <references refid="class_time_manager_1a2fd2603fd69673cc8a31ae3ed658329d" compoundref="_time_manager_8h" startline="97">_rtcConnected</references>
+      </memberdef>
+      <memberdef kind="function" id="class_time_manager_1ad8222e9629445d97b543eb491b3fd4f6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>String</type>
+        <definition>String TimeManager::getTimeJSON</definition>
+        <argsstring>()</argsstring>
+        <name>getTimeJSON</name>
+        <qualifiedname>TimeManager::getTimeJSON</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="75" column="12" bodyfile="src/TimeManager.cpp" bodystart="329" bodyend="344"/>
+        <references refid="class_time_manager_1a8465c87729bf008167ed4171c4868175" compoundref="_time_manager_8h" startline="91">_timezoneOffset</references>
+        <references refid="class_time_manager_1a2667b0243b7db24b3055c2b00e2837ba" compoundref="_time_manager_8cpp" startline="150" endline="156">getCurrentTime</references>
+        <references refid="class_time_manager_1a558c17fb7adf5fe7556a7052c971d99f" compoundref="_time_manager_8cpp" startline="169" endline="172">getDateString</references>
+        <references refid="class_time_manager_1a06dd5ab29990377c81538d99ba7ccf31" compoundref="_time_manager_8cpp" startline="159" endline="162">getFormattedTime</references>
+        <references refid="class_time_manager_1aea04045a244a479fed907fd05d64d100" compoundref="_time_manager_8cpp" startline="164" endline="167">getTimeString</references>
+        <references refid="class_time_manager_1a850a0272030e42056077934b4e5dcd9c" compoundref="_time_manager_8cpp" startline="196" endline="198">getTimezoneHours</references>
+        <references refid="class_time_manager_1ae587839d07c8a9bed0eb2870ba94d48d" compoundref="_time_manager_8cpp" startline="200" endline="202">getTimezoneMinutes</references>
+      </memberdef>
+      <memberdef kind="function" id="class_time_manager_1afdc18d9b5c9e07146b3abd9e4af0f4b6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>String</type>
+        <definition>String TimeManager::getStatusJSON</definition>
+        <argsstring>()</argsstring>
+        <name>getStatusJSON</name>
+        <qualifiedname>TimeManager::getStatusJSON</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="76" column="12" bodyfile="src/TimeManager.cpp" bodystart="346" bodyend="366"/>
+        <references refid="class_time_manager_1a57cb32331258b5e8692ef477657dd318" compoundref="_time_manager_8cpp" startline="405" endline="407">_isWiFiConnected</references>
+        <references refid="class_time_manager_1a4966f27d6d3f21e42af6d0e381b1b8f4" compoundref="_time_manager_8h" startline="99">_lastNTPSync</references>
+        <references refid="class_time_manager_1a3204ca6c3f394fdf73bd1868cdb3c8ed" compoundref="_time_manager_8h" startline="92">_ntpServer</references>
+        <references refid="class_time_manager_1a04560dd9d6c3d1adb6fe164e522fabb2" compoundref="_time_manager_8h" startline="94">_ntpSyncEnabled</references>
+        <references refid="class_time_manager_1abe00ffc1b0527b13103868d587e30f23" compoundref="_time_manager_8h" startline="84">_rtc</references>
+        <references refid="class_time_manager_1a2fd2603fd69673cc8a31ae3ed658329d" compoundref="_time_manager_8h" startline="97">_rtcConnected</references>
+        <references refid="class_time_manager_1a6978db6d8292e1f7a8ba6af137c851a3" compoundref="_time_manager_8h" startline="98">_timeSet</references>
+        <references refid="class_time_manager_1a8103064c75b5a937ccbf410aff2847d5" compoundref="_time_manager_8cpp" startline="257" endline="259">hasLostPower</references>
+        <references refid="class_time_manager_1ae74ce0171feb70ca84ee79c8edda311b" compoundref="_time_manager_8cpp" startline="303" endline="308">isAlarm1Triggered</references>
+        <references refid="class_time_manager_1a2f3285d092bf9e23abe1cdf0b592354e" compoundref="_time_manager_8cpp" startline="310" endline="315">isAlarm2Triggered</references>
+      </memberdef>
+      <memberdef kind="function" id="class_time_manager_1a406cdbcc898066a40d4757aa145d5f24" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void TimeManager::saveConfig</definition>
+        <argsstring>()</argsstring>
+        <name>saveConfig</name>
+        <qualifiedname>TimeManager::saveConfig</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="79" column="10" bodyfile="src/TimeManager.cpp" bodystart="368" bodyend="381"/>
+        <references refid="class_time_manager_1a3204ca6c3f394fdf73bd1868cdb3c8ed" compoundref="_time_manager_8h" startline="92">_ntpServer</references>
+        <references refid="class_time_manager_1a04560dd9d6c3d1adb6fe164e522fabb2" compoundref="_time_manager_8h" startline="94">_ntpSyncEnabled</references>
+        <references refid="class_time_manager_1a3ac1cfec4f2aa4b41516835424a0bdd9" compoundref="_time_manager_8h" startline="93">_ntpUpdateInterval</references>
+        <references refid="class_time_manager_1a8465c87729bf008167ed4171c4868175" compoundref="_time_manager_8h" startline="91">_timezoneOffset</references>
+      </memberdef>
+      <memberdef kind="function" id="class_time_manager_1a9d5fe35fd4ba97491afde4647421d010" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void TimeManager::loadConfig</definition>
+        <argsstring>()</argsstring>
+        <name>loadConfig</name>
+        <qualifiedname>TimeManager::loadConfig</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="80" column="10" bodyfile="src/TimeManager.cpp" bodystart="383" bodyend="402"/>
+        <references refid="class_time_manager_1a2160202e65568b360b4bdfbe7ff7ff96" compoundref="_time_manager_8cpp" startline="79" endline="86">_initializeNTP</references>
+        <references refid="class_time_manager_1a3204ca6c3f394fdf73bd1868cdb3c8ed" compoundref="_time_manager_8h" startline="92">_ntpServer</references>
+        <references refid="class_time_manager_1a04560dd9d6c3d1adb6fe164e522fabb2" compoundref="_time_manager_8h" startline="94">_ntpSyncEnabled</references>
+        <references refid="class_time_manager_1a3ac1cfec4f2aa4b41516835424a0bdd9" compoundref="_time_manager_8h" startline="93">_ntpUpdateInterval</references>
+        <references refid="class_time_manager_1a8465c87729bf008167ed4171c4868175" compoundref="_time_manager_8h" startline="91">_timezoneOffset</references>
+        <referencedby refid="class_time_manager_1aa535067588a39cafa8ac49f8e342bd08" compoundref="_time_manager_8cpp" startline="48" endline="77">begin</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_time_manager_1a2160202e65568b360b4bdfbe7ff7ff96" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void TimeManager::_initializeNTP</definition>
+        <argsstring>()</argsstring>
+        <name>_initializeNTP</name>
+        <qualifiedname>TimeManager::_initializeNTP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="103" column="10" bodyfile="src/TimeManager.cpp" bodystart="79" bodyend="86"/>
+        <references refid="class_time_manager_1a3204ca6c3f394fdf73bd1868cdb3c8ed" compoundref="_time_manager_8h" startline="92">_ntpServer</references>
+        <references refid="class_time_manager_1a68632ca74aebeea31326a1d4dda13789" compoundref="_time_manager_8h" startline="85">_ntpUDP</references>
+        <references refid="class_time_manager_1a3ac1cfec4f2aa4b41516835424a0bdd9" compoundref="_time_manager_8h" startline="93">_ntpUpdateInterval</references>
+        <references refid="class_time_manager_1a739105709a6e8e786a685ea67a917bbf" compoundref="_time_manager_8h" startline="86">_timeClient</references>
+        <references refid="class_time_manager_1a8465c87729bf008167ed4171c4868175" compoundref="_time_manager_8h" startline="91">_timezoneOffset</references>
+        <referencedby refid="class_time_manager_1aa535067588a39cafa8ac49f8e342bd08" compoundref="_time_manager_8cpp" startline="48" endline="77">begin</referencedby>
+        <referencedby refid="class_time_manager_1a9d5fe35fd4ba97491afde4647421d010" compoundref="_time_manager_8cpp" startline="383" endline="402">loadConfig</referencedby>
+        <referencedby refid="class_time_manager_1aef071f85874c744b35768bc95bff7772" compoundref="_time_manager_8cpp" startline="208" endline="211">setNTPServer</referencedby>
+        <referencedby refid="class_time_manager_1accdbd3c07d63d6ed1f96fddbc4bf2e00" compoundref="_time_manager_8cpp" startline="88" endline="117">setTimeFromNTP</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_time_manager_1a57cb32331258b5e8692ef477657dd318" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool TimeManager::_isWiFiConnected</definition>
+        <argsstring>()</argsstring>
+        <name>_isWiFiConnected</name>
+        <qualifiedname>TimeManager::_isWiFiConnected</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="104" column="10" bodyfile="src/TimeManager.cpp" bodystart="405" bodyend="407"/>
+        <referencedby refid="class_time_manager_1afdc18d9b5c9e07146b3abd9e4af0f4b6" compoundref="_time_manager_8cpp" startline="346" endline="366">getStatusJSON</referencedby>
+        <referencedby refid="class_time_manager_1accdbd3c07d63d6ed1f96fddbc4bf2e00" compoundref="_time_manager_8cpp" startline="88" endline="117">setTimeFromNTP</referencedby>
+        <referencedby refid="class_time_manager_1a97d902b19861efc099141eeb846671a3" compoundref="_time_manager_8cpp" startline="224" endline="235">update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_time_manager_1a0627fee885737d49872ae522bc63def4" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void TimeManager::_updateFromNTP</definition>
+        <argsstring>()</argsstring>
+        <name>_updateFromNTP</name>
+        <qualifiedname>TimeManager::_updateFromNTP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="105" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_time_manager_1a3473025dc159e3ad5d1ab5a11750cd13" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DateTime</type>
+        <definition>DateTime TimeManager::_applyTimezone</definition>
+        <argsstring>(DateTime utcTime)</argsstring>
+        <name>_applyTimezone</name>
+        <qualifiedname>TimeManager::_applyTimezone</qualifiedname>
+        <param>
+          <type>DateTime</type>
+          <declname>utcTime</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="106" column="14" bodyfile="src/TimeManager.cpp" bodystart="409" bodyend="411"/>
+        <references refid="class_time_manager_1a8465c87729bf008167ed4171c4868175" compoundref="_time_manager_8h" startline="91">_timezoneOffset</references>
+      </memberdef>
+      <memberdef kind="function" id="class_time_manager_1a3c7bc3ee8da90e3785ee834b9c28dbe2" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DateTime</type>
+        <definition>DateTime TimeManager::_removeTimezone</definition>
+        <argsstring>(DateTime localTime)</argsstring>
+        <name>_removeTimezone</name>
+        <qualifiedname>TimeManager::_removeTimezone</qualifiedname>
+        <param>
+          <type>DateTime</type>
+          <declname>localTime</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="107" column="14" bodyfile="src/TimeManager.cpp" bodystart="413" bodyend="415"/>
+        <references refid="class_time_manager_1a8465c87729bf008167ed4171c4868175" compoundref="_time_manager_8h" startline="91">_timezoneOffset</references>
+      </memberdef>
+      <memberdef kind="function" id="class_time_manager_1abcaf17b6da72a3a2f2566d940ce5ce8d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>String</type>
+        <definition>String TimeManager::_formatDateTime</definition>
+        <argsstring>(DateTime dt, const String &amp;format)</argsstring>
+        <name>_formatDateTime</name>
+        <qualifiedname>TimeManager::_formatDateTime</qualifiedname>
+        <param>
+          <type>DateTime</type>
+          <declname>dt</declname>
+        </param>
+        <param>
+          <type>const String &amp;</type>
+          <declname>format</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TimeManager.h" line="108" column="12" bodyfile="src/TimeManager.cpp" bodystart="417" bodyend="429"/>
+        <referencedby refid="class_time_manager_1a558c17fb7adf5fe7556a7052c971d99f" compoundref="_time_manager_8cpp" startline="169" endline="172">getDateString</referencedby>
+        <referencedby refid="class_time_manager_1a06dd5ab29990377c81538d99ba7ccf31" compoundref="_time_manager_8cpp" startline="159" endline="162">getFormattedTime</referencedby>
+        <referencedby refid="class_time_manager_1aea04045a244a479fed907fd05d64d100" compoundref="_time_manager_8cpp" startline="164" endline="167">getTimeString</referencedby>
+        <referencedby refid="class_time_manager_1afebf49e57d461818ded70cf5c6cecf2a" compoundref="_time_manager_8cpp" startline="124" endline="133">setTime</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>TimeManager</label>
+        <link refid="class_time_manager"/>
+      </node>
+    </collaborationgraph>
+    <location file="include/TimeManager.h" line="11" column="1" bodyfile="include/TimeManager.h" bodystart="11" bodyend="109"/>
+    <listofallmembers>
+      <member refid="class_time_manager_1a3473025dc159e3ad5d1ab5a11750cd13" prot="private" virt="non-virtual"><scope>TimeManager</scope><name>_applyTimezone</name></member>
+      <member refid="class_time_manager_1abcaf17b6da72a3a2f2566d940ce5ce8d" prot="private" virt="non-virtual"><scope>TimeManager</scope><name>_formatDateTime</name></member>
+      <member refid="class_time_manager_1a2160202e65568b360b4bdfbe7ff7ff96" prot="private" virt="non-virtual"><scope>TimeManager</scope><name>_initializeNTP</name></member>
+      <member refid="class_time_manager_1a57cb32331258b5e8692ef477657dd318" prot="private" virt="non-virtual"><scope>TimeManager</scope><name>_isWiFiConnected</name></member>
+      <member refid="class_time_manager_1a3c84248b3f7274facf6297f0ce59253d" prot="private" virt="non-virtual"><scope>TimeManager</scope><name>_lastNTPAttempt</name></member>
+      <member refid="class_time_manager_1a4966f27d6d3f21e42af6d0e381b1b8f4" prot="private" virt="non-virtual"><scope>TimeManager</scope><name>_lastNTPSync</name></member>
+      <member refid="class_time_manager_1a3204ca6c3f394fdf73bd1868cdb3c8ed" prot="private" virt="non-virtual"><scope>TimeManager</scope><name>_ntpServer</name></member>
+      <member refid="class_time_manager_1a04560dd9d6c3d1adb6fe164e522fabb2" prot="private" virt="non-virtual"><scope>TimeManager</scope><name>_ntpSyncEnabled</name></member>
+      <member refid="class_time_manager_1a68632ca74aebeea31326a1d4dda13789" prot="private" virt="non-virtual"><scope>TimeManager</scope><name>_ntpUDP</name></member>
+      <member refid="class_time_manager_1a3ac1cfec4f2aa4b41516835424a0bdd9" prot="private" virt="non-virtual"><scope>TimeManager</scope><name>_ntpUpdateInterval</name></member>
+      <member refid="class_time_manager_1a3c7bc3ee8da90e3785ee834b9c28dbe2" prot="private" virt="non-virtual"><scope>TimeManager</scope><name>_removeTimezone</name></member>
+      <member refid="class_time_manager_1abe00ffc1b0527b13103868d587e30f23" prot="private" virt="non-virtual"><scope>TimeManager</scope><name>_rtc</name></member>
+      <member refid="class_time_manager_1a2fd2603fd69673cc8a31ae3ed658329d" prot="private" virt="non-virtual"><scope>TimeManager</scope><name>_rtcConnected</name></member>
+      <member refid="class_time_manager_1a4cb8c5836f8e4648ac0b9f87fc0024ce" prot="private" virt="non-virtual"><scope>TimeManager</scope><name>_sclPin</name></member>
+      <member refid="class_time_manager_1af0846c8eb1d45c8f30a2043a148af1f1" prot="private" virt="non-virtual"><scope>TimeManager</scope><name>_sdaPin</name></member>
+      <member refid="class_time_manager_1a739105709a6e8e786a685ea67a917bbf" prot="private" virt="non-virtual"><scope>TimeManager</scope><name>_timeClient</name></member>
+      <member refid="class_time_manager_1a6978db6d8292e1f7a8ba6af137c851a3" prot="private" virt="non-virtual"><scope>TimeManager</scope><name>_timeSet</name></member>
+      <member refid="class_time_manager_1a8465c87729bf008167ed4171c4868175" prot="private" virt="non-virtual"><scope>TimeManager</scope><name>_timezoneOffset</name></member>
+      <member refid="class_time_manager_1a0627fee885737d49872ae522bc63def4" prot="private" virt="non-virtual"><scope>TimeManager</scope><name>_updateFromNTP</name></member>
+      <member refid="class_time_manager_1aa535067588a39cafa8ac49f8e342bd08" prot="public" virt="non-virtual"><scope>TimeManager</scope><name>begin</name></member>
+      <member refid="class_time_manager_1af26310b8838458517cd61ad871d03fc7" prot="public" virt="non-virtual"><scope>TimeManager</scope><name>clearAlarm1</name></member>
+      <member refid="class_time_manager_1a8d7894074cbb9dd466cd2c218b744168" prot="public" virt="non-virtual"><scope>TimeManager</scope><name>clearAlarm2</name></member>
+      <member refid="class_time_manager_1a4bc24c6c9776775c16055ba25e673089" prot="public" virt="non-virtual"><scope>TimeManager</scope><name>disableSquareWave</name></member>
+      <member refid="class_time_manager_1abea66b0164e784f99d918914828e16cb" prot="public" virt="non-virtual"><scope>TimeManager</scope><name>enableNTPSync</name></member>
+      <member refid="class_time_manager_1ae2b19037230f000c12d75168ea40cefa" prot="public" virt="non-virtual"><scope>TimeManager</scope><name>enableSquareWave</name></member>
+      <member refid="class_time_manager_1a2667b0243b7db24b3055c2b00e2837ba" prot="public" virt="non-virtual"><scope>TimeManager</scope><name>getCurrentTime</name></member>
+      <member refid="class_time_manager_1a558c17fb7adf5fe7556a7052c971d99f" prot="public" virt="non-virtual"><scope>TimeManager</scope><name>getDateString</name></member>
+      <member refid="class_time_manager_1a06dd5ab29990377c81538d99ba7ccf31" prot="public" virt="non-virtual"><scope>TimeManager</scope><name>getFormattedTime</name></member>
+      <member refid="class_time_manager_1a1bb6d3e9ae8ce79ad424e4ca803efe2e" prot="public" virt="non-virtual"><scope>TimeManager</scope><name>getLastNTPSync</name></member>
+      <member refid="class_time_manager_1a40c7f96f06e8c025eadc3c9962ab42e2" prot="public" virt="non-virtual"><scope>TimeManager</scope><name>getNTPServer</name></member>
+      <member refid="class_time_manager_1afdc18d9b5c9e07146b3abd9e4af0f4b6" prot="public" virt="non-virtual"><scope>TimeManager</scope><name>getStatusJSON</name></member>
+      <member refid="class_time_manager_1adb489fdf49aad1223fdb325ed3bb9619" prot="public" virt="non-virtual"><scope>TimeManager</scope><name>getTemperature</name></member>
+      <member refid="class_time_manager_1ad8222e9629445d97b543eb491b3fd4f6" prot="public" virt="non-virtual"><scope>TimeManager</scope><name>getTimeJSON</name></member>
+      <member refid="class_time_manager_1aea04045a244a479fed907fd05d64d100" prot="public" virt="non-virtual"><scope>TimeManager</scope><name>getTimeString</name></member>
+      <member refid="class_time_manager_1a850a0272030e42056077934b4e5dcd9c" prot="public" virt="non-virtual"><scope>TimeManager</scope><name>getTimezoneHours</name></member>
+      <member refid="class_time_manager_1ae587839d07c8a9bed0eb2870ba94d48d" prot="public" virt="non-virtual"><scope>TimeManager</scope><name>getTimezoneMinutes</name></member>
+      <member refid="class_time_manager_1a0b4bc35eb5d7f78589f56149b75dc2ad" prot="public" virt="non-virtual"><scope>TimeManager</scope><name>getTimezoneOffset</name></member>
+      <member refid="class_time_manager_1a6c39a89bae258b11871c63d289ef60ce" prot="public" virt="non-virtual"><scope>TimeManager</scope><name>getUnixTime</name></member>
+      <member refid="class_time_manager_1a8103064c75b5a937ccbf410aff2847d5" prot="public" virt="non-virtual"><scope>TimeManager</scope><name>hasLostPower</name></member>
+      <member refid="class_time_manager_1a5c53a7007744c2ab4b6a53ecf5f423c4" prot="public" virt="non-virtual"><scope>TimeManager</scope><name>init</name></member>
+      <member refid="class_time_manager_1ae74ce0171feb70ca84ee79c8edda311b" prot="public" virt="non-virtual"><scope>TimeManager</scope><name>isAlarm1Triggered</name></member>
+      <member refid="class_time_manager_1a2f3285d092bf9e23abe1cdf0b592354e" prot="public" virt="non-virtual"><scope>TimeManager</scope><name>isAlarm2Triggered</name></member>
+      <member refid="class_time_manager_1a0dfabdbd0cd8684ec23d107cd6e8c330" prot="public" virt="non-virtual"><scope>TimeManager</scope><name>isNTPSyncEnabled</name></member>
+      <member refid="class_time_manager_1ae3c0b16328c19adc8214841717cd09de" prot="public" virt="non-virtual"><scope>TimeManager</scope><name>isRTCConnected</name></member>
+      <member refid="class_time_manager_1ab13afaa962e7d3b5d3c22e759d154a62" prot="public" virt="non-virtual"><scope>TimeManager</scope><name>isTimeSet</name></member>
+      <member refid="class_time_manager_1a9d5fe35fd4ba97491afde4647421d010" prot="public" virt="non-virtual"><scope>TimeManager</scope><name>loadConfig</name></member>
+      <member refid="class_time_manager_1a406cdbcc898066a40d4757aa145d5f24" prot="public" virt="non-virtual"><scope>TimeManager</scope><name>saveConfig</name></member>
+      <member refid="class_time_manager_1a0ea1ccc33811c5115d7b5e73f57a862f" prot="public" virt="non-virtual"><scope>TimeManager</scope><name>setAlarm1</name></member>
+      <member refid="class_time_manager_1a23c8d05d709d6ffd0a0fedd13aea5586" prot="public" virt="non-virtual"><scope>TimeManager</scope><name>setAlarm2</name></member>
+      <member refid="class_time_manager_1aef071f85874c744b35768bc95bff7772" prot="public" virt="non-virtual"><scope>TimeManager</scope><name>setNTPServer</name></member>
+      <member refid="class_time_manager_1aa4f1390fd27f84729c731e5898d68b95" prot="public" virt="non-virtual"><scope>TimeManager</scope><name>setNTPUpdateInterval</name></member>
+      <member refid="class_time_manager_1af04febfb916666add72562e2d09e5a4f" prot="public" virt="non-virtual"><scope>TimeManager</scope><name>setTime</name></member>
+      <member refid="class_time_manager_1afebf49e57d461818ded70cf5c6cecf2a" prot="public" virt="non-virtual"><scope>TimeManager</scope><name>setTime</name></member>
+      <member refid="class_time_manager_1ab71114506bbeb9b897af93cb0465294f" prot="public" virt="non-virtual"><scope>TimeManager</scope><name>setTimeFromCompileTime</name></member>
+      <member refid="class_time_manager_1accdbd3c07d63d6ed1f96fddbc4bf2e00" prot="public" virt="non-virtual"><scope>TimeManager</scope><name>setTimeFromNTP</name></member>
+      <member refid="class_time_manager_1a2c0e88f3f6d491aecea922149947be48" prot="public" virt="non-virtual"><scope>TimeManager</scope><name>setTimeFromUnix</name></member>
+      <member refid="class_time_manager_1a866d39aaf7eaab03c654d15d112097b0" prot="public" virt="non-virtual"><scope>TimeManager</scope><name>setTimezone</name></member>
+      <member refid="class_time_manager_1a26c74aae85b05e3c6fe59fec05f06b6b" prot="public" virt="non-virtual"><scope>TimeManager</scope><name>setTimezoneOffset</name></member>
+      <member refid="class_time_manager_1aa8a8cc016ebb9ceabc4fee347a49cbdb" prot="public" virt="non-virtual"><scope>TimeManager</scope><name>syncWithNTP</name></member>
+      <member refid="class_time_manager_1aa03eb7df81514b59d22b6b0aecb4c1c8" prot="public" virt="non-virtual"><scope>TimeManager</scope><name>TimeManager</name></member>
+      <member refid="class_time_manager_1a97d902b19861efc099141eeb846671a3" prot="public" virt="non-virtual"><scope>TimeManager</scope><name>update</name></member>
+      <member refid="class_time_manager_1a579b1b9e3d323dcc030c100992f7ed8a" prot="public" virt="non-virtual"><scope>TimeManager</scope><name>~TimeManager</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

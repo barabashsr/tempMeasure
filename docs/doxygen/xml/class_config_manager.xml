@@ -1,0 +1,1066 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="class_config_manager" kind="class" language="C++" prot="public">
+    <compoundname>ConfigManager</compoundname>
+    <includes refid="_config_manager_8h" local="no">ConfigManager.h</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_config_manager_1afe696eabbbdf537e88b3b5b33c009b31" prot="private" static="no" mutable="no">
+        <type><ref refid="class_settings_c_s_v_manager" kindref="compound">SettingsCSVManager</ref></type>
+        <definition>SettingsCSVManager ConfigManager::settingsCSVManager</definition>
+        <argsstring></argsstring>
+        <name>settingsCSVManager</name>
+        <qualifiedname>ConfigManager::settingsCSVManager</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ConfigManager.h" line="19" column="24" bodyfile="include/ConfigManager.h" bodystart="19" bodyend="-1"/>
+        <referencedby refid="class_config_manager_1abb5e68671c5a8087abb50b289d3522b4" compoundref="_config_manager_8cpp" startline="81" endline="91">ConfigManager</referencedby>
+        <referencedby refid="class_config_manager_1a9b7af07b85bf9cc3ac05603db6e89fd2" compoundref="_config_manager_8cpp" startline="841" endline="969">csvImportExportAPI</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_config_manager_1a5591a9b29e8c6e1c3f3dc50c0e6e1267" prot="private" static="no" mutable="no">
+        <type><ref refid="class_c_s_v_config_manager" kindref="compound">CSVConfigManager</ref></type>
+        <definition>CSVConfigManager ConfigManager::csvManager</definition>
+        <argsstring></argsstring>
+        <name>csvManager</name>
+        <qualifiedname>ConfigManager::csvManager</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ConfigManager.h" line="20" column="22" bodyfile="include/ConfigManager.h" bodystart="20" bodyend="-1"/>
+        <referencedby refid="class_config_manager_1abb5e68671c5a8087abb50b289d3522b4" compoundref="_config_manager_8cpp" startline="81" endline="91">ConfigManager</referencedby>
+        <referencedby refid="class_config_manager_1a9b7af07b85bf9cc3ac05603db6e89fd2" compoundref="_config_manager_8cpp" startline="841" endline="969">csvImportExportAPI</referencedby>
+        <referencedby refid="class_config_manager_1ab09d27551f2f71ad0c19452dabbd9061" compoundref="_config_manager_8h" startline="114" endline="114">getCSVManager</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_config_manager_1a3948181c2e8ae2241d0e95c5afd47aa9" prot="private" static="no" mutable="no">
+        <type>ConfigAssist</type>
+        <definition>ConfigAssist ConfigManager::conf</definition>
+        <argsstring></argsstring>
+        <name>conf</name>
+        <qualifiedname>ConfigManager::conf</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ConfigManager.h" line="21" column="18" bodyfile="include/ConfigManager.h" bodystart="21" bodyend="-1"/>
+        <referencedby refid="class_config_manager_1ae605c999fabc6344511f455618655326" compoundref="_config_manager_8cpp" startline="1014" endline="1546">alarmsAPI</referencedby>
+        <referencedby refid="class_config_manager_1a0497343220fc493f5cf9574922508908" compoundref="_config_manager_8cpp" startline="103" endline="215">begin</referencedby>
+        <referencedby refid="class_config_manager_1abb5e68671c5a8087abb50b289d3522b4" compoundref="_config_manager_8cpp" startline="81" endline="91">ConfigManager</referencedby>
+        <referencedby refid="class_config_manager_1a9b7af07b85bf9cc3ac05603db6e89fd2" compoundref="_config_manager_8cpp" startline="841" endline="969">csvImportExportAPI</referencedby>
+        <referencedby refid="class_config_manager_1a1d2c3a4f6b321f3e55394f0427781f71" compoundref="_config_manager_8h" startline="116" endline="116">getAcknowledgedDelayCritical</referencedby>
+        <referencedby refid="class_config_manager_1a92531033b9698550c95e70408d3ca928" compoundref="_config_manager_8h" startline="117" endline="117">getAcknowledgedDelayHigh</referencedby>
+        <referencedby refid="class_config_manager_1a8211fcec922c77f0245ea1eb95be5e4d" compoundref="_config_manager_8h" startline="119" endline="119">getAcknowledgedDelayLow</referencedby>
+        <referencedby refid="class_config_manager_1ae5e8f849e85d0a2779a650136b7011f9" compoundref="_config_manager_8h" startline="118" endline="118">getAcknowledgedDelayMedium</referencedby>
+        <referencedby refid="class_config_manager_1a70df78bf8e301f46cbc14bf6f36c0a0e" compoundref="_config_manager_8h" startline="92" endline="92">getAutoDiscover</referencedby>
+        <referencedby refid="class_config_manager_1a355c8fe8e7b63d90f2ab1e3957006d7b" compoundref="_config_manager_8h" startline="83" endline="83">getDeviceId</referencedby>
+        <referencedby refid="class_config_manager_1a3909fbe925c15b47925bacf2b0b4d97b" compoundref="_config_manager_8h" startline="82" endline="82">getHostname</referencedby>
+        <referencedby refid="class_config_manager_1af025d7d473c39f95ab26029607e32cc6" compoundref="_config_manager_8h" startline="84" endline="84">getMeasurementPeriod</referencedby>
+        <referencedby refid="class_config_manager_1abd6818ba586e506fa20886b51ff8dfe0" compoundref="_config_manager_8h" startline="86" endline="86">getModbusAddress</referencedby>
+        <referencedby refid="class_config_manager_1a1ddcfeae8bd9fa5f1847b33a8ff61c09" compoundref="_config_manager_8h" startline="87" endline="87">getModbusBaudRate</referencedby>
+        <referencedby refid="class_config_manager_1a8edfe5674a998837f2bb33f8c24ebca1" compoundref="_config_manager_8h" startline="88" endline="88">getRxPin</referencedby>
+        <referencedby refid="class_config_manager_1af29e702703a41dc0fe8f393b4df3cba9" compoundref="_config_manager_8h" startline="89" endline="89">getTxPin</referencedby>
+        <referencedby refid="class_config_manager_1aa67267eea5f43007958d1959a3d05eff" compoundref="_config_manager_8h" startline="81" endline="81">getWifiPassword</referencedby>
+        <referencedby refid="class_config_manager_1a0c6922c0d3cfb6016ffea2a58149ee35" compoundref="_config_manager_8h" startline="80" endline="80">getWifiSSID</referencedby>
+        <referencedby refid="class_config_manager_1a9fadc4167ae0c9e7cfc27af9b1bc5774" compoundref="_config_manager_8h" startline="85" endline="85">isModbusEnabled</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_config_manager_1a555afa40c6353fe0fe1765cc064dc920" prot="private" static="no" mutable="no">
+        <type>ConfigAssistHelper *</type>
+        <definition>ConfigAssistHelper* ConfigManager::confHelper</definition>
+        <argsstring></argsstring>
+        <name>confHelper</name>
+        <qualifiedname>ConfigManager::confHelper</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ConfigManager.h" line="22" column="24" bodyfile="include/ConfigManager.h" bodystart="22" bodyend="-1"/>
+        <referencedby refid="class_config_manager_1abb5e68671c5a8087abb50b289d3522b4" compoundref="_config_manager_8cpp" startline="81" endline="91">ConfigManager</referencedby>
+        <referencedby refid="class_config_manager_1a83b4217012bf8eda57fbfd8deca09dd2" compoundref="_config_manager_8cpp" startline="222" endline="234">connectWiFi</referencedby>
+        <referencedby refid="class_config_manager_1a7fa65fdff98bdd5bbbf72196bd9ccf17" compoundref="_config_manager_8cpp" startline="93" endline="101">~ConfigManager</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_config_manager_1a68eeba761f112013757ddf298454407d" prot="private" static="no" mutable="no">
+        <type><ref refid="class_temperature_controller" kindref="compound">TemperatureController</ref> &amp;</type>
+        <definition>TemperatureController&amp; ConfigManager::controller</definition>
+        <argsstring></argsstring>
+        <name>controller</name>
+        <qualifiedname>ConfigManager::controller</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ConfigManager.h" line="23" column="27" bodyfile="include/ConfigManager.h" bodystart="23" bodyend="-1"/>
+        <referencedby refid="class_config_manager_1ae605c999fabc6344511f455618655326" compoundref="_config_manager_8cpp" startline="1014" endline="1546">alarmsAPI</referencedby>
+        <referencedby refid="class_config_manager_1a0497343220fc493f5cf9574922508908" compoundref="_config_manager_8cpp" startline="103" endline="215">begin</referencedby>
+        <referencedby refid="class_config_manager_1abb5e68671c5a8087abb50b289d3522b4" compoundref="_config_manager_8cpp" startline="81" endline="91">ConfigManager</referencedby>
+        <referencedby refid="class_config_manager_1a9b7af07b85bf9cc3ac05603db6e89fd2" compoundref="_config_manager_8cpp" startline="841" endline="969">csvImportExportAPI</referencedby>
+        <referencedby refid="class_config_manager_1a468923ce5f2edecd218b29605d75426f" compoundref="_config_manager_8cpp" startline="487" endline="571">loadAlarmsConfig</referencedby>
+        <referencedby refid="class_config_manager_1a04edc14e642ecadb9ccb87be05d1d878" compoundref="_config_manager_8cpp" startline="361" endline="425">loadPointsConfig</referencedby>
+        <referencedby refid="class_config_manager_1a471a844085c27f3a8a8f9394d9c14677" compoundref="_config_manager_8cpp" startline="970" endline="1013">pointsAPI</referencedby>
+        <referencedby refid="class_config_manager_1a798727e00c1f0ff18044bc4ae097be2e" compoundref="_config_manager_8cpp" startline="272" endline="274">resetMinMaxValues</referencedby>
+        <referencedby refid="class_config_manager_1aa15fcaf6330fd73a87e8c6f63e8ab9d5" compoundref="_config_manager_8cpp" startline="448" endline="482">saveAlarmsConfig</referencedby>
+        <referencedby refid="class_config_manager_1a55b79da91c57039c483ddf5fceabbd64" compoundref="_config_manager_8cpp" startline="279" endline="320">savePointsConfig</referencedby>
+        <referencedby refid="class_config_manager_1a45b1ce1f09401af0b6f700cf4388b233" compoundref="_config_manager_8cpp" startline="717" endline="840">sensorAPI</referencedby>
+        <referencedby refid="class_config_manager_1a0daf50bbd376beb24a5400a86e893338" compoundref="_config_manager_8cpp" startline="429" endline="445">updatePointInConfig</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_config_manager_1a773fb5f7cd89fa594bd05184e8af14a0" prot="private" static="no" mutable="no">
+        <type>WebServer *</type>
+        <definition>WebServer* ConfigManager::server</definition>
+        <argsstring></argsstring>
+        <name>server</name>
+        <qualifiedname>ConfigManager::server</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ConfigManager.h" line="24" column="15" bodyfile="include/ConfigManager.h" bodystart="24" bodyend="-1"/>
+        <referencedby refid="class_config_manager_1ae605c999fabc6344511f455618655326" compoundref="_config_manager_8cpp" startline="1014" endline="1546">alarmsAPI</referencedby>
+        <referencedby refid="class_config_manager_1a6416afa7d86c20400ee661cdad9bdab1" compoundref="_config_manager_8cpp" startline="573" endline="716">basicAPI</referencedby>
+        <referencedby refid="class_config_manager_1a0497343220fc493f5cf9574922508908" compoundref="_config_manager_8cpp" startline="103" endline="215">begin</referencedby>
+        <referencedby refid="class_config_manager_1abb5e68671c5a8087abb50b289d3522b4" compoundref="_config_manager_8cpp" startline="81" endline="91">ConfigManager</referencedby>
+        <referencedby refid="class_config_manager_1a9b7af07b85bf9cc3ac05603db6e89fd2" compoundref="_config_manager_8cpp" startline="841" endline="969">csvImportExportAPI</referencedby>
+        <referencedby refid="class_config_manager_1a3b28982c79587a287c8ddf0acf47f71d" compoundref="_config_manager_8cpp" startline="1682" endline="1883">downloadAPI</referencedby>
+        <referencedby refid="class_config_manager_1ac880f2edae50caef8bcc750f7260a896" compoundref="_config_manager_8h" startline="74" endline="74">getWebServer</referencedby>
+        <referencedby refid="class_config_manager_1a9e977107b4795fcbce0482711ff1ce7a" compoundref="_config_manager_8cpp" startline="1550" endline="1680">logsAPI</referencedby>
+        <referencedby refid="class_config_manager_1a471a844085c27f3a8a8f9394d9c14677" compoundref="_config_manager_8cpp" startline="970" endline="1013">pointsAPI</referencedby>
+        <referencedby refid="class_config_manager_1a45b1ce1f09401af0b6f700cf4388b233" compoundref="_config_manager_8cpp" startline="717" endline="840">sensorAPI</referencedby>
+        <referencedby refid="class_config_manager_1a2f271ab2a1e8014cebe1e26afe9974df" compoundref="_config_manager_8cpp" startline="217" endline="220">update</referencedby>
+        <referencedby refid="class_config_manager_1a7fa65fdff98bdd5bbbf72196bd9ccf17" compoundref="_config_manager_8cpp" startline="93" endline="101">~ConfigManager</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_config_manager_1a9569d8754bbcd81768dfb351b73bcea0" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool ConfigManager::portalActive</definition>
+        <argsstring></argsstring>
+        <name>portalActive</name>
+        <qualifiedname>ConfigManager::portalActive</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ConfigManager.h" line="25" column="10" bodyfile="include/ConfigManager.h" bodystart="25" bodyend="-1"/>
+        <referencedby refid="class_config_manager_1abb5e68671c5a8087abb50b289d3522b4" compoundref="_config_manager_8cpp" startline="81" endline="91">ConfigManager</referencedby>
+        <referencedby refid="class_config_manager_1a65a98a3adfa9da8d6d66175eb8dad3a3" compoundref="_config_manager_8h" startline="77" endline="77">isPortalActive</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_config_manager_1a890a76b6aebb1246ca45248967447b34" prot="private" static="yes" mutable="no">
+        <type><ref refid="class_config_manager" kindref="compound">ConfigManager</ref> *</type>
+        <definition>ConfigManager * ConfigManager::instance</definition>
+        <argsstring></argsstring>
+        <name>instance</name>
+        <qualifiedname>ConfigManager::instance</qualifiedname>
+        <initializer>= nullptr</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ConfigManager.h" line="31" column="26" bodyfile="include/ConfigManager.h" bodystart="31" bodyend="-1"/>
+        <referencedby refid="class_config_manager_1abb5e68671c5a8087abb50b289d3522b4" compoundref="_config_manager_8cpp" startline="81" endline="91">ConfigManager</referencedby>
+        <referencedby refid="class_config_manager_1a93a63ddc3f7efd83e80345826493a45d" compoundref="_config_manager_8cpp" startline="237" endline="268">onConfigChanged</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_config_manager_1a93a63ddc3f7efd83e80345826493a45d" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConfigManager::onConfigChanged</definition>
+        <argsstring>(String key)</argsstring>
+        <name>onConfigChanged</name>
+        <qualifiedname>ConfigManager::onConfigChanged</qualifiedname>
+        <param>
+          <type>String</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ConfigManager.h" line="28" column="17" bodyfile="src/ConfigManager.cpp" bodystart="237" bodyend="268"/>
+        <references refid="class_config_manager_1a890a76b6aebb1246ca45248967447b34" compoundref="_config_manager_8h" startline="31">instance</references>
+        <referencedby refid="class_config_manager_1a0497343220fc493f5cf9574922508908" compoundref="_config_manager_8cpp" startline="103" endline="215">begin</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_config_manager_1adaa7d1493461e3f2684b92ffe5db62d4" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConfigManager::_applySettingsWithoutRestart</definition>
+        <argsstring>()</argsstring>
+        <name>_applySettingsWithoutRestart</name>
+        <qualifiedname>ConfigManager::_applySettingsWithoutRestart</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ConfigManager.h" line="32" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_config_manager_1a6416afa7d86c20400ee661cdad9bdab1" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConfigManager::basicAPI</definition>
+        <argsstring>()</argsstring>
+        <name>basicAPI</name>
+        <qualifiedname>ConfigManager::basicAPI</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ConfigManager.h" line="34" column="10" bodyfile="src/ConfigManager.cpp" bodystart="573" bodyend="716"/>
+        <references refid="class_config_manager_1a773fb5f7cd89fa594bd05184e8af14a0" compoundref="_config_manager_8h" startline="24">server</references>
+        <referencedby refid="class_config_manager_1a0497343220fc493f5cf9574922508908" compoundref="_config_manager_8cpp" startline="103" endline="215">begin</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_config_manager_1a45b1ce1f09401af0b6f700cf4388b233" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConfigManager::sensorAPI</definition>
+        <argsstring>()</argsstring>
+        <name>sensorAPI</name>
+        <qualifiedname>ConfigManager::sensorAPI</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ConfigManager.h" line="35" column="10" bodyfile="src/ConfigManager.cpp" bodystart="717" bodyend="840"/>
+        <references refid="class_config_manager_1a68eeba761f112013757ddf298454407d" compoundref="_config_manager_8h" startline="23">controller</references>
+        <references refid="class_sensor_1a9f793cde2918130fbc77dad1aebfe53a" compoundref="_sensor_8cpp" startline="195" endline="203">Sensor::getDS18B20RomString</references>
+        <references refid="class_sensor_1a6f57825e90b759ccdb9fe07b3a36953d" compoundref="_sensor_8cpp" startline="190" endline="193">Sensor::getPT1000ChipSelectPin</references>
+        <references refid="class_config_manager_1a55b79da91c57039c483ddf5fceabbd64" compoundref="_config_manager_8cpp" startline="279" endline="320">savePointsConfig</references>
+        <references refid="class_config_manager_1a773fb5f7cd89fa594bd05184e8af14a0" compoundref="_config_manager_8h" startline="24">server</references>
+        <referencedby refid="class_config_manager_1a0497343220fc493f5cf9574922508908" compoundref="_config_manager_8cpp" startline="103" endline="215">begin</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_config_manager_1a9b7af07b85bf9cc3ac05603db6e89fd2" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConfigManager::csvImportExportAPI</definition>
+        <argsstring>()</argsstring>
+        <name>csvImportExportAPI</name>
+        <qualifiedname>ConfigManager::csvImportExportAPI</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ConfigManager.h" line="36" column="10" bodyfile="src/ConfigManager.cpp" bodystart="841" bodyend="969"/>
+        <references refid="class_config_manager_1a3948181c2e8ae2241d0e95c5afd47aa9" compoundref="_config_manager_8h" startline="21">conf</references>
+        <references refid="class_config_manager_1a68eeba761f112013757ddf298454407d" compoundref="_config_manager_8h" startline="23">controller</references>
+        <references refid="class_config_manager_1a5591a9b29e8c6e1c3f3dc50c0e6e1267" compoundref="_config_manager_8h" startline="20">csvManager</references>
+        <references refid="class_logger_manager_1aef24f00186213fa78be3b104a50d58e6" compoundref="_logger_manager_8h" startline="109" endline="111">LoggerManager::error</references>
+        <references refid="class_logger_manager_1a5c1373ccc47f4112b596fe6f84fbbc21" compoundref="_logger_manager_8h" startline="101" endline="103">LoggerManager::info</references>
+        <references refid="class_config_manager_1aa15fcaf6330fd73a87e8c6f63e8ab9d5" compoundref="_config_manager_8cpp" startline="448" endline="482">saveAlarmsConfig</references>
+        <references refid="class_config_manager_1a55b79da91c57039c483ddf5fceabbd64" compoundref="_config_manager_8cpp" startline="279" endline="320">savePointsConfig</references>
+        <references refid="class_config_manager_1a773fb5f7cd89fa594bd05184e8af14a0" compoundref="_config_manager_8h" startline="24">server</references>
+        <references refid="class_config_manager_1afe696eabbbdf537e88b3b5b33c009b31" compoundref="_config_manager_8h" startline="19">settingsCSVManager</references>
+        <referencedby refid="class_config_manager_1a0497343220fc493f5cf9574922508908" compoundref="_config_manager_8cpp" startline="103" endline="215">begin</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_config_manager_1a471a844085c27f3a8a8f9394d9c14677" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConfigManager::pointsAPI</definition>
+        <argsstring>()</argsstring>
+        <name>pointsAPI</name>
+        <qualifiedname>ConfigManager::pointsAPI</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ConfigManager.h" line="37" column="10" bodyfile="src/ConfigManager.cpp" bodystart="970" bodyend="1013"/>
+        <references refid="class_config_manager_1a68eeba761f112013757ddf298454407d" compoundref="_config_manager_8h" startline="23">controller</references>
+        <references refid="class_measurement_point_1a71d6d440240f110cbd80c58bbc47aff6" compoundref="_measurement_point_8cpp" startline="49" endline="51">MeasurementPoint::getHighAlarmThreshold</references>
+        <references refid="class_measurement_point_1a6e538e117d9e22c6998b56519a51d6ba" compoundref="_measurement_point_8cpp" startline="45" endline="47">MeasurementPoint::getLowAlarmThreshold</references>
+        <references refid="class_measurement_point_1aa3a80d373c7609c7b178bf7353ffdd7a" compoundref="_measurement_point_8cpp" startline="29" endline="31">MeasurementPoint::getName</references>
+        <references refid="class_config_manager_1a55b79da91c57039c483ddf5fceabbd64" compoundref="_config_manager_8cpp" startline="279" endline="320">savePointsConfig</references>
+        <references refid="class_config_manager_1a773fb5f7cd89fa594bd05184e8af14a0" compoundref="_config_manager_8h" startline="24">server</references>
+        <references refid="class_measurement_point_1aefb47fef40f33161be5c6fddf0cf6329" compoundref="_measurement_point_8cpp" startline="86" endline="96">MeasurementPoint::setHighAlarmThreshold</references>
+        <references refid="class_measurement_point_1ac780917beebc11d705824cab8f43b94d" compoundref="_measurement_point_8cpp" startline="72" endline="84">MeasurementPoint::setLowAlarmThreshold</references>
+        <references refid="class_measurement_point_1ae3abe83ed3e7979a906c7d753ac9d22d" compoundref="_measurement_point_8cpp" startline="61" endline="70">MeasurementPoint::setName</references>
+        <referencedby refid="class_config_manager_1a0497343220fc493f5cf9574922508908" compoundref="_config_manager_8cpp" startline="103" endline="215">begin</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_config_manager_1ae605c999fabc6344511f455618655326" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConfigManager::alarmsAPI</definition>
+        <argsstring>()</argsstring>
+        <name>alarmsAPI</name>
+        <qualifiedname>ConfigManager::alarmsAPI</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ConfigManager.h" line="38" column="10" bodyfile="src/ConfigManager.cpp" bodystart="1014" bodyend="1546"/>
+        <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba7e83ae21b9e9b168f12ba5a90ee82c94" compoundref="_alarm_8h" startline="23">ACKNOWLEDGED</references>
+        <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba18ff74f43da410c5529f7d6fca84f115" compoundref="_alarm_8h" startline="24">ACTIVE</references>
+        <references refid="class_config_manager_1a3948181c2e8ae2241d0e95c5afd47aa9" compoundref="_config_manager_8h" startline="21">conf</references>
+        <references refid="class_config_manager_1a68eeba761f112013757ddf298454407d" compoundref="_config_manager_8h" startline="23">controller</references>
+        <references refid="class_config_manager_1a1d2c3a4f6b321f3e55394f0427781f71" compoundref="_config_manager_8h" startline="116" endline="116">getAcknowledgedDelayCritical</references>
+        <references refid="class_config_manager_1a92531033b9698550c95e70408d3ca928" compoundref="_config_manager_8h" startline="117" endline="117">getAcknowledgedDelayHigh</references>
+        <references refid="class_config_manager_1a8211fcec922c77f0245ea1eb95be5e4d" compoundref="_config_manager_8h" startline="119" endline="119">getAcknowledgedDelayLow</references>
+        <references refid="class_config_manager_1ae5e8f849e85d0a2779a650136b7011f9" compoundref="_config_manager_8h" startline="118" endline="118">getAcknowledgedDelayMedium</references>
+        <references refid="class_measurement_point_1a7b74a18d86e0e545264a774aa2c31cad" compoundref="_measurement_point_8cpp" startline="25" endline="27">MeasurementPoint::getAddress</references>
+        <references refid="class_measurement_point_1a81c7ae93a9314344967d0f31c6fefe2f" compoundref="_measurement_point_8cpp" startline="106" endline="108">MeasurementPoint::getBoundSensor</references>
+        <references refid="class_measurement_point_1aceaf14fde40bcd5331e5ea6a07d7dde8" compoundref="_measurement_point_8cpp" startline="33" endline="35">MeasurementPoint::getCurrentTemp</references>
+        <references refid="class_measurement_point_1a71d6d440240f110cbd80c58bbc47aff6" compoundref="_measurement_point_8cpp" startline="49" endline="51">MeasurementPoint::getHighAlarmThreshold</references>
+        <references refid="class_measurement_point_1a6e538e117d9e22c6998b56519a51d6ba" compoundref="_measurement_point_8cpp" startline="45" endline="47">MeasurementPoint::getLowAlarmThreshold</references>
+        <references refid="class_measurement_point_1aa3a80d373c7609c7b178bf7353ffdd7a" compoundref="_measurement_point_8cpp" startline="29" endline="31">MeasurementPoint::getName</references>
+        <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba24d459a81449d7210c8f9a86c2913034" compoundref="_alarm_8h" startline="20">NEW</references>
+        <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba5f9223804ac004dc2fad18afc18a3951" compoundref="_alarm_8h" startline="33">PRIORITY_CRITICAL</references>
+        <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba47a10a0fba7f10a751e6ea38f3d6a1e3" compoundref="_alarm_8h" startline="32">PRIORITY_HIGH</references>
+        <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba4a2343657e145cb3dab4f445d2c29b1f" compoundref="_alarm_8h" startline="30">PRIORITY_LOW</references>
+        <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba7e5ab414d2d201947566a9c574a7b85f" compoundref="_alarm_8h" startline="31">PRIORITY_MEDIUM</references>
+        <references refid="class_config_manager_1aa15fcaf6330fd73a87e8c6f63e8ab9d5" compoundref="_config_manager_8cpp" startline="448" endline="482">saveAlarmsConfig</references>
+        <references refid="class_config_manager_1a55b79da91c57039c483ddf5fceabbd64" compoundref="_config_manager_8cpp" startline="279" endline="320">savePointsConfig</references>
+        <references refid="class_config_manager_1a773fb5f7cd89fa594bd05184e8af14a0" compoundref="_config_manager_8h" startline="24">server</references>
+        <references refid="class_measurement_point_1aefb47fef40f33161be5c6fddf0cf6329" compoundref="_measurement_point_8cpp" startline="86" endline="96">MeasurementPoint::setHighAlarmThreshold</references>
+        <references refid="class_measurement_point_1ac780917beebc11d705824cab8f43b94d" compoundref="_measurement_point_8cpp" startline="72" endline="84">MeasurementPoint::setLowAlarmThreshold</references>
+        <references refid="class_measurement_point_1ae3abe83ed3e7979a906c7d753ac9d22d" compoundref="_measurement_point_8cpp" startline="61" endline="70">MeasurementPoint::setName</references>
+        <referencedby refid="class_config_manager_1a0497343220fc493f5cf9574922508908" compoundref="_config_manager_8cpp" startline="103" endline="215">begin</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_config_manager_1a9e977107b4795fcbce0482711ff1ce7a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConfigManager::logsAPI</definition>
+        <argsstring>()</argsstring>
+        <name>logsAPI</name>
+        <qualifiedname>ConfigManager::logsAPI</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ConfigManager.h" line="39" column="10" bodyfile="src/ConfigManager.cpp" bodystart="1550" bodyend="1680"/>
+        <references refid="class_logger_manager_1a612d1bdfbfd0d93f9452fd7bac8775ca" compoundref="_logger_manager_8cpp" startline="1130" endline="1173">LoggerManager::getAlarmHistoryCsv</references>
+        <references refid="class_logger_manager_1af04d8d79f7bcb9ff4dace5b490502b50" compoundref="_logger_manager_8cpp" startline="1050" endline="1128">LoggerManager::getAlarmHistoryJson</references>
+        <references refid="class_logger_manager_1a19e6a7d2c3ad2b1d3fa5acb578fb1619" compoundref="_logger_manager_8cpp" startline="1865" endline="1889">LoggerManager::getAlarmStateLogFiles</references>
+        <references refid="class_logger_manager_1a782a868803b4e2861169796aad7b8b60" compoundref="_logger_manager_8cpp" startline="1804" endline="1833">LoggerManager::getEventLogFilesStatic</references>
+        <references refid="class_logger_manager_1a752cebdb1c0344890d265af9daee8313" compoundref="_logger_manager_8cpp" startline="1577" endline="1620">LoggerManager::getEventLogsCsv</references>
+        <references refid="class_logger_manager_1a8e154caf5cdb9dd50722e2f52314e383" compoundref="_logger_manager_8cpp" startline="1511" endline="1574">LoggerManager::getEventLogsJson</references>
+        <references refid="class_logger_manager_1ab16e7ab4b0cc70674b9b87118f72d805" compoundref="_logger_manager_8cpp" startline="1718" endline="1801">LoggerManager::getEventLogStatsJson</references>
+        <references refid="class_config_manager_1a773fb5f7cd89fa594bd05184e8af14a0" compoundref="_config_manager_8h" startline="24">server</references>
+        <referencedby refid="class_config_manager_1a0497343220fc493f5cf9574922508908" compoundref="_config_manager_8cpp" startline="103" endline="215">begin</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_config_manager_1a3b28982c79587a287c8ddf0acf47f71d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConfigManager::downloadAPI</definition>
+        <argsstring>()</argsstring>
+        <name>downloadAPI</name>
+        <qualifiedname>ConfigManager::downloadAPI</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ConfigManager.h" line="40" column="10" bodyfile="src/ConfigManager.cpp" bodystart="1682" bodyend="1883"/>
+        <references refid="class_logger_manager_1a19e6a7d2c3ad2b1d3fa5acb578fb1619" compoundref="_logger_manager_8cpp" startline="1865" endline="1889">LoggerManager::getAlarmStateLogFiles</references>
+        <references refid="class_logger_manager_1a782a868803b4e2861169796aad7b8b60" compoundref="_logger_manager_8cpp" startline="1804" endline="1833">LoggerManager::getEventLogFilesStatic</references>
+        <references refid="class_logger_manager_1acb4313c65e6a661229f2c3d662f1c059" compoundref="_logger_manager_8cpp" startline="1892" endline="1924">LoggerManager::getFileInfo</references>
+        <references refid="class_logger_manager_1a2b670504d6ebd0c2c2f833caed6842d5" compoundref="_logger_manager_8cpp" startline="1838" endline="1862">LoggerManager::getLogFiles</references>
+        <references refid="class_logger_manager_1a92719154d919a9bd45a8ea192e70dfcc" compoundref="_logger_manager_8cpp" startline="1927" endline="1938">LoggerManager::openLogFile</references>
+        <references refid="class_config_manager_1a773fb5f7cd89fa594bd05184e8af14a0" compoundref="_config_manager_8h" startline="24">server</references>
+        <referencedby refid="class_config_manager_1a0497343220fc493f5cf9574922508908" compoundref="_config_manager_8cpp" startline="103" endline="215">begin</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_config_manager_1abb5e68671c5a8087abb50b289d3522b4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>ConfigManager::ConfigManager</definition>
+        <argsstring>(TemperatureController &amp;tempController)</argsstring>
+        <name>ConfigManager</name>
+        <qualifiedname>ConfigManager::ConfigManager</qualifiedname>
+        <param>
+          <type><ref refid="class_temperature_controller" kindref="compound">TemperatureController</ref> &amp;</type>
+          <declname>tempController</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ConfigManager.h" line="50" column="5" bodyfile="src/ConfigManager.cpp" bodystart="81" bodyend="91"/>
+        <references refid="class_config_manager_1a3948181c2e8ae2241d0e95c5afd47aa9" compoundref="_config_manager_8h" startline="21">conf</references>
+        <references refid="class_config_manager_1a555afa40c6353fe0fe1765cc064dc920" compoundref="_config_manager_8h" startline="22">confHelper</references>
+        <references refid="class_config_manager_1a68eeba761f112013757ddf298454407d" compoundref="_config_manager_8h" startline="23">controller</references>
+        <references refid="class_config_manager_1a5591a9b29e8c6e1c3f3dc50c0e6e1267" compoundref="_config_manager_8h" startline="20">csvManager</references>
+        <references refid="class_config_manager_1a890a76b6aebb1246ca45248967447b34" compoundref="_config_manager_8h" startline="31">instance</references>
+        <references refid="class_config_manager_1a9569d8754bbcd81768dfb351b73bcea0" compoundref="_config_manager_8h" startline="25">portalActive</references>
+        <references refid="class_config_manager_1a773fb5f7cd89fa594bd05184e8af14a0" compoundref="_config_manager_8h" startline="24">server</references>
+        <references refid="class_config_manager_1afe696eabbbdf537e88b3b5b33c009b31" compoundref="_config_manager_8h" startline="19">settingsCSVManager</references>
+        <references refid="_config_manager_8h_1a53744b698cb89b52923ba6024d2e25e0">VARIABLES_DEF_YAML</references>
+      </memberdef>
+      <memberdef kind="function" id="class_config_manager_1a7fa65fdff98bdd5bbbf72196bd9ccf17" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>ConfigManager::~ConfigManager</definition>
+        <argsstring>()</argsstring>
+        <name>~ConfigManager</name>
+        <qualifiedname>ConfigManager::~ConfigManager</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ConfigManager.h" line="51" column="5" bodyfile="src/ConfigManager.cpp" bodystart="93" bodyend="101"/>
+        <references refid="class_config_manager_1a555afa40c6353fe0fe1765cc064dc920" compoundref="_config_manager_8h" startline="22">confHelper</references>
+        <references refid="class_config_manager_1a773fb5f7cd89fa594bd05184e8af14a0" compoundref="_config_manager_8h" startline="24">server</references>
+      </memberdef>
+      <memberdef kind="function" id="class_config_manager_1a0497343220fc493f5cf9574922508908" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ConfigManager::begin</definition>
+        <argsstring>()</argsstring>
+        <name>begin</name>
+        <qualifiedname>ConfigManager::begin</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ConfigManager.h" line="54" column="10" bodyfile="src/ConfigManager.cpp" bodystart="103" bodyend="215"/>
+        <references refid="class_config_manager_1ae605c999fabc6344511f455618655326" compoundref="_config_manager_8cpp" startline="1014" endline="1546">alarmsAPI</references>
+        <references refid="class_config_manager_1a6416afa7d86c20400ee661cdad9bdab1" compoundref="_config_manager_8cpp" startline="573" endline="716">basicAPI</references>
+        <references refid="class_config_manager_1a3948181c2e8ae2241d0e95c5afd47aa9" compoundref="_config_manager_8h" startline="21">conf</references>
+        <references refid="class_config_manager_1a83b4217012bf8eda57fbfd8deca09dd2" compoundref="_config_manager_8cpp" startline="222" endline="234">connectWiFi</references>
+        <references refid="class_config_manager_1a68eeba761f112013757ddf298454407d" compoundref="_config_manager_8h" startline="23">controller</references>
+        <references refid="class_config_manager_1a9b7af07b85bf9cc3ac05603db6e89fd2" compoundref="_config_manager_8cpp" startline="841" endline="969">csvImportExportAPI</references>
+        <references refid="class_config_manager_1a3b28982c79587a287c8ddf0acf47f71d" compoundref="_config_manager_8cpp" startline="1682" endline="1883">downloadAPI</references>
+        <references refid="class_config_manager_1a1d2c3a4f6b321f3e55394f0427781f71" compoundref="_config_manager_8h" startline="116" endline="116">getAcknowledgedDelayCritical</references>
+        <references refid="class_config_manager_1a92531033b9698550c95e70408d3ca928" compoundref="_config_manager_8h" startline="117" endline="117">getAcknowledgedDelayHigh</references>
+        <references refid="class_config_manager_1a8211fcec922c77f0245ea1eb95be5e4d" compoundref="_config_manager_8h" startline="119" endline="119">getAcknowledgedDelayLow</references>
+        <references refid="class_config_manager_1ae5e8f849e85d0a2779a650136b7011f9" compoundref="_config_manager_8h" startline="118" endline="118">getAcknowledgedDelayMedium</references>
+        <references refid="class_config_manager_1a355c8fe8e7b63d90f2ab1e3957006d7b" compoundref="_config_manager_8h" startline="83" endline="83">getDeviceId</references>
+        <references refid="class_config_manager_1af025d7d473c39f95ab26029607e32cc6" compoundref="_config_manager_8h" startline="84" endline="84">getMeasurementPeriod</references>
+        <references refid="class_logger_manager_1a5c1373ccc47f4112b596fe6f84fbbc21" compoundref="_logger_manager_8h" startline="101" endline="103">LoggerManager::info</references>
+        <references refid="class_config_manager_1a468923ce5f2edecd218b29605d75426f" compoundref="_config_manager_8cpp" startline="487" endline="571">loadAlarmsConfig</references>
+        <references refid="class_config_manager_1a04edc14e642ecadb9ccb87be05d1d878" compoundref="_config_manager_8cpp" startline="361" endline="425">loadPointsConfig</references>
+        <references refid="class_config_manager_1a9e977107b4795fcbce0482711ff1ce7a" compoundref="_config_manager_8cpp" startline="1550" endline="1680">logsAPI</references>
+        <references refid="class_config_manager_1a93a63ddc3f7efd83e80345826493a45d" compoundref="_config_manager_8cpp" startline="237" endline="268">onConfigChanged</references>
+        <references refid="class_config_manager_1a471a844085c27f3a8a8f9394d9c14677" compoundref="_config_manager_8cpp" startline="970" endline="1013">pointsAPI</references>
+        <references refid="class_config_manager_1a45b1ce1f09401af0b6f700cf4388b233" compoundref="_config_manager_8cpp" startline="717" endline="840">sensorAPI</references>
+        <references refid="class_config_manager_1a773fb5f7cd89fa594bd05184e8af14a0" compoundref="_config_manager_8h" startline="24">server</references>
+        <references refid="class_logger_manager_1a0d52b0ff7bff22817e987ad753102854" compoundref="_logger_manager_8h" startline="105" endline="107">LoggerManager::warning</references>
+      </memberdef>
+      <memberdef kind="function" id="class_config_manager_1a2f271ab2a1e8014cebe1e26afe9974df" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConfigManager::update</definition>
+        <argsstring>()</argsstring>
+        <name>update</name>
+        <qualifiedname>ConfigManager::update</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ConfigManager.h" line="57" column="10" bodyfile="src/ConfigManager.cpp" bodystart="217" bodyend="220"/>
+        <references refid="class_config_manager_1a773fb5f7cd89fa594bd05184e8af14a0" compoundref="_config_manager_8h" startline="24">server</references>
+      </memberdef>
+      <memberdef kind="function" id="class_config_manager_1a83b4217012bf8eda57fbfd8deca09dd2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ConfigManager::connectWiFi</definition>
+        <argsstring>(int timeoutMs=15000)</argsstring>
+        <name>connectWiFi</name>
+        <qualifiedname>ConfigManager::connectWiFi</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>timeoutMs</declname>
+          <defval>15000</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ConfigManager.h" line="60" column="10" bodyfile="src/ConfigManager.cpp" bodystart="222" bodyend="234"/>
+        <references refid="class_config_manager_1a555afa40c6353fe0fe1765cc064dc920" compoundref="_config_manager_8h" startline="22">confHelper</references>
+        <referencedby refid="class_config_manager_1a0497343220fc493f5cf9574922508908" compoundref="_config_manager_8cpp" startline="103" endline="215">begin</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_config_manager_1ac880f2edae50caef8bcc750f7260a896" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>WebServer *</type>
+        <definition>WebServer * ConfigManager::getWebServer</definition>
+        <argsstring>()</argsstring>
+        <name>getWebServer</name>
+        <qualifiedname>ConfigManager::getWebServer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ConfigManager.h" line="74" column="15" bodyfile="include/ConfigManager.h" bodystart="74" bodyend="74"/>
+        <references refid="class_config_manager_1a773fb5f7cd89fa594bd05184e8af14a0" compoundref="_config_manager_8h" startline="24">server</references>
+      </memberdef>
+      <memberdef kind="function" id="class_config_manager_1a65a98a3adfa9da8d6d66175eb8dad3a3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ConfigManager::isPortalActive</definition>
+        <argsstring>()</argsstring>
+        <name>isPortalActive</name>
+        <qualifiedname>ConfigManager::isPortalActive</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ConfigManager.h" line="77" column="10" bodyfile="include/ConfigManager.h" bodystart="77" bodyend="77"/>
+        <references refid="class_config_manager_1a9569d8754bbcd81768dfb351b73bcea0" compoundref="_config_manager_8h" startline="25">portalActive</references>
+      </memberdef>
+      <memberdef kind="function" id="class_config_manager_1a0c6922c0d3cfb6016ffea2a58149ee35" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>String</type>
+        <definition>String ConfigManager::getWifiSSID</definition>
+        <argsstring>()</argsstring>
+        <name>getWifiSSID</name>
+        <qualifiedname>ConfigManager::getWifiSSID</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ConfigManager.h" line="80" column="12" bodyfile="include/ConfigManager.h" bodystart="80" bodyend="80"/>
+        <references refid="class_config_manager_1a3948181c2e8ae2241d0e95c5afd47aa9" compoundref="_config_manager_8h" startline="21">conf</references>
+      </memberdef>
+      <memberdef kind="function" id="class_config_manager_1aa67267eea5f43007958d1959a3d05eff" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>String</type>
+        <definition>String ConfigManager::getWifiPassword</definition>
+        <argsstring>()</argsstring>
+        <name>getWifiPassword</name>
+        <qualifiedname>ConfigManager::getWifiPassword</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ConfigManager.h" line="81" column="12" bodyfile="include/ConfigManager.h" bodystart="81" bodyend="81"/>
+        <references refid="class_config_manager_1a3948181c2e8ae2241d0e95c5afd47aa9" compoundref="_config_manager_8h" startline="21">conf</references>
+      </memberdef>
+      <memberdef kind="function" id="class_config_manager_1a3909fbe925c15b47925bacf2b0b4d97b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>String</type>
+        <definition>String ConfigManager::getHostname</definition>
+        <argsstring>()</argsstring>
+        <name>getHostname</name>
+        <qualifiedname>ConfigManager::getHostname</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ConfigManager.h" line="82" column="12" bodyfile="include/ConfigManager.h" bodystart="82" bodyend="82"/>
+        <references refid="class_config_manager_1a3948181c2e8ae2241d0e95c5afd47aa9" compoundref="_config_manager_8h" startline="21">conf</references>
+      </memberdef>
+      <memberdef kind="function" id="class_config_manager_1a355c8fe8e7b63d90f2ab1e3957006d7b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint16_t</type>
+        <definition>uint16_t ConfigManager::getDeviceId</definition>
+        <argsstring>()</argsstring>
+        <name>getDeviceId</name>
+        <qualifiedname>ConfigManager::getDeviceId</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ConfigManager.h" line="83" column="14" bodyfile="include/ConfigManager.h" bodystart="83" bodyend="83"/>
+        <references refid="class_config_manager_1a3948181c2e8ae2241d0e95c5afd47aa9" compoundref="_config_manager_8h" startline="21">conf</references>
+        <referencedby refid="class_config_manager_1a0497343220fc493f5cf9574922508908" compoundref="_config_manager_8cpp" startline="103" endline="215">begin</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_config_manager_1af025d7d473c39f95ab26029607e32cc6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint16_t</type>
+        <definition>uint16_t ConfigManager::getMeasurementPeriod</definition>
+        <argsstring>()</argsstring>
+        <name>getMeasurementPeriod</name>
+        <qualifiedname>ConfigManager::getMeasurementPeriod</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ConfigManager.h" line="84" column="14" bodyfile="include/ConfigManager.h" bodystart="84" bodyend="84"/>
+        <references refid="class_config_manager_1a3948181c2e8ae2241d0e95c5afd47aa9" compoundref="_config_manager_8h" startline="21">conf</references>
+        <referencedby refid="class_config_manager_1a0497343220fc493f5cf9574922508908" compoundref="_config_manager_8cpp" startline="103" endline="215">begin</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_config_manager_1a9fadc4167ae0c9e7cfc27af9b1bc5774" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ConfigManager::isModbusEnabled</definition>
+        <argsstring>()</argsstring>
+        <name>isModbusEnabled</name>
+        <qualifiedname>ConfigManager::isModbusEnabled</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ConfigManager.h" line="85" column="10" bodyfile="include/ConfigManager.h" bodystart="85" bodyend="85"/>
+        <references refid="class_config_manager_1a3948181c2e8ae2241d0e95c5afd47aa9" compoundref="_config_manager_8h" startline="21">conf</references>
+      </memberdef>
+      <memberdef kind="function" id="class_config_manager_1abd6818ba586e506fa20886b51ff8dfe0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint8_t</type>
+        <definition>uint8_t ConfigManager::getModbusAddress</definition>
+        <argsstring>()</argsstring>
+        <name>getModbusAddress</name>
+        <qualifiedname>ConfigManager::getModbusAddress</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ConfigManager.h" line="86" column="13" bodyfile="include/ConfigManager.h" bodystart="86" bodyend="86"/>
+        <references refid="class_config_manager_1a3948181c2e8ae2241d0e95c5afd47aa9" compoundref="_config_manager_8h" startline="21">conf</references>
+      </memberdef>
+      <memberdef kind="function" id="class_config_manager_1a1ddcfeae8bd9fa5f1847b33a8ff61c09" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>uint32_t ConfigManager::getModbusBaudRate</definition>
+        <argsstring>()</argsstring>
+        <name>getModbusBaudRate</name>
+        <qualifiedname>ConfigManager::getModbusBaudRate</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ConfigManager.h" line="87" column="14" bodyfile="include/ConfigManager.h" bodystart="87" bodyend="87"/>
+        <references refid="class_config_manager_1a3948181c2e8ae2241d0e95c5afd47aa9" compoundref="_config_manager_8h" startline="21">conf</references>
+      </memberdef>
+      <memberdef kind="function" id="class_config_manager_1a8edfe5674a998837f2bb33f8c24ebca1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint8_t</type>
+        <definition>uint8_t ConfigManager::getRxPin</definition>
+        <argsstring>()</argsstring>
+        <name>getRxPin</name>
+        <qualifiedname>ConfigManager::getRxPin</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ConfigManager.h" line="88" column="13" bodyfile="include/ConfigManager.h" bodystart="88" bodyend="88"/>
+        <references refid="class_config_manager_1a3948181c2e8ae2241d0e95c5afd47aa9" compoundref="_config_manager_8h" startline="21">conf</references>
+      </memberdef>
+      <memberdef kind="function" id="class_config_manager_1af29e702703a41dc0fe8f393b4df3cba9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint8_t</type>
+        <definition>uint8_t ConfigManager::getTxPin</definition>
+        <argsstring>()</argsstring>
+        <name>getTxPin</name>
+        <qualifiedname>ConfigManager::getTxPin</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ConfigManager.h" line="89" column="13" bodyfile="include/ConfigManager.h" bodystart="89" bodyend="89"/>
+        <references refid="class_config_manager_1a3948181c2e8ae2241d0e95c5afd47aa9" compoundref="_config_manager_8h" startline="21">conf</references>
+      </memberdef>
+      <memberdef kind="function" id="class_config_manager_1a70df78bf8e301f46cbc14bf6f36c0a0e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ConfigManager::getAutoDiscover</definition>
+        <argsstring>()</argsstring>
+        <name>getAutoDiscover</name>
+        <qualifiedname>ConfigManager::getAutoDiscover</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ConfigManager.h" line="92" column="10" bodyfile="include/ConfigManager.h" bodystart="92" bodyend="92"/>
+        <references refid="class_config_manager_1a3948181c2e8ae2241d0e95c5afd47aa9" compoundref="_config_manager_8h" startline="21">conf</references>
+      </memberdef>
+      <memberdef kind="function" id="class_config_manager_1a798727e00c1f0ff18044bc4ae097be2e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConfigManager::resetMinMaxValues</definition>
+        <argsstring>()</argsstring>
+        <name>resetMinMaxValues</name>
+        <qualifiedname>ConfigManager::resetMinMaxValues</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ConfigManager.h" line="95" column="10" bodyfile="src/ConfigManager.cpp" bodystart="272" bodyend="274"/>
+        <references refid="class_config_manager_1a68eeba761f112013757ddf298454407d" compoundref="_config_manager_8h" startline="23">controller</references>
+      </memberdef>
+      <memberdef kind="function" id="class_config_manager_1a55b79da91c57039c483ddf5fceabbd64" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConfigManager::savePointsConfig</definition>
+        <argsstring>()</argsstring>
+        <name>savePointsConfig</name>
+        <qualifiedname>ConfigManager::savePointsConfig</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ConfigManager.h" line="106" column="10" bodyfile="src/ConfigManager.cpp" bodystart="279" bodyend="320"/>
+        <references refid="class_config_manager_1a68eeba761f112013757ddf298454407d" compoundref="_config_manager_8h" startline="23">controller</references>
+        <references refid="_sensor_8h_1a213c434cb928c4ca22513e2302632435aac1bc058b939e1c55e1496c8574f3691" compoundref="_sensor_8h" startline="11">DS18B20</references>
+        <references refid="class_measurement_point_1a7b74a18d86e0e545264a774aa2c31cad" compoundref="_measurement_point_8cpp" startline="25" endline="27">MeasurementPoint::getAddress</references>
+        <references refid="class_measurement_point_1a81c7ae93a9314344967d0f31c6fefe2f" compoundref="_measurement_point_8cpp" startline="106" endline="108">MeasurementPoint::getBoundSensor</references>
+        <references refid="class_sensor_1a9f793cde2918130fbc77dad1aebfe53a" compoundref="_sensor_8cpp" startline="195" endline="203">Sensor::getDS18B20RomString</references>
+        <references refid="class_measurement_point_1a71d6d440240f110cbd80c58bbc47aff6" compoundref="_measurement_point_8cpp" startline="49" endline="51">MeasurementPoint::getHighAlarmThreshold</references>
+        <references refid="class_measurement_point_1a6e538e117d9e22c6998b56519a51d6ba" compoundref="_measurement_point_8cpp" startline="45" endline="47">MeasurementPoint::getLowAlarmThreshold</references>
+        <references refid="class_measurement_point_1aa3a80d373c7609c7b178bf7353ffdd7a" compoundref="_measurement_point_8cpp" startline="29" endline="31">MeasurementPoint::getName</references>
+        <references refid="class_sensor_1a6f57825e90b759ccdb9fe07b3a36953d" compoundref="_sensor_8cpp" startline="190" endline="193">Sensor::getPT1000ChipSelectPin</references>
+        <references refid="class_sensor_1a0f6f095e7cfdfffb2a395dfdae7cfa53" compoundref="_sensor_8cpp" startline="153" endline="153">Sensor::getType</references>
+        <references refid="class_logger_manager_1a5c1373ccc47f4112b596fe6f84fbbc21" compoundref="_logger_manager_8h" startline="101" endline="103">LoggerManager::info</references>
+        <references refid="_sensor_8h_1a213c434cb928c4ca22513e2302632435a481caba3768b84e8b68fb58b04ec595e" compoundref="_sensor_8h" startline="12">PT1000</references>
+        <referencedby refid="class_config_manager_1ae605c999fabc6344511f455618655326" compoundref="_config_manager_8cpp" startline="1014" endline="1546">alarmsAPI</referencedby>
+        <referencedby refid="class_config_manager_1a9b7af07b85bf9cc3ac05603db6e89fd2" compoundref="_config_manager_8cpp" startline="841" endline="969">csvImportExportAPI</referencedby>
+        <referencedby refid="class_config_manager_1a471a844085c27f3a8a8f9394d9c14677" compoundref="_config_manager_8cpp" startline="970" endline="1013">pointsAPI</referencedby>
+        <referencedby refid="class_config_manager_1a45b1ce1f09401af0b6f700cf4388b233" compoundref="_config_manager_8cpp" startline="717" endline="840">sensorAPI</referencedby>
+        <referencedby refid="class_config_manager_1a0daf50bbd376beb24a5400a86e893338" compoundref="_config_manager_8cpp" startline="429" endline="445">updatePointInConfig</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_config_manager_1a04edc14e642ecadb9ccb87be05d1d878" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConfigManager::loadPointsConfig</definition>
+        <argsstring>()</argsstring>
+        <name>loadPointsConfig</name>
+        <qualifiedname>ConfigManager::loadPointsConfig</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ConfigManager.h" line="107" column="10" bodyfile="src/ConfigManager.cpp" bodystart="361" bodyend="425"/>
+        <references refid="class_config_manager_1a68eeba761f112013757ddf298454407d" compoundref="_config_manager_8h" startline="23">controller</references>
+        <references refid="_sensor_8h_1a213c434cb928c4ca22513e2302632435aac1bc058b939e1c55e1496c8574f3691" compoundref="_sensor_8h" startline="11">DS18B20</references>
+        <references refid="class_logger_manager_1a5c1373ccc47f4112b596fe6f84fbbc21" compoundref="_logger_manager_8h" startline="101" endline="103">LoggerManager::info</references>
+        <references refid="class_sensor_1a59dd5483b75d9366a0c50ccdd0345dec" compoundref="_sensor_8cpp" startline="49" endline="98">Sensor::initialize</references>
+        <references refid="_sensor_8h_1a213c434cb928c4ca22513e2302632435a481caba3768b84e8b68fb58b04ec595e" compoundref="_sensor_8h" startline="12">PT1000</references>
+        <references refid="class_measurement_point_1aefb47fef40f33161be5c6fddf0cf6329" compoundref="_measurement_point_8cpp" startline="86" endline="96">MeasurementPoint::setHighAlarmThreshold</references>
+        <references refid="class_measurement_point_1ac780917beebc11d705824cab8f43b94d" compoundref="_measurement_point_8cpp" startline="72" endline="84">MeasurementPoint::setLowAlarmThreshold</references>
+        <references refid="class_measurement_point_1ae3abe83ed3e7979a906c7d753ac9d22d" compoundref="_measurement_point_8cpp" startline="61" endline="70">MeasurementPoint::setName</references>
+        <references refid="class_sensor_1afefa1f627a7d2ab5a1157c271e7f2556" compoundref="_sensor_8cpp" startline="39" endline="42">Sensor::setupDS18B20</references>
+        <references refid="class_sensor_1aef73c8dc894e3695f50b4bece9601750" compoundref="_sensor_8cpp" startline="44" endline="47">Sensor::setupPT1000</references>
+        <referencedby refid="class_config_manager_1a0497343220fc493f5cf9574922508908" compoundref="_config_manager_8cpp" startline="103" endline="215">begin</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_config_manager_1a0daf50bbd376beb24a5400a86e893338" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ConfigManager::updatePointInConfig</definition>
+        <argsstring>(uint8_t address, const String &amp;name, int16_t lowAlarm, int16_t highAlarm, const String &amp;ds18b20RomString=&quot;&quot;, int pt1000ChipSelect=-1)</argsstring>
+        <name>updatePointInConfig</name>
+        <qualifiedname>ConfigManager::updatePointInConfig</qualifiedname>
+        <param>
+          <type>uint8_t</type>
+          <declname>address</declname>
+        </param>
+        <param>
+          <type>const String &amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>int16_t</type>
+          <declname>lowAlarm</declname>
+        </param>
+        <param>
+          <type>int16_t</type>
+          <declname>highAlarm</declname>
+        </param>
+        <param>
+          <type>const String &amp;</type>
+          <declname>ds18b20RomString</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>pt1000ChipSelect</declname>
+          <defval>-1</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ConfigManager.h" line="108" column="10" bodyfile="src/ConfigManager.cpp" bodystart="429" bodyend="445"/>
+        <references refid="class_config_manager_1a68eeba761f112013757ddf298454407d" compoundref="_config_manager_8h" startline="23">controller</references>
+        <references refid="class_config_manager_1a55b79da91c57039c483ddf5fceabbd64" compoundref="_config_manager_8cpp" startline="279" endline="320">savePointsConfig</references>
+        <references refid="class_measurement_point_1aefb47fef40f33161be5c6fddf0cf6329" compoundref="_measurement_point_8cpp" startline="86" endline="96">MeasurementPoint::setHighAlarmThreshold</references>
+        <references refid="class_measurement_point_1ac780917beebc11d705824cab8f43b94d" compoundref="_measurement_point_8cpp" startline="72" endline="84">MeasurementPoint::setLowAlarmThreshold</references>
+        <references refid="class_measurement_point_1ae3abe83ed3e7979a906c7d753ac9d22d" compoundref="_measurement_point_8cpp" startline="61" endline="70">MeasurementPoint::setName</references>
+      </memberdef>
+      <memberdef kind="function" id="class_config_manager_1aa15fcaf6330fd73a87e8c6f63e8ab9d5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConfigManager::saveAlarmsConfig</definition>
+        <argsstring>()</argsstring>
+        <name>saveAlarmsConfig</name>
+        <qualifiedname>ConfigManager::saveAlarmsConfig</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ConfigManager.h" line="111" column="10" bodyfile="src/ConfigManager.cpp" bodystart="448" bodyend="482"/>
+        <references refid="class_config_manager_1a68eeba761f112013757ddf298454407d" compoundref="_config_manager_8h" startline="23">controller</references>
+        <references refid="class_alarm_1a952efd43b6a887659d56815bd5119d60" compoundref="_alarm_8h" startline="96" endline="96">Alarm::getHysteresis</references>
+        <references refid="class_alarm_1ab12dd2af567dd87228d9404dcce5b0c0" compoundref="_alarm_8h" startline="90" endline="90">Alarm::getPointAddress</references>
+        <references refid="class_alarm_1abe89e376d8cacb582717ad6a65526ee8" compoundref="_alarm_8h" startline="48" endline="48">Alarm::getPriority</references>
+        <references refid="class_alarm_1acfac41af4628d83d3fdcc11c8fb55069" compoundref="_alarm_8h" startline="46" endline="46">Alarm::getType</references>
+        <references refid="class_alarm_1ab1d04e5776db50454c72fd0937acdc37" compoundref="_alarm_8h" startline="88" endline="88">Alarm::isEnabled</references>
+        <referencedby refid="class_config_manager_1ae605c999fabc6344511f455618655326" compoundref="_config_manager_8cpp" startline="1014" endline="1546">alarmsAPI</referencedby>
+        <referencedby refid="class_config_manager_1a9b7af07b85bf9cc3ac05603db6e89fd2" compoundref="_config_manager_8cpp" startline="841" endline="969">csvImportExportAPI</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_config_manager_1a468923ce5f2edecd218b29605d75426f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConfigManager::loadAlarmsConfig</definition>
+        <argsstring>()</argsstring>
+        <name>loadAlarmsConfig</name>
+        <qualifiedname>ConfigManager::loadAlarmsConfig</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ConfigManager.h" line="112" column="10" bodyfile="src/ConfigManager.cpp" bodystart="487" bodyend="571"/>
+        <references refid="class_config_manager_1a68eeba761f112013757ddf298454407d" compoundref="_config_manager_8h" startline="23">controller</references>
+        <references refid="class_alarm_1acb8f203b2e2317c1f835bb4b19123f3f" compoundref="_alarm_8cpp" startline="423" endline="432">Alarm::setEnabled</references>
+        <references refid="class_alarm_1a8d031874090c0c0e548a1f2e41ea4979" compoundref="_alarm_8cpp" startline="409" endline="421">Alarm::setHysteresis</references>
+        <referencedby refid="class_config_manager_1a0497343220fc493f5cf9574922508908" compoundref="_config_manager_8cpp" startline="103" endline="215">begin</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_config_manager_1ab09d27551f2f71ad0c19452dabbd9061" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_c_s_v_config_manager" kindref="compound">CSVConfigManager</ref> &amp;</type>
+        <definition>CSVConfigManager &amp; ConfigManager::getCSVManager</definition>
+        <argsstring>()</argsstring>
+        <name>getCSVManager</name>
+        <qualifiedname>ConfigManager::getCSVManager</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ConfigManager.h" line="114" column="22" bodyfile="include/ConfigManager.h" bodystart="114" bodyend="114"/>
+        <references refid="class_config_manager_1a5591a9b29e8c6e1c3f3dc50c0e6e1267" compoundref="_config_manager_8h" startline="20">csvManager</references>
+      </memberdef>
+      <memberdef kind="function" id="class_config_manager_1a1d2c3a4f6b321f3e55394f0427781f71" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint16_t</type>
+        <definition>uint16_t ConfigManager::getAcknowledgedDelayCritical</definition>
+        <argsstring>()</argsstring>
+        <name>getAcknowledgedDelayCritical</name>
+        <qualifiedname>ConfigManager::getAcknowledgedDelayCritical</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ConfigManager.h" line="116" column="14" bodyfile="include/ConfigManager.h" bodystart="116" bodyend="116"/>
+        <references refid="class_config_manager_1a3948181c2e8ae2241d0e95c5afd47aa9" compoundref="_config_manager_8h" startline="21">conf</references>
+        <referencedby refid="class_config_manager_1ae605c999fabc6344511f455618655326" compoundref="_config_manager_8cpp" startline="1014" endline="1546">alarmsAPI</referencedby>
+        <referencedby refid="class_config_manager_1a0497343220fc493f5cf9574922508908" compoundref="_config_manager_8cpp" startline="103" endline="215">begin</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_config_manager_1a92531033b9698550c95e70408d3ca928" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint16_t</type>
+        <definition>uint16_t ConfigManager::getAcknowledgedDelayHigh</definition>
+        <argsstring>()</argsstring>
+        <name>getAcknowledgedDelayHigh</name>
+        <qualifiedname>ConfigManager::getAcknowledgedDelayHigh</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ConfigManager.h" line="117" column="14" bodyfile="include/ConfigManager.h" bodystart="117" bodyend="117"/>
+        <references refid="class_config_manager_1a3948181c2e8ae2241d0e95c5afd47aa9" compoundref="_config_manager_8h" startline="21">conf</references>
+        <referencedby refid="class_config_manager_1ae605c999fabc6344511f455618655326" compoundref="_config_manager_8cpp" startline="1014" endline="1546">alarmsAPI</referencedby>
+        <referencedby refid="class_config_manager_1a0497343220fc493f5cf9574922508908" compoundref="_config_manager_8cpp" startline="103" endline="215">begin</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_config_manager_1ae5e8f849e85d0a2779a650136b7011f9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint16_t</type>
+        <definition>uint16_t ConfigManager::getAcknowledgedDelayMedium</definition>
+        <argsstring>()</argsstring>
+        <name>getAcknowledgedDelayMedium</name>
+        <qualifiedname>ConfigManager::getAcknowledgedDelayMedium</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ConfigManager.h" line="118" column="14" bodyfile="include/ConfigManager.h" bodystart="118" bodyend="118"/>
+        <references refid="class_config_manager_1a3948181c2e8ae2241d0e95c5afd47aa9" compoundref="_config_manager_8h" startline="21">conf</references>
+        <referencedby refid="class_config_manager_1ae605c999fabc6344511f455618655326" compoundref="_config_manager_8cpp" startline="1014" endline="1546">alarmsAPI</referencedby>
+        <referencedby refid="class_config_manager_1a0497343220fc493f5cf9574922508908" compoundref="_config_manager_8cpp" startline="103" endline="215">begin</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_config_manager_1a8211fcec922c77f0245ea1eb95be5e4d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint16_t</type>
+        <definition>uint16_t ConfigManager::getAcknowledgedDelayLow</definition>
+        <argsstring>()</argsstring>
+        <name>getAcknowledgedDelayLow</name>
+        <qualifiedname>ConfigManager::getAcknowledgedDelayLow</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ConfigManager.h" line="119" column="14" bodyfile="include/ConfigManager.h" bodystart="119" bodyend="119"/>
+        <references refid="class_config_manager_1a3948181c2e8ae2241d0e95c5afd47aa9" compoundref="_config_manager_8h" startline="21">conf</references>
+        <referencedby refid="class_config_manager_1ae605c999fabc6344511f455618655326" compoundref="_config_manager_8cpp" startline="1014" endline="1546">alarmsAPI</referencedby>
+        <referencedby refid="class_config_manager_1a0497343220fc493f5cf9574922508908" compoundref="_config_manager_8cpp" startline="103" endline="215">begin</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="9">
+        <label>Alarm</label>
+        <link refid="class_alarm"/>
+        <childnode refid="6" relation="usage">
+          <edgelabel>-_source</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>CSVConfigManager</label>
+        <link refid="class_c_s_v_config_manager"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>-_controller</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>ConfigManager</label>
+        <link refid="class_config_manager"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>-settingsCSVManager</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>-csvManager</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>-controller</edgelabel>
+        </childnode>
+        <childnode refid="1" relation="usage">
+          <edgelabel>-instance</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>IndicatorInterface</label>
+        <link refid="class_indicator_interface"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>-_instance</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>MeasurementPoint</label>
+        <link refid="class_measurement_point"/>
+        <childnode refid="7" relation="usage">
+          <edgelabel>-boundSensor</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>RegisterMap</label>
+        <link refid="class_register_map"/>
+      </node>
+      <node id="7">
+        <label>Sensor</label>
+        <link refid="class_sensor"/>
+      </node>
+      <node id="2">
+        <label>SettingsCSVManager</label>
+        <link refid="class_settings_c_s_v_manager"/>
+      </node>
+      <node id="4">
+        <label>TemperatureController</label>
+        <link refid="class_temperature_controller"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>-indicator</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>-dsPoints</edgelabel>
+          <edgelabel>-ptPoints</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>-registerMap</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>-_currentDisplayedAlarm</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="include/ConfigManager.h" line="17" column="1" bodyfile="include/ConfigManager.h" bodystart="17" bodyend="120"/>
+    <listofallmembers>
+      <member refid="class_config_manager_1adaa7d1493461e3f2684b92ffe5db62d4" prot="private" virt="non-virtual"><scope>ConfigManager</scope><name>_applySettingsWithoutRestart</name></member>
+      <member refid="class_config_manager_1ae605c999fabc6344511f455618655326" prot="private" virt="non-virtual"><scope>ConfigManager</scope><name>alarmsAPI</name></member>
+      <member refid="class_config_manager_1a6416afa7d86c20400ee661cdad9bdab1" prot="private" virt="non-virtual"><scope>ConfigManager</scope><name>basicAPI</name></member>
+      <member refid="class_config_manager_1a0497343220fc493f5cf9574922508908" prot="public" virt="non-virtual"><scope>ConfigManager</scope><name>begin</name></member>
+      <member refid="class_config_manager_1a3948181c2e8ae2241d0e95c5afd47aa9" prot="private" virt="non-virtual"><scope>ConfigManager</scope><name>conf</name></member>
+      <member refid="class_config_manager_1a555afa40c6353fe0fe1765cc064dc920" prot="private" virt="non-virtual"><scope>ConfigManager</scope><name>confHelper</name></member>
+      <member refid="class_config_manager_1abb5e68671c5a8087abb50b289d3522b4" prot="public" virt="non-virtual"><scope>ConfigManager</scope><name>ConfigManager</name></member>
+      <member refid="class_config_manager_1a83b4217012bf8eda57fbfd8deca09dd2" prot="public" virt="non-virtual"><scope>ConfigManager</scope><name>connectWiFi</name></member>
+      <member refid="class_config_manager_1a68eeba761f112013757ddf298454407d" prot="private" virt="non-virtual"><scope>ConfigManager</scope><name>controller</name></member>
+      <member refid="class_config_manager_1a9b7af07b85bf9cc3ac05603db6e89fd2" prot="private" virt="non-virtual"><scope>ConfigManager</scope><name>csvImportExportAPI</name></member>
+      <member refid="class_config_manager_1a5591a9b29e8c6e1c3f3dc50c0e6e1267" prot="private" virt="non-virtual"><scope>ConfigManager</scope><name>csvManager</name></member>
+      <member refid="class_config_manager_1a3b28982c79587a287c8ddf0acf47f71d" prot="private" virt="non-virtual"><scope>ConfigManager</scope><name>downloadAPI</name></member>
+      <member refid="class_config_manager_1a1d2c3a4f6b321f3e55394f0427781f71" prot="public" virt="non-virtual"><scope>ConfigManager</scope><name>getAcknowledgedDelayCritical</name></member>
+      <member refid="class_config_manager_1a92531033b9698550c95e70408d3ca928" prot="public" virt="non-virtual"><scope>ConfigManager</scope><name>getAcknowledgedDelayHigh</name></member>
+      <member refid="class_config_manager_1a8211fcec922c77f0245ea1eb95be5e4d" prot="public" virt="non-virtual"><scope>ConfigManager</scope><name>getAcknowledgedDelayLow</name></member>
+      <member refid="class_config_manager_1ae5e8f849e85d0a2779a650136b7011f9" prot="public" virt="non-virtual"><scope>ConfigManager</scope><name>getAcknowledgedDelayMedium</name></member>
+      <member refid="class_config_manager_1a70df78bf8e301f46cbc14bf6f36c0a0e" prot="public" virt="non-virtual"><scope>ConfigManager</scope><name>getAutoDiscover</name></member>
+      <member refid="class_config_manager_1ab09d27551f2f71ad0c19452dabbd9061" prot="public" virt="non-virtual"><scope>ConfigManager</scope><name>getCSVManager</name></member>
+      <member refid="class_config_manager_1a355c8fe8e7b63d90f2ab1e3957006d7b" prot="public" virt="non-virtual"><scope>ConfigManager</scope><name>getDeviceId</name></member>
+      <member refid="class_config_manager_1a3909fbe925c15b47925bacf2b0b4d97b" prot="public" virt="non-virtual"><scope>ConfigManager</scope><name>getHostname</name></member>
+      <member refid="class_config_manager_1af025d7d473c39f95ab26029607e32cc6" prot="public" virt="non-virtual"><scope>ConfigManager</scope><name>getMeasurementPeriod</name></member>
+      <member refid="class_config_manager_1abd6818ba586e506fa20886b51ff8dfe0" prot="public" virt="non-virtual"><scope>ConfigManager</scope><name>getModbusAddress</name></member>
+      <member refid="class_config_manager_1a1ddcfeae8bd9fa5f1847b33a8ff61c09" prot="public" virt="non-virtual"><scope>ConfigManager</scope><name>getModbusBaudRate</name></member>
+      <member refid="class_config_manager_1a8edfe5674a998837f2bb33f8c24ebca1" prot="public" virt="non-virtual"><scope>ConfigManager</scope><name>getRxPin</name></member>
+      <member refid="class_config_manager_1af29e702703a41dc0fe8f393b4df3cba9" prot="public" virt="non-virtual"><scope>ConfigManager</scope><name>getTxPin</name></member>
+      <member refid="class_config_manager_1ac880f2edae50caef8bcc750f7260a896" prot="public" virt="non-virtual"><scope>ConfigManager</scope><name>getWebServer</name></member>
+      <member refid="class_config_manager_1aa67267eea5f43007958d1959a3d05eff" prot="public" virt="non-virtual"><scope>ConfigManager</scope><name>getWifiPassword</name></member>
+      <member refid="class_config_manager_1a0c6922c0d3cfb6016ffea2a58149ee35" prot="public" virt="non-virtual"><scope>ConfigManager</scope><name>getWifiSSID</name></member>
+      <member refid="class_config_manager_1a890a76b6aebb1246ca45248967447b34" prot="private" virt="non-virtual"><scope>ConfigManager</scope><name>instance</name></member>
+      <member refid="class_config_manager_1a9fadc4167ae0c9e7cfc27af9b1bc5774" prot="public" virt="non-virtual"><scope>ConfigManager</scope><name>isModbusEnabled</name></member>
+      <member refid="class_config_manager_1a65a98a3adfa9da8d6d66175eb8dad3a3" prot="public" virt="non-virtual"><scope>ConfigManager</scope><name>isPortalActive</name></member>
+      <member refid="class_config_manager_1a468923ce5f2edecd218b29605d75426f" prot="public" virt="non-virtual"><scope>ConfigManager</scope><name>loadAlarmsConfig</name></member>
+      <member refid="class_config_manager_1a04edc14e642ecadb9ccb87be05d1d878" prot="public" virt="non-virtual"><scope>ConfigManager</scope><name>loadPointsConfig</name></member>
+      <member refid="class_config_manager_1a9e977107b4795fcbce0482711ff1ce7a" prot="private" virt="non-virtual"><scope>ConfigManager</scope><name>logsAPI</name></member>
+      <member refid="class_config_manager_1a93a63ddc3f7efd83e80345826493a45d" prot="private" virt="non-virtual"><scope>ConfigManager</scope><name>onConfigChanged</name></member>
+      <member refid="class_config_manager_1a471a844085c27f3a8a8f9394d9c14677" prot="private" virt="non-virtual"><scope>ConfigManager</scope><name>pointsAPI</name></member>
+      <member refid="class_config_manager_1a9569d8754bbcd81768dfb351b73bcea0" prot="private" virt="non-virtual"><scope>ConfigManager</scope><name>portalActive</name></member>
+      <member refid="class_config_manager_1a798727e00c1f0ff18044bc4ae097be2e" prot="public" virt="non-virtual"><scope>ConfigManager</scope><name>resetMinMaxValues</name></member>
+      <member refid="class_config_manager_1aa15fcaf6330fd73a87e8c6f63e8ab9d5" prot="public" virt="non-virtual"><scope>ConfigManager</scope><name>saveAlarmsConfig</name></member>
+      <member refid="class_config_manager_1a55b79da91c57039c483ddf5fceabbd64" prot="public" virt="non-virtual"><scope>ConfigManager</scope><name>savePointsConfig</name></member>
+      <member refid="class_config_manager_1a45b1ce1f09401af0b6f700cf4388b233" prot="private" virt="non-virtual"><scope>ConfigManager</scope><name>sensorAPI</name></member>
+      <member refid="class_config_manager_1a773fb5f7cd89fa594bd05184e8af14a0" prot="private" virt="non-virtual"><scope>ConfigManager</scope><name>server</name></member>
+      <member refid="class_config_manager_1afe696eabbbdf537e88b3b5b33c009b31" prot="private" virt="non-virtual"><scope>ConfigManager</scope><name>settingsCSVManager</name></member>
+      <member refid="class_config_manager_1a2f271ab2a1e8014cebe1e26afe9974df" prot="public" virt="non-virtual"><scope>ConfigManager</scope><name>update</name></member>
+      <member refid="class_config_manager_1a0daf50bbd376beb24a5400a86e893338" prot="public" virt="non-virtual"><scope>ConfigManager</scope><name>updatePointInConfig</name></member>
+      <member refid="class_config_manager_1a7fa65fdff98bdd5bbbf72196bd9ccf17" prot="public" virt="non-virtual"><scope>ConfigManager</scope><name>~ConfigManager</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

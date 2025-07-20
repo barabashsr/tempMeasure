@@ -1,0 +1,1276 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="class_alarm" kind="class" language="C++" prot="public">
+    <compoundname>Alarm</compoundname>
+    <includes refid="_alarm_8h" local="no">Alarm.h</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_alarm_1af86f7649c30db0d2cd6d4498032bb20d" prot="private" static="no" mutable="no">
+        <type><ref refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2" kindref="member">AlarmType</ref></type>
+        <definition>AlarmType Alarm::_type</definition>
+        <argsstring></argsstring>
+        <name>_type</name>
+        <qualifiedname>Alarm::_type</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="107" column="15" bodyfile="include/Alarm.h" bodystart="107" bodyend="-1"/>
+        <referencedby refid="class_alarm_1a28229f40ec51928641f04cd1e505bd6c" compoundref="_alarm_8cpp" startline="157" endline="221">_checkCondition</referencedby>
+        <referencedby refid="class_alarm_1aa14f5a764303b269f04573867e2e4fc8" compoundref="_alarm_8cpp" startline="69" endline="98">acknowledge</referencedby>
+        <referencedby refid="class_alarm_1abf159b68e429d66de4ab2d10c2ccd44b" compoundref="_alarm_8cpp" startline="22" endline="45">Alarm</referencedby>
+        <referencedby refid="class_alarm_1a480e1d6d474da0cd4e5dd557e41cb87e" compoundref="_alarm_8cpp" startline="300" endline="326">getDisplayText</referencedby>
+        <referencedby refid="class_alarm_1acfac41af4628d83d3fdcc11c8fb55069" compoundref="_alarm_8h" startline="46" endline="46">getType</referencedby>
+        <referencedby refid="class_alarm_1abd578ec75a5ac9bce00b7ce7207c5d8c" compoundref="_alarm_8cpp" startline="340" endline="348">getTypeString</referencedby>
+        <referencedby refid="class_alarm_1a2a6049ea9b003e51f5ac17aba40bb1ad" compoundref="_alarm_8cpp" startline="379" endline="383">operator==</referencedby>
+        <referencedby refid="class_alarm_1abc87fe39e6a9b5beb9f09df780f67621" compoundref="_alarm_8cpp" startline="441" endline="586">updateCondition</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_alarm_1a57c98ffd9577dc379176e3402d03913c" prot="private" static="no" mutable="no">
+        <type><ref refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eb" kindref="member">AlarmStage</ref></type>
+        <definition>AlarmStage Alarm::_stage</definition>
+        <argsstring></argsstring>
+        <name>_stage</name>
+        <qualifiedname>Alarm::_stage</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="108" column="16" bodyfile="include/Alarm.h" bodystart="108" bodyend="-1"/>
+        <referencedby refid="class_alarm_1a28229f40ec51928641f04cd1e505bd6c" compoundref="_alarm_8cpp" startline="157" endline="221">_checkCondition</referencedby>
+        <referencedby refid="class_alarm_1aa14f5a764303b269f04573867e2e4fc8" compoundref="_alarm_8cpp" startline="69" endline="98">acknowledge</referencedby>
+        <referencedby refid="class_alarm_1abf159b68e429d66de4ab2d10c2ccd44b" compoundref="_alarm_8cpp" startline="22" endline="45">Alarm</referencedby>
+        <referencedby refid="class_alarm_1adc66e3d22e173b00c59b040369030a17" compoundref="_alarm_8cpp" startline="102" endline="119">clear</referencedby>
+        <referencedby refid="class_alarm_1a1ab55390c07c38764b8264297b741b05" compoundref="_alarm_8cpp" startline="605" endline="616">getAcknowledgedTimeLeft</referencedby>
+        <referencedby refid="class_alarm_1a480e1d6d474da0cd4e5dd557e41cb87e" compoundref="_alarm_8cpp" startline="300" endline="326">getDisplayText</referencedby>
+        <referencedby refid="class_alarm_1af01cabf2a19aa3b74848f0a5483ba3fb" compoundref="_alarm_8h" startline="47" endline="47">getStage</referencedby>
+        <referencedby refid="class_alarm_1a5f0ead4dbd06aa64bd316d99dc587302" compoundref="_alarm_8cpp" startline="350" endline="359">getStageString</referencedby>
+        <referencedby refid="class_alarm_1a14fab6d447b1eeef21234ffcf47986bf" compoundref="_alarm_8h" startline="55" endline="55">isAcknowledged</referencedby>
+        <referencedby refid="class_alarm_1a6404e8478e8c2d726e9399ea1f2268b2" compoundref="_alarm_8cpp" startline="598" endline="603">isAcknowledgedDelayElapsed</referencedby>
+        <referencedby refid="class_alarm_1ad97af04ffed790b34e193142abd501ce" compoundref="_alarm_8h" startline="54" endline="54">isActive</referencedby>
+        <referencedby refid="class_alarm_1aa14465fadcd29ef9b872f4b679d1d5b3" compoundref="_alarm_8cpp" startline="293" endline="298">isDelayElapsed</referencedby>
+        <referencedby refid="class_alarm_1a36ca346131618f5995dbea4f00f2a4dc" compoundref="_alarm_8h" startline="56" endline="56">isResolved</referencedby>
+        <referencedby refid="class_alarm_1af8d75ee8622a2a96f4bc9b408e9668e5" compoundref="_alarm_8cpp" startline="138" endline="155">reactivate</referencedby>
+        <referencedby refid="class_alarm_1a73e7673d61f82aa21441c75f2cee2c6f" compoundref="_alarm_8cpp" startline="121" endline="135">resolve</referencedby>
+        <referencedby refid="class_alarm_1a79ff8006ed51c565db4395350a25ad4e" compoundref="_alarm_8cpp" startline="436" endline="438">setStage</referencedby>
+        <referencedby refid="class_alarm_1abc87fe39e6a9b5beb9f09df780f67621" compoundref="_alarm_8cpp" startline="441" endline="586">updateCondition</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_alarm_1a4b4fbc531464f77b58da6954dd146d65" prot="private" static="no" mutable="no">
+        <type><ref refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321b" kindref="member">AlarmPriority</ref></type>
+        <definition>AlarmPriority Alarm::_priority</definition>
+        <argsstring></argsstring>
+        <name>_priority</name>
+        <qualifiedname>Alarm::_priority</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="109" column="19" bodyfile="include/Alarm.h" bodystart="109" bodyend="-1"/>
+        <referencedby refid="class_alarm_1a052a73879f5cd039f6f7cb7ce02e6a9d" compoundref="_alarm_8cpp" startline="361" endline="369">_getPriorityString</referencedby>
+        <referencedby refid="class_alarm_1abf159b68e429d66de4ab2d10c2ccd44b" compoundref="_alarm_8cpp" startline="22" endline="45">Alarm</referencedby>
+        <referencedby refid="class_alarm_1abe89e376d8cacb582717ad6a65526ee8" compoundref="_alarm_8h" startline="48" endline="48">getPriority</referencedby>
+        <referencedby refid="class_alarm_1ab9867ec0c314549960584f4ae01328f8" compoundref="_alarm_8cpp" startline="371" endline="377">operator&lt;</referencedby>
+        <referencedby refid="class_alarm_1a5095c54c304a52ebbaca5a2ea74059cd" compoundref="_alarm_8cpp" startline="395" endline="407">setPriority</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_alarm_1a1f87216f47e3421c09b6a2531963b24d" prot="private" static="no" mutable="no">
+        <type><ref refid="class_measurement_point" kindref="compound">MeasurementPoint</ref> *</type>
+        <definition>MeasurementPoint* Alarm::_source</definition>
+        <argsstring></argsstring>
+        <name>_source</name>
+        <qualifiedname>Alarm::_source</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="110" column="22" bodyfile="include/Alarm.h" bodystart="110" bodyend="-1"/>
+        <referencedby refid="class_alarm_1a28229f40ec51928641f04cd1e505bd6c" compoundref="_alarm_8cpp" startline="157" endline="221">_checkCondition</referencedby>
+        <referencedby refid="class_alarm_1aa14f5a764303b269f04573867e2e4fc8" compoundref="_alarm_8cpp" startline="69" endline="98">acknowledge</referencedby>
+        <referencedby refid="class_alarm_1abf159b68e429d66de4ab2d10c2ccd44b" compoundref="_alarm_8cpp" startline="22" endline="45">Alarm</referencedby>
+        <referencedby refid="class_alarm_1adc66e3d22e173b00c59b040369030a17" compoundref="_alarm_8cpp" startline="102" endline="119">clear</referencedby>
+        <referencedby refid="class_alarm_1a480e1d6d474da0cd4e5dd557e41cb87e" compoundref="_alarm_8cpp" startline="300" endline="326">getDisplayText</referencedby>
+        <referencedby refid="class_alarm_1ab12dd2af567dd87228d9404dcce5b0c0" compoundref="_alarm_8h" startline="90" endline="90">getPointAddress</referencedby>
+        <referencedby refid="class_alarm_1aa86c4f3280ad82c9679af1c765a6bc92" compoundref="_alarm_8h" startline="49" endline="49">getSource</referencedby>
+        <referencedby refid="class_alarm_1adaf4b74537e11d5643ba5a8ae07fe10e" compoundref="_alarm_8cpp" startline="328" endline="334">getStatusText</referencedby>
+        <referencedby refid="class_alarm_1a2a6049ea9b003e51f5ac17aba40bb1ad" compoundref="_alarm_8cpp" startline="379" endline="383">operator==</referencedby>
+        <referencedby refid="class_alarm_1af8d75ee8622a2a96f4bc9b408e9668e5" compoundref="_alarm_8cpp" startline="138" endline="155">reactivate</referencedby>
+        <referencedby refid="class_alarm_1a73e7673d61f82aa21441c75f2cee2c6f" compoundref="_alarm_8cpp" startline="121" endline="135">resolve</referencedby>
+        <referencedby refid="class_alarm_1acb8f203b2e2317c1f835bb4b19123f3f" compoundref="_alarm_8cpp" startline="423" endline="432">setEnabled</referencedby>
+        <referencedby refid="class_alarm_1a8d031874090c0c0e548a1f2e41ea4979" compoundref="_alarm_8cpp" startline="409" endline="421">setHysteresis</referencedby>
+        <referencedby refid="class_alarm_1a5095c54c304a52ebbaca5a2ea74059cd" compoundref="_alarm_8cpp" startline="395" endline="407">setPriority</referencedby>
+        <referencedby refid="class_alarm_1abc87fe39e6a9b5beb9f09df780f67621" compoundref="_alarm_8cpp" startline="441" endline="586">updateCondition</referencedby>
+        <referencedby refid="class_alarm_1adb5fc73041badc6a082b78874559c002" compoundref="_alarm_8cpp" startline="56" endline="66">~Alarm</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_alarm_1a605637fd697184aa6c1a003e80703a47" prot="private" static="no" mutable="no">
+        <type>unsigned long</type>
+        <definition>unsigned long Alarm::_timestamp</definition>
+        <argsstring></argsstring>
+        <name>_timestamp</name>
+        <qualifiedname>Alarm::_timestamp</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="113" column="19" bodyfile="include/Alarm.h" bodystart="113" bodyend="-1"/>
+        <referencedby refid="class_alarm_1abf159b68e429d66de4ab2d10c2ccd44b" compoundref="_alarm_8cpp" startline="22" endline="45">Alarm</referencedby>
+        <referencedby refid="class_alarm_1a7a4a3290a6a659542f82fe08a96736a8" compoundref="_alarm_8h" startline="50" endline="50">getTimestamp</referencedby>
+        <referencedby refid="class_alarm_1ab9867ec0c314549960584f4ae01328f8" compoundref="_alarm_8cpp" startline="371" endline="377">operator&lt;</referencedby>
+        <referencedby refid="class_alarm_1a2a6049ea9b003e51f5ac17aba40bb1ad" compoundref="_alarm_8cpp" startline="379" endline="383">operator==</referencedby>
+        <referencedby refid="class_alarm_1abc87fe39e6a9b5beb9f09df780f67621" compoundref="_alarm_8cpp" startline="441" endline="586">updateCondition</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_alarm_1a25eda4c86523595ed5630424ab66e2ec" prot="private" static="no" mutable="no">
+        <type>unsigned long</type>
+        <definition>unsigned long Alarm::_acknowledgedTime</definition>
+        <argsstring></argsstring>
+        <name>_acknowledgedTime</name>
+        <qualifiedname>Alarm::_acknowledgedTime</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="114" column="19" bodyfile="include/Alarm.h" bodystart="114" bodyend="-1"/>
+        <referencedby refid="class_alarm_1aa14f5a764303b269f04573867e2e4fc8" compoundref="_alarm_8cpp" startline="69" endline="98">acknowledge</referencedby>
+        <referencedby refid="class_alarm_1abf159b68e429d66de4ab2d10c2ccd44b" compoundref="_alarm_8cpp" startline="22" endline="45">Alarm</referencedby>
+        <referencedby refid="class_alarm_1afaa86db89313d8b1c211c3c8faf5b898" compoundref="_alarm_8h" startline="51" endline="51">getAcknowledgedTime</referencedby>
+        <referencedby refid="class_alarm_1a1ab55390c07c38764b8264297b741b05" compoundref="_alarm_8cpp" startline="605" endline="616">getAcknowledgedTimeLeft</referencedby>
+        <referencedby refid="class_alarm_1a6404e8478e8c2d726e9399ea1f2268b2" compoundref="_alarm_8cpp" startline="598" endline="603">isAcknowledgedDelayElapsed</referencedby>
+        <referencedby refid="class_alarm_1af8d75ee8622a2a96f4bc9b408e9668e5" compoundref="_alarm_8cpp" startline="138" endline="155">reactivate</referencedby>
+        <referencedby refid="class_alarm_1abc87fe39e6a9b5beb9f09df780f67621" compoundref="_alarm_8cpp" startline="441" endline="586">updateCondition</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_alarm_1ad071235bbd9594fcf2adb144e88344c0" prot="private" static="no" mutable="no">
+        <type>unsigned long</type>
+        <definition>unsigned long Alarm::_clearedTime</definition>
+        <argsstring></argsstring>
+        <name>_clearedTime</name>
+        <qualifiedname>Alarm::_clearedTime</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="115" column="19" bodyfile="include/Alarm.h" bodystart="115" bodyend="-1"/>
+        <referencedby refid="class_alarm_1abf159b68e429d66de4ab2d10c2ccd44b" compoundref="_alarm_8cpp" startline="22" endline="45">Alarm</referencedby>
+        <referencedby refid="class_alarm_1adc66e3d22e173b00c59b040369030a17" compoundref="_alarm_8cpp" startline="102" endline="119">clear</referencedby>
+        <referencedby refid="class_alarm_1a478b46ecceac6f58202312a4172317df" compoundref="_alarm_8h" startline="52" endline="52">getClearedTime</referencedby>
+        <referencedby refid="class_alarm_1aa14465fadcd29ef9b872f4b679d1d5b3" compoundref="_alarm_8cpp" startline="293" endline="298">isDelayElapsed</referencedby>
+        <referencedby refid="class_alarm_1af8d75ee8622a2a96f4bc9b408e9668e5" compoundref="_alarm_8cpp" startline="138" endline="155">reactivate</referencedby>
+        <referencedby refid="class_alarm_1abc87fe39e6a9b5beb9f09df780f67621" compoundref="_alarm_8cpp" startline="441" endline="586">updateCondition</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_alarm_1a720fb269ec5c87744fedfecf8d060a95" prot="private" static="no" mutable="no">
+        <type>int16_t</type>
+        <definition>int16_t Alarm::_hysteresis</definition>
+        <argsstring></argsstring>
+        <name>_hysteresis</name>
+        <qualifiedname>Alarm::_hysteresis</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="117" column="13" bodyfile="include/Alarm.h" bodystart="117" bodyend="-1"/>
+        <referencedby refid="class_alarm_1a28229f40ec51928641f04cd1e505bd6c" compoundref="_alarm_8cpp" startline="157" endline="221">_checkCondition</referencedby>
+        <referencedby refid="class_alarm_1abf159b68e429d66de4ab2d10c2ccd44b" compoundref="_alarm_8cpp" startline="22" endline="45">Alarm</referencedby>
+        <referencedby refid="class_alarm_1a952efd43b6a887659d56815bd5119d60" compoundref="_alarm_8h" startline="96" endline="96">getHysteresis</referencedby>
+        <referencedby refid="class_alarm_1a8d031874090c0c0e548a1f2e41ea4979" compoundref="_alarm_8cpp" startline="409" endline="421">setHysteresis</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_alarm_1a483c0308c4c2e27047ae10f194f4f414" prot="private" static="no" mutable="no">
+        <type>unsigned long</type>
+        <definition>unsigned long Alarm::_delayTime</definition>
+        <argsstring></argsstring>
+        <name>_delayTime</name>
+        <qualifiedname>Alarm::_delayTime</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="120" column="19" bodyfile="include/Alarm.h" bodystart="120" bodyend="-1"/>
+        <referencedby refid="class_alarm_1abf159b68e429d66de4ab2d10c2ccd44b" compoundref="_alarm_8cpp" startline="22" endline="45">Alarm</referencedby>
+        <referencedby refid="class_alarm_1a70e0d351966a5cbe9fc77785f6d55939" compoundref="_alarm_8h" startline="73" endline="73">getDelayTime</referencedby>
+        <referencedby refid="class_alarm_1aa14465fadcd29ef9b872f4b679d1d5b3" compoundref="_alarm_8cpp" startline="293" endline="298">isDelayElapsed</referencedby>
+        <referencedby refid="class_alarm_1a34e3136dd5e8a5ca9fd2ac3a0c442ca3" compoundref="_alarm_8h" startline="72" endline="72">setDelayTime</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_alarm_1af47cc719207c7988954c082b0b80896d" prot="private" static="no" mutable="no">
+        <type>String</type>
+        <definition>String Alarm::_message</definition>
+        <argsstring></argsstring>
+        <name>_message</name>
+        <qualifiedname>Alarm::_message</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="123" column="12" bodyfile="include/Alarm.h" bodystart="123" bodyend="-1"/>
+        <referencedby refid="class_alarm_1a11b2da560dbc8653fa9dec671a78b980" compoundref="_alarm_8cpp" startline="336" endline="338">_updateMessage</referencedby>
+        <referencedby refid="class_alarm_1a374523d1bf014ab315a48b8f0390c04f" compoundref="_alarm_8h" startline="53" endline="53">getMessage</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_alarm_1a784bac1bc016f0facc76176d893e3a90" prot="private" static="no" mutable="no">
+        <type>String</type>
+        <definition>String Alarm::_configKey</definition>
+        <argsstring></argsstring>
+        <name>_configKey</name>
+        <qualifiedname>Alarm::_configKey</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="131" column="12" bodyfile="include/Alarm.h" bodystart="131" bodyend="-1"/>
+        <referencedby refid="class_alarm_1abf159b68e429d66de4ab2d10c2ccd44b" compoundref="_alarm_8cpp" startline="22" endline="45">Alarm</referencedby>
+        <referencedby refid="class_alarm_1ac096a4dfdf5d2cd201ff0a5a54b5ce42" compoundref="_alarm_8cpp" startline="387" endline="389">getConfigKey</referencedby>
+        <referencedby refid="class_alarm_1ad116a3e8b622810e1769568fbac16379" compoundref="_alarm_8cpp" startline="391" endline="393">setConfigKey</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_alarm_1af532c7945d25b47adf55d60cb91c86ae" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Alarm::_enabled</definition>
+        <argsstring></argsstring>
+        <name>_enabled</name>
+        <qualifiedname>Alarm::_enabled</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="132" column="10" bodyfile="include/Alarm.h" bodystart="132" bodyend="-1"/>
+        <referencedby refid="class_alarm_1abf159b68e429d66de4ab2d10c2ccd44b" compoundref="_alarm_8cpp" startline="22" endline="45">Alarm</referencedby>
+        <referencedby refid="class_alarm_1ab1d04e5776db50454c72fd0937acdc37" compoundref="_alarm_8h" startline="88" endline="88">isEnabled</referencedby>
+        <referencedby refid="class_alarm_1acb8f203b2e2317c1f835bb4b19123f3f" compoundref="_alarm_8cpp" startline="423" endline="432">setEnabled</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_alarm_1a4ab562dd3179820f3694cbbd23b9dad5" prot="private" static="no" mutable="no">
+        <type>unsigned long</type>
+        <definition>unsigned long Alarm::_acknowledgedDelay</definition>
+        <argsstring></argsstring>
+        <name>_acknowledgedDelay</name>
+        <qualifiedname>Alarm::_acknowledgedDelay</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="133" column="19" bodyfile="include/Alarm.h" bodystart="133" bodyend="-1"/>
+        <referencedby refid="class_alarm_1abf159b68e429d66de4ab2d10c2ccd44b" compoundref="_alarm_8cpp" startline="22" endline="45">Alarm</referencedby>
+        <referencedby refid="class_alarm_1a585cf91e94a0e74d0ce1f6ce46c06614" compoundref="_alarm_8cpp" startline="594" endline="596">getAcknowledgedDelay</referencedby>
+        <referencedby refid="class_alarm_1a1ab55390c07c38764b8264297b741b05" compoundref="_alarm_8cpp" startline="605" endline="616">getAcknowledgedTimeLeft</referencedby>
+        <referencedby refid="class_alarm_1a6404e8478e8c2d726e9399ea1f2268b2" compoundref="_alarm_8cpp" startline="598" endline="603">isAcknowledgedDelayElapsed</referencedby>
+        <referencedby refid="class_alarm_1a3f5329f9c026bad4f5171423fcaf51b0" compoundref="_alarm_8cpp" startline="590" endline="592">setAcknowledgedDelay</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_alarm_1abf159b68e429d66de4ab2d10c2ccd44b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Alarm::Alarm</definition>
+        <argsstring>(AlarmType type, MeasurementPoint *source, AlarmPriority priority=AlarmPriority::PRIORITY_MEDIUM)</argsstring>
+        <name>Alarm</name>
+        <qualifiedname>Alarm::Alarm</qualifiedname>
+        <param>
+          <type><ref refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2" kindref="member">AlarmType</ref></type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type><ref refid="class_measurement_point" kindref="compound">MeasurementPoint</ref> *</type>
+          <declname>source</declname>
+        </param>
+        <param>
+          <type><ref refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321b" kindref="member">AlarmPriority</ref></type>
+          <declname>priority</declname>
+          <defval><ref refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba7e5ab414d2d201947566a9c574a7b85f" kindref="member">AlarmPriority::PRIORITY_MEDIUM</ref></defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="40" column="5" bodyfile="src/Alarm.cpp" bodystart="22" bodyend="45"/>
+        <references refid="class_alarm_1a4ab562dd3179820f3694cbbd23b9dad5" compoundref="_alarm_8h" startline="133">_acknowledgedDelay</references>
+        <references refid="class_alarm_1a25eda4c86523595ed5630424ab66e2ec" compoundref="_alarm_8h" startline="114">_acknowledgedTime</references>
+        <references refid="class_alarm_1ad071235bbd9594fcf2adb144e88344c0" compoundref="_alarm_8h" startline="115">_clearedTime</references>
+        <references refid="class_alarm_1a784bac1bc016f0facc76176d893e3a90" compoundref="_alarm_8h" startline="131">_configKey</references>
+        <references refid="class_alarm_1a483c0308c4c2e27047ae10f194f4f414" compoundref="_alarm_8h" startline="120">_delayTime</references>
+        <references refid="class_alarm_1af532c7945d25b47adf55d60cb91c86ae" compoundref="_alarm_8h" startline="132">_enabled</references>
+        <references refid="class_alarm_1a720fb269ec5c87744fedfecf8d060a95" compoundref="_alarm_8h" startline="117">_hysteresis</references>
+        <references refid="class_alarm_1a4b4fbc531464f77b58da6954dd146d65" compoundref="_alarm_8h" startline="109">_priority</references>
+        <references refid="class_alarm_1a1f87216f47e3421c09b6a2531963b24d" compoundref="_alarm_8h" startline="110">_source</references>
+        <references refid="class_alarm_1a57c98ffd9577dc379176e3402d03913c" compoundref="_alarm_8h" startline="108">_stage</references>
+        <references refid="class_alarm_1a605637fd697184aa6c1a003e80703a47" compoundref="_alarm_8h" startline="113">_timestamp</references>
+        <references refid="class_alarm_1af86f7649c30db0d2cd6d4498032bb20d" compoundref="_alarm_8h" startline="107">_type</references>
+        <references refid="class_alarm_1a11b2da560dbc8653fa9dec671a78b980" compoundref="_alarm_8cpp" startline="336" endline="338">_updateMessage</references>
+        <references refid="class_alarm_1abd578ec75a5ac9bce00b7ce7207c5d8c" compoundref="_alarm_8cpp" startline="340" endline="348">getTypeString</references>
+        <references refid="class_logger_manager_1a5c1373ccc47f4112b596fe6f84fbbc21" compoundref="_logger_manager_8h" startline="101" endline="103">LoggerManager::info</references>
+        <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba24d459a81449d7210c8f9a86c2913034" compoundref="_alarm_8h" startline="20">NEW</references>
+        <referencedby refid="class_alarm_1ab9867ec0c314549960584f4ae01328f8" compoundref="_alarm_8cpp" startline="371" endline="377">operator&lt;</referencedby>
+        <referencedby refid="class_alarm_1a2a6049ea9b003e51f5ac17aba40bb1ad" compoundref="_alarm_8cpp" startline="379" endline="383">operator==</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_alarm_1adb5fc73041badc6a082b78874559c002" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Alarm::~Alarm</definition>
+        <argsstring>()</argsstring>
+        <name>~Alarm</name>
+        <qualifiedname>Alarm::~Alarm</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="43" column="5" bodyfile="src/Alarm.cpp" bodystart="56" bodyend="66"/>
+        <references refid="class_alarm_1a1f87216f47e3421c09b6a2531963b24d" compoundref="_alarm_8h" startline="110">_source</references>
+        <references refid="class_alarm_1abd578ec75a5ac9bce00b7ce7207c5d8c" compoundref="_alarm_8cpp" startline="340" endline="348">getTypeString</references>
+        <references refid="class_logger_manager_1a5c1373ccc47f4112b596fe6f84fbbc21" compoundref="_logger_manager_8h" startline="101" endline="103">LoggerManager::info</references>
+      </memberdef>
+      <memberdef kind="function" id="class_alarm_1acfac41af4628d83d3fdcc11c8fb55069" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2" kindref="member">AlarmType</ref></type>
+        <definition>AlarmType Alarm::getType</definition>
+        <argsstring>() const</argsstring>
+        <name>getType</name>
+        <qualifiedname>Alarm::getType</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="46" column="15" bodyfile="include/Alarm.h" bodystart="46" bodyend="46"/>
+        <references refid="class_alarm_1af86f7649c30db0d2cd6d4498032bb20d" compoundref="_alarm_8h" startline="107">_type</references>
+        <referencedby refid="class_c_s_v_config_manager_1aa43c8405582f387b0330cc1e965f5117" compoundref="_c_s_v_config_manager_8cpp" startline="369" endline="378">CSVConfigManager::_getAlarmPriorityForPoint</referencedby>
+        <referencedby refid="class_config_manager_1aa15fcaf6330fd73a87e8c6f63e8ab9d5" compoundref="_config_manager_8cpp" startline="448" endline="482">ConfigManager::saveAlarmsConfig</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_alarm_1af01cabf2a19aa3b74848f0a5483ba3fb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eb" kindref="member">AlarmStage</ref></type>
+        <definition>AlarmStage Alarm::getStage</definition>
+        <argsstring>() const</argsstring>
+        <name>getStage</name>
+        <qualifiedname>Alarm::getStage</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="47" column="16" bodyfile="include/Alarm.h" bodystart="47" bodyend="47"/>
+        <references refid="class_alarm_1a57c98ffd9577dc379176e3402d03913c" compoundref="_alarm_8h" startline="108">_stage</references>
+      </memberdef>
+      <memberdef kind="function" id="class_alarm_1abe89e376d8cacb582717ad6a65526ee8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321b" kindref="member">AlarmPriority</ref></type>
+        <definition>AlarmPriority Alarm::getPriority</definition>
+        <argsstring>() const</argsstring>
+        <name>getPriority</name>
+        <qualifiedname>Alarm::getPriority</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="48" column="19" bodyfile="include/Alarm.h" bodystart="48" bodyend="48"/>
+        <references refid="class_alarm_1a4b4fbc531464f77b58da6954dd146d65" compoundref="_alarm_8h" startline="109">_priority</references>
+        <referencedby refid="class_c_s_v_config_manager_1aa43c8405582f387b0330cc1e965f5117" compoundref="_c_s_v_config_manager_8cpp" startline="369" endline="378">CSVConfigManager::_getAlarmPriorityForPoint</referencedby>
+        <referencedby refid="struct_alarm_comparator_1a9e59c2531a3bd641d0b3d0cc10bffe54" compoundref="_alarm_8h" startline="139" endline="144">AlarmComparator::operator()</referencedby>
+        <referencedby refid="class_config_manager_1aa15fcaf6330fd73a87e8c6f63e8ab9d5" compoundref="_config_manager_8cpp" startline="448" endline="482">ConfigManager::saveAlarmsConfig</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_alarm_1aa86c4f3280ad82c9679af1c765a6bc92" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_measurement_point" kindref="compound">MeasurementPoint</ref> *</type>
+        <definition>MeasurementPoint * Alarm::getSource</definition>
+        <argsstring>() const</argsstring>
+        <name>getSource</name>
+        <qualifiedname>Alarm::getSource</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="49" column="22" bodyfile="include/Alarm.h" bodystart="49" bodyend="49"/>
+        <references refid="class_alarm_1a1f87216f47e3421c09b6a2531963b24d" compoundref="_alarm_8h" startline="110">_source</references>
+      </memberdef>
+      <memberdef kind="function" id="class_alarm_1a7a4a3290a6a659542f82fe08a96736a8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>unsigned long</type>
+        <definition>unsigned long Alarm::getTimestamp</definition>
+        <argsstring>() const</argsstring>
+        <name>getTimestamp</name>
+        <qualifiedname>Alarm::getTimestamp</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="50" column="19" bodyfile="include/Alarm.h" bodystart="50" bodyend="50"/>
+        <references refid="class_alarm_1a605637fd697184aa6c1a003e80703a47" compoundref="_alarm_8h" startline="113">_timestamp</references>
+        <referencedby refid="class_temperature_controller_1a477597992aa9362076843f37b648741a" compoundref="_temperature_controller_8cpp" startline="1649" endline="1684">TemperatureController::_updateAlarmQueues</referencedby>
+        <referencedby refid="struct_alarm_comparator_1a9e59c2531a3bd641d0b3d0cc10bffe54" compoundref="_alarm_8h" startline="139" endline="144">AlarmComparator::operator()</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_alarm_1afaa86db89313d8b1c211c3c8faf5b898" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>unsigned long</type>
+        <definition>unsigned long Alarm::getAcknowledgedTime</definition>
+        <argsstring>() const</argsstring>
+        <name>getAcknowledgedTime</name>
+        <qualifiedname>Alarm::getAcknowledgedTime</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="51" column="19" bodyfile="include/Alarm.h" bodystart="51" bodyend="51"/>
+        <references refid="class_alarm_1a25eda4c86523595ed5630424ab66e2ec" compoundref="_alarm_8h" startline="114">_acknowledgedTime</references>
+      </memberdef>
+      <memberdef kind="function" id="class_alarm_1a478b46ecceac6f58202312a4172317df" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>unsigned long</type>
+        <definition>unsigned long Alarm::getClearedTime</definition>
+        <argsstring>() const</argsstring>
+        <name>getClearedTime</name>
+        <qualifiedname>Alarm::getClearedTime</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="52" column="19" bodyfile="include/Alarm.h" bodystart="52" bodyend="52"/>
+        <references refid="class_alarm_1ad071235bbd9594fcf2adb144e88344c0" compoundref="_alarm_8h" startline="115">_clearedTime</references>
+      </memberdef>
+      <memberdef kind="function" id="class_alarm_1a374523d1bf014ab315a48b8f0390c04f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>String</type>
+        <definition>String Alarm::getMessage</definition>
+        <argsstring>() const</argsstring>
+        <name>getMessage</name>
+        <qualifiedname>Alarm::getMessage</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="53" column="12" bodyfile="include/Alarm.h" bodystart="53" bodyend="53"/>
+        <references refid="class_alarm_1af47cc719207c7988954c082b0b80896d" compoundref="_alarm_8h" startline="123">_message</references>
+      </memberdef>
+      <memberdef kind="function" id="class_alarm_1ad97af04ffed790b34e193142abd501ce" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Alarm::isActive</definition>
+        <argsstring>() const</argsstring>
+        <name>isActive</name>
+        <qualifiedname>Alarm::isActive</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="54" column="10" bodyfile="include/Alarm.h" bodystart="54" bodyend="54"/>
+        <references refid="class_alarm_1a57c98ffd9577dc379176e3402d03913c" compoundref="_alarm_8h" startline="108">_stage</references>
+        <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba7e83ae21b9e9b168f12ba5a90ee82c94" compoundref="_alarm_8h" startline="23">ACKNOWLEDGED</references>
+        <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba18ff74f43da410c5529f7d6fca84f115" compoundref="_alarm_8h" startline="24">ACTIVE</references>
+      </memberdef>
+      <memberdef kind="function" id="class_alarm_1a14fab6d447b1eeef21234ffcf47986bf" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Alarm::isAcknowledged</definition>
+        <argsstring>() const</argsstring>
+        <name>isAcknowledged</name>
+        <qualifiedname>Alarm::isAcknowledged</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="55" column="10" bodyfile="include/Alarm.h" bodystart="55" bodyend="55"/>
+        <references refid="class_alarm_1a57c98ffd9577dc379176e3402d03913c" compoundref="_alarm_8h" startline="108">_stage</references>
+        <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba7e83ae21b9e9b168f12ba5a90ee82c94" compoundref="_alarm_8h" startline="23">ACKNOWLEDGED</references>
+        <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba62574ee27e6c5f985a6bc1dc344e7438" compoundref="_alarm_8h" startline="21">CLEARED</references>
+      </memberdef>
+      <memberdef kind="function" id="class_alarm_1a36ca346131618f5995dbea4f00f2a4dc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Alarm::isResolved</definition>
+        <argsstring>() const</argsstring>
+        <name>isResolved</name>
+        <qualifiedname>Alarm::isResolved</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="56" column="10" bodyfile="include/Alarm.h" bodystart="56" bodyend="56"/>
+        <references refid="class_alarm_1a57c98ffd9577dc379176e3402d03913c" compoundref="_alarm_8h" startline="108">_stage</references>
+        <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba874584b84df5da74c3964d8efbff7a02" compoundref="_alarm_8h" startline="22">RESOLVED</references>
+      </memberdef>
+      <memberdef kind="function" id="class_alarm_1aa14f5a764303b269f04573867e2e4fc8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Alarm::acknowledge</definition>
+        <argsstring>()</argsstring>
+        <name>acknowledge</name>
+        <qualifiedname>Alarm::acknowledge</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="59" column="10" bodyfile="src/Alarm.cpp" bodystart="69" bodyend="98"/>
+        <references refid="class_alarm_1a25eda4c86523595ed5630424ab66e2ec" compoundref="_alarm_8h" startline="114">_acknowledgedTime</references>
+        <references refid="class_alarm_1a052a73879f5cd039f6f7cb7ce02e6a9d" compoundref="_alarm_8cpp" startline="361" endline="369">_getPriorityString</references>
+        <references refid="class_alarm_1a1f87216f47e3421c09b6a2531963b24d" compoundref="_alarm_8h" startline="110">_source</references>
+        <references refid="class_alarm_1a57c98ffd9577dc379176e3402d03913c" compoundref="_alarm_8h" startline="108">_stage</references>
+        <references refid="class_alarm_1af86f7649c30db0d2cd6d4498032bb20d" compoundref="_alarm_8h" startline="107">_type</references>
+        <references refid="class_alarm_1a11b2da560dbc8653fa9dec671a78b980" compoundref="_alarm_8cpp" startline="336" endline="338">_updateMessage</references>
+        <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba7e83ae21b9e9b168f12ba5a90ee82c94" compoundref="_alarm_8h" startline="23">ACKNOWLEDGED</references>
+        <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba18ff74f43da410c5529f7d6fca84f115" compoundref="_alarm_8h" startline="24">ACTIVE</references>
+        <references refid="class_alarm_1a5f0ead4dbd06aa64bd316d99dc587302" compoundref="_alarm_8cpp" startline="350" endline="359">getStageString</references>
+        <references refid="class_alarm_1abd578ec75a5ac9bce00b7ce7207c5d8c" compoundref="_alarm_8cpp" startline="340" endline="348">getTypeString</references>
+        <references refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2a9ca8335873c44a53b8f7c5fc526ee59b" compoundref="_alarm_8h" startline="12">HIGH_TEMPERATURE</references>
+        <references refid="class_logger_manager_1a5c1373ccc47f4112b596fe6f84fbbc21" compoundref="_logger_manager_8h" startline="101" endline="103">LoggerManager::info</references>
+        <references refid="class_logger_manager_1aa74d58708cf5cdf8ddafad648edadcf7" compoundref="_logger_manager_8cpp" startline="870" endline="877">LoggerManager::logAlarmStateChange</references>
+        <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba24d459a81449d7210c8f9a86c2913034" compoundref="_alarm_8h" startline="20">NEW</references>
+        <referencedby refid="class_temperature_controller_1a5f1c8fce1e5efb637bfe86bdb609a3b7" compoundref="_temperature_controller_8cpp" startline="289" endline="295">TemperatureController::acknowledgeHighestPriorityAlarm</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_alarm_1adc66e3d22e173b00c59b040369030a17" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Alarm::clear</definition>
+        <argsstring>()</argsstring>
+        <name>clear</name>
+        <qualifiedname>Alarm::clear</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="60" column="10" bodyfile="src/Alarm.cpp" bodystart="102" bodyend="119"/>
+        <references refid="class_alarm_1ad071235bbd9594fcf2adb144e88344c0" compoundref="_alarm_8h" startline="115">_clearedTime</references>
+        <references refid="class_alarm_1a1f87216f47e3421c09b6a2531963b24d" compoundref="_alarm_8h" startline="110">_source</references>
+        <references refid="class_alarm_1a57c98ffd9577dc379176e3402d03913c" compoundref="_alarm_8h" startline="108">_stage</references>
+        <references refid="class_alarm_1a11b2da560dbc8653fa9dec671a78b980" compoundref="_alarm_8cpp" startline="336" endline="338">_updateMessage</references>
+        <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba7e83ae21b9e9b168f12ba5a90ee82c94" compoundref="_alarm_8h" startline="23">ACKNOWLEDGED</references>
+        <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba18ff74f43da410c5529f7d6fca84f115" compoundref="_alarm_8h" startline="24">ACTIVE</references>
+        <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba62574ee27e6c5f985a6bc1dc344e7438" compoundref="_alarm_8h" startline="21">CLEARED</references>
+        <references refid="class_alarm_1abd578ec75a5ac9bce00b7ce7207c5d8c" compoundref="_alarm_8cpp" startline="340" endline="348">getTypeString</references>
+        <references refid="class_logger_manager_1a5c1373ccc47f4112b596fe6f84fbbc21" compoundref="_logger_manager_8h" startline="101" endline="103">LoggerManager::info</references>
+        <referencedby refid="class_alarm_1abc87fe39e6a9b5beb9f09df780f67621" compoundref="_alarm_8cpp" startline="441" endline="586">updateCondition</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_alarm_1a73e7673d61f82aa21441c75f2cee2c6f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Alarm::resolve</definition>
+        <argsstring>()</argsstring>
+        <name>resolve</name>
+        <qualifiedname>Alarm::resolve</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="61" column="10" bodyfile="src/Alarm.cpp" bodystart="121" bodyend="135"/>
+        <references refid="class_alarm_1a1f87216f47e3421c09b6a2531963b24d" compoundref="_alarm_8h" startline="110">_source</references>
+        <references refid="class_alarm_1a57c98ffd9577dc379176e3402d03913c" compoundref="_alarm_8h" startline="108">_stage</references>
+        <references refid="class_alarm_1a11b2da560dbc8653fa9dec671a78b980" compoundref="_alarm_8cpp" startline="336" endline="338">_updateMessage</references>
+        <references refid="class_alarm_1abd578ec75a5ac9bce00b7ce7207c5d8c" compoundref="_alarm_8cpp" startline="340" endline="348">getTypeString</references>
+        <references refid="class_logger_manager_1a5c1373ccc47f4112b596fe6f84fbbc21" compoundref="_logger_manager_8h" startline="101" endline="103">LoggerManager::info</references>
+        <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba874584b84df5da74c3964d8efbff7a02" compoundref="_alarm_8h" startline="22">RESOLVED</references>
+        <referencedby refid="class_alarm_1abc87fe39e6a9b5beb9f09df780f67621" compoundref="_alarm_8cpp" startline="441" endline="586">updateCondition</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_alarm_1af8d75ee8622a2a96f4bc9b408e9668e5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Alarm::reactivate</definition>
+        <argsstring>()</argsstring>
+        <name>reactivate</name>
+        <qualifiedname>Alarm::reactivate</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="62" column="10" bodyfile="src/Alarm.cpp" bodystart="138" bodyend="155"/>
+        <references refid="class_alarm_1a25eda4c86523595ed5630424ab66e2ec" compoundref="_alarm_8h" startline="114">_acknowledgedTime</references>
+        <references refid="class_alarm_1ad071235bbd9594fcf2adb144e88344c0" compoundref="_alarm_8h" startline="115">_clearedTime</references>
+        <references refid="class_alarm_1a1f87216f47e3421c09b6a2531963b24d" compoundref="_alarm_8h" startline="110">_source</references>
+        <references refid="class_alarm_1a57c98ffd9577dc379176e3402d03913c" compoundref="_alarm_8h" startline="108">_stage</references>
+        <references refid="class_alarm_1a11b2da560dbc8653fa9dec671a78b980" compoundref="_alarm_8cpp" startline="336" endline="338">_updateMessage</references>
+        <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba7e83ae21b9e9b168f12ba5a90ee82c94" compoundref="_alarm_8h" startline="23">ACKNOWLEDGED</references>
+        <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba18ff74f43da410c5529f7d6fca84f115" compoundref="_alarm_8h" startline="24">ACTIVE</references>
+        <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba62574ee27e6c5f985a6bc1dc344e7438" compoundref="_alarm_8h" startline="21">CLEARED</references>
+        <references refid="class_alarm_1abd578ec75a5ac9bce00b7ce7207c5d8c" compoundref="_alarm_8cpp" startline="340" endline="348">getTypeString</references>
+        <references refid="class_logger_manager_1a0d52b0ff7bff22817e987ad753102854" compoundref="_logger_manager_8h" startline="105" endline="107">LoggerManager::warning</references>
+      </memberdef>
+      <memberdef kind="function" id="class_alarm_1abc87fe39e6a9b5beb9f09df780f67621" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Alarm::updateCondition</definition>
+        <argsstring>()</argsstring>
+        <name>updateCondition</name>
+        <qualifiedname>Alarm::updateCondition</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="65" column="10" bodyfile="src/Alarm.cpp" bodystart="441" bodyend="586"/>
+        <references refid="class_alarm_1a25eda4c86523595ed5630424ab66e2ec" compoundref="_alarm_8h" startline="114">_acknowledgedTime</references>
+        <references refid="class_alarm_1a28229f40ec51928641f04cd1e505bd6c" compoundref="_alarm_8cpp" startline="157" endline="221">_checkCondition</references>
+        <references refid="class_alarm_1ad071235bbd9594fcf2adb144e88344c0" compoundref="_alarm_8h" startline="115">_clearedTime</references>
+        <references refid="class_alarm_1a052a73879f5cd039f6f7cb7ce02e6a9d" compoundref="_alarm_8cpp" startline="361" endline="369">_getPriorityString</references>
+        <references refid="class_alarm_1a1f87216f47e3421c09b6a2531963b24d" compoundref="_alarm_8h" startline="110">_source</references>
+        <references refid="class_alarm_1a57c98ffd9577dc379176e3402d03913c" compoundref="_alarm_8h" startline="108">_stage</references>
+        <references refid="class_alarm_1a605637fd697184aa6c1a003e80703a47" compoundref="_alarm_8h" startline="113">_timestamp</references>
+        <references refid="class_alarm_1af86f7649c30db0d2cd6d4498032bb20d" compoundref="_alarm_8h" startline="107">_type</references>
+        <references refid="class_alarm_1a11b2da560dbc8653fa9dec671a78b980" compoundref="_alarm_8cpp" startline="336" endline="338">_updateMessage</references>
+        <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba7e83ae21b9e9b168f12ba5a90ee82c94" compoundref="_alarm_8h" startline="23">ACKNOWLEDGED</references>
+        <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba18ff74f43da410c5529f7d6fca84f115" compoundref="_alarm_8h" startline="24">ACTIVE</references>
+        <references refid="class_alarm_1adc66e3d22e173b00c59b040369030a17" compoundref="_alarm_8cpp" startline="102" endline="119">clear</references>
+        <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba62574ee27e6c5f985a6bc1dc344e7438" compoundref="_alarm_8h" startline="21">CLEARED</references>
+        <references refid="class_logger_manager_1aef24f00186213fa78be3b104a50d58e6" compoundref="_logger_manager_8h" startline="109" endline="111">LoggerManager::error</references>
+        <references refid="class_alarm_1a5f0ead4dbd06aa64bd316d99dc587302" compoundref="_alarm_8cpp" startline="350" endline="359">getStageString</references>
+        <references refid="class_alarm_1abd578ec75a5ac9bce00b7ce7207c5d8c" compoundref="_alarm_8cpp" startline="340" endline="348">getTypeString</references>
+        <references refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2a9ca8335873c44a53b8f7c5fc526ee59b" compoundref="_alarm_8h" startline="12">HIGH_TEMPERATURE</references>
+        <references refid="class_logger_manager_1a5c1373ccc47f4112b596fe6f84fbbc21" compoundref="_logger_manager_8h" startline="101" endline="103">LoggerManager::info</references>
+        <references refid="class_alarm_1a6404e8478e8c2d726e9399ea1f2268b2" compoundref="_alarm_8cpp" startline="598" endline="603">isAcknowledgedDelayElapsed</references>
+        <references refid="class_alarm_1aa14465fadcd29ef9b872f4b679d1d5b3" compoundref="_alarm_8cpp" startline="293" endline="298">isDelayElapsed</references>
+        <references refid="class_logger_manager_1aa74d58708cf5cdf8ddafad648edadcf7" compoundref="_logger_manager_8cpp" startline="870" endline="877">LoggerManager::logAlarmStateChange</references>
+        <references refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2acf7e66cec00ad7027a2f00fec418ed71" compoundref="_alarm_8h" startline="13">LOW_TEMPERATURE</references>
+        <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba24d459a81449d7210c8f9a86c2913034" compoundref="_alarm_8h" startline="20">NEW</references>
+        <references refid="class_alarm_1a73e7673d61f82aa21441c75f2cee2c6f" compoundref="_alarm_8cpp" startline="121" endline="135">resolve</references>
+        <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba874584b84df5da74c3964d8efbff7a02" compoundref="_alarm_8h" startline="22">RESOLVED</references>
+        <references refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2ab4fed37e8cab6ef5684a361be786d8de" compoundref="_alarm_8h" startline="15">SENSOR_DISCONNECTED</references>
+        <references refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2a3993b9fcdbf9ec59e873519a4d02fe2f" compoundref="_alarm_8h" startline="14">SENSOR_ERROR</references>
+        <references refid="class_logger_manager_1a0d52b0ff7bff22817e987ad753102854" compoundref="_logger_manager_8h" startline="105" endline="107">LoggerManager::warning</references>
+      </memberdef>
+      <memberdef kind="function" id="class_alarm_1a480e1d6d474da0cd4e5dd557e41cb87e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>String</type>
+        <definition>String Alarm::getDisplayText</definition>
+        <argsstring>() const</argsstring>
+        <name>getDisplayText</name>
+        <qualifiedname>Alarm::getDisplayText</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="68" column="12" bodyfile="src/Alarm.cpp" bodystart="300" bodyend="326"/>
+        <references refid="class_alarm_1a1f87216f47e3421c09b6a2531963b24d" compoundref="_alarm_8h" startline="110">_source</references>
+        <references refid="class_alarm_1a57c98ffd9577dc379176e3402d03913c" compoundref="_alarm_8h" startline="108">_stage</references>
+        <references refid="class_alarm_1af86f7649c30db0d2cd6d4498032bb20d" compoundref="_alarm_8h" startline="107">_type</references>
+        <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba7e83ae21b9e9b168f12ba5a90ee82c94" compoundref="_alarm_8h" startline="23">ACKNOWLEDGED</references>
+        <references refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2a9ca8335873c44a53b8f7c5fc526ee59b" compoundref="_alarm_8h" startline="12">HIGH_TEMPERATURE</references>
+        <references refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2acf7e66cec00ad7027a2f00fec418ed71" compoundref="_alarm_8h" startline="13">LOW_TEMPERATURE</references>
+        <references refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2ab4fed37e8cab6ef5684a361be786d8de" compoundref="_alarm_8h" startline="15">SENSOR_DISCONNECTED</references>
+        <references refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2a3993b9fcdbf9ec59e873519a4d02fe2f" compoundref="_alarm_8h" startline="14">SENSOR_ERROR</references>
+        <referencedby refid="class_alarm_1a11b2da560dbc8653fa9dec671a78b980" compoundref="_alarm_8cpp" startline="336" endline="338">_updateMessage</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_alarm_1adaf4b74537e11d5643ba5a8ae07fe10e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>String</type>
+        <definition>String Alarm::getStatusText</definition>
+        <argsstring>() const</argsstring>
+        <name>getStatusText</name>
+        <qualifiedname>Alarm::getStatusText</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="69" column="12" bodyfile="src/Alarm.cpp" bodystart="328" bodyend="334"/>
+        <references refid="class_alarm_1a1f87216f47e3421c09b6a2531963b24d" compoundref="_alarm_8h" startline="110">_source</references>
+        <references refid="class_alarm_1a5f0ead4dbd06aa64bd316d99dc587302" compoundref="_alarm_8cpp" startline="350" endline="359">getStageString</references>
+        <references refid="class_alarm_1abd578ec75a5ac9bce00b7ce7207c5d8c" compoundref="_alarm_8cpp" startline="340" endline="348">getTypeString</references>
+        <referencedby refid="class_temperature_controller_1a5f1c8fce1e5efb637bfe86bdb609a3b7" compoundref="_temperature_controller_8cpp" startline="289" endline="295">TemperatureController::acknowledgeHighestPriorityAlarm</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_alarm_1a34e3136dd5e8a5ca9fd2ac3a0c442ca3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Alarm::setDelayTime</definition>
+        <argsstring>(unsigned long delayMs)</argsstring>
+        <name>setDelayTime</name>
+        <qualifiedname>Alarm::setDelayTime</qualifiedname>
+        <param>
+          <type>unsigned long</type>
+          <declname>delayMs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="72" column="10" bodyfile="include/Alarm.h" bodystart="72" bodyend="72"/>
+        <references refid="class_alarm_1a483c0308c4c2e27047ae10f194f4f414" compoundref="_alarm_8h" startline="120">_delayTime</references>
+      </memberdef>
+      <memberdef kind="function" id="class_alarm_1a70e0d351966a5cbe9fc77785f6d55939" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>unsigned long</type>
+        <definition>unsigned long Alarm::getDelayTime</definition>
+        <argsstring>() const</argsstring>
+        <name>getDelayTime</name>
+        <qualifiedname>Alarm::getDelayTime</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="73" column="19" bodyfile="include/Alarm.h" bodystart="73" bodyend="73"/>
+        <references refid="class_alarm_1a483c0308c4c2e27047ae10f194f4f414" compoundref="_alarm_8h" startline="120">_delayTime</references>
+      </memberdef>
+      <memberdef kind="function" id="class_alarm_1aa14465fadcd29ef9b872f4b679d1d5b3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Alarm::isDelayElapsed</definition>
+        <argsstring>() const</argsstring>
+        <name>isDelayElapsed</name>
+        <qualifiedname>Alarm::isDelayElapsed</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="76" column="10" bodyfile="src/Alarm.cpp" bodystart="293" bodyend="298"/>
+        <references refid="class_alarm_1ad071235bbd9594fcf2adb144e88344c0" compoundref="_alarm_8h" startline="115">_clearedTime</references>
+        <references refid="class_alarm_1a483c0308c4c2e27047ae10f194f4f414" compoundref="_alarm_8h" startline="120">_delayTime</references>
+        <references refid="class_alarm_1a57c98ffd9577dc379176e3402d03913c" compoundref="_alarm_8h" startline="108">_stage</references>
+        <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba62574ee27e6c5f985a6bc1dc344e7438" compoundref="_alarm_8h" startline="21">CLEARED</references>
+        <referencedby refid="class_alarm_1abc87fe39e6a9b5beb9f09df780f67621" compoundref="_alarm_8cpp" startline="441" endline="586">updateCondition</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_alarm_1ab9867ec0c314549960584f4ae01328f8" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Alarm::operator&lt;</definition>
+        <argsstring>(const Alarm &amp;other) const</argsstring>
+        <name>operator&lt;</name>
+        <qualifiedname>Alarm::operator&lt;</qualifiedname>
+        <param>
+          <type>const <ref refid="class_alarm" kindref="compound">Alarm</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="79" column="5" bodyfile="src/Alarm.cpp" bodystart="371" bodyend="377"/>
+        <references refid="class_alarm_1a4b4fbc531464f77b58da6954dd146d65" compoundref="_alarm_8h" startline="109">_priority</references>
+        <references refid="class_alarm_1a605637fd697184aa6c1a003e80703a47" compoundref="_alarm_8h" startline="113">_timestamp</references>
+        <references refid="class_alarm_1abf159b68e429d66de4ab2d10c2ccd44b" compoundref="_alarm_8cpp" startline="22" endline="45">Alarm</references>
+      </memberdef>
+      <memberdef kind="function" id="class_alarm_1a2a6049ea9b003e51f5ac17aba40bb1ad" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Alarm::operator==</definition>
+        <argsstring>(const Alarm &amp;other) const</argsstring>
+        <name>operator==</name>
+        <qualifiedname>Alarm::operator==</qualifiedname>
+        <param>
+          <type>const <ref refid="class_alarm" kindref="compound">Alarm</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="80" column="10" bodyfile="src/Alarm.cpp" bodystart="379" bodyend="383"/>
+        <references refid="class_alarm_1a1f87216f47e3421c09b6a2531963b24d" compoundref="_alarm_8h" startline="110">_source</references>
+        <references refid="class_alarm_1a605637fd697184aa6c1a003e80703a47" compoundref="_alarm_8h" startline="113">_timestamp</references>
+        <references refid="class_alarm_1af86f7649c30db0d2cd6d4498032bb20d" compoundref="_alarm_8h" startline="107">_type</references>
+        <references refid="class_alarm_1abf159b68e429d66de4ab2d10c2ccd44b" compoundref="_alarm_8cpp" startline="22" endline="45">Alarm</references>
+      </memberdef>
+      <memberdef kind="function" id="class_alarm_1abd578ec75a5ac9bce00b7ce7207c5d8c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>String</type>
+        <definition>String Alarm::getTypeString</definition>
+        <argsstring>() const</argsstring>
+        <name>getTypeString</name>
+        <qualifiedname>Alarm::getTypeString</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="82" column="12" bodyfile="src/Alarm.cpp" bodystart="340" bodyend="348"/>
+        <references refid="class_alarm_1af86f7649c30db0d2cd6d4498032bb20d" compoundref="_alarm_8h" startline="107">_type</references>
+        <references refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2a9ca8335873c44a53b8f7c5fc526ee59b" compoundref="_alarm_8h" startline="12">HIGH_TEMPERATURE</references>
+        <references refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2acf7e66cec00ad7027a2f00fec418ed71" compoundref="_alarm_8h" startline="13">LOW_TEMPERATURE</references>
+        <references refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2ab4fed37e8cab6ef5684a361be786d8de" compoundref="_alarm_8h" startline="15">SENSOR_DISCONNECTED</references>
+        <references refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2a3993b9fcdbf9ec59e873519a4d02fe2f" compoundref="_alarm_8h" startline="14">SENSOR_ERROR</references>
+        <referencedby refid="class_alarm_1aa14f5a764303b269f04573867e2e4fc8" compoundref="_alarm_8cpp" startline="69" endline="98">acknowledge</referencedby>
+        <referencedby refid="class_temperature_controller_1ac5c3403746d7c850bf7929bf5ee3448a" compoundref="_temperature_controller_8cpp" startline="1290" endline="1346">TemperatureController::addAlarm</referencedby>
+        <referencedby refid="class_alarm_1abf159b68e429d66de4ab2d10c2ccd44b" compoundref="_alarm_8cpp" startline="22" endline="45">Alarm</referencedby>
+        <referencedby refid="class_alarm_1adc66e3d22e173b00c59b040369030a17" compoundref="_alarm_8cpp" startline="102" endline="119">clear</referencedby>
+        <referencedby refid="class_alarm_1adaf4b74537e11d5643ba5a8ae07fe10e" compoundref="_alarm_8cpp" startline="328" endline="334">getStatusText</referencedby>
+        <referencedby refid="class_alarm_1af8d75ee8622a2a96f4bc9b408e9668e5" compoundref="_alarm_8cpp" startline="138" endline="155">reactivate</referencedby>
+        <referencedby refid="class_alarm_1a73e7673d61f82aa21441c75f2cee2c6f" compoundref="_alarm_8cpp" startline="121" endline="135">resolve</referencedby>
+        <referencedby refid="class_alarm_1acb8f203b2e2317c1f835bb4b19123f3f" compoundref="_alarm_8cpp" startline="423" endline="432">setEnabled</referencedby>
+        <referencedby refid="class_alarm_1a8d031874090c0c0e548a1f2e41ea4979" compoundref="_alarm_8cpp" startline="409" endline="421">setHysteresis</referencedby>
+        <referencedby refid="class_alarm_1a5095c54c304a52ebbaca5a2ea74059cd" compoundref="_alarm_8cpp" startline="395" endline="407">setPriority</referencedby>
+        <referencedby refid="class_alarm_1abc87fe39e6a9b5beb9f09df780f67621" compoundref="_alarm_8cpp" startline="441" endline="586">updateCondition</referencedby>
+        <referencedby refid="class_alarm_1adb5fc73041badc6a082b78874559c002" compoundref="_alarm_8cpp" startline="56" endline="66">~Alarm</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_alarm_1a5f0ead4dbd06aa64bd316d99dc587302" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>String</type>
+        <definition>String Alarm::getStageString</definition>
+        <argsstring>() const</argsstring>
+        <name>getStageString</name>
+        <qualifiedname>Alarm::getStageString</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="83" column="12" bodyfile="src/Alarm.cpp" bodystart="350" bodyend="359"/>
+        <references refid="class_alarm_1a57c98ffd9577dc379176e3402d03913c" compoundref="_alarm_8h" startline="108">_stage</references>
+        <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba7e83ae21b9e9b168f12ba5a90ee82c94" compoundref="_alarm_8h" startline="23">ACKNOWLEDGED</references>
+        <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba18ff74f43da410c5529f7d6fca84f115" compoundref="_alarm_8h" startline="24">ACTIVE</references>
+        <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba62574ee27e6c5f985a6bc1dc344e7438" compoundref="_alarm_8h" startline="21">CLEARED</references>
+        <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba24d459a81449d7210c8f9a86c2913034" compoundref="_alarm_8h" startline="20">NEW</references>
+        <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba874584b84df5da74c3964d8efbff7a02" compoundref="_alarm_8h" startline="22">RESOLVED</references>
+        <referencedby refid="class_alarm_1a28229f40ec51928641f04cd1e505bd6c" compoundref="_alarm_8cpp" startline="157" endline="221">_checkCondition</referencedby>
+        <referencedby refid="class_alarm_1aa14f5a764303b269f04573867e2e4fc8" compoundref="_alarm_8cpp" startline="69" endline="98">acknowledge</referencedby>
+        <referencedby refid="class_alarm_1adaf4b74537e11d5643ba5a8ae07fe10e" compoundref="_alarm_8cpp" startline="328" endline="334">getStatusText</referencedby>
+        <referencedby refid="class_alarm_1abc87fe39e6a9b5beb9f09df780f67621" compoundref="_alarm_8cpp" startline="441" endline="586">updateCondition</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_alarm_1ac096a4dfdf5d2cd201ff0a5a54b5ce42" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>String</type>
+        <definition>String Alarm::getConfigKey</definition>
+        <argsstring>() const</argsstring>
+        <name>getConfigKey</name>
+        <qualifiedname>Alarm::getConfigKey</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="86" column="12" bodyfile="src/Alarm.cpp" bodystart="387" bodyend="389"/>
+        <references refid="class_alarm_1a784bac1bc016f0facc76176d893e3a90" compoundref="_alarm_8h" startline="131">_configKey</references>
+      </memberdef>
+      <memberdef kind="function" id="class_alarm_1ad116a3e8b622810e1769568fbac16379" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Alarm::setConfigKey</definition>
+        <argsstring>(const String &amp;key)</argsstring>
+        <name>setConfigKey</name>
+        <qualifiedname>Alarm::setConfigKey</qualifiedname>
+        <param>
+          <type>const String &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="87" column="10" bodyfile="src/Alarm.cpp" bodystart="391" bodyend="393"/>
+        <references refid="class_alarm_1a784bac1bc016f0facc76176d893e3a90" compoundref="_alarm_8h" startline="131">_configKey</references>
+        <referencedby refid="class_temperature_controller_1ac5c3403746d7c850bf7929bf5ee3448a" compoundref="_temperature_controller_8cpp" startline="1290" endline="1346">TemperatureController::addAlarm</referencedby>
+        <referencedby refid="class_temperature_controller_1aa64384fb8503814b46a7d55f53ccb53a" compoundref="_temperature_controller_8cpp" startline="254" endline="276">TemperatureController::createAlarm</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_alarm_1ab1d04e5776db50454c72fd0937acdc37" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Alarm::isEnabled</definition>
+        <argsstring>() const</argsstring>
+        <name>isEnabled</name>
+        <qualifiedname>Alarm::isEnabled</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="88" column="10" bodyfile="include/Alarm.h" bodystart="88" bodyend="88"/>
+        <references refid="class_alarm_1af532c7945d25b47adf55d60cb91c86ae" compoundref="_alarm_8h" startline="132">_enabled</references>
+        <referencedby refid="class_config_manager_1aa15fcaf6330fd73a87e8c6f63e8ab9d5" compoundref="_config_manager_8cpp" startline="448" endline="482">ConfigManager::saveAlarmsConfig</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_alarm_1acb8f203b2e2317c1f835bb4b19123f3f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Alarm::setEnabled</definition>
+        <argsstring>(bool enabled)</argsstring>
+        <name>setEnabled</name>
+        <qualifiedname>Alarm::setEnabled</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>enabled</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="89" column="10" bodyfile="src/Alarm.cpp" bodystart="423" bodyend="432"/>
+        <references refid="class_alarm_1af532c7945d25b47adf55d60cb91c86ae" compoundref="_alarm_8h" startline="132">_enabled</references>
+        <references refid="class_alarm_1a1f87216f47e3421c09b6a2531963b24d" compoundref="_alarm_8h" startline="110">_source</references>
+        <references refid="class_alarm_1abd578ec75a5ac9bce00b7ce7207c5d8c" compoundref="_alarm_8cpp" startline="340" endline="348">getTypeString</references>
+        <references refid="class_logger_manager_1a5c1373ccc47f4112b596fe6f84fbbc21" compoundref="_logger_manager_8h" startline="101" endline="103">LoggerManager::info</references>
+        <referencedby refid="class_c_s_v_config_manager_1a7ecf23e1c03fa194bcf3afe52408d378" compoundref="_c_s_v_config_manager_8cpp" startline="120" endline="141">CSVConfigManager::_parseAlarmFromCSV</referencedby>
+        <referencedby refid="class_config_manager_1a468923ce5f2edecd218b29605d75426f" compoundref="_config_manager_8cpp" startline="487" endline="571">ConfigManager::loadAlarmsConfig</referencedby>
+        <referencedby refid="class_temperature_controller_1a93bd31914a054a4e1df9be7e3966b82e" compoundref="_temperature_controller_8cpp" startline="1363" endline="1371">TemperatureController::updateAlarm</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_alarm_1ab12dd2af567dd87228d9404dcce5b0c0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint8_t</type>
+        <definition>uint8_t Alarm::getPointAddress</definition>
+        <argsstring>() const</argsstring>
+        <name>getPointAddress</name>
+        <qualifiedname>Alarm::getPointAddress</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="90" column="13" bodyfile="include/Alarm.h" bodystart="90" bodyend="90"/>
+        <references refid="class_alarm_1a1f87216f47e3421c09b6a2531963b24d" compoundref="_alarm_8h" startline="110">_source</references>
+        <referencedby refid="class_c_s_v_config_manager_1aa43c8405582f387b0330cc1e965f5117" compoundref="_c_s_v_config_manager_8cpp" startline="369" endline="378">CSVConfigManager::_getAlarmPriorityForPoint</referencedby>
+        <referencedby refid="class_config_manager_1aa15fcaf6330fd73a87e8c6f63e8ab9d5" compoundref="_config_manager_8cpp" startline="448" endline="482">ConfigManager::saveAlarmsConfig</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_alarm_1a5095c54c304a52ebbaca5a2ea74059cd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Alarm::setPriority</definition>
+        <argsstring>(AlarmPriority priority)</argsstring>
+        <name>setPriority</name>
+        <qualifiedname>Alarm::setPriority</qualifiedname>
+        <param>
+          <type><ref refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321b" kindref="member">AlarmPriority</ref></type>
+          <declname>priority</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="92" column="10" bodyfile="src/Alarm.cpp" bodystart="395" bodyend="407"/>
+        <references refid="class_alarm_1a052a73879f5cd039f6f7cb7ce02e6a9d" compoundref="_alarm_8cpp" startline="361" endline="369">_getPriorityString</references>
+        <references refid="class_alarm_1a4b4fbc531464f77b58da6954dd146d65" compoundref="_alarm_8h" startline="109">_priority</references>
+        <references refid="class_alarm_1a1f87216f47e3421c09b6a2531963b24d" compoundref="_alarm_8h" startline="110">_source</references>
+        <references refid="class_alarm_1abd578ec75a5ac9bce00b7ce7207c5d8c" compoundref="_alarm_8cpp" startline="340" endline="348">getTypeString</references>
+        <references refid="class_logger_manager_1a5c1373ccc47f4112b596fe6f84fbbc21" compoundref="_logger_manager_8h" startline="101" endline="103">LoggerManager::info</references>
+        <referencedby refid="class_temperature_controller_1a93bd31914a054a4e1df9be7e3966b82e" compoundref="_temperature_controller_8cpp" startline="1363" endline="1371">TemperatureController::updateAlarm</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_alarm_1a79ff8006ed51c565db4395350a25ad4e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Alarm::setStage</definition>
+        <argsstring>(AlarmStage stage)</argsstring>
+        <name>setStage</name>
+        <qualifiedname>Alarm::setStage</qualifiedname>
+        <param>
+          <type><ref refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eb" kindref="member">AlarmStage</ref></type>
+          <declname>stage</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="93" column="10" bodyfile="src/Alarm.cpp" bodystart="436" bodyend="438"/>
+        <references refid="class_alarm_1a57c98ffd9577dc379176e3402d03913c" compoundref="_alarm_8h" startline="108">_stage</references>
+      </memberdef>
+      <memberdef kind="function" id="class_alarm_1a8d031874090c0c0e548a1f2e41ea4979" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Alarm::setHysteresis</definition>
+        <argsstring>(int16_t hysteresis)</argsstring>
+        <name>setHysteresis</name>
+        <qualifiedname>Alarm::setHysteresis</qualifiedname>
+        <param>
+          <type>int16_t</type>
+          <declname>hysteresis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="95" column="10" bodyfile="src/Alarm.cpp" bodystart="409" bodyend="421"/>
+        <references refid="class_alarm_1a720fb269ec5c87744fedfecf8d060a95" compoundref="_alarm_8h" startline="117">_hysteresis</references>
+        <references refid="class_alarm_1a1f87216f47e3421c09b6a2531963b24d" compoundref="_alarm_8h" startline="110">_source</references>
+        <references refid="class_alarm_1abd578ec75a5ac9bce00b7ce7207c5d8c" compoundref="_alarm_8cpp" startline="340" endline="348">getTypeString</references>
+        <references refid="class_logger_manager_1a5c1373ccc47f4112b596fe6f84fbbc21" compoundref="_logger_manager_8h" startline="101" endline="103">LoggerManager::info</references>
+        <referencedby refid="class_c_s_v_config_manager_1a7ecf23e1c03fa194bcf3afe52408d378" compoundref="_c_s_v_config_manager_8cpp" startline="120" endline="141">CSVConfigManager::_parseAlarmFromCSV</referencedby>
+        <referencedby refid="class_config_manager_1a468923ce5f2edecd218b29605d75426f" compoundref="_config_manager_8cpp" startline="487" endline="571">ConfigManager::loadAlarmsConfig</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_alarm_1a952efd43b6a887659d56815bd5119d60" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int16_t</type>
+        <definition>int16_t Alarm::getHysteresis</definition>
+        <argsstring>() const</argsstring>
+        <name>getHysteresis</name>
+        <qualifiedname>Alarm::getHysteresis</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="96" column="13" bodyfile="include/Alarm.h" bodystart="96" bodyend="96"/>
+        <references refid="class_alarm_1a720fb269ec5c87744fedfecf8d060a95" compoundref="_alarm_8h" startline="117">_hysteresis</references>
+        <referencedby refid="class_config_manager_1aa15fcaf6330fd73a87e8c6f63e8ab9d5" compoundref="_config_manager_8cpp" startline="448" endline="482">ConfigManager::saveAlarmsConfig</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_alarm_1a3f5329f9c026bad4f5171423fcaf51b0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Alarm::setAcknowledgedDelay</definition>
+        <argsstring>(unsigned long delay)</argsstring>
+        <name>setAcknowledgedDelay</name>
+        <qualifiedname>Alarm::setAcknowledgedDelay</qualifiedname>
+        <param>
+          <type>unsigned long</type>
+          <declname>delay</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="98" column="10" bodyfile="src/Alarm.cpp" bodystart="590" bodyend="592"/>
+        <references refid="class_alarm_1a4ab562dd3179820f3694cbbd23b9dad5" compoundref="_alarm_8h" startline="133">_acknowledgedDelay</references>
+        <referencedby refid="class_temperature_controller_1ac5c3403746d7c850bf7929bf5ee3448a" compoundref="_temperature_controller_8cpp" startline="1290" endline="1346">TemperatureController::addAlarm</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_alarm_1a585cf91e94a0e74d0ce1f6ce46c06614" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>unsigned long</type>
+        <definition>unsigned long Alarm::getAcknowledgedDelay</definition>
+        <argsstring>() const</argsstring>
+        <name>getAcknowledgedDelay</name>
+        <qualifiedname>Alarm::getAcknowledgedDelay</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="99" column="19" bodyfile="src/Alarm.cpp" bodystart="594" bodyend="596"/>
+        <references refid="class_alarm_1a4ab562dd3179820f3694cbbd23b9dad5" compoundref="_alarm_8h" startline="133">_acknowledgedDelay</references>
+      </memberdef>
+      <memberdef kind="function" id="class_alarm_1a6404e8478e8c2d726e9399ea1f2268b2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Alarm::isAcknowledgedDelayElapsed</definition>
+        <argsstring>() const</argsstring>
+        <name>isAcknowledgedDelayElapsed</name>
+        <qualifiedname>Alarm::isAcknowledgedDelayElapsed</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="100" column="10" bodyfile="src/Alarm.cpp" bodystart="598" bodyend="603"/>
+        <references refid="class_alarm_1a4ab562dd3179820f3694cbbd23b9dad5" compoundref="_alarm_8h" startline="133">_acknowledgedDelay</references>
+        <references refid="class_alarm_1a25eda4c86523595ed5630424ab66e2ec" compoundref="_alarm_8h" startline="114">_acknowledgedTime</references>
+        <references refid="class_alarm_1a57c98ffd9577dc379176e3402d03913c" compoundref="_alarm_8h" startline="108">_stage</references>
+        <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba7e83ae21b9e9b168f12ba5a90ee82c94" compoundref="_alarm_8h" startline="23">ACKNOWLEDGED</references>
+        <referencedby refid="class_alarm_1abc87fe39e6a9b5beb9f09df780f67621" compoundref="_alarm_8cpp" startline="441" endline="586">updateCondition</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_alarm_1a1ab55390c07c38764b8264297b741b05" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>unsigned long</type>
+        <definition>unsigned long Alarm::getAcknowledgedTimeLeft</definition>
+        <argsstring>() const</argsstring>
+        <name>getAcknowledgedTimeLeft</name>
+        <qualifiedname>Alarm::getAcknowledgedTimeLeft</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="101" column="19" bodyfile="src/Alarm.cpp" bodystart="605" bodyend="616"/>
+        <references refid="class_alarm_1a4ab562dd3179820f3694cbbd23b9dad5" compoundref="_alarm_8h" startline="133">_acknowledgedDelay</references>
+        <references refid="class_alarm_1a25eda4c86523595ed5630424ab66e2ec" compoundref="_alarm_8h" startline="114">_acknowledgedTime</references>
+        <references refid="class_alarm_1a57c98ffd9577dc379176e3402d03913c" compoundref="_alarm_8h" startline="108">_stage</references>
+        <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba7e83ae21b9e9b168f12ba5a90ee82c94" compoundref="_alarm_8h" startline="23">ACKNOWLEDGED</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_alarm_1a11b2da560dbc8653fa9dec671a78b980" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Alarm::_updateMessage</definition>
+        <argsstring>()</argsstring>
+        <name>_updateMessage</name>
+        <qualifiedname>Alarm::_updateMessage</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="126" column="10" bodyfile="src/Alarm.cpp" bodystart="336" bodyend="338"/>
+        <references refid="class_alarm_1af47cc719207c7988954c082b0b80896d" compoundref="_alarm_8h" startline="123">_message</references>
+        <references refid="class_alarm_1a480e1d6d474da0cd4e5dd557e41cb87e" compoundref="_alarm_8cpp" startline="300" endline="326">getDisplayText</references>
+        <referencedby refid="class_alarm_1aa14f5a764303b269f04573867e2e4fc8" compoundref="_alarm_8cpp" startline="69" endline="98">acknowledge</referencedby>
+        <referencedby refid="class_alarm_1abf159b68e429d66de4ab2d10c2ccd44b" compoundref="_alarm_8cpp" startline="22" endline="45">Alarm</referencedby>
+        <referencedby refid="class_alarm_1adc66e3d22e173b00c59b040369030a17" compoundref="_alarm_8cpp" startline="102" endline="119">clear</referencedby>
+        <referencedby refid="class_alarm_1af8d75ee8622a2a96f4bc9b408e9668e5" compoundref="_alarm_8cpp" startline="138" endline="155">reactivate</referencedby>
+        <referencedby refid="class_alarm_1a73e7673d61f82aa21441c75f2cee2c6f" compoundref="_alarm_8cpp" startline="121" endline="135">resolve</referencedby>
+        <referencedby refid="class_alarm_1abc87fe39e6a9b5beb9f09df780f67621" compoundref="_alarm_8cpp" startline="441" endline="586">updateCondition</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_alarm_1a28229f40ec51928641f04cd1e505bd6c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Alarm::_checkCondition</definition>
+        <argsstring>()</argsstring>
+        <name>_checkCondition</name>
+        <qualifiedname>Alarm::_checkCondition</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="127" column="10" bodyfile="src/Alarm.cpp" bodystart="157" bodyend="221"/>
+        <references refid="class_alarm_1a720fb269ec5c87744fedfecf8d060a95" compoundref="_alarm_8h" startline="117">_hysteresis</references>
+        <references refid="class_alarm_1a1f87216f47e3421c09b6a2531963b24d" compoundref="_alarm_8h" startline="110">_source</references>
+        <references refid="class_alarm_1a57c98ffd9577dc379176e3402d03913c" compoundref="_alarm_8h" startline="108">_stage</references>
+        <references refid="class_alarm_1af86f7649c30db0d2cd6d4498032bb20d" compoundref="_alarm_8h" startline="107">_type</references>
+        <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba62574ee27e6c5f985a6bc1dc344e7438" compoundref="_alarm_8h" startline="21">CLEARED</references>
+        <references refid="class_alarm_1a5f0ead4dbd06aa64bd316d99dc587302" compoundref="_alarm_8cpp" startline="350" endline="359">getStageString</references>
+        <references refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2a9ca8335873c44a53b8f7c5fc526ee59b" compoundref="_alarm_8h" startline="12">HIGH_TEMPERATURE</references>
+        <references refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2acf7e66cec00ad7027a2f00fec418ed71" compoundref="_alarm_8h" startline="13">LOW_TEMPERATURE</references>
+        <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba874584b84df5da74c3964d8efbff7a02" compoundref="_alarm_8h" startline="22">RESOLVED</references>
+        <references refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2ab4fed37e8cab6ef5684a361be786d8de" compoundref="_alarm_8h" startline="15">SENSOR_DISCONNECTED</references>
+        <references refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2a3993b9fcdbf9ec59e873519a4d02fe2f" compoundref="_alarm_8h" startline="14">SENSOR_ERROR</references>
+        <referencedby refid="class_alarm_1abc87fe39e6a9b5beb9f09df780f67621" compoundref="_alarm_8cpp" startline="441" endline="586">updateCondition</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_alarm_1a052a73879f5cd039f6f7cb7ce02e6a9d" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>String</type>
+        <definition>String Alarm::_getPriorityString</definition>
+        <argsstring>() const</argsstring>
+        <name>_getPriorityString</name>
+        <qualifiedname>Alarm::_getPriorityString</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="129" column="12" bodyfile="src/Alarm.cpp" bodystart="361" bodyend="369"/>
+        <references refid="class_alarm_1a4b4fbc531464f77b58da6954dd146d65" compoundref="_alarm_8h" startline="109">_priority</references>
+        <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba5f9223804ac004dc2fad18afc18a3951" compoundref="_alarm_8h" startline="33">PRIORITY_CRITICAL</references>
+        <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba47a10a0fba7f10a751e6ea38f3d6a1e3" compoundref="_alarm_8h" startline="32">PRIORITY_HIGH</references>
+        <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba4a2343657e145cb3dab4f445d2c29b1f" compoundref="_alarm_8h" startline="30">PRIORITY_LOW</references>
+        <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba7e5ab414d2d201947566a9c574a7b85f" compoundref="_alarm_8h" startline="31">PRIORITY_MEDIUM</references>
+        <referencedby refid="class_alarm_1aa14f5a764303b269f04573867e2e4fc8" compoundref="_alarm_8cpp" startline="69" endline="98">acknowledge</referencedby>
+        <referencedby refid="class_alarm_1a5095c54c304a52ebbaca5a2ea74059cd" compoundref="_alarm_8cpp" startline="395" endline="407">setPriority</referencedby>
+        <referencedby refid="class_alarm_1abc87fe39e6a9b5beb9f09df780f67621" compoundref="_alarm_8cpp" startline="441" endline="586">updateCondition</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_alarm_1a07e61197f2b2feadad2dee795e9ec97b" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>String</type>
+        <definition>String Alarm::_getPriorityString</definition>
+        <argsstring>(AlarmPriority priority) const</argsstring>
+        <name>_getPriorityString</name>
+        <qualifiedname>Alarm::_getPriorityString</qualifiedname>
+        <param>
+          <type><ref refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321b" kindref="member">AlarmPriority</ref></type>
+          <declname>priority</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="134" column="12" bodyfile="src/Alarm.cpp" bodystart="619" bodyend="627"/>
+        <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba5f9223804ac004dc2fad18afc18a3951" compoundref="_alarm_8h" startline="33">PRIORITY_CRITICAL</references>
+        <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba47a10a0fba7f10a751e6ea38f3d6a1e3" compoundref="_alarm_8h" startline="32">PRIORITY_HIGH</references>
+        <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba4a2343657e145cb3dab4f445d2c29b1f" compoundref="_alarm_8h" startline="30">PRIORITY_LOW</references>
+        <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba7e5ab414d2d201947566a9c574a7b85f" compoundref="_alarm_8h" startline="31">PRIORITY_MEDIUM</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>Alarm</label>
+        <link refid="class_alarm"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>-_source</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MeasurementPoint</label>
+        <link refid="class_measurement_point"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>-boundSensor</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Sensor</label>
+        <link refid="class_sensor"/>
+      </node>
+    </collaborationgraph>
+    <location file="include/Alarm.h" line="37" column="1" bodyfile="include/Alarm.h" bodystart="37" bodyend="135"/>
+    <listofallmembers>
+      <member refid="class_alarm_1a4ab562dd3179820f3694cbbd23b9dad5" prot="private" virt="non-virtual"><scope>Alarm</scope><name>_acknowledgedDelay</name></member>
+      <member refid="class_alarm_1a25eda4c86523595ed5630424ab66e2ec" prot="private" virt="non-virtual"><scope>Alarm</scope><name>_acknowledgedTime</name></member>
+      <member refid="class_alarm_1a28229f40ec51928641f04cd1e505bd6c" prot="private" virt="non-virtual"><scope>Alarm</scope><name>_checkCondition</name></member>
+      <member refid="class_alarm_1ad071235bbd9594fcf2adb144e88344c0" prot="private" virt="non-virtual"><scope>Alarm</scope><name>_clearedTime</name></member>
+      <member refid="class_alarm_1a784bac1bc016f0facc76176d893e3a90" prot="private" virt="non-virtual"><scope>Alarm</scope><name>_configKey</name></member>
+      <member refid="class_alarm_1a483c0308c4c2e27047ae10f194f4f414" prot="private" virt="non-virtual"><scope>Alarm</scope><name>_delayTime</name></member>
+      <member refid="class_alarm_1af532c7945d25b47adf55d60cb91c86ae" prot="private" virt="non-virtual"><scope>Alarm</scope><name>_enabled</name></member>
+      <member refid="class_alarm_1a052a73879f5cd039f6f7cb7ce02e6a9d" prot="private" virt="non-virtual"><scope>Alarm</scope><name>_getPriorityString</name></member>
+      <member refid="class_alarm_1a07e61197f2b2feadad2dee795e9ec97b" prot="private" virt="non-virtual"><scope>Alarm</scope><name>_getPriorityString</name></member>
+      <member refid="class_alarm_1a720fb269ec5c87744fedfecf8d060a95" prot="private" virt="non-virtual"><scope>Alarm</scope><name>_hysteresis</name></member>
+      <member refid="class_alarm_1af47cc719207c7988954c082b0b80896d" prot="private" virt="non-virtual"><scope>Alarm</scope><name>_message</name></member>
+      <member refid="class_alarm_1a4b4fbc531464f77b58da6954dd146d65" prot="private" virt="non-virtual"><scope>Alarm</scope><name>_priority</name></member>
+      <member refid="class_alarm_1a1f87216f47e3421c09b6a2531963b24d" prot="private" virt="non-virtual"><scope>Alarm</scope><name>_source</name></member>
+      <member refid="class_alarm_1a57c98ffd9577dc379176e3402d03913c" prot="private" virt="non-virtual"><scope>Alarm</scope><name>_stage</name></member>
+      <member refid="class_alarm_1a605637fd697184aa6c1a003e80703a47" prot="private" virt="non-virtual"><scope>Alarm</scope><name>_timestamp</name></member>
+      <member refid="class_alarm_1af86f7649c30db0d2cd6d4498032bb20d" prot="private" virt="non-virtual"><scope>Alarm</scope><name>_type</name></member>
+      <member refid="class_alarm_1a11b2da560dbc8653fa9dec671a78b980" prot="private" virt="non-virtual"><scope>Alarm</scope><name>_updateMessage</name></member>
+      <member refid="class_alarm_1aa14f5a764303b269f04573867e2e4fc8" prot="public" virt="non-virtual"><scope>Alarm</scope><name>acknowledge</name></member>
+      <member refid="class_alarm_1abf159b68e429d66de4ab2d10c2ccd44b" prot="public" virt="non-virtual"><scope>Alarm</scope><name>Alarm</name></member>
+      <member refid="class_alarm_1adc66e3d22e173b00c59b040369030a17" prot="public" virt="non-virtual"><scope>Alarm</scope><name>clear</name></member>
+      <member refid="class_alarm_1a585cf91e94a0e74d0ce1f6ce46c06614" prot="public" virt="non-virtual"><scope>Alarm</scope><name>getAcknowledgedDelay</name></member>
+      <member refid="class_alarm_1afaa86db89313d8b1c211c3c8faf5b898" prot="public" virt="non-virtual"><scope>Alarm</scope><name>getAcknowledgedTime</name></member>
+      <member refid="class_alarm_1a1ab55390c07c38764b8264297b741b05" prot="public" virt="non-virtual"><scope>Alarm</scope><name>getAcknowledgedTimeLeft</name></member>
+      <member refid="class_alarm_1a478b46ecceac6f58202312a4172317df" prot="public" virt="non-virtual"><scope>Alarm</scope><name>getClearedTime</name></member>
+      <member refid="class_alarm_1ac096a4dfdf5d2cd201ff0a5a54b5ce42" prot="public" virt="non-virtual"><scope>Alarm</scope><name>getConfigKey</name></member>
+      <member refid="class_alarm_1a70e0d351966a5cbe9fc77785f6d55939" prot="public" virt="non-virtual"><scope>Alarm</scope><name>getDelayTime</name></member>
+      <member refid="class_alarm_1a480e1d6d474da0cd4e5dd557e41cb87e" prot="public" virt="non-virtual"><scope>Alarm</scope><name>getDisplayText</name></member>
+      <member refid="class_alarm_1a952efd43b6a887659d56815bd5119d60" prot="public" virt="non-virtual"><scope>Alarm</scope><name>getHysteresis</name></member>
+      <member refid="class_alarm_1a374523d1bf014ab315a48b8f0390c04f" prot="public" virt="non-virtual"><scope>Alarm</scope><name>getMessage</name></member>
+      <member refid="class_alarm_1ab12dd2af567dd87228d9404dcce5b0c0" prot="public" virt="non-virtual"><scope>Alarm</scope><name>getPointAddress</name></member>
+      <member refid="class_alarm_1abe89e376d8cacb582717ad6a65526ee8" prot="public" virt="non-virtual"><scope>Alarm</scope><name>getPriority</name></member>
+      <member refid="class_alarm_1aa86c4f3280ad82c9679af1c765a6bc92" prot="public" virt="non-virtual"><scope>Alarm</scope><name>getSource</name></member>
+      <member refid="class_alarm_1af01cabf2a19aa3b74848f0a5483ba3fb" prot="public" virt="non-virtual"><scope>Alarm</scope><name>getStage</name></member>
+      <member refid="class_alarm_1a5f0ead4dbd06aa64bd316d99dc587302" prot="public" virt="non-virtual"><scope>Alarm</scope><name>getStageString</name></member>
+      <member refid="class_alarm_1adaf4b74537e11d5643ba5a8ae07fe10e" prot="public" virt="non-virtual"><scope>Alarm</scope><name>getStatusText</name></member>
+      <member refid="class_alarm_1a7a4a3290a6a659542f82fe08a96736a8" prot="public" virt="non-virtual"><scope>Alarm</scope><name>getTimestamp</name></member>
+      <member refid="class_alarm_1acfac41af4628d83d3fdcc11c8fb55069" prot="public" virt="non-virtual"><scope>Alarm</scope><name>getType</name></member>
+      <member refid="class_alarm_1abd578ec75a5ac9bce00b7ce7207c5d8c" prot="public" virt="non-virtual"><scope>Alarm</scope><name>getTypeString</name></member>
+      <member refid="class_alarm_1a14fab6d447b1eeef21234ffcf47986bf" prot="public" virt="non-virtual"><scope>Alarm</scope><name>isAcknowledged</name></member>
+      <member refid="class_alarm_1a6404e8478e8c2d726e9399ea1f2268b2" prot="public" virt="non-virtual"><scope>Alarm</scope><name>isAcknowledgedDelayElapsed</name></member>
+      <member refid="class_alarm_1ad97af04ffed790b34e193142abd501ce" prot="public" virt="non-virtual"><scope>Alarm</scope><name>isActive</name></member>
+      <member refid="class_alarm_1aa14465fadcd29ef9b872f4b679d1d5b3" prot="public" virt="non-virtual"><scope>Alarm</scope><name>isDelayElapsed</name></member>
+      <member refid="class_alarm_1ab1d04e5776db50454c72fd0937acdc37" prot="public" virt="non-virtual"><scope>Alarm</scope><name>isEnabled</name></member>
+      <member refid="class_alarm_1a36ca346131618f5995dbea4f00f2a4dc" prot="public" virt="non-virtual"><scope>Alarm</scope><name>isResolved</name></member>
+      <member refid="class_alarm_1ab9867ec0c314549960584f4ae01328f8" prot="public" virt="non-virtual"><scope>Alarm</scope><name>operator&lt;</name></member>
+      <member refid="class_alarm_1a2a6049ea9b003e51f5ac17aba40bb1ad" prot="public" virt="non-virtual"><scope>Alarm</scope><name>operator==</name></member>
+      <member refid="class_alarm_1af8d75ee8622a2a96f4bc9b408e9668e5" prot="public" virt="non-virtual"><scope>Alarm</scope><name>reactivate</name></member>
+      <member refid="class_alarm_1a73e7673d61f82aa21441c75f2cee2c6f" prot="public" virt="non-virtual"><scope>Alarm</scope><name>resolve</name></member>
+      <member refid="class_alarm_1a3f5329f9c026bad4f5171423fcaf51b0" prot="public" virt="non-virtual"><scope>Alarm</scope><name>setAcknowledgedDelay</name></member>
+      <member refid="class_alarm_1ad116a3e8b622810e1769568fbac16379" prot="public" virt="non-virtual"><scope>Alarm</scope><name>setConfigKey</name></member>
+      <member refid="class_alarm_1a34e3136dd5e8a5ca9fd2ac3a0c442ca3" prot="public" virt="non-virtual"><scope>Alarm</scope><name>setDelayTime</name></member>
+      <member refid="class_alarm_1acb8f203b2e2317c1f835bb4b19123f3f" prot="public" virt="non-virtual"><scope>Alarm</scope><name>setEnabled</name></member>
+      <member refid="class_alarm_1a8d031874090c0c0e548a1f2e41ea4979" prot="public" virt="non-virtual"><scope>Alarm</scope><name>setHysteresis</name></member>
+      <member refid="class_alarm_1a5095c54c304a52ebbaca5a2ea74059cd" prot="public" virt="non-virtual"><scope>Alarm</scope><name>setPriority</name></member>
+      <member refid="class_alarm_1a79ff8006ed51c565db4395350a25ad4e" prot="public" virt="non-virtual"><scope>Alarm</scope><name>setStage</name></member>
+      <member refid="class_alarm_1abc87fe39e6a9b5beb9f09df780f67621" prot="public" virt="non-virtual"><scope>Alarm</scope><name>updateCondition</name></member>
+      <member refid="class_alarm_1adb5fc73041badc6a082b78874559c002" prot="public" virt="non-virtual"><scope>Alarm</scope><name>~Alarm</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

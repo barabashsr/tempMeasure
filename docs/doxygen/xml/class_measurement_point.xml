@@ -1,0 +1,717 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="class_measurement_point" kind="class" language="C++" prot="public">
+    <compoundname>MeasurementPoint</compoundname>
+    <includes refid="_measurement_point_8h" local="no">MeasurementPoint.h</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_measurement_point_1a13e1f193f0588973d8fe6b836ebe0fb9" prot="private" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t MeasurementPoint::address</definition>
+        <argsstring></argsstring>
+        <name>address</name>
+        <qualifiedname>MeasurementPoint::address</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MeasurementPoint.h" line="48" column="13" bodyfile="include/MeasurementPoint.h" bodystart="48" bodyend="-1"/>
+        <referencedby refid="class_measurement_point_1a7b74a18d86e0e545264a774aa2c31cad" compoundref="_measurement_point_8cpp" startline="25" endline="27">getAddress</referencedby>
+        <referencedby refid="class_measurement_point_1a4abbf3752cd60d76f086071c4823ac1a" compoundref="_measurement_point_8h" startline="13" endline="14">MeasurementPoint</referencedby>
+        <referencedby refid="class_measurement_point_1a4441879bac27ef9cf2623d40bd347c18" compoundref="_measurement_point_8cpp" startline="4" endline="18">MeasurementPoint</referencedby>
+        <referencedby refid="class_measurement_point_1aefb47fef40f33161be5c6fddf0cf6329" compoundref="_measurement_point_8cpp" startline="86" endline="96">setHighAlarmThreshold</referencedby>
+        <referencedby refid="class_measurement_point_1ac780917beebc11d705824cab8f43b94d" compoundref="_measurement_point_8cpp" startline="72" endline="84">setLowAlarmThreshold</referencedby>
+        <referencedby refid="class_measurement_point_1ae3abe83ed3e7979a906c7d753ac9d22d" compoundref="_measurement_point_8cpp" startline="61" endline="70">setName</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_measurement_point_1aa689590a454a7e11401a59e0399e66f4" prot="private" static="no" mutable="no">
+        <type>String</type>
+        <definition>String MeasurementPoint::name</definition>
+        <argsstring></argsstring>
+        <name>name</name>
+        <qualifiedname>MeasurementPoint::name</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MeasurementPoint.h" line="49" column="12" bodyfile="include/MeasurementPoint.h" bodystart="49" bodyend="-1"/>
+        <referencedby refid="class_measurement_point_1aa3a80d373c7609c7b178bf7353ffdd7a" compoundref="_measurement_point_8cpp" startline="29" endline="31">getName</referencedby>
+        <referencedby refid="class_measurement_point_1a4abbf3752cd60d76f086071c4823ac1a" compoundref="_measurement_point_8h" startline="13" endline="14">MeasurementPoint</referencedby>
+        <referencedby refid="class_measurement_point_1a4441879bac27ef9cf2623d40bd347c18" compoundref="_measurement_point_8cpp" startline="4" endline="18">MeasurementPoint</referencedby>
+        <referencedby refid="class_measurement_point_1aefb47fef40f33161be5c6fddf0cf6329" compoundref="_measurement_point_8cpp" startline="86" endline="96">setHighAlarmThreshold</referencedby>
+        <referencedby refid="class_measurement_point_1ac780917beebc11d705824cab8f43b94d" compoundref="_measurement_point_8cpp" startline="72" endline="84">setLowAlarmThreshold</referencedby>
+        <referencedby refid="class_measurement_point_1ae3abe83ed3e7979a906c7d753ac9d22d" compoundref="_measurement_point_8cpp" startline="61" endline="70">setName</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_measurement_point_1ada9ba45e500305e667f2a489603e84a8" prot="private" static="no" mutable="no">
+        <type>int16_t</type>
+        <definition>int16_t MeasurementPoint::currentTemp</definition>
+        <argsstring></argsstring>
+        <name>currentTemp</name>
+        <qualifiedname>MeasurementPoint::currentTemp</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MeasurementPoint.h" line="52" column="13" bodyfile="include/MeasurementPoint.h" bodystart="52" bodyend="-1"/>
+        <referencedby refid="class_measurement_point_1aceaf14fde40bcd5331e5ea6a07d7dde8" compoundref="_measurement_point_8cpp" startline="33" endline="35">getCurrentTemp</referencedby>
+        <referencedby refid="class_measurement_point_1a4abbf3752cd60d76f086071c4823ac1a" compoundref="_measurement_point_8h" startline="13" endline="14">MeasurementPoint</referencedby>
+        <referencedby refid="class_measurement_point_1a4441879bac27ef9cf2623d40bd347c18" compoundref="_measurement_point_8cpp" startline="4" endline="18">MeasurementPoint</referencedby>
+        <referencedby refid="class_measurement_point_1a6a78c850d05aa4ae8151e5e9f828fce0" compoundref="_measurement_point_8cpp" startline="128" endline="131">resetMinMaxTemp</referencedby>
+        <referencedby refid="class_measurement_point_1a3c6d3325a506e8797bc759f15b70391f" compoundref="_measurement_point_8cpp" startline="110" endline="126">update</referencedby>
+        <referencedby refid="class_measurement_point_1a71995209f2507e6cc15d01607f60767f" compoundref="_measurement_point_8cpp" startline="133" endline="138">updateAlarmStatus</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_measurement_point_1a2848f528b229967f371cc83e394b26fb" prot="private" static="no" mutable="no">
+        <type>int16_t</type>
+        <definition>int16_t MeasurementPoint::minTemp</definition>
+        <argsstring></argsstring>
+        <name>minTemp</name>
+        <qualifiedname>MeasurementPoint::minTemp</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MeasurementPoint.h" line="53" column="13" bodyfile="include/MeasurementPoint.h" bodystart="53" bodyend="-1"/>
+        <referencedby refid="class_measurement_point_1adc31f012462c1623617d5f362bcb2c59" compoundref="_measurement_point_8cpp" startline="37" endline="39">getMinTemp</referencedby>
+        <referencedby refid="class_measurement_point_1a4abbf3752cd60d76f086071c4823ac1a" compoundref="_measurement_point_8h" startline="13" endline="14">MeasurementPoint</referencedby>
+        <referencedby refid="class_measurement_point_1a4441879bac27ef9cf2623d40bd347c18" compoundref="_measurement_point_8cpp" startline="4" endline="18">MeasurementPoint</referencedby>
+        <referencedby refid="class_measurement_point_1a6a78c850d05aa4ae8151e5e9f828fce0" compoundref="_measurement_point_8cpp" startline="128" endline="131">resetMinMaxTemp</referencedby>
+        <referencedby refid="class_measurement_point_1a3c6d3325a506e8797bc759f15b70391f" compoundref="_measurement_point_8cpp" startline="110" endline="126">update</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_measurement_point_1a38e188f2325f505993d55fa7a2d3e169" prot="private" static="no" mutable="no">
+        <type>int16_t</type>
+        <definition>int16_t MeasurementPoint::maxTemp</definition>
+        <argsstring></argsstring>
+        <name>maxTemp</name>
+        <qualifiedname>MeasurementPoint::maxTemp</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MeasurementPoint.h" line="54" column="13" bodyfile="include/MeasurementPoint.h" bodystart="54" bodyend="-1"/>
+        <referencedby refid="class_measurement_point_1a8677e00e0be369d7874f4982990dc56d" compoundref="_measurement_point_8cpp" startline="41" endline="43">getMaxTemp</referencedby>
+        <referencedby refid="class_measurement_point_1a4abbf3752cd60d76f086071c4823ac1a" compoundref="_measurement_point_8h" startline="13" endline="14">MeasurementPoint</referencedby>
+        <referencedby refid="class_measurement_point_1a4441879bac27ef9cf2623d40bd347c18" compoundref="_measurement_point_8cpp" startline="4" endline="18">MeasurementPoint</referencedby>
+        <referencedby refid="class_measurement_point_1a6a78c850d05aa4ae8151e5e9f828fce0" compoundref="_measurement_point_8cpp" startline="128" endline="131">resetMinMaxTemp</referencedby>
+        <referencedby refid="class_measurement_point_1a3c6d3325a506e8797bc759f15b70391f" compoundref="_measurement_point_8cpp" startline="110" endline="126">update</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_measurement_point_1a3f1d2653a05ccfa24d2305f5b07e35db" prot="private" static="no" mutable="no">
+        <type>int16_t</type>
+        <definition>int16_t MeasurementPoint::lowAlarmThreshold</definition>
+        <argsstring></argsstring>
+        <name>lowAlarmThreshold</name>
+        <qualifiedname>MeasurementPoint::lowAlarmThreshold</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MeasurementPoint.h" line="55" column="13" bodyfile="include/MeasurementPoint.h" bodystart="55" bodyend="-1"/>
+        <referencedby refid="class_measurement_point_1a6e538e117d9e22c6998b56519a51d6ba" compoundref="_measurement_point_8cpp" startline="45" endline="47">getLowAlarmThreshold</referencedby>
+        <referencedby refid="class_measurement_point_1a4abbf3752cd60d76f086071c4823ac1a" compoundref="_measurement_point_8h" startline="13" endline="14">MeasurementPoint</referencedby>
+        <referencedby refid="class_measurement_point_1a4441879bac27ef9cf2623d40bd347c18" compoundref="_measurement_point_8cpp" startline="4" endline="18">MeasurementPoint</referencedby>
+        <referencedby refid="class_measurement_point_1ac780917beebc11d705824cab8f43b94d" compoundref="_measurement_point_8cpp" startline="72" endline="84">setLowAlarmThreshold</referencedby>
+        <referencedby refid="class_measurement_point_1a71995209f2507e6cc15d01607f60767f" compoundref="_measurement_point_8cpp" startline="133" endline="138">updateAlarmStatus</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_measurement_point_1a63f7bd3c914d6b77bc6828cc83f4fef6" prot="private" static="no" mutable="no">
+        <type>int16_t</type>
+        <definition>int16_t MeasurementPoint::highAlarmThreshold</definition>
+        <argsstring></argsstring>
+        <name>highAlarmThreshold</name>
+        <qualifiedname>MeasurementPoint::highAlarmThreshold</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MeasurementPoint.h" line="56" column="13" bodyfile="include/MeasurementPoint.h" bodystart="56" bodyend="-1"/>
+        <referencedby refid="class_measurement_point_1a71d6d440240f110cbd80c58bbc47aff6" compoundref="_measurement_point_8cpp" startline="49" endline="51">getHighAlarmThreshold</referencedby>
+        <referencedby refid="class_measurement_point_1a4abbf3752cd60d76f086071c4823ac1a" compoundref="_measurement_point_8h" startline="13" endline="14">MeasurementPoint</referencedby>
+        <referencedby refid="class_measurement_point_1a4441879bac27ef9cf2623d40bd347c18" compoundref="_measurement_point_8cpp" startline="4" endline="18">MeasurementPoint</referencedby>
+        <referencedby refid="class_measurement_point_1aefb47fef40f33161be5c6fddf0cf6329" compoundref="_measurement_point_8cpp" startline="86" endline="96">setHighAlarmThreshold</referencedby>
+        <referencedby refid="class_measurement_point_1a71995209f2507e6cc15d01607f60767f" compoundref="_measurement_point_8cpp" startline="133" endline="138">updateAlarmStatus</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_measurement_point_1a18c9fe4e70a4cc17473fd9df8a3c6b68" prot="private" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t MeasurementPoint::alarmStatus</definition>
+        <argsstring></argsstring>
+        <name>alarmStatus</name>
+        <qualifiedname>MeasurementPoint::alarmStatus</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MeasurementPoint.h" line="57" column="13" bodyfile="include/MeasurementPoint.h" bodystart="57" bodyend="-1"/>
+        <referencedby refid="class_measurement_point_1a1421d744f7982e528a579da02adb1919" compoundref="_measurement_point_8cpp" startline="53" endline="55">getAlarmStatus</referencedby>
+        <referencedby refid="class_measurement_point_1a4abbf3752cd60d76f086071c4823ac1a" compoundref="_measurement_point_8h" startline="13" endline="14">MeasurementPoint</referencedby>
+        <referencedby refid="class_measurement_point_1a4441879bac27ef9cf2623d40bd347c18" compoundref="_measurement_point_8cpp" startline="4" endline="18">MeasurementPoint</referencedby>
+        <referencedby refid="class_measurement_point_1a71995209f2507e6cc15d01607f60767f" compoundref="_measurement_point_8cpp" startline="133" endline="138">updateAlarmStatus</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_measurement_point_1a9b17fba6e1ea928d4aa88abf28731fc7" prot="private" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t MeasurementPoint::errorStatus</definition>
+        <argsstring></argsstring>
+        <name>errorStatus</name>
+        <qualifiedname>MeasurementPoint::errorStatus</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MeasurementPoint.h" line="58" column="13" bodyfile="include/MeasurementPoint.h" bodystart="58" bodyend="-1"/>
+        <referencedby refid="class_measurement_point_1a3fb0693931f12190a7f96e5d6be51b51" compoundref="_measurement_point_8cpp" startline="57" endline="59">getErrorStatus</referencedby>
+        <referencedby refid="class_measurement_point_1a4abbf3752cd60d76f086071c4823ac1a" compoundref="_measurement_point_8h" startline="13" endline="14">MeasurementPoint</referencedby>
+        <referencedby refid="class_measurement_point_1a4441879bac27ef9cf2623d40bd347c18" compoundref="_measurement_point_8cpp" startline="4" endline="18">MeasurementPoint</referencedby>
+        <referencedby refid="class_measurement_point_1a3c6d3325a506e8797bc759f15b70391f" compoundref="_measurement_point_8cpp" startline="110" endline="126">update</referencedby>
+        <referencedby refid="class_measurement_point_1a71995209f2507e6cc15d01607f60767f" compoundref="_measurement_point_8cpp" startline="133" endline="138">updateAlarmStatus</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_measurement_point_1a2bd6f123317fd8ff0ed22be09a7ac495" prot="private" static="no" mutable="no">
+        <type><ref refid="class_sensor" kindref="compound">Sensor</ref> *</type>
+        <definition>Sensor* MeasurementPoint::boundSensor</definition>
+        <argsstring></argsstring>
+        <name>boundSensor</name>
+        <qualifiedname>MeasurementPoint::boundSensor</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MeasurementPoint.h" line="60" column="12" bodyfile="include/MeasurementPoint.h" bodystart="60" bodyend="-1"/>
+        <referencedby refid="class_measurement_point_1a3c3af28d9aabc9e5b9e2e370eaa29ce0" compoundref="_measurement_point_8cpp" startline="98" endline="100">bindSensor</referencedby>
+        <referencedby refid="class_measurement_point_1a81c7ae93a9314344967d0f31c6fefe2f" compoundref="_measurement_point_8cpp" startline="106" endline="108">getBoundSensor</referencedby>
+        <referencedby refid="class_measurement_point_1a4abbf3752cd60d76f086071c4823ac1a" compoundref="_measurement_point_8h" startline="13" endline="14">MeasurementPoint</referencedby>
+        <referencedby refid="class_measurement_point_1a4441879bac27ef9cf2623d40bd347c18" compoundref="_measurement_point_8cpp" startline="4" endline="18">MeasurementPoint</referencedby>
+        <referencedby refid="class_measurement_point_1ab93923a15b7e55af89d1269b681fb856" compoundref="_measurement_point_8cpp" startline="102" endline="104">unbindSensor</referencedby>
+        <referencedby refid="class_measurement_point_1a3c6d3325a506e8797bc759f15b70391f" compoundref="_measurement_point_8cpp" startline="110" endline="126">update</referencedby>
+        <referencedby refid="class_measurement_point_1a8ee3863bb5548fe9c919234aff8ee0b6" compoundref="_measurement_point_8cpp" startline="20" endline="23">~MeasurementPoint</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_measurement_point_1a4abbf3752cd60d76f086071c4823ac1a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>MeasurementPoint::MeasurementPoint</definition>
+        <argsstring>()</argsstring>
+        <name>MeasurementPoint</name>
+        <qualifiedname>MeasurementPoint::MeasurementPoint</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MeasurementPoint.h" line="13" column="5" bodyfile="include/MeasurementPoint.h" bodystart="13" bodyend="14"/>
+        <references refid="class_measurement_point_1a13e1f193f0588973d8fe6b836ebe0fb9" compoundref="_measurement_point_8h" startline="48">address</references>
+        <references refid="class_measurement_point_1a18c9fe4e70a4cc17473fd9df8a3c6b68" compoundref="_measurement_point_8h" startline="57">alarmStatus</references>
+        <references refid="class_measurement_point_1a2bd6f123317fd8ff0ed22be09a7ac495" compoundref="_measurement_point_8h" startline="60">boundSensor</references>
+        <references refid="class_measurement_point_1ada9ba45e500305e667f2a489603e84a8" compoundref="_measurement_point_8h" startline="52">currentTemp</references>
+        <references refid="class_measurement_point_1a9b17fba6e1ea928d4aa88abf28731fc7" compoundref="_measurement_point_8h" startline="58">errorStatus</references>
+        <references refid="class_measurement_point_1a63f7bd3c914d6b77bc6828cc83f4fef6" compoundref="_measurement_point_8h" startline="56">highAlarmThreshold</references>
+        <references refid="class_measurement_point_1a3f1d2653a05ccfa24d2305f5b07e35db" compoundref="_measurement_point_8h" startline="55">lowAlarmThreshold</references>
+        <references refid="class_measurement_point_1a38e188f2325f505993d55fa7a2d3e169" compoundref="_measurement_point_8h" startline="54">maxTemp</references>
+        <references refid="class_measurement_point_1a2848f528b229967f371cc83e394b26fb" compoundref="_measurement_point_8h" startline="53">minTemp</references>
+        <references refid="class_measurement_point_1aa689590a454a7e11401a59e0399e66f4" compoundref="_measurement_point_8h" startline="49">name</references>
+      </memberdef>
+      <memberdef kind="function" id="class_measurement_point_1a4441879bac27ef9cf2623d40bd347c18" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>MeasurementPoint::MeasurementPoint</definition>
+        <argsstring>(uint8_t address, const String &amp;name)</argsstring>
+        <name>MeasurementPoint</name>
+        <qualifiedname>MeasurementPoint::MeasurementPoint</qualifiedname>
+        <param>
+          <type>uint8_t</type>
+          <declname>address</declname>
+        </param>
+        <param>
+          <type>const String &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MeasurementPoint.h" line="15" column="5" bodyfile="src/MeasurementPoint.cpp" bodystart="4" bodyend="18"/>
+        <references refid="class_measurement_point_1a13e1f193f0588973d8fe6b836ebe0fb9" compoundref="_measurement_point_8h" startline="48">address</references>
+        <references refid="class_measurement_point_1a18c9fe4e70a4cc17473fd9df8a3c6b68" compoundref="_measurement_point_8h" startline="57">alarmStatus</references>
+        <references refid="class_measurement_point_1a2bd6f123317fd8ff0ed22be09a7ac495" compoundref="_measurement_point_8h" startline="60">boundSensor</references>
+        <references refid="class_measurement_point_1ada9ba45e500305e667f2a489603e84a8" compoundref="_measurement_point_8h" startline="52">currentTemp</references>
+        <references refid="class_measurement_point_1a9b17fba6e1ea928d4aa88abf28731fc7" compoundref="_measurement_point_8h" startline="58">errorStatus</references>
+        <references refid="class_measurement_point_1a63f7bd3c914d6b77bc6828cc83f4fef6" compoundref="_measurement_point_8h" startline="56">highAlarmThreshold</references>
+        <references refid="class_measurement_point_1a3f1d2653a05ccfa24d2305f5b07e35db" compoundref="_measurement_point_8h" startline="55">lowAlarmThreshold</references>
+        <references refid="class_measurement_point_1a38e188f2325f505993d55fa7a2d3e169" compoundref="_measurement_point_8h" startline="54">maxTemp</references>
+        <references refid="class_measurement_point_1a2848f528b229967f371cc83e394b26fb" compoundref="_measurement_point_8h" startline="53">minTemp</references>
+        <references refid="class_measurement_point_1aa689590a454a7e11401a59e0399e66f4" compoundref="_measurement_point_8h" startline="49">name</references>
+      </memberdef>
+      <memberdef kind="function" id="class_measurement_point_1a8ee3863bb5548fe9c919234aff8ee0b6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>MeasurementPoint::~MeasurementPoint</definition>
+        <argsstring>()</argsstring>
+        <name>~MeasurementPoint</name>
+        <qualifiedname>MeasurementPoint::~MeasurementPoint</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MeasurementPoint.h" line="18" column="5" bodyfile="src/MeasurementPoint.cpp" bodystart="20" bodyend="23"/>
+        <references refid="class_measurement_point_1a2bd6f123317fd8ff0ed22be09a7ac495" compoundref="_measurement_point_8h" startline="60">boundSensor</references>
+      </memberdef>
+      <memberdef kind="function" id="class_measurement_point_1a7b74a18d86e0e545264a774aa2c31cad" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>uint8_t</type>
+        <definition>uint8_t MeasurementPoint::getAddress</definition>
+        <argsstring>() const</argsstring>
+        <name>getAddress</name>
+        <qualifiedname>MeasurementPoint::getAddress</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MeasurementPoint.h" line="21" column="13" bodyfile="src/MeasurementPoint.cpp" bodystart="25" bodyend="27"/>
+        <references refid="class_measurement_point_1a13e1f193f0588973d8fe6b836ebe0fb9" compoundref="_measurement_point_8h" startline="48">address</references>
+        <referencedby refid="class_c_s_v_config_manager_1a2c2673398051c26184c9197aa751a6b3" compoundref="_c_s_v_config_manager_8cpp" startline="37" endline="70">CSVConfigManager::_exportPointToCSV</referencedby>
+        <referencedby refid="class_config_manager_1ae605c999fabc6344511f455618655326" compoundref="_config_manager_8cpp" startline="1014" endline="1546">ConfigManager::alarmsAPI</referencedby>
+        <referencedby refid="class_register_map_1a1f102e7d0dd51d4750c916fb6e32c37a" compoundref="_register_map_8cpp" startline="106" endline="113">RegisterMap::applyConfigFromMeasurementPoint</referencedby>
+        <referencedby refid="class_register_map_1aa2f819b22096b8c14c421b415f7e83b7" compoundref="_register_map_8cpp" startline="97" endline="104">RegisterMap::applyConfigToMeasurementPoint</referencedby>
+        <referencedby refid="class_temperature_controller_1aa64384fb8503814b46a7d55f53ccb53a" compoundref="_temperature_controller_8cpp" startline="254" endline="276">TemperatureController::createAlarm</referencedby>
+        <referencedby refid="class_temperature_controller_1add39ba7dad38449bbf1787a5c9c51ef9" compoundref="_temperature_controller_8cpp" startline="1066" endline="1125">TemperatureController::getPointsJson</referencedby>
+        <referencedby refid="class_config_manager_1a55b79da91c57039c483ddf5fceabbd64" compoundref="_config_manager_8cpp" startline="279" endline="320">ConfigManager::savePointsConfig</referencedby>
+        <referencedby refid="class_register_map_1a2940213459a183fc06a2226f1cd1a48b" compoundref="_register_map_8cpp" startline="84" endline="95">RegisterMap::updateFromMeasurementPoint</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_measurement_point_1aa3a80d373c7609c7b178bf7353ffdd7a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>String</type>
+        <definition>String MeasurementPoint::getName</definition>
+        <argsstring>() const</argsstring>
+        <name>getName</name>
+        <qualifiedname>MeasurementPoint::getName</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MeasurementPoint.h" line="22" column="12" bodyfile="src/MeasurementPoint.cpp" bodystart="29" bodyend="31"/>
+        <references refid="class_measurement_point_1aa689590a454a7e11401a59e0399e66f4" compoundref="_measurement_point_8h" startline="49">name</references>
+        <referencedby refid="class_c_s_v_config_manager_1a2c2673398051c26184c9197aa751a6b3" compoundref="_c_s_v_config_manager_8cpp" startline="37" endline="70">CSVConfigManager::_exportPointToCSV</referencedby>
+        <referencedby refid="class_logger_manager_1aab43f573f73cfe426cfbea04a9fdd3ee" compoundref="_logger_manager_8cpp" startline="259" endline="278">LoggerManager::_generateCSVHeader</referencedby>
+        <referencedby refid="class_temperature_controller_1ac5c3403746d7c850bf7929bf5ee3448a" compoundref="_temperature_controller_8cpp" startline="1290" endline="1346">TemperatureController::addAlarm</referencedby>
+        <referencedby refid="class_config_manager_1ae605c999fabc6344511f455618655326" compoundref="_config_manager_8cpp" startline="1014" endline="1546">ConfigManager::alarmsAPI</referencedby>
+        <referencedby refid="class_temperature_controller_1a84937fc1aed30193b817f3b062ce0cfc" compoundref="_temperature_controller_8cpp" startline="802" endline="823">TemperatureController::bindSensorToPointByChipSelect</referencedby>
+        <referencedby refid="class_temperature_controller_1a5d8f7c51bb176435a5035293a2db78f7" compoundref="_temperature_controller_8cpp" startline="775" endline="800">TemperatureController::bindSensorToPointByRom</referencedby>
+        <referencedby refid="class_temperature_controller_1add39ba7dad38449bbf1787a5c9c51ef9" compoundref="_temperature_controller_8cpp" startline="1066" endline="1125">TemperatureController::getPointsJson</referencedby>
+        <referencedby refid="class_config_manager_1a471a844085c27f3a8a8f9394d9c14677" compoundref="_config_manager_8cpp" startline="970" endline="1013">ConfigManager::pointsAPI</referencedby>
+        <referencedby refid="class_config_manager_1a55b79da91c57039c483ddf5fceabbd64" compoundref="_config_manager_8cpp" startline="279" endline="320">ConfigManager::savePointsConfig</referencedby>
+        <referencedby refid="class_temperature_controller_1a261c9b96540ec6680dfffd3a26e4ca00" compoundref="_temperature_controller_8cpp" startline="825" endline="846">TemperatureController::unbindSensorFromPoint</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_measurement_point_1aceaf14fde40bcd5331e5ea6a07d7dde8" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int16_t</type>
+        <definition>int16_t MeasurementPoint::getCurrentTemp</definition>
+        <argsstring>() const</argsstring>
+        <name>getCurrentTemp</name>
+        <qualifiedname>MeasurementPoint::getCurrentTemp</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MeasurementPoint.h" line="23" column="13" bodyfile="src/MeasurementPoint.cpp" bodystart="33" bodyend="35"/>
+        <references refid="class_measurement_point_1ada9ba45e500305e667f2a489603e84a8" compoundref="_measurement_point_8h" startline="52">currentTemp</references>
+        <referencedby refid="class_temperature_controller_1a27da8ccc3effea555f440ce3e6f89b08" compoundref="_temperature_controller_8cpp" startline="216" endline="239">TemperatureController::_checkPointForAlarms</referencedby>
+        <referencedby refid="class_c_s_v_config_manager_1a2c2673398051c26184c9197aa751a6b3" compoundref="_c_s_v_config_manager_8cpp" startline="37" endline="70">CSVConfigManager::_exportPointToCSV</referencedby>
+        <referencedby refid="class_logger_manager_1aa6938b6a5c002d6ed72ef352f0cc7a19" compoundref="_logger_manager_8cpp" startline="301" endline="335">LoggerManager::_writeDataRow</referencedby>
+        <referencedby refid="class_config_manager_1ae605c999fabc6344511f455618655326" compoundref="_config_manager_8cpp" startline="1014" endline="1546">ConfigManager::alarmsAPI</referencedby>
+        <referencedby refid="class_temperature_controller_1add39ba7dad38449bbf1787a5c9c51ef9" compoundref="_temperature_controller_8cpp" startline="1066" endline="1125">TemperatureController::getPointsJson</referencedby>
+        <referencedby refid="class_register_map_1a2940213459a183fc06a2226f1cd1a48b" compoundref="_register_map_8cpp" startline="84" endline="95">RegisterMap::updateFromMeasurementPoint</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_measurement_point_1adc31f012462c1623617d5f362bcb2c59" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int16_t</type>
+        <definition>int16_t MeasurementPoint::getMinTemp</definition>
+        <argsstring>() const</argsstring>
+        <name>getMinTemp</name>
+        <qualifiedname>MeasurementPoint::getMinTemp</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MeasurementPoint.h" line="24" column="13" bodyfile="src/MeasurementPoint.cpp" bodystart="37" bodyend="39"/>
+        <references refid="class_measurement_point_1a2848f528b229967f371cc83e394b26fb" compoundref="_measurement_point_8h" startline="53">minTemp</references>
+        <referencedby refid="class_c_s_v_config_manager_1a2c2673398051c26184c9197aa751a6b3" compoundref="_c_s_v_config_manager_8cpp" startline="37" endline="70">CSVConfigManager::_exportPointToCSV</referencedby>
+        <referencedby refid="class_temperature_controller_1add39ba7dad38449bbf1787a5c9c51ef9" compoundref="_temperature_controller_8cpp" startline="1066" endline="1125">TemperatureController::getPointsJson</referencedby>
+        <referencedby refid="class_register_map_1a2940213459a183fc06a2226f1cd1a48b" compoundref="_register_map_8cpp" startline="84" endline="95">RegisterMap::updateFromMeasurementPoint</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_measurement_point_1a8677e00e0be369d7874f4982990dc56d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int16_t</type>
+        <definition>int16_t MeasurementPoint::getMaxTemp</definition>
+        <argsstring>() const</argsstring>
+        <name>getMaxTemp</name>
+        <qualifiedname>MeasurementPoint::getMaxTemp</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MeasurementPoint.h" line="25" column="13" bodyfile="src/MeasurementPoint.cpp" bodystart="41" bodyend="43"/>
+        <references refid="class_measurement_point_1a38e188f2325f505993d55fa7a2d3e169" compoundref="_measurement_point_8h" startline="54">maxTemp</references>
+        <referencedby refid="class_c_s_v_config_manager_1a2c2673398051c26184c9197aa751a6b3" compoundref="_c_s_v_config_manager_8cpp" startline="37" endline="70">CSVConfigManager::_exportPointToCSV</referencedby>
+        <referencedby refid="class_temperature_controller_1add39ba7dad38449bbf1787a5c9c51ef9" compoundref="_temperature_controller_8cpp" startline="1066" endline="1125">TemperatureController::getPointsJson</referencedby>
+        <referencedby refid="class_register_map_1a2940213459a183fc06a2226f1cd1a48b" compoundref="_register_map_8cpp" startline="84" endline="95">RegisterMap::updateFromMeasurementPoint</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_measurement_point_1a6e538e117d9e22c6998b56519a51d6ba" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int16_t</type>
+        <definition>int16_t MeasurementPoint::getLowAlarmThreshold</definition>
+        <argsstring>() const</argsstring>
+        <name>getLowAlarmThreshold</name>
+        <qualifiedname>MeasurementPoint::getLowAlarmThreshold</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MeasurementPoint.h" line="26" column="13" bodyfile="src/MeasurementPoint.cpp" bodystart="45" bodyend="47"/>
+        <references refid="class_measurement_point_1a3f1d2653a05ccfa24d2305f5b07e35db" compoundref="_measurement_point_8h" startline="55">lowAlarmThreshold</references>
+        <referencedby refid="class_temperature_controller_1a27da8ccc3effea555f440ce3e6f89b08" compoundref="_temperature_controller_8cpp" startline="216" endline="239">TemperatureController::_checkPointForAlarms</referencedby>
+        <referencedby refid="class_c_s_v_config_manager_1a2c2673398051c26184c9197aa751a6b3" compoundref="_c_s_v_config_manager_8cpp" startline="37" endline="70">CSVConfigManager::_exportPointToCSV</referencedby>
+        <referencedby refid="class_config_manager_1ae605c999fabc6344511f455618655326" compoundref="_config_manager_8cpp" startline="1014" endline="1546">ConfigManager::alarmsAPI</referencedby>
+        <referencedby refid="class_register_map_1a1f102e7d0dd51d4750c916fb6e32c37a" compoundref="_register_map_8cpp" startline="106" endline="113">RegisterMap::applyConfigFromMeasurementPoint</referencedby>
+        <referencedby refid="class_temperature_controller_1add39ba7dad38449bbf1787a5c9c51ef9" compoundref="_temperature_controller_8cpp" startline="1066" endline="1125">TemperatureController::getPointsJson</referencedby>
+        <referencedby refid="class_config_manager_1a471a844085c27f3a8a8f9394d9c14677" compoundref="_config_manager_8cpp" startline="970" endline="1013">ConfigManager::pointsAPI</referencedby>
+        <referencedby refid="class_config_manager_1a55b79da91c57039c483ddf5fceabbd64" compoundref="_config_manager_8cpp" startline="279" endline="320">ConfigManager::savePointsConfig</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_measurement_point_1a71d6d440240f110cbd80c58bbc47aff6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int16_t</type>
+        <definition>int16_t MeasurementPoint::getHighAlarmThreshold</definition>
+        <argsstring>() const</argsstring>
+        <name>getHighAlarmThreshold</name>
+        <qualifiedname>MeasurementPoint::getHighAlarmThreshold</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MeasurementPoint.h" line="27" column="13" bodyfile="src/MeasurementPoint.cpp" bodystart="49" bodyend="51"/>
+        <references refid="class_measurement_point_1a63f7bd3c914d6b77bc6828cc83f4fef6" compoundref="_measurement_point_8h" startline="56">highAlarmThreshold</references>
+        <referencedby refid="class_temperature_controller_1a27da8ccc3effea555f440ce3e6f89b08" compoundref="_temperature_controller_8cpp" startline="216" endline="239">TemperatureController::_checkPointForAlarms</referencedby>
+        <referencedby refid="class_c_s_v_config_manager_1a2c2673398051c26184c9197aa751a6b3" compoundref="_c_s_v_config_manager_8cpp" startline="37" endline="70">CSVConfigManager::_exportPointToCSV</referencedby>
+        <referencedby refid="class_config_manager_1ae605c999fabc6344511f455618655326" compoundref="_config_manager_8cpp" startline="1014" endline="1546">ConfigManager::alarmsAPI</referencedby>
+        <referencedby refid="class_register_map_1a1f102e7d0dd51d4750c916fb6e32c37a" compoundref="_register_map_8cpp" startline="106" endline="113">RegisterMap::applyConfigFromMeasurementPoint</referencedby>
+        <referencedby refid="class_temperature_controller_1add39ba7dad38449bbf1787a5c9c51ef9" compoundref="_temperature_controller_8cpp" startline="1066" endline="1125">TemperatureController::getPointsJson</referencedby>
+        <referencedby refid="class_config_manager_1a471a844085c27f3a8a8f9394d9c14677" compoundref="_config_manager_8cpp" startline="970" endline="1013">ConfigManager::pointsAPI</referencedby>
+        <referencedby refid="class_config_manager_1a55b79da91c57039c483ddf5fceabbd64" compoundref="_config_manager_8cpp" startline="279" endline="320">ConfigManager::savePointsConfig</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_measurement_point_1a1421d744f7982e528a579da02adb1919" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>uint8_t</type>
+        <definition>uint8_t MeasurementPoint::getAlarmStatus</definition>
+        <argsstring>() const</argsstring>
+        <name>getAlarmStatus</name>
+        <qualifiedname>MeasurementPoint::getAlarmStatus</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MeasurementPoint.h" line="28" column="13" bodyfile="src/MeasurementPoint.cpp" bodystart="53" bodyend="55"/>
+        <references refid="class_measurement_point_1a18c9fe4e70a4cc17473fd9df8a3c6b68" compoundref="_measurement_point_8h" startline="57">alarmStatus</references>
+        <referencedby refid="class_temperature_controller_1add39ba7dad38449bbf1787a5c9c51ef9" compoundref="_temperature_controller_8cpp" startline="1066" endline="1125">TemperatureController::getPointsJson</referencedby>
+        <referencedby refid="class_register_map_1a2940213459a183fc06a2226f1cd1a48b" compoundref="_register_map_8cpp" startline="84" endline="95">RegisterMap::updateFromMeasurementPoint</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_measurement_point_1a3fb0693931f12190a7f96e5d6be51b51" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>uint8_t</type>
+        <definition>uint8_t MeasurementPoint::getErrorStatus</definition>
+        <argsstring>() const</argsstring>
+        <name>getErrorStatus</name>
+        <qualifiedname>MeasurementPoint::getErrorStatus</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MeasurementPoint.h" line="29" column="13" bodyfile="src/MeasurementPoint.cpp" bodystart="57" bodyend="59"/>
+        <references refid="class_measurement_point_1a9b17fba6e1ea928d4aa88abf28731fc7" compoundref="_measurement_point_8h" startline="58">errorStatus</references>
+        <referencedby refid="class_temperature_controller_1a27da8ccc3effea555f440ce3e6f89b08" compoundref="_temperature_controller_8cpp" startline="216" endline="239">TemperatureController::_checkPointForAlarms</referencedby>
+        <referencedby refid="class_temperature_controller_1add39ba7dad38449bbf1787a5c9c51ef9" compoundref="_temperature_controller_8cpp" startline="1066" endline="1125">TemperatureController::getPointsJson</referencedby>
+        <referencedby refid="class_register_map_1a2940213459a183fc06a2226f1cd1a48b" compoundref="_register_map_8cpp" startline="84" endline="95">RegisterMap::updateFromMeasurementPoint</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_measurement_point_1ae3abe83ed3e7979a906c7d753ac9d22d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MeasurementPoint::setName</definition>
+        <argsstring>(const String &amp;newName)</argsstring>
+        <name>setName</name>
+        <qualifiedname>MeasurementPoint::setName</qualifiedname>
+        <param>
+          <type>const String &amp;</type>
+          <declname>newName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MeasurementPoint.h" line="32" column="10" bodyfile="src/MeasurementPoint.cpp" bodystart="61" bodyend="70"/>
+        <references refid="class_measurement_point_1a13e1f193f0588973d8fe6b836ebe0fb9" compoundref="_measurement_point_8h" startline="48">address</references>
+        <references refid="class_logger_manager_1a5c1373ccc47f4112b596fe6f84fbbc21" compoundref="_logger_manager_8h" startline="101" endline="103">LoggerManager::info</references>
+        <references refid="class_measurement_point_1aa689590a454a7e11401a59e0399e66f4" compoundref="_measurement_point_8h" startline="49">name</references>
+        <referencedby refid="class_c_s_v_config_manager_1ac91e29ab2468661df752e4e4b2f7186c" compoundref="_c_s_v_config_manager_8cpp" startline="289" endline="366">CSVConfigManager::_parseCSVLine</referencedby>
+        <referencedby refid="class_config_manager_1ae605c999fabc6344511f455618655326" compoundref="_config_manager_8cpp" startline="1014" endline="1546">ConfigManager::alarmsAPI</referencedby>
+        <referencedby refid="class_config_manager_1a04edc14e642ecadb9ccb87be05d1d878" compoundref="_config_manager_8cpp" startline="361" endline="425">ConfigManager::loadPointsConfig</referencedby>
+        <referencedby refid="class_config_manager_1a471a844085c27f3a8a8f9394d9c14677" compoundref="_config_manager_8cpp" startline="970" endline="1013">ConfigManager::pointsAPI</referencedby>
+        <referencedby refid="class_config_manager_1a0daf50bbd376beb24a5400a86e893338" compoundref="_config_manager_8cpp" startline="429" endline="445">ConfigManager::updatePointInConfig</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_measurement_point_1ac780917beebc11d705824cab8f43b94d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MeasurementPoint::setLowAlarmThreshold</definition>
+        <argsstring>(int16_t threshold)</argsstring>
+        <name>setLowAlarmThreshold</name>
+        <qualifiedname>MeasurementPoint::setLowAlarmThreshold</qualifiedname>
+        <param>
+          <type>int16_t</type>
+          <declname>threshold</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MeasurementPoint.h" line="33" column="10" bodyfile="src/MeasurementPoint.cpp" bodystart="72" bodyend="84"/>
+        <references refid="class_measurement_point_1a13e1f193f0588973d8fe6b836ebe0fb9" compoundref="_measurement_point_8h" startline="48">address</references>
+        <references refid="class_logger_manager_1a5c1373ccc47f4112b596fe6f84fbbc21" compoundref="_logger_manager_8h" startline="101" endline="103">LoggerManager::info</references>
+        <references refid="class_measurement_point_1a3f1d2653a05ccfa24d2305f5b07e35db" compoundref="_measurement_point_8h" startline="55">lowAlarmThreshold</references>
+        <references refid="class_measurement_point_1aa689590a454a7e11401a59e0399e66f4" compoundref="_measurement_point_8h" startline="49">name</references>
+        <references refid="class_measurement_point_1a71995209f2507e6cc15d01607f60767f" compoundref="_measurement_point_8cpp" startline="133" endline="138">updateAlarmStatus</references>
+        <referencedby refid="class_c_s_v_config_manager_1ac91e29ab2468661df752e4e4b2f7186c" compoundref="_c_s_v_config_manager_8cpp" startline="289" endline="366">CSVConfigManager::_parseCSVLine</referencedby>
+        <referencedby refid="class_config_manager_1ae605c999fabc6344511f455618655326" compoundref="_config_manager_8cpp" startline="1014" endline="1546">ConfigManager::alarmsAPI</referencedby>
+        <referencedby refid="class_register_map_1aa2f819b22096b8c14c421b415f7e83b7" compoundref="_register_map_8cpp" startline="97" endline="104">RegisterMap::applyConfigToMeasurementPoint</referencedby>
+        <referencedby refid="class_config_manager_1a04edc14e642ecadb9ccb87be05d1d878" compoundref="_config_manager_8cpp" startline="361" endline="425">ConfigManager::loadPointsConfig</referencedby>
+        <referencedby refid="class_config_manager_1a471a844085c27f3a8a8f9394d9c14677" compoundref="_config_manager_8cpp" startline="970" endline="1013">ConfigManager::pointsAPI</referencedby>
+        <referencedby refid="class_config_manager_1a0daf50bbd376beb24a5400a86e893338" compoundref="_config_manager_8cpp" startline="429" endline="445">ConfigManager::updatePointInConfig</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_measurement_point_1aefb47fef40f33161be5c6fddf0cf6329" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MeasurementPoint::setHighAlarmThreshold</definition>
+        <argsstring>(int16_t threshold)</argsstring>
+        <name>setHighAlarmThreshold</name>
+        <qualifiedname>MeasurementPoint::setHighAlarmThreshold</qualifiedname>
+        <param>
+          <type>int16_t</type>
+          <declname>threshold</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MeasurementPoint.h" line="34" column="10" bodyfile="src/MeasurementPoint.cpp" bodystart="86" bodyend="96"/>
+        <references refid="class_measurement_point_1a13e1f193f0588973d8fe6b836ebe0fb9" compoundref="_measurement_point_8h" startline="48">address</references>
+        <references refid="class_measurement_point_1a63f7bd3c914d6b77bc6828cc83f4fef6" compoundref="_measurement_point_8h" startline="56">highAlarmThreshold</references>
+        <references refid="class_logger_manager_1a5c1373ccc47f4112b596fe6f84fbbc21" compoundref="_logger_manager_8h" startline="101" endline="103">LoggerManager::info</references>
+        <references refid="class_measurement_point_1aa689590a454a7e11401a59e0399e66f4" compoundref="_measurement_point_8h" startline="49">name</references>
+        <references refid="class_measurement_point_1a71995209f2507e6cc15d01607f60767f" compoundref="_measurement_point_8cpp" startline="133" endline="138">updateAlarmStatus</references>
+        <referencedby refid="class_c_s_v_config_manager_1ac91e29ab2468661df752e4e4b2f7186c" compoundref="_c_s_v_config_manager_8cpp" startline="289" endline="366">CSVConfigManager::_parseCSVLine</referencedby>
+        <referencedby refid="class_config_manager_1ae605c999fabc6344511f455618655326" compoundref="_config_manager_8cpp" startline="1014" endline="1546">ConfigManager::alarmsAPI</referencedby>
+        <referencedby refid="class_register_map_1aa2f819b22096b8c14c421b415f7e83b7" compoundref="_register_map_8cpp" startline="97" endline="104">RegisterMap::applyConfigToMeasurementPoint</referencedby>
+        <referencedby refid="class_config_manager_1a04edc14e642ecadb9ccb87be05d1d878" compoundref="_config_manager_8cpp" startline="361" endline="425">ConfigManager::loadPointsConfig</referencedby>
+        <referencedby refid="class_config_manager_1a471a844085c27f3a8a8f9394d9c14677" compoundref="_config_manager_8cpp" startline="970" endline="1013">ConfigManager::pointsAPI</referencedby>
+        <referencedby refid="class_config_manager_1a0daf50bbd376beb24a5400a86e893338" compoundref="_config_manager_8cpp" startline="429" endline="445">ConfigManager::updatePointInConfig</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_measurement_point_1a3c3af28d9aabc9e5b9e2e370eaa29ce0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MeasurementPoint::bindSensor</definition>
+        <argsstring>(Sensor *sensor)</argsstring>
+        <name>bindSensor</name>
+        <qualifiedname>MeasurementPoint::bindSensor</qualifiedname>
+        <param>
+          <type><ref refid="class_sensor" kindref="compound">Sensor</ref> *</type>
+          <declname>sensor</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MeasurementPoint.h" line="37" column="10" bodyfile="src/MeasurementPoint.cpp" bodystart="98" bodyend="100"/>
+        <references refid="class_measurement_point_1a2bd6f123317fd8ff0ed22be09a7ac495" compoundref="_measurement_point_8h" startline="60">boundSensor</references>
+        <referencedby refid="class_temperature_controller_1af4ab2c7b7a3934ab7837603a420b1ae2" compoundref="_temperature_controller_8cpp" startline="1413" endline="1428">TemperatureController::bindSensorToPointByBusNumber</referencedby>
+        <referencedby refid="class_temperature_controller_1a84937fc1aed30193b817f3b062ce0cfc" compoundref="_temperature_controller_8cpp" startline="802" endline="823">TemperatureController::bindSensorToPointByChipSelect</referencedby>
+        <referencedby refid="class_temperature_controller_1a5d8f7c51bb176435a5035293a2db78f7" compoundref="_temperature_controller_8cpp" startline="775" endline="800">TemperatureController::bindSensorToPointByRom</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_measurement_point_1ab93923a15b7e55af89d1269b681fb856" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MeasurementPoint::unbindSensor</definition>
+        <argsstring>()</argsstring>
+        <name>unbindSensor</name>
+        <qualifiedname>MeasurementPoint::unbindSensor</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MeasurementPoint.h" line="38" column="10" bodyfile="src/MeasurementPoint.cpp" bodystart="102" bodyend="104"/>
+        <references refid="class_measurement_point_1a2bd6f123317fd8ff0ed22be09a7ac495" compoundref="_measurement_point_8h" startline="60">boundSensor</references>
+        <referencedby refid="class_temperature_controller_1a261c9b96540ec6680dfffd3a26e4ca00" compoundref="_temperature_controller_8cpp" startline="825" endline="846">TemperatureController::unbindSensorFromPoint</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_measurement_point_1a81c7ae93a9314344967d0f31c6fefe2f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_sensor" kindref="compound">Sensor</ref> *</type>
+        <definition>Sensor * MeasurementPoint::getBoundSensor</definition>
+        <argsstring>() const</argsstring>
+        <name>getBoundSensor</name>
+        <qualifiedname>MeasurementPoint::getBoundSensor</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MeasurementPoint.h" line="39" column="12" bodyfile="src/MeasurementPoint.cpp" bodystart="106" bodyend="108"/>
+        <references refid="class_measurement_point_1a2bd6f123317fd8ff0ed22be09a7ac495" compoundref="_measurement_point_8h" startline="60">boundSensor</references>
+        <referencedby refid="class_temperature_controller_1a27da8ccc3effea555f440ce3e6f89b08" compoundref="_temperature_controller_8cpp" startline="216" endline="239">TemperatureController::_checkPointForAlarms</referencedby>
+        <referencedby refid="class_c_s_v_config_manager_1a2c2673398051c26184c9197aa751a6b3" compoundref="_c_s_v_config_manager_8cpp" startline="37" endline="70">CSVConfigManager::_exportPointToCSV</referencedby>
+        <referencedby refid="class_logger_manager_1aa6938b6a5c002d6ed72ef352f0cc7a19" compoundref="_logger_manager_8cpp" startline="301" endline="335">LoggerManager::_writeDataRow</referencedby>
+        <referencedby refid="class_config_manager_1ae605c999fabc6344511f455618655326" compoundref="_config_manager_8cpp" startline="1014" endline="1546">ConfigManager::alarmsAPI</referencedby>
+        <referencedby refid="class_temperature_controller_1a9b4fe09d4c87dcf86e78b890012e1e72" compoundref="_temperature_controller_8cpp" startline="848" endline="851">TemperatureController::getBoundSensor</referencedby>
+        <referencedby refid="class_temperature_controller_1add39ba7dad38449bbf1787a5c9c51ef9" compoundref="_temperature_controller_8cpp" startline="1066" endline="1125">TemperatureController::getPointsJson</referencedby>
+        <referencedby refid="class_config_manager_1a55b79da91c57039c483ddf5fceabbd64" compoundref="_config_manager_8cpp" startline="279" endline="320">ConfigManager::savePointsConfig</referencedby>
+        <referencedby refid="class_temperature_controller_1a261c9b96540ec6680dfffd3a26e4ca00" compoundref="_temperature_controller_8cpp" startline="825" endline="846">TemperatureController::unbindSensorFromPoint</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_measurement_point_1a3c6d3325a506e8797bc759f15b70391f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MeasurementPoint::update</definition>
+        <argsstring>()</argsstring>
+        <name>update</name>
+        <qualifiedname>MeasurementPoint::update</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MeasurementPoint.h" line="42" column="10" bodyfile="src/MeasurementPoint.cpp" bodystart="110" bodyend="126"/>
+        <references refid="class_measurement_point_1a2bd6f123317fd8ff0ed22be09a7ac495" compoundref="_measurement_point_8h" startline="60">boundSensor</references>
+        <references refid="class_measurement_point_1ada9ba45e500305e667f2a489603e84a8" compoundref="_measurement_point_8h" startline="52">currentTemp</references>
+        <references refid="class_measurement_point_1a9b17fba6e1ea928d4aa88abf28731fc7" compoundref="_measurement_point_8h" startline="58">errorStatus</references>
+        <references refid="class_measurement_point_1a38e188f2325f505993d55fa7a2d3e169" compoundref="_measurement_point_8h" startline="54">maxTemp</references>
+        <references refid="class_measurement_point_1a2848f528b229967f371cc83e394b26fb" compoundref="_measurement_point_8h" startline="53">minTemp</references>
+        <references refid="class_measurement_point_1a71995209f2507e6cc15d01607f60767f" compoundref="_measurement_point_8cpp" startline="133" endline="138">updateAlarmStatus</references>
+      </memberdef>
+      <memberdef kind="function" id="class_measurement_point_1a6a78c850d05aa4ae8151e5e9f828fce0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MeasurementPoint::resetMinMaxTemp</definition>
+        <argsstring>()</argsstring>
+        <name>resetMinMaxTemp</name>
+        <qualifiedname>MeasurementPoint::resetMinMaxTemp</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MeasurementPoint.h" line="43" column="10" bodyfile="src/MeasurementPoint.cpp" bodystart="128" bodyend="131"/>
+        <references refid="class_measurement_point_1ada9ba45e500305e667f2a489603e84a8" compoundref="_measurement_point_8h" startline="52">currentTemp</references>
+        <references refid="class_measurement_point_1a38e188f2325f505993d55fa7a2d3e169" compoundref="_measurement_point_8h" startline="54">maxTemp</references>
+        <references refid="class_measurement_point_1a2848f528b229967f371cc83e394b26fb" compoundref="_measurement_point_8h" startline="53">minTemp</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_measurement_point_1a71995209f2507e6cc15d01607f60767f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MeasurementPoint::updateAlarmStatus</definition>
+        <argsstring>()</argsstring>
+        <name>updateAlarmStatus</name>
+        <qualifiedname>MeasurementPoint::updateAlarmStatus</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MeasurementPoint.h" line="62" column="10" bodyfile="src/MeasurementPoint.cpp" bodystart="133" bodyend="138"/>
+        <references refid="class_measurement_point_1a18c9fe4e70a4cc17473fd9df8a3c6b68" compoundref="_measurement_point_8h" startline="57">alarmStatus</references>
+        <references refid="class_measurement_point_1ada9ba45e500305e667f2a489603e84a8" compoundref="_measurement_point_8h" startline="52">currentTemp</references>
+        <references refid="class_measurement_point_1a9b17fba6e1ea928d4aa88abf28731fc7" compoundref="_measurement_point_8h" startline="58">errorStatus</references>
+        <references refid="class_measurement_point_1a63f7bd3c914d6b77bc6828cc83f4fef6" compoundref="_measurement_point_8h" startline="56">highAlarmThreshold</references>
+        <references refid="class_measurement_point_1a3f1d2653a05ccfa24d2305f5b07e35db" compoundref="_measurement_point_8h" startline="55">lowAlarmThreshold</references>
+        <referencedby refid="class_measurement_point_1aefb47fef40f33161be5c6fddf0cf6329" compoundref="_measurement_point_8cpp" startline="86" endline="96">setHighAlarmThreshold</referencedby>
+        <referencedby refid="class_measurement_point_1ac780917beebc11d705824cab8f43b94d" compoundref="_measurement_point_8cpp" startline="72" endline="84">setLowAlarmThreshold</referencedby>
+        <referencedby refid="class_measurement_point_1a3c6d3325a506e8797bc759f15b70391f" compoundref="_measurement_point_8cpp" startline="110" endline="126">update</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>MeasurementPoint</label>
+        <link refid="class_measurement_point"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>-boundSensor</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Sensor</label>
+        <link refid="class_sensor"/>
+      </node>
+    </collaborationgraph>
+    <location file="include/MeasurementPoint.h" line="10" column="1" bodyfile="include/MeasurementPoint.h" bodystart="10" bodyend="63"/>
+    <listofallmembers>
+      <member refid="class_measurement_point_1a13e1f193f0588973d8fe6b836ebe0fb9" prot="private" virt="non-virtual"><scope>MeasurementPoint</scope><name>address</name></member>
+      <member refid="class_measurement_point_1a18c9fe4e70a4cc17473fd9df8a3c6b68" prot="private" virt="non-virtual"><scope>MeasurementPoint</scope><name>alarmStatus</name></member>
+      <member refid="class_measurement_point_1a3c3af28d9aabc9e5b9e2e370eaa29ce0" prot="public" virt="non-virtual"><scope>MeasurementPoint</scope><name>bindSensor</name></member>
+      <member refid="class_measurement_point_1a2bd6f123317fd8ff0ed22be09a7ac495" prot="private" virt="non-virtual"><scope>MeasurementPoint</scope><name>boundSensor</name></member>
+      <member refid="class_measurement_point_1ada9ba45e500305e667f2a489603e84a8" prot="private" virt="non-virtual"><scope>MeasurementPoint</scope><name>currentTemp</name></member>
+      <member refid="class_measurement_point_1a9b17fba6e1ea928d4aa88abf28731fc7" prot="private" virt="non-virtual"><scope>MeasurementPoint</scope><name>errorStatus</name></member>
+      <member refid="class_measurement_point_1a7b74a18d86e0e545264a774aa2c31cad" prot="public" virt="non-virtual"><scope>MeasurementPoint</scope><name>getAddress</name></member>
+      <member refid="class_measurement_point_1a1421d744f7982e528a579da02adb1919" prot="public" virt="non-virtual"><scope>MeasurementPoint</scope><name>getAlarmStatus</name></member>
+      <member refid="class_measurement_point_1a81c7ae93a9314344967d0f31c6fefe2f" prot="public" virt="non-virtual"><scope>MeasurementPoint</scope><name>getBoundSensor</name></member>
+      <member refid="class_measurement_point_1aceaf14fde40bcd5331e5ea6a07d7dde8" prot="public" virt="non-virtual"><scope>MeasurementPoint</scope><name>getCurrentTemp</name></member>
+      <member refid="class_measurement_point_1a3fb0693931f12190a7f96e5d6be51b51" prot="public" virt="non-virtual"><scope>MeasurementPoint</scope><name>getErrorStatus</name></member>
+      <member refid="class_measurement_point_1a71d6d440240f110cbd80c58bbc47aff6" prot="public" virt="non-virtual"><scope>MeasurementPoint</scope><name>getHighAlarmThreshold</name></member>
+      <member refid="class_measurement_point_1a6e538e117d9e22c6998b56519a51d6ba" prot="public" virt="non-virtual"><scope>MeasurementPoint</scope><name>getLowAlarmThreshold</name></member>
+      <member refid="class_measurement_point_1a8677e00e0be369d7874f4982990dc56d" prot="public" virt="non-virtual"><scope>MeasurementPoint</scope><name>getMaxTemp</name></member>
+      <member refid="class_measurement_point_1adc31f012462c1623617d5f362bcb2c59" prot="public" virt="non-virtual"><scope>MeasurementPoint</scope><name>getMinTemp</name></member>
+      <member refid="class_measurement_point_1aa3a80d373c7609c7b178bf7353ffdd7a" prot="public" virt="non-virtual"><scope>MeasurementPoint</scope><name>getName</name></member>
+      <member refid="class_measurement_point_1a63f7bd3c914d6b77bc6828cc83f4fef6" prot="private" virt="non-virtual"><scope>MeasurementPoint</scope><name>highAlarmThreshold</name></member>
+      <member refid="class_measurement_point_1a3f1d2653a05ccfa24d2305f5b07e35db" prot="private" virt="non-virtual"><scope>MeasurementPoint</scope><name>lowAlarmThreshold</name></member>
+      <member refid="class_measurement_point_1a38e188f2325f505993d55fa7a2d3e169" prot="private" virt="non-virtual"><scope>MeasurementPoint</scope><name>maxTemp</name></member>
+      <member refid="class_measurement_point_1a4abbf3752cd60d76f086071c4823ac1a" prot="public" virt="non-virtual"><scope>MeasurementPoint</scope><name>MeasurementPoint</name></member>
+      <member refid="class_measurement_point_1a4441879bac27ef9cf2623d40bd347c18" prot="public" virt="non-virtual"><scope>MeasurementPoint</scope><name>MeasurementPoint</name></member>
+      <member refid="class_measurement_point_1a2848f528b229967f371cc83e394b26fb" prot="private" virt="non-virtual"><scope>MeasurementPoint</scope><name>minTemp</name></member>
+      <member refid="class_measurement_point_1aa689590a454a7e11401a59e0399e66f4" prot="private" virt="non-virtual"><scope>MeasurementPoint</scope><name>name</name></member>
+      <member refid="class_measurement_point_1a6a78c850d05aa4ae8151e5e9f828fce0" prot="public" virt="non-virtual"><scope>MeasurementPoint</scope><name>resetMinMaxTemp</name></member>
+      <member refid="class_measurement_point_1aefb47fef40f33161be5c6fddf0cf6329" prot="public" virt="non-virtual"><scope>MeasurementPoint</scope><name>setHighAlarmThreshold</name></member>
+      <member refid="class_measurement_point_1ac780917beebc11d705824cab8f43b94d" prot="public" virt="non-virtual"><scope>MeasurementPoint</scope><name>setLowAlarmThreshold</name></member>
+      <member refid="class_measurement_point_1ae3abe83ed3e7979a906c7d753ac9d22d" prot="public" virt="non-virtual"><scope>MeasurementPoint</scope><name>setName</name></member>
+      <member refid="class_measurement_point_1ab93923a15b7e55af89d1269b681fb856" prot="public" virt="non-virtual"><scope>MeasurementPoint</scope><name>unbindSensor</name></member>
+      <member refid="class_measurement_point_1a3c6d3325a506e8797bc759f15b70391f" prot="public" virt="non-virtual"><scope>MeasurementPoint</scope><name>update</name></member>
+      <member refid="class_measurement_point_1a71995209f2507e6cc15d01607f60767f" prot="private" virt="non-virtual"><scope>MeasurementPoint</scope><name>updateAlarmStatus</name></member>
+      <member refid="class_measurement_point_1a8ee3863bb5548fe9c919234aff8ee0b6" prot="public" virt="non-virtual"><scope>MeasurementPoint</scope><name>~MeasurementPoint</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

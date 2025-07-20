@@ -1,0 +1,374 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="_sensor_8h" kind="file" language="C++">
+    <compoundname>Sensor.h</compoundname>
+    <includes local="no">Arduino.h</includes>
+    <includes local="no">OneWire.h</includes>
+    <includes local="no">DallasTemperature.h</includes>
+    <includes local="no">Adafruit_MAX31865.h</includes>
+    <includedby refid="_measurement_point_8h" local="yes">include/MeasurementPoint.h</includedby>
+    <includedby refid="_temperature_controller_8h" local="yes">include/TemperatureController.h</includedby>
+    <includedby refid="_sensor_8cpp" local="yes">src/Sensor.cpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>include/Sensor.h</label>
+        <link refid="_sensor_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Adafruit_MAX31865.h</label>
+      </node>
+      <node id="2">
+        <label>Arduino.h</label>
+      </node>
+      <node id="4">
+        <label>DallasTemperature.h</label>
+      </node>
+      <node id="3">
+        <label>OneWire.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="3">
+        <label>include/Alarm.h</label>
+        <link refid="_alarm_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>include/CSVConfigManager.h</label>
+        <link refid="_c_s_v_config_manager_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>include/ConfigManager.h</label>
+        <link refid="_config_manager_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>include/MeasurementPoint.h</label>
+        <link refid="_measurement_point_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>include/RegisterMap.h</label>
+        <link refid="_register_map_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>include/Sensor.h</label>
+        <link refid="_sensor_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>include/TempModbusServer.h</label>
+        <link refid="_temp_modbus_server_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>include/TemperatureController.h</label>
+        <link refid="_temperature_controller_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>src/Alarm.cpp</label>
+        <link refid="_alarm_8cpp"/>
+      </node>
+      <node id="9">
+        <label>src/CSVConfigManager.cpp</label>
+        <link refid="_c_s_v_config_manager_8cpp"/>
+      </node>
+      <node id="7">
+        <label>src/ConfigManager.cpp</label>
+        <link refid="_config_manager_8cpp"/>
+      </node>
+      <node id="10">
+        <label>src/LoggerManager.cpp</label>
+        <link refid="_logger_manager_8cpp"/>
+      </node>
+      <node id="17">
+        <label>src/MeasurementPoint.cpp</label>
+        <link refid="_measurement_point_8cpp"/>
+      </node>
+      <node id="16">
+        <label>src/RegisterMap.cpp</label>
+        <link refid="_register_map_8cpp"/>
+      </node>
+      <node id="18">
+        <label>src/Sensor.cpp</label>
+        <link refid="_sensor_8cpp"/>
+      </node>
+      <node id="15">
+        <label>src/TempModbusServer.cpp</label>
+        <link refid="_temp_modbus_server_8cpp"/>
+      </node>
+      <node id="11">
+        <label>src/TemperatureController.cpp</label>
+        <link refid="_temperature_controller_8cpp"/>
+      </node>
+      <node id="8">
+        <label>src/main.cpp</label>
+        <link refid="main_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="class_sensor" prot="public">Sensor</innerclass>
+    <sectiondef kind="enum">
+      <memberdef kind="enum" id="_sensor_8h_1a213c434cb928c4ca22513e2302632435" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>SensorType</name>
+        <enumvalue id="_sensor_8h_1a213c434cb928c4ca22513e2302632435aac1bc058b939e1c55e1496c8574f3691" prot="public">
+          <name>DS18B20</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_sensor_8h_1a213c434cb928c4ca22513e2302632435a481caba3768b84e8b68fb58b04ec595e" prot="public">
+          <name>PT1000</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="10" column="1" bodyfile="include/Sensor.h" bodystart="10" bodyend="13"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="_sensor_8h_1a2414e990a5472bc239f99ae14c9ed66f" prot="public" static="no" constexpr="yes" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t ERROR_COMMUNICATION</definition>
+        <argsstring></argsstring>
+        <name>ERROR_COMMUNICATION</name>
+        <initializer>= 0x01</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="16" column="19" bodyfile="include/Sensor.h" bodystart="16" bodyend="-1"/>
+        <referencedby refid="class_sensor_1a5f3828beedd045bf82b3542ec626bc7b" compoundref="_sensor_8cpp" startline="100" endline="151">Sensor::readTemperature</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="_sensor_8h_1a5e765138e11b96eed4933eec3611b571" prot="public" static="no" constexpr="yes" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t ERROR_OUT_OF_RANGE</definition>
+        <argsstring></argsstring>
+        <name>ERROR_OUT_OF_RANGE</name>
+        <initializer>= 0x02</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="17" column="19" bodyfile="include/Sensor.h" bodystart="17" bodyend="-1"/>
+        <referencedby refid="class_sensor_1a5f3828beedd045bf82b3542ec626bc7b" compoundref="_sensor_8cpp" startline="100" endline="151">Sensor::readTemperature</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="_sensor_8h_1ab65c92ee1954ab03e64f69b1706726a8" prot="public" static="no" constexpr="yes" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t ERROR_DISCONNECTED</definition>
+        <argsstring></argsstring>
+        <name>ERROR_DISCONNECTED</name>
+        <initializer>= 0x04</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="18" column="19" bodyfile="include/Sensor.h" bodystart="18" bodyend="-1"/>
+        <referencedby refid="class_sensor_1a5f3828beedd045bf82b3542ec626bc7b" compoundref="_sensor_8cpp" startline="100" endline="151">Sensor::readTemperature</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="_sensor_8h_1a23317a6f5a20f7fff89a69642e417b1f" prot="public" static="no" constexpr="yes" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t ALARM_LOW_TEMP</definition>
+        <argsstring></argsstring>
+        <name>ALARM_LOW_TEMP</name>
+        <initializer>= 0x01</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="20" column="19" bodyfile="include/Sensor.h" bodystart="20" bodyend="-1"/>
+        <referencedby refid="class_sensor_1a2f0b7d29f7a924deb465d2462698564d" compoundref="_sensor_8cpp" startline="182" endline="187">Sensor::updateAlarmStatus</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="_sensor_8h_1a69ac9fe143e56b941b2e467e700f9f98" prot="public" static="no" constexpr="yes" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t ALARM_HIGH_TEMP</definition>
+        <argsstring></argsstring>
+        <name>ALARM_HIGH_TEMP</name>
+        <initializer>= 0x02</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="21" column="19" bodyfile="include/Sensor.h" bodystart="21" bodyend="-1"/>
+        <referencedby refid="class_sensor_1a2f0b7d29f7a924deb465d2462698564d" compoundref="_sensor_8cpp" startline="182" endline="187">Sensor::updateAlarmStatus</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>SENSOR_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SENSOR_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Arduino.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;OneWire.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;DallasTemperature.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Adafruit_MAX31865.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Define<sp/>your<sp/>sensor<sp/>types</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10" refid="_sensor_8h_1a213c434cb928c4ca22513e2302632435" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/><ref refid="_sensor_8h_1a213c434cb928c4ca22513e2302632435" kindref="member">SensorType</ref><sp/>{</highlight></codeline>
+<codeline lineno="11" refid="_sensor_8h_1a213c434cb928c4ca22513e2302632435aac1bc058b939e1c55e1496c8574f3691" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_sensor_8h_1a213c434cb928c4ca22513e2302632435aac1bc058b939e1c55e1496c8574f3691" kindref="member">DS18B20</ref>,</highlight></codeline>
+<codeline lineno="12" refid="_sensor_8h_1a213c434cb928c4ca22513e2302632435a481caba3768b84e8b68fb58b04ec595e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_sensor_8h_1a213c434cb928c4ca22513e2302632435a481caba3768b84e8b68fb58b04ec595e" kindref="member">PT1000</ref></highlight></codeline>
+<codeline lineno="13"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Error<sp/>and<sp/>alarm<sp/>bitmasks</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16" refid="_sensor_8h_1a2414e990a5472bc239f99ae14c9ed66f" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/>uint8_t<sp/><ref refid="_sensor_8h_1a2414e990a5472bc239f99ae14c9ed66f" kindref="member">ERROR_COMMUNICATION</ref><sp/>=<sp/>0x01;</highlight></codeline>
+<codeline lineno="17" refid="_sensor_8h_1a5e765138e11b96eed4933eec3611b571" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/>uint8_t<sp/><ref refid="_sensor_8h_1a5e765138e11b96eed4933eec3611b571" kindref="member">ERROR_OUT_OF_RANGE</ref><sp/><sp/>=<sp/>0x02;</highlight></codeline>
+<codeline lineno="18" refid="_sensor_8h_1ab65c92ee1954ab03e64f69b1706726a8" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/>uint8_t<sp/><ref refid="_sensor_8h_1ab65c92ee1954ab03e64f69b1706726a8" kindref="member">ERROR_DISCONNECTED</ref><sp/><sp/>=<sp/>0x04;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20" refid="_sensor_8h_1a23317a6f5a20f7fff89a69642e417b1f" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/>uint8_t<sp/><ref refid="_sensor_8h_1a23317a6f5a20f7fff89a69642e417b1f" kindref="member">ALARM_LOW_TEMP</ref><sp/><sp/>=<sp/>0x01;</highlight></codeline>
+<codeline lineno="21" refid="_sensor_8h_1a69ac9fe143e56b941b2e467e700f9f98" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/>uint8_t<sp/><ref refid="_sensor_8h_1a69ac9fe143e56b941b2e467e700f9f98" kindref="member">ALARM_HIGH_TEMP</ref><sp/>=<sp/>0x02;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23" refid="class_sensor" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_sensor_1a3dc84897044b5f1848fd0f5444235eee" kindref="member">Sensor</ref><sp/>{</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_sensor_1a3dc84897044b5f1848fd0f5444235eee" kindref="member">Sensor</ref>(<ref refid="_sensor_8h_1a213c434cb928c4ca22513e2302632435" kindref="member">SensorType</ref><sp/><ref refid="class_sensor_1a59be498582043f581a78851506f8e322" kindref="member">type</ref>,<sp/>uint8_t<sp/><ref refid="class_sensor_1a75b4ea06bdcd22f6591f24ae3a46983a" kindref="member">address</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>String&amp;<sp/><ref refid="class_sensor_1a9cf70c3e41501d89f6f9f48a3e9d1296" kindref="member">name</ref>);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_sensor_1aee8c70e7ef05ce65e7ee33686b5d7db2" kindref="member">~Sensor</ref>();</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Setup<sp/>methods<sp/>for<sp/>each<sp/>sensor<sp/>type</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_sensor_1afefa1f627a7d2ab5a1157c271e7f2556" kindref="member">setupDS18B20</ref>(uint8_t<sp/>pin,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint8_t*<sp/>deviceAddress);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_sensor_1aef73c8dc894e3695f50b4bece9601750" kindref="member">setupPT1000</ref>(uint8_t<sp/><ref refid="class_sensor_1ae982d7fa79bdc6e223632c69ca512b34" kindref="member">csPin</ref>,<sp/>uint8_t<sp/><ref refid="class_sensor_1a3f0651eab49ddc023248a11c3937bc23" kindref="member">maxAddress</ref>);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Initialize<sp/>hardware</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_sensor_1a59dd5483b75d9366a0c50ccdd0345dec" kindref="member">initialize</ref>();</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Read<sp/>temperature<sp/>from<sp/>the<sp/>sensor,<sp/>update<sp/>internal<sp/>state</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_sensor_1a5f3828beedd045bf82b3542ec626bc7b" kindref="member">readTemperature</ref>();</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Accessors</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_sensor_8h_1a213c434cb928c4ca22513e2302632435" kindref="member">SensorType</ref><sp/><ref refid="class_sensor_1a0f6f095e7cfdfffb2a395dfdae7cfa53" kindref="member">getType</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/><ref refid="class_sensor_1afa9861dabcb4cd9c7a83356873013946" kindref="member">getAddress</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>String<sp/><ref refid="class_sensor_1a60ec96ed03660b42681c1bcc99007033" kindref="member">getName</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_sensor_1a95fe437024716bfdf3703e2c50a0756a" kindref="member">setName</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>String&amp;<sp/>newName);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>int16_t<sp/><ref refid="class_sensor_1a3def93a2aff034f403af576b40b6f3f1" kindref="member">getCurrentTemp</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>int16_t<sp/><ref refid="class_sensor_1a0897378dd7971fded81bf12d433833c5" kindref="member">getMinTemp</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>int16_t<sp/><ref refid="class_sensor_1abcaa8954ad75cf20e7c5aa1ef47b28ec" kindref="member">getMaxTemp</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>int16_t<sp/><ref refid="class_sensor_1aad2114350beb8e278e4b273f62439579" kindref="member">getLowAlarmThreshold</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>int16_t<sp/><ref refid="class_sensor_1a8799541c60822f7600cde784aae36039" kindref="member">getHighAlarmThreshold</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/><ref refid="class_sensor_1a70c7d2dbd1ad8782933301b367e64d09" kindref="member">getAlarmStatus</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/><ref refid="class_sensor_1a72ab978055decc37539815dfbc09f2a1" kindref="member">getErrorStatus</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/><ref refid="class_sensor_1a6f57825e90b759ccdb9fe07b3a36953d" kindref="member">getPT1000ChipSelectPin</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_sensor_1aaa9739e019c01dba6fb55c58a27d9642" kindref="member">setAddress</ref>(uint8_t<sp/>newAddress);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_sensor_1ae2e32117bfa426768afd692d062a13f0" kindref="member">setLowAlarmThreshold</ref>(int16_t<sp/>threshold);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_sensor_1a300550ed551df5688ff101e132c82d3e" kindref="member">setHighAlarmThreshold</ref>(int16_t<sp/>threshold);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>DS18B20<sp/>ROM<sp/>address<sp/>accessor</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint8_t*<sp/><ref refid="class_sensor_1aebfce8b65a6bce594e406236bba4a469" kindref="member">getDS18B20Address</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Reset<sp/>min/max<sp/>values</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_sensor_1a578bbc9664e2af30cc837301039e5ecb" kindref="member">resetMinMaxTemp</ref>();</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Update<sp/>alarm<sp/>status<sp/>(call<sp/>after<sp/>reading<sp/>temperature<sp/>or<sp/>changing<sp/>thresholds)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_sensor_1a2f0b7d29f7a924deb465d2462698564d" kindref="member">updateAlarmStatus</ref>();</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>String<sp/><ref refid="class_sensor_1a9f793cde2918130fbc77dad1aebfe53a" kindref="member">getDS18B20RomString</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>ROM<sp/>as<sp/>hex<sp/>string</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_sensor_1a3003106c642cc8a9ec5638ea06052ff4" kindref="member">getDS18B20RomArray</ref>(uint8_t<sp/>out[8])<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;<sp/></highlight><highlight class="comment">//<sp/>ROM<sp/>as<sp/>array</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68" refid="class_sensor_1ac42da3a37b0d6a9622344fe83f4c9047" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/><ref refid="class_sensor_1ac42da3a37b0d6a9622344fe83f4c9047" kindref="member">getOneWirePin</ref>()<sp/>{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_sensor_1adaacf2cbc3623d86bad4c32496340a74" kindref="member">connection</ref>.ds18b20.oneWirePin;}</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="71" refid="class_sensor_1a75b4ea06bdcd22f6591f24ae3a46983a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/><ref refid="class_sensor_1a75b4ea06bdcd22f6591f24ae3a46983a" kindref="member">address</ref>;</highlight></codeline>
+<codeline lineno="72" refid="class_sensor_1a9cf70c3e41501d89f6f9f48a3e9d1296" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>String<sp/><ref refid="class_sensor_1a9cf70c3e41501d89f6f9f48a3e9d1296" kindref="member">name</ref>;</highlight></codeline>
+<codeline lineno="73" refid="class_sensor_1a59be498582043f581a78851506f8e322" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_sensor_8h_1a213c434cb928c4ca22513e2302632435" kindref="member">SensorType</ref><sp/><ref refid="class_sensor_1a59be498582043f581a78851506f8e322" kindref="member">type</ref>;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75" refid="class_sensor_1a1ad6234aa9a0d89ce962c61ee0580b0c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>int16_t<sp/><ref refid="class_sensor_1a1ad6234aa9a0d89ce962c61ee0580b0c" kindref="member">currentTemp</ref>;</highlight></codeline>
+<codeline lineno="76" refid="class_sensor_1a70160b5ef0eadb7b131f4993011a6174" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>int16_t<sp/><ref refid="class_sensor_1a70160b5ef0eadb7b131f4993011a6174" kindref="member">minTemp</ref>;</highlight></codeline>
+<codeline lineno="77" refid="class_sensor_1a0752a16bf3b329064102d1110c8aa22c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>int16_t<sp/><ref refid="class_sensor_1a0752a16bf3b329064102d1110c8aa22c" kindref="member">maxTemp</ref>;</highlight></codeline>
+<codeline lineno="78" refid="class_sensor_1a3a695e6c5e1fc511abb6aa0f93f4965c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>int16_t<sp/><ref refid="class_sensor_1a3a695e6c5e1fc511abb6aa0f93f4965c" kindref="member">lowAlarmThreshold</ref>;</highlight></codeline>
+<codeline lineno="79" refid="class_sensor_1ad3088c793422688847fc7bd0c83e1c7a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>int16_t<sp/><ref refid="class_sensor_1ad3088c793422688847fc7bd0c83e1c7a" kindref="member">highAlarmThreshold</ref>;</highlight></codeline>
+<codeline lineno="80" refid="class_sensor_1a4700db8ae10648ce63e9c40097af2bf0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/><ref refid="class_sensor_1a4700db8ae10648ce63e9c40097af2bf0" kindref="member">alarmStatus</ref>;</highlight></codeline>
+<codeline lineno="81" refid="class_sensor_1a90c9d7cb2e9a0d1ca02eb0e03a4b8ceb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/><ref refid="class_sensor_1a90c9d7cb2e9a0d1ca02eb0e03a4b8ceb" kindref="member">errorStatus</ref>;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Hardware-specific<sp/>members</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84" refid="class_sensor_1ae6e1281c6284fe26cc5617789aa3a3bf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>OneWire*<sp/><ref refid="class_sensor_1ae6e1281c6284fe26cc5617789aa3a3bf" kindref="member">oneWire</ref>;</highlight></codeline>
+<codeline lineno="85" refid="class_sensor_1ab0c028d4df2e4e568075b622965b0a76" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>DallasTemperature*<sp/><ref refid="class_sensor_1ab0c028d4df2e4e568075b622965b0a76" kindref="member">dallasTemperature</ref>;</highlight></codeline>
+<codeline lineno="86" refid="class_sensor_1a23b7a05faf6c66d07aed361c4ad8c896" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Adafruit_MAX31865*<sp/><ref refid="class_sensor_1a23b7a05faf6c66d07aed361c4ad8c896" kindref="member">max31865</ref>;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Connection<sp/>details</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">union<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="91" refid="class_sensor_1aa21039b897abee047fff39d2ed2ca9b0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint8_t<sp/><ref refid="class_sensor_1aa21039b897abee047fff39d2ed2ca9b0" kindref="member">oneWirePin</ref>;</highlight></codeline>
+<codeline lineno="92" refid="class_sensor_1aabda20f8fbc433bae5cc64e1f244af41" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint8_t<sp/><ref refid="class_sensor_1aabda20f8fbc433bae5cc64e1f244af41" kindref="member">oneWireAddress</ref>[8];</highlight></codeline>
+<codeline lineno="93" refid="class_sensor_1a1192f63a34aa19a309d8c9ba2e3f8bd7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/><ref refid="class_sensor_1a1192f63a34aa19a309d8c9ba2e3f8bd7" kindref="member">ds18b20</ref>;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="95" refid="class_sensor_1ae982d7fa79bdc6e223632c69ca512b34" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint8_t<sp/><ref refid="class_sensor_1ae982d7fa79bdc6e223632c69ca512b34" kindref="member">csPin</ref>;</highlight></codeline>
+<codeline lineno="96" refid="class_sensor_1a3f0651eab49ddc023248a11c3937bc23" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint8_t<sp/><ref refid="class_sensor_1a3f0651eab49ddc023248a11c3937bc23" kindref="member">maxAddress</ref>;</highlight></codeline>
+<codeline lineno="97" refid="class_sensor_1a8ca8a9931ab07b445039fe8298329939" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/><ref refid="class_sensor_1a8ca8a9931ab07b445039fe8298329939" kindref="member">pt1000</ref>;</highlight></codeline>
+<codeline lineno="98" refid="class_sensor_1adaacf2cbc3623d86bad4c32496340a74" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/><ref refid="class_sensor_1adaacf2cbc3623d86bad4c32496340a74" kindref="member">connection</ref>;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>SENSOR_H</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="include/Sensor.h"/>
+  </compounddef>
+</doxygen>

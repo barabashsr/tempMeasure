@@ -1,0 +1,293 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="_measurement_point_8h" kind="file" language="C++">
+    <compoundname>MeasurementPoint.h</compoundname>
+    <includes local="no">Arduino.h</includes>
+    <includes refid="_sensor_8h" local="yes">Sensor.h</includes>
+    <includes refid="_logger_manager_8h" local="yes">LoggerManager.h</includes>
+    <includedby refid="_alarm_8h" local="yes">include/Alarm.h</includedby>
+    <includedby refid="_register_map_8h" local="yes">include/RegisterMap.h</includedby>
+    <includedby refid="_temperature_controller_8h" local="yes">include/TemperatureController.h</includedby>
+    <includedby refid="_logger_manager_8cpp" local="yes">src/LoggerManager.cpp</includedby>
+    <includedby refid="_measurement_point_8cpp" local="yes">src/MeasurementPoint.cpp</includedby>
+    <incdepgraph>
+      <node id="7">
+        <label>LoggerManager.h</label>
+        <link refid="_logger_manager_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>include/MeasurementPoint.h</label>
+        <link refid="_measurement_point_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Sensor.h</label>
+        <link refid="_sensor_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>TimeManager.h</label>
+        <link refid="_time_manager_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Adafruit_MAX31865.h</label>
+      </node>
+      <node id="2">
+        <label>Arduino.h</label>
+      </node>
+      <node id="16">
+        <label>ArduinoJson.h</label>
+      </node>
+      <node id="5">
+        <label>DallasTemperature.h</label>
+      </node>
+      <node id="8">
+        <label>FS.h</label>
+      </node>
+      <node id="14">
+        <label>NTPClient.h</label>
+      </node>
+      <node id="4">
+        <label>OneWire.h</label>
+      </node>
+      <node id="13">
+        <label>RTClib.h</label>
+      </node>
+      <node id="9">
+        <label>SD.h</label>
+      </node>
+      <node id="11">
+        <label>WiFi.h</label>
+      </node>
+      <node id="15">
+        <label>WiFiUdp.h</label>
+      </node>
+      <node id="12">
+        <label>Wire.h</label>
+      </node>
+      <node id="17">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>include/Alarm.h</label>
+        <link refid="_alarm_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>include/CSVConfigManager.h</label>
+        <link refid="_c_s_v_config_manager_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>include/ConfigManager.h</label>
+        <link refid="_config_manager_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>include/MeasurementPoint.h</label>
+        <link refid="_measurement_point_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>include/RegisterMap.h</label>
+        <link refid="_register_map_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>include/TempModbusServer.h</label>
+        <link refid="_temp_modbus_server_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>include/TemperatureController.h</label>
+        <link refid="_temperature_controller_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>src/Alarm.cpp</label>
+        <link refid="_alarm_8cpp"/>
+      </node>
+      <node id="8">
+        <label>src/CSVConfigManager.cpp</label>
+        <link refid="_c_s_v_config_manager_8cpp"/>
+      </node>
+      <node id="6">
+        <label>src/ConfigManager.cpp</label>
+        <link refid="_config_manager_8cpp"/>
+      </node>
+      <node id="9">
+        <label>src/LoggerManager.cpp</label>
+        <link refid="_logger_manager_8cpp"/>
+      </node>
+      <node id="16">
+        <label>src/MeasurementPoint.cpp</label>
+        <link refid="_measurement_point_8cpp"/>
+      </node>
+      <node id="15">
+        <label>src/RegisterMap.cpp</label>
+        <link refid="_register_map_8cpp"/>
+      </node>
+      <node id="14">
+        <label>src/TempModbusServer.cpp</label>
+        <link refid="_temp_modbus_server_8cpp"/>
+      </node>
+      <node id="10">
+        <label>src/TemperatureController.cpp</label>
+        <link refid="_temperature_controller_8cpp"/>
+      </node>
+      <node id="7">
+        <label>src/main.cpp</label>
+        <link refid="main_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="class_measurement_point" prot="public">MeasurementPoint</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>MEASUREMENT_POINT_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MEASUREMENT_POINT_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Arduino.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_sensor_8h" kindref="compound">Sensor.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_logger_manager_8h" kindref="compound">LoggerManager.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10" refid="class_measurement_point" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_measurement_point_1a4abbf3752cd60d76f086071c4823ac1a" kindref="member">MeasurementPoint</ref><sp/>{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Constructor</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13" refid="class_measurement_point_1a4abbf3752cd60d76f086071c4823ac1a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_measurement_point_1a4abbf3752cd60d76f086071c4823ac1a" kindref="member">MeasurementPoint</ref>()<sp/>:<sp/><ref refid="class_measurement_point_1a13e1f193f0588973d8fe6b836ebe0fb9" kindref="member">address</ref>(0),<sp/><ref refid="class_measurement_point_1aa689590a454a7e11401a59e0399e66f4" kindref="member">name</ref>(</highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">),<sp/><ref refid="class_measurement_point_1ada9ba45e500305e667f2a489603e84a8" kindref="member">currentTemp</ref>(0),<sp/><ref refid="class_measurement_point_1a2848f528b229967f371cc83e394b26fb" kindref="member">minTemp</ref>(32767),<sp/><ref refid="class_measurement_point_1a38e188f2325f505993d55fa7a2d3e169" kindref="member">maxTemp</ref>(-32768),</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_measurement_point_1a3f1d2653a05ccfa24d2305f5b07e35db" kindref="member">lowAlarmThreshold</ref>(-10),<sp/><ref refid="class_measurement_point_1a63f7bd3c914d6b77bc6828cc83f4fef6" kindref="member">highAlarmThreshold</ref>(50),<sp/><ref refid="class_measurement_point_1a18c9fe4e70a4cc17473fd9df8a3c6b68" kindref="member">alarmStatus</ref>(0),<sp/><ref refid="class_measurement_point_1a9b17fba6e1ea928d4aa88abf28731fc7" kindref="member">errorStatus</ref>(0),<sp/><ref refid="class_measurement_point_1a2bd6f123317fd8ff0ed22be09a7ac495" kindref="member">boundSensor</ref>(nullptr)<sp/>{}</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_measurement_point_1a4abbf3752cd60d76f086071c4823ac1a" kindref="member">MeasurementPoint</ref>(uint8_t<sp/><ref refid="class_measurement_point_1a13e1f193f0588973d8fe6b836ebe0fb9" kindref="member">address</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>String&amp;<sp/><ref refid="class_measurement_point_1aa689590a454a7e11401a59e0399e66f4" kindref="member">name</ref>);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Destructor</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_measurement_point_1a8ee3863bb5548fe9c919234aff8ee0b6" kindref="member">~MeasurementPoint</ref>();</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Getters</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/><ref refid="class_measurement_point_1a7b74a18d86e0e545264a774aa2c31cad" kindref="member">getAddress</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>String<sp/><ref refid="class_measurement_point_1aa3a80d373c7609c7b178bf7353ffdd7a" kindref="member">getName</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>int16_t<sp/><ref refid="class_measurement_point_1aceaf14fde40bcd5331e5ea6a07d7dde8" kindref="member">getCurrentTemp</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>int16_t<sp/><ref refid="class_measurement_point_1adc31f012462c1623617d5f362bcb2c59" kindref="member">getMinTemp</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>int16_t<sp/><ref refid="class_measurement_point_1a8677e00e0be369d7874f4982990dc56d" kindref="member">getMaxTemp</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>int16_t<sp/><ref refid="class_measurement_point_1a6e538e117d9e22c6998b56519a51d6ba" kindref="member">getLowAlarmThreshold</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>int16_t<sp/><ref refid="class_measurement_point_1a71d6d440240f110cbd80c58bbc47aff6" kindref="member">getHighAlarmThreshold</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/><ref refid="class_measurement_point_1a1421d744f7982e528a579da02adb1919" kindref="member">getAlarmStatus</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/><ref refid="class_measurement_point_1a3fb0693931f12190a7f96e5d6be51b51" kindref="member">getErrorStatus</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Setters</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_measurement_point_1ae3abe83ed3e7979a906c7d753ac9d22d" kindref="member">setName</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>String&amp;<sp/>newName);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_measurement_point_1ac780917beebc11d705824cab8f43b94d" kindref="member">setLowAlarmThreshold</ref>(int16_t<sp/>threshold);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_measurement_point_1aefb47fef40f33161be5c6fddf0cf6329" kindref="member">setHighAlarmThreshold</ref>(int16_t<sp/>threshold);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Sensor<sp/>binding<sp/>(optional)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_measurement_point_1a3c3af28d9aabc9e5b9e2e370eaa29ce0" kindref="member">bindSensor</ref>(<ref refid="class_sensor" kindref="compound">Sensor</ref>*<sp/>sensor);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_measurement_point_1ab93923a15b7e55af89d1269b681fb856" kindref="member">unbindSensor</ref>();</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_sensor" kindref="compound">Sensor</ref>*<sp/><ref refid="class_measurement_point_1a81c7ae93a9314344967d0f31c6fefe2f" kindref="member">getBoundSensor</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Operations</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_measurement_point_1a3c6d3325a506e8797bc759f15b70391f" kindref="member">update</ref>();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Should<sp/>be<sp/>called<sp/>to<sp/>refresh<sp/>temperature<sp/>and<sp/>status</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_measurement_point_1a6a78c850d05aa4ae8151e5e9f828fce0" kindref="member">resetMinMaxTemp</ref>();<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Resets<sp/>min/max<sp/>to<sp/>current</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>void<sp/>setOneWireBus(uint8_t<sp/>bus);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>uint8_t<sp/>getOneWireBus();</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="48" refid="class_measurement_point_1a13e1f193f0588973d8fe6b836ebe0fb9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/><ref refid="class_measurement_point_1a13e1f193f0588973d8fe6b836ebe0fb9" kindref="member">address</ref>;</highlight></codeline>
+<codeline lineno="49" refid="class_measurement_point_1aa689590a454a7e11401a59e0399e66f4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>String<sp/><ref refid="class_measurement_point_1aa689590a454a7e11401a59e0399e66f4" kindref="member">name</ref>;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>uint8_t<sp/>oneWireBus;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52" refid="class_measurement_point_1ada9ba45e500305e667f2a489603e84a8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>int16_t<sp/><ref refid="class_measurement_point_1ada9ba45e500305e667f2a489603e84a8" kindref="member">currentTemp</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Latest<sp/>temperature<sp/>(°C<sp/>x1)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53" refid="class_measurement_point_1a2848f528b229967f371cc83e394b26fb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>int16_t<sp/><ref refid="class_measurement_point_1a2848f528b229967f371cc83e394b26fb" kindref="member">minTemp</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Minimum<sp/>recorded<sp/>temperature</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54" refid="class_measurement_point_1a38e188f2325f505993d55fa7a2d3e169" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>int16_t<sp/><ref refid="class_measurement_point_1a38e188f2325f505993d55fa7a2d3e169" kindref="member">maxTemp</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Maximum<sp/>recorded<sp/>temperature</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55" refid="class_measurement_point_1a3f1d2653a05ccfa24d2305f5b07e35db" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>int16_t<sp/><ref refid="class_measurement_point_1a3f1d2653a05ccfa24d2305f5b07e35db" kindref="member">lowAlarmThreshold</ref>;<sp/><sp/></highlight><highlight class="comment">//<sp/>Alarm<sp/>threshold<sp/>low</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56" refid="class_measurement_point_1a63f7bd3c914d6b77bc6828cc83f4fef6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>int16_t<sp/><ref refid="class_measurement_point_1a63f7bd3c914d6b77bc6828cc83f4fef6" kindref="member">highAlarmThreshold</ref>;<sp/></highlight><highlight class="comment">//<sp/>Alarm<sp/>threshold<sp/>high</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57" refid="class_measurement_point_1a18c9fe4e70a4cc17473fd9df8a3c6b68" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/><ref refid="class_measurement_point_1a18c9fe4e70a4cc17473fd9df8a3c6b68" kindref="member">alarmStatus</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Alarm<sp/>status<sp/>bits</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58" refid="class_measurement_point_1a9b17fba6e1ea928d4aa88abf28731fc7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/><ref refid="class_measurement_point_1a9b17fba6e1ea928d4aa88abf28731fc7" kindref="member">errorStatus</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Error<sp/>status<sp/>bits</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60" refid="class_measurement_point_1a2bd6f123317fd8ff0ed22be09a7ac495" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_sensor" kindref="compound">Sensor</ref>*<sp/><ref refid="class_measurement_point_1a2bd6f123317fd8ff0ed22be09a7ac495" kindref="member">boundSensor</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Pointer<sp/>to<sp/>bound<sp/>sensor,<sp/>or<sp/>nullptr</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_measurement_point_1a71995209f2507e6cc15d01607f60767f" kindref="member">updateAlarmStatus</ref>();</highlight></codeline>
+<codeline lineno="63"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>TEMPERATURE_CONTROLLER_H</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="include/MeasurementPoint.h"/>
+  </compounddef>
+</doxygen>

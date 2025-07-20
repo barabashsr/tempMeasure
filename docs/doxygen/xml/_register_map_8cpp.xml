@@ -1,0 +1,241 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="_register_map_8cpp" kind="file" language="C++">
+    <compoundname>RegisterMap.cpp</compoundname>
+    <includes refid="_register_map_8h" local="yes">RegisterMap.h</includes>
+    <incdepgraph>
+      <node id="10">
+        <label>LoggerManager.h</label>
+        <link refid="_logger_manager_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>MeasurementPoint.h</label>
+        <link refid="_measurement_point_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>RegisterMap.h</label>
+        <link refid="_register_map_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Sensor.h</label>
+        <link refid="_sensor_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>TimeManager.h</label>
+        <link refid="_time_manager_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>src/RegisterMap.cpp</label>
+        <link refid="_register_map_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>Adafruit_MAX31865.h</label>
+      </node>
+      <node id="5">
+        <label>Arduino.h</label>
+      </node>
+      <node id="19">
+        <label>ArduinoJson.h</label>
+      </node>
+      <node id="8">
+        <label>DallasTemperature.h</label>
+      </node>
+      <node id="11">
+        <label>FS.h</label>
+      </node>
+      <node id="17">
+        <label>NTPClient.h</label>
+      </node>
+      <node id="7">
+        <label>OneWire.h</label>
+      </node>
+      <node id="16">
+        <label>RTClib.h</label>
+      </node>
+      <node id="12">
+        <label>SD.h</label>
+      </node>
+      <node id="14">
+        <label>WiFi.h</label>
+      </node>
+      <node id="18">
+        <label>WiFiUdp.h</label>
+      </node>
+      <node id="15">
+        <label>Wire.h</label>
+      </node>
+      <node id="3">
+        <label>stdint.h</label>
+      </node>
+      <node id="20">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_register_map_8h" kindref="compound">RegisterMap.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3" refid="class_register_map_1a421bb31f92254150a6738952b1ff7944" refkind="member"><highlight class="normal"><ref refid="class_register_map_1a421bb31f92254150a6738952b1ff7944" kindref="member">RegisterMap::RegisterMap</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_register_map_1aa98070c7197fdf26d743f4eed498fd66" kindref="member">deviceId</ref><sp/>=<sp/>1000;</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_register_map_1ae5b846e888d43b130096d3671dc8c0fb" kindref="member">firmwareVersion</ref><sp/>=<sp/>0x0100;</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_register_map_1a216b9abf3c7b9f7d6721ea2e96cb9ff7" kindref="member">numActiveDS18B20</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_register_map_1abc9a62bb029202c3d50baaa985f17737" kindref="member">numActivePT1000</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>7;<sp/>i++)<sp/><ref refid="class_register_map_1a19e014a5afbfe86297b7dd8e3e4d1327" kindref="member">deviceStatus</ref>[i]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>60;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_register_map_1aa875c2d7332c718c82d230549f566c10" kindref="member">currentTemps</ref>[i]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_register_map_1acae64e6c9f48a79cda39ac45367a9a97" kindref="member">minTemps</ref>[i]<sp/>=<sp/>32767;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_register_map_1a883e25ca7b65319483aa56e8ea8f1362" kindref="member">maxTemps</ref>[i]<sp/>=<sp/>-32768;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_register_map_1ac9753141e2fe23d742cca2d7e4572194" kindref="member">alarmStatus</ref>[i]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_register_map_1a5c46fc421fa321b430997811d3a23f56" kindref="member">errorStatus</ref>[i]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_register_map_1aeb01f6f8df07fc282a17015c55de7c06" kindref="member">lowAlarmThresholds</ref>[i]<sp/>=<sp/>-10;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_register_map_1ae6ce504c8e4c620b908bd7c7bca9fec0" kindref="member">highAlarmThresholds</ref>[i]<sp/>=<sp/>50;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="18"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20" refid="class_register_map_1abc2174dcfe96247d4f97e552a2363e50" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_register_map_1abc2174dcfe96247d4f97e552a2363e50" kindref="member">RegisterMap::isValidAddress</ref>(uint16_t<sp/>address)<sp/>{</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(address<sp/>&lt;=<sp/><ref refid="class_register_map_1a0c65d76fa4f8659e20148173aabb0042" kindref="member">DEVICE_STATUS_END_REG</ref>)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(address<sp/>&gt;=<sp/><ref refid="class_register_map_1a39e9da3852adc25710c836c4019e44ae" kindref="member">CURRENT_TEMP_DS18B20_START_REG</ref><sp/>&amp;&amp;<sp/>address<sp/>&lt;=<sp/><ref refid="class_register_map_1a5954549ec72525817e26df98db56522f" kindref="member">CURRENT_TEMP_PT1000_END_REG</ref>)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(address<sp/>&gt;=<sp/><ref refid="class_register_map_1afcbf3023e3bfed9d51c13e4a6e42f928" kindref="member">MIN_TEMP_DS18B20_START_REG</ref><sp/>&amp;&amp;<sp/>address<sp/>&lt;=<sp/><ref refid="class_register_map_1afc19f2966dac287307958f677c852282" kindref="member">MIN_TEMP_PT1000_END_REG</ref>)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(address<sp/>&gt;=<sp/><ref refid="class_register_map_1af5803660fef52ac6a6db5708a2d8e7ea" kindref="member">MAX_TEMP_DS18B20_START_REG</ref><sp/>&amp;&amp;<sp/>address<sp/>&lt;=<sp/><ref refid="class_register_map_1a90a709adb204896851b5c20293185f62" kindref="member">MAX_TEMP_PT1000_END_REG</ref>)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(address<sp/>&gt;=<sp/><ref refid="class_register_map_1a8418bd7fbd2379830c5b2a2d5a7ceadb" kindref="member">ALARM_STATUS_DS18B20_START_REG</ref><sp/>&amp;&amp;<sp/>address<sp/>&lt;=<sp/><ref refid="class_register_map_1ae6d88f1082bb40e31cbceb375d53124c" kindref="member">ALARM_STATUS_PT1000_END_REG</ref>)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(address<sp/>&gt;=<sp/><ref refid="class_register_map_1aa3f77b5d6b2f658f2d3a20c85306343b" kindref="member">ERROR_STATUS_DS18B20_START_REG</ref><sp/>&amp;&amp;<sp/>address<sp/>&lt;=<sp/><ref refid="class_register_map_1ab73ef67a76c9661e42603af6be98f541" kindref="member">ERROR_STATUS_PT1000_END_REG</ref>)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(address<sp/>&gt;=<sp/><ref refid="class_register_map_1a2e50e7dee1282aca451046a5da3f4945" kindref="member">LOW_ALARM_DS18B20_START_REG</ref><sp/>&amp;&amp;<sp/>address<sp/>&lt;=<sp/><ref refid="class_register_map_1abb213088915f30411094b7c7cad17dd0" kindref="member">LOW_ALARM_PT1000_END_REG</ref>)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(address<sp/>&gt;=<sp/><ref refid="class_register_map_1a94eb0a7c3854218019f4d5047445c53b" kindref="member">HIGH_ALARM_DS18B20_START_REG</ref><sp/>&amp;&amp;<sp/>address<sp/>&lt;=<sp/><ref refid="class_register_map_1a48fad7e6eb2c495f3d90d0fe68f69343" kindref="member">HIGH_ALARM_PT1000_END_REG</ref>)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32" refid="class_register_map_1a313522004347397fee66b57e9daed873" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_register_map_1a313522004347397fee66b57e9daed873" kindref="member">RegisterMap::isReadOnlyRegister</ref>(uint16_t<sp/>address)<sp/>{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Only<sp/>alarm<sp/>thresholds<sp/>are<sp/>writable</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(address<sp/>&gt;=<sp/><ref refid="class_register_map_1a2e50e7dee1282aca451046a5da3f4945" kindref="member">LOW_ALARM_DS18B20_START_REG</ref><sp/>&amp;&amp;<sp/>address<sp/>&lt;=<sp/><ref refid="class_register_map_1abb213088915f30411094b7c7cad17dd0" kindref="member">LOW_ALARM_PT1000_END_REG</ref>)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(address<sp/>&gt;=<sp/><ref refid="class_register_map_1a94eb0a7c3854218019f4d5047445c53b" kindref="member">HIGH_ALARM_DS18B20_START_REG</ref><sp/>&amp;&amp;<sp/>address<sp/>&lt;=<sp/><ref refid="class_register_map_1a48fad7e6eb2c495f3d90d0fe68f69343" kindref="member">HIGH_ALARM_PT1000_END_REG</ref>)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39" refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" refkind="member"><highlight class="normal">uint16_t<sp/><ref refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" kindref="member">RegisterMap::readHoldingRegister</ref>(uint16_t<sp/>address)<sp/>{</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="class_register_map_1abc2174dcfe96247d4f97e552a2363e50" kindref="member">isValidAddress</ref>(address))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0xFFFF;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(address<sp/>==<sp/><ref refid="class_register_map_1adbc8f6a4a506265d1ce3f51e0f3cc54c" kindref="member">DEVICE_ID_REG</ref>)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_register_map_1aa98070c7197fdf26d743f4eed498fd66" kindref="member">deviceId</ref>;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(address<sp/>==<sp/><ref refid="class_register_map_1ab26cff5b72c66bd12efde9882586ddd4" kindref="member">FIRMWARE_VERSION_REG</ref>)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_register_map_1ae5b846e888d43b130096d3671dc8c0fb" kindref="member">firmwareVersion</ref>;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(address<sp/>==<sp/><ref refid="class_register_map_1ac374b6189bebe5408e374965858bcd12" kindref="member">NUM_DS18B20_REG</ref>)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_register_map_1a216b9abf3c7b9f7d6721ea2e96cb9ff7" kindref="member">numActiveDS18B20</ref>;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(address<sp/>==<sp/><ref refid="class_register_map_1a3229332b90e91982d730b5f3b29cd095" kindref="member">NUM_PT1000_REG</ref>)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_register_map_1abc9a62bb029202c3d50baaa985f17737" kindref="member">numActivePT1000</ref>;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(address<sp/>&gt;=<sp/><ref refid="class_register_map_1ab20fe2486766932166ae63413b06c632" kindref="member">DEVICE_STATUS_START_REG</ref><sp/>&amp;&amp;<sp/>address<sp/>&lt;=<sp/><ref refid="class_register_map_1a0c65d76fa4f8659e20148173aabb0042" kindref="member">DEVICE_STATUS_END_REG</ref>)</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_register_map_1a19e014a5afbfe86297b7dd8e3e4d1327" kindref="member">deviceStatus</ref>[address<sp/>-<sp/><ref refid="class_register_map_1ab20fe2486766932166ae63413b06c632" kindref="member">DEVICE_STATUS_START_REG</ref>];</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>DS18B20<sp/>and<sp/>PT1000<sp/>share<sp/>the<sp/>same<sp/>arrays,<sp/>just<sp/>different<sp/>index<sp/>offsets</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(address<sp/>&gt;=<sp/><ref refid="class_register_map_1a39e9da3852adc25710c836c4019e44ae" kindref="member">CURRENT_TEMP_DS18B20_START_REG</ref><sp/>&amp;&amp;<sp/>address<sp/>&lt;=<sp/><ref refid="class_register_map_1a5954549ec72525817e26df98db56522f" kindref="member">CURRENT_TEMP_PT1000_END_REG</ref>)</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_register_map_1aa875c2d7332c718c82d230549f566c10" kindref="member">currentTemps</ref>[address<sp/>-<sp/><ref refid="class_register_map_1a39e9da3852adc25710c836c4019e44ae" kindref="member">CURRENT_TEMP_DS18B20_START_REG</ref>];</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(address<sp/>&gt;=<sp/><ref refid="class_register_map_1afcbf3023e3bfed9d51c13e4a6e42f928" kindref="member">MIN_TEMP_DS18B20_START_REG</ref><sp/>&amp;&amp;<sp/>address<sp/>&lt;=<sp/><ref refid="class_register_map_1afc19f2966dac287307958f677c852282" kindref="member">MIN_TEMP_PT1000_END_REG</ref>)</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_register_map_1acae64e6c9f48a79cda39ac45367a9a97" kindref="member">minTemps</ref>[address<sp/>-<sp/><ref refid="class_register_map_1afcbf3023e3bfed9d51c13e4a6e42f928" kindref="member">MIN_TEMP_DS18B20_START_REG</ref>];</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(address<sp/>&gt;=<sp/><ref refid="class_register_map_1af5803660fef52ac6a6db5708a2d8e7ea" kindref="member">MAX_TEMP_DS18B20_START_REG</ref><sp/>&amp;&amp;<sp/>address<sp/>&lt;=<sp/><ref refid="class_register_map_1a90a709adb204896851b5c20293185f62" kindref="member">MAX_TEMP_PT1000_END_REG</ref>)</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_register_map_1a883e25ca7b65319483aa56e8ea8f1362" kindref="member">maxTemps</ref>[address<sp/>-<sp/><ref refid="class_register_map_1af5803660fef52ac6a6db5708a2d8e7ea" kindref="member">MAX_TEMP_DS18B20_START_REG</ref>];</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(address<sp/>&gt;=<sp/><ref refid="class_register_map_1a8418bd7fbd2379830c5b2a2d5a7ceadb" kindref="member">ALARM_STATUS_DS18B20_START_REG</ref><sp/>&amp;&amp;<sp/>address<sp/>&lt;=<sp/><ref refid="class_register_map_1ae6d88f1082bb40e31cbceb375d53124c" kindref="member">ALARM_STATUS_PT1000_END_REG</ref>)</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_register_map_1ac9753141e2fe23d742cca2d7e4572194" kindref="member">alarmStatus</ref>[address<sp/>-<sp/><ref refid="class_register_map_1a8418bd7fbd2379830c5b2a2d5a7ceadb" kindref="member">ALARM_STATUS_DS18B20_START_REG</ref>];</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(address<sp/>&gt;=<sp/><ref refid="class_register_map_1aa3f77b5d6b2f658f2d3a20c85306343b" kindref="member">ERROR_STATUS_DS18B20_START_REG</ref><sp/>&amp;&amp;<sp/>address<sp/>&lt;=<sp/><ref refid="class_register_map_1ab73ef67a76c9661e42603af6be98f541" kindref="member">ERROR_STATUS_PT1000_END_REG</ref>)</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_register_map_1a5c46fc421fa321b430997811d3a23f56" kindref="member">errorStatus</ref>[address<sp/>-<sp/><ref refid="class_register_map_1aa3f77b5d6b2f658f2d3a20c85306343b" kindref="member">ERROR_STATUS_DS18B20_START_REG</ref>];</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(address<sp/>&gt;=<sp/><ref refid="class_register_map_1a2e50e7dee1282aca451046a5da3f4945" kindref="member">LOW_ALARM_DS18B20_START_REG</ref><sp/>&amp;&amp;<sp/>address<sp/>&lt;=<sp/><ref refid="class_register_map_1abb213088915f30411094b7c7cad17dd0" kindref="member">LOW_ALARM_PT1000_END_REG</ref>)</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_register_map_1aeb01f6f8df07fc282a17015c55de7c06" kindref="member">lowAlarmThresholds</ref>[address<sp/>-<sp/><ref refid="class_register_map_1a2e50e7dee1282aca451046a5da3f4945" kindref="member">LOW_ALARM_DS18B20_START_REG</ref>];</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(address<sp/>&gt;=<sp/><ref refid="class_register_map_1a94eb0a7c3854218019f4d5047445c53b" kindref="member">HIGH_ALARM_DS18B20_START_REG</ref><sp/>&amp;&amp;<sp/>address<sp/>&lt;=<sp/><ref refid="class_register_map_1a48fad7e6eb2c495f3d90d0fe68f69343" kindref="member">HIGH_ALARM_PT1000_END_REG</ref>)</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_register_map_1ae6ce504c8e4c620b908bd7c7bca9fec0" kindref="member">highAlarmThresholds</ref>[address<sp/>-<sp/><ref refid="class_register_map_1a94eb0a7c3854218019f4d5047445c53b" kindref="member">HIGH_ALARM_DS18B20_START_REG</ref>];</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0xFFFF;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68" refid="class_register_map_1a187e2d597d507f0c42da6a6a8d016da2" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_register_map_1a187e2d597d507f0c42da6a6a8d016da2" kindref="member">RegisterMap::writeHoldingRegister</ref>(uint16_t<sp/>address,<sp/>uint16_t<sp/>value)<sp/>{</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="class_register_map_1abc2174dcfe96247d4f97e552a2363e50" kindref="member">isValidAddress</ref>(address))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="class_register_map_1a313522004347397fee66b57e9daed873" kindref="member">isReadOnlyRegister</ref>(address))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Only<sp/>alarm<sp/>thresholds<sp/>are<sp/>writable</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(address<sp/>&gt;=<sp/><ref refid="class_register_map_1a2e50e7dee1282aca451046a5da3f4945" kindref="member">LOW_ALARM_DS18B20_START_REG</ref><sp/>&amp;&amp;<sp/>address<sp/>&lt;=<sp/><ref refid="class_register_map_1abb213088915f30411094b7c7cad17dd0" kindref="member">LOW_ALARM_PT1000_END_REG</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_register_map_1aeb01f6f8df07fc282a17015c55de7c06" kindref="member">lowAlarmThresholds</ref>[address<sp/>-<sp/><ref refid="class_register_map_1a2e50e7dee1282aca451046a5da3f4945" kindref="member">LOW_ALARM_DS18B20_START_REG</ref>]<sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal">int16_t</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(value);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(address<sp/>&gt;=<sp/><ref refid="class_register_map_1a94eb0a7c3854218019f4d5047445c53b" kindref="member">HIGH_ALARM_DS18B20_START_REG</ref><sp/>&amp;&amp;<sp/>address<sp/>&lt;=<sp/><ref refid="class_register_map_1a48fad7e6eb2c495f3d90d0fe68f69343" kindref="member">HIGH_ALARM_PT1000_END_REG</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_register_map_1ae6ce504c8e4c620b908bd7c7bca9fec0" kindref="member">highAlarmThresholds</ref>[address<sp/>-<sp/><ref refid="class_register_map_1a94eb0a7c3854218019f4d5047445c53b" kindref="member">HIGH_ALARM_DS18B20_START_REG</ref>]<sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal">int16_t</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(value);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84" refid="class_register_map_1a2940213459a183fc06a2226f1cd1a48b" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_register_map_1a2940213459a183fc06a2226f1cd1a48b" kindref="member">RegisterMap::updateFromMeasurementPoint</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_measurement_point" kindref="compound">MeasurementPoint</ref>&amp;<sp/>point)<sp/>{</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>idx<sp/>=<sp/>point.<ref refid="class_measurement_point_1a7b74a18d86e0e545264a774aa2c31cad" kindref="member">getAddress</ref>();</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>DS18B20:<sp/>0-49,<sp/>PT1000:<sp/>50-59</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(idx<sp/>&lt;<sp/>60)<sp/>{</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_register_map_1aa875c2d7332c718c82d230549f566c10" kindref="member">currentTemps</ref>[idx]<sp/>=<sp/>point.<ref refid="class_measurement_point_1aceaf14fde40bcd5331e5ea6a07d7dde8" kindref="member">getCurrentTemp</ref>();</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_register_map_1acae64e6c9f48a79cda39ac45367a9a97" kindref="member">minTemps</ref>[idx]<sp/>=<sp/>point.<ref refid="class_measurement_point_1adc31f012462c1623617d5f362bcb2c59" kindref="member">getMinTemp</ref>();</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_register_map_1a883e25ca7b65319483aa56e8ea8f1362" kindref="member">maxTemps</ref>[idx]<sp/>=<sp/>point.<ref refid="class_measurement_point_1a8677e00e0be369d7874f4982990dc56d" kindref="member">getMaxTemp</ref>();</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_register_map_1ac9753141e2fe23d742cca2d7e4572194" kindref="member">alarmStatus</ref>[idx]<sp/>=<sp/>point.<ref refid="class_measurement_point_1a1421d744f7982e528a579da02adb1919" kindref="member">getAlarmStatus</ref>();</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_register_map_1a5c46fc421fa321b430997811d3a23f56" kindref="member">errorStatus</ref>[idx]<sp/>=<sp/>point.<ref refid="class_measurement_point_1a3fb0693931f12190a7f96e5d6be51b51" kindref="member">getErrorStatus</ref>();</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Thresholds<sp/>are<sp/>updated<sp/>by<sp/>config<sp/>methods,<sp/>not<sp/>here</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="95"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97" refid="class_register_map_1aa2f819b22096b8c14c421b415f7e83b7" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_register_map_1aa2f819b22096b8c14c421b415f7e83b7" kindref="member">RegisterMap::applyConfigToMeasurementPoint</ref>(<ref refid="class_measurement_point" kindref="compound">MeasurementPoint</ref>&amp;<sp/>point)<sp/>{</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>idx<sp/>=<sp/>point.<ref refid="class_measurement_point_1a7b74a18d86e0e545264a774aa2c31cad" kindref="member">getAddress</ref>();</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(idx<sp/>&lt;<sp/>60)<sp/>{</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>point.<ref refid="class_measurement_point_1ac780917beebc11d705824cab8f43b94d" kindref="member">setLowAlarmThreshold</ref>(<ref refid="class_register_map_1aeb01f6f8df07fc282a17015c55de7c06" kindref="member">lowAlarmThresholds</ref>[idx]);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>point.<ref refid="class_measurement_point_1aefb47fef40f33161be5c6fddf0cf6329" kindref="member">setHighAlarmThreshold</ref>(<ref refid="class_register_map_1ae6ce504c8e4c620b908bd7c7bca9fec0" kindref="member">highAlarmThresholds</ref>[idx]);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Serial.printf(&quot;applyConfigToMeasurementPoint(%d):<sp/>LAS:<sp/>%d,<sp/>HAS:<sp/>%d\n&quot;,<sp/>idx,<sp/>lowAlarmThresholds[idx],<sp/>highAlarmThresholds[idx]);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="104"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106" refid="class_register_map_1a1f102e7d0dd51d4750c916fb6e32c37a" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_register_map_1a1f102e7d0dd51d4750c916fb6e32c37a" kindref="member">RegisterMap::applyConfigFromMeasurementPoint</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_measurement_point" kindref="compound">MeasurementPoint</ref>&amp;<sp/>point)<sp/>{</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>idx<sp/>=<sp/>point.<ref refid="class_measurement_point_1a7b74a18d86e0e545264a774aa2c31cad" kindref="member">getAddress</ref>();</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(idx<sp/>&lt;<sp/>60)<sp/>{</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_register_map_1aeb01f6f8df07fc282a17015c55de7c06" kindref="member">lowAlarmThresholds</ref>[idx]<sp/>=<sp/>point.<ref refid="class_measurement_point_1a6e538e117d9e22c6998b56519a51d6ba" kindref="member">getLowAlarmThreshold</ref>();</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_register_map_1ae6ce504c8e4c620b908bd7c7bca9fec0" kindref="member">highAlarmThresholds</ref>[idx]<sp/>=<sp/>point.<ref refid="class_measurement_point_1a71d6d440240f110cbd80c58bbc47aff6" kindref="member">getHighAlarmThreshold</ref>();</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Serial.printf(&quot;applyConfigFromMeasurementPoint(%d):<sp/>LAS:<sp/>%d,<sp/>HAS:<sp/>%d\n&quot;,<sp/>idx,<sp/>lowAlarmThresholds[idx],<sp/>highAlarmThresholds[idx]);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="113"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="src/RegisterMap.cpp"/>
+  </compounddef>
+</doxygen>

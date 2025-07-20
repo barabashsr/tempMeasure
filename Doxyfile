@@ -1,0 +1,55 @@
+# Project settings
+PROJECT_NAME           = "Temperature Control System"
+PROJECT_BRIEF          = "PlatformIO-based embedded system"
+OUTPUT_DIRECTORY       = docs/doxygen
+
+# Input settings
+INPUT                  = src lib include
+FILE_PATTERNS          = *.c *.cpp *.h *.hpp *.ino
+RECURSIVE              = YES
+
+# Embedded-specific settings
+OPTIMIZE_OUTPUT_FOR_C  = YES
+TYPEDEF_HIDES_STRUCT   = YES
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+
+# Documentation extraction
+JAVADOC_AUTOBRIEF      = YES
+QT_AUTOBRIEF           = YES
+MULTILINE_CPP_IS_BRIEF = YES
+
+# Source browsing
+SOURCE_BROWSER         = YES
+INLINE_SOURCES         = NO  # Set YES for full source in docs
+REFERENCED_BY_RELATION = YES
+REFERENCES_RELATION    = YES
+
+# Diagrams and graphs
+HAVE_DOT               = YES
+CALL_GRAPH             = YES
+CALLER_GRAPH           = YES
+CLASS_DIAGRAMS         = YES
+COLLABORATION_GRAPH    = YES
+UML_LOOK               = YES
+DOT_IMAGE_FORMAT       = svg
+
+# HTML output
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+HTML_FILE_EXTENSION    = .html
+GENERATE_TREEVIEW      = YES
+SEARCHENGINE           = YES
+
+# Disable unused outputs
+GENERATE_LATEX         = NO
+GENERATE_RTF           = NO
+GENERATE_MAN           = NO
+GENERATE_XML           = YES  # Keep for parsing
+
+# Hardware-specific tags
+ALIASES                = "hardware=\par Hardware Requirements:\n" \
+                         "timing=\par Timing Constraints:\n" \
+                         "memory=\par Memory Usage:\n" \
+                         "power=\par Power Consumption:\n"

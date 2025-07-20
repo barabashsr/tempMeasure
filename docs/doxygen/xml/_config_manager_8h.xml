@@ -1,0 +1,420 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="_config_manager_8h" kind="file" language="C++">
+    <compoundname>ConfigManager.h</compoundname>
+    <includes local="no">Arduino.h</includes>
+    <includes local="no">ConfigAssist.h</includes>
+    <includes local="no">ConfigAssistHelper.h</includes>
+    <includes local="no">WebServer.h</includes>
+    <includes local="no">LittleFS.h</includes>
+    <includes refid="_temperature_controller_8h" local="yes">TemperatureController.h</includes>
+    <includes refid="_c_s_v_config_manager_8h" local="yes">CSVConfigManager.h</includes>
+    <includes refid="_settings_c_s_v_manager_8h" local="yes">SettingsCSVManager.h</includes>
+    <includes refid="_logger_manager_8h" local="yes">LoggerManager.h</includes>
+    <includedby refid="_config_manager_8cpp" local="yes">src/ConfigManager.cpp</includedby>
+    <includedby refid="main_8cpp" local="yes">src/main.cpp</includedby>
+    <incdepgraph>
+      <node id="31">
+        <label>Alarm.h</label>
+        <link refid="_alarm_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>CSVConfigManager.h</label>
+        <link refid="_c_s_v_config_manager_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>include/ConfigManager.h</label>
+        <link refid="_config_manager_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>IndicatorInterface.h</label>
+        <link refid="_indicator_interface_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>LoggerManager.h</label>
+        <link refid="_logger_manager_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>MeasurementPoint.h</label>
+        <link refid="_measurement_point_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>RegisterMap.h</label>
+        <link refid="_register_map_8h"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>Sensor.h</label>
+        <link refid="_sensor_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>SettingsCSVManager.h</label>
+        <link refid="_settings_c_s_v_manager_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>TemperatureController.h</label>
+        <link refid="_temperature_controller_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>TimeManager.h</label>
+        <link refid="_time_manager_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>Adafruit_MAX31865.h</label>
+      </node>
+      <node id="2">
+        <label>Arduino.h</label>
+      </node>
+      <node id="23">
+        <label>ArduinoJson.h</label>
+      </node>
+      <node id="34">
+        <label>CSV_Parser.h</label>
+      </node>
+      <node id="3">
+        <label>ConfigAssist.h</label>
+      </node>
+      <node id="4">
+        <label>ConfigAssistHelper.h</label>
+      </node>
+      <node id="11">
+        <label>DallasTemperature.h</label>
+      </node>
+      <node id="15">
+        <label>FS.h</label>
+      </node>
+      <node id="6">
+        <label>LittleFS.h</label>
+      </node>
+      <node id="21">
+        <label>NTPClient.h</label>
+      </node>
+      <node id="10">
+        <label>OneWire.h</label>
+      </node>
+      <node id="29">
+        <label>PCF8575.h</label>
+      </node>
+      <node id="20">
+        <label>RTClib.h</label>
+      </node>
+      <node id="16">
+        <label>SD.h</label>
+      </node>
+      <node id="30">
+        <label>U8g2lib.h</label>
+      </node>
+      <node id="5">
+        <label>WebServer.h</label>
+      </node>
+      <node id="18">
+        <label>WiFi.h</label>
+      </node>
+      <node id="22">
+        <label>WiFiUdp.h</label>
+      </node>
+      <node id="19">
+        <label>Wire.h</label>
+      </node>
+      <node id="32">
+        <label>algorithm</label>
+      </node>
+      <node id="27">
+        <label>map</label>
+      </node>
+      <node id="25">
+        <label>stdint.h</label>
+      </node>
+      <node id="28">
+        <label>string</label>
+      </node>
+      <node id="8">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>include/ConfigManager.h</label>
+        <link refid="_config_manager_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>src/ConfigManager.cpp</label>
+        <link refid="_config_manager_8cpp"/>
+      </node>
+      <node id="3">
+        <label>src/main.cpp</label>
+        <link refid="main_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="class_config_manager" prot="public">ConfigManager</innerclass>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="_config_manager_8h_1a53744b698cb89b52923ba6024d2e25e0" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *</type>
+        <definition>const char* VARIABLES_DEF_YAML</definition>
+        <argsstring></argsstring>
+        <name>VARIABLES_DEF_YAML</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ConfigManager.h" line="15" column="19" declfile="include/ConfigManager.h" declline="15" declcolumn="19"/>
+        <referencedby refid="class_config_manager_1abb5e68671c5a8087abb50b289d3522b4" compoundref="_config_manager_8cpp" startline="81" endline="91">ConfigManager::ConfigManager</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>CONFIG_MANAGER_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CONFIG_MANAGER_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Arduino.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;ConfigAssist.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;ConfigAssistHelper.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;WebServer.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;LittleFS.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_temperature_controller_8h" kindref="compound">TemperatureController.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_c_s_v_config_manager_8h" kindref="compound">CSVConfigManager.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_settings_c_s_v_manager_8h" kindref="compound">SettingsCSVManager.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_logger_manager_8h" kindref="compound">LoggerManager.h</ref>&quot;</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//<sp/>YAML<sp/>configuration<sp/>definition</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/><ref refid="_config_manager_8h_1a53744b698cb89b52923ba6024d2e25e0" kindref="member">VARIABLES_DEF_YAML</ref>;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17" refid="class_config_manager" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_config_manager_1abb5e68671c5a8087abb50b289d3522b4" kindref="member">ConfigManager</ref><sp/>{</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="19" refid="class_config_manager_1afe696eabbbdf537e88b3b5b33c009b31" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_settings_c_s_v_manager" kindref="compound">SettingsCSVManager</ref><sp/><ref refid="class_config_manager_1afe696eabbbdf537e88b3b5b33c009b31" kindref="member">settingsCSVManager</ref>;</highlight></codeline>
+<codeline lineno="20" refid="class_config_manager_1a5591a9b29e8c6e1c3f3dc50c0e6e1267" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_c_s_v_config_manager" kindref="compound">CSVConfigManager</ref><sp/><ref refid="class_config_manager_1a5591a9b29e8c6e1c3f3dc50c0e6e1267" kindref="member">csvManager</ref>;</highlight></codeline>
+<codeline lineno="21" refid="class_config_manager_1a3948181c2e8ae2241d0e95c5afd47aa9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>ConfigAssist<sp/><ref refid="class_config_manager_1a3948181c2e8ae2241d0e95c5afd47aa9" kindref="member">conf</ref>;</highlight></codeline>
+<codeline lineno="22" refid="class_config_manager_1a555afa40c6353fe0fe1765cc064dc920" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>ConfigAssistHelper*<sp/><ref refid="class_config_manager_1a555afa40c6353fe0fe1765cc064dc920" kindref="member">confHelper</ref>;</highlight></codeline>
+<codeline lineno="23" refid="class_config_manager_1a68eeba761f112013757ddf298454407d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_temperature_controller" kindref="compound">TemperatureController</ref>&amp;<sp/><ref refid="class_config_manager_1a68eeba761f112013757ddf298454407d" kindref="member">controller</ref>;</highlight></codeline>
+<codeline lineno="24" refid="class_config_manager_1a773fb5f7cd89fa594bd05184e8af14a0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>WebServer*<sp/><ref refid="class_config_manager_1a773fb5f7cd89fa594bd05184e8af14a0" kindref="member">server</ref>;</highlight></codeline>
+<codeline lineno="25" refid="class_config_manager_1a9569d8754bbcd81768dfb351b73bcea0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_config_manager_1a9569d8754bbcd81768dfb351b73bcea0" kindref="member">portalActive</ref>;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Callback<sp/>function<sp/>for<sp/>ConfigAssist</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_config_manager_1a93a63ddc3f7efd83e80345826493a45d" kindref="member">onConfigChanged</ref>(String<sp/>key);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Pointer<sp/>to<sp/>instance<sp/>for<sp/>callback<sp/>functions</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="class_config_manager_1a890a76b6aebb1246ca45248967447b34" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="class_config_manager_1abb5e68671c5a8087abb50b289d3522b4" kindref="member">ConfigManager</ref>*<sp/><ref refid="class_config_manager_1a890a76b6aebb1246ca45248967447b34" kindref="member">instance</ref>;</highlight></codeline>
+<codeline lineno="32" refid="class_config_manager_1adaa7d1493461e3f2684b92ffe5db62d4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_config_manager_1adaa7d1493461e3f2684b92ffe5db62d4" kindref="member">_applySettingsWithoutRestart</ref>();</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_config_manager_1a6416afa7d86c20400ee661cdad9bdab1" kindref="member">basicAPI</ref>();</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_config_manager_1a45b1ce1f09401af0b6f700cf4388b233" kindref="member">sensorAPI</ref>();</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_config_manager_1a9b7af07b85bf9cc3ac05603db6e89fd2" kindref="member">csvImportExportAPI</ref>();</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_config_manager_1a471a844085c27f3a8a8f9394d9c14677" kindref="member">pointsAPI</ref>();</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_config_manager_1ae605c999fabc6344511f455618655326" kindref="member">alarmsAPI</ref>();</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_config_manager_1a9e977107b4795fcbce0482711ff1ce7a" kindref="member">logsAPI</ref>();</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_config_manager_1a3b28982c79587a287c8ddf0acf47f71d" kindref="member">downloadAPI</ref>();</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Save<sp/>sensor<sp/>configuration<sp/>to<sp/>file</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//void<sp/>saveSensorConfig();</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Load<sp/>sensor<sp/>configuration<sp/>from<sp/>file</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//void<sp/>loadSensorConfig();</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_config_manager_1abb5e68671c5a8087abb50b289d3522b4" kindref="member">ConfigManager</ref>(<ref refid="class_temperature_controller" kindref="compound">TemperatureController</ref>&amp;<sp/>tempController);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_config_manager_1a7fa65fdff98bdd5bbbf72196bd9ccf17" kindref="member">~ConfigManager</ref>();</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Initialize<sp/>configuration</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_config_manager_1a0497343220fc493f5cf9574922508908" kindref="member">begin</ref>();</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Update<sp/>configuration<sp/>(call<sp/>in<sp/>loop)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_config_manager_1a2f271ab2a1e8014cebe1e26afe9974df" kindref="member">update</ref>();</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Connect<sp/>to<sp/>WiFi</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_config_manager_1a83b4217012bf8eda57fbfd8deca09dd2" kindref="member">connectWiFi</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>timeoutMs<sp/>=<sp/>15000);</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Add<sp/>sensor<sp/>to<sp/>configuration</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>bool<sp/>addSensorToConfig(SensorType<sp/>type,<sp/>uint8_t<sp/>address,<sp/>const<sp/>String&amp;<sp/>name,<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>uint8_t*<sp/>romAddress<sp/>=<sp/>nullptr);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Remove<sp/>sensor<sp/>from<sp/>configuration</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//bool<sp/>removeSensorFromConfig(uint8_t<sp/>address);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Update<sp/>sensor<sp/>in<sp/>configuration</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>bool<sp/>updateSensorInConfig(uint8_t<sp/>address,<sp/>const<sp/>String&amp;<sp/>name,<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int16_t<sp/>lowAlarm,<sp/>int16_t<sp/>highAlarm);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Get<sp/>web<sp/>server<sp/>instance</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74" refid="class_config_manager_1ac880f2edae50caef8bcc750f7260a896" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>WebServer*<sp/><ref refid="class_config_manager_1ac880f2edae50caef8bcc750f7260a896" kindref="member">getWebServer</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_config_manager_1a773fb5f7cd89fa594bd05184e8af14a0" kindref="member">server</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Check<sp/>if<sp/>portal<sp/>is<sp/>active</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77" refid="class_config_manager_1a65a98a3adfa9da8d6d66175eb8dad3a3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_config_manager_1a65a98a3adfa9da8d6d66175eb8dad3a3" kindref="member">isPortalActive</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_config_manager_1a9569d8754bbcd81768dfb351b73bcea0" kindref="member">portalActive</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Get<sp/>configuration<sp/>values</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80" refid="class_config_manager_1a0c6922c0d3cfb6016ffea2a58149ee35" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>String<sp/><ref refid="class_config_manager_1a0c6922c0d3cfb6016ffea2a58149ee35" kindref="member">getWifiSSID</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_config_manager_1a3948181c2e8ae2241d0e95c5afd47aa9" kindref="member">conf</ref>(</highlight><highlight class="stringliteral">&quot;st_ssid&quot;</highlight><highlight class="normal">);<sp/>}</highlight></codeline>
+<codeline lineno="81" refid="class_config_manager_1aa67267eea5f43007958d1959a3d05eff" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>String<sp/><ref refid="class_config_manager_1aa67267eea5f43007958d1959a3d05eff" kindref="member">getWifiPassword</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_config_manager_1a3948181c2e8ae2241d0e95c5afd47aa9" kindref="member">conf</ref>(</highlight><highlight class="stringliteral">&quot;st_pass&quot;</highlight><highlight class="normal">);<sp/>}</highlight></codeline>
+<codeline lineno="82" refid="class_config_manager_1a3909fbe925c15b47925bacf2b0b4d97b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>String<sp/><ref refid="class_config_manager_1a3909fbe925c15b47925bacf2b0b4d97b" kindref="member">getHostname</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_config_manager_1a3948181c2e8ae2241d0e95c5afd47aa9" kindref="member">conf</ref>(</highlight><highlight class="stringliteral">&quot;host_name&quot;</highlight><highlight class="normal">);<sp/>}</highlight></codeline>
+<codeline lineno="83" refid="class_config_manager_1a355c8fe8e7b63d90f2ab1e3957006d7b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/><ref refid="class_config_manager_1a355c8fe8e7b63d90f2ab1e3957006d7b" kindref="member">getDeviceId</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_config_manager_1a3948181c2e8ae2241d0e95c5afd47aa9" kindref="member">conf</ref>(</highlight><highlight class="stringliteral">&quot;device_id&quot;</highlight><highlight class="normal">).toInt();<sp/>}</highlight></codeline>
+<codeline lineno="84" refid="class_config_manager_1af025d7d473c39f95ab26029607e32cc6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/><ref refid="class_config_manager_1af025d7d473c39f95ab26029607e32cc6" kindref="member">getMeasurementPeriod</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_config_manager_1a3948181c2e8ae2241d0e95c5afd47aa9" kindref="member">conf</ref>(</highlight><highlight class="stringliteral">&quot;measurement_period&quot;</highlight><highlight class="normal">).toInt();<sp/>}</highlight></codeline>
+<codeline lineno="85" refid="class_config_manager_1a9fadc4167ae0c9e7cfc27af9b1bc5774" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_config_manager_1a9fadc4167ae0c9e7cfc27af9b1bc5774" kindref="member">isModbusEnabled</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_config_manager_1a3948181c2e8ae2241d0e95c5afd47aa9" kindref="member">conf</ref>(</highlight><highlight class="stringliteral">&quot;modbus_enabled&quot;</highlight><highlight class="normal">).toInt()<sp/>==<sp/>1;<sp/>}</highlight></codeline>
+<codeline lineno="86" refid="class_config_manager_1abd6818ba586e506fa20886b51ff8dfe0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/><ref refid="class_config_manager_1abd6818ba586e506fa20886b51ff8dfe0" kindref="member">getModbusAddress</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_config_manager_1a3948181c2e8ae2241d0e95c5afd47aa9" kindref="member">conf</ref>(</highlight><highlight class="stringliteral">&quot;modbus_address&quot;</highlight><highlight class="normal">).toInt();<sp/>}</highlight></codeline>
+<codeline lineno="87" refid="class_config_manager_1a1ddcfeae8bd9fa5f1847b33a8ff61c09" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="class_config_manager_1a1ddcfeae8bd9fa5f1847b33a8ff61c09" kindref="member">getModbusBaudRate</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_config_manager_1a3948181c2e8ae2241d0e95c5afd47aa9" kindref="member">conf</ref>(</highlight><highlight class="stringliteral">&quot;modbus_baud_rate&quot;</highlight><highlight class="normal">).toInt();<sp/>}</highlight></codeline>
+<codeline lineno="88" refid="class_config_manager_1a8edfe5674a998837f2bb33f8c24ebca1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/><ref refid="class_config_manager_1a8edfe5674a998837f2bb33f8c24ebca1" kindref="member">getRxPin</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_config_manager_1a3948181c2e8ae2241d0e95c5afd47aa9" kindref="member">conf</ref>(</highlight><highlight class="stringliteral">&quot;rs485_rx_pin&quot;</highlight><highlight class="normal">).toInt();<sp/>}</highlight></codeline>
+<codeline lineno="89" refid="class_config_manager_1af29e702703a41dc0fe8f393b4df3cba9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/><ref refid="class_config_manager_1af29e702703a41dc0fe8f393b4df3cba9" kindref="member">getTxPin</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_config_manager_1a3948181c2e8ae2241d0e95c5afd47aa9" kindref="member">conf</ref>(</highlight><highlight class="stringliteral">&quot;rs485_tx_pin&quot;</highlight><highlight class="normal">).toInt();<sp/>}</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//uint8_t<sp/>getDePin()<sp/>{<sp/>return<sp/>conf(&quot;rs485_de_pin&quot;).toInt();<sp/>}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//uint8_t<sp/>getOneWirePin()<sp/>{<sp/>return<sp/>conf(&quot;onewire_pin&quot;).toInt();<sp/>}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92" refid="class_config_manager_1a70df78bf8e301f46cbc14bf6f36c0a0e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_config_manager_1a70df78bf8e301f46cbc14bf6f36c0a0e" kindref="member">getAutoDiscover</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_config_manager_1a3948181c2e8ae2241d0e95c5afd47aa9" kindref="member">conf</ref>(</highlight><highlight class="stringliteral">&quot;auto_discover&quot;</highlight><highlight class="normal">).toInt()<sp/>==<sp/>1;<sp/>}</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Reset<sp/>min/max<sp/>values</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_config_manager_1a798727e00c1f0ff18044bc4ae097be2e" kindref="member">resetMinMaxValues</ref>();</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//void<sp/>updateSensorInConfig(Sensor*<sp/>sensor);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Remove:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight><highlight class="comment">//<sp/>void<sp/>saveSensorConfig();</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight><highlight class="comment">//<sp/>void<sp/>loadSensorConfig();</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight><highlight class="comment">//<sp/>bool<sp/>addSensorToConfig(...);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight><highlight class="comment">//<sp/>bool<sp/>removeSensorFromConfig(...);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight><highlight class="comment">//<sp/>bool<sp/>updateSensorInConfig(...);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight><highlight class="comment">//<sp/>void<sp/>updateSensorInConfig(Sensor*<sp/>sensor);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Add:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_config_manager_1a55b79da91c57039c483ddf5fceabbd64" kindref="member">savePointsConfig</ref>();</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_config_manager_1a04edc14e642ecadb9ccb87be05d1d878" kindref="member">loadPointsConfig</ref>();</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_config_manager_1a0daf50bbd376beb24a5400a86e893338" kindref="member">updatePointInConfig</ref>(uint8_t<sp/>address,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>String&amp;<sp/>name,<sp/>int16_t<sp/>lowAlarm,<sp/>int16_t<sp/>highAlarm,</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>String&amp;<sp/>ds18b20RomString<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>pt1000ChipSelect<sp/>=<sp/>-1);</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_config_manager_1aa15fcaf6330fd73a87e8c6f63e8ab9d5" kindref="member">saveAlarmsConfig</ref>();</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_config_manager_1a468923ce5f2edecd218b29605d75426f" kindref="member">loadAlarmsConfig</ref>();</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114" refid="class_config_manager_1ab09d27551f2f71ad0c19452dabbd9061" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_c_s_v_config_manager" kindref="compound">CSVConfigManager</ref>&amp;<sp/><ref refid="class_config_manager_1ab09d27551f2f71ad0c19452dabbd9061" kindref="member">getCSVManager</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_config_manager_1a5591a9b29e8c6e1c3f3dc50c0e6e1267" kindref="member">csvManager</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116" refid="class_config_manager_1a1d2c3a4f6b321f3e55394f0427781f71" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/><ref refid="class_config_manager_1a1d2c3a4f6b321f3e55394f0427781f71" kindref="member">getAcknowledgedDelayCritical</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_config_manager_1a3948181c2e8ae2241d0e95c5afd47aa9" kindref="member">conf</ref>(</highlight><highlight class="stringliteral">&quot;ack_delay_critical&quot;</highlight><highlight class="normal">).toInt();<sp/>}</highlight></codeline>
+<codeline lineno="117" refid="class_config_manager_1a92531033b9698550c95e70408d3ca928" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/><ref refid="class_config_manager_1a92531033b9698550c95e70408d3ca928" kindref="member">getAcknowledgedDelayHigh</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_config_manager_1a3948181c2e8ae2241d0e95c5afd47aa9" kindref="member">conf</ref>(</highlight><highlight class="stringliteral">&quot;ack_delay_high&quot;</highlight><highlight class="normal">).toInt();<sp/>}</highlight></codeline>
+<codeline lineno="118" refid="class_config_manager_1ae5e8f849e85d0a2779a650136b7011f9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/><ref refid="class_config_manager_1ae5e8f849e85d0a2779a650136b7011f9" kindref="member">getAcknowledgedDelayMedium</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_config_manager_1a3948181c2e8ae2241d0e95c5afd47aa9" kindref="member">conf</ref>(</highlight><highlight class="stringliteral">&quot;ack_delay_medium&quot;</highlight><highlight class="normal">).toInt();<sp/>}</highlight></codeline>
+<codeline lineno="119" refid="class_config_manager_1a8211fcec922c77f0245ea1eb95be5e4d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/><ref refid="class_config_manager_1a8211fcec922c77f0245ea1eb95be5e4d" kindref="member">getAcknowledgedDelayLow</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_config_manager_1a3948181c2e8ae2241d0e95c5afd47aa9" kindref="member">conf</ref>(</highlight><highlight class="stringliteral">&quot;ack_delay_low&quot;</highlight><highlight class="normal">).toInt();<sp/>}</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Initialize<sp/>static<sp/>member</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight><highlight class="comment">//ConfigManager*<sp/>ConfigManager::instance<sp/>=<sp/>nullptr;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>CONFIG_MANAGER_H</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="include/ConfigManager.h"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="_settings_c_s_v_manager_8h" kind="file" language="C++">
+    <compoundname>SettingsCSVManager.h</compoundname>
+    <includes local="no">Arduino.h</includes>
+    <includes local="yes">ConfigAssist.h</includes>
+    <includedby refid="_config_manager_8h" local="yes">include/ConfigManager.h</includedby>
+    <includedby refid="_settings_c_s_v_manager_8cpp" local="yes">src/SettingsCSVManager.cpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>include/SettingsCSVManager.h</label>
+        <link refid="_settings_c_s_v_manager_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Arduino.h</label>
+      </node>
+      <node id="3">
+        <label>ConfigAssist.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>include/ConfigManager.h</label>
+        <link refid="_config_manager_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>include/SettingsCSVManager.h</label>
+        <link refid="_settings_c_s_v_manager_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>src/ConfigManager.cpp</label>
+        <link refid="_config_manager_8cpp"/>
+      </node>
+      <node id="5">
+        <label>src/SettingsCSVManager.cpp</label>
+        <link refid="_settings_c_s_v_manager_8cpp"/>
+      </node>
+      <node id="4">
+        <label>src/main.cpp</label>
+        <link refid="main_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="class_settings_c_s_v_manager" prot="public">SettingsCSVManager</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Arduino.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;ConfigAssist.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6" refid="class_settings_c_s_v_manager" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_settings_c_s_v_manager_1a39ed23cde861fad720870a5370bddfed" kindref="member">SettingsCSVManager</ref><sp/>{</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_settings_c_s_v_manager_1a39ed23cde861fad720870a5370bddfed" kindref="member">SettingsCSVManager</ref>(ConfigAssist&amp;<sp/>config);</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>CSV<sp/>export/import<sp/>for<sp/>settings</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/>String<sp/><ref refid="class_settings_c_s_v_manager_1a7efabf3fcee7d86a42b8b25c48078450" kindref="member">exportSettingsToCSV</ref>();</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_settings_c_s_v_manager_1a1372d30cf87604e22bebf3ec8603454d" kindref="member">importSettingsFromCSV</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>String&amp;<sp/>csvData);</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Validation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_settings_c_s_v_manager_1abd602c47d611a0a812b04e06fb31c815" kindref="member">validateSettingsCSV</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>String&amp;<sp/>csvData);</highlight></codeline>
+<codeline lineno="16" refid="class_settings_c_s_v_manager_1abb0dbc41bc5e2ae1ae1c4a8bf8885770" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>String<sp/><ref refid="class_settings_c_s_v_manager_1abb0dbc41bc5e2ae1ae1c4a8bf8885770" kindref="member">getLastError</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_settings_c_s_v_manager_1a5bc7b46f41120f2d9b938db63cbd6f02" kindref="member">_lastError</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="19" refid="class_settings_c_s_v_manager_1ab6bfec4580dfd75c036c280149228ffc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>ConfigAssist&amp;<sp/><ref refid="class_settings_c_s_v_manager_1ab6bfec4580dfd75c036c280149228ffc" kindref="member">_config</ref>;</highlight></codeline>
+<codeline lineno="20" refid="class_settings_c_s_v_manager_1a5bc7b46f41120f2d9b938db63cbd6f02" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>String<sp/><ref refid="class_settings_c_s_v_manager_1a5bc7b46f41120f2d9b938db63cbd6f02" kindref="member">_lastError</ref>;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Helper<sp/>methods</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>String<sp/><ref refid="class_settings_c_s_v_manager_1a3d258dd163c5eed187dc9a8b0e9dfc01" kindref="member">_escapeCSVField</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>String&amp;<sp/>field);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>String<sp/><ref refid="class_settings_c_s_v_manager_1ab560afb1aa799dcd6f98f91c896abfc5" kindref="member">_unescapeCSVField</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>String&amp;<sp/>field);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_settings_c_s_v_manager_1aa4822a7de38a44a23e051d1a4c8dc3bf" kindref="member">_parseCSVLine</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>String&amp;<sp/>line);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Add<sp/>these<sp/>helper<sp/>methods<sp/>for<sp/>acknowledged<sp/>delays</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28" refid="class_settings_c_s_v_manager_1a2949ac1de83ba2b674a2306b35193c74" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_settings_c_s_v_manager_1a2949ac1de83ba2b674a2306b35193c74" kindref="member">_exportAcknowledgedDelays</ref>(String&amp;<sp/>csv);</highlight></codeline>
+<codeline lineno="29" refid="class_settings_c_s_v_manager_1aed4c7a1488843f2bebfefbfe8f95e24b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_settings_c_s_v_manager_1aed4c7a1488843f2bebfefbfe8f95e24b" kindref="member">_importAcknowledgedDelays</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>String&amp;<sp/>key,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>String&amp;<sp/>value);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal">};</highlight></codeline>
+    </programlisting>
+    <location file="include/SettingsCSVManager.h"/>
+  </compounddef>
+</doxygen>

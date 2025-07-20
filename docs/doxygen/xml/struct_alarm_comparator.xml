@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="struct_alarm_comparator" kind="struct" language="C++" prot="public">
+    <compoundname>AlarmComparator</compoundname>
+    <includes refid="_alarm_8h" local="no">Alarm.h</includes>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="struct_alarm_comparator_1a9e59c2531a3bd641d0b3d0cc10bffe54" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool AlarmComparator::operator()</definition>
+        <argsstring>(const Alarm *a, const Alarm *b) const</argsstring>
+        <name>operator()</name>
+        <qualifiedname>AlarmComparator::operator()</qualifiedname>
+        <param>
+          <type>const <ref refid="class_alarm" kindref="compound">Alarm</ref> *</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_alarm" kindref="compound">Alarm</ref> *</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="139" column="10" bodyfile="include/Alarm.h" bodystart="139" bodyend="144"/>
+        <references refid="class_alarm_1abe89e376d8cacb582717ad6a65526ee8" compoundref="_alarm_8h" startline="48" endline="48">Alarm::getPriority</references>
+        <references refid="class_alarm_1a7a4a3290a6a659542f82fe08a96736a8" compoundref="_alarm_8h" startline="50" endline="50">Alarm::getTimestamp</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>AlarmComparator</label>
+        <link refid="struct_alarm_comparator"/>
+      </node>
+    </collaborationgraph>
+    <location file="include/Alarm.h" line="138" column="1" bodyfile="include/Alarm.h" bodystart="138" bodyend="145"/>
+    <listofallmembers>
+      <member refid="struct_alarm_comparator_1a9e59c2531a3bd641d0b3d0cc10bffe54" prot="public" virt="non-virtual"><scope>AlarmComparator</scope><name>operator()</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,964 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="class_sensor" kind="class" language="C++" prot="public">
+    <compoundname>Sensor</compoundname>
+    <includes refid="_sensor_8h" local="no">Sensor.h</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_sensor_1a75b4ea06bdcd22f6591f24ae3a46983a" prot="private" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t Sensor::address</definition>
+        <argsstring></argsstring>
+        <name>address</name>
+        <qualifiedname>Sensor::address</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="71" column="13" bodyfile="include/Sensor.h" bodystart="71" bodyend="-1"/>
+        <referencedby refid="class_sensor_1afa9861dabcb4cd9c7a83356873013946" compoundref="_sensor_8cpp" startline="154" endline="154">getAddress</referencedby>
+        <referencedby refid="class_sensor_1a3dc84897044b5f1848fd0f5444235eee" compoundref="_sensor_8cpp" startline="8" endline="22">Sensor</referencedby>
+        <referencedby refid="class_sensor_1aaa9739e019c01dba6fb55c58a27d9642" compoundref="_sensor_8cpp" startline="166" endline="166">setAddress</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_sensor_1a9cf70c3e41501d89f6f9f48a3e9d1296" prot="private" static="no" mutable="no">
+        <type>String</type>
+        <definition>String Sensor::name</definition>
+        <argsstring></argsstring>
+        <name>name</name>
+        <qualifiedname>Sensor::name</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="72" column="12" bodyfile="include/Sensor.h" bodystart="72" bodyend="-1"/>
+        <referencedby refid="class_sensor_1a60ec96ed03660b42681c1bcc99007033" compoundref="_sensor_8cpp" startline="155" endline="155">getName</referencedby>
+        <referencedby refid="class_sensor_1a3dc84897044b5f1848fd0f5444235eee" compoundref="_sensor_8cpp" startline="8" endline="22">Sensor</referencedby>
+        <referencedby refid="class_sensor_1a95fe437024716bfdf3703e2c50a0756a" compoundref="_sensor_8cpp" startline="156" endline="156">setName</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_sensor_1a59be498582043f581a78851506f8e322" prot="private" static="no" mutable="no">
+        <type><ref refid="_sensor_8h_1a213c434cb928c4ca22513e2302632435" kindref="member">SensorType</ref></type>
+        <definition>SensorType Sensor::type</definition>
+        <argsstring></argsstring>
+        <name>type</name>
+        <qualifiedname>Sensor::type</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="73" column="16" bodyfile="include/Sensor.h" bodystart="73" bodyend="-1"/>
+        <referencedby refid="class_sensor_1aebfce8b65a6bce594e406236bba4a469" compoundref="_sensor_8cpp" startline="170" endline="175">getDS18B20Address</referencedby>
+        <referencedby refid="class_sensor_1a3003106c642cc8a9ec5638ea06052ff4" compoundref="_sensor_8cpp" startline="205" endline="209">getDS18B20RomArray</referencedby>
+        <referencedby refid="class_sensor_1a9f793cde2918130fbc77dad1aebfe53a" compoundref="_sensor_8cpp" startline="195" endline="203">getDS18B20RomString</referencedby>
+        <referencedby refid="class_sensor_1a6f57825e90b759ccdb9fe07b3a36953d" compoundref="_sensor_8cpp" startline="190" endline="193">getPT1000ChipSelectPin</referencedby>
+        <referencedby refid="class_sensor_1a0f6f095e7cfdfffb2a395dfdae7cfa53" compoundref="_sensor_8cpp" startline="153" endline="153">getType</referencedby>
+        <referencedby refid="class_sensor_1a59dd5483b75d9366a0c50ccdd0345dec" compoundref="_sensor_8cpp" startline="49" endline="98">initialize</referencedby>
+        <referencedby refid="class_sensor_1a5f3828beedd045bf82b3542ec626bc7b" compoundref="_sensor_8cpp" startline="100" endline="151">readTemperature</referencedby>
+        <referencedby refid="class_sensor_1a3dc84897044b5f1848fd0f5444235eee" compoundref="_sensor_8cpp" startline="8" endline="22">Sensor</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_sensor_1a1ad6234aa9a0d89ce962c61ee0580b0c" prot="private" static="no" mutable="no">
+        <type>int16_t</type>
+        <definition>int16_t Sensor::currentTemp</definition>
+        <argsstring></argsstring>
+        <name>currentTemp</name>
+        <qualifiedname>Sensor::currentTemp</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="75" column="13" bodyfile="include/Sensor.h" bodystart="75" bodyend="-1"/>
+        <referencedby refid="class_sensor_1a3def93a2aff034f403af576b40b6f3f1" compoundref="_sensor_8cpp" startline="158" endline="158">getCurrentTemp</referencedby>
+        <referencedby refid="class_sensor_1a5f3828beedd045bf82b3542ec626bc7b" compoundref="_sensor_8cpp" startline="100" endline="151">readTemperature</referencedby>
+        <referencedby refid="class_sensor_1a578bbc9664e2af30cc837301039e5ecb" compoundref="_sensor_8cpp" startline="177" endline="180">resetMinMaxTemp</referencedby>
+        <referencedby refid="class_sensor_1a3dc84897044b5f1848fd0f5444235eee" compoundref="_sensor_8cpp" startline="8" endline="22">Sensor</referencedby>
+        <referencedby refid="class_sensor_1a2f0b7d29f7a924deb465d2462698564d" compoundref="_sensor_8cpp" startline="182" endline="187">updateAlarmStatus</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_sensor_1a70160b5ef0eadb7b131f4993011a6174" prot="private" static="no" mutable="no">
+        <type>int16_t</type>
+        <definition>int16_t Sensor::minTemp</definition>
+        <argsstring></argsstring>
+        <name>minTemp</name>
+        <qualifiedname>Sensor::minTemp</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="76" column="13" bodyfile="include/Sensor.h" bodystart="76" bodyend="-1"/>
+        <referencedby refid="class_sensor_1a0897378dd7971fded81bf12d433833c5" compoundref="_sensor_8cpp" startline="159" endline="159">getMinTemp</referencedby>
+        <referencedby refid="class_sensor_1a5f3828beedd045bf82b3542ec626bc7b" compoundref="_sensor_8cpp" startline="100" endline="151">readTemperature</referencedby>
+        <referencedby refid="class_sensor_1a578bbc9664e2af30cc837301039e5ecb" compoundref="_sensor_8cpp" startline="177" endline="180">resetMinMaxTemp</referencedby>
+        <referencedby refid="class_sensor_1a3dc84897044b5f1848fd0f5444235eee" compoundref="_sensor_8cpp" startline="8" endline="22">Sensor</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_sensor_1a0752a16bf3b329064102d1110c8aa22c" prot="private" static="no" mutable="no">
+        <type>int16_t</type>
+        <definition>int16_t Sensor::maxTemp</definition>
+        <argsstring></argsstring>
+        <name>maxTemp</name>
+        <qualifiedname>Sensor::maxTemp</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="77" column="13" bodyfile="include/Sensor.h" bodystart="77" bodyend="-1"/>
+        <referencedby refid="class_sensor_1abcaa8954ad75cf20e7c5aa1ef47b28ec" compoundref="_sensor_8cpp" startline="160" endline="160">getMaxTemp</referencedby>
+        <referencedby refid="class_sensor_1a5f3828beedd045bf82b3542ec626bc7b" compoundref="_sensor_8cpp" startline="100" endline="151">readTemperature</referencedby>
+        <referencedby refid="class_sensor_1a578bbc9664e2af30cc837301039e5ecb" compoundref="_sensor_8cpp" startline="177" endline="180">resetMinMaxTemp</referencedby>
+        <referencedby refid="class_sensor_1a3dc84897044b5f1848fd0f5444235eee" compoundref="_sensor_8cpp" startline="8" endline="22">Sensor</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_sensor_1a3a695e6c5e1fc511abb6aa0f93f4965c" prot="private" static="no" mutable="no">
+        <type>int16_t</type>
+        <definition>int16_t Sensor::lowAlarmThreshold</definition>
+        <argsstring></argsstring>
+        <name>lowAlarmThreshold</name>
+        <qualifiedname>Sensor::lowAlarmThreshold</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="78" column="13" bodyfile="include/Sensor.h" bodystart="78" bodyend="-1"/>
+        <referencedby refid="class_sensor_1aad2114350beb8e278e4b273f62439579" compoundref="_sensor_8cpp" startline="161" endline="161">getLowAlarmThreshold</referencedby>
+        <referencedby refid="class_sensor_1a3dc84897044b5f1848fd0f5444235eee" compoundref="_sensor_8cpp" startline="8" endline="22">Sensor</referencedby>
+        <referencedby refid="class_sensor_1ae2e32117bfa426768afd692d062a13f0" compoundref="_sensor_8cpp" startline="167" endline="167">setLowAlarmThreshold</referencedby>
+        <referencedby refid="class_sensor_1a2f0b7d29f7a924deb465d2462698564d" compoundref="_sensor_8cpp" startline="182" endline="187">updateAlarmStatus</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_sensor_1ad3088c793422688847fc7bd0c83e1c7a" prot="private" static="no" mutable="no">
+        <type>int16_t</type>
+        <definition>int16_t Sensor::highAlarmThreshold</definition>
+        <argsstring></argsstring>
+        <name>highAlarmThreshold</name>
+        <qualifiedname>Sensor::highAlarmThreshold</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="79" column="13" bodyfile="include/Sensor.h" bodystart="79" bodyend="-1"/>
+        <referencedby refid="class_sensor_1a8799541c60822f7600cde784aae36039" compoundref="_sensor_8cpp" startline="162" endline="162">getHighAlarmThreshold</referencedby>
+        <referencedby refid="class_sensor_1a3dc84897044b5f1848fd0f5444235eee" compoundref="_sensor_8cpp" startline="8" endline="22">Sensor</referencedby>
+        <referencedby refid="class_sensor_1a300550ed551df5688ff101e132c82d3e" compoundref="_sensor_8cpp" startline="168" endline="168">setHighAlarmThreshold</referencedby>
+        <referencedby refid="class_sensor_1a2f0b7d29f7a924deb465d2462698564d" compoundref="_sensor_8cpp" startline="182" endline="187">updateAlarmStatus</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_sensor_1a4700db8ae10648ce63e9c40097af2bf0" prot="private" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t Sensor::alarmStatus</definition>
+        <argsstring></argsstring>
+        <name>alarmStatus</name>
+        <qualifiedname>Sensor::alarmStatus</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="80" column="13" bodyfile="include/Sensor.h" bodystart="80" bodyend="-1"/>
+        <referencedby refid="class_sensor_1a70c7d2dbd1ad8782933301b367e64d09" compoundref="_sensor_8cpp" startline="163" endline="163">getAlarmStatus</referencedby>
+        <referencedby refid="class_sensor_1a3dc84897044b5f1848fd0f5444235eee" compoundref="_sensor_8cpp" startline="8" endline="22">Sensor</referencedby>
+        <referencedby refid="class_sensor_1a2f0b7d29f7a924deb465d2462698564d" compoundref="_sensor_8cpp" startline="182" endline="187">updateAlarmStatus</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_sensor_1a90c9d7cb2e9a0d1ca02eb0e03a4b8ceb" prot="private" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t Sensor::errorStatus</definition>
+        <argsstring></argsstring>
+        <name>errorStatus</name>
+        <qualifiedname>Sensor::errorStatus</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="81" column="13" bodyfile="include/Sensor.h" bodystart="81" bodyend="-1"/>
+        <referencedby refid="class_sensor_1a72ab978055decc37539815dfbc09f2a1" compoundref="_sensor_8cpp" startline="164" endline="164">getErrorStatus</referencedby>
+        <referencedby refid="class_sensor_1a5f3828beedd045bf82b3542ec626bc7b" compoundref="_sensor_8cpp" startline="100" endline="151">readTemperature</referencedby>
+        <referencedby refid="class_sensor_1a3dc84897044b5f1848fd0f5444235eee" compoundref="_sensor_8cpp" startline="8" endline="22">Sensor</referencedby>
+        <referencedby refid="class_sensor_1a2f0b7d29f7a924deb465d2462698564d" compoundref="_sensor_8cpp" startline="182" endline="187">updateAlarmStatus</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_sensor_1ae6e1281c6284fe26cc5617789aa3a3bf" prot="private" static="no" mutable="no">
+        <type>OneWire *</type>
+        <definition>OneWire* Sensor::oneWire</definition>
+        <argsstring></argsstring>
+        <name>oneWire</name>
+        <qualifiedname>Sensor::oneWire</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="84" column="13" bodyfile="include/Sensor.h" bodystart="84" bodyend="-1"/>
+        <referencedby refid="class_sensor_1a59dd5483b75d9366a0c50ccdd0345dec" compoundref="_sensor_8cpp" startline="49" endline="98">initialize</referencedby>
+        <referencedby refid="class_sensor_1a3dc84897044b5f1848fd0f5444235eee" compoundref="_sensor_8cpp" startline="8" endline="22">Sensor</referencedby>
+        <referencedby refid="class_sensor_1aee8c70e7ef05ce65e7ee33686b5d7db2" compoundref="_sensor_8cpp" startline="24" endline="37">~Sensor</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_sensor_1ab0c028d4df2e4e568075b622965b0a76" prot="private" static="no" mutable="no">
+        <type>DallasTemperature *</type>
+        <definition>DallasTemperature* Sensor::dallasTemperature</definition>
+        <argsstring></argsstring>
+        <name>dallasTemperature</name>
+        <qualifiedname>Sensor::dallasTemperature</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="85" column="23" bodyfile="include/Sensor.h" bodystart="85" bodyend="-1"/>
+        <referencedby refid="class_sensor_1a59dd5483b75d9366a0c50ccdd0345dec" compoundref="_sensor_8cpp" startline="49" endline="98">initialize</referencedby>
+        <referencedby refid="class_sensor_1a5f3828beedd045bf82b3542ec626bc7b" compoundref="_sensor_8cpp" startline="100" endline="151">readTemperature</referencedby>
+        <referencedby refid="class_sensor_1a3dc84897044b5f1848fd0f5444235eee" compoundref="_sensor_8cpp" startline="8" endline="22">Sensor</referencedby>
+        <referencedby refid="class_sensor_1aee8c70e7ef05ce65e7ee33686b5d7db2" compoundref="_sensor_8cpp" startline="24" endline="37">~Sensor</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_sensor_1a23b7a05faf6c66d07aed361c4ad8c896" prot="private" static="no" mutable="no">
+        <type>Adafruit_MAX31865 *</type>
+        <definition>Adafruit_MAX31865* Sensor::max31865</definition>
+        <argsstring></argsstring>
+        <name>max31865</name>
+        <qualifiedname>Sensor::max31865</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="86" column="23" bodyfile="include/Sensor.h" bodystart="86" bodyend="-1"/>
+        <referencedby refid="class_sensor_1a59dd5483b75d9366a0c50ccdd0345dec" compoundref="_sensor_8cpp" startline="49" endline="98">initialize</referencedby>
+        <referencedby refid="class_sensor_1a5f3828beedd045bf82b3542ec626bc7b" compoundref="_sensor_8cpp" startline="100" endline="151">readTemperature</referencedby>
+        <referencedby refid="class_sensor_1a3dc84897044b5f1848fd0f5444235eee" compoundref="_sensor_8cpp" startline="8" endline="22">Sensor</referencedby>
+        <referencedby refid="class_sensor_1aee8c70e7ef05ce65e7ee33686b5d7db2" compoundref="_sensor_8cpp" startline="24" endline="37">~Sensor</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_sensor_1adaacf2cbc3623d86bad4c32496340a74" prot="private" static="no" mutable="no">
+        <type>union <ref refid="class_sensor" kindref="compound">Sensor</ref></type>
+        <definition>union Sensor Sensor::connection</definition>
+        <argsstring></argsstring>
+        <name>connection</name>
+        <qualifiedname>Sensor::connection</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="98" column="16"/>
+        <referencedby refid="class_sensor_1aebfce8b65a6bce594e406236bba4a469" compoundref="_sensor_8cpp" startline="170" endline="175">getDS18B20Address</referencedby>
+        <referencedby refid="class_sensor_1a3003106c642cc8a9ec5638ea06052ff4" compoundref="_sensor_8cpp" startline="205" endline="209">getDS18B20RomArray</referencedby>
+        <referencedby refid="class_sensor_1a9f793cde2918130fbc77dad1aebfe53a" compoundref="_sensor_8cpp" startline="195" endline="203">getDS18B20RomString</referencedby>
+        <referencedby refid="class_sensor_1ac42da3a37b0d6a9622344fe83f4c9047" compoundref="_sensor_8h" startline="68" endline="68">getOneWirePin</referencedby>
+        <referencedby refid="class_sensor_1a6f57825e90b759ccdb9fe07b3a36953d" compoundref="_sensor_8cpp" startline="190" endline="193">getPT1000ChipSelectPin</referencedby>
+        <referencedby refid="class_sensor_1a59dd5483b75d9366a0c50ccdd0345dec" compoundref="_sensor_8cpp" startline="49" endline="98">initialize</referencedby>
+        <referencedby refid="class_sensor_1a5f3828beedd045bf82b3542ec626bc7b" compoundref="_sensor_8cpp" startline="100" endline="151">readTemperature</referencedby>
+        <referencedby refid="class_sensor_1a3dc84897044b5f1848fd0f5444235eee" compoundref="_sensor_8cpp" startline="8" endline="22">Sensor</referencedby>
+        <referencedby refid="class_sensor_1afefa1f627a7d2ab5a1157c271e7f2556" compoundref="_sensor_8cpp" startline="39" endline="42">setupDS18B20</referencedby>
+        <referencedby refid="class_sensor_1aef73c8dc894e3695f50b4bece9601750" compoundref="_sensor_8cpp" startline="44" endline="47">setupPT1000</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_sensor_1aa21039b897abee047fff39d2ed2ca9b0" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t Sensor::oneWirePin</definition>
+        <argsstring></argsstring>
+        <name>oneWirePin</name>
+        <qualifiedname>Sensor::oneWirePin</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="91" column="21" bodyfile="include/Sensor.h" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_sensor_1aabda20f8fbc433bae5cc64e1f244af41" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t Sensor::oneWireAddress[8]</definition>
+        <argsstring>[8]</argsstring>
+        <name>oneWireAddress</name>
+        <qualifiedname>Sensor::oneWireAddress</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="92" column="21" bodyfile="include/Sensor.h" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_sensor_1a1192f63a34aa19a309d8c9ba2e3f8bd7" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="class_sensor" kindref="compound">Sensor</ref></type>
+        <definition>struct Sensor Sensor::ds18b20</definition>
+        <argsstring></argsstring>
+        <name>ds18b20</name>
+        <qualifiedname>Sensor::ds18b20</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="93" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_sensor_1ae982d7fa79bdc6e223632c69ca512b34" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t Sensor::csPin</definition>
+        <argsstring></argsstring>
+        <name>csPin</name>
+        <qualifiedname>Sensor::csPin</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="95" column="21" bodyfile="include/Sensor.h" bodystart="95" bodyend="-1"/>
+        <referencedby refid="class_sensor_1aef73c8dc894e3695f50b4bece9601750" compoundref="_sensor_8cpp" startline="44" endline="47">setupPT1000</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_sensor_1a3f0651eab49ddc023248a11c3937bc23" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t Sensor::maxAddress</definition>
+        <argsstring></argsstring>
+        <name>maxAddress</name>
+        <qualifiedname>Sensor::maxAddress</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="96" column="21" bodyfile="include/Sensor.h" bodystart="96" bodyend="-1"/>
+        <referencedby refid="class_sensor_1aef73c8dc894e3695f50b4bece9601750" compoundref="_sensor_8cpp" startline="44" endline="47">setupPT1000</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_sensor_1a8ca8a9931ab07b445039fe8298329939" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="class_sensor" kindref="compound">Sensor</ref></type>
+        <definition>struct Sensor Sensor::pt1000</definition>
+        <argsstring></argsstring>
+        <name>pt1000</name>
+        <qualifiedname>Sensor::pt1000</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="97" column="16"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_sensor_1a3dc84897044b5f1848fd0f5444235eee" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Sensor::Sensor</definition>
+        <argsstring>(SensorType type, uint8_t address, const String &amp;name)</argsstring>
+        <name>Sensor</name>
+        <qualifiedname>Sensor::Sensor</qualifiedname>
+        <param>
+          <type><ref refid="_sensor_8h_1a213c434cb928c4ca22513e2302632435" kindref="member">SensorType</ref></type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>address</declname>
+        </param>
+        <param>
+          <type>const String &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="25" column="5" bodyfile="src/Sensor.cpp" bodystart="8" bodyend="22"/>
+        <references refid="class_sensor_1a75b4ea06bdcd22f6591f24ae3a46983a" compoundref="_sensor_8h" startline="71">address</references>
+        <references refid="class_sensor_1a4700db8ae10648ce63e9c40097af2bf0" compoundref="_sensor_8h" startline="80">alarmStatus</references>
+        <references refid="class_sensor_1adaacf2cbc3623d86bad4c32496340a74">connection</references>
+        <references refid="class_sensor_1a1ad6234aa9a0d89ce962c61ee0580b0c" compoundref="_sensor_8h" startline="75">currentTemp</references>
+        <references refid="class_sensor_1ab0c028d4df2e4e568075b622965b0a76" compoundref="_sensor_8h" startline="85">dallasTemperature</references>
+        <references refid="_sensor_8h_1a213c434cb928c4ca22513e2302632435aac1bc058b939e1c55e1496c8574f3691" compoundref="_sensor_8h" startline="11">DS18B20</references>
+        <references refid="class_sensor_1a90c9d7cb2e9a0d1ca02eb0e03a4b8ceb" compoundref="_sensor_8h" startline="81">errorStatus</references>
+        <references refid="class_sensor_1ad3088c793422688847fc7bd0c83e1c7a" compoundref="_sensor_8h" startline="79">highAlarmThreshold</references>
+        <references refid="class_sensor_1a3a695e6c5e1fc511abb6aa0f93f4965c" compoundref="_sensor_8h" startline="78">lowAlarmThreshold</references>
+        <references refid="class_sensor_1a23b7a05faf6c66d07aed361c4ad8c896" compoundref="_sensor_8h" startline="86">max31865</references>
+        <references refid="class_sensor_1a0752a16bf3b329064102d1110c8aa22c" compoundref="_sensor_8h" startline="77">maxTemp</references>
+        <references refid="class_sensor_1a70160b5ef0eadb7b131f4993011a6174" compoundref="_sensor_8h" startline="76">minTemp</references>
+        <references refid="class_sensor_1a9cf70c3e41501d89f6f9f48a3e9d1296" compoundref="_sensor_8h" startline="72">name</references>
+        <references refid="class_sensor_1ae6e1281c6284fe26cc5617789aa3a3bf" compoundref="_sensor_8h" startline="84">oneWire</references>
+        <references refid="class_sensor_1a59be498582043f581a78851506f8e322" compoundref="_sensor_8h" startline="73">type</references>
+      </memberdef>
+      <memberdef kind="function" id="class_sensor_1aee8c70e7ef05ce65e7ee33686b5d7db2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Sensor::~Sensor</definition>
+        <argsstring>()</argsstring>
+        <name>~Sensor</name>
+        <qualifiedname>Sensor::~Sensor</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="26" column="5" bodyfile="src/Sensor.cpp" bodystart="24" bodyend="37"/>
+        <references refid="class_sensor_1ab0c028d4df2e4e568075b622965b0a76" compoundref="_sensor_8h" startline="85">dallasTemperature</references>
+        <references refid="class_sensor_1a23b7a05faf6c66d07aed361c4ad8c896" compoundref="_sensor_8h" startline="86">max31865</references>
+        <references refid="class_sensor_1ae6e1281c6284fe26cc5617789aa3a3bf" compoundref="_sensor_8h" startline="84">oneWire</references>
+      </memberdef>
+      <memberdef kind="function" id="class_sensor_1afefa1f627a7d2ab5a1157c271e7f2556" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Sensor::setupDS18B20</definition>
+        <argsstring>(uint8_t pin, const uint8_t *deviceAddress)</argsstring>
+        <name>setupDS18B20</name>
+        <qualifiedname>Sensor::setupDS18B20</qualifiedname>
+        <param>
+          <type>uint8_t</type>
+          <declname>pin</declname>
+        </param>
+        <param>
+          <type>const uint8_t *</type>
+          <declname>deviceAddress</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="29" column="10" bodyfile="src/Sensor.cpp" bodystart="39" bodyend="42"/>
+        <references refid="class_sensor_1adaacf2cbc3623d86bad4c32496340a74">connection</references>
+        <referencedby refid="class_temperature_controller_1a57b74b40c88016965d07248981412f7d" compoundref="_temperature_controller_8cpp" startline="881" endline="953">TemperatureController::discoverDS18B20Sensors</referencedby>
+        <referencedby refid="class_config_manager_1a04edc14e642ecadb9ccb87be05d1d878" compoundref="_config_manager_8cpp" startline="361" endline="425">ConfigManager::loadPointsConfig</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_sensor_1aef73c8dc894e3695f50b4bece9601750" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Sensor::setupPT1000</definition>
+        <argsstring>(uint8_t csPin, uint8_t maxAddress)</argsstring>
+        <name>setupPT1000</name>
+        <qualifiedname>Sensor::setupPT1000</qualifiedname>
+        <param>
+          <type>uint8_t</type>
+          <declname>csPin</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>maxAddress</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="30" column="10" bodyfile="src/Sensor.cpp" bodystart="44" bodyend="47"/>
+        <references refid="class_sensor_1adaacf2cbc3623d86bad4c32496340a74">connection</references>
+        <references refid="class_sensor_1ae982d7fa79bdc6e223632c69ca512b34" compoundref="_sensor_8h" startline="95">csPin</references>
+        <references refid="class_sensor_1a3f0651eab49ddc023248a11c3937bc23" compoundref="_sensor_8h" startline="96">maxAddress</references>
+        <referencedby refid="class_temperature_controller_1a79e98c9a1d42de787a66e02b250b7a74" compoundref="_temperature_controller_8cpp" startline="956" endline="1005">TemperatureController::discoverPTSensors</referencedby>
+        <referencedby refid="class_config_manager_1a04edc14e642ecadb9ccb87be05d1d878" compoundref="_config_manager_8cpp" startline="361" endline="425">ConfigManager::loadPointsConfig</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_sensor_1a59dd5483b75d9366a0c50ccdd0345dec" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Sensor::initialize</definition>
+        <argsstring>()</argsstring>
+        <name>initialize</name>
+        <qualifiedname>Sensor::initialize</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="33" column="10" bodyfile="src/Sensor.cpp" bodystart="49" bodyend="98"/>
+        <references refid="class_sensor_1adaacf2cbc3623d86bad4c32496340a74">connection</references>
+        <references refid="class_sensor_1ab0c028d4df2e4e568075b622965b0a76" compoundref="_sensor_8h" startline="85">dallasTemperature</references>
+        <references refid="_sensor_8h_1a213c434cb928c4ca22513e2302632435aac1bc058b939e1c55e1496c8574f3691" compoundref="_sensor_8h" startline="11">DS18B20</references>
+        <references refid="class_sensor_1a23b7a05faf6c66d07aed361c4ad8c896" compoundref="_sensor_8h" startline="86">max31865</references>
+        <references refid="class_sensor_1ae6e1281c6284fe26cc5617789aa3a3bf" compoundref="_sensor_8h" startline="84">oneWire</references>
+        <references refid="_sensor_8h_1a213c434cb928c4ca22513e2302632435a481caba3768b84e8b68fb58b04ec595e" compoundref="_sensor_8h" startline="12">PT1000</references>
+        <references refid="class_sensor_1a59be498582043f581a78851506f8e322" compoundref="_sensor_8h" startline="73">type</references>
+        <referencedby refid="class_temperature_controller_1a57b74b40c88016965d07248981412f7d" compoundref="_temperature_controller_8cpp" startline="881" endline="953">TemperatureController::discoverDS18B20Sensors</referencedby>
+        <referencedby refid="class_temperature_controller_1a79e98c9a1d42de787a66e02b250b7a74" compoundref="_temperature_controller_8cpp" startline="956" endline="1005">TemperatureController::discoverPTSensors</referencedby>
+        <referencedby refid="class_config_manager_1a04edc14e642ecadb9ccb87be05d1d878" compoundref="_config_manager_8cpp" startline="361" endline="425">ConfigManager::loadPointsConfig</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_sensor_1a5f3828beedd045bf82b3542ec626bc7b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Sensor::readTemperature</definition>
+        <argsstring>()</argsstring>
+        <name>readTemperature</name>
+        <qualifiedname>Sensor::readTemperature</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="36" column="10" bodyfile="src/Sensor.cpp" bodystart="100" bodyend="151"/>
+        <references refid="class_sensor_1adaacf2cbc3623d86bad4c32496340a74">connection</references>
+        <references refid="class_sensor_1a1ad6234aa9a0d89ce962c61ee0580b0c" compoundref="_sensor_8h" startline="75">currentTemp</references>
+        <references refid="class_sensor_1ab0c028d4df2e4e568075b622965b0a76" compoundref="_sensor_8h" startline="85">dallasTemperature</references>
+        <references refid="_sensor_8h_1a213c434cb928c4ca22513e2302632435aac1bc058b939e1c55e1496c8574f3691" compoundref="_sensor_8h" startline="11">DS18B20</references>
+        <references refid="_sensor_8h_1a2414e990a5472bc239f99ae14c9ed66f" compoundref="_sensor_8h" startline="16">ERROR_COMMUNICATION</references>
+        <references refid="_sensor_8h_1ab65c92ee1954ab03e64f69b1706726a8" compoundref="_sensor_8h" startline="18">ERROR_DISCONNECTED</references>
+        <references refid="_sensor_8h_1a5e765138e11b96eed4933eec3611b571" compoundref="_sensor_8h" startline="17">ERROR_OUT_OF_RANGE</references>
+        <references refid="class_sensor_1a90c9d7cb2e9a0d1ca02eb0e03a4b8ceb" compoundref="_sensor_8h" startline="81">errorStatus</references>
+        <references refid="class_sensor_1a23b7a05faf6c66d07aed361c4ad8c896" compoundref="_sensor_8h" startline="86">max31865</references>
+        <references refid="class_sensor_1a0752a16bf3b329064102d1110c8aa22c" compoundref="_sensor_8h" startline="77">maxTemp</references>
+        <references refid="class_sensor_1a70160b5ef0eadb7b131f4993011a6174" compoundref="_sensor_8h" startline="76">minTemp</references>
+        <references refid="_sensor_8h_1a213c434cb928c4ca22513e2302632435a481caba3768b84e8b68fb58b04ec595e" compoundref="_sensor_8h" startline="12">PT1000</references>
+        <references refid="class_sensor_1a59be498582043f581a78851506f8e322" compoundref="_sensor_8h" startline="73">type</references>
+        <references refid="class_sensor_1a2f0b7d29f7a924deb465d2462698564d" compoundref="_sensor_8cpp" startline="182" endline="187">updateAlarmStatus</references>
+      </memberdef>
+      <memberdef kind="function" id="class_sensor_1a0f6f095e7cfdfffb2a395dfdae7cfa53" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_sensor_8h_1a213c434cb928c4ca22513e2302632435" kindref="member">SensorType</ref></type>
+        <definition>SensorType Sensor::getType</definition>
+        <argsstring>() const</argsstring>
+        <name>getType</name>
+        <qualifiedname>Sensor::getType</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="39" column="16" bodyfile="src/Sensor.cpp" bodystart="153" bodyend="153"/>
+        <references refid="class_sensor_1a59be498582043f581a78851506f8e322" compoundref="_sensor_8h" startline="73">type</references>
+        <referencedby refid="class_c_s_v_config_manager_1a2c2673398051c26184c9197aa751a6b3" compoundref="_c_s_v_config_manager_8cpp" startline="37" endline="70">CSVConfigManager::_exportPointToCSV</referencedby>
+        <referencedby refid="class_temperature_controller_1aafd155cdb06d2f411d3640df99815246" compoundref="_temperature_controller_8cpp" startline="718" endline="733">TemperatureController::addSensor</referencedby>
+        <referencedby refid="class_temperature_controller_1add39ba7dad38449bbf1787a5c9c51ef9" compoundref="_temperature_controller_8cpp" startline="1066" endline="1125">TemperatureController::getPointsJson</referencedby>
+        <referencedby refid="class_temperature_controller_1a01e04714a1712aa10c34276850971a12" compoundref="_temperature_controller_8cpp" startline="1240" endline="1256">TemperatureController::getSensorBus</referencedby>
+        <referencedby refid="class_temperature_controller_1a58f7a683f6e4c08dbfdfc43c1e740f15" compoundref="_temperature_controller_8cpp" startline="1008" endline="1064">TemperatureController::getSensorsJson</referencedby>
+        <referencedby refid="class_config_manager_1a55b79da91c57039c483ddf5fceabbd64" compoundref="_config_manager_8cpp" startline="279" endline="320">ConfigManager::savePointsConfig</referencedby>
+        <referencedby refid="class_temperature_controller_1a261c9b96540ec6680dfffd3a26e4ca00" compoundref="_temperature_controller_8cpp" startline="825" endline="846">TemperatureController::unbindSensorFromPoint</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_sensor_1afa9861dabcb4cd9c7a83356873013946" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>uint8_t</type>
+        <definition>uint8_t Sensor::getAddress</definition>
+        <argsstring>() const</argsstring>
+        <name>getAddress</name>
+        <qualifiedname>Sensor::getAddress</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="40" column="13" bodyfile="src/Sensor.cpp" bodystart="154" bodyend="154"/>
+        <references refid="class_sensor_1a75b4ea06bdcd22f6591f24ae3a46983a" compoundref="_sensor_8h" startline="71">address</references>
+      </memberdef>
+      <memberdef kind="function" id="class_sensor_1a60ec96ed03660b42681c1bcc99007033" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>String</type>
+        <definition>String Sensor::getName</definition>
+        <argsstring>() const</argsstring>
+        <name>getName</name>
+        <qualifiedname>Sensor::getName</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="41" column="12" bodyfile="src/Sensor.cpp" bodystart="155" bodyend="155"/>
+        <references refid="class_sensor_1a9cf70c3e41501d89f6f9f48a3e9d1296" compoundref="_sensor_8h" startline="72">name</references>
+        <referencedby refid="class_temperature_controller_1a57b74b40c88016965d07248981412f7d" compoundref="_temperature_controller_8cpp" startline="881" endline="953">TemperatureController::discoverDS18B20Sensors</referencedby>
+        <referencedby refid="class_temperature_controller_1a79e98c9a1d42de787a66e02b250b7a74" compoundref="_temperature_controller_8cpp" startline="956" endline="1005">TemperatureController::discoverPTSensors</referencedby>
+        <referencedby refid="class_temperature_controller_1ad3819418f9f301f3f7047ba686a11be0" compoundref="_temperature_controller_8cpp" startline="1260" endline="1286">TemperatureController::unbindSensorFromPointBySensor</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_sensor_1a95fe437024716bfdf3703e2c50a0756a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Sensor::setName</definition>
+        <argsstring>(const String &amp;newName)</argsstring>
+        <name>setName</name>
+        <qualifiedname>Sensor::setName</qualifiedname>
+        <param>
+          <type>const String &amp;</type>
+          <declname>newName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="42" column="10" bodyfile="src/Sensor.cpp" bodystart="156" bodyend="156"/>
+        <references refid="class_sensor_1a9cf70c3e41501d89f6f9f48a3e9d1296" compoundref="_sensor_8h" startline="72">name</references>
+      </memberdef>
+      <memberdef kind="function" id="class_sensor_1a3def93a2aff034f403af576b40b6f3f1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int16_t</type>
+        <definition>int16_t Sensor::getCurrentTemp</definition>
+        <argsstring>() const</argsstring>
+        <name>getCurrentTemp</name>
+        <qualifiedname>Sensor::getCurrentTemp</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="44" column="13" bodyfile="src/Sensor.cpp" bodystart="158" bodyend="158"/>
+        <references refid="class_sensor_1a1ad6234aa9a0d89ce962c61ee0580b0c" compoundref="_sensor_8h" startline="75">currentTemp</references>
+      </memberdef>
+      <memberdef kind="function" id="class_sensor_1a0897378dd7971fded81bf12d433833c5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int16_t</type>
+        <definition>int16_t Sensor::getMinTemp</definition>
+        <argsstring>() const</argsstring>
+        <name>getMinTemp</name>
+        <qualifiedname>Sensor::getMinTemp</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="45" column="13" bodyfile="src/Sensor.cpp" bodystart="159" bodyend="159"/>
+        <references refid="class_sensor_1a70160b5ef0eadb7b131f4993011a6174" compoundref="_sensor_8h" startline="76">minTemp</references>
+      </memberdef>
+      <memberdef kind="function" id="class_sensor_1abcaa8954ad75cf20e7c5aa1ef47b28ec" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int16_t</type>
+        <definition>int16_t Sensor::getMaxTemp</definition>
+        <argsstring>() const</argsstring>
+        <name>getMaxTemp</name>
+        <qualifiedname>Sensor::getMaxTemp</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="46" column="13" bodyfile="src/Sensor.cpp" bodystart="160" bodyend="160"/>
+        <references refid="class_sensor_1a0752a16bf3b329064102d1110c8aa22c" compoundref="_sensor_8h" startline="77">maxTemp</references>
+      </memberdef>
+      <memberdef kind="function" id="class_sensor_1aad2114350beb8e278e4b273f62439579" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int16_t</type>
+        <definition>int16_t Sensor::getLowAlarmThreshold</definition>
+        <argsstring>() const</argsstring>
+        <name>getLowAlarmThreshold</name>
+        <qualifiedname>Sensor::getLowAlarmThreshold</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="47" column="13" bodyfile="src/Sensor.cpp" bodystart="161" bodyend="161"/>
+        <references refid="class_sensor_1a3a695e6c5e1fc511abb6aa0f93f4965c" compoundref="_sensor_8h" startline="78">lowAlarmThreshold</references>
+      </memberdef>
+      <memberdef kind="function" id="class_sensor_1a8799541c60822f7600cde784aae36039" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int16_t</type>
+        <definition>int16_t Sensor::getHighAlarmThreshold</definition>
+        <argsstring>() const</argsstring>
+        <name>getHighAlarmThreshold</name>
+        <qualifiedname>Sensor::getHighAlarmThreshold</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="48" column="13" bodyfile="src/Sensor.cpp" bodystart="162" bodyend="162"/>
+        <references refid="class_sensor_1ad3088c793422688847fc7bd0c83e1c7a" compoundref="_sensor_8h" startline="79">highAlarmThreshold</references>
+      </memberdef>
+      <memberdef kind="function" id="class_sensor_1a70c7d2dbd1ad8782933301b367e64d09" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>uint8_t</type>
+        <definition>uint8_t Sensor::getAlarmStatus</definition>
+        <argsstring>() const</argsstring>
+        <name>getAlarmStatus</name>
+        <qualifiedname>Sensor::getAlarmStatus</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="49" column="13" bodyfile="src/Sensor.cpp" bodystart="163" bodyend="163"/>
+        <references refid="class_sensor_1a4700db8ae10648ce63e9c40097af2bf0" compoundref="_sensor_8h" startline="80">alarmStatus</references>
+      </memberdef>
+      <memberdef kind="function" id="class_sensor_1a72ab978055decc37539815dfbc09f2a1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>uint8_t</type>
+        <definition>uint8_t Sensor::getErrorStatus</definition>
+        <argsstring>() const</argsstring>
+        <name>getErrorStatus</name>
+        <qualifiedname>Sensor::getErrorStatus</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="50" column="13" bodyfile="src/Sensor.cpp" bodystart="164" bodyend="164"/>
+        <references refid="class_sensor_1a90c9d7cb2e9a0d1ca02eb0e03a4b8ceb" compoundref="_sensor_8h" startline="81">errorStatus</references>
+      </memberdef>
+      <memberdef kind="function" id="class_sensor_1a6f57825e90b759ccdb9fe07b3a36953d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>uint8_t</type>
+        <definition>uint8_t Sensor::getPT1000ChipSelectPin</definition>
+        <argsstring>() const</argsstring>
+        <name>getPT1000ChipSelectPin</name>
+        <qualifiedname>Sensor::getPT1000ChipSelectPin</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="51" column="13" bodyfile="src/Sensor.cpp" bodystart="190" bodyend="193"/>
+        <references refid="class_sensor_1adaacf2cbc3623d86bad4c32496340a74">connection</references>
+        <references refid="_sensor_8h_1a213c434cb928c4ca22513e2302632435a481caba3768b84e8b68fb58b04ec595e" compoundref="_sensor_8h" startline="12">PT1000</references>
+        <references refid="class_sensor_1a59be498582043f581a78851506f8e322" compoundref="_sensor_8h" startline="73">type</references>
+        <referencedby refid="class_temperature_controller_1aafd155cdb06d2f411d3640df99815246" compoundref="_temperature_controller_8cpp" startline="718" endline="733">TemperatureController::addSensor</referencedby>
+        <referencedby refid="class_temperature_controller_1a79e98c9a1d42de787a66e02b250b7a74" compoundref="_temperature_controller_8cpp" startline="956" endline="1005">TemperatureController::discoverPTSensors</referencedby>
+        <referencedby refid="class_temperature_controller_1add39ba7dad38449bbf1787a5c9c51ef9" compoundref="_temperature_controller_8cpp" startline="1066" endline="1125">TemperatureController::getPointsJson</referencedby>
+        <referencedby refid="class_temperature_controller_1a01e04714a1712aa10c34276850971a12" compoundref="_temperature_controller_8cpp" startline="1240" endline="1256">TemperatureController::getSensorBus</referencedby>
+        <referencedby refid="class_config_manager_1a55b79da91c57039c483ddf5fceabbd64" compoundref="_config_manager_8cpp" startline="279" endline="320">ConfigManager::savePointsConfig</referencedby>
+        <referencedby refid="class_config_manager_1a45b1ce1f09401af0b6f700cf4388b233" compoundref="_config_manager_8cpp" startline="717" endline="840">ConfigManager::sensorAPI</referencedby>
+        <referencedby refid="class_temperature_controller_1a261c9b96540ec6680dfffd3a26e4ca00" compoundref="_temperature_controller_8cpp" startline="825" endline="846">TemperatureController::unbindSensorFromPoint</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_sensor_1aaa9739e019c01dba6fb55c58a27d9642" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Sensor::setAddress</definition>
+        <argsstring>(uint8_t newAddress)</argsstring>
+        <name>setAddress</name>
+        <qualifiedname>Sensor::setAddress</qualifiedname>
+        <param>
+          <type>uint8_t</type>
+          <declname>newAddress</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="54" column="10" bodyfile="src/Sensor.cpp" bodystart="166" bodyend="166"/>
+        <references refid="class_sensor_1a75b4ea06bdcd22f6591f24ae3a46983a" compoundref="_sensor_8h" startline="71">address</references>
+      </memberdef>
+      <memberdef kind="function" id="class_sensor_1ae2e32117bfa426768afd692d062a13f0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Sensor::setLowAlarmThreshold</definition>
+        <argsstring>(int16_t threshold)</argsstring>
+        <name>setLowAlarmThreshold</name>
+        <qualifiedname>Sensor::setLowAlarmThreshold</qualifiedname>
+        <param>
+          <type>int16_t</type>
+          <declname>threshold</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="55" column="10" bodyfile="src/Sensor.cpp" bodystart="167" bodyend="167"/>
+        <references refid="class_sensor_1a3a695e6c5e1fc511abb6aa0f93f4965c" compoundref="_sensor_8h" startline="78">lowAlarmThreshold</references>
+        <references refid="class_sensor_1a2f0b7d29f7a924deb465d2462698564d" compoundref="_sensor_8cpp" startline="182" endline="187">updateAlarmStatus</references>
+      </memberdef>
+      <memberdef kind="function" id="class_sensor_1a300550ed551df5688ff101e132c82d3e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Sensor::setHighAlarmThreshold</definition>
+        <argsstring>(int16_t threshold)</argsstring>
+        <name>setHighAlarmThreshold</name>
+        <qualifiedname>Sensor::setHighAlarmThreshold</qualifiedname>
+        <param>
+          <type>int16_t</type>
+          <declname>threshold</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="56" column="10" bodyfile="src/Sensor.cpp" bodystart="168" bodyend="168"/>
+        <references refid="class_sensor_1ad3088c793422688847fc7bd0c83e1c7a" compoundref="_sensor_8h" startline="79">highAlarmThreshold</references>
+        <references refid="class_sensor_1a2f0b7d29f7a924deb465d2462698564d" compoundref="_sensor_8cpp" startline="182" endline="187">updateAlarmStatus</references>
+      </memberdef>
+      <memberdef kind="function" id="class_sensor_1aebfce8b65a6bce594e406236bba4a469" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const uint8_t *</type>
+        <definition>const uint8_t * Sensor::getDS18B20Address</definition>
+        <argsstring>() const</argsstring>
+        <name>getDS18B20Address</name>
+        <qualifiedname>Sensor::getDS18B20Address</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="59" column="19" bodyfile="src/Sensor.cpp" bodystart="170" bodyend="175"/>
+        <references refid="class_sensor_1adaacf2cbc3623d86bad4c32496340a74">connection</references>
+        <references refid="_sensor_8h_1a213c434cb928c4ca22513e2302632435aac1bc058b939e1c55e1496c8574f3691" compoundref="_sensor_8h" startline="11">DS18B20</references>
+        <references refid="class_sensor_1a59be498582043f581a78851506f8e322" compoundref="_sensor_8h" startline="73">type</references>
+      </memberdef>
+      <memberdef kind="function" id="class_sensor_1a578bbc9664e2af30cc837301039e5ecb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Sensor::resetMinMaxTemp</definition>
+        <argsstring>()</argsstring>
+        <name>resetMinMaxTemp</name>
+        <qualifiedname>Sensor::resetMinMaxTemp</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="62" column="10" bodyfile="src/Sensor.cpp" bodystart="177" bodyend="180"/>
+        <references refid="class_sensor_1a1ad6234aa9a0d89ce962c61ee0580b0c" compoundref="_sensor_8h" startline="75">currentTemp</references>
+        <references refid="class_sensor_1a0752a16bf3b329064102d1110c8aa22c" compoundref="_sensor_8h" startline="77">maxTemp</references>
+        <references refid="class_sensor_1a70160b5ef0eadb7b131f4993011a6174" compoundref="_sensor_8h" startline="76">minTemp</references>
+      </memberdef>
+      <memberdef kind="function" id="class_sensor_1a2f0b7d29f7a924deb465d2462698564d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Sensor::updateAlarmStatus</definition>
+        <argsstring>()</argsstring>
+        <name>updateAlarmStatus</name>
+        <qualifiedname>Sensor::updateAlarmStatus</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="65" column="10" bodyfile="src/Sensor.cpp" bodystart="182" bodyend="187"/>
+        <references refid="_sensor_8h_1a69ac9fe143e56b941b2e467e700f9f98" compoundref="_sensor_8h" startline="21">ALARM_HIGH_TEMP</references>
+        <references refid="_sensor_8h_1a23317a6f5a20f7fff89a69642e417b1f" compoundref="_sensor_8h" startline="20">ALARM_LOW_TEMP</references>
+        <references refid="class_sensor_1a4700db8ae10648ce63e9c40097af2bf0" compoundref="_sensor_8h" startline="80">alarmStatus</references>
+        <references refid="class_sensor_1a1ad6234aa9a0d89ce962c61ee0580b0c" compoundref="_sensor_8h" startline="75">currentTemp</references>
+        <references refid="class_sensor_1a90c9d7cb2e9a0d1ca02eb0e03a4b8ceb" compoundref="_sensor_8h" startline="81">errorStatus</references>
+        <references refid="class_sensor_1ad3088c793422688847fc7bd0c83e1c7a" compoundref="_sensor_8h" startline="79">highAlarmThreshold</references>
+        <references refid="class_sensor_1a3a695e6c5e1fc511abb6aa0f93f4965c" compoundref="_sensor_8h" startline="78">lowAlarmThreshold</references>
+        <referencedby refid="class_sensor_1a5f3828beedd045bf82b3542ec626bc7b" compoundref="_sensor_8cpp" startline="100" endline="151">readTemperature</referencedby>
+        <referencedby refid="class_sensor_1a300550ed551df5688ff101e132c82d3e" compoundref="_sensor_8cpp" startline="168" endline="168">setHighAlarmThreshold</referencedby>
+        <referencedby refid="class_sensor_1ae2e32117bfa426768afd692d062a13f0" compoundref="_sensor_8cpp" startline="167" endline="167">setLowAlarmThreshold</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_sensor_1a9f793cde2918130fbc77dad1aebfe53a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>String</type>
+        <definition>String Sensor::getDS18B20RomString</definition>
+        <argsstring>() const</argsstring>
+        <name>getDS18B20RomString</name>
+        <qualifiedname>Sensor::getDS18B20RomString</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="66" column="12" bodyfile="src/Sensor.cpp" bodystart="195" bodyend="203"/>
+        <references refid="class_sensor_1adaacf2cbc3623d86bad4c32496340a74">connection</references>
+        <references refid="_sensor_8h_1a213c434cb928c4ca22513e2302632435aac1bc058b939e1c55e1496c8574f3691" compoundref="_sensor_8h" startline="11">DS18B20</references>
+        <references refid="class_sensor_1a59be498582043f581a78851506f8e322" compoundref="_sensor_8h" startline="73">type</references>
+        <referencedby refid="class_c_s_v_config_manager_1a2c2673398051c26184c9197aa751a6b3" compoundref="_c_s_v_config_manager_8cpp" startline="37" endline="70">CSVConfigManager::_exportPointToCSV</referencedby>
+        <referencedby refid="class_temperature_controller_1aafd155cdb06d2f411d3640df99815246" compoundref="_temperature_controller_8cpp" startline="718" endline="733">TemperatureController::addSensor</referencedby>
+        <referencedby refid="class_temperature_controller_1add39ba7dad38449bbf1787a5c9c51ef9" compoundref="_temperature_controller_8cpp" startline="1066" endline="1125">TemperatureController::getPointsJson</referencedby>
+        <referencedby refid="class_temperature_controller_1a58f7a683f6e4c08dbfdfc43c1e740f15" compoundref="_temperature_controller_8cpp" startline="1008" endline="1064">TemperatureController::getSensorsJson</referencedby>
+        <referencedby refid="class_config_manager_1a55b79da91c57039c483ddf5fceabbd64" compoundref="_config_manager_8cpp" startline="279" endline="320">ConfigManager::savePointsConfig</referencedby>
+        <referencedby refid="class_config_manager_1a45b1ce1f09401af0b6f700cf4388b233" compoundref="_config_manager_8cpp" startline="717" endline="840">ConfigManager::sensorAPI</referencedby>
+        <referencedby refid="class_temperature_controller_1a261c9b96540ec6680dfffd3a26e4ca00" compoundref="_temperature_controller_8cpp" startline="825" endline="846">TemperatureController::unbindSensorFromPoint</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_sensor_1a3003106c642cc8a9ec5638ea06052ff4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Sensor::getDS18B20RomArray</definition>
+        <argsstring>(uint8_t out[8]) const</argsstring>
+        <name>getDS18B20RomArray</name>
+        <qualifiedname>Sensor::getDS18B20RomArray</qualifiedname>
+        <param>
+          <type>uint8_t</type>
+          <declname>out</declname>
+          <array>[8]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="67" column="10" bodyfile="src/Sensor.cpp" bodystart="205" bodyend="209"/>
+        <references refid="class_sensor_1adaacf2cbc3623d86bad4c32496340a74">connection</references>
+        <references refid="_sensor_8h_1a213c434cb928c4ca22513e2302632435aac1bc058b939e1c55e1496c8574f3691" compoundref="_sensor_8h" startline="11">DS18B20</references>
+        <references refid="class_sensor_1a59be498582043f581a78851506f8e322" compoundref="_sensor_8h" startline="73">type</references>
+        <referencedby refid="class_temperature_controller_1add39ba7dad38449bbf1787a5c9c51ef9" compoundref="_temperature_controller_8cpp" startline="1066" endline="1125">TemperatureController::getPointsJson</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_sensor_1ac42da3a37b0d6a9622344fe83f4c9047" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint8_t</type>
+        <definition>uint8_t Sensor::getOneWirePin</definition>
+        <argsstring>()</argsstring>
+        <name>getOneWirePin</name>
+        <qualifiedname>Sensor::getOneWirePin</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Sensor.h" line="68" column="13" bodyfile="include/Sensor.h" bodystart="68" bodyend="68"/>
+        <references refid="class_sensor_1adaacf2cbc3623d86bad4c32496340a74">connection</references>
+        <referencedby refid="class_temperature_controller_1a57b74b40c88016965d07248981412f7d" compoundref="_temperature_controller_8cpp" startline="881" endline="953">TemperatureController::discoverDS18B20Sensors</referencedby>
+        <referencedby refid="class_temperature_controller_1a01e04714a1712aa10c34276850971a12" compoundref="_temperature_controller_8cpp" startline="1240" endline="1256">TemperatureController::getSensorBus</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>Sensor</label>
+        <link refid="class_sensor"/>
+      </node>
+    </collaborationgraph>
+    <location file="include/Sensor.h" line="23" column="1" bodyfile="include/Sensor.h" bodystart="23" bodyend="99"/>
+    <listofallmembers>
+      <member refid="class_sensor_1a75b4ea06bdcd22f6591f24ae3a46983a" prot="private" virt="non-virtual"><scope>Sensor</scope><name>address</name></member>
+      <member refid="class_sensor_1a4700db8ae10648ce63e9c40097af2bf0" prot="private" virt="non-virtual"><scope>Sensor</scope><name>alarmStatus</name></member>
+      <member refid="class_sensor_1adaacf2cbc3623d86bad4c32496340a74" prot="private" virt="non-virtual"><scope>Sensor</scope><name>connection</name></member>
+      <member refid="class_sensor_1ae982d7fa79bdc6e223632c69ca512b34" prot="public" virt="non-virtual"><scope>Sensor</scope><name>csPin</name></member>
+      <member refid="class_sensor_1a1ad6234aa9a0d89ce962c61ee0580b0c" prot="private" virt="non-virtual"><scope>Sensor</scope><name>currentTemp</name></member>
+      <member refid="class_sensor_1ab0c028d4df2e4e568075b622965b0a76" prot="private" virt="non-virtual"><scope>Sensor</scope><name>dallasTemperature</name></member>
+      <member refid="class_sensor_1a1192f63a34aa19a309d8c9ba2e3f8bd7" prot="public" virt="non-virtual"><scope>Sensor</scope><name>ds18b20</name></member>
+      <member refid="class_sensor_1a90c9d7cb2e9a0d1ca02eb0e03a4b8ceb" prot="private" virt="non-virtual"><scope>Sensor</scope><name>errorStatus</name></member>
+      <member refid="class_sensor_1afa9861dabcb4cd9c7a83356873013946" prot="public" virt="non-virtual"><scope>Sensor</scope><name>getAddress</name></member>
+      <member refid="class_sensor_1a70c7d2dbd1ad8782933301b367e64d09" prot="public" virt="non-virtual"><scope>Sensor</scope><name>getAlarmStatus</name></member>
+      <member refid="class_sensor_1a3def93a2aff034f403af576b40b6f3f1" prot="public" virt="non-virtual"><scope>Sensor</scope><name>getCurrentTemp</name></member>
+      <member refid="class_sensor_1aebfce8b65a6bce594e406236bba4a469" prot="public" virt="non-virtual"><scope>Sensor</scope><name>getDS18B20Address</name></member>
+      <member refid="class_sensor_1a3003106c642cc8a9ec5638ea06052ff4" prot="public" virt="non-virtual"><scope>Sensor</scope><name>getDS18B20RomArray</name></member>
+      <member refid="class_sensor_1a9f793cde2918130fbc77dad1aebfe53a" prot="public" virt="non-virtual"><scope>Sensor</scope><name>getDS18B20RomString</name></member>
+      <member refid="class_sensor_1a72ab978055decc37539815dfbc09f2a1" prot="public" virt="non-virtual"><scope>Sensor</scope><name>getErrorStatus</name></member>
+      <member refid="class_sensor_1a8799541c60822f7600cde784aae36039" prot="public" virt="non-virtual"><scope>Sensor</scope><name>getHighAlarmThreshold</name></member>
+      <member refid="class_sensor_1aad2114350beb8e278e4b273f62439579" prot="public" virt="non-virtual"><scope>Sensor</scope><name>getLowAlarmThreshold</name></member>
+      <member refid="class_sensor_1abcaa8954ad75cf20e7c5aa1ef47b28ec" prot="public" virt="non-virtual"><scope>Sensor</scope><name>getMaxTemp</name></member>
+      <member refid="class_sensor_1a0897378dd7971fded81bf12d433833c5" prot="public" virt="non-virtual"><scope>Sensor</scope><name>getMinTemp</name></member>
+      <member refid="class_sensor_1a60ec96ed03660b42681c1bcc99007033" prot="public" virt="non-virtual"><scope>Sensor</scope><name>getName</name></member>
+      <member refid="class_sensor_1ac42da3a37b0d6a9622344fe83f4c9047" prot="public" virt="non-virtual"><scope>Sensor</scope><name>getOneWirePin</name></member>
+      <member refid="class_sensor_1a6f57825e90b759ccdb9fe07b3a36953d" prot="public" virt="non-virtual"><scope>Sensor</scope><name>getPT1000ChipSelectPin</name></member>
+      <member refid="class_sensor_1a0f6f095e7cfdfffb2a395dfdae7cfa53" prot="public" virt="non-virtual"><scope>Sensor</scope><name>getType</name></member>
+      <member refid="class_sensor_1ad3088c793422688847fc7bd0c83e1c7a" prot="private" virt="non-virtual"><scope>Sensor</scope><name>highAlarmThreshold</name></member>
+      <member refid="class_sensor_1a59dd5483b75d9366a0c50ccdd0345dec" prot="public" virt="non-virtual"><scope>Sensor</scope><name>initialize</name></member>
+      <member refid="class_sensor_1a3a695e6c5e1fc511abb6aa0f93f4965c" prot="private" virt="non-virtual"><scope>Sensor</scope><name>lowAlarmThreshold</name></member>
+      <member refid="class_sensor_1a23b7a05faf6c66d07aed361c4ad8c896" prot="private" virt="non-virtual"><scope>Sensor</scope><name>max31865</name></member>
+      <member refid="class_sensor_1a3f0651eab49ddc023248a11c3937bc23" prot="public" virt="non-virtual"><scope>Sensor</scope><name>maxAddress</name></member>
+      <member refid="class_sensor_1a0752a16bf3b329064102d1110c8aa22c" prot="private" virt="non-virtual"><scope>Sensor</scope><name>maxTemp</name></member>
+      <member refid="class_sensor_1a70160b5ef0eadb7b131f4993011a6174" prot="private" virt="non-virtual"><scope>Sensor</scope><name>minTemp</name></member>
+      <member refid="class_sensor_1a9cf70c3e41501d89f6f9f48a3e9d1296" prot="private" virt="non-virtual"><scope>Sensor</scope><name>name</name></member>
+      <member refid="class_sensor_1ae6e1281c6284fe26cc5617789aa3a3bf" prot="private" virt="non-virtual"><scope>Sensor</scope><name>oneWire</name></member>
+      <member refid="class_sensor_1aabda20f8fbc433bae5cc64e1f244af41" prot="public" virt="non-virtual"><scope>Sensor</scope><name>oneWireAddress</name></member>
+      <member refid="class_sensor_1aa21039b897abee047fff39d2ed2ca9b0" prot="public" virt="non-virtual"><scope>Sensor</scope><name>oneWirePin</name></member>
+      <member refid="class_sensor_1a8ca8a9931ab07b445039fe8298329939" prot="public" virt="non-virtual"><scope>Sensor</scope><name>pt1000</name></member>
+      <member refid="class_sensor_1a5f3828beedd045bf82b3542ec626bc7b" prot="public" virt="non-virtual"><scope>Sensor</scope><name>readTemperature</name></member>
+      <member refid="class_sensor_1a578bbc9664e2af30cc837301039e5ecb" prot="public" virt="non-virtual"><scope>Sensor</scope><name>resetMinMaxTemp</name></member>
+      <member refid="class_sensor_1a3dc84897044b5f1848fd0f5444235eee" prot="public" virt="non-virtual"><scope>Sensor</scope><name>Sensor</name></member>
+      <member refid="class_sensor_1aaa9739e019c01dba6fb55c58a27d9642" prot="public" virt="non-virtual"><scope>Sensor</scope><name>setAddress</name></member>
+      <member refid="class_sensor_1a300550ed551df5688ff101e132c82d3e" prot="public" virt="non-virtual"><scope>Sensor</scope><name>setHighAlarmThreshold</name></member>
+      <member refid="class_sensor_1ae2e32117bfa426768afd692d062a13f0" prot="public" virt="non-virtual"><scope>Sensor</scope><name>setLowAlarmThreshold</name></member>
+      <member refid="class_sensor_1a95fe437024716bfdf3703e2c50a0756a" prot="public" virt="non-virtual"><scope>Sensor</scope><name>setName</name></member>
+      <member refid="class_sensor_1afefa1f627a7d2ab5a1157c271e7f2556" prot="public" virt="non-virtual"><scope>Sensor</scope><name>setupDS18B20</name></member>
+      <member refid="class_sensor_1aef73c8dc894e3695f50b4bece9601750" prot="public" virt="non-virtual"><scope>Sensor</scope><name>setupPT1000</name></member>
+      <member refid="class_sensor_1a59be498582043f581a78851506f8e322" prot="private" virt="non-virtual"><scope>Sensor</scope><name>type</name></member>
+      <member refid="class_sensor_1a2f0b7d29f7a924deb465d2462698564d" prot="public" virt="non-virtual"><scope>Sensor</scope><name>updateAlarmStatus</name></member>
+      <member refid="class_sensor_1aee8c70e7ef05ce65e7ee33686b5d7db2" prot="public" virt="non-virtual"><scope>Sensor</scope><name>~Sensor</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

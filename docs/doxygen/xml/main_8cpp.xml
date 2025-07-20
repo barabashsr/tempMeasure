@@ -1,0 +1,899 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="main_8cpp" kind="file" language="C++">
+    <compoundname>main.cpp</compoundname>
+    <includes local="no">Arduino.h</includes>
+    <includes refid="_temperature_controller_8h" local="yes">TemperatureController.h</includes>
+    <includes refid="_temp_modbus_server_8h" local="yes">TempModbusServer.h</includes>
+    <includes refid="_config_manager_8h" local="yes">ConfigManager.h</includes>
+    <includes refid="_indicator_interface_8h" local="yes">IndicatorInterface.h</includes>
+    <includes local="no">SPI.h</includes>
+    <includes refid="_time_manager_8h" local="yes">TimeManager.h</includes>
+    <includes refid="_logger_manager_8h" local="yes">LoggerManager.h</includes>
+    <incdepgraph>
+      <node id="27">
+        <label>Alarm.h</label>
+        <link refid="_alarm_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>CSVConfigManager.h</label>
+        <link refid="_c_s_v_config_manager_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>ConfigManager.h</label>
+        <link refid="_config_manager_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>IndicatorInterface.h</label>
+        <link refid="_indicator_interface_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>LoggerManager.h</label>
+        <link refid="_logger_manager_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>MeasurementPoint.h</label>
+        <link refid="_measurement_point_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>RegisterMap.h</label>
+        <link refid="_register_map_8h"/>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Sensor.h</label>
+        <link refid="_sensor_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>SettingsCSVManager.h</label>
+        <link refid="_settings_c_s_v_manager_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>TempModbusServer.h</label>
+        <link refid="_temp_modbus_server_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>TemperatureController.h</label>
+        <link refid="_temperature_controller_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>TimeManager.h</label>
+        <link refid="_time_manager_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>src/main.cpp</label>
+        <link refid="main_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>Adafruit_MAX31865.h</label>
+      </node>
+      <node id="2">
+        <label>Arduino.h</label>
+      </node>
+      <node id="19">
+        <label>ArduinoJson.h</label>
+      </node>
+      <node id="37">
+        <label>CSV_Parser.h</label>
+      </node>
+      <node id="32">
+        <label>ConfigAssist.h</label>
+      </node>
+      <node id="33">
+        <label>ConfigAssistHelper.h</label>
+      </node>
+      <node id="7">
+        <label>DallasTemperature.h</label>
+      </node>
+      <node id="11">
+        <label>FS.h</label>
+      </node>
+      <node id="35">
+        <label>LittleFS.h</label>
+      </node>
+      <node id="30">
+        <label>ModbusServerRTU.h</label>
+      </node>
+      <node id="17">
+        <label>NTPClient.h</label>
+      </node>
+      <node id="6">
+        <label>OneWire.h</label>
+      </node>
+      <node id="25">
+        <label>PCF8575.h</label>
+      </node>
+      <node id="16">
+        <label>RTClib.h</label>
+      </node>
+      <node id="12">
+        <label>SD.h</label>
+      </node>
+      <node id="39">
+        <label>SPI.h</label>
+      </node>
+      <node id="26">
+        <label>U8g2lib.h</label>
+      </node>
+      <node id="34">
+        <label>WebServer.h</label>
+      </node>
+      <node id="14">
+        <label>WiFi.h</label>
+      </node>
+      <node id="18">
+        <label>WiFiUdp.h</label>
+      </node>
+      <node id="15">
+        <label>Wire.h</label>
+      </node>
+      <node id="28">
+        <label>algorithm</label>
+      </node>
+      <node id="23">
+        <label>map</label>
+      </node>
+      <node id="21">
+        <label>stdint.h</label>
+      </node>
+      <node id="24">
+        <label>string</label>
+      </node>
+      <node id="4">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="main_8cpp_1ad0c1f84a4e0ecd91e5e90f215bf80540" prot="public" static="no">
+        <name>BUS1_PIN</name>
+        <initializer>4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/main.cpp" line="15" column="9" bodyfile="src/main.cpp" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="main_8cpp_1ab048e547366b8ce86c0adbf08a8b472c" prot="public" static="no">
+        <name>BUS2_PIN</name>
+        <initializer>5</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/main.cpp" line="16" column="9" bodyfile="src/main.cpp" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="main_8cpp_1ac49d737679d0daa5c1ad94069632a6b9" prot="public" static="no">
+        <name>BUS3_PIN</name>
+        <initializer>18</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/main.cpp" line="17" column="9" bodyfile="src/main.cpp" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="main_8cpp_1aae717cc08d7660a544aa5d25bc49328e" prot="public" static="no">
+        <name>BUS4_PIN</name>
+        <initializer>19</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/main.cpp" line="18" column="9" bodyfile="src/main.cpp" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="main_8cpp_1a01153037fca70cfac03c8d67f17d766a" prot="public" static="no">
+        <name>SCK_PIN</name>
+        <initializer>14</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/main.cpp" line="22" column="9" bodyfile="src/main.cpp" bodystart="22" bodyend="-1"/>
+        <referencedby refid="main_8cpp_1a4fc01d736fe50cf5b977f755b675f11d" compoundref="main_8cpp" startline="65" endline="195">setup</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="main_8cpp_1aecb75580e6d96b71a64123aee5bd3929" prot="public" static="no">
+        <name>MISO_PIN</name>
+        <initializer>12</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/main.cpp" line="23" column="9" bodyfile="src/main.cpp" bodystart="23" bodyend="-1"/>
+        <referencedby refid="main_8cpp_1a4fc01d736fe50cf5b977f755b675f11d" compoundref="main_8cpp" startline="65" endline="195">setup</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="main_8cpp_1a11338fccf824b29757c2b23edb0f690f" prot="public" static="no">
+        <name>MOSI_PIN</name>
+        <initializer>13</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/main.cpp" line="24" column="9" bodyfile="src/main.cpp" bodystart="24" bodyend="-1"/>
+        <referencedby refid="main_8cpp_1a4fc01d736fe50cf5b977f755b675f11d" compoundref="main_8cpp" startline="65" endline="195">setup</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="main_8cpp_1a95f9de1cf4510511738011cf4d21cc3c" prot="public" static="no">
+        <name>CS1_PIN</name>
+        <initializer>32</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/main.cpp" line="26" column="9" bodyfile="src/main.cpp" bodystart="26" bodyend="-1"/>
+        <referencedby refid="main_8cpp_1a4fc01d736fe50cf5b977f755b675f11d" compoundref="main_8cpp" startline="65" endline="195">setup</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="main_8cpp_1a8b6fd3026aab783c2174d35c4863fe33" prot="public" static="no">
+        <name>CS2_PIN</name>
+        <initializer>33</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/main.cpp" line="27" column="9" bodyfile="src/main.cpp" bodystart="27" bodyend="-1"/>
+        <referencedby refid="main_8cpp_1a4fc01d736fe50cf5b977f755b675f11d" compoundref="main_8cpp" startline="65" endline="195">setup</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="main_8cpp_1a2bbb00acc3fac5af03284d9e6f5bd81c" prot="public" static="no">
+        <name>CS3_PIN</name>
+        <initializer>26</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/main.cpp" line="28" column="9" bodyfile="src/main.cpp" bodystart="28" bodyend="-1"/>
+        <referencedby refid="main_8cpp_1a4fc01d736fe50cf5b977f755b675f11d" compoundref="main_8cpp" startline="65" endline="195">setup</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="main_8cpp_1a381c4ec472645df12a56af0259d17f50" prot="public" static="no">
+        <name>CS4_PIN</name>
+        <initializer>27</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/main.cpp" line="29" column="9" bodyfile="src/main.cpp" bodystart="29" bodyend="-1"/>
+        <referencedby refid="main_8cpp_1a4fc01d736fe50cf5b977f755b675f11d" compoundref="main_8cpp" startline="65" endline="195">setup</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="main_8cpp_1ae6cc20a4c5a6166265bf43e48202617e" prot="public" static="no">
+        <name>CS5_PIN_TF_CARD</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/main.cpp" line="31" column="9" bodyfile="src/main.cpp" bodystart="31" bodyend="-1"/>
+        <referencedby refid="main_8cpp_1a4fc01d736fe50cf5b977f755b675f11d" compoundref="main_8cpp" startline="65" endline="195">setup</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="main_8cpp_1aa7089c01538b339ae745173c117f95b9" prot="public" static="no">
+        <name>RX_PIN</name>
+        <initializer>22</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/main.cpp" line="35" column="9" bodyfile="src/main.cpp" bodystart="35" bodyend="-1"/>
+        <referencedby refid="main_8cpp_1a4fc01d736fe50cf5b977f755b675f11d" compoundref="main_8cpp" startline="65" endline="195">setup</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="main_8cpp_1a3bb17f5daa2b1eaef58c8aa2d989e27e" prot="public" static="no">
+        <name>TX_PIN</name>
+        <initializer>23</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/main.cpp" line="36" column="9" bodyfile="src/main.cpp" bodystart="36" bodyend="-1"/>
+        <referencedby refid="main_8cpp_1a4fc01d736fe50cf5b977f755b675f11d" compoundref="main_8cpp" startline="65" endline="195">setup</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="main_8cpp_1adbd2ea2266042c0b767e0fdac0c55d64" prot="public" static="no">
+        <name>DE_PIN</name>
+        <initializer>-1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/main.cpp" line="37" column="9" bodyfile="src/main.cpp" bodystart="37" bodyend="-1"/>
+        <referencedby refid="main_8cpp_1a4fc01d736fe50cf5b977f755b675f11d" compoundref="main_8cpp" startline="65" endline="195">setup</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="main_8cpp_1a18aefd12ad84d4c33dc97923cb821e47" prot="public" static="no">
+        <name>I2C_SDA</name>
+        <initializer>21</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/main.cpp" line="42" column="9" bodyfile="src/main.cpp" bodystart="42" bodyend="-1"/>
+        <referencedby refid="main_8cpp_1a4fc01d736fe50cf5b977f755b675f11d" compoundref="main_8cpp" startline="65" endline="195">setup</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="main_8cpp_1a212ca328a6409c98f8c3dfbbe1ba561d" prot="public" static="no">
+        <name>I2C_SCL</name>
+        <initializer>25</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/main.cpp" line="43" column="9" bodyfile="src/main.cpp" bodystart="43" bodyend="-1"/>
+        <referencedby refid="main_8cpp_1a4fc01d736fe50cf5b977f755b675f11d" compoundref="main_8cpp" startline="65" endline="195">setup</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="main_8cpp_1a4e96da313fa726b5b120e6d2461248cd" prot="public" static="no">
+        <name>PCF_INT</name>
+        <initializer>34</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/main.cpp" line="44" column="9" bodyfile="src/main.cpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="main_8cpp_1a009a384f716fb318dbb3ca6c01f82cf6" prot="public" static="no" mutable="no">
+        <type><ref refid="class_indicator_interface" kindref="compound">IndicatorInterface</ref></type>
+        <definition>IndicatorInterface indicator(Wire, 0x20, PCF_INT)</definition>
+        <argsstring>(Wire, 0x20, PCF_INT)</argsstring>
+        <name>indicator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/main.cpp" line="46" column="20"/>
+      </memberdef>
+      <memberdef kind="variable" id="main_8cpp_1a42643b111a01e68b13ba177173ca18f2" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t onwWirePins[4]</definition>
+        <argsstring>[4]</argsstring>
+        <name>onwWirePins</name>
+        <initializer>= {<ref refid="main_8cpp_1ad0c1f84a4e0ecd91e5e90f215bf80540" kindref="member">BUS1_PIN</ref>,  <ref refid="main_8cpp_1ab048e547366b8ce86c0adbf08a8b472c" kindref="member">BUS2_PIN</ref>, <ref refid="main_8cpp_1ac49d737679d0daa5c1ad94069632a6b9" kindref="member">BUS3_PIN</ref>, <ref refid="main_8cpp_1aae717cc08d7660a544aa5d25bc49328e" kindref="member">BUS4_PIN</ref>}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/main.cpp" line="51" column="9" bodyfile="src/main.cpp" bodystart="51" bodyend="51"/>
+      </memberdef>
+      <memberdef kind="variable" id="main_8cpp_1ab7afb3d24d4590b3ba10970a6bff2631" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t csPins[4]</definition>
+        <argsstring>[4]</argsstring>
+        <name>csPins</name>
+        <initializer>= {<ref refid="main_8cpp_1a95f9de1cf4510511738011cf4d21cc3c" kindref="member">CS1_PIN</ref>,  <ref refid="main_8cpp_1a8b6fd3026aab783c2174d35c4863fe33" kindref="member">CS2_PIN</ref>, <ref refid="main_8cpp_1a2bbb00acc3fac5af03284d9e6f5bd81c" kindref="member">CS3_PIN</ref>, <ref refid="main_8cpp_1a381c4ec472645df12a56af0259d17f50" kindref="member">CS4_PIN</ref>}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/main.cpp" line="52" column="9" bodyfile="src/main.cpp" bodystart="52" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="variable" id="main_8cpp_1aecbe6ad38ed7d220ace280ea33d8ab45" prot="public" static="no" mutable="no">
+        <type><ref refid="class_temperature_controller" kindref="compound">TemperatureController</ref></type>
+        <definition>TemperatureController controller(onwWirePins, csPins, indicator)</definition>
+        <argsstring>(onwWirePins, csPins, indicator)</argsstring>
+        <name>controller</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/main.cpp" line="53" column="23"/>
+        <referencedby refid="class_c_s_v_config_manager_1aeb5348105aeb04d73c45526f70d745f6" compoundref="_c_s_v_config_manager_8cpp" startline="4" endline="6">CSVConfigManager::CSVConfigManager</referencedby>
+        <referencedby refid="class_logger_manager_1a321bbaf7cc3b3aa05c8ec036d4dbfea0" compoundref="_logger_manager_8cpp" startline="8" endline="16">LoggerManager::LoggerManager</referencedby>
+        <referencedby refid="main_8cpp_1afe461d27b9c48d5921c00d521181f12f" compoundref="main_8cpp" startline="197" endline="221">loop</referencedby>
+        <referencedby refid="main_8cpp_1a4fc01d736fe50cf5b977f755b675f11d" compoundref="main_8cpp" startline="65" endline="195">setup</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="main_8cpp_1a064a914bb7eaaf470d545cab5f0c0066" prot="public" static="no" mutable="no">
+        <type><ref refid="class_config_manager" kindref="compound">ConfigManager</ref> *</type>
+        <definition>ConfigManager* configManager</definition>
+        <argsstring></argsstring>
+        <name>configManager</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/main.cpp" line="56" column="15" bodyfile="src/main.cpp" bodystart="56" bodyend="-1"/>
+        <referencedby refid="main_8cpp_1afe461d27b9c48d5921c00d521181f12f" compoundref="main_8cpp" startline="197" endline="221">loop</referencedby>
+        <referencedby refid="main_8cpp_1a4fc01d736fe50cf5b977f755b675f11d" compoundref="main_8cpp" startline="65" endline="195">setup</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="main_8cpp_1a4d17575d4300b383a3726118c7dba5ef" prot="public" static="no" mutable="no">
+        <type><ref refid="class_temp_modbus_server" kindref="compound">TempModbusServer</ref> *</type>
+        <definition>TempModbusServer* modbusServer</definition>
+        <argsstring></argsstring>
+        <name>modbusServer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/main.cpp" line="59" column="18" bodyfile="src/main.cpp" bodystart="59" bodyend="-1"/>
+        <referencedby refid="main_8cpp_1a4fc01d736fe50cf5b977f755b675f11d" compoundref="main_8cpp" startline="65" endline="195">setup</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="main_8cpp_1ad27a531589f8fed0687abe50e4ab32dc" prot="public" static="no" mutable="no">
+        <type><ref refid="class_time_manager" kindref="compound">TimeManager</ref></type>
+        <definition>TimeManager timeManager(I2C_SDA, I2C_SCL)</definition>
+        <argsstring>(I2C_SDA, I2C_SCL)</argsstring>
+        <name>timeManager</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/main.cpp" line="61" column="13"/>
+        <referencedby refid="class_logger_manager_1a321bbaf7cc3b3aa05c8ec036d4dbfea0" compoundref="_logger_manager_8cpp" startline="8" endline="16">LoggerManager::LoggerManager</referencedby>
+        <referencedby refid="main_8cpp_1afe461d27b9c48d5921c00d521181f12f" compoundref="main_8cpp" startline="197" endline="221">loop</referencedby>
+        <referencedby refid="main_8cpp_1a4fc01d736fe50cf5b977f755b675f11d" compoundref="main_8cpp" startline="65" endline="195">setup</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="main_8cpp_1a543ccc95fbe6dd49b01bdc937630a4ac" prot="public" static="no" mutable="no">
+        <type><ref refid="class_logger_manager" kindref="compound">LoggerManager</ref></type>
+        <definition>LoggerManager logger(controller, timeManager, SD)</definition>
+        <argsstring>(controller, timeManager, SD)</argsstring>
+        <name>logger</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/main.cpp" line="63" column="15"/>
+        <referencedby refid="main_8cpp_1afe461d27b9c48d5921c00d521181f12f" compoundref="main_8cpp" startline="197" endline="221">loop</referencedby>
+        <referencedby refid="main_8cpp_1a4fc01d736fe50cf5b977f755b675f11d" compoundref="main_8cpp" startline="65" endline="195">setup</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="main_8cpp_1a4fc01d736fe50cf5b977f755b675f11d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void setup</definition>
+        <argsstring>()</argsstring>
+        <name>setup</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/main.cpp" line="65" column="6" bodyfile="src/main.cpp" bodystart="65" bodyend="195"/>
+        <references refid="main_8cpp_1a064a914bb7eaaf470d545cab5f0c0066" compoundref="main_8cpp" startline="56">configManager</references>
+        <references refid="main_8cpp_1aecbe6ad38ed7d220ace280ea33d8ab45">controller</references>
+        <references refid="main_8cpp_1a95f9de1cf4510511738011cf4d21cc3c" compoundref="main_8cpp" startline="26">CS1_PIN</references>
+        <references refid="main_8cpp_1a8b6fd3026aab783c2174d35c4863fe33" compoundref="main_8cpp" startline="27">CS2_PIN</references>
+        <references refid="main_8cpp_1a2bbb00acc3fac5af03284d9e6f5bd81c" compoundref="main_8cpp" startline="28">CS3_PIN</references>
+        <references refid="main_8cpp_1a381c4ec472645df12a56af0259d17f50" compoundref="main_8cpp" startline="29">CS4_PIN</references>
+        <references refid="main_8cpp_1ae6cc20a4c5a6166265bf43e48202617e" compoundref="main_8cpp" startline="31">CS5_PIN_TF_CARD</references>
+        <references refid="main_8cpp_1adbd2ea2266042c0b767e0fdac0c55d64" compoundref="main_8cpp" startline="37">DE_PIN</references>
+        <references refid="main_8cpp_1a212ca328a6409c98f8c3dfbbe1ba561d" compoundref="main_8cpp" startline="43">I2C_SCL</references>
+        <references refid="main_8cpp_1a18aefd12ad84d4c33dc97923cb821e47" compoundref="main_8cpp" startline="42">I2C_SDA</references>
+        <references refid="main_8cpp_1a543ccc95fbe6dd49b01bdc937630a4ac">logger</references>
+        <references refid="main_8cpp_1aecb75580e6d96b71a64123aee5bd3929" compoundref="main_8cpp" startline="23">MISO_PIN</references>
+        <references refid="main_8cpp_1a4d17575d4300b383a3726118c7dba5ef" compoundref="main_8cpp" startline="59">modbusServer</references>
+        <references refid="main_8cpp_1a11338fccf824b29757c2b23edb0f690f" compoundref="main_8cpp" startline="24">MOSI_PIN</references>
+        <references refid="main_8cpp_1aa7089c01538b339ae745173c117f95b9" compoundref="main_8cpp" startline="35">RX_PIN</references>
+        <references refid="main_8cpp_1a01153037fca70cfac03c8d67f17d766a" compoundref="main_8cpp" startline="22">SCK_PIN</references>
+        <references refid="main_8cpp_1ad27a531589f8fed0687abe50e4ab32dc">timeManager</references>
+        <references refid="main_8cpp_1a3bb17f5daa2b1eaef58c8aa2d989e27e" compoundref="main_8cpp" startline="36">TX_PIN</references>
+      </memberdef>
+      <memberdef kind="function" id="main_8cpp_1afe461d27b9c48d5921c00d521181f12f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void loop</definition>
+        <argsstring>()</argsstring>
+        <name>loop</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/main.cpp" line="197" column="6" bodyfile="src/main.cpp" bodystart="197" bodyend="221"/>
+        <references refid="main_8cpp_1a064a914bb7eaaf470d545cab5f0c0066" compoundref="main_8cpp" startline="56">configManager</references>
+        <references refid="main_8cpp_1aecbe6ad38ed7d220ace280ea33d8ab45">controller</references>
+        <references refid="main_8cpp_1a543ccc95fbe6dd49b01bdc937630a4ac">logger</references>
+        <references refid="main_8cpp_1ad27a531589f8fed0687abe50e4ab32dc">timeManager</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&lt;Arduino.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_temperature_controller_8h" kindref="compound">TemperatureController.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_temp_modbus_server_8h" kindref="compound">TempModbusServer.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_config_manager_8h" kindref="compound">ConfigManager.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_indicator_interface_8h" kindref="compound">IndicatorInterface.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;SPI.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_time_manager_8h" kindref="compound">TimeManager.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_logger_manager_8h" kindref="compound">LoggerManager.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Create<sp/>temperature<sp/>controller</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//DS18B20<sp/>PINs</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15" refid="main_8cpp_1ad0c1f84a4e0ecd91e5e90f215bf80540" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BUS1_PIN<sp/><sp/>4</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16" refid="main_8cpp_1ab048e547366b8ce86c0adbf08a8b472c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BUS2_PIN<sp/><sp/>5</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17" refid="main_8cpp_1ac49d737679d0daa5c1ad94069632a6b9" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BUS3_PIN<sp/><sp/>18</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18" refid="main_8cpp_1aae717cc08d7660a544aa5d25bc49328e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BUS4_PIN<sp/><sp/>19</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">//PT1000<sp/>PINs</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">//SPI<sp/>PINs</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="main_8cpp_1a01153037fca70cfac03c8d67f17d766a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SCK_PIN<sp/><sp/>14</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23" refid="main_8cpp_1aecb75580e6d96b71a64123aee5bd3929" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MISO_PIN<sp/><sp/>12</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24" refid="main_8cpp_1a11338fccf824b29757c2b23edb0f690f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MOSI_PIN<sp/><sp/>13</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26" refid="main_8cpp_1a95f9de1cf4510511738011cf4d21cc3c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CS1_PIN<sp/><sp/>32</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27" refid="main_8cpp_1a8b6fd3026aab783c2174d35c4863fe33" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CS2_PIN<sp/><sp/>33</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28" refid="main_8cpp_1a2bbb00acc3fac5af03284d9e6f5bd81c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CS3_PIN<sp/><sp/>26</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29" refid="main_8cpp_1a381c4ec472645df12a56af0259d17f50" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CS4_PIN<sp/><sp/>27</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="main_8cpp_1ae6cc20a4c5a6166265bf43e48202617e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CS5_PIN_TF_CARD<sp/><sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="comment">//RS485<sp/>PINs</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35" refid="main_8cpp_1aa7089c01538b339ae745173c117f95b9" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>RX_PIN<sp/><sp/>22<sp/></highlight><highlight class="comment">//to<sp/>rxd</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36" refid="main_8cpp_1a3bb17f5daa2b1eaef58c8aa2d989e27e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TX_PIN<sp/><sp/>23<sp/></highlight><highlight class="comment">//to<sp/>txd</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37" refid="main_8cpp_1adbd2ea2266042c0b767e0fdac0c55d64" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DE_PIN<sp/><sp/>-1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="comment">//<sp/>I2C<sp/>pins<sp/>for<sp/>WROVER<sp/>(avoiding<sp/>conflicts)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42" refid="main_8cpp_1a18aefd12ad84d4c33dc97923cb821e47" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>I2C_SDA<sp/>21<sp/><sp/></highlight><highlight class="comment">//<sp/>Default<sp/>SDA,<sp/>available</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43" refid="main_8cpp_1a212ca328a6409c98f8c3dfbbe1ba561d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>I2C_SCL<sp/>25<sp/><sp/></highlight><highlight class="comment">//<sp/>Alternative<sp/>SCL<sp/>(GPIO<sp/>22<sp/>used<sp/>by<sp/>RS485)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44" refid="main_8cpp_1a4e96da313fa726b5b120e6d2461248cd" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PCF_INT<sp/>34<sp/></highlight><highlight class="comment">//<sp/>PCF<sp/>expander<sp/>interupt<sp/>pin</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46" refid="main_8cpp_1a009a384f716fb318dbb3ca6c01f82cf6" refkind="member"><highlight class="normal"><ref refid="class_indicator_interface" kindref="compound">IndicatorInterface</ref><sp/><ref refid="main_8cpp_1a009a384f716fb318dbb3ca6c01f82cf6" kindref="member">indicator</ref>(Wire,<sp/>0x20,<sp/><ref refid="main_8cpp_1a4e96da313fa726b5b120e6d2461248cd" kindref="member">PCF_INT</ref>);<sp/><sp/></highlight><highlight class="comment">//<sp/>I2C<sp/>address<sp/>0x20,<sp/>INT<sp/>pin<sp/>34</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51" refid="main_8cpp_1a42643b111a01e68b13ba177173ca18f2" refkind="member"><highlight class="normal">uint8_t<sp/><ref refid="main_8cpp_1a42643b111a01e68b13ba177173ca18f2" kindref="member">onwWirePins</ref>[4]<sp/>=<sp/>{<ref refid="main_8cpp_1ad0c1f84a4e0ecd91e5e90f215bf80540" kindref="member">BUS1_PIN</ref>,<sp/><sp/><ref refid="main_8cpp_1ab048e547366b8ce86c0adbf08a8b472c" kindref="member">BUS2_PIN</ref>,<sp/><ref refid="main_8cpp_1ac49d737679d0daa5c1ad94069632a6b9" kindref="member">BUS3_PIN</ref>,<sp/><ref refid="main_8cpp_1aae717cc08d7660a544aa5d25bc49328e" kindref="member">BUS4_PIN</ref>};</highlight></codeline>
+<codeline lineno="52" refid="main_8cpp_1ab7afb3d24d4590b3ba10970a6bff2631" refkind="member"><highlight class="normal">uint8_t<sp/><ref refid="main_8cpp_1ab7afb3d24d4590b3ba10970a6bff2631" kindref="member">csPins</ref>[4]<sp/>=<sp/>{<ref refid="main_8cpp_1a95f9de1cf4510511738011cf4d21cc3c" kindref="member">CS1_PIN</ref>,<sp/><sp/><ref refid="main_8cpp_1a8b6fd3026aab783c2174d35c4863fe33" kindref="member">CS2_PIN</ref>,<sp/><ref refid="main_8cpp_1a2bbb00acc3fac5af03284d9e6f5bd81c" kindref="member">CS3_PIN</ref>,<sp/><ref refid="main_8cpp_1a381c4ec472645df12a56af0259d17f50" kindref="member">CS4_PIN</ref>};</highlight></codeline>
+<codeline lineno="53" refid="main_8cpp_1aecbe6ad38ed7d220ace280ea33d8ab45" refkind="member"><highlight class="normal"><ref refid="class_temperature_controller" kindref="compound">TemperatureController</ref><sp/><ref refid="main_8cpp_1aecbe6ad38ed7d220ace280ea33d8ab45" kindref="member">controller</ref>(<ref refid="main_8cpp_1a42643b111a01e68b13ba177173ca18f2" kindref="member">onwWirePins</ref>,<sp/><ref refid="main_8cpp_1ab7afb3d24d4590b3ba10970a6bff2631" kindref="member">csPins</ref>,<sp/><ref refid="main_8cpp_1a009a384f716fb318dbb3ca6c01f82cf6" kindref="member">indicator</ref>);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Create<sp/>configuration<sp/>manager</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56" refid="main_8cpp_1a064a914bb7eaaf470d545cab5f0c0066" refkind="member"><highlight class="normal"><ref refid="class_config_manager" kindref="compound">ConfigManager</ref>*<sp/><ref refid="main_8cpp_1a064a914bb7eaaf470d545cab5f0c0066" kindref="member">configManager</ref>;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Create<sp/>Modbus<sp/>server</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59" refid="main_8cpp_1a4d17575d4300b383a3726118c7dba5ef" refkind="member"><highlight class="normal"><ref refid="class_temp_modbus_server" kindref="compound">TempModbusServer</ref>*<sp/><ref refid="main_8cpp_1a4d17575d4300b383a3726118c7dba5ef" kindref="member">modbusServer</ref>;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61" refid="main_8cpp_1ad27a531589f8fed0687abe50e4ab32dc" refkind="member"><highlight class="normal"><ref refid="class_time_manager" kindref="compound">TimeManager</ref><sp/><ref refid="main_8cpp_1ad27a531589f8fed0687abe50e4ab32dc" kindref="member">timeManager</ref>(<ref refid="main_8cpp_1a18aefd12ad84d4c33dc97923cb821e47" kindref="member">I2C_SDA</ref>,<sp/><ref refid="main_8cpp_1a212ca328a6409c98f8c3dfbbe1ba561d" kindref="member">I2C_SCL</ref>);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63" refid="main_8cpp_1a543ccc95fbe6dd49b01bdc937630a4ac" refkind="member"><highlight class="normal"><ref refid="class_logger_manager" kindref="compound">LoggerManager</ref><sp/><ref refid="main_8cpp_1a543ccc95fbe6dd49b01bdc937630a4ac" kindref="member">logger</ref>(<ref refid="main_8cpp_1aecbe6ad38ed7d220ace280ea33d8ab45" kindref="member">controller</ref>,<sp/><ref refid="main_8cpp_1ad27a531589f8fed0687abe50e4ab32dc" kindref="member">timeManager</ref>,<sp/>SD);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65" refid="main_8cpp_1a4fc01d736fe50cf5b977f755b675f11d" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="main_8cpp_1a4fc01d736fe50cf5b977f755b675f11d" kindref="member">setup</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Initialize<sp/>serial<sp/>for<sp/>debugging</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>Serial.begin(115200);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(!Serial)<sp/>{}</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Initialize<sp/>I2C</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>Wire.begin(<ref refid="main_8cpp_1a18aefd12ad84d4c33dc97923cb821e47" kindref="member">I2C_SDA</ref>,<sp/><ref refid="main_8cpp_1a212ca328a6409c98f8c3dfbbe1ba561d" kindref="member">I2C_SCL</ref>);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>Wire.setClock(100000);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>SPI.begin(<ref refid="main_8cpp_1a01153037fca70cfac03c8d67f17d766a" kindref="member">SCK_PIN</ref>,<sp/><ref refid="main_8cpp_1aecb75580e6d96b71a64123aee5bd3929" kindref="member">MISO_PIN</ref>,<sp/><ref refid="main_8cpp_1a11338fccf824b29757c2b23edb0f690f" kindref="member">MOSI_PIN</ref>);<sp/><sp/></highlight><highlight class="comment">//<sp/>SCK,<sp/>MISO,<sp/>MOSI,<sp/>SS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Initialize<sp/>time<sp/>manager</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="main_8cpp_1ad27a531589f8fed0687abe50e4ab32dc" kindref="member">timeManager</ref>.init())<sp/>{</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Serial.println(</highlight><highlight class="stringliteral">&quot;TimeManager<sp/>initialized<sp/>successfully&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Set<sp/>timezone<sp/>(GMT+3<sp/>for<sp/>Moscow)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="main_8cpp_1ad27a531589f8fed0687abe50e4ab32dc" kindref="member">timeManager</ref>.setTimezone(3,<sp/>0);</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Configure<sp/>logging</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="main_8cpp_1a543ccc95fbe6dd49b01bdc937630a4ac" kindref="member">logger</ref>.setLogDirectory(</highlight><highlight class="stringliteral">&quot;/data&quot;</highlight><highlight class="normal">);<sp/></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="main_8cpp_1a543ccc95fbe6dd49b01bdc937630a4ac" kindref="member">logger</ref>.setAlarmStateLogDirectory(</highlight><highlight class="stringliteral">&quot;/alarms&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="main_8cpp_1a543ccc95fbe6dd49b01bdc937630a4ac" kindref="member">logger</ref>.setEventLogDirectory(</highlight><highlight class="stringliteral">&quot;/events&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="main_8cpp_1a543ccc95fbe6dd49b01bdc937630a4ac" kindref="member">logger</ref>.setLogFrequency(2000);<sp/><sp/></highlight><highlight class="comment">//<sp/>Log<sp/>every<sp/>30<sp/>seconds</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="main_8cpp_1a543ccc95fbe6dd49b01bdc937630a4ac" kindref="member">logger</ref>.setDailyFiles(</highlight><highlight class="keyword">true</highlight><highlight class="normal">);<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Create<sp/>new<sp/>file<sp/>each<sp/>day</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="main_8cpp_1a543ccc95fbe6dd49b01bdc937630a4ac" kindref="member">logger</ref>.setEnabled(</highlight><highlight class="keyword">true</highlight><highlight class="normal">);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Enable<sp/>logging</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Initialize<sp/>SD<sp/>card</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!SD.begin(<ref refid="main_8cpp_1ae6cc20a4c5a6166265bf43e48202617e" kindref="member">CS5_PIN_TF_CARD</ref>))<sp/>{</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Serial.println(</highlight><highlight class="stringliteral">&quot;SD<sp/>Card<sp/>initialization<sp/>failed&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="main_8cpp_1a543ccc95fbe6dd49b01bdc937630a4ac" kindref="member">logger</ref>.setEnabled(</highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//return;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Initialize<sp/>logger</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="main_8cpp_1a543ccc95fbe6dd49b01bdc937630a4ac" kindref="member">logger</ref>.init())<sp/>{</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Serial.println(</highlight><highlight class="stringliteral">&quot;Logger<sp/>initialization<sp/>failed&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Serial.println(</highlight><highlight class="stringliteral">&quot;Logger<sp/>initialized<sp/>successfully&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="main_8cpp_1a543ccc95fbe6dd49b01bdc937630a4ac" kindref="member">logger</ref>.info(</highlight><highlight class="stringliteral">&quot;SYSTEM&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;Temperature<sp/>controller<sp/>started&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Configure<sp/>all<sp/>CS<sp/>pins<sp/>as<sp/>OUTPUT</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/>pinMode(<ref refid="main_8cpp_1a95f9de1cf4510511738011cf4d21cc3c" kindref="member">CS1_PIN</ref>,<sp/>OUTPUT);</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/>pinMode(<ref refid="main_8cpp_1a8b6fd3026aab783c2174d35c4863fe33" kindref="member">CS2_PIN</ref>,<sp/>OUTPUT);<sp/></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/>pinMode(<ref refid="main_8cpp_1a2bbb00acc3fac5af03284d9e6f5bd81c" kindref="member">CS3_PIN</ref>,<sp/>OUTPUT);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>pinMode(<ref refid="main_8cpp_1a381c4ec472645df12a56af0259d17f50" kindref="member">CS4_PIN</ref>,<sp/>OUTPUT);</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//pinMode(CS5_PIN,<sp/>OUTPUT);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Set<sp/>all<sp/>CS<sp/>pins<sp/>HIGH<sp/>initially<sp/>(inactive)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/>digitalWrite(<ref refid="main_8cpp_1a95f9de1cf4510511738011cf4d21cc3c" kindref="member">CS1_PIN</ref>,<sp/>HIGH);</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>digitalWrite(<ref refid="main_8cpp_1a8b6fd3026aab783c2174d35c4863fe33" kindref="member">CS2_PIN</ref>,<sp/>HIGH);</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/>digitalWrite(<ref refid="main_8cpp_1a2bbb00acc3fac5af03284d9e6f5bd81c" kindref="member">CS3_PIN</ref>,<sp/>HIGH);</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/>digitalWrite(<ref refid="main_8cpp_1a381c4ec472645df12a56af0259d17f50" kindref="member">CS4_PIN</ref>,<sp/>HIGH);</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//digitalWrite(CS5_PIN,<sp/>HIGH);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/>Serial.println(</highlight><highlight class="stringliteral">&quot;\nIndustrial<sp/>Temperature<sp/>Monitoring<sp/>System&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/>Serial.println(</highlight><highlight class="stringliteral">&quot;--------------------------------------&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//controller<sp/>=<sp/>new<sp/>TemperatureController(onwWirePins);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/>Serial.println(</highlight><highlight class="stringliteral">&quot;\nController<sp/>created&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Initialize<sp/>controller</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="main_8cpp_1aecbe6ad38ed7d220ace280ea33d8ab45" kindref="member">controller</ref>.begin();</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/>Serial.println(</highlight><highlight class="stringliteral">&quot;\nController<sp/>begin&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Initialize<sp/>configuration<sp/>manager</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="main_8cpp_1a064a914bb7eaaf470d545cab5f0c0066" kindref="member">configManager</ref><sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="class_config_manager" kindref="compound">ConfigManager</ref>(<ref refid="main_8cpp_1aecbe6ad38ed7d220ace280ea33d8ab45" kindref="member">controller</ref>);</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="main_8cpp_1a064a914bb7eaaf470d545cab5f0c0066" kindref="member">configManager</ref>-&gt;begin())<sp/>{</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Serial.println(</highlight><highlight class="stringliteral">&quot;Failed<sp/>to<sp/>initialize<sp/>configuration<sp/>manager&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Apply<sp/>configuration<sp/>to<sp/>controller</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="main_8cpp_1aecbe6ad38ed7d220ace280ea33d8ab45" kindref="member">controller</ref>.setDeviceId(<ref refid="main_8cpp_1a064a914bb7eaaf470d545cab5f0c0066" kindref="member">configManager</ref>-&gt;getDeviceId());</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/>Serial.println(</highlight><highlight class="stringliteral">&quot;controller.setDeviceId(configManager-&gt;getDeviceId());&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="main_8cpp_1aecbe6ad38ed7d220ace280ea33d8ab45" kindref="member">controller</ref>.setMeasurementPeriod(<ref refid="main_8cpp_1a064a914bb7eaaf470d545cab5f0c0066" kindref="member">configManager</ref>-&gt;getMeasurementPeriod()*1000);</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/>Serial.println(</highlight><highlight class="stringliteral">&quot;controller.setMeasurementPeriod(configManager-&gt;getMeasurementPeriod());&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//controller.setOneWireBusPin(configManager-&gt;getOneWirePin());</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/>Serial.println(</highlight><highlight class="stringliteral">&quot;controller.setOneWireBusPin(configManager-&gt;getOneWirePin());&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Discover<sp/>DS18B20<sp/>sensors</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="main_8cpp_1aecbe6ad38ed7d220ace280ea33d8ab45" kindref="member">controller</ref>.discoverDS18B20Sensors();</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="main_8cpp_1aecbe6ad38ed7d220ace280ea33d8ab45" kindref="member">controller</ref>.discoverPTSensors();</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Initialize<sp/>Modbus<sp/>server<sp/>if<sp/>enabled<sp/>in<sp/>config</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="main_8cpp_1a064a914bb7eaaf470d545cab5f0c0066" kindref="member">configManager</ref>-&gt;isModbusEnabled())<sp/>{</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Serial.println(</highlight><highlight class="stringliteral">&quot;Init<sp/>Modbus<sp/>RTU<sp/>server...&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="main_8cpp_1a4d17575d4300b383a3726118c7dba5ef" kindref="member">modbusServer</ref><sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="class_temp_modbus_server" kindref="compound">TempModbusServer</ref>(</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="main_8cpp_1aecbe6ad38ed7d220ace280ea33d8ab45" kindref="member">controller</ref>.getRegisterMap(),</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="main_8cpp_1a064a914bb7eaaf470d545cab5f0c0066" kindref="member">configManager</ref>-&gt;getModbusAddress(),</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Serial2,</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="main_8cpp_1aa7089c01538b339ae745173c117f95b9" kindref="member">RX_PIN</ref>,</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="main_8cpp_1a3bb17f5daa2b1eaef58c8aa2d989e27e" kindref="member">TX_PIN</ref>,</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="main_8cpp_1adbd2ea2266042c0b767e0fdac0c55d64" kindref="member">DE_PIN</ref>,</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="main_8cpp_1a064a914bb7eaaf470d545cab5f0c0066" kindref="member">configManager</ref>-&gt;getModbusBaudRate()</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>);</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Serial.println(</highlight><highlight class="stringliteral">&quot;Init<sp/>Modbus<sp/>RTU<sp/>server!&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="main_8cpp_1a4d17575d4300b383a3726118c7dba5ef" kindref="member">modbusServer</ref>-&gt;begin())<sp/>{</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Serial.println(</highlight><highlight class="stringliteral">&quot;Modbus<sp/>RTU<sp/>server<sp/>started<sp/>successfully&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Serial.println(</highlight><highlight class="stringliteral">&quot;Failed<sp/>to<sp/>start<sp/>Modbus<sp/>RTU<sp/>server&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"></highlight></codeline>
+<codeline lineno="180"><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="main_8cpp_1ad27a531589f8fed0687abe50e4ab32dc" kindref="member">timeManager</ref>.begin()){</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Sync<sp/>with<sp/>NTP<sp/>when<sp/>WiFi<sp/>connects</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(WiFi.status()<sp/>==<sp/>WL_CONNECTED)<sp/>{</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="main_8cpp_1ad27a531589f8fed0687abe50e4ab32dc" kindref="member">timeManager</ref>.setTimeFromNTP();</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="main_8cpp_1a543ccc95fbe6dd49b01bdc937630a4ac" kindref="member">logger</ref>.begin();</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"></highlight></codeline>
+<codeline lineno="190"><highlight class="normal"></highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="192"><highlight class="normal"></highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/>Serial.println(</highlight><highlight class="stringliteral">&quot;\nSystem<sp/>is<sp/>now<sp/>running...&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="195"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"></highlight></codeline>
+<codeline lineno="197" refid="main_8cpp_1afe461d27b9c48d5921c00d521181f12f" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="main_8cpp_1afe461d27b9c48d5921c00d521181f12f" kindref="member">loop</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Update<sp/>configuration<sp/>manager</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="main_8cpp_1ad27a531589f8fed0687abe50e4ab32dc" kindref="member">timeManager</ref>.update();</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="main_8cpp_1a064a914bb7eaaf470d545cab5f0c0066" kindref="member">configManager</ref>-&gt;update();</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Update<sp/>controller<sp/>(reads<sp/>sensors<sp/>and<sp/>updates<sp/>register<sp/>map)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="main_8cpp_1aecbe6ad38ed7d220ace280ea33d8ab45" kindref="member">controller</ref>.update();</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Print<sp/>status<sp/>every<sp/>30<sp/>seconds<sp/>if<sp/>not<sp/>in<sp/>portal<sp/>mode</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>lastPrintTime<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="main_8cpp_1a064a914bb7eaaf470d545cab5f0c0066" kindref="member">configManager</ref>-&gt;isPortalActive()<sp/>&amp;&amp;<sp/>millis()<sp/>-<sp/>lastPrintTime<sp/>&gt;<sp/><ref refid="main_8cpp_1aecbe6ad38ed7d220ace280ea33d8ab45" kindref="member">controller</ref>.getMeasurementPeriod())<sp/>{</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Serial.println(&quot;\nSensors<sp/>Status:&quot;);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Serial.println(controller.getSystemStatusJson());</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Serial.println(controller.getSensorsJson());</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Serial.println(&quot;\nPoints<sp/>Status:&quot;);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Serial.println(controller.getSystemStatusJson());</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Serial.println(controller.getPointsJson());</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lastPrintTime<sp/>=<sp/>millis();</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="main_8cpp_1a543ccc95fbe6dd49b01bdc937630a4ac" kindref="member">logger</ref>.update();</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Small<sp/>delay<sp/>to<sp/>prevent<sp/>CPU<sp/>hogging</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/>delay(100);</highlight></codeline>
+<codeline lineno="221"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="src/main.cpp"/>
+  </compounddef>
+</doxygen>

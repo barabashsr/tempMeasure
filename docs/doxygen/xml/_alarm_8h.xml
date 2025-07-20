@@ -1,0 +1,465 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="_alarm_8h" kind="file" language="C++">
+    <compoundname>Alarm.h</compoundname>
+    <includes local="no">Arduino.h</includes>
+    <includes local="no">vector</includes>
+    <includes refid="_measurement_point_8h" local="yes">MeasurementPoint.h</includes>
+    <includes refid="_logger_manager_8h" local="yes">LoggerManager.h</includes>
+    <includedby refid="_temperature_controller_8h" local="yes">include/TemperatureController.h</includedby>
+    <includedby refid="_alarm_8cpp" local="yes">src/Alarm.cpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>include/Alarm.h</label>
+        <link refid="_alarm_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>LoggerManager.h</label>
+        <link refid="_logger_manager_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>MeasurementPoint.h</label>
+        <link refid="_measurement_point_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Sensor.h</label>
+        <link refid="_sensor_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>TimeManager.h</label>
+        <link refid="_time_manager_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>Adafruit_MAX31865.h</label>
+      </node>
+      <node id="2">
+        <label>Arduino.h</label>
+      </node>
+      <node id="18">
+        <label>ArduinoJson.h</label>
+      </node>
+      <node id="7">
+        <label>DallasTemperature.h</label>
+      </node>
+      <node id="10">
+        <label>FS.h</label>
+      </node>
+      <node id="16">
+        <label>NTPClient.h</label>
+      </node>
+      <node id="6">
+        <label>OneWire.h</label>
+      </node>
+      <node id="15">
+        <label>RTClib.h</label>
+      </node>
+      <node id="11">
+        <label>SD.h</label>
+      </node>
+      <node id="13">
+        <label>WiFi.h</label>
+      </node>
+      <node id="17">
+        <label>WiFiUdp.h</label>
+      </node>
+      <node id="14">
+        <label>Wire.h</label>
+      </node>
+      <node id="3">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>include/Alarm.h</label>
+        <link refid="_alarm_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>include/CSVConfigManager.h</label>
+        <link refid="_c_s_v_config_manager_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>include/ConfigManager.h</label>
+        <link refid="_config_manager_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>include/TemperatureController.h</label>
+        <link refid="_temperature_controller_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>src/Alarm.cpp</label>
+        <link refid="_alarm_8cpp"/>
+      </node>
+      <node id="7">
+        <label>src/CSVConfigManager.cpp</label>
+        <link refid="_c_s_v_config_manager_8cpp"/>
+      </node>
+      <node id="5">
+        <label>src/ConfigManager.cpp</label>
+        <link refid="_config_manager_8cpp"/>
+      </node>
+      <node id="8">
+        <label>src/LoggerManager.cpp</label>
+        <link refid="_logger_manager_8cpp"/>
+      </node>
+      <node id="9">
+        <label>src/TemperatureController.cpp</label>
+        <link refid="_temperature_controller_8cpp"/>
+      </node>
+      <node id="6">
+        <label>src/main.cpp</label>
+        <link refid="main_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="class_alarm" prot="public">Alarm</innerclass>
+    <innerclass refid="struct_alarm_comparator" prot="public">AlarmComparator</innerclass>
+    <sectiondef kind="enum">
+      <memberdef kind="enum" id="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>AlarmType</name>
+        <enumvalue id="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2a9ca8335873c44a53b8f7c5fc526ee59b" prot="public">
+          <name>HIGH_TEMPERATURE</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2acf7e66cec00ad7027a2f00fec418ed71" prot="public">
+          <name>LOW_TEMPERATURE</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2a3993b9fcdbf9ec59e873519a4d02fe2f" prot="public">
+          <name>SENSOR_ERROR</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2ab4fed37e8cab6ef5684a361be786d8de" prot="public">
+          <name>SENSOR_DISCONNECTED</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="11" column="1" bodyfile="include/Alarm.h" bodystart="11" bodyend="16"/>
+      </memberdef>
+      <memberdef kind="enum" id="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eb" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>AlarmStage</name>
+        <enumvalue id="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba24d459a81449d7210c8f9a86c2913034" prot="public">
+          <name>NEW</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba62574ee27e6c5f985a6bc1dc344e7438" prot="public">
+          <name>CLEARED</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba874584b84df5da74c3964d8efbff7a02" prot="public">
+          <name>RESOLVED</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba7e83ae21b9e9b168f12ba5a90ee82c94" prot="public">
+          <name>ACKNOWLEDGED</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba18ff74f43da410c5529f7d6fca84f115" prot="public">
+          <name>ACTIVE</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="19" column="1" bodyfile="include/Alarm.h" bodystart="19" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="enum" id="_alarm_8h_1a5a708c1a1540361a33a030066a7c321b" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>AlarmPriority</name>
+        <enumvalue id="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba4a2343657e145cb3dab4f445d2c29b1f" prot="public">
+          <name>PRIORITY_LOW</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba7e5ab414d2d201947566a9c574a7b85f" prot="public">
+          <name>PRIORITY_MEDIUM</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba47a10a0fba7f10a751e6ea38f3d6a1e3" prot="public">
+          <name>PRIORITY_HIGH</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba5f9223804ac004dc2fad18afc18a3951" prot="public">
+          <name>PRIORITY_CRITICAL</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/Alarm.h" line="29" column="1" bodyfile="include/Alarm.h" bodystart="29" bodyend="34"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Arduino.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_measurement_point_8h" kindref="compound">MeasurementPoint.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_logger_manager_8h" kindref="compound">LoggerManager.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Forward<sp/>declaration</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_measurement_point" kindref="compound">MeasurementPoint</ref>;</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11" refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/><ref refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2" kindref="member">AlarmType</ref><sp/>{</highlight></codeline>
+<codeline lineno="12" refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2a9ca8335873c44a53b8f7c5fc526ee59b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2a9ca8335873c44a53b8f7c5fc526ee59b" kindref="member">HIGH_TEMPERATURE</ref>,<sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>This<sp/>should<sp/>be<sp/>OK<sp/>since<sp/>it&apos;s<sp/>not<sp/>just<sp/>&quot;HIGH&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13" refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2acf7e66cec00ad7027a2f00fec418ed71" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2acf7e66cec00ad7027a2f00fec418ed71" kindref="member">LOW_TEMPERATURE</ref>,<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>This<sp/>should<sp/>be<sp/>OK<sp/>since<sp/>it&apos;s<sp/>not<sp/>just<sp/>&quot;LOW&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14" refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2a3993b9fcdbf9ec59e873519a4d02fe2f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2a3993b9fcdbf9ec59e873519a4d02fe2f" kindref="member">SENSOR_ERROR</ref>,</highlight></codeline>
+<codeline lineno="15" refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2ab4fed37e8cab6ef5684a361be786d8de" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2ab4fed37e8cab6ef5684a361be786d8de" kindref="member">SENSOR_DISCONNECTED</ref></highlight></codeline>
+<codeline lineno="16"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eb" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/><ref refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eb" kindref="member">AlarmStage</ref><sp/>{</highlight></codeline>
+<codeline lineno="20" refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba24d459a81449d7210c8f9a86c2913034" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba24d459a81449d7210c8f9a86c2913034" kindref="member">NEW</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Just<sp/>triggered</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21" refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba62574ee27e6c5f985a6bc1dc344e7438" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba62574ee27e6c5f985a6bc1dc344e7438" kindref="member">CLEARED</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Condition<sp/>cleared<sp/>but<sp/>still<sp/>in<sp/>delay</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba874584b84df5da74c3964d8efbff7a02" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba874584b84df5da74c3964d8efbff7a02" kindref="member">RESOLVED</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Fully<sp/>resolved</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23" refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba7e83ae21b9e9b168f12ba5a90ee82c94" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba7e83ae21b9e9b168f12ba5a90ee82c94" kindref="member">ACKNOWLEDGED</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Operator<sp/>acknowledged</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24" refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba18ff74f43da410c5529f7d6fca84f115" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba18ff74f43da410c5529f7d6fca84f115" kindref="member">ACTIVE</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Confirmed<sp/>and<sp/>active</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29" refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321b" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/><ref refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321b" kindref="member">AlarmPriority</ref><sp/>{</highlight></codeline>
+<codeline lineno="30" refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba4a2343657e145cb3dab4f445d2c29b1f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba4a2343657e145cb3dab4f445d2c29b1f" kindref="member">PRIORITY_LOW</ref>,</highlight></codeline>
+<codeline lineno="31" refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba7e5ab414d2d201947566a9c574a7b85f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba7e5ab414d2d201947566a9c574a7b85f" kindref="member">PRIORITY_MEDIUM</ref>,</highlight></codeline>
+<codeline lineno="32" refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba47a10a0fba7f10a751e6ea38f3d6a1e3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba47a10a0fba7f10a751e6ea38f3d6a1e3" kindref="member">PRIORITY_HIGH</ref>,</highlight></codeline>
+<codeline lineno="33" refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba5f9223804ac004dc2fad18afc18a3951" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba5f9223804ac004dc2fad18afc18a3951" kindref="member">PRIORITY_CRITICAL</ref></highlight></codeline>
+<codeline lineno="34"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37" refid="class_alarm" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_alarm_1abf159b68e429d66de4ab2d10c2ccd44b" kindref="member">Alarm</ref><sp/>{</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Constructor</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_alarm_1abf159b68e429d66de4ab2d10c2ccd44b" kindref="member">Alarm</ref>(<ref refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2" kindref="member">AlarmType</ref><sp/>type,<sp/><ref refid="class_measurement_point" kindref="compound">MeasurementPoint</ref>*<sp/>source,<sp/><ref refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321b" kindref="member">AlarmPriority</ref><sp/>priority<sp/>=<sp/><ref refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba7e5ab414d2d201947566a9c574a7b85f" kindref="member">AlarmPriority::PRIORITY_MEDIUM</ref>);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Destructor</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_alarm_1adb5fc73041badc6a082b78874559c002" kindref="member">~Alarm</ref>();</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Getters</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46" refid="class_alarm_1acfac41af4628d83d3fdcc11c8fb55069" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2" kindref="member">AlarmType</ref><sp/><ref refid="class_alarm_1acfac41af4628d83d3fdcc11c8fb55069" kindref="member">getType</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_alarm_1af86f7649c30db0d2cd6d4498032bb20d" kindref="member">_type</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="47" refid="class_alarm_1af01cabf2a19aa3b74848f0a5483ba3fb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eb" kindref="member">AlarmStage</ref><sp/><ref refid="class_alarm_1af01cabf2a19aa3b74848f0a5483ba3fb" kindref="member">getStage</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_alarm_1a57c98ffd9577dc379176e3402d03913c" kindref="member">_stage</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="48" refid="class_alarm_1abe89e376d8cacb582717ad6a65526ee8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321b" kindref="member">AlarmPriority</ref><sp/><ref refid="class_alarm_1abe89e376d8cacb582717ad6a65526ee8" kindref="member">getPriority</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_alarm_1a4b4fbc531464f77b58da6954dd146d65" kindref="member">_priority</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="49" refid="class_alarm_1aa86c4f3280ad82c9679af1c765a6bc92" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_measurement_point" kindref="compound">MeasurementPoint</ref>*<sp/><ref refid="class_alarm_1aa86c4f3280ad82c9679af1c765a6bc92" kindref="member">getSource</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_alarm_1a1f87216f47e3421c09b6a2531963b24d" kindref="member">_source</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="50" refid="class_alarm_1a7a4a3290a6a659542f82fe08a96736a8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><ref refid="class_alarm_1a7a4a3290a6a659542f82fe08a96736a8" kindref="member">getTimestamp</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_alarm_1a605637fd697184aa6c1a003e80703a47" kindref="member">_timestamp</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="51" refid="class_alarm_1afaa86db89313d8b1c211c3c8faf5b898" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><ref refid="class_alarm_1afaa86db89313d8b1c211c3c8faf5b898" kindref="member">getAcknowledgedTime</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_alarm_1a25eda4c86523595ed5630424ab66e2ec" kindref="member">_acknowledgedTime</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="52" refid="class_alarm_1a478b46ecceac6f58202312a4172317df" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><ref refid="class_alarm_1a478b46ecceac6f58202312a4172317df" kindref="member">getClearedTime</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_alarm_1ad071235bbd9594fcf2adb144e88344c0" kindref="member">_clearedTime</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="53" refid="class_alarm_1a374523d1bf014ab315a48b8f0390c04f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>String<sp/><ref refid="class_alarm_1a374523d1bf014ab315a48b8f0390c04f" kindref="member">getMessage</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_alarm_1af47cc719207c7988954c082b0b80896d" kindref="member">_message</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="54" refid="class_alarm_1ad97af04ffed790b34e193142abd501ce" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_alarm_1ad97af04ffed790b34e193142abd501ce" kindref="member">isActive</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_alarm_1a57c98ffd9577dc379176e3402d03913c" kindref="member">_stage</ref><sp/>==<sp/><ref refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba18ff74f43da410c5529f7d6fca84f115" kindref="member">AlarmStage::ACTIVE</ref><sp/>||<sp/><ref refid="class_alarm_1a57c98ffd9577dc379176e3402d03913c" kindref="member">_stage</ref><sp/>==<sp/><ref refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba7e83ae21b9e9b168f12ba5a90ee82c94" kindref="member">AlarmStage::ACKNOWLEDGED</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="55" refid="class_alarm_1a14fab6d447b1eeef21234ffcf47986bf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_alarm_1a14fab6d447b1eeef21234ffcf47986bf" kindref="member">isAcknowledged</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_alarm_1a57c98ffd9577dc379176e3402d03913c" kindref="member">_stage</ref><sp/>==<sp/><ref refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba7e83ae21b9e9b168f12ba5a90ee82c94" kindref="member">AlarmStage::ACKNOWLEDGED</ref><sp/>||<sp/><ref refid="class_alarm_1a57c98ffd9577dc379176e3402d03913c" kindref="member">_stage</ref><sp/>==<sp/><ref refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba62574ee27e6c5f985a6bc1dc344e7438" kindref="member">AlarmStage::CLEARED</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="56" refid="class_alarm_1a36ca346131618f5995dbea4f00f2a4dc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_alarm_1a36ca346131618f5995dbea4f00f2a4dc" kindref="member">isResolved</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_alarm_1a57c98ffd9577dc379176e3402d03913c" kindref="member">_stage</ref><sp/>==<sp/><ref refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba874584b84df5da74c3964d8efbff7a02" kindref="member">AlarmStage::RESOLVED</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>State<sp/>management</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_alarm_1aa14f5a764303b269f04573867e2e4fc8" kindref="member">acknowledge</ref>();</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_alarm_1adc66e3d22e173b00c59b040369030a17" kindref="member">clear</ref>();</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_alarm_1a73e7673d61f82aa21441c75f2cee2c6f" kindref="member">resolve</ref>();</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_alarm_1af8d75ee8622a2a96f4bc9b408e9668e5" kindref="member">reactivate</ref>();</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Update<sp/>alarm<sp/>condition</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_alarm_1abc87fe39e6a9b5beb9f09df780f67621" kindref="member">updateCondition</ref>();</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Display<sp/>methods</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>String<sp/><ref refid="class_alarm_1a480e1d6d474da0cd4e5dd557e41cb87e" kindref="member">getDisplayText</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>String<sp/><ref refid="class_alarm_1adaf4b74537e11d5643ba5a8ae07fe10e" kindref="member">getStatusText</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Alarm<sp/>behavior<sp/>configuration</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72" refid="class_alarm_1a34e3136dd5e8a5ca9fd2ac3a0c442ca3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_alarm_1a34e3136dd5e8a5ca9fd2ac3a0c442ca3" kindref="member">setDelayTime</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>delayMs)<sp/>{<sp/><ref refid="class_alarm_1a483c0308c4c2e27047ae10f194f4f414" kindref="member">_delayTime</ref><sp/>=<sp/>delayMs;<sp/>}</highlight></codeline>
+<codeline lineno="73" refid="class_alarm_1a70e0d351966a5cbe9fc77785f6d55939" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><ref refid="class_alarm_1a70e0d351966a5cbe9fc77785f6d55939" kindref="member">getDelayTime</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_alarm_1a483c0308c4c2e27047ae10f194f4f414" kindref="member">_delayTime</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Check<sp/>if<sp/>delay<sp/>has<sp/>elapsed</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_alarm_1aa14465fadcd29ef9b872f4b679d1d5b3" kindref="member">isDelayElapsed</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Comparison<sp/>operators<sp/>for<sp/>sorting</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_alarm_1ab9867ec0c314549960584f4ae01328f8" kindref="member">operator&lt;</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_alarm" kindref="compound">Alarm</ref>&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_alarm_1a2a6049ea9b003e51f5ac17aba40bb1ad" kindref="member">operator==</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_alarm" kindref="compound">Alarm</ref>&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>String<sp/><ref refid="class_alarm_1abd578ec75a5ac9bce00b7ce7207c5d8c" kindref="member">getTypeString</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>String<sp/><ref refid="class_alarm_1a5f0ead4dbd06aa64bd316d99dc587302" kindref="member">getStageString</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Configuration<sp/>support</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>String<sp/><ref refid="class_alarm_1ac096a4dfdf5d2cd201ff0a5a54b5ce42" kindref="member">getConfigKey</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_alarm_1ad116a3e8b622810e1769568fbac16379" kindref="member">setConfigKey</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>String&amp;<sp/>key);</highlight></codeline>
+<codeline lineno="88" refid="class_alarm_1ab1d04e5776db50454c72fd0937acdc37" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_alarm_1ab1d04e5776db50454c72fd0937acdc37" kindref="member">isEnabled</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_alarm_1af532c7945d25b47adf55d60cb91c86ae" kindref="member">_enabled</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_alarm_1acb8f203b2e2317c1f835bb4b19123f3f" kindref="member">setEnabled</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>enabled);</highlight></codeline>
+<codeline lineno="90" refid="class_alarm_1ab12dd2af567dd87228d9404dcce5b0c0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/><ref refid="class_alarm_1ab12dd2af567dd87228d9404dcce5b0c0" kindref="member">getPointAddress</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_alarm_1a1f87216f47e3421c09b6a2531963b24d" kindref="member">_source</ref><sp/>?<sp/><ref refid="class_alarm_1a1f87216f47e3421c09b6a2531963b24d" kindref="member">_source</ref>-&gt;getAddress()<sp/>:<sp/>255;<sp/>}</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_alarm_1a5095c54c304a52ebbaca5a2ea74059cd" kindref="member">setPriority</ref>(<ref refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321b" kindref="member">AlarmPriority</ref><sp/>priority);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_alarm_1a79ff8006ed51c565db4395350a25ad4e" kindref="member">setStage</ref>(<ref refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eb" kindref="member">AlarmStage</ref><sp/>stage);</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_alarm_1a8d031874090c0c0e548a1f2e41ea4979" kindref="member">setHysteresis</ref>(int16_t<sp/>hysteresis);</highlight></codeline>
+<codeline lineno="96" refid="class_alarm_1a952efd43b6a887659d56815bd5119d60" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>int16_t<sp/><ref refid="class_alarm_1a952efd43b6a887659d56815bd5119d60" kindref="member">getHysteresis</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_alarm_1a720fb269ec5c87744fedfecf8d060a95" kindref="member">_hysteresis</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_alarm_1a3f5329f9c026bad4f5171423fcaf51b0" kindref="member">setAcknowledgedDelay</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>delay);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><ref refid="class_alarm_1a585cf91e94a0e74d0ce1f6ce46c06614" kindref="member">getAcknowledgedDelay</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_alarm_1a6404e8478e8c2d726e9399ea1f2268b2" kindref="member">isAcknowledgedDelayElapsed</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><ref refid="class_alarm_1a1ab55390c07c38764b8264297b741b05" kindref="member">getAcknowledgedTimeLeft</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="107" refid="class_alarm_1af86f7649c30db0d2cd6d4498032bb20d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2" kindref="member">AlarmType</ref><sp/><ref refid="class_alarm_1af86f7649c30db0d2cd6d4498032bb20d" kindref="member">_type</ref>;</highlight></codeline>
+<codeline lineno="108" refid="class_alarm_1a57c98ffd9577dc379176e3402d03913c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eb" kindref="member">AlarmStage</ref><sp/><ref refid="class_alarm_1a57c98ffd9577dc379176e3402d03913c" kindref="member">_stage</ref>;</highlight></codeline>
+<codeline lineno="109" refid="class_alarm_1a4b4fbc531464f77b58da6954dd146d65" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321b" kindref="member">AlarmPriority</ref><sp/><ref refid="class_alarm_1a4b4fbc531464f77b58da6954dd146d65" kindref="member">_priority</ref>;</highlight></codeline>
+<codeline lineno="110" refid="class_alarm_1a1f87216f47e3421c09b6a2531963b24d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_measurement_point" kindref="compound">MeasurementPoint</ref>*<sp/><ref refid="class_alarm_1a1f87216f47e3421c09b6a2531963b24d" kindref="member">_source</ref>;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Timestamps</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113" refid="class_alarm_1a605637fd697184aa6c1a003e80703a47" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><ref refid="class_alarm_1a605637fd697184aa6c1a003e80703a47" kindref="member">_timestamp</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>When<sp/>alarm<sp/>was<sp/>created</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114" refid="class_alarm_1a25eda4c86523595ed5630424ab66e2ec" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><ref refid="class_alarm_1a25eda4c86523595ed5630424ab66e2ec" kindref="member">_acknowledgedTime</ref>;<sp/></highlight><highlight class="comment">//<sp/>When<sp/>alarm<sp/>was<sp/>acknowledged</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="115" refid="class_alarm_1ad071235bbd9594fcf2adb144e88344c0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><ref refid="class_alarm_1ad071235bbd9594fcf2adb144e88344c0" kindref="member">_clearedTime</ref>;<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>When<sp/>condition<sp/>cleared</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117" refid="class_alarm_1a720fb269ec5c87744fedfecf8d060a95" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>int16_t<sp/><ref refid="class_alarm_1a720fb269ec5c87744fedfecf8d060a95" kindref="member">_hysteresis</ref>;<sp/><sp/></highlight><highlight class="comment">//<sp/>Configurable<sp/>hysteresis<sp/>value</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Configuration</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="120" refid="class_alarm_1a483c0308c4c2e27047ae10f194f4f414" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><ref refid="class_alarm_1a483c0308c4c2e27047ae10f194f4f414" kindref="member">_delayTime</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Delay<sp/>before<sp/>auto-resolve</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Display<sp/>message</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="123" refid="class_alarm_1af47cc719207c7988954c082b0b80896d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>String<sp/><ref refid="class_alarm_1af47cc719207c7988954c082b0b80896d" kindref="member">_message</ref>;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Internal<sp/>methods</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_alarm_1a11b2da560dbc8653fa9dec671a78b980" kindref="member">_updateMessage</ref>();</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_alarm_1a28229f40ec51928641f04cd1e505bd6c" kindref="member">_checkCondition</ref>();</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/>String<sp/><ref refid="class_alarm_1a052a73879f5cd039f6f7cb7ce02e6a9d" kindref="member">_getPriorityString</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131" refid="class_alarm_1a784bac1bc016f0facc76176d893e3a90" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>String<sp/><ref refid="class_alarm_1a784bac1bc016f0facc76176d893e3a90" kindref="member">_configKey</ref>;<sp/><sp/></highlight><highlight class="comment">//<sp/>Format:<sp/>&quot;alarm_&lt;point&gt;_&lt;type&gt;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="132" refid="class_alarm_1af532c7945d25b47adf55d60cb91c86ae" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_alarm_1af532c7945d25b47adf55d60cb91c86ae" kindref="member">_enabled</ref>;<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Whether<sp/>this<sp/>alarm<sp/>is<sp/>active<sp/>in<sp/>configuration</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="133" refid="class_alarm_1a4ab562dd3179820f3694cbbd23b9dad5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><ref refid="class_alarm_1a4ab562dd3179820f3694cbbd23b9dad5" kindref="member">_acknowledgedDelay</ref>;<sp/></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>String<sp/><ref refid="class_alarm_1a052a73879f5cd039f6f7cb7ce02e6a9d" kindref="member">_getPriorityString</ref>(<ref refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321b" kindref="member">AlarmPriority</ref><sp/>priority)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="135"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Alarm<sp/>comparison<sp/>function<sp/>for<sp/>sorting<sp/>by<sp/>priority<sp/>and<sp/>timestamp</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="138" refid="struct_alarm_comparator" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_alarm_comparator" kindref="compound">AlarmComparator</ref><sp/>{</highlight></codeline>
+<codeline lineno="139" refid="struct_alarm_comparator_1a9e59c2531a3bd641d0b3d0cc10bffe54" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="struct_alarm_comparator_1a9e59c2531a3bd641d0b3d0cc10bffe54" kindref="member">operator()</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_alarm" kindref="compound">Alarm</ref>*<sp/>a,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_alarm" kindref="compound">Alarm</ref>*<sp/>b)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(a-&gt;<ref refid="class_alarm_1abe89e376d8cacb582717ad6a65526ee8" kindref="member">getPriority</ref>()<sp/>!=<sp/>b-&gt;<ref refid="class_alarm_1abe89e376d8cacb582717ad6a65526ee8" kindref="member">getPriority</ref>())<sp/>{</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(a-&gt;<ref refid="class_alarm_1abe89e376d8cacb582717ad6a65526ee8" kindref="member">getPriority</ref>())<sp/>&gt;<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(b-&gt;<ref refid="class_alarm_1abe89e376d8cacb582717ad6a65526ee8" kindref="member">getPriority</ref>());</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>a-&gt;<ref refid="class_alarm_1a7a4a3290a6a659542f82fe08a96736a8" kindref="member">getTimestamp</ref>()<sp/>&lt;<sp/>b-&gt;<ref refid="class_alarm_1a7a4a3290a6a659542f82fe08a96736a8" kindref="member">getTimestamp</ref>();</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="145"><highlight class="normal">};</highlight></codeline>
+    </programlisting>
+    <location file="include/Alarm.h"/>
+  </compounddef>
+</doxygen>
