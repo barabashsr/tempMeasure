@@ -93,6 +93,9 @@ $(function(){initNavTree('class_alarm.html','',''); });
 </div><!--header-->
 <div class="contents">
 
+<p>Main alarm class for temperature monitoring system.  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_alarm_8h_source.html">Alarm.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for Alarm:</div>
@@ -103,72 +106,131 @@ Collaboration diagram for Alarm:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:abf159b68e429d66de4ab2d10c2ccd44b" id="r_abf159b68e429d66de4ab2d10c2ccd44b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abf159b68e429d66de4ab2d10c2ccd44b">Alarm</a> (<a class="el" href="_alarm_8h.html#ab24e7dd602a82a4cf2afea61f26726e2">AlarmType</a> type, <a class="el" href="class_measurement_point.html">MeasurementPoint</a> *source, <a class="el" href="_alarm_8h.html#a5a708c1a1540361a33a030066a7c321b">AlarmPriority</a> priority=<a class="el" href="_alarm_8h.html#a5a708c1a1540361a33a030066a7c321ba7e5ab414d2d201947566a9c574a7b85f">AlarmPriority::PRIORITY_MEDIUM</a>)</td></tr>
+<tr class="memdesc:abf159b68e429d66de4ab2d10c2ccd44b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for creating a new alarm.  <br /></td></tr>
 <tr class="memitem:adb5fc73041badc6a082b78874559c002" id="r_adb5fc73041badc6a082b78874559c002"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adb5fc73041badc6a082b78874559c002">~Alarm</a> ()</td></tr>
+<tr class="memdesc:adb5fc73041badc6a082b78874559c002"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor for alarm cleanup.  <br /></td></tr>
 <tr class="memitem:acfac41af4628d83d3fdcc11c8fb55069" id="r_acfac41af4628d83d3fdcc11c8fb55069"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_alarm_8h.html#ab24e7dd602a82a4cf2afea61f26726e2">AlarmType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acfac41af4628d83d3fdcc11c8fb55069">getType</a> () const</td></tr>
+<tr class="memdesc:acfac41af4628d83d3fdcc11c8fb55069"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the alarm type.  <br /></td></tr>
 <tr class="memitem:af01cabf2a19aa3b74848f0a5483ba3fb" id="r_af01cabf2a19aa3b74848f0a5483ba3fb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_alarm_8h.html#a4999bf667fcedb69e70ee058d86785eb">AlarmStage</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af01cabf2a19aa3b74848f0a5483ba3fb">getStage</a> () const</td></tr>
+<tr class="memdesc:af01cabf2a19aa3b74848f0a5483ba3fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current alarm stage.  <br /></td></tr>
 <tr class="memitem:abe89e376d8cacb582717ad6a65526ee8" id="r_abe89e376d8cacb582717ad6a65526ee8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_alarm_8h.html#a5a708c1a1540361a33a030066a7c321b">AlarmPriority</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abe89e376d8cacb582717ad6a65526ee8">getPriority</a> () const</td></tr>
+<tr class="memdesc:abe89e376d8cacb582717ad6a65526ee8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the alarm priority.  <br /></td></tr>
 <tr class="memitem:aa86c4f3280ad82c9679af1c765a6bc92" id="r_aa86c4f3280ad82c9679af1c765a6bc92"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_measurement_point.html">MeasurementPoint</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa86c4f3280ad82c9679af1c765a6bc92">getSource</a> () const</td></tr>
+<tr class="memdesc:aa86c4f3280ad82c9679af1c765a6bc92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the source measurement point.  <br /></td></tr>
 <tr class="memitem:a7a4a3290a6a659542f82fe08a96736a8" id="r_a7a4a3290a6a659542f82fe08a96736a8"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7a4a3290a6a659542f82fe08a96736a8">getTimestamp</a> () const</td></tr>
+<tr class="memdesc:a7a4a3290a6a659542f82fe08a96736a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the alarm creation timestamp.  <br /></td></tr>
 <tr class="memitem:afaa86db89313d8b1c211c3c8faf5b898" id="r_afaa86db89313d8b1c211c3c8faf5b898"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afaa86db89313d8b1c211c3c8faf5b898">getAcknowledgedTime</a> () const</td></tr>
+<tr class="memdesc:afaa86db89313d8b1c211c3c8faf5b898"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the acknowledgment timestamp.  <br /></td></tr>
 <tr class="memitem:a478b46ecceac6f58202312a4172317df" id="r_a478b46ecceac6f58202312a4172317df"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a478b46ecceac6f58202312a4172317df">getClearedTime</a> () const</td></tr>
+<tr class="memdesc:a478b46ecceac6f58202312a4172317df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the cleared timestamp.  <br /></td></tr>
 <tr class="memitem:a374523d1bf014ab315a48b8f0390c04f" id="r_a374523d1bf014ab315a48b8f0390c04f"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a374523d1bf014ab315a48b8f0390c04f">getMessage</a> () const</td></tr>
+<tr class="memdesc:a374523d1bf014ab315a48b8f0390c04f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the alarm message.  <br /></td></tr>
 <tr class="memitem:ad97af04ffed790b34e193142abd501ce" id="r_ad97af04ffed790b34e193142abd501ce"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad97af04ffed790b34e193142abd501ce">isActive</a> () const</td></tr>
+<tr class="memdesc:ad97af04ffed790b34e193142abd501ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if alarm is currently active.  <br /></td></tr>
 <tr class="memitem:a14fab6d447b1eeef21234ffcf47986bf" id="r_a14fab6d447b1eeef21234ffcf47986bf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a14fab6d447b1eeef21234ffcf47986bf">isAcknowledged</a> () const</td></tr>
+<tr class="memdesc:a14fab6d447b1eeef21234ffcf47986bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if alarm has been acknowledged.  <br /></td></tr>
 <tr class="memitem:a36ca346131618f5995dbea4f00f2a4dc" id="r_a36ca346131618f5995dbea4f00f2a4dc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a36ca346131618f5995dbea4f00f2a4dc">isResolved</a> () const</td></tr>
+<tr class="memdesc:a36ca346131618f5995dbea4f00f2a4dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if alarm is resolved.  <br /></td></tr>
 <tr class="memitem:aa14f5a764303b269f04573867e2e4fc8" id="r_aa14f5a764303b269f04573867e2e4fc8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa14f5a764303b269f04573867e2e4fc8">acknowledge</a> ()</td></tr>
+<tr class="memdesc:aa14f5a764303b269f04573867e2e4fc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Acknowledge the alarm.  <br /></td></tr>
 <tr class="memitem:adc66e3d22e173b00c59b040369030a17" id="r_adc66e3d22e173b00c59b040369030a17"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adc66e3d22e173b00c59b040369030a17">clear</a> ()</td></tr>
+<tr class="memdesc:adc66e3d22e173b00c59b040369030a17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear the alarm condition.  <br /></td></tr>
 <tr class="memitem:a73e7673d61f82aa21441c75f2cee2c6f" id="r_a73e7673d61f82aa21441c75f2cee2c6f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a73e7673d61f82aa21441c75f2cee2c6f">resolve</a> ()</td></tr>
+<tr class="memdesc:a73e7673d61f82aa21441c75f2cee2c6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resolve the alarm completely.  <br /></td></tr>
 <tr class="memitem:af8d75ee8622a2a96f4bc9b408e9668e5" id="r_af8d75ee8622a2a96f4bc9b408e9668e5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af8d75ee8622a2a96f4bc9b408e9668e5">reactivate</a> ()</td></tr>
+<tr class="memdesc:af8d75ee8622a2a96f4bc9b408e9668e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reactivate a previously cleared alarm.  <br /></td></tr>
 <tr class="memitem:abc87fe39e6a9b5beb9f09df780f67621" id="r_abc87fe39e6a9b5beb9f09df780f67621"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abc87fe39e6a9b5beb9f09df780f67621">updateCondition</a> ()</td></tr>
+<tr class="memdesc:abc87fe39e6a9b5beb9f09df780f67621"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update alarm condition based on current measurement.  <br /></td></tr>
 <tr class="memitem:a480e1d6d474da0cd4e5dd557e41cb87e" id="r_a480e1d6d474da0cd4e5dd557e41cb87e"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a480e1d6d474da0cd4e5dd557e41cb87e">getDisplayText</a> () const</td></tr>
+<tr class="memdesc:a480e1d6d474da0cd4e5dd557e41cb87e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get formatted display text for UI.  <br /></td></tr>
 <tr class="memitem:adaf4b74537e11d5643ba5a8ae07fe10e" id="r_adaf4b74537e11d5643ba5a8ae07fe10e"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adaf4b74537e11d5643ba5a8ae07fe10e">getStatusText</a> () const</td></tr>
+<tr class="memdesc:adaf4b74537e11d5643ba5a8ae07fe10e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get status text description.  <br /></td></tr>
 <tr class="memitem:a34e3136dd5e8a5ca9fd2ac3a0c442ca3" id="r_a34e3136dd5e8a5ca9fd2ac3a0c442ca3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a34e3136dd5e8a5ca9fd2ac3a0c442ca3">setDelayTime</a> (unsigned long delayMs)</td></tr>
+<tr class="memdesc:a34e3136dd5e8a5ca9fd2ac3a0c442ca3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the alarm delay time.  <br /></td></tr>
 <tr class="memitem:a70e0d351966a5cbe9fc77785f6d55939" id="r_a70e0d351966a5cbe9fc77785f6d55939"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a70e0d351966a5cbe9fc77785f6d55939">getDelayTime</a> () const</td></tr>
+<tr class="memdesc:a70e0d351966a5cbe9fc77785f6d55939"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the alarm delay time.  <br /></td></tr>
 <tr class="memitem:aa14465fadcd29ef9b872f4b679d1d5b3" id="r_aa14465fadcd29ef9b872f4b679d1d5b3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa14465fadcd29ef9b872f4b679d1d5b3">isDelayElapsed</a> () const</td></tr>
+<tr class="memdesc:aa14465fadcd29ef9b872f4b679d1d5b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the alarm delay period has elapsed.  <br /></td></tr>
 <tr class="memitem:ab9867ec0c314549960584f4ae01328f8" id="r_ab9867ec0c314549960584f4ae01328f8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab9867ec0c314549960584f4ae01328f8">operator&lt;</a> (const <a class="el" href="class_alarm.html">Alarm</a> &amp;other) const</td></tr>
+<tr class="memdesc:ab9867ec0c314549960584f4ae01328f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Less-than comparison operator for alarm sorting.  <br /></td></tr>
 <tr class="memitem:a2a6049ea9b003e51f5ac17aba40bb1ad" id="r_a2a6049ea9b003e51f5ac17aba40bb1ad"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2a6049ea9b003e51f5ac17aba40bb1ad">operator==</a> (const <a class="el" href="class_alarm.html">Alarm</a> &amp;other) const</td></tr>
+<tr class="memdesc:a2a6049ea9b003e51f5ac17aba40bb1ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equality comparison operator.  <br /></td></tr>
 <tr class="memitem:abd578ec75a5ac9bce00b7ce7207c5d8c" id="r_abd578ec75a5ac9bce00b7ce7207c5d8c"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abd578ec75a5ac9bce00b7ce7207c5d8c">getTypeString</a> () const</td></tr>
+<tr class="memdesc:abd578ec75a5ac9bce00b7ce7207c5d8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get alarm type as string.  <br /></td></tr>
 <tr class="memitem:a5f0ead4dbd06aa64bd316d99dc587302" id="r_a5f0ead4dbd06aa64bd316d99dc587302"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5f0ead4dbd06aa64bd316d99dc587302">getStageString</a> () const</td></tr>
+<tr class="memdesc:a5f0ead4dbd06aa64bd316d99dc587302"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get alarm stage as string.  <br /></td></tr>
 <tr class="memitem:ac096a4dfdf5d2cd201ff0a5a54b5ce42" id="r_ac096a4dfdf5d2cd201ff0a5a54b5ce42"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac096a4dfdf5d2cd201ff0a5a54b5ce42">getConfigKey</a> () const</td></tr>
+<tr class="memdesc:ac096a4dfdf5d2cd201ff0a5a54b5ce42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the configuration key for this alarm.  <br /></td></tr>
 <tr class="memitem:ad116a3e8b622810e1769568fbac16379" id="r_ad116a3e8b622810e1769568fbac16379"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad116a3e8b622810e1769568fbac16379">setConfigKey</a> (const String &amp;key)</td></tr>
+<tr class="memdesc:ad116a3e8b622810e1769568fbac16379"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the configuration key.  <br /></td></tr>
 <tr class="memitem:ab1d04e5776db50454c72fd0937acdc37" id="r_ab1d04e5776db50454c72fd0937acdc37"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab1d04e5776db50454c72fd0937acdc37">isEnabled</a> () const</td></tr>
+<tr class="memdesc:ab1d04e5776db50454c72fd0937acdc37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if alarm is enabled in configuration.  <br /></td></tr>
 <tr class="memitem:acb8f203b2e2317c1f835bb4b19123f3f" id="r_acb8f203b2e2317c1f835bb4b19123f3f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acb8f203b2e2317c1f835bb4b19123f3f">setEnabled</a> (bool enabled)</td></tr>
+<tr class="memdesc:acb8f203b2e2317c1f835bb4b19123f3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable or disable the alarm.  <br /></td></tr>
 <tr class="memitem:ab12dd2af567dd87228d9404dcce5b0c0" id="r_ab12dd2af567dd87228d9404dcce5b0c0"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab12dd2af567dd87228d9404dcce5b0c0">getPointAddress</a> () const</td></tr>
+<tr class="memdesc:ab12dd2af567dd87228d9404dcce5b0c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the measurement point address.  <br /></td></tr>
 <tr class="memitem:a5095c54c304a52ebbaca5a2ea74059cd" id="r_a5095c54c304a52ebbaca5a2ea74059cd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5095c54c304a52ebbaca5a2ea74059cd">setPriority</a> (<a class="el" href="_alarm_8h.html#a5a708c1a1540361a33a030066a7c321b">AlarmPriority</a> priority)</td></tr>
+<tr class="memdesc:a5095c54c304a52ebbaca5a2ea74059cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the alarm priority.  <br /></td></tr>
 <tr class="memitem:a79ff8006ed51c565db4395350a25ad4e" id="r_a79ff8006ed51c565db4395350a25ad4e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a79ff8006ed51c565db4395350a25ad4e">setStage</a> (<a class="el" href="_alarm_8h.html#a4999bf667fcedb69e70ee058d86785eb">AlarmStage</a> stage)</td></tr>
+<tr class="memdesc:a79ff8006ed51c565db4395350a25ad4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the alarm stage.  <br /></td></tr>
 <tr class="memitem:a8d031874090c0c0e548a1f2e41ea4979" id="r_a8d031874090c0c0e548a1f2e41ea4979"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8d031874090c0c0e548a1f2e41ea4979">setHysteresis</a> (int16_t hysteresis)</td></tr>
+<tr class="memdesc:a8d031874090c0c0e548a1f2e41ea4979"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the hysteresis value for alarm triggering.  <br /></td></tr>
 <tr class="memitem:a952efd43b6a887659d56815bd5119d60" id="r_a952efd43b6a887659d56815bd5119d60"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a952efd43b6a887659d56815bd5119d60">getHysteresis</a> () const</td></tr>
+<tr class="memdesc:a952efd43b6a887659d56815bd5119d60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the hysteresis value.  <br /></td></tr>
 <tr class="memitem:a3f5329f9c026bad4f5171423fcaf51b0" id="r_a3f5329f9c026bad4f5171423fcaf51b0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3f5329f9c026bad4f5171423fcaf51b0">setAcknowledgedDelay</a> (unsigned long delay)</td></tr>
+<tr class="memdesc:a3f5329f9c026bad4f5171423fcaf51b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the acknowledged delay period.  <br /></td></tr>
 <tr class="memitem:a585cf91e94a0e74d0ce1f6ce46c06614" id="r_a585cf91e94a0e74d0ce1f6ce46c06614"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a585cf91e94a0e74d0ce1f6ce46c06614">getAcknowledgedDelay</a> () const</td></tr>
+<tr class="memdesc:a585cf91e94a0e74d0ce1f6ce46c06614"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the acknowledged delay period.  <br /></td></tr>
 <tr class="memitem:a6404e8478e8c2d726e9399ea1f2268b2" id="r_a6404e8478e8c2d726e9399ea1f2268b2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6404e8478e8c2d726e9399ea1f2268b2">isAcknowledgedDelayElapsed</a> () const</td></tr>
+<tr class="memdesc:a6404e8478e8c2d726e9399ea1f2268b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if acknowledged delay has elapsed.  <br /></td></tr>
 <tr class="memitem:a1ab55390c07c38764b8264297b741b05" id="r_a1ab55390c07c38764b8264297b741b05"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1ab55390c07c38764b8264297b741b05">getAcknowledgedTimeLeft</a> () const</td></tr>
+<tr class="memdesc:a1ab55390c07c38764b8264297b741b05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get remaining acknowledged delay time.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:a11b2da560dbc8653fa9dec671a78b980" id="r_a11b2da560dbc8653fa9dec671a78b980"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a11b2da560dbc8653fa9dec671a78b980">_updateMessage</a> ()</td></tr>
+<tr class="memdesc:a11b2da560dbc8653fa9dec671a78b980"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the alarm display message.  <br /></td></tr>
 <tr class="memitem:a28229f40ec51928641f04cd1e505bd6c" id="r_a28229f40ec51928641f04cd1e505bd6c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a28229f40ec51928641f04cd1e505bd6c">_checkCondition</a> ()</td></tr>
+<tr class="memdesc:a28229f40ec51928641f04cd1e505bd6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if alarm condition is currently met.  <br /></td></tr>
 <tr class="memitem:a052a73879f5cd039f6f7cb7ce02e6a9d" id="r_a052a73879f5cd039f6f7cb7ce02e6a9d"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a052a73879f5cd039f6f7cb7ce02e6a9d">_getPriorityString</a> () const</td></tr>
+<tr class="memdesc:a052a73879f5cd039f6f7cb7ce02e6a9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get priority as string (internal version)  <br /></td></tr>
 <tr class="memitem:a07e61197f2b2feadad2dee795e9ec97b" id="r_a07e61197f2b2feadad2dee795e9ec97b"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a07e61197f2b2feadad2dee795e9ec97b">_getPriorityString</a> (<a class="el" href="_alarm_8h.html#a5a708c1a1540361a33a030066a7c321b">AlarmPriority</a> priority) const</td></tr>
+<tr class="memdesc:a07e61197f2b2feadad2dee795e9ec97b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get priority as string with parameter.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:af86f7649c30db0d2cd6d4498032bb20d" id="r_af86f7649c30db0d2cd6d4498032bb20d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_alarm_8h.html#ab24e7dd602a82a4cf2afea61f26726e2">AlarmType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af86f7649c30db0d2cd6d4498032bb20d">_type</a></td></tr>
+<tr class="memdesc:af86f7649c30db0d2cd6d4498032bb20d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of alarm (temperature, sensor error, etc.)  <br /></td></tr>
 <tr class="memitem:a57c98ffd9577dc379176e3402d03913c" id="r_a57c98ffd9577dc379176e3402d03913c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_alarm_8h.html#a4999bf667fcedb69e70ee058d86785eb">AlarmStage</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a57c98ffd9577dc379176e3402d03913c">_stage</a></td></tr>
+<tr class="memdesc:a57c98ffd9577dc379176e3402d03913c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current lifecycle stage.  <br /></td></tr>
 <tr class="memitem:a4b4fbc531464f77b58da6954dd146d65" id="r_a4b4fbc531464f77b58da6954dd146d65"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_alarm_8h.html#a5a708c1a1540361a33a030066a7c321b">AlarmPriority</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4b4fbc531464f77b58da6954dd146d65">_priority</a></td></tr>
+<tr class="memdesc:a4b4fbc531464f77b58da6954dd146d65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Priority level for handling.  <br /></td></tr>
 <tr class="memitem:a1f87216f47e3421c09b6a2531963b24d" id="r_a1f87216f47e3421c09b6a2531963b24d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_measurement_point.html">MeasurementPoint</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1f87216f47e3421c09b6a2531963b24d">_source</a></td></tr>
+<tr class="memdesc:a1f87216f47e3421c09b6a2531963b24d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Associated measurement point.  <br /></td></tr>
 <tr class="memitem:a605637fd697184aa6c1a003e80703a47" id="r_a605637fd697184aa6c1a003e80703a47"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a605637fd697184aa6c1a003e80703a47">_timestamp</a></td></tr>
+<tr class="memdesc:a605637fd697184aa6c1a003e80703a47"><td class="mdescLeft">&#160;</td><td class="mdescRight">When alarm was created (millis)  <br /></td></tr>
 <tr class="memitem:a25eda4c86523595ed5630424ab66e2ec" id="r_a25eda4c86523595ed5630424ab66e2ec"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a25eda4c86523595ed5630424ab66e2ec">_acknowledgedTime</a></td></tr>
+<tr class="memdesc:a25eda4c86523595ed5630424ab66e2ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">When alarm was acknowledged (millis)  <br /></td></tr>
 <tr class="memitem:ad071235bbd9594fcf2adb144e88344c0" id="r_ad071235bbd9594fcf2adb144e88344c0"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad071235bbd9594fcf2adb144e88344c0">_clearedTime</a></td></tr>
+<tr class="memdesc:ad071235bbd9594fcf2adb144e88344c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">When condition was cleared (millis)  <br /></td></tr>
 <tr class="memitem:a720fb269ec5c87744fedfecf8d060a95" id="r_a720fb269ec5c87744fedfecf8d060a95"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a720fb269ec5c87744fedfecf8d060a95">_hysteresis</a></td></tr>
+<tr class="memdesc:a720fb269ec5c87744fedfecf8d060a95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hysteresis value to prevent flapping.  <br /></td></tr>
 <tr class="memitem:a483c0308c4c2e27047ae10f194f4f414" id="r_a483c0308c4c2e27047ae10f194f4f414"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a483c0308c4c2e27047ae10f194f4f414">_delayTime</a></td></tr>
-<tr class="memitem:af47cc719207c7988954c082b0b80896d" id="r_af47cc719207c7988954c082b0b80896d"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af47cc719207c7988954c082b0b80896d">_message</a></td></tr>
-<tr class="memitem:a784bac1bc016f0facc76176d893e3a90" id="r_a784bac1bc016f0facc76176d893e3a90"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a784bac1bc016f0facc76176d893e3a90">_configKey</a></td></tr>
-<tr class="memitem:af532c7945d25b47adf55d60cb91c86ae" id="r_af532c7945d25b47adf55d60cb91c86ae"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af532c7945d25b47adf55d60cb91c86ae">_enabled</a></td></tr>
+<tr class="memdesc:a483c0308c4c2e27047ae10f194f4f414"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delay before auto-resolve (millis)  <br /></td></tr>
 <tr class="memitem:a4ab562dd3179820f3694cbbd23b9dad5" id="r_a4ab562dd3179820f3694cbbd23b9dad5"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4ab562dd3179820f3694cbbd23b9dad5">_acknowledgedDelay</a></td></tr>
+<tr class="memdesc:a4ab562dd3179820f3694cbbd23b9dad5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delay after acknowledgment (millis)  <br /></td></tr>
+<tr class="memitem:a784bac1bc016f0facc76176d893e3a90" id="r_a784bac1bc016f0facc76176d893e3a90"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a784bac1bc016f0facc76176d893e3a90">_configKey</a></td></tr>
+<tr class="memdesc:a784bac1bc016f0facc76176d893e3a90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration key "alarm_&lt;point&gt;_&lt;type&gt;".  <br /></td></tr>
+<tr class="memitem:af532c7945d25b47adf55d60cb91c86ae" id="r_af532c7945d25b47adf55d60cb91c86ae"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af532c7945d25b47adf55d60cb91c86ae">_enabled</a></td></tr>
+<tr class="memdesc:af532c7945d25b47adf55d60cb91c86ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether alarm is active in configuration.  <br /></td></tr>
+<tr class="memitem:af47cc719207c7988954c082b0b80896d" id="r_af47cc719207c7988954c082b0b80896d"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af47cc719207c7988954c082b0b80896d">_message</a></td></tr>
+<tr class="memdesc:af47cc719207c7988954c082b0b80896d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Human-readable alarm description.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00037">37</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+<div class="textblock"><p>Main alarm class for temperature monitoring system. </p>
+<p>Manages individual alarm instances with full lifecycle tracking, priority handling, and integration with measurement points </p>
+
+<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00070">70</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="abf159b68e429d66de4ab2d10c2ccd44b" name="abf159b68e429d66de4ab2d10c2ccd44b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abf159b68e429d66de4ab2d10c2ccd44b">&#9670;&#160;</a></span>Alarm()</h2>
@@ -194,11 +256,32 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00022">22</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
+<p>Constructor for creating a new alarm. </p>
+<p>Constructor - Creates a new alarm instance.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">type</td><td>The type of alarm being created </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">source</td><td>Pointer to the measurement point that triggered this alarm </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">priority</td><td>Priority level for this alarm (default: PRIORITY_MEDIUM) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>The alarm is created in NEW stage and timestamp is set to current time</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">type</td><td>Type of alarm being created </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">source</td><td>Pointer to measurement point that triggered the alarm </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">priority</td><td>Priority level for the alarm</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Initializes alarm with NEW stage, current timestamp, and default timeouts. Generates configuration key and logs alarm creation event. </p>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00133">_acknowledgedDelay</a>, <a class="el" href="_alarm_8h_source.html#l00114">_acknowledgedTime</a>, <a class="el" href="_alarm_8h_source.html#l00115">_clearedTime</a>, <a class="el" href="_alarm_8h_source.html#l00131">_configKey</a>, <a class="el" href="_alarm_8h_source.html#l00120">_delayTime</a>, <a class="el" href="_alarm_8h_source.html#l00132">_enabled</a>, <a class="el" href="_alarm_8h_source.html#l00117">_hysteresis</a>, <a class="el" href="_alarm_8h_source.html#l00109">_priority</a>, <a class="el" href="_alarm_8h_source.html#l00110">_source</a>, <a class="el" href="_alarm_8h_source.html#l00108">_stage</a>, <a class="el" href="_alarm_8h_source.html#l00113">_timestamp</a>, <a class="el" href="_alarm_8h_source.html#l00107">_type</a>, <a class="el" href="_alarm_8cpp_source.html#l00336">_updateMessage()</a>, <a class="el" href="_alarm_8cpp_source.html#l00340">getTypeString()</a>, <a class="el" href="_logger_manager_8h_source.html#l00101">LoggerManager::info()</a>, and <a class="el" href="_alarm_8h_source.html#l00020">NEW</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00046">46</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00371">operator&lt;()</a>, and <a class="el" href="_alarm_8cpp_source.html#l00379">operator==()</a>.</p>
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00342">_acknowledgedDelay</a>, <a class="el" href="_alarm_8h_source.html#l00335">_acknowledgedTime</a>, <a class="el" href="_alarm_8h_source.html#l00336">_clearedTime</a>, <a class="el" href="_alarm_8h_source.html#l00343">_configKey</a>, <a class="el" href="_alarm_8h_source.html#l00341">_delayTime</a>, <a class="el" href="_alarm_8h_source.html#l00344">_enabled</a>, <a class="el" href="_alarm_8h_source.html#l00338">_hysteresis</a>, <a class="el" href="_alarm_8h_source.html#l00330">_priority</a>, <a class="el" href="_alarm_8h_source.html#l00331">_source</a>, <a class="el" href="_alarm_8h_source.html#l00329">_stage</a>, <a class="el" href="_alarm_8h_source.html#l00334">_timestamp</a>, <a class="el" href="_alarm_8h_source.html#l00328">_type</a>, <a class="el" href="_alarm_8cpp_source.html#l00374">_updateMessage()</a>, <a class="el" href="_alarm_8cpp_source.html#l00378">getTypeString()</a>, <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>, and <a class="el" href="_alarm_8h_source.html#l00046">NEW</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00409">operator&lt;()</a>, and <a class="el" href="_alarm_8cpp_source.html#l00417">operator==()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -227,9 +310,14 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00056">56</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
+<p>Destructor for alarm cleanup. </p>
+<p>Destructor - Cleans up alarm instance.</p>
+<p>Ensures proper cleanup of alarm resources</p>
+<p>Logs alarm destruction event and outputs debug information </p>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00110">_source</a>, <a class="el" href="_alarm_8cpp_source.html#l00340">getTypeString()</a>, and <a class="el" href="_logger_manager_8h_source.html#l00101">LoggerManager::info()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00088">88</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00331">_source</a>, <a class="el" href="_alarm_8cpp_source.html#l00378">getTypeString()</a>, and <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -262,11 +350,14 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00157">157</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
+<p>Check if alarm condition is currently met. </p>
+<dl class="section return"><dt>Returns</dt><dd>bool True if triggering condition is present </dd></dl>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00117">_hysteresis</a>, <a class="el" href="_alarm_8h_source.html#l00110">_source</a>, <a class="el" href="_alarm_8h_source.html#l00108">_stage</a>, <a class="el" href="_alarm_8h_source.html#l00107">_type</a>, <a class="el" href="_alarm_8h_source.html#l00021">CLEARED</a>, <a class="el" href="_alarm_8cpp_source.html#l00350">getStageString()</a>, <a class="el" href="_alarm_8h_source.html#l00012">HIGH_TEMPERATURE</a>, <a class="el" href="_alarm_8h_source.html#l00013">LOW_TEMPERATURE</a>, <a class="el" href="_alarm_8h_source.html#l00022">RESOLVED</a>, <a class="el" href="_alarm_8h_source.html#l00015">SENSOR_DISCONNECTED</a>, and <a class="el" href="_alarm_8h_source.html#l00014">SENSOR_ERROR</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00195">195</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00441">updateCondition()</a>.</p>
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00338">_hysteresis</a>, <a class="el" href="_alarm_8h_source.html#l00331">_source</a>, <a class="el" href="_alarm_8h_source.html#l00329">_stage</a>, <a class="el" href="_alarm_8h_source.html#l00328">_type</a>, <a class="el" href="_alarm_8h_source.html#l00047">CLEARED</a>, <a class="el" href="_alarm_8cpp_source.html#l00388">getStageString()</a>, <a class="el" href="_alarm_8h_source.html#l00034">HIGH_TEMPERATURE</a>, <a class="el" href="_alarm_8h_source.html#l00035">LOW_TEMPERATURE</a>, <a class="el" href="_alarm_8h_source.html#l00048">RESOLVED</a>, <a class="el" href="_alarm_8h_source.html#l00037">SENSOR_DISCONNECTED</a>, and <a class="el" href="_alarm_8h_source.html#l00036">SENSOR_ERROR</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00479">updateCondition()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -303,11 +394,14 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00361">361</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
+<p>Get priority as string (internal version) </p>
+<dl class="section return"><dt>Returns</dt><dd>String Priority level as text </dd></dl>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00109">_priority</a>, <a class="el" href="_alarm_8h_source.html#l00033">PRIORITY_CRITICAL</a>, <a class="el" href="_alarm_8h_source.html#l00032">PRIORITY_HIGH</a>, <a class="el" href="_alarm_8h_source.html#l00030">PRIORITY_LOW</a>, and <a class="el" href="_alarm_8h_source.html#l00031">PRIORITY_MEDIUM</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00399">399</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00069">acknowledge()</a>, <a class="el" href="_alarm_8cpp_source.html#l00395">setPriority()</a>, and <a class="el" href="_alarm_8cpp_source.html#l00441">updateCondition()</a>.</p>
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00330">_priority</a>, <a class="el" href="_alarm_8h_source.html#l00061">PRIORITY_CRITICAL</a>, <a class="el" href="_alarm_8h_source.html#l00060">PRIORITY_HIGH</a>, <a class="el" href="_alarm_8h_source.html#l00058">PRIORITY_LOW</a>, and <a class="el" href="_alarm_8h_source.html#l00059">PRIORITY_MEDIUM</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00107">acknowledge()</a>, <a class="el" href="_alarm_8cpp_source.html#l00433">setPriority()</a>, and <a class="el" href="_alarm_8cpp_source.html#l00479">updateCondition()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -339,9 +433,18 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00619">619</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
+<p>Get priority as string with parameter. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">priority</td><td>Priority level to convert </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>String Priority level as text </dd></dl>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00033">PRIORITY_CRITICAL</a>, <a class="el" href="_alarm_8h_source.html#l00032">PRIORITY_HIGH</a>, <a class="el" href="_alarm_8h_source.html#l00030">PRIORITY_LOW</a>, and <a class="el" href="_alarm_8h_source.html#l00031">PRIORITY_MEDIUM</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00657">657</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00061">PRIORITY_CRITICAL</a>, <a class="el" href="_alarm_8h_source.html#l00060">PRIORITY_HIGH</a>, <a class="el" href="_alarm_8h_source.html#l00058">PRIORITY_LOW</a>, and <a class="el" href="_alarm_8h_source.html#l00059">PRIORITY_MEDIUM</a>.</p>
 
 </div>
 </div>
@@ -368,11 +471,14 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00336">336</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
+<p>Update the alarm display message. </p>
+<p>Generates human-readable message based on current alarm state </p>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00123">_message</a>, and <a class="el" href="_alarm_8cpp_source.html#l00300">getDisplayText()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00374">374</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00069">acknowledge()</a>, <a class="el" href="_alarm_8cpp_source.html#l00022">Alarm()</a>, <a class="el" href="_alarm_8cpp_source.html#l00102">clear()</a>, <a class="el" href="_alarm_8cpp_source.html#l00138">reactivate()</a>, <a class="el" href="_alarm_8cpp_source.html#l00121">resolve()</a>, and <a class="el" href="_alarm_8cpp_source.html#l00441">updateCondition()</a>.</p>
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00347">_message</a>, and <a class="el" href="_alarm_8cpp_source.html#l00338">getDisplayText()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00107">acknowledge()</a>, <a class="el" href="_alarm_8cpp_source.html#l00046">Alarm()</a>, <a class="el" href="_alarm_8cpp_source.html#l00140">clear()</a>, <a class="el" href="_alarm_8cpp_source.html#l00176">reactivate()</a>, <a class="el" href="_alarm_8cpp_source.html#l00159">resolve()</a>, and <a class="el" href="_alarm_8cpp_source.html#l00479">updateCondition()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -401,9 +507,13 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00069">69</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
+<p>Acknowledge the alarm. </p>
+<p>Transitions alarm to ACKNOWLEDGED stage, indicating operator awareness</p>
+<p>Transitions alarm from NEW or ACTIVE stage to ACKNOWLEDGED stage. Records acknowledgment timestamp and logs the event. </p>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00114">_acknowledgedTime</a>, <a class="el" href="_alarm_8cpp_source.html#l00361">_getPriorityString()</a>, <a class="el" href="_alarm_8h_source.html#l00110">_source</a>, <a class="el" href="_alarm_8h_source.html#l00108">_stage</a>, <a class="el" href="_alarm_8h_source.html#l00107">_type</a>, <a class="el" href="_alarm_8cpp_source.html#l00336">_updateMessage()</a>, <a class="el" href="_alarm_8h_source.html#l00023">ACKNOWLEDGED</a>, <a class="el" href="_alarm_8h_source.html#l00024">ACTIVE</a>, <a class="el" href="_alarm_8cpp_source.html#l00350">getStageString()</a>, <a class="el" href="_alarm_8cpp_source.html#l00340">getTypeString()</a>, <a class="el" href="_alarm_8h_source.html#l00012">HIGH_TEMPERATURE</a>, <a class="el" href="_logger_manager_8h_source.html#l00101">LoggerManager::info()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00870">LoggerManager::logAlarmStateChange()</a>, and <a class="el" href="_alarm_8h_source.html#l00020">NEW</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00107">107</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00335">_acknowledgedTime</a>, <a class="el" href="_alarm_8cpp_source.html#l00399">_getPriorityString()</a>, <a class="el" href="_alarm_8h_source.html#l00331">_source</a>, <a class="el" href="_alarm_8h_source.html#l00329">_stage</a>, <a class="el" href="_alarm_8h_source.html#l00328">_type</a>, <a class="el" href="_alarm_8cpp_source.html#l00374">_updateMessage()</a>, <a class="el" href="_alarm_8h_source.html#l00049">ACKNOWLEDGED</a>, <a class="el" href="_alarm_8h_source.html#l00050">ACTIVE</a>, <a class="el" href="_alarm_8cpp_source.html#l00388">getStageString()</a>, <a class="el" href="_alarm_8cpp_source.html#l00378">getTypeString()</a>, <a class="el" href="_alarm_8h_source.html#l00034">HIGH_TEMPERATURE</a>, <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00870">LoggerManager::logAlarmStateChange()</a>, and <a class="el" href="_alarm_8h_source.html#l00046">NEW</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00289">TemperatureController::acknowledgeHighestPriorityAlarm()</a>.</p>
 <div class="dynheader">
@@ -434,11 +544,14 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00102">102</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
+<p>Clear the alarm condition. </p>
+<p>Marks that the triggering condition has been resolved </p>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00115">_clearedTime</a>, <a class="el" href="_alarm_8h_source.html#l00110">_source</a>, <a class="el" href="_alarm_8h_source.html#l00108">_stage</a>, <a class="el" href="_alarm_8cpp_source.html#l00336">_updateMessage()</a>, <a class="el" href="_alarm_8h_source.html#l00023">ACKNOWLEDGED</a>, <a class="el" href="_alarm_8h_source.html#l00024">ACTIVE</a>, <a class="el" href="_alarm_8h_source.html#l00021">CLEARED</a>, <a class="el" href="_alarm_8cpp_source.html#l00340">getTypeString()</a>, and <a class="el" href="_logger_manager_8h_source.html#l00101">LoggerManager::info()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00140">140</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00441">updateCondition()</a>.</p>
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00336">_clearedTime</a>, <a class="el" href="_alarm_8h_source.html#l00331">_source</a>, <a class="el" href="_alarm_8h_source.html#l00329">_stage</a>, <a class="el" href="_alarm_8cpp_source.html#l00374">_updateMessage()</a>, <a class="el" href="_alarm_8h_source.html#l00049">ACKNOWLEDGED</a>, <a class="el" href="_alarm_8h_source.html#l00050">ACTIVE</a>, <a class="el" href="_alarm_8h_source.html#l00047">CLEARED</a>, <a class="el" href="_alarm_8cpp_source.html#l00378">getTypeString()</a>, and <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00479">updateCondition()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -467,9 +580,12 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00594">594</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
+<p>Get the acknowledged delay period. </p>
+<dl class="section return"><dt>Returns</dt><dd>unsigned long Current acknowledged delay in milliseconds </dd></dl>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00133">_acknowledgedDelay</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00632">632</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00342">_acknowledgedDelay</a>.</p>
 
 </div>
 </div>
@@ -496,9 +612,12 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00051">51</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+<p>Get the acknowledgment timestamp. </p>
+<dl class="section return"><dt>Returns</dt><dd>unsigned long Timestamp when alarm was acknowledged (millis) </dd></dl>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00114">_acknowledgedTime</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00122">122</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00335">_acknowledgedTime</a>.</p>
 
 </div>
 </div>
@@ -517,9 +636,12 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00605">605</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
+<p>Get remaining acknowledged delay time. </p>
+<dl class="section return"><dt>Returns</dt><dd>unsigned long Milliseconds remaining in acknowledged delay </dd></dl>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00133">_acknowledgedDelay</a>, <a class="el" href="_alarm_8h_source.html#l00114">_acknowledgedTime</a>, <a class="el" href="_alarm_8h_source.html#l00108">_stage</a>, and <a class="el" href="_alarm_8h_source.html#l00023">ACKNOWLEDGED</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00643">643</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00342">_acknowledgedDelay</a>, <a class="el" href="_alarm_8h_source.html#l00335">_acknowledgedTime</a>, <a class="el" href="_alarm_8h_source.html#l00329">_stage</a>, and <a class="el" href="_alarm_8h_source.html#l00049">ACKNOWLEDGED</a>.</p>
 
 </div>
 </div>
@@ -546,9 +668,12 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00052">52</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+<p>Get the cleared timestamp. </p>
+<dl class="section return"><dt>Returns</dt><dd>unsigned long Timestamp when alarm condition was cleared (millis) </dd></dl>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00115">_clearedTime</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00128">128</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00336">_clearedTime</a>.</p>
 
 </div>
 </div>
@@ -567,9 +692,12 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00387">387</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
+<p>Get the configuration key for this alarm. </p>
+<dl class="section return"><dt>Returns</dt><dd>String Configuration key in format "alarm_&lt;point&gt;_&lt;type&gt;" </dd></dl>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00131">_configKey</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00425">425</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00343">_configKey</a>.</p>
 
 </div>
 </div>
@@ -596,9 +724,12 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00073">73</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+<p>Get the alarm delay time. </p>
+<dl class="section return"><dt>Returns</dt><dd>unsigned long Current delay time in milliseconds </dd></dl>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00120">_delayTime</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00210">210</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00341">_delayTime</a>.</p>
 
 </div>
 </div>
@@ -617,11 +748,14 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00300">300</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
+<p>Get formatted display text for UI. </p>
+<dl class="section return"><dt>Returns</dt><dd>String Human-readable text for display interfaces </dd></dl>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00110">_source</a>, <a class="el" href="_alarm_8h_source.html#l00108">_stage</a>, <a class="el" href="_alarm_8h_source.html#l00107">_type</a>, <a class="el" href="_alarm_8h_source.html#l00023">ACKNOWLEDGED</a>, <a class="el" href="_alarm_8h_source.html#l00012">HIGH_TEMPERATURE</a>, <a class="el" href="_alarm_8h_source.html#l00013">LOW_TEMPERATURE</a>, <a class="el" href="_alarm_8h_source.html#l00015">SENSOR_DISCONNECTED</a>, and <a class="el" href="_alarm_8h_source.html#l00014">SENSOR_ERROR</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00338">338</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00336">_updateMessage()</a>.</p>
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00331">_source</a>, <a class="el" href="_alarm_8h_source.html#l00329">_stage</a>, <a class="el" href="_alarm_8h_source.html#l00328">_type</a>, <a class="el" href="_alarm_8h_source.html#l00049">ACKNOWLEDGED</a>, <a class="el" href="_alarm_8h_source.html#l00034">HIGH_TEMPERATURE</a>, <a class="el" href="_alarm_8h_source.html#l00035">LOW_TEMPERATURE</a>, <a class="el" href="_alarm_8h_source.html#l00037">SENSOR_DISCONNECTED</a>, and <a class="el" href="_alarm_8h_source.html#l00036">SENSOR_ERROR</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00374">_updateMessage()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -653,9 +787,12 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00096">96</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+<p>Get the hysteresis value. </p>
+<dl class="section return"><dt>Returns</dt><dd>int16_t Current hysteresis setting </dd></dl>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00117">_hysteresis</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00298">298</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00338">_hysteresis</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_config_manager_8cpp_source.html#l00448">ConfigManager::saveAlarmsConfig()</a>.</p>
 <div class="dynheader">
@@ -689,9 +826,12 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00053">53</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+<p>Get the alarm message. </p>
+<dl class="section return"><dt>Returns</dt><dd>String Human-readable alarm description </dd></dl>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00123">_message</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00134">134</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00347">_message</a>.</p>
 
 </div>
 </div>
@@ -718,9 +858,12 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00090">90</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+<p>Get the measurement point address. </p>
+<dl class="section return"><dt>Returns</dt><dd>uint8_t Address of associated measurement point (255 if no source) </dd></dl>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00110">_source</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00274">274</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00331">_source</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00369">CSVConfigManager::_getAlarmPriorityForPoint()</a>, and <a class="el" href="_config_manager_8cpp_source.html#l00448">ConfigManager::saveAlarmsConfig()</a>.</p>
 <div class="dynheader">
@@ -754,11 +897,14 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00048">48</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+<p>Get the alarm priority. </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="_alarm_8h.html#a5a708c1a1540361a33a030066a7c321b" title="Enumeration defining alarm priority levels.">AlarmPriority</a> The priority level of this alarm </dd></dl>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00109">_priority</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00104">104</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00369">CSVConfigManager::_getAlarmPriorityForPoint()</a>, <a class="el" href="_alarm_8h_source.html#l00139">AlarmComparator::operator()()</a>, and <a class="el" href="_config_manager_8cpp_source.html#l00448">ConfigManager::saveAlarmsConfig()</a>.</p>
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00330">_priority</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00369">CSVConfigManager::_getAlarmPriorityForPoint()</a>, <a class="el" href="_alarm_8h_source.html#l00389">AlarmComparator::operator()()</a>, and <a class="el" href="_config_manager_8cpp_source.html#l00448">ConfigManager::saveAlarmsConfig()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -790,9 +936,12 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00049">49</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+<p>Get the source measurement point. </p>
+<dl class="section return"><dt>Returns</dt><dd>MeasurementPoint* Pointer to the measurement point that triggered this alarm </dd></dl>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00110">_source</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00110">110</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00331">_source</a>.</p>
 
 </div>
 </div>
@@ -819,9 +968,12 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00047">47</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+<p>Get the current alarm stage. </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="_alarm_8h.html#a4999bf667fcedb69e70ee058d86785eb" title="Enumeration defining alarm lifecycle stages.">AlarmStage</a> The current lifecycle stage </dd></dl>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00108">_stage</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00098">98</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00329">_stage</a>.</p>
 
 </div>
 </div>
@@ -840,11 +992,14 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00350">350</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
+<p>Get alarm stage as string. </p>
+<dl class="section return"><dt>Returns</dt><dd>String Human-readable alarm stage description </dd></dl>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00108">_stage</a>, <a class="el" href="_alarm_8h_source.html#l00023">ACKNOWLEDGED</a>, <a class="el" href="_alarm_8h_source.html#l00024">ACTIVE</a>, <a class="el" href="_alarm_8h_source.html#l00021">CLEARED</a>, <a class="el" href="_alarm_8h_source.html#l00020">NEW</a>, and <a class="el" href="_alarm_8h_source.html#l00022">RESOLVED</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00388">388</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00157">_checkCondition()</a>, <a class="el" href="_alarm_8cpp_source.html#l00069">acknowledge()</a>, <a class="el" href="_alarm_8cpp_source.html#l00328">getStatusText()</a>, and <a class="el" href="_alarm_8cpp_source.html#l00441">updateCondition()</a>.</p>
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00329">_stage</a>, <a class="el" href="_alarm_8h_source.html#l00049">ACKNOWLEDGED</a>, <a class="el" href="_alarm_8h_source.html#l00050">ACTIVE</a>, <a class="el" href="_alarm_8h_source.html#l00047">CLEARED</a>, <a class="el" href="_alarm_8h_source.html#l00046">NEW</a>, and <a class="el" href="_alarm_8h_source.html#l00048">RESOLVED</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00195">_checkCondition()</a>, <a class="el" href="_alarm_8cpp_source.html#l00107">acknowledge()</a>, <a class="el" href="_alarm_8cpp_source.html#l00366">getStatusText()</a>, and <a class="el" href="_alarm_8cpp_source.html#l00479">updateCondition()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -868,9 +1023,12 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00328">328</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
+<p>Get status text description. </p>
+<dl class="section return"><dt>Returns</dt><dd>String Current alarm status as text </dd></dl>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00110">_source</a>, <a class="el" href="_alarm_8cpp_source.html#l00350">getStageString()</a>, and <a class="el" href="_alarm_8cpp_source.html#l00340">getTypeString()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00366">366</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00331">_source</a>, <a class="el" href="_alarm_8cpp_source.html#l00388">getStageString()</a>, and <a class="el" href="_alarm_8cpp_source.html#l00378">getTypeString()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00289">TemperatureController::acknowledgeHighestPriorityAlarm()</a>.</p>
 <div class="dynheader">
@@ -909,11 +1067,14 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00050">50</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+<p>Get the alarm creation timestamp. </p>
+<dl class="section return"><dt>Returns</dt><dd>unsigned long Timestamp when alarm was created (millis) </dd></dl>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00113">_timestamp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00116">116</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01649">TemperatureController::_updateAlarmQueues()</a>, and <a class="el" href="_alarm_8h_source.html#l00139">AlarmComparator::operator()()</a>.</p>
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00334">_timestamp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01649">TemperatureController::_updateAlarmQueues()</a>, and <a class="el" href="_alarm_8h_source.html#l00389">AlarmComparator::operator()()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -945,9 +1106,12 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00046">46</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+<p>Get the alarm type. </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="_alarm_8h.html#ab24e7dd602a82a4cf2afea61f26726e2" title="Enumeration defining different types of alarms.">AlarmType</a> The type of this alarm </dd></dl>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00107">_type</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00092">92</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00328">_type</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00369">CSVConfigManager::_getAlarmPriorityForPoint()</a>, and <a class="el" href="_config_manager_8cpp_source.html#l00448">ConfigManager::saveAlarmsConfig()</a>.</p>
 <div class="dynheader">
@@ -973,11 +1137,14 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00340">340</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
+<p>Get alarm type as string. </p>
+<dl class="section return"><dt>Returns</dt><dd>String Human-readable alarm type description </dd></dl>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00107">_type</a>, <a class="el" href="_alarm_8h_source.html#l00012">HIGH_TEMPERATURE</a>, <a class="el" href="_alarm_8h_source.html#l00013">LOW_TEMPERATURE</a>, <a class="el" href="_alarm_8h_source.html#l00015">SENSOR_DISCONNECTED</a>, and <a class="el" href="_alarm_8h_source.html#l00014">SENSOR_ERROR</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00378">378</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00069">acknowledge()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01290">TemperatureController::addAlarm()</a>, <a class="el" href="_alarm_8cpp_source.html#l00022">Alarm()</a>, <a class="el" href="_alarm_8cpp_source.html#l00102">clear()</a>, <a class="el" href="_alarm_8cpp_source.html#l00328">getStatusText()</a>, <a class="el" href="_alarm_8cpp_source.html#l00138">reactivate()</a>, <a class="el" href="_alarm_8cpp_source.html#l00121">resolve()</a>, <a class="el" href="_alarm_8cpp_source.html#l00423">setEnabled()</a>, <a class="el" href="_alarm_8cpp_source.html#l00409">setHysteresis()</a>, <a class="el" href="_alarm_8cpp_source.html#l00395">setPriority()</a>, <a class="el" href="_alarm_8cpp_source.html#l00441">updateCondition()</a>, and <a class="el" href="_alarm_8cpp_source.html#l00056">~Alarm()</a>.</p>
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00328">_type</a>, <a class="el" href="_alarm_8h_source.html#l00034">HIGH_TEMPERATURE</a>, <a class="el" href="_alarm_8h_source.html#l00035">LOW_TEMPERATURE</a>, <a class="el" href="_alarm_8h_source.html#l00037">SENSOR_DISCONNECTED</a>, and <a class="el" href="_alarm_8h_source.html#l00036">SENSOR_ERROR</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00107">acknowledge()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01290">TemperatureController::addAlarm()</a>, <a class="el" href="_alarm_8cpp_source.html#l00046">Alarm()</a>, <a class="el" href="_alarm_8cpp_source.html#l00140">clear()</a>, <a class="el" href="_alarm_8cpp_source.html#l00366">getStatusText()</a>, <a class="el" href="_alarm_8cpp_source.html#l00176">reactivate()</a>, <a class="el" href="_alarm_8cpp_source.html#l00159">resolve()</a>, <a class="el" href="_alarm_8cpp_source.html#l00461">setEnabled()</a>, <a class="el" href="_alarm_8cpp_source.html#l00447">setHysteresis()</a>, <a class="el" href="_alarm_8cpp_source.html#l00433">setPriority()</a>, <a class="el" href="_alarm_8cpp_source.html#l00479">updateCondition()</a>, and <a class="el" href="_alarm_8cpp_source.html#l00088">~Alarm()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1009,9 +1176,12 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00055">55</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+<p>Check if alarm has been acknowledged. </p>
+<dl class="section return"><dt>Returns</dt><dd>bool True if alarm is in ACKNOWLEDGED or CLEARED stage </dd></dl>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00108">_stage</a>, <a class="el" href="_alarm_8h_source.html#l00023">ACKNOWLEDGED</a>, and <a class="el" href="_alarm_8h_source.html#l00021">CLEARED</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00146">146</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00329">_stage</a>, <a class="el" href="_alarm_8h_source.html#l00049">ACKNOWLEDGED</a>, and <a class="el" href="_alarm_8h_source.html#l00047">CLEARED</a>.</p>
 
 </div>
 </div>
@@ -1030,11 +1200,14 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00598">598</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
+<p>Check if acknowledged delay has elapsed. </p>
+<dl class="section return"><dt>Returns</dt><dd>bool True if acknowledged delay period has passed </dd></dl>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00133">_acknowledgedDelay</a>, <a class="el" href="_alarm_8h_source.html#l00114">_acknowledgedTime</a>, <a class="el" href="_alarm_8h_source.html#l00108">_stage</a>, and <a class="el" href="_alarm_8h_source.html#l00023">ACKNOWLEDGED</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00636">636</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00441">updateCondition()</a>.</p>
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00342">_acknowledgedDelay</a>, <a class="el" href="_alarm_8h_source.html#l00335">_acknowledgedTime</a>, <a class="el" href="_alarm_8h_source.html#l00329">_stage</a>, and <a class="el" href="_alarm_8h_source.html#l00049">ACKNOWLEDGED</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00479">updateCondition()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1066,9 +1239,12 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00054">54</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+<p>Check if alarm is currently active. </p>
+<dl class="section return"><dt>Returns</dt><dd>bool True if alarm is in ACTIVE or ACKNOWLEDGED stage </dd></dl>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00108">_stage</a>, <a class="el" href="_alarm_8h_source.html#l00023">ACKNOWLEDGED</a>, and <a class="el" href="_alarm_8h_source.html#l00024">ACTIVE</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00140">140</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00329">_stage</a>, <a class="el" href="_alarm_8h_source.html#l00049">ACKNOWLEDGED</a>, and <a class="el" href="_alarm_8h_source.html#l00050">ACTIVE</a>.</p>
 
 </div>
 </div>
@@ -1087,11 +1263,14 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00293">293</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
+<p>Check if the alarm delay period has elapsed. </p>
+<dl class="section return"><dt>Returns</dt><dd>bool True if delay time has passed since alarm creation </dd></dl>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00115">_clearedTime</a>, <a class="el" href="_alarm_8h_source.html#l00120">_delayTime</a>, <a class="el" href="_alarm_8h_source.html#l00108">_stage</a>, and <a class="el" href="_alarm_8h_source.html#l00021">CLEARED</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00331">331</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00441">updateCondition()</a>.</p>
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00336">_clearedTime</a>, <a class="el" href="_alarm_8h_source.html#l00341">_delayTime</a>, <a class="el" href="_alarm_8h_source.html#l00329">_stage</a>, and <a class="el" href="_alarm_8h_source.html#l00047">CLEARED</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00479">updateCondition()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1123,9 +1302,12 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00088">88</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+<p>Check if alarm is enabled in configuration. </p>
+<dl class="section return"><dt>Returns</dt><dd>bool True if alarm is active in system configuration </dd></dl>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00132">_enabled</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00262">262</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00344">_enabled</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_config_manager_8cpp_source.html#l00448">ConfigManager::saveAlarmsConfig()</a>.</p>
 <div class="dynheader">
@@ -1159,9 +1341,12 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00056">56</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+<p>Check if alarm is resolved. </p>
+<dl class="section return"><dt>Returns</dt><dd>bool True if alarm is in RESOLVED stage </dd></dl>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00108">_stage</a>, and <a class="el" href="_alarm_8h_source.html#l00022">RESOLVED</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00152">152</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00329">_stage</a>, and <a class="el" href="_alarm_8h_source.html#l00048">RESOLVED</a>.</p>
 
 </div>
 </div>
@@ -1180,9 +1365,18 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00371">371</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
+<p>Less-than comparison operator for alarm sorting. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">other</td><td>The alarm to compare against </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bool True if this alarm has lower priority/older timestamp </dd></dl>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00109">_priority</a>, <a class="el" href="_alarm_8h_source.html#l00113">_timestamp</a>, and <a class="el" href="_alarm_8cpp_source.html#l00022">Alarm()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00409">409</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00330">_priority</a>, <a class="el" href="_alarm_8h_source.html#l00334">_timestamp</a>, and <a class="el" href="_alarm_8cpp_source.html#l00046">Alarm()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1206,9 +1400,18 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00379">379</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
+<p>Equality comparison operator. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">other</td><td>The alarm to compare against </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bool True if alarms are equivalent </dd></dl>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00110">_source</a>, <a class="el" href="_alarm_8h_source.html#l00113">_timestamp</a>, <a class="el" href="_alarm_8h_source.html#l00107">_type</a>, and <a class="el" href="_alarm_8cpp_source.html#l00022">Alarm()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00417">417</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00331">_source</a>, <a class="el" href="_alarm_8h_source.html#l00334">_timestamp</a>, <a class="el" href="_alarm_8h_source.html#l00328">_type</a>, and <a class="el" href="_alarm_8cpp_source.html#l00046">Alarm()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1232,9 +1435,12 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00138">138</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
+<p>Reactivate a previously cleared alarm. </p>
+<p>Used when alarm condition returns before full resolution </p>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00114">_acknowledgedTime</a>, <a class="el" href="_alarm_8h_source.html#l00115">_clearedTime</a>, <a class="el" href="_alarm_8h_source.html#l00110">_source</a>, <a class="el" href="_alarm_8h_source.html#l00108">_stage</a>, <a class="el" href="_alarm_8cpp_source.html#l00336">_updateMessage()</a>, <a class="el" href="_alarm_8h_source.html#l00023">ACKNOWLEDGED</a>, <a class="el" href="_alarm_8h_source.html#l00024">ACTIVE</a>, <a class="el" href="_alarm_8h_source.html#l00021">CLEARED</a>, <a class="el" href="_alarm_8cpp_source.html#l00340">getTypeString()</a>, and <a class="el" href="_logger_manager_8h_source.html#l00105">LoggerManager::warning()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00176">176</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00335">_acknowledgedTime</a>, <a class="el" href="_alarm_8h_source.html#l00336">_clearedTime</a>, <a class="el" href="_alarm_8h_source.html#l00331">_source</a>, <a class="el" href="_alarm_8h_source.html#l00329">_stage</a>, <a class="el" href="_alarm_8cpp_source.html#l00374">_updateMessage()</a>, <a class="el" href="_alarm_8h_source.html#l00049">ACKNOWLEDGED</a>, <a class="el" href="_alarm_8h_source.html#l00050">ACTIVE</a>, <a class="el" href="_alarm_8h_source.html#l00047">CLEARED</a>, <a class="el" href="_alarm_8cpp_source.html#l00378">getTypeString()</a>, and <a class="el" href="_logger_manager_8h_source.html#l00155">LoggerManager::warning()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1258,11 +1464,14 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00121">121</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
+<p>Resolve the alarm completely. </p>
+<p>Transitions alarm to RESOLVED stage, indicating full resolution </p>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00110">_source</a>, <a class="el" href="_alarm_8h_source.html#l00108">_stage</a>, <a class="el" href="_alarm_8cpp_source.html#l00336">_updateMessage()</a>, <a class="el" href="_alarm_8cpp_source.html#l00340">getTypeString()</a>, <a class="el" href="_logger_manager_8h_source.html#l00101">LoggerManager::info()</a>, and <a class="el" href="_alarm_8h_source.html#l00022">RESOLVED</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00159">159</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00441">updateCondition()</a>.</p>
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00331">_source</a>, <a class="el" href="_alarm_8h_source.html#l00329">_stage</a>, <a class="el" href="_alarm_8cpp_source.html#l00374">_updateMessage()</a>, <a class="el" href="_alarm_8cpp_source.html#l00378">getTypeString()</a>, <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>, and <a class="el" href="_alarm_8h_source.html#l00048">RESOLVED</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00479">updateCondition()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1291,9 +1500,17 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00590">590</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
+<p>Set the acknowledged delay period. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">delay</td><td>Time in milliseconds before auto-resolution after acknowledgment </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00133">_acknowledgedDelay</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00628">628</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00342">_acknowledgedDelay</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01290">TemperatureController::addAlarm()</a>.</p>
 <div class="dynheader">
@@ -1319,9 +1536,17 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00391">391</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
+<p>Set the configuration key. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">key</td><td>Configuration key string </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00131">_configKey</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00429">429</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00343">_configKey</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01290">TemperatureController::addAlarm()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00254">TemperatureController::createAlarm()</a>.</p>
 <div class="dynheader">
@@ -1355,9 +1580,17 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00072">72</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+<p>Set the alarm delay time. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">delayMs</td><td>Delay time in milliseconds before auto-resolution </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00120">_delayTime</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00204">204</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00341">_delayTime</a>.</p>
 
 </div>
 </div>
@@ -1376,9 +1609,17 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00423">423</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
+<p>Enable or disable the alarm. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">enabled</td><td>True to enable, false to disable </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00132">_enabled</a>, <a class="el" href="_alarm_8h_source.html#l00110">_source</a>, <a class="el" href="_alarm_8cpp_source.html#l00340">getTypeString()</a>, and <a class="el" href="_logger_manager_8h_source.html#l00101">LoggerManager::info()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00461">461</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00344">_enabled</a>, <a class="el" href="_alarm_8h_source.html#l00331">_source</a>, <a class="el" href="_alarm_8cpp_source.html#l00378">getTypeString()</a>, and <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00120">CSVConfigManager::_parseAlarmFromCSV()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00487">ConfigManager::loadAlarmsConfig()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l01363">TemperatureController::updateAlarm()</a>.</p>
 <div class="dynheader">
@@ -1409,9 +1650,17 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00409">409</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
+<p>Set the hysteresis value for alarm triggering. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">hysteresis</td><td>Hysteresis value to prevent alarm flapping </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00117">_hysteresis</a>, <a class="el" href="_alarm_8h_source.html#l00110">_source</a>, <a class="el" href="_alarm_8cpp_source.html#l00340">getTypeString()</a>, and <a class="el" href="_logger_manager_8h_source.html#l00101">LoggerManager::info()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00447">447</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00338">_hysteresis</a>, <a class="el" href="_alarm_8h_source.html#l00331">_source</a>, <a class="el" href="_alarm_8cpp_source.html#l00378">getTypeString()</a>, and <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00120">CSVConfigManager::_parseAlarmFromCSV()</a>, and <a class="el" href="_config_manager_8cpp_source.html#l00487">ConfigManager::loadAlarmsConfig()</a>.</p>
 <div class="dynheader">
@@ -1442,9 +1691,17 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00395">395</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
+<p>Set the alarm priority. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">priority</td><td>New priority level for this alarm </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="reference">References <a class="el" href="_alarm_8cpp_source.html#l00361">_getPriorityString()</a>, <a class="el" href="_alarm_8h_source.html#l00109">_priority</a>, <a class="el" href="_alarm_8h_source.html#l00110">_source</a>, <a class="el" href="_alarm_8cpp_source.html#l00340">getTypeString()</a>, and <a class="el" href="_logger_manager_8h_source.html#l00101">LoggerManager::info()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00433">433</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_alarm_8cpp_source.html#l00399">_getPriorityString()</a>, <a class="el" href="_alarm_8h_source.html#l00330">_priority</a>, <a class="el" href="_alarm_8h_source.html#l00331">_source</a>, <a class="el" href="_alarm_8cpp_source.html#l00378">getTypeString()</a>, and <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01363">TemperatureController::updateAlarm()</a>.</p>
 <div class="dynheader">
@@ -1475,9 +1732,17 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00436">436</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
+<p>Set the alarm stage. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">stage</td><td>New stage for alarm lifecycle </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00108">_stage</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00474">474</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00329">_stage</a>.</p>
 
 </div>
 </div>
@@ -1496,9 +1761,13 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00441">441</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
+<p>Update alarm condition based on current measurement. </p>
+<dl class="section return"><dt>Returns</dt><dd>bool True if alarm condition has changed</dd></dl>
+<p>Checks current measurement point values against alarm thresholds </p>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00114">_acknowledgedTime</a>, <a class="el" href="_alarm_8cpp_source.html#l00157">_checkCondition()</a>, <a class="el" href="_alarm_8h_source.html#l00115">_clearedTime</a>, <a class="el" href="_alarm_8cpp_source.html#l00361">_getPriorityString()</a>, <a class="el" href="_alarm_8h_source.html#l00110">_source</a>, <a class="el" href="_alarm_8h_source.html#l00108">_stage</a>, <a class="el" href="_alarm_8h_source.html#l00113">_timestamp</a>, <a class="el" href="_alarm_8h_source.html#l00107">_type</a>, <a class="el" href="_alarm_8cpp_source.html#l00336">_updateMessage()</a>, <a class="el" href="_alarm_8h_source.html#l00023">ACKNOWLEDGED</a>, <a class="el" href="_alarm_8h_source.html#l00024">ACTIVE</a>, <a class="el" href="_alarm_8cpp_source.html#l00102">clear()</a>, <a class="el" href="_alarm_8h_source.html#l00021">CLEARED</a>, <a class="el" href="_logger_manager_8h_source.html#l00109">LoggerManager::error()</a>, <a class="el" href="_alarm_8cpp_source.html#l00350">getStageString()</a>, <a class="el" href="_alarm_8cpp_source.html#l00340">getTypeString()</a>, <a class="el" href="_alarm_8h_source.html#l00012">HIGH_TEMPERATURE</a>, <a class="el" href="_logger_manager_8h_source.html#l00101">LoggerManager::info()</a>, <a class="el" href="_alarm_8cpp_source.html#l00598">isAcknowledgedDelayElapsed()</a>, <a class="el" href="_alarm_8cpp_source.html#l00293">isDelayElapsed()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00870">LoggerManager::logAlarmStateChange()</a>, <a class="el" href="_alarm_8h_source.html#l00013">LOW_TEMPERATURE</a>, <a class="el" href="_alarm_8h_source.html#l00020">NEW</a>, <a class="el" href="_alarm_8cpp_source.html#l00121">resolve()</a>, <a class="el" href="_alarm_8h_source.html#l00022">RESOLVED</a>, <a class="el" href="_alarm_8h_source.html#l00015">SENSOR_DISCONNECTED</a>, <a class="el" href="_alarm_8h_source.html#l00014">SENSOR_ERROR</a>, and <a class="el" href="_logger_manager_8h_source.html#l00105">LoggerManager::warning()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8cpp_source.html#l00479">479</a> of file <a class="el" href="_alarm_8cpp_source.html">Alarm.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00335">_acknowledgedTime</a>, <a class="el" href="_alarm_8cpp_source.html#l00195">_checkCondition()</a>, <a class="el" href="_alarm_8h_source.html#l00336">_clearedTime</a>, <a class="el" href="_alarm_8cpp_source.html#l00399">_getPriorityString()</a>, <a class="el" href="_alarm_8h_source.html#l00331">_source</a>, <a class="el" href="_alarm_8h_source.html#l00329">_stage</a>, <a class="el" href="_alarm_8h_source.html#l00334">_timestamp</a>, <a class="el" href="_alarm_8h_source.html#l00328">_type</a>, <a class="el" href="_alarm_8cpp_source.html#l00374">_updateMessage()</a>, <a class="el" href="_alarm_8h_source.html#l00049">ACKNOWLEDGED</a>, <a class="el" href="_alarm_8h_source.html#l00050">ACTIVE</a>, <a class="el" href="_alarm_8cpp_source.html#l00140">clear()</a>, <a class="el" href="_alarm_8h_source.html#l00047">CLEARED</a>, <a class="el" href="_logger_manager_8h_source.html#l00165">LoggerManager::error()</a>, <a class="el" href="_alarm_8cpp_source.html#l00388">getStageString()</a>, <a class="el" href="_alarm_8cpp_source.html#l00378">getTypeString()</a>, <a class="el" href="_alarm_8h_source.html#l00034">HIGH_TEMPERATURE</a>, <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>, <a class="el" href="_alarm_8cpp_source.html#l00636">isAcknowledgedDelayElapsed()</a>, <a class="el" href="_alarm_8cpp_source.html#l00331">isDelayElapsed()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00870">LoggerManager::logAlarmStateChange()</a>, <a class="el" href="_alarm_8h_source.html#l00035">LOW_TEMPERATURE</a>, <a class="el" href="_alarm_8h_source.html#l00046">NEW</a>, <a class="el" href="_alarm_8cpp_source.html#l00159">resolve()</a>, <a class="el" href="_alarm_8h_source.html#l00048">RESOLVED</a>, <a class="el" href="_alarm_8h_source.html#l00037">SENSOR_DISCONNECTED</a>, <a class="el" href="_alarm_8h_source.html#l00036">SENSOR_ERROR</a>, and <a class="el" href="_logger_manager_8h_source.html#l00155">LoggerManager::warning()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1528,9 +1797,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00133">133</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+<p>Delay after acknowledgment (millis) </p>
 
-<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00022">Alarm()</a>, <a class="el" href="_alarm_8cpp_source.html#l00594">getAcknowledgedDelay()</a>, <a class="el" href="_alarm_8cpp_source.html#l00605">getAcknowledgedTimeLeft()</a>, <a class="el" href="_alarm_8cpp_source.html#l00598">isAcknowledgedDelayElapsed()</a>, and <a class="el" href="_alarm_8cpp_source.html#l00590">setAcknowledgedDelay()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00342">342</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00046">Alarm()</a>, <a class="el" href="_alarm_8cpp_source.html#l00632">getAcknowledgedDelay()</a>, <a class="el" href="_alarm_8cpp_source.html#l00643">getAcknowledgedTimeLeft()</a>, <a class="el" href="_alarm_8cpp_source.html#l00636">isAcknowledgedDelayElapsed()</a>, and <a class="el" href="_alarm_8cpp_source.html#l00628">setAcknowledgedDelay()</a>.</p>
 
 </div>
 </div>
@@ -1554,9 +1825,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00114">114</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+<p>When alarm was acknowledged (millis) </p>
 
-<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00069">acknowledge()</a>, <a class="el" href="_alarm_8cpp_source.html#l00022">Alarm()</a>, <a class="el" href="_alarm_8h_source.html#l00051">getAcknowledgedTime()</a>, <a class="el" href="_alarm_8cpp_source.html#l00605">getAcknowledgedTimeLeft()</a>, <a class="el" href="_alarm_8cpp_source.html#l00598">isAcknowledgedDelayElapsed()</a>, <a class="el" href="_alarm_8cpp_source.html#l00138">reactivate()</a>, and <a class="el" href="_alarm_8cpp_source.html#l00441">updateCondition()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00335">335</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00107">acknowledge()</a>, <a class="el" href="_alarm_8cpp_source.html#l00046">Alarm()</a>, <a class="el" href="_alarm_8h_source.html#l00122">getAcknowledgedTime()</a>, <a class="el" href="_alarm_8cpp_source.html#l00643">getAcknowledgedTimeLeft()</a>, <a class="el" href="_alarm_8cpp_source.html#l00636">isAcknowledgedDelayElapsed()</a>, <a class="el" href="_alarm_8cpp_source.html#l00176">reactivate()</a>, and <a class="el" href="_alarm_8cpp_source.html#l00479">updateCondition()</a>.</p>
 
 </div>
 </div>
@@ -1580,9 +1853,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00115">115</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+<p>When condition was cleared (millis) </p>
 
-<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00022">Alarm()</a>, <a class="el" href="_alarm_8cpp_source.html#l00102">clear()</a>, <a class="el" href="_alarm_8h_source.html#l00052">getClearedTime()</a>, <a class="el" href="_alarm_8cpp_source.html#l00293">isDelayElapsed()</a>, <a class="el" href="_alarm_8cpp_source.html#l00138">reactivate()</a>, and <a class="el" href="_alarm_8cpp_source.html#l00441">updateCondition()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00336">336</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00046">Alarm()</a>, <a class="el" href="_alarm_8cpp_source.html#l00140">clear()</a>, <a class="el" href="_alarm_8h_source.html#l00128">getClearedTime()</a>, <a class="el" href="_alarm_8cpp_source.html#l00331">isDelayElapsed()</a>, <a class="el" href="_alarm_8cpp_source.html#l00176">reactivate()</a>, and <a class="el" href="_alarm_8cpp_source.html#l00479">updateCondition()</a>.</p>
 
 </div>
 </div>
@@ -1606,9 +1881,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00131">131</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+<p>Configuration key "alarm_&lt;point&gt;_&lt;type&gt;". </p>
 
-<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00022">Alarm()</a>, <a class="el" href="_alarm_8cpp_source.html#l00387">getConfigKey()</a>, and <a class="el" href="_alarm_8cpp_source.html#l00391">setConfigKey()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00343">343</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00046">Alarm()</a>, <a class="el" href="_alarm_8cpp_source.html#l00425">getConfigKey()</a>, and <a class="el" href="_alarm_8cpp_source.html#l00429">setConfigKey()</a>.</p>
 
 </div>
 </div>
@@ -1632,9 +1909,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00120">120</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+<p>Delay before auto-resolve (millis) </p>
 
-<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00022">Alarm()</a>, <a class="el" href="_alarm_8h_source.html#l00073">getDelayTime()</a>, <a class="el" href="_alarm_8cpp_source.html#l00293">isDelayElapsed()</a>, and <a class="el" href="_alarm_8h_source.html#l00072">setDelayTime()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00341">341</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00046">Alarm()</a>, <a class="el" href="_alarm_8h_source.html#l00210">getDelayTime()</a>, <a class="el" href="_alarm_8cpp_source.html#l00331">isDelayElapsed()</a>, and <a class="el" href="_alarm_8h_source.html#l00204">setDelayTime()</a>.</p>
 
 </div>
 </div>
@@ -1658,9 +1937,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00132">132</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+<p>Whether alarm is active in configuration. </p>
 
-<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00022">Alarm()</a>, <a class="el" href="_alarm_8h_source.html#l00088">isEnabled()</a>, and <a class="el" href="_alarm_8cpp_source.html#l00423">setEnabled()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00344">344</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00046">Alarm()</a>, <a class="el" href="_alarm_8h_source.html#l00262">isEnabled()</a>, and <a class="el" href="_alarm_8cpp_source.html#l00461">setEnabled()</a>.</p>
 
 </div>
 </div>
@@ -1684,9 +1965,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00117">117</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+<p>Hysteresis value to prevent flapping. </p>
 
-<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00157">_checkCondition()</a>, <a class="el" href="_alarm_8cpp_source.html#l00022">Alarm()</a>, <a class="el" href="_alarm_8h_source.html#l00096">getHysteresis()</a>, and <a class="el" href="_alarm_8cpp_source.html#l00409">setHysteresis()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00338">338</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00195">_checkCondition()</a>, <a class="el" href="_alarm_8cpp_source.html#l00046">Alarm()</a>, <a class="el" href="_alarm_8h_source.html#l00298">getHysteresis()</a>, and <a class="el" href="_alarm_8cpp_source.html#l00447">setHysteresis()</a>.</p>
 
 </div>
 </div>
@@ -1710,9 +1993,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00123">123</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+<p>Human-readable alarm description. </p>
 
-<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00336">_updateMessage()</a>, and <a class="el" href="_alarm_8h_source.html#l00053">getMessage()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00347">347</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00374">_updateMessage()</a>, and <a class="el" href="_alarm_8h_source.html#l00134">getMessage()</a>.</p>
 
 </div>
 </div>
@@ -1736,9 +2021,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00109">109</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+<p>Priority level for handling. </p>
 
-<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00361">_getPriorityString()</a>, <a class="el" href="_alarm_8cpp_source.html#l00022">Alarm()</a>, <a class="el" href="_alarm_8h_source.html#l00048">getPriority()</a>, <a class="el" href="_alarm_8cpp_source.html#l00371">operator&lt;()</a>, and <a class="el" href="_alarm_8cpp_source.html#l00395">setPriority()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00330">330</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00399">_getPriorityString()</a>, <a class="el" href="_alarm_8cpp_source.html#l00046">Alarm()</a>, <a class="el" href="_alarm_8h_source.html#l00104">getPriority()</a>, <a class="el" href="_alarm_8cpp_source.html#l00409">operator&lt;()</a>, and <a class="el" href="_alarm_8cpp_source.html#l00433">setPriority()</a>.</p>
 
 </div>
 </div>
@@ -1762,9 +2049,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00110">110</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+<p>Associated measurement point. </p>
 
-<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00157">_checkCondition()</a>, <a class="el" href="_alarm_8cpp_source.html#l00069">acknowledge()</a>, <a class="el" href="_alarm_8cpp_source.html#l00022">Alarm()</a>, <a class="el" href="_alarm_8cpp_source.html#l00102">clear()</a>, <a class="el" href="_alarm_8cpp_source.html#l00300">getDisplayText()</a>, <a class="el" href="_alarm_8h_source.html#l00090">getPointAddress()</a>, <a class="el" href="_alarm_8h_source.html#l00049">getSource()</a>, <a class="el" href="_alarm_8cpp_source.html#l00328">getStatusText()</a>, <a class="el" href="_alarm_8cpp_source.html#l00379">operator==()</a>, <a class="el" href="_alarm_8cpp_source.html#l00138">reactivate()</a>, <a class="el" href="_alarm_8cpp_source.html#l00121">resolve()</a>, <a class="el" href="_alarm_8cpp_source.html#l00423">setEnabled()</a>, <a class="el" href="_alarm_8cpp_source.html#l00409">setHysteresis()</a>, <a class="el" href="_alarm_8cpp_source.html#l00395">setPriority()</a>, <a class="el" href="_alarm_8cpp_source.html#l00441">updateCondition()</a>, and <a class="el" href="_alarm_8cpp_source.html#l00056">~Alarm()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00331">331</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00195">_checkCondition()</a>, <a class="el" href="_alarm_8cpp_source.html#l00107">acknowledge()</a>, <a class="el" href="_alarm_8cpp_source.html#l00046">Alarm()</a>, <a class="el" href="_alarm_8cpp_source.html#l00140">clear()</a>, <a class="el" href="_alarm_8cpp_source.html#l00338">getDisplayText()</a>, <a class="el" href="_alarm_8h_source.html#l00274">getPointAddress()</a>, <a class="el" href="_alarm_8h_source.html#l00110">getSource()</a>, <a class="el" href="_alarm_8cpp_source.html#l00366">getStatusText()</a>, <a class="el" href="_alarm_8cpp_source.html#l00417">operator==()</a>, <a class="el" href="_alarm_8cpp_source.html#l00176">reactivate()</a>, <a class="el" href="_alarm_8cpp_source.html#l00159">resolve()</a>, <a class="el" href="_alarm_8cpp_source.html#l00461">setEnabled()</a>, <a class="el" href="_alarm_8cpp_source.html#l00447">setHysteresis()</a>, <a class="el" href="_alarm_8cpp_source.html#l00433">setPriority()</a>, <a class="el" href="_alarm_8cpp_source.html#l00479">updateCondition()</a>, and <a class="el" href="_alarm_8cpp_source.html#l00088">~Alarm()</a>.</p>
 
 </div>
 </div>
@@ -1788,9 +2077,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00108">108</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+<p>Current lifecycle stage. </p>
 
-<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00157">_checkCondition()</a>, <a class="el" href="_alarm_8cpp_source.html#l00069">acknowledge()</a>, <a class="el" href="_alarm_8cpp_source.html#l00022">Alarm()</a>, <a class="el" href="_alarm_8cpp_source.html#l00102">clear()</a>, <a class="el" href="_alarm_8cpp_source.html#l00605">getAcknowledgedTimeLeft()</a>, <a class="el" href="_alarm_8cpp_source.html#l00300">getDisplayText()</a>, <a class="el" href="_alarm_8h_source.html#l00047">getStage()</a>, <a class="el" href="_alarm_8cpp_source.html#l00350">getStageString()</a>, <a class="el" href="_alarm_8h_source.html#l00055">isAcknowledged()</a>, <a class="el" href="_alarm_8cpp_source.html#l00598">isAcknowledgedDelayElapsed()</a>, <a class="el" href="_alarm_8h_source.html#l00054">isActive()</a>, <a class="el" href="_alarm_8cpp_source.html#l00293">isDelayElapsed()</a>, <a class="el" href="_alarm_8h_source.html#l00056">isResolved()</a>, <a class="el" href="_alarm_8cpp_source.html#l00138">reactivate()</a>, <a class="el" href="_alarm_8cpp_source.html#l00121">resolve()</a>, <a class="el" href="_alarm_8cpp_source.html#l00436">setStage()</a>, and <a class="el" href="_alarm_8cpp_source.html#l00441">updateCondition()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00329">329</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00195">_checkCondition()</a>, <a class="el" href="_alarm_8cpp_source.html#l00107">acknowledge()</a>, <a class="el" href="_alarm_8cpp_source.html#l00046">Alarm()</a>, <a class="el" href="_alarm_8cpp_source.html#l00140">clear()</a>, <a class="el" href="_alarm_8cpp_source.html#l00643">getAcknowledgedTimeLeft()</a>, <a class="el" href="_alarm_8cpp_source.html#l00338">getDisplayText()</a>, <a class="el" href="_alarm_8h_source.html#l00098">getStage()</a>, <a class="el" href="_alarm_8cpp_source.html#l00388">getStageString()</a>, <a class="el" href="_alarm_8h_source.html#l00146">isAcknowledged()</a>, <a class="el" href="_alarm_8cpp_source.html#l00636">isAcknowledgedDelayElapsed()</a>, <a class="el" href="_alarm_8h_source.html#l00140">isActive()</a>, <a class="el" href="_alarm_8cpp_source.html#l00331">isDelayElapsed()</a>, <a class="el" href="_alarm_8h_source.html#l00152">isResolved()</a>, <a class="el" href="_alarm_8cpp_source.html#l00176">reactivate()</a>, <a class="el" href="_alarm_8cpp_source.html#l00159">resolve()</a>, <a class="el" href="_alarm_8cpp_source.html#l00474">setStage()</a>, and <a class="el" href="_alarm_8cpp_source.html#l00479">updateCondition()</a>.</p>
 
 </div>
 </div>
@@ -1814,9 +2105,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00113">113</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+<p>When alarm was created (millis) </p>
 
-<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00022">Alarm()</a>, <a class="el" href="_alarm_8h_source.html#l00050">getTimestamp()</a>, <a class="el" href="_alarm_8cpp_source.html#l00371">operator&lt;()</a>, <a class="el" href="_alarm_8cpp_source.html#l00379">operator==()</a>, and <a class="el" href="_alarm_8cpp_source.html#l00441">updateCondition()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00334">334</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00046">Alarm()</a>, <a class="el" href="_alarm_8h_source.html#l00116">getTimestamp()</a>, <a class="el" href="_alarm_8cpp_source.html#l00409">operator&lt;()</a>, <a class="el" href="_alarm_8cpp_source.html#l00417">operator==()</a>, and <a class="el" href="_alarm_8cpp_source.html#l00479">updateCondition()</a>.</p>
 
 </div>
 </div>
@@ -1840,9 +2133,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00107">107</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+<p>Type of alarm (temperature, sensor error, etc.) </p>
 
-<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00157">_checkCondition()</a>, <a class="el" href="_alarm_8cpp_source.html#l00069">acknowledge()</a>, <a class="el" href="_alarm_8cpp_source.html#l00022">Alarm()</a>, <a class="el" href="_alarm_8cpp_source.html#l00300">getDisplayText()</a>, <a class="el" href="_alarm_8h_source.html#l00046">getType()</a>, <a class="el" href="_alarm_8cpp_source.html#l00340">getTypeString()</a>, <a class="el" href="_alarm_8cpp_source.html#l00379">operator==()</a>, and <a class="el" href="_alarm_8cpp_source.html#l00441">updateCondition()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00328">328</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00195">_checkCondition()</a>, <a class="el" href="_alarm_8cpp_source.html#l00107">acknowledge()</a>, <a class="el" href="_alarm_8cpp_source.html#l00046">Alarm()</a>, <a class="el" href="_alarm_8cpp_source.html#l00338">getDisplayText()</a>, <a class="el" href="_alarm_8h_source.html#l00092">getType()</a>, <a class="el" href="_alarm_8cpp_source.html#l00378">getTypeString()</a>, <a class="el" href="_alarm_8cpp_source.html#l00417">operator==()</a>, and <a class="el" href="_alarm_8cpp_source.html#l00479">updateCondition()</a>.</p>
 
 </div>
 </div>

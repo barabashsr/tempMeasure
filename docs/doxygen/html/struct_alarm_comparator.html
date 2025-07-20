@@ -93,6 +93,9 @@ $(function(){initNavTree('struct_alarm_comparator.html','',''); });
 </div><!--header-->
 <div class="contents">
 
+<p><a class="el" href="class_alarm.html" title="Main alarm class for temperature monitoring system.">Alarm</a> comparison function for priority-based sorting.  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_alarm_8h_source.html">Alarm.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for AlarmComparator:</div>
@@ -103,10 +106,13 @@ Collaboration diagram for AlarmComparator:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a9e59c2531a3bd641d0b3d0cc10bffe54" id="r_a9e59c2531a3bd641d0b3d0cc10bffe54"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9e59c2531a3bd641d0b3d0cc10bffe54">operator()</a> (const <a class="el" href="class_alarm.html">Alarm</a> *a, const <a class="el" href="class_alarm.html">Alarm</a> *b) const</td></tr>
+<tr class="memdesc:a9e59c2531a3bd641d0b3d0cc10bffe54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Comparison operator for alarm sorting.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00138">138</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+<div class="textblock"><p><a class="el" href="class_alarm.html" title="Main alarm class for temperature monitoring system.">Alarm</a> comparison function for priority-based sorting. </p>
+<p>Provides comparison logic for sorting alarms by priority (highest first) and timestamp (oldest first) for equal priorities </p>
+
+<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00381">381</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="a9e59c2531a3bd641d0b3d0cc10bffe54" name="a9e59c2531a3bd641d0b3d0cc10bffe54"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9e59c2531a3bd641d0b3d0cc10bffe54">&#9670;&#160;</a></span>operator()()</h2>
@@ -135,9 +141,20 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00139">139</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+<p>Comparison operator for alarm sorting. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>First alarm to compare </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td>Second alarm to compare </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bool True if alarm 'a' should be sorted before alarm 'b' </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Higher priority alarms sort first, older alarms sort first within same priority </dd></dl>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00048">Alarm::getPriority()</a>, and <a class="el" href="_alarm_8h_source.html#l00050">Alarm::getTimestamp()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00389">389</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00104">Alarm::getPriority()</a>, and <a class="el" href="_alarm_8h_source.html#l00116">Alarm::getTimestamp()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">

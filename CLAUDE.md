@@ -1,3 +1,20 @@
+### Workflow Reminder 
+- **ALWAYS start with reading CLAUDE.md file**
+
+# ⚠️ CRITICAL: MANDATORY WORKFLOW - READ FIRST ⚠️
+
+**THIS FILE CONTAINS MANDATORY INSTRUCTIONS FOR ALL AI ASSISTANTS**
+
+🔴 **STOP**: Do not proceed with ANY task until you have:
+1. ✅ Read this entire file
+2. ✅ Created a baseline commit 
+3. ✅ Started a session using the documented scripts
+4. ✅ Generated current documentation
+
+**Ignoring these instructions violates project requirements and will result in rejected work.**
+
+---
+
 # CLAUDE.md - Embedded Development Configuration
 
 > **Version:** 3.0 | **Target:** Solo embedded development with PlatformIO | **Last Updated:** 2025-01-20
@@ -448,9 +465,38 @@ cp -r .claude/sessions/current .claude/sessions/$(date +%Y%m%d_%H%M%S)_completed
 ```
 
 ---
+
+## 🚨 NON-COMPLIANCE CONSEQUENCES
+
+AI assistants that skip this workflow will have their work:
+- ❌ **Rejected entirely**
+- 🔄 **Required to restart from baseline**
+- 📝 **Documented as non-compliant**
+- ⏸️ **Session terminated immediately**
+
+**No exceptions. This workflow is mandatory for project integrity.**
+
+### ⚖️ Compliance Requirements
+
+1. **Baseline Commit**: MUST be created before ANY code changes
+2. **Documentation Generation**: MUST run `scripts/generate_docs.sh` at session start
+3. **Session Management**: MUST use `.claude/scripts/start_session.sh` or manual equivalent
+4. **Documentation-First**: MUST read generated docs before modifying code
+5. **Proper Commits**: MUST follow commit message format with documentation updates
+
+### 🎯 Enforcement
+
+- All commits will be reviewed for baseline compliance
+- Sessions without proper initialization will be terminated
+- Work that doesn't follow documentation-first approach will be rejected
+- Incomplete Doxygen comments will require rework
+
 **Remember:** Documentation-first approach saves tokens and improves accuracy. Always regenerate Doxygen after changes!
 
-**Available Artifacts for Setup:**
+---
+
+## 📦 Available Artifacts for Setup
+
 1. **"Enhanced CLAUDE.md"** - This file
 2. **"Doxygen Setup and Documentation Generation"** - Complete Doxygen configuration and scripts
 3. **"Archive Session Script"** - Session archiving automation
@@ -462,3 +508,4 @@ cp -r .claude/sessions/current .claude/sessions/$(date +%Y%m%d_%H%M%S)_completed
 - `.claude/scripts/start_session.sh` - Automated session initialization
 - `.claude/scripts/archive_session.sh` - Session archiving with summary
 - `.git/hooks/pre-commit` - Auto-generates docs on commit
+

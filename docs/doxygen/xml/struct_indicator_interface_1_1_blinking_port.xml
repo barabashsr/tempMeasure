@@ -11,12 +11,13 @@
         <name>portName</name>
         <qualifiedname>IndicatorInterface::BlinkingPort::portName</qualifiedname>
         <briefdescription>
+<para>Name of the blinking port. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/IndicatorInterface.h" line="16" column="21" bodyfile="include/IndicatorInterface.h" bodystart="16" bodyend="-1"/>
+        <location file="include/IndicatorInterface.h" line="44" column="21" bodyfile="include/IndicatorInterface.h" bodystart="44" bodyend="-1"/>
         <referencedby refid="class_indicator_interface_1aafa418167df7eb74fc90fca14818a5eb" compoundref="_indicator_interface_8cpp" startline="966" endline="993">IndicatorInterface::startBlinking</referencedby>
       </memberdef>
       <memberdef kind="variable" id="struct_indicator_interface_1_1_blinking_port_1add4bee394ff2b7239780a4a7b2640954" prot="public" static="no" mutable="no">
@@ -26,12 +27,13 @@
         <name>onTime</name>
         <qualifiedname>IndicatorInterface::BlinkingPort::onTime</qualifiedname>
         <briefdescription>
+<para>Duration port stays on (milliseconds) </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/IndicatorInterface.h" line="17" column="23" bodyfile="include/IndicatorInterface.h" bodystart="17" bodyend="-1"/>
+        <location file="include/IndicatorInterface.h" line="45" column="23" bodyfile="include/IndicatorInterface.h" bodystart="45" bodyend="-1"/>
         <referencedby refid="class_indicator_interface_1aafa418167df7eb74fc90fca14818a5eb" compoundref="_indicator_interface_8cpp" startline="966" endline="993">IndicatorInterface::startBlinking</referencedby>
       </memberdef>
       <memberdef kind="variable" id="struct_indicator_interface_1_1_blinking_port_1a629381e9fa819c425e8387c8b2819f55" prot="public" static="no" mutable="no">
@@ -41,12 +43,13 @@
         <name>offTime</name>
         <qualifiedname>IndicatorInterface::BlinkingPort::offTime</qualifiedname>
         <briefdescription>
+<para>Duration port stays off (milliseconds) </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/IndicatorInterface.h" line="18" column="23" bodyfile="include/IndicatorInterface.h" bodystart="18" bodyend="-1"/>
+        <location file="include/IndicatorInterface.h" line="46" column="23" bodyfile="include/IndicatorInterface.h" bodystart="46" bodyend="-1"/>
         <referencedby refid="class_indicator_interface_1aafa418167df7eb74fc90fca14818a5eb" compoundref="_indicator_interface_8cpp" startline="966" endline="993">IndicatorInterface::startBlinking</referencedby>
       </memberdef>
       <memberdef kind="variable" id="struct_indicator_interface_1_1_blinking_port_1a34e108c23ec5082406b12b75d87c9606" prot="public" static="no" mutable="no">
@@ -56,12 +59,13 @@
         <name>lastToggleTime</name>
         <qualifiedname>IndicatorInterface::BlinkingPort::lastToggleTime</qualifiedname>
         <briefdescription>
+<para>Last time port state was toggled. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/IndicatorInterface.h" line="19" column="23" bodyfile="include/IndicatorInterface.h" bodystart="19" bodyend="-1"/>
+        <location file="include/IndicatorInterface.h" line="47" column="23" bodyfile="include/IndicatorInterface.h" bodystart="47" bodyend="-1"/>
         <referencedby refid="class_indicator_interface_1aafa418167df7eb74fc90fca14818a5eb" compoundref="_indicator_interface_8cpp" startline="966" endline="993">IndicatorInterface::startBlinking</referencedby>
       </memberdef>
       <memberdef kind="variable" id="struct_indicator_interface_1_1_blinking_port_1aa22cf12bfef400089f451e7992ae4c62" prot="public" static="no" mutable="no">
@@ -71,12 +75,13 @@
         <name>currentState</name>
         <qualifiedname>IndicatorInterface::BlinkingPort::currentState</qualifiedname>
         <briefdescription>
+<para>Current on/off state. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/IndicatorInterface.h" line="20" column="14" bodyfile="include/IndicatorInterface.h" bodystart="20" bodyend="-1"/>
+        <location file="include/IndicatorInterface.h" line="48" column="14" bodyfile="include/IndicatorInterface.h" bodystart="48" bodyend="-1"/>
         <referencedby refid="class_indicator_interface_1aafa418167df7eb74fc90fca14818a5eb" compoundref="_indicator_interface_8cpp" startline="966" endline="993">IndicatorInterface::startBlinking</referencedby>
       </memberdef>
       <memberdef kind="variable" id="struct_indicator_interface_1_1_blinking_port_1aa6b9efc3b2ddaf0ecbb264bebed99e60" prot="public" static="no" mutable="no">
@@ -86,18 +91,21 @@
         <name>isActive</name>
         <qualifiedname>IndicatorInterface::BlinkingPort::isActive</qualifiedname>
         <briefdescription>
+<para>Whether blinking is currently active. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/IndicatorInterface.h" line="21" column="14" bodyfile="include/IndicatorInterface.h" bodystart="21" bodyend="-1"/>
+        <location file="include/IndicatorInterface.h" line="49" column="14" bodyfile="include/IndicatorInterface.h" bodystart="49" bodyend="-1"/>
         <referencedby refid="class_indicator_interface_1aafa418167df7eb74fc90fca14818a5eb" compoundref="_indicator_interface_8cpp" startline="966" endline="993">IndicatorInterface::startBlinking</referencedby>
       </memberdef>
     </sectiondef>
     <briefdescription>
+<para>Structure for managing blinking port states. </para>
     </briefdescription>
     <detaileddescription>
+<para>Tracks timing and state information for ports that blink automatically </para>
     </detaileddescription>
     <collaborationgraph>
       <node id="1">
@@ -105,7 +113,7 @@
         <link refid="struct_indicator_interface_1_1_blinking_port"/>
       </node>
     </collaborationgraph>
-    <location file="include/IndicatorInterface.h" line="15" column="5" bodyfile="include/IndicatorInterface.h" bodystart="15" bodyend="22"/>
+    <location file="include/IndicatorInterface.h" line="43" column="5" bodyfile="include/IndicatorInterface.h" bodystart="43" bodyend="50"/>
     <listofallmembers>
       <member refid="struct_indicator_interface_1_1_blinking_port_1aa22cf12bfef400089f451e7992ae4c62" prot="public" virt="non-virtual"><scope>IndicatorInterface::BlinkingPort</scope><name>currentState</name></member>
       <member refid="struct_indicator_interface_1_1_blinking_port_1aa6b9efc3b2ddaf0ecbb264bebed99e60" prot="public" virt="non-virtual"><scope>IndicatorInterface::BlinkingPort</scope><name>isActive</name></member>

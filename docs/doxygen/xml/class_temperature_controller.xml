@@ -889,7 +889,7 @@
         <references refid="class_temperature_controller_1a79e98c9a1d42de787a66e02b250b7a74" compoundref="_temperature_controller_8cpp" startline="956" endline="1005">discoverPTSensors</references>
         <references refid="class_temperature_controller_1a300c1fd1c2189cd64b8fc8ff4930e8b1" compoundref="_temperature_controller_8h" startline="158">firmwareVersion</references>
         <references refid="class_temperature_controller_1afa8ea33dcae793f871130c8ba52ba4e9" compoundref="_temperature_controller_8h" startline="145">indicator</references>
-        <references refid="class_logger_manager_1a5c1373ccc47f4112b596fe6f84fbbc21" compoundref="_logger_manager_8h" startline="101" endline="103">LoggerManager::info</references>
+        <references refid="class_logger_manager_1a5c1373ccc47f4112b596fe6f84fbbc21" compoundref="_logger_manager_8h" startline="145" endline="147">LoggerManager::info</references>
         <references refid="class_temperature_controller_1a515b9f088ad00d4b7e106081c94a7d12" compoundref="_temperature_controller_8h" startline="155">registerMap</references>
         <references refid="class_temperature_controller_1a0156a803f4fdaffbe59e3842647a608f" compoundref="_temperature_controller_8h" startline="160">systemInitialized</references>
       </memberdef>
@@ -1115,9 +1115,9 @@
         <references refid="class_temperature_controller_1ae03306ef9585c7427ef53cd9a5fad12b" compoundref="_temperature_controller_8cpp" startline="753" endline="761">findSensorByRom</references>
         <references refid="class_temperature_controller_1a494f057c234b4ff7526bde271aec9267" compoundref="_temperature_controller_8cpp" startline="702" endline="708">getMeasurementPoint</references>
         <references refid="class_measurement_point_1aa3a80d373c7609c7b178bf7353ffdd7a" compoundref="_measurement_point_8cpp" startline="29" endline="31">MeasurementPoint::getName</references>
-        <references refid="class_logger_manager_1a5c1373ccc47f4112b596fe6f84fbbc21" compoundref="_logger_manager_8h" startline="101" endline="103">LoggerManager::info</references>
+        <references refid="class_logger_manager_1a5c1373ccc47f4112b596fe6f84fbbc21" compoundref="_logger_manager_8h" startline="145" endline="147">LoggerManager::info</references>
         <references refid="class_temperature_controller_1ad3819418f9f301f3f7047ba686a11be0" compoundref="_temperature_controller_8cpp" startline="1260" endline="1286">unbindSensorFromPointBySensor</references>
-        <references refid="class_logger_manager_1a0d52b0ff7bff22817e987ad753102854" compoundref="_logger_manager_8h" startline="105" endline="107">LoggerManager::warning</references>
+        <references refid="class_logger_manager_1a0d52b0ff7bff22817e987ad753102854" compoundref="_logger_manager_8h" startline="155" endline="157">LoggerManager::warning</references>
       </memberdef>
       <memberdef kind="function" id="class_temperature_controller_1a84937fc1aed30193b817f3b062ce0cfc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -1144,9 +1144,9 @@
         <references refid="class_temperature_controller_1a31a8a32868beaae06649a5006ca96599" compoundref="_temperature_controller_8cpp" startline="763" endline="769">findSensorByChipSelect</references>
         <references refid="class_temperature_controller_1a494f057c234b4ff7526bde271aec9267" compoundref="_temperature_controller_8cpp" startline="702" endline="708">getMeasurementPoint</references>
         <references refid="class_measurement_point_1aa3a80d373c7609c7b178bf7353ffdd7a" compoundref="_measurement_point_8cpp" startline="29" endline="31">MeasurementPoint::getName</references>
-        <references refid="class_logger_manager_1a5c1373ccc47f4112b596fe6f84fbbc21" compoundref="_logger_manager_8h" startline="101" endline="103">LoggerManager::info</references>
+        <references refid="class_logger_manager_1a5c1373ccc47f4112b596fe6f84fbbc21" compoundref="_logger_manager_8h" startline="145" endline="147">LoggerManager::info</references>
         <references refid="class_temperature_controller_1ad3819418f9f301f3f7047ba686a11be0" compoundref="_temperature_controller_8cpp" startline="1260" endline="1286">unbindSensorFromPointBySensor</references>
-        <references refid="class_logger_manager_1a0d52b0ff7bff22817e987ad753102854" compoundref="_logger_manager_8h" startline="105" endline="107">LoggerManager::warning</references>
+        <references refid="class_logger_manager_1a0d52b0ff7bff22817e987ad753102854" compoundref="_logger_manager_8h" startline="155" endline="157">LoggerManager::warning</references>
       </memberdef>
       <memberdef kind="function" id="class_temperature_controller_1a261c9b96540ec6680dfffd3a26e4ca00" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -1166,14 +1166,14 @@
         </inbodydescription>
         <location file="include/TemperatureController.h" line="41" column="10" bodyfile="src/TemperatureController.cpp" bodystart="825" bodyend="846"/>
         <references refid="_sensor_8h_1a213c434cb928c4ca22513e2302632435aac1bc058b939e1c55e1496c8574f3691" compoundref="_sensor_8h" startline="11">DS18B20</references>
-        <references refid="class_logger_manager_1aef24f00186213fa78be3b104a50d58e6" compoundref="_logger_manager_8h" startline="109" endline="111">LoggerManager::error</references>
+        <references refid="class_logger_manager_1aef24f00186213fa78be3b104a50d58e6" compoundref="_logger_manager_8h" startline="165" endline="167">LoggerManager::error</references>
         <references refid="class_measurement_point_1a81c7ae93a9314344967d0f31c6fefe2f" compoundref="_measurement_point_8cpp" startline="106" endline="108">MeasurementPoint::getBoundSensor</references>
         <references refid="class_sensor_1a9f793cde2918130fbc77dad1aebfe53a" compoundref="_sensor_8cpp" startline="195" endline="203">Sensor::getDS18B20RomString</references>
         <references refid="class_temperature_controller_1a494f057c234b4ff7526bde271aec9267" compoundref="_temperature_controller_8cpp" startline="702" endline="708">getMeasurementPoint</references>
         <references refid="class_measurement_point_1aa3a80d373c7609c7b178bf7353ffdd7a" compoundref="_measurement_point_8cpp" startline="29" endline="31">MeasurementPoint::getName</references>
         <references refid="class_sensor_1a6f57825e90b759ccdb9fe07b3a36953d" compoundref="_sensor_8cpp" startline="190" endline="193">Sensor::getPT1000ChipSelectPin</references>
         <references refid="class_sensor_1a0f6f095e7cfdfffb2a395dfdae7cfa53" compoundref="_sensor_8cpp" startline="153" endline="153">Sensor::getType</references>
-        <references refid="class_logger_manager_1a5c1373ccc47f4112b596fe6f84fbbc21" compoundref="_logger_manager_8h" startline="101" endline="103">LoggerManager::info</references>
+        <references refid="class_logger_manager_1a5c1373ccc47f4112b596fe6f84fbbc21" compoundref="_logger_manager_8h" startline="145" endline="147">LoggerManager::info</references>
         <references refid="class_measurement_point_1ab93923a15b7e55af89d1269b681fb856" compoundref="_measurement_point_8cpp" startline="102" endline="104">MeasurementPoint::unbindSensor</references>
       </memberdef>
       <memberdef kind="function" id="class_temperature_controller_1a9b4fe09d4c87dcf86e78b890012e1e72" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -1336,7 +1336,7 @@
         <references refid="class_sensor_1a60ec96ed03660b42681c1bcc99007033" compoundref="_sensor_8cpp" startline="155" endline="155">Sensor::getName</references>
         <references refid="class_sensor_1ac42da3a37b0d6a9622344fe83f4c9047" compoundref="_sensor_8h" startline="68" endline="68">Sensor::getOneWirePin</references>
         <references refid="class_temperature_controller_1a01e04714a1712aa10c34276850971a12" compoundref="_temperature_controller_8cpp" startline="1240" endline="1256">getSensorBus</references>
-        <references refid="class_logger_manager_1a5c1373ccc47f4112b596fe6f84fbbc21" compoundref="_logger_manager_8h" startline="101" endline="103">LoggerManager::info</references>
+        <references refid="class_logger_manager_1a5c1373ccc47f4112b596fe6f84fbbc21" compoundref="_logger_manager_8h" startline="145" endline="147">LoggerManager::info</references>
         <references refid="class_sensor_1a59dd5483b75d9366a0c50ccdd0345dec" compoundref="_sensor_8cpp" startline="49" endline="98">Sensor::initialize</references>
         <references refid="class_temperature_controller_1afbc751c9e13c2a827677dd559dc2face" compoundref="_temperature_controller_8h" startline="161">oneWireBusPin</references>
         <references refid="class_temperature_controller_1a515b9f088ad00d4b7e106081c94a7d12" compoundref="_temperature_controller_8h" startline="155">registerMap</references>
@@ -1362,7 +1362,7 @@
         <references refid="class_sensor_1a60ec96ed03660b42681c1bcc99007033" compoundref="_sensor_8cpp" startline="155" endline="155">Sensor::getName</references>
         <references refid="class_sensor_1a6f57825e90b759ccdb9fe07b3a36953d" compoundref="_sensor_8cpp" startline="190" endline="193">Sensor::getPT1000ChipSelectPin</references>
         <references refid="class_temperature_controller_1a01e04714a1712aa10c34276850971a12" compoundref="_temperature_controller_8cpp" startline="1240" endline="1256">getSensorBus</references>
-        <references refid="class_logger_manager_1a5c1373ccc47f4112b596fe6f84fbbc21" compoundref="_logger_manager_8h" startline="101" endline="103">LoggerManager::info</references>
+        <references refid="class_logger_manager_1a5c1373ccc47f4112b596fe6f84fbbc21" compoundref="_logger_manager_8h" startline="145" endline="147">LoggerManager::info</references>
         <references refid="class_sensor_1a59dd5483b75d9366a0c50ccdd0345dec" compoundref="_sensor_8cpp" startline="49" endline="98">Sensor::initialize</references>
         <references refid="_sensor_8h_1a213c434cb928c4ca22513e2302632435a481caba3768b84e8b68fb58b04ec595e" compoundref="_sensor_8h" startline="12">PT1000</references>
         <references refid="class_temperature_controller_1a515b9f088ad00d4b7e106081c94a7d12" compoundref="_temperature_controller_8h" startline="155">registerMap</references>
@@ -1459,7 +1459,7 @@
         </inbodydescription>
         <location file="include/TemperatureController.h" line="62" column="10" bodyfile="src/TemperatureController.cpp" bodystart="1146" bodyend="1152"/>
         <references refid="class_temperature_controller_1a1e844316402b71f262acbccf2eea1c72" compoundref="_temperature_controller_8h" startline="150">dsPoints</references>
-        <references refid="class_logger_manager_1a5c1373ccc47f4112b596fe6f84fbbc21" compoundref="_logger_manager_8h" startline="101" endline="103">LoggerManager::info</references>
+        <references refid="class_logger_manager_1a5c1373ccc47f4112b596fe6f84fbbc21" compoundref="_logger_manager_8h" startline="145" endline="147">LoggerManager::info</references>
         <references refid="class_temperature_controller_1af7c6beb92cc3f0b60ade37d2f87d53de" compoundref="_temperature_controller_8h" startline="151">ptPoints</references>
       </memberdef>
       <memberdef kind="function" id="class_temperature_controller_1a80552172d64d7536490e5f6320c10941" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
@@ -1495,7 +1495,7 @@
         </inbodydescription>
         <location file="include/TemperatureController.h" line="66" column="10" bodyfile="src/TemperatureController.cpp" bodystart="1154" bodyend="1160"/>
         <references refid="class_temperature_controller_1af4f7af424307d77201faf663ae87ffe7" compoundref="_temperature_controller_8h" startline="157">deviceId</references>
-        <references refid="class_logger_manager_1a5c1373ccc47f4112b596fe6f84fbbc21" compoundref="_logger_manager_8h" startline="101" endline="103">LoggerManager::info</references>
+        <references refid="class_logger_manager_1a5c1373ccc47f4112b596fe6f84fbbc21" compoundref="_logger_manager_8h" startline="145" endline="147">LoggerManager::info</references>
         <references refid="class_temperature_controller_1a515b9f088ad00d4b7e106081c94a7d12" compoundref="_temperature_controller_8h" startline="155">registerMap</references>
       </memberdef>
       <memberdef kind="function" id="class_temperature_controller_1a3cd823f5e8f7eb810c4a2a212c5ee571" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
@@ -1565,7 +1565,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="include/TemperatureController.h" line="70" column="10" bodyfile="src/TemperatureController.cpp" bodystart="1171" bodyend="1180"/>
-        <references refid="class_logger_manager_1a5c1373ccc47f4112b596fe6f84fbbc21" compoundref="_logger_manager_8h" startline="101" endline="103">LoggerManager::info</references>
+        <references refid="class_logger_manager_1a5c1373ccc47f4112b596fe6f84fbbc21" compoundref="_logger_manager_8h" startline="145" endline="147">LoggerManager::info</references>
         <references refid="class_temperature_controller_1a288edd276dc0ab787c717ccd5c6b7f6d" compoundref="_temperature_controller_8h" startline="156">measurementPeriodSeconds</references>
       </memberdef>
       <memberdef kind="function" id="class_temperature_controller_1a7465ffc80f89d566d53e97e4192a511f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
@@ -1673,7 +1673,7 @@
         </inbodydescription>
         <location file="include/TemperatureController.h" line="78" column="10" bodyfile="src/TemperatureController.cpp" bodystart="1210" bodyend="1234"/>
         <references refid="_sensor_8h_1a213c434cb928c4ca22513e2302632435aac1bc058b939e1c55e1496c8574f3691" compoundref="_sensor_8h" startline="11">DS18B20</references>
-        <references refid="class_logger_manager_1aef24f00186213fa78be3b104a50d58e6" compoundref="_logger_manager_8h" startline="109" endline="111">LoggerManager::error</references>
+        <references refid="class_logger_manager_1aef24f00186213fa78be3b104a50d58e6" compoundref="_logger_manager_8h" startline="165" endline="167">LoggerManager::error</references>
         <references refid="class_temperature_controller_1a01e04714a1712aa10c34276850971a12" compoundref="_temperature_controller_8cpp" startline="1240" endline="1256">getSensorBus</references>
         <references refid="class_temperature_controller_1a823f6289a0da9921e2c121eefa41bdd2" compoundref="_temperature_controller_8h" startline="152">sensors</references>
         <referencedby refid="class_temperature_controller_1aca5deddbf703001373424d876f87b5f2" compoundref="_temperature_controller_8cpp" startline="125" endline="155">update</referencedby>
@@ -1745,7 +1745,7 @@
         </inbodydescription>
         <location file="include/TemperatureController.h" line="83" column="12" bodyfile="src/TemperatureController.cpp" bodystart="644" bodyend="674"/>
         <references refid="class_temperature_controller_1a57ddffe7bca803a83c6ae54fff8b8633" compoundref="_temperature_controller_8h" startline="166">_configuredAlarms</references>
-        <references refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2a9ca8335873c44a53b8f7c5fc526ee59b" compoundref="_alarm_8h" startline="12">HIGH_TEMPERATURE</references>
+        <references refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2a9ca8335873c44a53b8f7c5fc526ee59b" compoundref="_alarm_8h" startline="34">HIGH_TEMPERATURE</references>
       </memberdef>
       <memberdef kind="function" id="class_temperature_controller_1a5637103784725fb1a73f6463d7cbfde6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1784,15 +1784,15 @@
         <references refid="class_temperature_controller_1ac2b7ce0afccac7602505ab0bd3916562" compoundref="_temperature_controller_8h" startline="194">_relay1State</references>
         <references refid="class_temperature_controller_1a3af25b4c386c13c4e1c49f50d67c705b" compoundref="_temperature_controller_8h" startline="195">_relay2State</references>
         <references refid="class_temperature_controller_1ada44ea25043f4cc35dd01cad67979acf" compoundref="_temperature_controller_8h" startline="197">_yellowLedState</references>
-        <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba7e83ae21b9e9b168f12ba5a90ee82c94" compoundref="_alarm_8h" startline="23">ACKNOWLEDGED</references>
-        <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba18ff74f43da410c5529f7d6fca84f115" compoundref="_alarm_8h" startline="24">ACTIVE</references>
+        <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba7e83ae21b9e9b168f12ba5a90ee82c94" compoundref="_alarm_8h" startline="49">ACKNOWLEDGED</references>
+        <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba18ff74f43da410c5529f7d6fca84f115" compoundref="_alarm_8h" startline="50">ACTIVE</references>
         <references refid="class_temperature_controller_1a3022c7a72adb45a7800d5189eecdac4e" compoundref="_temperature_controller_8h" startline="101" endline="101">getAlarmCount</references>
         <references refid="class_temperature_controller_1afa8ea33dcae793f871130c8ba52ba4e9" compoundref="_temperature_controller_8h" startline="145">indicator</references>
-        <references refid="class_logger_manager_1a5c1373ccc47f4112b596fe6f84fbbc21" compoundref="_logger_manager_8h" startline="101" endline="103">LoggerManager::info</references>
-        <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba5f9223804ac004dc2fad18afc18a3951" compoundref="_alarm_8h" startline="33">PRIORITY_CRITICAL</references>
-        <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba47a10a0fba7f10a751e6ea38f3d6a1e3" compoundref="_alarm_8h" startline="32">PRIORITY_HIGH</references>
-        <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba4a2343657e145cb3dab4f445d2c29b1f" compoundref="_alarm_8h" startline="30">PRIORITY_LOW</references>
-        <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba7e5ab414d2d201947566a9c574a7b85f" compoundref="_alarm_8h" startline="31">PRIORITY_MEDIUM</references>
+        <references refid="class_logger_manager_1a5c1373ccc47f4112b596fe6f84fbbc21" compoundref="_logger_manager_8h" startline="145" endline="147">LoggerManager::info</references>
+        <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba5f9223804ac004dc2fad18afc18a3951" compoundref="_alarm_8h" startline="61">PRIORITY_CRITICAL</references>
+        <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba47a10a0fba7f10a751e6ea38f3d6a1e3" compoundref="_alarm_8h" startline="60">PRIORITY_HIGH</references>
+        <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba4a2343657e145cb3dab4f445d2c29b1f" compoundref="_alarm_8h" startline="58">PRIORITY_LOW</references>
+        <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba7e5ab414d2d201947566a9c574a7b85f" compoundref="_alarm_8h" startline="59">PRIORITY_MEDIUM</references>
         <referencedby refid="class_temperature_controller_1aca5deddbf703001373424d876f87b5f2" compoundref="_temperature_controller_8cpp" startline="125" endline="155">update</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_temperature_controller_1af58201023d15de003d4f1b9a9771a9e3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
@@ -1839,8 +1839,8 @@
         <location file="include/TemperatureController.h" line="88" column="10" bodyfile="src/TemperatureController.cpp" bodystart="254" bodyend="276"/>
         <references refid="class_temperature_controller_1a57ddffe7bca803a83c6ae54fff8b8633" compoundref="_temperature_controller_8h" startline="166">_configuredAlarms</references>
         <references refid="class_measurement_point_1a7b74a18d86e0e545264a774aa2c31cad" compoundref="_measurement_point_8cpp" startline="25" endline="27">MeasurementPoint::getAddress</references>
-        <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba24d459a81449d7210c8f9a86c2913034" compoundref="_alarm_8h" startline="20">NEW</references>
-        <references refid="class_alarm_1ad116a3e8b622810e1769568fbac16379" compoundref="_alarm_8cpp" startline="391" endline="393">Alarm::setConfigKey</references>
+        <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba24d459a81449d7210c8f9a86c2913034" compoundref="_alarm_8h" startline="46">NEW</references>
+        <references refid="class_alarm_1ad116a3e8b622810e1769568fbac16379" compoundref="_alarm_8cpp" startline="429" endline="431">Alarm::setConfigKey</references>
         <referencedby refid="class_temperature_controller_1a27da8ccc3effea555f440ce3e6f89b08" compoundref="_temperature_controller_8cpp" startline="216" endline="239">_checkPointForAlarms</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_temperature_controller_1abb3d16c1efa5754a2e64b5dc5dd4f4cc" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
@@ -1872,9 +1872,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="include/TemperatureController.h" line="90" column="10" bodyfile="src/TemperatureController.cpp" bodystart="289" bodyend="295"/>
-        <references refid="class_alarm_1aa14f5a764303b269f04573867e2e4fc8" compoundref="_alarm_8cpp" startline="69" endline="98">Alarm::acknowledge</references>
+        <references refid="class_alarm_1aa14f5a764303b269f04573867e2e4fc8" compoundref="_alarm_8cpp" startline="107" endline="136">Alarm::acknowledge</references>
         <references refid="class_temperature_controller_1abb3d16c1efa5754a2e64b5dc5dd4f4cc" compoundref="_temperature_controller_8cpp" startline="279" endline="286">getHighestPriorityAlarm</references>
-        <references refid="class_alarm_1adaf4b74537e11d5643ba5a8ae07fe10e" compoundref="_alarm_8cpp" startline="328" endline="334">Alarm::getStatusText</references>
+        <references refid="class_alarm_1adaf4b74537e11d5643ba5a8ae07fe10e" compoundref="_alarm_8cpp" startline="366" endline="372">Alarm::getStatusText</references>
       </memberdef>
       <memberdef kind="function" id="class_temperature_controller_1ae1ac307e5332c85a007b38a484b8a1c7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1956,15 +1956,15 @@
         <references refid="class_temperature_controller_1aa97ba23c998b2cfc732786e2307e60fa" compoundref="_temperature_controller_8cpp" startline="1832" endline="1840">_getPriorityString</references>
         <references refid="class_temperature_controller_1a494f057c234b4ff7526bde271aec9267" compoundref="_temperature_controller_8cpp" startline="702" endline="708">getMeasurementPoint</references>
         <references refid="class_measurement_point_1aa3a80d373c7609c7b178bf7353ffdd7a" compoundref="_measurement_point_8cpp" startline="29" endline="31">MeasurementPoint::getName</references>
-        <references refid="class_alarm_1abd578ec75a5ac9bce00b7ce7207c5d8c" compoundref="_alarm_8cpp" startline="340" endline="348">Alarm::getTypeString</references>
-        <references refid="class_logger_manager_1a5c1373ccc47f4112b596fe6f84fbbc21" compoundref="_logger_manager_8h" startline="101" endline="103">LoggerManager::info</references>
-        <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba5f9223804ac004dc2fad18afc18a3951" compoundref="_alarm_8h" startline="33">PRIORITY_CRITICAL</references>
-        <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba47a10a0fba7f10a751e6ea38f3d6a1e3" compoundref="_alarm_8h" startline="32">PRIORITY_HIGH</references>
-        <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba4a2343657e145cb3dab4f445d2c29b1f" compoundref="_alarm_8h" startline="30">PRIORITY_LOW</references>
-        <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba7e5ab414d2d201947566a9c574a7b85f" compoundref="_alarm_8h" startline="31">PRIORITY_MEDIUM</references>
-        <references refid="class_alarm_1a3f5329f9c026bad4f5171423fcaf51b0" compoundref="_alarm_8cpp" startline="590" endline="592">Alarm::setAcknowledgedDelay</references>
-        <references refid="class_alarm_1ad116a3e8b622810e1769568fbac16379" compoundref="_alarm_8cpp" startline="391" endline="393">Alarm::setConfigKey</references>
-        <references refid="class_logger_manager_1a0d52b0ff7bff22817e987ad753102854" compoundref="_logger_manager_8h" startline="105" endline="107">LoggerManager::warning</references>
+        <references refid="class_alarm_1abd578ec75a5ac9bce00b7ce7207c5d8c" compoundref="_alarm_8cpp" startline="378" endline="386">Alarm::getTypeString</references>
+        <references refid="class_logger_manager_1a5c1373ccc47f4112b596fe6f84fbbc21" compoundref="_logger_manager_8h" startline="145" endline="147">LoggerManager::info</references>
+        <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba5f9223804ac004dc2fad18afc18a3951" compoundref="_alarm_8h" startline="61">PRIORITY_CRITICAL</references>
+        <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba47a10a0fba7f10a751e6ea38f3d6a1e3" compoundref="_alarm_8h" startline="60">PRIORITY_HIGH</references>
+        <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba4a2343657e145cb3dab4f445d2c29b1f" compoundref="_alarm_8h" startline="58">PRIORITY_LOW</references>
+        <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba7e5ab414d2d201947566a9c574a7b85f" compoundref="_alarm_8h" startline="59">PRIORITY_MEDIUM</references>
+        <references refid="class_alarm_1a3f5329f9c026bad4f5171423fcaf51b0" compoundref="_alarm_8cpp" startline="628" endline="630">Alarm::setAcknowledgedDelay</references>
+        <references refid="class_alarm_1ad116a3e8b622810e1769568fbac16379" compoundref="_alarm_8cpp" startline="429" endline="431">Alarm::setConfigKey</references>
+        <references refid="class_logger_manager_1a0d52b0ff7bff22817e987ad753102854" compoundref="_logger_manager_8h" startline="155" endline="157">LoggerManager::warning</references>
       </memberdef>
       <memberdef kind="function" id="class_temperature_controller_1ac39c426da2e1f9dff4abe1d9b550b723" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -1984,7 +1984,7 @@
         </inbodydescription>
         <location file="include/TemperatureController.h" line="97" column="10" bodyfile="src/TemperatureController.cpp" bodystart="1348" bodyend="1361"/>
         <references refid="class_temperature_controller_1a57ddffe7bca803a83c6ae54fff8b8633" compoundref="_temperature_controller_8h" startline="166">_configuredAlarms</references>
-        <references refid="class_logger_manager_1a5c1373ccc47f4112b596fe6f84fbbc21" compoundref="_logger_manager_8h" startline="101" endline="103">LoggerManager::info</references>
+        <references refid="class_logger_manager_1a5c1373ccc47f4112b596fe6f84fbbc21" compoundref="_logger_manager_8h" startline="145" endline="147">LoggerManager::info</references>
       </memberdef>
       <memberdef kind="function" id="class_temperature_controller_1a93bd31914a054a4e1df9be7e3966b82e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -2012,8 +2012,8 @@
         </inbodydescription>
         <location file="include/TemperatureController.h" line="98" column="10" bodyfile="src/TemperatureController.cpp" bodystart="1363" bodyend="1371"/>
         <references refid="class_temperature_controller_1ae7d9c642f7ae697c2679e61d4da45868" compoundref="_temperature_controller_8cpp" startline="1373" endline="1380">findAlarm</references>
-        <references refid="class_alarm_1acb8f203b2e2317c1f835bb4b19123f3f" compoundref="_alarm_8cpp" startline="423" endline="432">Alarm::setEnabled</references>
-        <references refid="class_alarm_1a5095c54c304a52ebbaca5a2ea74059cd" compoundref="_alarm_8cpp" startline="395" endline="407">Alarm::setPriority</references>
+        <references refid="class_alarm_1acb8f203b2e2317c1f835bb4b19123f3f" compoundref="_alarm_8cpp" startline="461" endline="470">Alarm::setEnabled</references>
+        <references refid="class_alarm_1a5095c54c304a52ebbaca5a2ea74059cd" compoundref="_alarm_8cpp" startline="433" endline="445">Alarm::setPriority</references>
       </memberdef>
       <memberdef kind="function" id="class_temperature_controller_1ae7d9c642f7ae697c2679e61d4da45868" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="class_alarm" kindref="compound">Alarm</ref> *</type>
@@ -2326,10 +2326,10 @@
         <references refid="class_temperature_controller_1a40a6d2b670b8934247478a03bbdeebe0" compoundref="_temperature_controller_8h" startline="192">_acknowledgedDelayLow</references>
         <references refid="class_temperature_controller_1acdfdc317a9a70397ee9842b73b163b0b" compoundref="_temperature_controller_8h" startline="191">_acknowledgedDelayMedium</references>
         <references refid="class_temperature_controller_1a57ddffe7bca803a83c6ae54fff8b8633" compoundref="_temperature_controller_8h" startline="166">_configuredAlarms</references>
-        <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba5f9223804ac004dc2fad18afc18a3951" compoundref="_alarm_8h" startline="33">PRIORITY_CRITICAL</references>
-        <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba47a10a0fba7f10a751e6ea38f3d6a1e3" compoundref="_alarm_8h" startline="32">PRIORITY_HIGH</references>
-        <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba4a2343657e145cb3dab4f445d2c29b1f" compoundref="_alarm_8h" startline="30">PRIORITY_LOW</references>
-        <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba7e5ab414d2d201947566a9c574a7b85f" compoundref="_alarm_8h" startline="31">PRIORITY_MEDIUM</references>
+        <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba5f9223804ac004dc2fad18afc18a3951" compoundref="_alarm_8h" startline="61">PRIORITY_CRITICAL</references>
+        <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba47a10a0fba7f10a751e6ea38f3d6a1e3" compoundref="_alarm_8h" startline="60">PRIORITY_HIGH</references>
+        <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba4a2343657e145cb3dab4f445d2c29b1f" compoundref="_alarm_8h" startline="58">PRIORITY_LOW</references>
+        <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba7e5ab414d2d201947566a9c574a7b85f" compoundref="_alarm_8h" startline="59">PRIORITY_MEDIUM</references>
         <referencedby refid="class_temperature_controller_1a1cf2a33257d4f089a304859b975663c3" compoundref="_temperature_controller_8cpp" startline="1434" endline="1437">setAcknowledgedDelayCritical</referencedby>
         <referencedby refid="class_temperature_controller_1a365ac98348ce12de8938a687744c9f6c" compoundref="_temperature_controller_8cpp" startline="1439" endline="1442">setAcknowledgedDelayHigh</referencedby>
         <referencedby refid="class_temperature_controller_1a87eeba5b5182d712bd9c361f37b933a8" compoundref="_temperature_controller_8cpp" startline="1449" endline="1452">setAcknowledgedDelayLow</referencedby>
@@ -2484,11 +2484,11 @@
         <references refid="class_measurement_point_1a3fb0693931f12190a7f96e5d6be51b51" compoundref="_measurement_point_8cpp" startline="57" endline="59">MeasurementPoint::getErrorStatus</references>
         <references refid="class_measurement_point_1a71d6d440240f110cbd80c58bbc47aff6" compoundref="_measurement_point_8cpp" startline="49" endline="51">MeasurementPoint::getHighAlarmThreshold</references>
         <references refid="class_measurement_point_1a6e538e117d9e22c6998b56519a51d6ba" compoundref="_measurement_point_8cpp" startline="45" endline="47">MeasurementPoint::getLowAlarmThreshold</references>
-        <references refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2a9ca8335873c44a53b8f7c5fc526ee59b" compoundref="_alarm_8h" startline="12">HIGH_TEMPERATURE</references>
-        <references refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2acf7e66cec00ad7027a2f00fec418ed71" compoundref="_alarm_8h" startline="13">LOW_TEMPERATURE</references>
-        <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba47a10a0fba7f10a751e6ea38f3d6a1e3" compoundref="_alarm_8h" startline="32">PRIORITY_HIGH</references>
-        <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba7e5ab414d2d201947566a9c574a7b85f" compoundref="_alarm_8h" startline="31">PRIORITY_MEDIUM</references>
-        <references refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2a3993b9fcdbf9ec59e873519a4d02fe2f" compoundref="_alarm_8h" startline="14">SENSOR_ERROR</references>
+        <references refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2a9ca8335873c44a53b8f7c5fc526ee59b" compoundref="_alarm_8h" startline="34">HIGH_TEMPERATURE</references>
+        <references refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2acf7e66cec00ad7027a2f00fec418ed71" compoundref="_alarm_8h" startline="35">LOW_TEMPERATURE</references>
+        <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba47a10a0fba7f10a751e6ea38f3d6a1e3" compoundref="_alarm_8h" startline="60">PRIORITY_HIGH</references>
+        <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba7e5ab414d2d201947566a9c574a7b85f" compoundref="_alarm_8h" startline="59">PRIORITY_MEDIUM</references>
+        <references refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2a3993b9fcdbf9ec59e873519a4d02fe2f" compoundref="_alarm_8h" startline="36">SENSOR_ERROR</references>
       </memberdef>
       <memberdef kind="function" id="class_temperature_controller_1a4e75dbef3c1ce99afd4ec8e71102e836" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -2533,7 +2533,7 @@
         <references refid="class_temperature_controller_1aa881d2bbb58b22ac952aa781d997ee01" compoundref="_temperature_controller_8h" startline="218">_displayingActiveAlarm</references>
         <references refid="class_temperature_controller_1af5090245265f1d7bacc7e9e545fc240d" compoundref="_temperature_controller_8h" startline="216">_lastAlarmDisplayTime</references>
         <references refid="class_temperature_controller_1a6ffb5c63a3108e25e3224b77e0a661dc" compoundref="_temperature_controller_8h" startline="169">_lastButtonState</references>
-        <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba18ff74f43da410c5529f7d6fca84f115" compoundref="_alarm_8h" startline="24">ACTIVE</references>
+        <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba18ff74f43da410c5529f7d6fca84f115" compoundref="_alarm_8h" startline="50">ACTIVE</references>
         <references refid="class_temperature_controller_1afa8ea33dcae793f871130c8ba52ba4e9" compoundref="_temperature_controller_8h" startline="145">indicator</references>
         <referencedby refid="class_temperature_controller_1a5637103784725fb1a73f6463d7cbfde6" compoundref="_temperature_controller_8cpp" startline="1635" endline="1647">handleAlarmDisplay</referencedby>
         <referencedby refid="class_temperature_controller_1aca5deddbf703001373424d876f87b5f2" compoundref="_temperature_controller_8cpp" startline="125" endline="155">update</referencedby>
@@ -2661,10 +2661,10 @@
         <location file="include/TemperatureController.h" line="221" column="10" bodyfile="src/TemperatureController.cpp" bodystart="1649" bodyend="1684"/>
         <references refid="class_temperature_controller_1a484a2c1885c26905cb9c5c01e3518fe1" compoundref="_temperature_controller_8h" startline="213">_acknowledgedAlarmsQueue</references>
         <references refid="class_temperature_controller_1abf364877d51972d37a55e8110aad7506" compoundref="_temperature_controller_8h" startline="212">_activeAlarmsQueue</references>
-        <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba7e83ae21b9e9b168f12ba5a90ee82c94" compoundref="_alarm_8h" startline="23">ACKNOWLEDGED</references>
-        <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba18ff74f43da410c5529f7d6fca84f115" compoundref="_alarm_8h" startline="24">ACTIVE</references>
+        <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba7e83ae21b9e9b168f12ba5a90ee82c94" compoundref="_alarm_8h" startline="49">ACKNOWLEDGED</references>
+        <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba18ff74f43da410c5529f7d6fca84f115" compoundref="_alarm_8h" startline="50">ACTIVE</references>
         <references refid="class_temperature_controller_1af58201023d15de003d4f1b9a9771a9e3" compoundref="_temperature_controller_8cpp" startline="306" endline="314">getActiveAlarms</references>
-        <references refid="class_alarm_1a7a4a3290a6a659542f82fe08a96736a8" compoundref="_alarm_8h" startline="50" endline="50">Alarm::getTimestamp</references>
+        <references refid="class_alarm_1a7a4a3290a6a659542f82fe08a96736a8" compoundref="_alarm_8h" startline="116" endline="116">Alarm::getTimestamp</references>
         <referencedby refid="class_temperature_controller_1a5637103784725fb1a73f6463d7cbfde6" compoundref="_temperature_controller_8cpp" startline="1635" endline="1647">handleAlarmDisplay</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_temperature_controller_1a7ca5124357f98bcd52316cf017341b09" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -2735,7 +2735,7 @@
         <references refid="class_temperature_controller_1a745fcf9b8c78e39222c4a2e5d9fbcf11" compoundref="_temperature_controller_8h" startline="176">_showingOK</references>
         <references refid="class_temperature_controller_1a28e81945f5235e161e6c532b428d36d2" compoundref="_temperature_controller_8cpp" startline="638" endline="642">_showOKAndTurnOffOLED</references>
         <references refid="class_temperature_controller_1a4d36576f7d6ab8f5222a082878314912" compoundref="_temperature_controller_8cpp" startline="627" endline="636">_updateNormalDisplay</references>
-        <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba7e83ae21b9e9b168f12ba5a90ee82c94" compoundref="_alarm_8h" startline="23">ACKNOWLEDGED</references>
+        <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba7e83ae21b9e9b168f12ba5a90ee82c94" compoundref="_alarm_8h" startline="49">ACKNOWLEDGED</references>
         <references refid="class_temperature_controller_1afa8ea33dcae793f871130c8ba52ba4e9" compoundref="_temperature_controller_8h" startline="145">indicator</references>
         <referencedby refid="class_temperature_controller_1a5637103784725fb1a73f6463d7cbfde6" compoundref="_temperature_controller_8cpp" startline="1635" endline="1647">handleAlarmDisplay</referencedby>
       </memberdef>
@@ -2756,10 +2756,10 @@
         <inbodydescription>
         </inbodydescription>
         <location file="include/TemperatureController.h" line="226" column="12" bodyfile="src/TemperatureController.cpp" bodystart="1832" bodyend="1840"/>
-        <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba5f9223804ac004dc2fad18afc18a3951" compoundref="_alarm_8h" startline="33">PRIORITY_CRITICAL</references>
-        <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba47a10a0fba7f10a751e6ea38f3d6a1e3" compoundref="_alarm_8h" startline="32">PRIORITY_HIGH</references>
-        <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba4a2343657e145cb3dab4f445d2c29b1f" compoundref="_alarm_8h" startline="30">PRIORITY_LOW</references>
-        <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba7e5ab414d2d201947566a9c574a7b85f" compoundref="_alarm_8h" startline="31">PRIORITY_MEDIUM</references>
+        <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba5f9223804ac004dc2fad18afc18a3951" compoundref="_alarm_8h" startline="61">PRIORITY_CRITICAL</references>
+        <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba47a10a0fba7f10a751e6ea38f3d6a1e3" compoundref="_alarm_8h" startline="60">PRIORITY_HIGH</references>
+        <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba4a2343657e145cb3dab4f445d2c29b1f" compoundref="_alarm_8h" startline="58">PRIORITY_LOW</references>
+        <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba7e5ab414d2d201947566a9c574a7b85f" compoundref="_alarm_8h" startline="59">PRIORITY_MEDIUM</references>
         <referencedby refid="class_temperature_controller_1ac5c3403746d7c850bf7929bf5ee3448a" compoundref="_temperature_controller_8cpp" startline="1290" endline="1346">addAlarm</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_temperature_controller_1a38e9fe7d49bc58f1c6b5f1021ed1c045" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
@@ -2779,10 +2779,10 @@
         <inbodydescription>
         </inbodydescription>
         <location file="include/TemperatureController.h" line="229" column="12" bodyfile="src/TemperatureController.cpp" bodystart="1822" bodyend="1830"/>
-        <references refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2a9ca8335873c44a53b8f7c5fc526ee59b" compoundref="_alarm_8h" startline="12">HIGH_TEMPERATURE</references>
-        <references refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2acf7e66cec00ad7027a2f00fec418ed71" compoundref="_alarm_8h" startline="13">LOW_TEMPERATURE</references>
-        <references refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2ab4fed37e8cab6ef5684a361be786d8de" compoundref="_alarm_8h" startline="15">SENSOR_DISCONNECTED</references>
-        <references refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2a3993b9fcdbf9ec59e873519a4d02fe2f" compoundref="_alarm_8h" startline="14">SENSOR_ERROR</references>
+        <references refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2a9ca8335873c44a53b8f7c5fc526ee59b" compoundref="_alarm_8h" startline="34">HIGH_TEMPERATURE</references>
+        <references refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2acf7e66cec00ad7027a2f00fec418ed71" compoundref="_alarm_8h" startline="35">LOW_TEMPERATURE</references>
+        <references refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2ab4fed37e8cab6ef5684a361be786d8de" compoundref="_alarm_8h" startline="37">SENSOR_DISCONNECTED</references>
+        <references refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2a3993b9fcdbf9ec59e873519a4d02fe2f" compoundref="_alarm_8h" startline="36">SENSOR_ERROR</references>
       </memberdef>
     </sectiondef>
     <briefdescription>

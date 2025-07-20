@@ -92,6 +92,9 @@ $(function(){initNavTree('_config_manager_8h.html','',''); });
   <div class="headertitle"><div class="title">ConfigManager.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Configuration management system for temperature monitoring device.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;Arduino.h&gt;</code><br />
 <code>#include &lt;ConfigAssist.h&gt;</code><br />
 <code>#include &lt;ConfigAssistHelper.h&gt;</code><br />
@@ -104,7 +107,7 @@ $(function(){initNavTree('_config_manager_8h.html','',''); });
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for ConfigManager.h:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="_config_manager_8h__incl.svg" width="2071" height="552"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="_config_manager_8h__incl.svg" width="2067" height="552"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
@@ -117,12 +120,35 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Data Structures</h2></td></tr>
 <tr class="memitem:ConfigManager" id="r_ConfigManager"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_config_manager.html">ConfigManager</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main configuration management class.  <a href="class_config_manager.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a53744b698cb89b52923ba6024d2e25e0" id="r_a53744b698cb89b52923ba6024d2e25e0"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a53744b698cb89b52923ba6024d2e25e0">VARIABLES_DEF_YAML</a></td></tr>
+<tr class="memdesc:a53744b698cb89b52923ba6024d2e25e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">YAML configuration definition for ConfigAssist.  <br /></td></tr>
 </table>
-<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Variable Documentation</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Configuration management system for temperature monitoring device. </p>
+<dl class="section author"><dt>Author</dt><dd>Claude Code Session 20250720 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2025-07-20</dd></dl>
+<p>This file provides comprehensive configuration management including WiFi setup, web interface, measurement point configuration, alarm settings, and CSV import/export.</p>
+<h1 class="doxsection"><a class="anchor" id="dependencies"></a>
+Dependencies</h1>
+<ul>
+<li>ConfigAssist.h for web-based configuration</li>
+<li>WebServer.h for HTTP API endpoints</li>
+<li>LittleFS.h for file system operations</li>
+<li><a class="el" href="_temperature_controller_8h.html">TemperatureController.h</a> for device control</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="hardware"></a>
+Hardware Requirements</h1>
+<ul>
+<li>ESP32 with WiFi capability</li>
+<li>LittleFS file system support </li>
+</ul>
+
+<p class="definition">Definition in file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+</div><a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Variable Documentation</h2>
 <a id="a53744b698cb89b52923ba6024d2e25e0" name="a53744b698cb89b52923ba6024d2e25e0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a53744b698cb89b52923ba6024d2e25e0">&#9670;&#160;</a></span>VARIABLES_DEF_YAML</h2>
 
@@ -142,6 +168,8 @@ Variables</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>YAML configuration definition for ConfigAssist. </p>
 
 <p class="reference">Referenced by <a class="el" href="_config_manager_8cpp_source.html#l00081">ConfigManager::ConfigManager()</a>.</p>
 

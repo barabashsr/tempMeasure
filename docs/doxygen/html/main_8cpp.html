@@ -92,6 +92,9 @@ $(function(){initNavTree('main_8cpp.html','',''); });
   <div class="headertitle"><div class="title">main.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Main application entry point for Industrial Temperature Monitoring System.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;Arduino.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_temp_modbus_server_8h_source.html">TempModbusServer.h</a>&quot;</code><br />
@@ -103,7 +106,7 @@ $(function(){initNavTree('main_8cpp.html','',''); });
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for main.cpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="main_8cpp__incl.svg" width="2148" height="626"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="main_8cpp__incl.svg" width="2139" height="626"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="main_8cpp_source.html">Go to the source code of this file.</a></p>
@@ -111,41 +114,98 @@ Include dependency graph for main.cpp:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:ad0c1f84a4e0ecd91e5e90f215bf80540" id="r_ad0c1f84a4e0ecd91e5e90f215bf80540"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad0c1f84a4e0ecd91e5e90f215bf80540">BUS1_PIN</a>&#160;&#160;&#160;4</td></tr>
+<tr class="memdesc:ad0c1f84a4e0ecd91e5e90f215bf80540"><td class="mdescLeft">&#160;</td><td class="mdescRight">OneWire bus 1 for DS18B20 sensors.  <br /></td></tr>
 <tr class="memitem:ab048e547366b8ce86c0adbf08a8b472c" id="r_ab048e547366b8ce86c0adbf08a8b472c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab048e547366b8ce86c0adbf08a8b472c">BUS2_PIN</a>&#160;&#160;&#160;5</td></tr>
+<tr class="memdesc:ab048e547366b8ce86c0adbf08a8b472c"><td class="mdescLeft">&#160;</td><td class="mdescRight">OneWire bus 2 for DS18B20 sensors.  <br /></td></tr>
 <tr class="memitem:ac49d737679d0daa5c1ad94069632a6b9" id="r_ac49d737679d0daa5c1ad94069632a6b9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac49d737679d0daa5c1ad94069632a6b9">BUS3_PIN</a>&#160;&#160;&#160;18</td></tr>
+<tr class="memdesc:ac49d737679d0daa5c1ad94069632a6b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">OneWire bus 3 for DS18B20 sensors.  <br /></td></tr>
 <tr class="memitem:aae717cc08d7660a544aa5d25bc49328e" id="r_aae717cc08d7660a544aa5d25bc49328e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aae717cc08d7660a544aa5d25bc49328e">BUS4_PIN</a>&#160;&#160;&#160;19</td></tr>
+<tr class="memdesc:aae717cc08d7660a544aa5d25bc49328e"><td class="mdescLeft">&#160;</td><td class="mdescRight">OneWire bus 4 for DS18B20 sensors.  <br /></td></tr>
 <tr class="memitem:a01153037fca70cfac03c8d67f17d766a" id="r_a01153037fca70cfac03c8d67f17d766a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a01153037fca70cfac03c8d67f17d766a">SCK_PIN</a>&#160;&#160;&#160;14</td></tr>
+<tr class="memdesc:a01153037fca70cfac03c8d67f17d766a"><td class="mdescLeft">&#160;</td><td class="mdescRight">SPI clock pin.  <br /></td></tr>
 <tr class="memitem:aecb75580e6d96b71a64123aee5bd3929" id="r_aecb75580e6d96b71a64123aee5bd3929"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aecb75580e6d96b71a64123aee5bd3929">MISO_PIN</a>&#160;&#160;&#160;12</td></tr>
+<tr class="memdesc:aecb75580e6d96b71a64123aee5bd3929"><td class="mdescLeft">&#160;</td><td class="mdescRight">SPI MISO pin.  <br /></td></tr>
 <tr class="memitem:a11338fccf824b29757c2b23edb0f690f" id="r_a11338fccf824b29757c2b23edb0f690f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a11338fccf824b29757c2b23edb0f690f">MOSI_PIN</a>&#160;&#160;&#160;13</td></tr>
+<tr class="memdesc:a11338fccf824b29757c2b23edb0f690f"><td class="mdescLeft">&#160;</td><td class="mdescRight">SPI MOSI pin.  <br /></td></tr>
 <tr class="memitem:a95f9de1cf4510511738011cf4d21cc3c" id="r_a95f9de1cf4510511738011cf4d21cc3c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a95f9de1cf4510511738011cf4d21cc3c">CS1_PIN</a>&#160;&#160;&#160;32</td></tr>
+<tr class="memdesc:a95f9de1cf4510511738011cf4d21cc3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Chip select for PT1000 sensor 1.  <br /></td></tr>
 <tr class="memitem:a8b6fd3026aab783c2174d35c4863fe33" id="r_a8b6fd3026aab783c2174d35c4863fe33"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8b6fd3026aab783c2174d35c4863fe33">CS2_PIN</a>&#160;&#160;&#160;33</td></tr>
+<tr class="memdesc:a8b6fd3026aab783c2174d35c4863fe33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Chip select for PT1000 sensor 2.  <br /></td></tr>
 <tr class="memitem:a2bbb00acc3fac5af03284d9e6f5bd81c" id="r_a2bbb00acc3fac5af03284d9e6f5bd81c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2bbb00acc3fac5af03284d9e6f5bd81c">CS3_PIN</a>&#160;&#160;&#160;26</td></tr>
+<tr class="memdesc:a2bbb00acc3fac5af03284d9e6f5bd81c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Chip select for PT1000 sensor 3.  <br /></td></tr>
 <tr class="memitem:a381c4ec472645df12a56af0259d17f50" id="r_a381c4ec472645df12a56af0259d17f50"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a381c4ec472645df12a56af0259d17f50">CS4_PIN</a>&#160;&#160;&#160;27</td></tr>
+<tr class="memdesc:a381c4ec472645df12a56af0259d17f50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Chip select for PT1000 sensor 4.  <br /></td></tr>
 <tr class="memitem:ae6cc20a4c5a6166265bf43e48202617e" id="r_ae6cc20a4c5a6166265bf43e48202617e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae6cc20a4c5a6166265bf43e48202617e">CS5_PIN_TF_CARD</a>&#160;&#160;&#160;0</td></tr>
+<tr class="memdesc:ae6cc20a4c5a6166265bf43e48202617e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Chip select for SD card.  <br /></td></tr>
 <tr class="memitem:aa7089c01538b339ae745173c117f95b9" id="r_aa7089c01538b339ae745173c117f95b9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa7089c01538b339ae745173c117f95b9">RX_PIN</a>&#160;&#160;&#160;22</td></tr>
+<tr class="memdesc:aa7089c01538b339ae745173c117f95b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">RS485 receive pin.  <br /></td></tr>
 <tr class="memitem:a3bb17f5daa2b1eaef58c8aa2d989e27e" id="r_a3bb17f5daa2b1eaef58c8aa2d989e27e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3bb17f5daa2b1eaef58c8aa2d989e27e">TX_PIN</a>&#160;&#160;&#160;23</td></tr>
+<tr class="memdesc:a3bb17f5daa2b1eaef58c8aa2d989e27e"><td class="mdescLeft">&#160;</td><td class="mdescRight">RS485 transmit pin.  <br /></td></tr>
 <tr class="memitem:adbd2ea2266042c0b767e0fdac0c55d64" id="r_adbd2ea2266042c0b767e0fdac0c55d64"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adbd2ea2266042c0b767e0fdac0c55d64">DE_PIN</a>&#160;&#160;&#160;-1</td></tr>
+<tr class="memdesc:adbd2ea2266042c0b767e0fdac0c55d64"><td class="mdescLeft">&#160;</td><td class="mdescRight">RS485 driver enable pin (-1 = not used)  <br /></td></tr>
 <tr class="memitem:a18aefd12ad84d4c33dc97923cb821e47" id="r_a18aefd12ad84d4c33dc97923cb821e47"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a18aefd12ad84d4c33dc97923cb821e47">I2C_SDA</a>&#160;&#160;&#160;21</td></tr>
+<tr class="memdesc:a18aefd12ad84d4c33dc97923cb821e47"><td class="mdescLeft">&#160;</td><td class="mdescRight">I2C data pin (default, available)  <br /></td></tr>
 <tr class="memitem:a212ca328a6409c98f8c3dfbbe1ba561d" id="r_a212ca328a6409c98f8c3dfbbe1ba561d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a212ca328a6409c98f8c3dfbbe1ba561d">I2C_SCL</a>&#160;&#160;&#160;25</td></tr>
+<tr class="memdesc:a212ca328a6409c98f8c3dfbbe1ba561d"><td class="mdescLeft">&#160;</td><td class="mdescRight">I2C clock pin (alternative, GPIO 22 used by RS485)  <br /></td></tr>
 <tr class="memitem:a4e96da313fa726b5b120e6d2461248cd" id="r_a4e96da313fa726b5b120e6d2461248cd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4e96da313fa726b5b120e6d2461248cd">PCF_INT</a>&#160;&#160;&#160;34</td></tr>
+<tr class="memdesc:a4e96da313fa726b5b120e6d2461248cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">PCF8575 I/O expander interrupt pin.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a4fc01d736fe50cf5b977f755b675f11d" id="r_a4fc01d736fe50cf5b977f755b675f11d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4fc01d736fe50cf5b977f755b675f11d">setup</a> ()</td></tr>
+<tr class="memdesc:a4fc01d736fe50cf5b977f755b675f11d"><td class="mdescLeft">&#160;</td><td class="mdescRight">System initialization function.  <br /></td></tr>
 <tr class="memitem:afe461d27b9c48d5921c00d521181f12f" id="r_afe461d27b9c48d5921c00d521181f12f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afe461d27b9c48d5921c00d521181f12f">loop</a> ()</td></tr>
+<tr class="memdesc:afe461d27b9c48d5921c00d521181f12f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main system loop.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a009a384f716fb318dbb3ca6c01f82cf6" id="r_a009a384f716fb318dbb3ca6c01f82cf6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_indicator_interface.html">IndicatorInterface</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a009a384f716fb318dbb3ca6c01f82cf6">indicator</a> (Wire, 0x20, <a class="el" href="#a4e96da313fa726b5b120e6d2461248cd">PCF_INT</a>)</td></tr>
+<tr class="memdesc:a009a384f716fb318dbb3ca6c01f82cf6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicator interface for OLED display and I/O control (I2C address 0x20)  <br /></td></tr>
 <tr class="memitem:a42643b111a01e68b13ba177173ca18f2" id="r_a42643b111a01e68b13ba177173ca18f2"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a42643b111a01e68b13ba177173ca18f2">onwWirePins</a> [4] = {<a class="el" href="#ad0c1f84a4e0ecd91e5e90f215bf80540">BUS1_PIN</a>, <a class="el" href="#ab048e547366b8ce86c0adbf08a8b472c">BUS2_PIN</a>, <a class="el" href="#ac49d737679d0daa5c1ad94069632a6b9">BUS3_PIN</a>, <a class="el" href="#aae717cc08d7660a544aa5d25bc49328e">BUS4_PIN</a>}</td></tr>
+<tr class="memdesc:a42643b111a01e68b13ba177173ca18f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">OneWire bus pin array for DS18B20 sensors.  <br /></td></tr>
 <tr class="memitem:ab7afb3d24d4590b3ba10970a6bff2631" id="r_ab7afb3d24d4590b3ba10970a6bff2631"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab7afb3d24d4590b3ba10970a6bff2631">csPins</a> [4] = {<a class="el" href="#a95f9de1cf4510511738011cf4d21cc3c">CS1_PIN</a>, <a class="el" href="#a8b6fd3026aab783c2174d35c4863fe33">CS2_PIN</a>, <a class="el" href="#a2bbb00acc3fac5af03284d9e6f5bd81c">CS3_PIN</a>, <a class="el" href="#a381c4ec472645df12a56af0259d17f50">CS4_PIN</a>}</td></tr>
+<tr class="memdesc:ab7afb3d24d4590b3ba10970a6bff2631"><td class="mdescLeft">&#160;</td><td class="mdescRight">SPI chip select pin array for PT1000 sensors.  <br /></td></tr>
 <tr class="memitem:aecbe6ad38ed7d220ace280ea33d8ab45" id="r_aecbe6ad38ed7d220ace280ea33d8ab45"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_temperature_controller.html">TemperatureController</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aecbe6ad38ed7d220ace280ea33d8ab45">controller</a> (<a class="el" href="#a42643b111a01e68b13ba177173ca18f2">onwWirePins</a>, <a class="el" href="#ab7afb3d24d4590b3ba10970a6bff2631">csPins</a>, <a class="el" href="#a009a384f716fb318dbb3ca6c01f82cf6">indicator</a>)</td></tr>
+<tr class="memdesc:aecbe6ad38ed7d220ace280ea33d8ab45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main temperature controller managing all sensors and measurement points.  <br /></td></tr>
 <tr class="memitem:a064a914bb7eaaf470d545cab5f0c0066" id="r_a064a914bb7eaaf470d545cab5f0c0066"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_config_manager.html">ConfigManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a064a914bb7eaaf470d545cab5f0c0066">configManager</a></td></tr>
+<tr class="memdesc:a064a914bb7eaaf470d545cab5f0c0066"><td class="mdescLeft">&#160;</td><td class="mdescRight">Web-based configuration manager (dynamically allocated)  <br /></td></tr>
 <tr class="memitem:a4d17575d4300b383a3726118c7dba5ef" id="r_a4d17575d4300b383a3726118c7dba5ef"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_temp_modbus_server.html">TempModbusServer</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4d17575d4300b383a3726118c7dba5ef">modbusServer</a></td></tr>
+<tr class="memdesc:a4d17575d4300b383a3726118c7dba5ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Modbus RTU server for industrial communication (dynamically allocated)  <br /></td></tr>
 <tr class="memitem:ad27a531589f8fed0687abe50e4ab32dc" id="r_ad27a531589f8fed0687abe50e4ab32dc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_time_manager.html">TimeManager</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad27a531589f8fed0687abe50e4ab32dc">timeManager</a> (<a class="el" href="#a18aefd12ad84d4c33dc97923cb821e47">I2C_SDA</a>, <a class="el" href="#a212ca328a6409c98f8c3dfbbe1ba561d">I2C_SCL</a>)</td></tr>
+<tr class="memdesc:ad27a531589f8fed0687abe50e4ab32dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time manager for RTC and NTP synchronization.  <br /></td></tr>
 <tr class="memitem:a543ccc95fbe6dd49b01bdc937630a4ac" id="r_a543ccc95fbe6dd49b01bdc937630a4ac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_logger_manager.html">LoggerManager</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a543ccc95fbe6dd49b01bdc937630a4ac">logger</a> (<a class="el" href="#aecbe6ad38ed7d220ace280ea33d8ab45">controller</a>, <a class="el" href="#ad27a531589f8fed0687abe50e4ab32dc">timeManager</a>, SD)</td></tr>
+<tr class="memdesc:a543ccc95fbe6dd49b01bdc937630a4ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data and event logger with SD card storage.  <br /></td></tr>
 </table>
-<a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Macro Definition Documentation</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Main application entry point for Industrial Temperature Monitoring System. </p>
+<dl class="section author"><dt>Author</dt><dd>Claude Code Session 20250720 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2025-07-20</dd></dl>
+<p>This is the main application file that initializes and coordinates all system components including temperature sensors, web configuration, Modbus communication, and data logging.</p>
+<h1 class="doxsection"><a class="anchor" id="dependencies"></a>
+Dependencies</h1>
+<ul>
+<li><a class="el" href="_temperature_controller_8h.html">TemperatureController.h</a> for sensor management</li>
+<li><a class="el" href="_config_manager_8h.html" title="Configuration management system for temperature monitoring device.">ConfigManager.h</a> for web-based configuration</li>
+<li><a class="el" href="_temp_modbus_server_8h.html">TempModbusServer.h</a> for Modbus RTU communication</li>
+<li><a class="el" href="_indicator_interface_8h.html" title="Hardware interface for PCF8575 I/O expander and SH1106 OLED display.">IndicatorInterface.h</a> for OLED display and I/O control</li>
+<li><a class="el" href="_time_manager_8h.html">TimeManager.h</a> for RTC and NTP time synchronization</li>
+<li><a class="el" href="_logger_manager_8h.html" title="Comprehensive data and event logging system for temperature monitoring.">LoggerManager.h</a> for data and event logging</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="hardware"></a>
+Hardware Requirements</h1>
+<ul>
+<li>ESP32-WROVER module</li>
+<li>DS18B20 temperature sensors on 4 OneWire buses</li>
+<li>PT1000 sensors via MAX31865 on SPI</li>
+<li>PCF8575 I/O expander for indicator control</li>
+<li>SH1106 OLED display</li>
+<li>DS3231 RTC module</li>
+<li>SD card for data logging</li>
+<li>RS485 interface for Modbus communication </li>
+</ul>
+
+<p class="definition">Definition in file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+</div><a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Macro Definition Documentation</h2>
 <a id="ad0c1f84a4e0ecd91e5e90f215bf80540" name="ad0c1f84a4e0ecd91e5e90f215bf80540"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad0c1f84a4e0ecd91e5e90f215bf80540">&#9670;&#160;</a></span>BUS1_PIN</h2>
 
@@ -158,7 +218,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00015">15</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p>OneWire bus 1 for DS18B20 sensors. </p>
+
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00042">42</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
 </div>
 </div>
@@ -174,7 +236,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00016">16</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p>OneWire bus 2 for DS18B20 sensors. </p>
+
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00043">43</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
 </div>
 </div>
@@ -190,7 +254,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00017">17</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p>OneWire bus 3 for DS18B20 sensors. </p>
+
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00044">44</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
 </div>
 </div>
@@ -206,7 +272,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00018">18</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p>OneWire bus 4 for DS18B20 sensors. </p>
+
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00045">45</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
 </div>
 </div>
@@ -222,9 +290,11 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00026">26</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p>Chip select for PT1000 sensor 1. </p>
 
-<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00065">setup()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00053">53</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00101">setup()</a>.</p>
 
 </div>
 </div>
@@ -240,9 +310,11 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00027">27</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p>Chip select for PT1000 sensor 2. </p>
 
-<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00065">setup()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00054">54</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00101">setup()</a>.</p>
 
 </div>
 </div>
@@ -258,9 +330,11 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00028">28</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p>Chip select for PT1000 sensor 3. </p>
 
-<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00065">setup()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00055">55</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00101">setup()</a>.</p>
 
 </div>
 </div>
@@ -276,9 +350,11 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00029">29</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p>Chip select for PT1000 sensor 4. </p>
 
-<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00065">setup()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00056">56</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00101">setup()</a>.</p>
 
 </div>
 </div>
@@ -294,9 +370,11 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00031">31</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p>Chip select for SD card. </p>
 
-<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00065">setup()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00058">58</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00101">setup()</a>.</p>
 
 </div>
 </div>
@@ -312,9 +390,11 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00037">37</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p>RS485 driver enable pin (-1 = not used) </p>
 
-<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00065">setup()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00063">63</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00101">setup()</a>.</p>
 
 </div>
 </div>
@@ -330,9 +410,11 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00043">43</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p>I2C clock pin (alternative, GPIO 22 used by RS485) </p>
 
-<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00065">setup()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00067">67</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00101">setup()</a>.</p>
 
 </div>
 </div>
@@ -348,9 +430,11 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00042">42</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p>I2C data pin (default, available) </p>
 
-<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00065">setup()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00066">66</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00101">setup()</a>.</p>
 
 </div>
 </div>
@@ -366,9 +450,11 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00023">23</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p>SPI MISO pin. </p>
 
-<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00065">setup()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00049">49</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00101">setup()</a>.</p>
 
 </div>
 </div>
@@ -384,9 +470,11 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00024">24</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p>SPI MOSI pin. </p>
 
-<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00065">setup()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00050">50</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00101">setup()</a>.</p>
 
 </div>
 </div>
@@ -402,7 +490,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00044">44</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p>PCF8575 I/O expander interrupt pin. </p>
+
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00068">68</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
 </div>
 </div>
@@ -418,9 +508,11 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00035">35</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p>RS485 receive pin. </p>
 
-<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00065">setup()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00061">61</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00101">setup()</a>.</p>
 
 </div>
 </div>
@@ -436,9 +528,11 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00022">22</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p>SPI clock pin. </p>
 
-<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00065">setup()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00048">48</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00101">setup()</a>.</p>
 
 </div>
 </div>
@@ -454,9 +548,11 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00036">36</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p>RS485 transmit pin. </p>
 
-<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00065">setup()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00062">62</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00101">setup()</a>.</p>
 
 </div>
 </div>
@@ -476,9 +572,12 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00197">197</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p>Main system loop. </p>
+<p>Continuously updates all system components including time management, configuration, temperature monitoring, and data logging </p>
 
-<p class="reference">References <a class="el" href="main_8cpp_source.html#l00056">configManager</a>, <a class="el" href="#aecbe6ad38ed7d220ace280ea33d8ab45">controller</a>, <a class="el" href="#a543ccc95fbe6dd49b01bdc937630a4ac">logger</a>, and <a class="el" href="#ad27a531589f8fed0687abe50e4ab32dc">timeManager</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00250">250</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="main_8cpp_source.html#l00085">configManager</a>, <a class="el" href="#aecbe6ad38ed7d220ace280ea33d8ab45">controller</a>, <a class="el" href="#a543ccc95fbe6dd49b01bdc937630a4ac">logger</a>, and <a class="el" href="#ad27a531589f8fed0687abe50e4ab32dc">timeManager</a>.</p>
 
 </div>
 </div>
@@ -497,9 +596,12 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00065">65</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p>System initialization function. </p>
+<p>Initializes all hardware components, communication interfaces, and system managers in the correct sequence </p>
 
-<p class="reference">References <a class="el" href="main_8cpp_source.html#l00056">configManager</a>, <a class="el" href="#aecbe6ad38ed7d220ace280ea33d8ab45">controller</a>, <a class="el" href="main_8cpp_source.html#l00026">CS1_PIN</a>, <a class="el" href="main_8cpp_source.html#l00027">CS2_PIN</a>, <a class="el" href="main_8cpp_source.html#l00028">CS3_PIN</a>, <a class="el" href="main_8cpp_source.html#l00029">CS4_PIN</a>, <a class="el" href="main_8cpp_source.html#l00031">CS5_PIN_TF_CARD</a>, <a class="el" href="main_8cpp_source.html#l00037">DE_PIN</a>, <a class="el" href="main_8cpp_source.html#l00043">I2C_SCL</a>, <a class="el" href="main_8cpp_source.html#l00042">I2C_SDA</a>, <a class="el" href="#a543ccc95fbe6dd49b01bdc937630a4ac">logger</a>, <a class="el" href="main_8cpp_source.html#l00023">MISO_PIN</a>, <a class="el" href="main_8cpp_source.html#l00059">modbusServer</a>, <a class="el" href="main_8cpp_source.html#l00024">MOSI_PIN</a>, <a class="el" href="main_8cpp_source.html#l00035">RX_PIN</a>, <a class="el" href="main_8cpp_source.html#l00022">SCK_PIN</a>, <a class="el" href="#ad27a531589f8fed0687abe50e4ab32dc">timeManager</a>, and <a class="el" href="main_8cpp_source.html#l00036">TX_PIN</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00101">101</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="main_8cpp_source.html#l00085">configManager</a>, <a class="el" href="#aecbe6ad38ed7d220ace280ea33d8ab45">controller</a>, <a class="el" href="main_8cpp_source.html#l00053">CS1_PIN</a>, <a class="el" href="main_8cpp_source.html#l00054">CS2_PIN</a>, <a class="el" href="main_8cpp_source.html#l00055">CS3_PIN</a>, <a class="el" href="main_8cpp_source.html#l00056">CS4_PIN</a>, <a class="el" href="main_8cpp_source.html#l00058">CS5_PIN_TF_CARD</a>, <a class="el" href="main_8cpp_source.html#l00063">DE_PIN</a>, <a class="el" href="main_8cpp_source.html#l00067">I2C_SCL</a>, <a class="el" href="main_8cpp_source.html#l00066">I2C_SDA</a>, <a class="el" href="#a543ccc95fbe6dd49b01bdc937630a4ac">logger</a>, <a class="el" href="main_8cpp_source.html#l00049">MISO_PIN</a>, <a class="el" href="main_8cpp_source.html#l00088">modbusServer</a>, <a class="el" href="main_8cpp_source.html#l00050">MOSI_PIN</a>, <a class="el" href="main_8cpp_source.html#l00061">RX_PIN</a>, <a class="el" href="main_8cpp_source.html#l00048">SCK_PIN</a>, <a class="el" href="#ad27a531589f8fed0687abe50e4ab32dc">timeManager</a>, and <a class="el" href="main_8cpp_source.html#l00062">TX_PIN</a>.</p>
 
 </div>
 </div>
@@ -516,9 +618,11 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00056">56</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p>Web-based configuration manager (dynamically allocated) </p>
 
-<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00197">loop()</a>, and <a class="el" href="main_8cpp_source.html#l00065">setup()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00085">85</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00250">loop()</a>, and <a class="el" href="main_8cpp_source.html#l00101">setup()</a>.</p>
 
 </div>
 </div>
@@ -546,7 +650,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00004">CSVConfigManager::CSVConfigManager()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00008">LoggerManager::LoggerManager()</a>, <a class="el" href="main_8cpp_source.html#l00197">loop()</a>, and <a class="el" href="main_8cpp_source.html#l00065">setup()</a>.</p>
+<p>Main temperature controller managing all sensors and measurement points. </p>
+
+<p class="reference">Referenced by <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00004">CSVConfigManager::CSVConfigManager()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00008">LoggerManager::LoggerManager()</a>, <a class="el" href="main_8cpp_source.html#l00250">loop()</a>, and <a class="el" href="main_8cpp_source.html#l00101">setup()</a>.</p>
 
 </div>
 </div>
@@ -562,7 +668,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00052">52</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p>SPI chip select pin array for PT1000 sensors. </p>
+
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00079">79</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
 </div>
 </div>
@@ -590,6 +698,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Indicator interface for OLED display and I/O control (I2C address 0x20) </p>
+
 </div>
 </div>
 <a id="a543ccc95fbe6dd49b01bdc937630a4ac" name="a543ccc95fbe6dd49b01bdc937630a4ac"></a>
@@ -616,7 +726,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00197">loop()</a>, and <a class="el" href="main_8cpp_source.html#l00065">setup()</a>.</p>
+<p>Data and event logger with SD card storage. </p>
+
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00250">loop()</a>, and <a class="el" href="main_8cpp_source.html#l00101">setup()</a>.</p>
 
 </div>
 </div>
@@ -632,9 +744,11 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00059">59</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p>Modbus RTU server for industrial communication (dynamically allocated) </p>
 
-<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00065">setup()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00088">88</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00101">setup()</a>.</p>
 
 </div>
 </div>
@@ -650,7 +764,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00051">51</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p>OneWire bus pin array for DS18B20 sensors. </p>
+
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00076">76</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
 </div>
 </div>
@@ -673,7 +789,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00008">LoggerManager::LoggerManager()</a>, <a class="el" href="main_8cpp_source.html#l00197">loop()</a>, and <a class="el" href="main_8cpp_source.html#l00065">setup()</a>.</p>
+<p>Time manager for RTC and NTP synchronization. </p>
+
+<p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00008">LoggerManager::LoggerManager()</a>, <a class="el" href="main_8cpp_source.html#l00250">loop()</a>, and <a class="el" href="main_8cpp_source.html#l00101">setup()</a>.</p>
 
 </div>
 </div>

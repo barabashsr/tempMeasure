@@ -93,6 +93,9 @@ $(function(){initNavTree('class_config_manager.html','',''); });
 </div><!--header-->
 <div class="contents">
 
+<p>Main configuration management class.  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for ConfigManager:</div>
@@ -103,67 +106,115 @@ Collaboration diagram for ConfigManager:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:abb5e68671c5a8087abb50b289d3522b4" id="r_abb5e68671c5a8087abb50b289d3522b4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abb5e68671c5a8087abb50b289d3522b4">ConfigManager</a> (<a class="el" href="class_temperature_controller.html">TemperatureController</a> &amp;tempController)</td></tr>
+<tr class="memdesc:abb5e68671c5a8087abb50b289d3522b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for <a class="el" href="class_config_manager.html" title="Main configuration management class.">ConfigManager</a>.  <br /></td></tr>
 <tr class="memitem:a7fa65fdff98bdd5bbbf72196bd9ccf17" id="r_a7fa65fdff98bdd5bbbf72196bd9ccf17"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7fa65fdff98bdd5bbbf72196bd9ccf17">~ConfigManager</a> ()</td></tr>
+<tr class="memdesc:a7fa65fdff98bdd5bbbf72196bd9ccf17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor for <a class="el" href="class_config_manager.html" title="Main configuration management class.">ConfigManager</a>.  <br /></td></tr>
 <tr class="memitem:a0497343220fc493f5cf9574922508908" id="r_a0497343220fc493f5cf9574922508908"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0497343220fc493f5cf9574922508908">begin</a> ()</td></tr>
+<tr class="memdesc:a0497343220fc493f5cf9574922508908"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the configuration system.  <br /></td></tr>
 <tr class="memitem:a2f271ab2a1e8014cebe1e26afe9974df" id="r_a2f271ab2a1e8014cebe1e26afe9974df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2f271ab2a1e8014cebe1e26afe9974df">update</a> ()</td></tr>
+<tr class="memdesc:a2f271ab2a1e8014cebe1e26afe9974df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update configuration system (call in main loop)  <br /></td></tr>
 <tr class="memitem:a83b4217012bf8eda57fbfd8deca09dd2" id="r_a83b4217012bf8eda57fbfd8deca09dd2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a83b4217012bf8eda57fbfd8deca09dd2">connectWiFi</a> (int timeoutMs=15000)</td></tr>
+<tr class="memdesc:a83b4217012bf8eda57fbfd8deca09dd2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Connect to WiFi network.  <br /></td></tr>
 <tr class="memitem:ac880f2edae50caef8bcc750f7260a896" id="r_ac880f2edae50caef8bcc750f7260a896"><td class="memItemLeft" align="right" valign="top">WebServer *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac880f2edae50caef8bcc750f7260a896">getWebServer</a> ()</td></tr>
+<tr class="memdesc:ac880f2edae50caef8bcc750f7260a896"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the web server instance.  <br /></td></tr>
 <tr class="memitem:a65a98a3adfa9da8d6d66175eb8dad3a3" id="r_a65a98a3adfa9da8d6d66175eb8dad3a3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a65a98a3adfa9da8d6d66175eb8dad3a3">isPortalActive</a> ()</td></tr>
+<tr class="memdesc:a65a98a3adfa9da8d6d66175eb8dad3a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if configuration portal is active.  <br /></td></tr>
 <tr class="memitem:a0c6922c0d3cfb6016ffea2a58149ee35" id="r_a0c6922c0d3cfb6016ffea2a58149ee35"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0c6922c0d3cfb6016ffea2a58149ee35">getWifiSSID</a> ()</td></tr>
+<tr class="memdesc:a0c6922c0d3cfb6016ffea2a58149ee35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get WiFi SSID from configuration.  <br /></td></tr>
 <tr class="memitem:aa67267eea5f43007958d1959a3d05eff" id="r_aa67267eea5f43007958d1959a3d05eff"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa67267eea5f43007958d1959a3d05eff">getWifiPassword</a> ()</td></tr>
+<tr class="memdesc:aa67267eea5f43007958d1959a3d05eff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get WiFi password from configuration.  <br /></td></tr>
 <tr class="memitem:a3909fbe925c15b47925bacf2b0b4d97b" id="r_a3909fbe925c15b47925bacf2b0b4d97b"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3909fbe925c15b47925bacf2b0b4d97b">getHostname</a> ()</td></tr>
+<tr class="memdesc:a3909fbe925c15b47925bacf2b0b4d97b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get device hostname from configuration.  <br /></td></tr>
 <tr class="memitem:a355c8fe8e7b63d90f2ab1e3957006d7b" id="r_a355c8fe8e7b63d90f2ab1e3957006d7b"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a355c8fe8e7b63d90f2ab1e3957006d7b">getDeviceId</a> ()</td></tr>
+<tr class="memdesc:a355c8fe8e7b63d90f2ab1e3957006d7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get device ID from configuration.  <br /></td></tr>
 <tr class="memitem:af025d7d473c39f95ab26029607e32cc6" id="r_af025d7d473c39f95ab26029607e32cc6"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af025d7d473c39f95ab26029607e32cc6">getMeasurementPeriod</a> ()</td></tr>
+<tr class="memdesc:af025d7d473c39f95ab26029607e32cc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get measurement period from configuration.  <br /></td></tr>
 <tr class="memitem:a9fadc4167ae0c9e7cfc27af9b1bc5774" id="r_a9fadc4167ae0c9e7cfc27af9b1bc5774"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9fadc4167ae0c9e7cfc27af9b1bc5774">isModbusEnabled</a> ()</td></tr>
+<tr class="memdesc:a9fadc4167ae0c9e7cfc27af9b1bc5774"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if Modbus is enabled.  <br /></td></tr>
 <tr class="memitem:abd6818ba586e506fa20886b51ff8dfe0" id="r_abd6818ba586e506fa20886b51ff8dfe0"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abd6818ba586e506fa20886b51ff8dfe0">getModbusAddress</a> ()</td></tr>
+<tr class="memdesc:abd6818ba586e506fa20886b51ff8dfe0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get Modbus slave address.  <br /></td></tr>
 <tr class="memitem:a1ddcfeae8bd9fa5f1847b33a8ff61c09" id="r_a1ddcfeae8bd9fa5f1847b33a8ff61c09"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1ddcfeae8bd9fa5f1847b33a8ff61c09">getModbusBaudRate</a> ()</td></tr>
+<tr class="memdesc:a1ddcfeae8bd9fa5f1847b33a8ff61c09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get Modbus baud rate.  <br /></td></tr>
 <tr class="memitem:a8edfe5674a998837f2bb33f8c24ebca1" id="r_a8edfe5674a998837f2bb33f8c24ebca1"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8edfe5674a998837f2bb33f8c24ebca1">getRxPin</a> ()</td></tr>
+<tr class="memdesc:a8edfe5674a998837f2bb33f8c24ebca1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get RS485 RX pin number.  <br /></td></tr>
 <tr class="memitem:af29e702703a41dc0fe8f393b4df3cba9" id="r_af29e702703a41dc0fe8f393b4df3cba9"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af29e702703a41dc0fe8f393b4df3cba9">getTxPin</a> ()</td></tr>
+<tr class="memdesc:af29e702703a41dc0fe8f393b4df3cba9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get RS485 TX pin number.  <br /></td></tr>
 <tr class="memitem:a70df78bf8e301f46cbc14bf6f36c0a0e" id="r_a70df78bf8e301f46cbc14bf6f36c0a0e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a70df78bf8e301f46cbc14bf6f36c0a0e">getAutoDiscover</a> ()</td></tr>
+<tr class="memdesc:a70df78bf8e301f46cbc14bf6f36c0a0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if auto-discovery is enabled.  <br /></td></tr>
 <tr class="memitem:a798727e00c1f0ff18044bc4ae097be2e" id="r_a798727e00c1f0ff18044bc4ae097be2e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a798727e00c1f0ff18044bc4ae097be2e">resetMinMaxValues</a> ()</td></tr>
+<tr class="memdesc:a798727e00c1f0ff18044bc4ae097be2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset minimum and maximum recorded values.  <br /></td></tr>
 <tr class="memitem:a55b79da91c57039c483ddf5fceabbd64" id="r_a55b79da91c57039c483ddf5fceabbd64"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a55b79da91c57039c483ddf5fceabbd64">savePointsConfig</a> ()</td></tr>
+<tr class="memdesc:a55b79da91c57039c483ddf5fceabbd64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save measurement points configuration to file.  <br /></td></tr>
 <tr class="memitem:a04edc14e642ecadb9ccb87be05d1d878" id="r_a04edc14e642ecadb9ccb87be05d1d878"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a04edc14e642ecadb9ccb87be05d1d878">loadPointsConfig</a> ()</td></tr>
+<tr class="memdesc:a04edc14e642ecadb9ccb87be05d1d878"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load measurement points configuration from file.  <br /></td></tr>
 <tr class="memitem:a0daf50bbd376beb24a5400a86e893338" id="r_a0daf50bbd376beb24a5400a86e893338"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0daf50bbd376beb24a5400a86e893338">updatePointInConfig</a> (uint8_t address, const String &amp;name, int16_t lowAlarm, int16_t highAlarm, const String &amp;ds18b20RomString=&quot;&quot;, int pt1000ChipSelect=-1)</td></tr>
+<tr class="memdesc:a0daf50bbd376beb24a5400a86e893338"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update a measurement point in configuration.  <br /></td></tr>
 <tr class="memitem:aa15fcaf6330fd73a87e8c6f63e8ab9d5" id="r_aa15fcaf6330fd73a87e8c6f63e8ab9d5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa15fcaf6330fd73a87e8c6f63e8ab9d5">saveAlarmsConfig</a> ()</td></tr>
+<tr class="memdesc:aa15fcaf6330fd73a87e8c6f63e8ab9d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save alarms configuration to file.  <br /></td></tr>
 <tr class="memitem:a468923ce5f2edecd218b29605d75426f" id="r_a468923ce5f2edecd218b29605d75426f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a468923ce5f2edecd218b29605d75426f">loadAlarmsConfig</a> ()</td></tr>
+<tr class="memdesc:a468923ce5f2edecd218b29605d75426f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load alarms configuration from file.  <br /></td></tr>
 <tr class="memitem:ab09d27551f2f71ad0c19452dabbd9061" id="r_ab09d27551f2f71ad0c19452dabbd9061"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_c_s_v_config_manager.html">CSVConfigManager</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab09d27551f2f71ad0c19452dabbd9061">getCSVManager</a> ()</td></tr>
+<tr class="memdesc:ab09d27551f2f71ad0c19452dabbd9061"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get reference to CSV configuration manager.  <br /></td></tr>
 <tr class="memitem:a1d2c3a4f6b321f3e55394f0427781f71" id="r_a1d2c3a4f6b321f3e55394f0427781f71"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1d2c3a4f6b321f3e55394f0427781f71">getAcknowledgedDelayCritical</a> ()</td></tr>
+<tr class="memdesc:a1d2c3a4f6b321f3e55394f0427781f71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get acknowledged delay for critical priority alarms.  <br /></td></tr>
 <tr class="memitem:a92531033b9698550c95e70408d3ca928" id="r_a92531033b9698550c95e70408d3ca928"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a92531033b9698550c95e70408d3ca928">getAcknowledgedDelayHigh</a> ()</td></tr>
+<tr class="memdesc:a92531033b9698550c95e70408d3ca928"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get acknowledged delay for high priority alarms.  <br /></td></tr>
 <tr class="memitem:ae5e8f849e85d0a2779a650136b7011f9" id="r_ae5e8f849e85d0a2779a650136b7011f9"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae5e8f849e85d0a2779a650136b7011f9">getAcknowledgedDelayMedium</a> ()</td></tr>
+<tr class="memdesc:ae5e8f849e85d0a2779a650136b7011f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get acknowledged delay for medium priority alarms.  <br /></td></tr>
 <tr class="memitem:a8211fcec922c77f0245ea1eb95be5e4d" id="r_a8211fcec922c77f0245ea1eb95be5e4d"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8211fcec922c77f0245ea1eb95be5e4d">getAcknowledgedDelayLow</a> ()</td></tr>
+<tr class="memdesc:a8211fcec922c77f0245ea1eb95be5e4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get acknowledged delay for low priority alarms.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:adaa7d1493461e3f2684b92ffe5db62d4" id="r_adaa7d1493461e3f2684b92ffe5db62d4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adaa7d1493461e3f2684b92ffe5db62d4">_applySettingsWithoutRestart</a> ()</td></tr>
+<tr class="memdesc:adaa7d1493461e3f2684b92ffe5db62d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apply configuration settings without device restart.  <br /></td></tr>
 <tr class="memitem:a6416afa7d86c20400ee661cdad9bdab1" id="r_a6416afa7d86c20400ee661cdad9bdab1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6416afa7d86c20400ee661cdad9bdab1">basicAPI</a> ()</td></tr>
+<tr class="memdesc:a6416afa7d86c20400ee661cdad9bdab1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup basic API endpoints.  <br /></td></tr>
 <tr class="memitem:a45b1ce1f09401af0b6f700cf4388b233" id="r_a45b1ce1f09401af0b6f700cf4388b233"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a45b1ce1f09401af0b6f700cf4388b233">sensorAPI</a> ()</td></tr>
+<tr class="memdesc:a45b1ce1f09401af0b6f700cf4388b233"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup sensor-related API endpoints.  <br /></td></tr>
 <tr class="memitem:a9b7af07b85bf9cc3ac05603db6e89fd2" id="r_a9b7af07b85bf9cc3ac05603db6e89fd2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b7af07b85bf9cc3ac05603db6e89fd2">csvImportExportAPI</a> ()</td></tr>
+<tr class="memdesc:a9b7af07b85bf9cc3ac05603db6e89fd2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup CSV import/export API endpoints.  <br /></td></tr>
 <tr class="memitem:a471a844085c27f3a8a8f9394d9c14677" id="r_a471a844085c27f3a8a8f9394d9c14677"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a471a844085c27f3a8a8f9394d9c14677">pointsAPI</a> ()</td></tr>
+<tr class="memdesc:a471a844085c27f3a8a8f9394d9c14677"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup measurement points API endpoints.  <br /></td></tr>
 <tr class="memitem:ae605c999fabc6344511f455618655326" id="r_ae605c999fabc6344511f455618655326"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae605c999fabc6344511f455618655326">alarmsAPI</a> ()</td></tr>
+<tr class="memdesc:ae605c999fabc6344511f455618655326"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup alarms API endpoints.  <br /></td></tr>
 <tr class="memitem:a9e977107b4795fcbce0482711ff1ce7a" id="r_a9e977107b4795fcbce0482711ff1ce7a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9e977107b4795fcbce0482711ff1ce7a">logsAPI</a> ()</td></tr>
+<tr class="memdesc:a9e977107b4795fcbce0482711ff1ce7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup logging API endpoints.  <br /></td></tr>
 <tr class="memitem:a3b28982c79587a287c8ddf0acf47f71d" id="r_a3b28982c79587a287c8ddf0acf47f71d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3b28982c79587a287c8ddf0acf47f71d">downloadAPI</a> ()</td></tr>
+<tr class="memdesc:a3b28982c79587a287c8ddf0acf47f71d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup file download API endpoints.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-static-methods" class="groupheader"><a id="pri-static-methods" name="pri-static-methods"></a>
 Static Private Member Functions</h2></td></tr>
 <tr class="memitem:a93a63ddc3f7efd83e80345826493a45d" id="r_a93a63ddc3f7efd83e80345826493a45d"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a93a63ddc3f7efd83e80345826493a45d">onConfigChanged</a> (String key)</td></tr>
+<tr class="memdesc:a93a63ddc3f7efd83e80345826493a45d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static callback function for configuration changes.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:afe696eabbbdf537e88b3b5b33c009b31" id="r_afe696eabbbdf537e88b3b5b33c009b31"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_settings_c_s_v_manager.html">SettingsCSVManager</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afe696eabbbdf537e88b3b5b33c009b31">settingsCSVManager</a></td></tr>
+<tr class="memdesc:afe696eabbbdf537e88b3b5b33c009b31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Manager for settings CSV operations.  <br /></td></tr>
 <tr class="memitem:a5591a9b29e8c6e1c3f3dc50c0e6e1267" id="r_a5591a9b29e8c6e1c3f3dc50c0e6e1267"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_c_s_v_config_manager.html">CSVConfigManager</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5591a9b29e8c6e1c3f3dc50c0e6e1267">csvManager</a></td></tr>
+<tr class="memdesc:a5591a9b29e8c6e1c3f3dc50c0e6e1267"><td class="mdescLeft">&#160;</td><td class="mdescRight">Manager for measurement point CSV operations.  <br /></td></tr>
 <tr class="memitem:a3948181c2e8ae2241d0e95c5afd47aa9" id="r_a3948181c2e8ae2241d0e95c5afd47aa9"><td class="memItemLeft" align="right" valign="top">ConfigAssist&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3948181c2e8ae2241d0e95c5afd47aa9">conf</a></td></tr>
+<tr class="memdesc:a3948181c2e8ae2241d0e95c5afd47aa9"><td class="mdescLeft">&#160;</td><td class="mdescRight">ConfigAssist instance for web configuration.  <br /></td></tr>
 <tr class="memitem:a555afa40c6353fe0fe1765cc064dc920" id="r_a555afa40c6353fe0fe1765cc064dc920"><td class="memItemLeft" align="right" valign="top">ConfigAssistHelper *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a555afa40c6353fe0fe1765cc064dc920">confHelper</a></td></tr>
+<tr class="memdesc:a555afa40c6353fe0fe1765cc064dc920"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper for ConfigAssist operations.  <br /></td></tr>
 <tr class="memitem:a68eeba761f112013757ddf298454407d" id="r_a68eeba761f112013757ddf298454407d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_temperature_controller.html">TemperatureController</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a68eeba761f112013757ddf298454407d">controller</a></td></tr>
+<tr class="memdesc:a68eeba761f112013757ddf298454407d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference to temperature controller.  <br /></td></tr>
 <tr class="memitem:a773fb5f7cd89fa594bd05184e8af14a0" id="r_a773fb5f7cd89fa594bd05184e8af14a0"><td class="memItemLeft" align="right" valign="top">WebServer *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a773fb5f7cd89fa594bd05184e8af14a0">server</a></td></tr>
+<tr class="memdesc:a773fb5f7cd89fa594bd05184e8af14a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">HTTP web server instance.  <br /></td></tr>
 <tr class="memitem:a9569d8754bbcd81768dfb351b73bcea0" id="r_a9569d8754bbcd81768dfb351b73bcea0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9569d8754bbcd81768dfb351b73bcea0">portalActive</a></td></tr>
+<tr class="memdesc:a9569d8754bbcd81768dfb351b73bcea0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag indicating if configuration portal is active.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-static-attribs" class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
 Static Private Attributes</h2></td></tr>
 <tr class="memitem:a890a76b6aebb1246ca45248967447b34" id="r_a890a76b6aebb1246ca45248967447b34"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_config_manager.html">ConfigManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a890a76b6aebb1246ca45248967447b34">instance</a> = nullptr</td></tr>
+<tr class="memdesc:a890a76b6aebb1246ca45248967447b34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static instance pointer for callbacks.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00017">17</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+<div class="textblock"><p>Main configuration management class. </p>
+<p>Handles all aspects of system configuration including WiFi setup, web interface management, CSV import/export, and API endpoints </p>
+
+<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00041">41</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="abb5e68671c5a8087abb50b289d3522b4" name="abb5e68671c5a8087abb50b289d3522b4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abb5e68671c5a8087abb50b289d3522b4">&#9670;&#160;</a></span>ConfigManager()</h2>
@@ -180,9 +231,18 @@ Static Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Constructor for <a class="el" href="class_config_manager.html" title="Main configuration management class.">ConfigManager</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">tempController</td><td>Reference to the temperature controller instance</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Initializes configuration system with temperature controller integration </p>
+
 <p class="definition">Definition at line <a class="el" href="_config_manager_8cpp_source.html#l00081">81</a> of file <a class="el" href="_config_manager_8cpp_source.html">ConfigManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00021">conf</a>, <a class="el" href="_config_manager_8h_source.html#l00022">confHelper</a>, <a class="el" href="_config_manager_8h_source.html#l00023">controller</a>, <a class="el" href="_config_manager_8h_source.html#l00020">csvManager</a>, <a class="el" href="_config_manager_8h_source.html#l00031">instance</a>, <a class="el" href="_config_manager_8h_source.html#l00025">portalActive</a>, <a class="el" href="_config_manager_8h_source.html#l00024">server</a>, <a class="el" href="_config_manager_8h_source.html#l00019">settingsCSVManager</a>, and <a class="el" href="_config_manager_8h.html#a53744b698cb89b52923ba6024d2e25e0">VARIABLES_DEF_YAML</a>.</p>
+<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00045">conf</a>, <a class="el" href="_config_manager_8h_source.html#l00046">confHelper</a>, <a class="el" href="_config_manager_8h_source.html#l00047">controller</a>, <a class="el" href="_config_manager_8h_source.html#l00044">csvManager</a>, <a class="el" href="_config_manager_8h_source.html#l00058">instance</a>, <a class="el" href="_config_manager_8h_source.html#l00049">portalActive</a>, <a class="el" href="_config_manager_8h_source.html#l00048">server</a>, <a class="el" href="_config_manager_8h_source.html#l00043">settingsCSVManager</a>, and <a class="el" href="_config_manager_8h.html#a53744b698cb89b52923ba6024d2e25e0">VARIABLES_DEF_YAML</a>.</p>
 
 </div>
 </div>
@@ -201,9 +261,12 @@ Static Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Destructor for <a class="el" href="class_config_manager.html" title="Main configuration management class.">ConfigManager</a>. </p>
+<p>Cleans up web server and configuration resources </p>
+
 <p class="definition">Definition at line <a class="el" href="_config_manager_8cpp_source.html#l00093">93</a> of file <a class="el" href="_config_manager_8cpp_source.html">ConfigManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00022">confHelper</a>, and <a class="el" href="_config_manager_8h_source.html#l00024">server</a>.</p>
+<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00046">confHelper</a>, and <a class="el" href="_config_manager_8h_source.html#l00048">server</a>.</p>
 
 </div>
 </div>
@@ -231,6 +294,9 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Apply configuration settings without device restart. </p>
+<p>Updates runtime parameters when configuration changes </p>
+
 </div>
 </div>
 <a id="ae605c999fabc6344511f455618655326" name="ae605c999fabc6344511f455618655326"></a>
@@ -256,9 +322,12 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Setup alarms API endpoints. </p>
+<p>Configures endpoints for alarm management and history </p>
+
 <p class="definition">Definition at line <a class="el" href="_config_manager_8cpp_source.html#l01014">1014</a> of file <a class="el" href="_config_manager_8cpp_source.html">ConfigManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00023">ACKNOWLEDGED</a>, <a class="el" href="_alarm_8h_source.html#l00024">ACTIVE</a>, <a class="el" href="_config_manager_8h_source.html#l00021">conf</a>, <a class="el" href="_config_manager_8h_source.html#l00023">controller</a>, <a class="el" href="_config_manager_8h_source.html#l00116">getAcknowledgedDelayCritical()</a>, <a class="el" href="_config_manager_8h_source.html#l00117">getAcknowledgedDelayHigh()</a>, <a class="el" href="_config_manager_8h_source.html#l00119">getAcknowledgedDelayLow()</a>, <a class="el" href="_config_manager_8h_source.html#l00118">getAcknowledgedDelayMedium()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00025">MeasurementPoint::getAddress()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00106">MeasurementPoint::getBoundSensor()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00033">MeasurementPoint::getCurrentTemp()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00049">MeasurementPoint::getHighAlarmThreshold()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00045">MeasurementPoint::getLowAlarmThreshold()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00029">MeasurementPoint::getName()</a>, <a class="el" href="_alarm_8h_source.html#l00020">NEW</a>, <a class="el" href="_alarm_8h_source.html#l00033">PRIORITY_CRITICAL</a>, <a class="el" href="_alarm_8h_source.html#l00032">PRIORITY_HIGH</a>, <a class="el" href="_alarm_8h_source.html#l00030">PRIORITY_LOW</a>, <a class="el" href="_alarm_8h_source.html#l00031">PRIORITY_MEDIUM</a>, <a class="el" href="_config_manager_8cpp_source.html#l00448">saveAlarmsConfig()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00279">savePointsConfig()</a>, <a class="el" href="_config_manager_8h_source.html#l00024">server</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00086">MeasurementPoint::setHighAlarmThreshold()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00072">MeasurementPoint::setLowAlarmThreshold()</a>, and <a class="el" href="_measurement_point_8cpp_source.html#l00061">MeasurementPoint::setName()</a>.</p>
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00049">ACKNOWLEDGED</a>, <a class="el" href="_alarm_8h_source.html#l00050">ACTIVE</a>, <a class="el" href="_config_manager_8h_source.html#l00045">conf</a>, <a class="el" href="_config_manager_8h_source.html#l00047">controller</a>, <a class="el" href="_config_manager_8h_source.html#l00302">getAcknowledgedDelayCritical()</a>, <a class="el" href="_config_manager_8h_source.html#l00308">getAcknowledgedDelayHigh()</a>, <a class="el" href="_config_manager_8h_source.html#l00320">getAcknowledgedDelayLow()</a>, <a class="el" href="_config_manager_8h_source.html#l00314">getAcknowledgedDelayMedium()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00025">MeasurementPoint::getAddress()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00106">MeasurementPoint::getBoundSensor()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00033">MeasurementPoint::getCurrentTemp()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00049">MeasurementPoint::getHighAlarmThreshold()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00045">MeasurementPoint::getLowAlarmThreshold()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00029">MeasurementPoint::getName()</a>, <a class="el" href="_alarm_8h_source.html#l00046">NEW</a>, <a class="el" href="_alarm_8h_source.html#l00061">PRIORITY_CRITICAL</a>, <a class="el" href="_alarm_8h_source.html#l00060">PRIORITY_HIGH</a>, <a class="el" href="_alarm_8h_source.html#l00058">PRIORITY_LOW</a>, <a class="el" href="_alarm_8h_source.html#l00059">PRIORITY_MEDIUM</a>, <a class="el" href="_config_manager_8cpp_source.html#l00448">saveAlarmsConfig()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00279">savePointsConfig()</a>, <a class="el" href="_config_manager_8h_source.html#l00048">server</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00086">MeasurementPoint::setHighAlarmThreshold()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00072">MeasurementPoint::setLowAlarmThreshold()</a>, and <a class="el" href="_measurement_point_8cpp_source.html#l00061">MeasurementPoint::setName()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_config_manager_8cpp_source.html#l00103">begin()</a>.</p>
 <div class="dynheader">
@@ -297,9 +366,12 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Setup basic API endpoints. </p>
+<p>Configures fundamental device information and status endpoints </p>
+
 <p class="definition">Definition at line <a class="el" href="_config_manager_8cpp_source.html#l00573">573</a> of file <a class="el" href="_config_manager_8cpp_source.html">ConfigManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00024">server</a>.</p>
+<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00048">server</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_config_manager_8cpp_source.html#l00103">begin()</a>.</p>
 <div class="dynheader">
@@ -325,9 +397,13 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
+<p>Initialize the configuration system. </p>
+<dl class="section return"><dt>Returns</dt><dd>bool True if initialization successful</dd></dl>
+<p>Sets up file system, configuration, web server and all API endpoints </p>
+
 <p class="definition">Definition at line <a class="el" href="_config_manager_8cpp_source.html#l00103">103</a> of file <a class="el" href="_config_manager_8cpp_source.html">ConfigManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_config_manager_8cpp_source.html#l01014">alarmsAPI()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00573">basicAPI()</a>, <a class="el" href="_config_manager_8h_source.html#l00021">conf</a>, <a class="el" href="_config_manager_8cpp_source.html#l00222">connectWiFi()</a>, <a class="el" href="_config_manager_8h_source.html#l00023">controller</a>, <a class="el" href="_config_manager_8cpp_source.html#l00841">csvImportExportAPI()</a>, <a class="el" href="_config_manager_8cpp_source.html#l01682">downloadAPI()</a>, <a class="el" href="_config_manager_8h_source.html#l00116">getAcknowledgedDelayCritical()</a>, <a class="el" href="_config_manager_8h_source.html#l00117">getAcknowledgedDelayHigh()</a>, <a class="el" href="_config_manager_8h_source.html#l00119">getAcknowledgedDelayLow()</a>, <a class="el" href="_config_manager_8h_source.html#l00118">getAcknowledgedDelayMedium()</a>, <a class="el" href="_config_manager_8h_source.html#l00083">getDeviceId()</a>, <a class="el" href="_config_manager_8h_source.html#l00084">getMeasurementPeriod()</a>, <a class="el" href="_logger_manager_8h_source.html#l00101">LoggerManager::info()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00487">loadAlarmsConfig()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00361">loadPointsConfig()</a>, <a class="el" href="_config_manager_8cpp_source.html#l01550">logsAPI()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00237">onConfigChanged()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00970">pointsAPI()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00717">sensorAPI()</a>, <a class="el" href="_config_manager_8h_source.html#l00024">server</a>, and <a class="el" href="_logger_manager_8h_source.html#l00105">LoggerManager::warning()</a>.</p>
+<p class="reference">References <a class="el" href="_config_manager_8cpp_source.html#l01014">alarmsAPI()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00573">basicAPI()</a>, <a class="el" href="_config_manager_8h_source.html#l00045">conf</a>, <a class="el" href="_config_manager_8cpp_source.html#l00222">connectWiFi()</a>, <a class="el" href="_config_manager_8h_source.html#l00047">controller</a>, <a class="el" href="_config_manager_8cpp_source.html#l00841">csvImportExportAPI()</a>, <a class="el" href="_config_manager_8cpp_source.html#l01682">downloadAPI()</a>, <a class="el" href="_config_manager_8h_source.html#l00302">getAcknowledgedDelayCritical()</a>, <a class="el" href="_config_manager_8h_source.html#l00308">getAcknowledgedDelayHigh()</a>, <a class="el" href="_config_manager_8h_source.html#l00320">getAcknowledgedDelayLow()</a>, <a class="el" href="_config_manager_8h_source.html#l00314">getAcknowledgedDelayMedium()</a>, <a class="el" href="_config_manager_8h_source.html#l00197">getDeviceId()</a>, <a class="el" href="_config_manager_8h_source.html#l00203">getMeasurementPeriod()</a>, <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00487">loadAlarmsConfig()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00361">loadPointsConfig()</a>, <a class="el" href="_config_manager_8cpp_source.html#l01550">logsAPI()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00237">onConfigChanged()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00970">pointsAPI()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00717">sensorAPI()</a>, <a class="el" href="_config_manager_8h_source.html#l00048">server</a>, and <a class="el" href="_logger_manager_8h_source.html#l00155">LoggerManager::warning()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -351,9 +427,19 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
+<p>Connect to WiFi network. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">timeoutMs</td><td>Connection timeout in milliseconds (default: 15000) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bool True if WiFi connection successful</dd></dl>
+<p>Attempts connection using configured SSID and password </p>
+
 <p class="definition">Definition at line <a class="el" href="_config_manager_8cpp_source.html#l00222">222</a> of file <a class="el" href="_config_manager_8cpp_source.html">ConfigManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00022">confHelper</a>.</p>
+<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00046">confHelper</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_config_manager_8cpp_source.html#l00103">begin()</a>.</p>
 <div class="dynheader">
@@ -387,9 +473,12 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Setup CSV import/export API endpoints. </p>
+<p>Configures endpoints for CSV file upload and download operations </p>
+
 <p class="definition">Definition at line <a class="el" href="_config_manager_8cpp_source.html#l00841">841</a> of file <a class="el" href="_config_manager_8cpp_source.html">ConfigManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00021">conf</a>, <a class="el" href="_config_manager_8h_source.html#l00023">controller</a>, <a class="el" href="_config_manager_8h_source.html#l00020">csvManager</a>, <a class="el" href="_logger_manager_8h_source.html#l00109">LoggerManager::error()</a>, <a class="el" href="_logger_manager_8h_source.html#l00101">LoggerManager::info()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00448">saveAlarmsConfig()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00279">savePointsConfig()</a>, <a class="el" href="_config_manager_8h_source.html#l00024">server</a>, and <a class="el" href="_config_manager_8h_source.html#l00019">settingsCSVManager</a>.</p>
+<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00045">conf</a>, <a class="el" href="_config_manager_8h_source.html#l00047">controller</a>, <a class="el" href="_config_manager_8h_source.html#l00044">csvManager</a>, <a class="el" href="_logger_manager_8h_source.html#l00165">LoggerManager::error()</a>, <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00448">saveAlarmsConfig()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00279">savePointsConfig()</a>, <a class="el" href="_config_manager_8h_source.html#l00048">server</a>, and <a class="el" href="_config_manager_8h_source.html#l00043">settingsCSVManager</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_config_manager_8cpp_source.html#l00103">begin()</a>.</p>
 <div class="dynheader">
@@ -428,9 +517,12 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Setup file download API endpoints. </p>
+<p>Configures endpoints for downloading log files and configurations </p>
+
 <p class="definition">Definition at line <a class="el" href="_config_manager_8cpp_source.html#l01682">1682</a> of file <a class="el" href="_config_manager_8cpp_source.html">ConfigManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8cpp_source.html#l01865">LoggerManager::getAlarmStateLogFiles()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l01804">LoggerManager::getEventLogFilesStatic()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l01892">LoggerManager::getFileInfo()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l01838">LoggerManager::getLogFiles()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l01927">LoggerManager::openLogFile()</a>, and <a class="el" href="_config_manager_8h_source.html#l00024">server</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8cpp_source.html#l01865">LoggerManager::getAlarmStateLogFiles()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l01804">LoggerManager::getEventLogFilesStatic()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l01892">LoggerManager::getFileInfo()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l01838">LoggerManager::getLogFiles()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l01927">LoggerManager::openLogFile()</a>, and <a class="el" href="_config_manager_8h_source.html#l00048">server</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_config_manager_8cpp_source.html#l00103">begin()</a>.</p>
 <div class="dynheader">
@@ -469,9 +561,12 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00116">116</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+<p>Get acknowledged delay for critical priority alarms. </p>
+<dl class="section return"><dt>Returns</dt><dd>uint16_t Delay time in seconds for critical alarms </dd></dl>
 
-<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00021">conf</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00302">302</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+
+<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00045">conf</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_config_manager_8cpp_source.html#l01014">alarmsAPI()</a>, and <a class="el" href="_config_manager_8cpp_source.html#l00103">begin()</a>.</p>
 <div class="dynheader">
@@ -505,9 +600,12 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00117">117</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+<p>Get acknowledged delay for high priority alarms. </p>
+<dl class="section return"><dt>Returns</dt><dd>uint16_t Delay time in seconds for high priority alarms </dd></dl>
 
-<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00021">conf</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00308">308</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+
+<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00045">conf</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_config_manager_8cpp_source.html#l01014">alarmsAPI()</a>, and <a class="el" href="_config_manager_8cpp_source.html#l00103">begin()</a>.</p>
 <div class="dynheader">
@@ -541,9 +639,12 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00119">119</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+<p>Get acknowledged delay for low priority alarms. </p>
+<dl class="section return"><dt>Returns</dt><dd>uint16_t Delay time in seconds for low priority alarms </dd></dl>
 
-<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00021">conf</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00320">320</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+
+<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00045">conf</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_config_manager_8cpp_source.html#l01014">alarmsAPI()</a>, and <a class="el" href="_config_manager_8cpp_source.html#l00103">begin()</a>.</p>
 <div class="dynheader">
@@ -577,9 +678,12 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00118">118</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+<p>Get acknowledged delay for medium priority alarms. </p>
+<dl class="section return"><dt>Returns</dt><dd>uint16_t Delay time in seconds for medium priority alarms </dd></dl>
 
-<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00021">conf</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00314">314</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+
+<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00045">conf</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_config_manager_8cpp_source.html#l01014">alarmsAPI()</a>, and <a class="el" href="_config_manager_8cpp_source.html#l00103">begin()</a>.</p>
 <div class="dynheader">
@@ -613,9 +717,12 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00092">92</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+<p>Check if auto-discovery is enabled. </p>
+<dl class="section return"><dt>Returns</dt><dd>bool True if automatic sensor discovery is enabled </dd></dl>
 
-<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00021">conf</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00239">239</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+
+<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00045">conf</a>.</p>
 
 </div>
 </div>
@@ -642,9 +749,12 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00114">114</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+<p>Get reference to CSV configuration manager. </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_c_s_v_config_manager.html" title="CSV configuration manager for measurement points and alarms.">CSVConfigManager</a>&amp; Reference to the CSV manager instance </dd></dl>
 
-<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00020">csvManager</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00296">296</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+
+<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00044">csvManager</a>.</p>
 
 </div>
 </div>
@@ -671,9 +781,12 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00083">83</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+<p>Get device ID from configuration. </p>
+<dl class="section return"><dt>Returns</dt><dd>uint16_t Unique device identifier </dd></dl>
 
-<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00021">conf</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00197">197</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+
+<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00045">conf</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_config_manager_8cpp_source.html#l00103">begin()</a>.</p>
 <div class="dynheader">
@@ -707,9 +820,12 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00082">82</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+<p>Get device hostname from configuration. </p>
+<dl class="section return"><dt>Returns</dt><dd>String Configured device hostname </dd></dl>
 
-<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00021">conf</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00191">191</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+
+<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00045">conf</a>.</p>
 
 </div>
 </div>
@@ -736,9 +852,12 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00084">84</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+<p>Get measurement period from configuration. </p>
+<dl class="section return"><dt>Returns</dt><dd>uint16_t Measurement interval in seconds </dd></dl>
 
-<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00021">conf</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00203">203</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+
+<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00045">conf</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_config_manager_8cpp_source.html#l00103">begin()</a>.</p>
 <div class="dynheader">
@@ -772,9 +891,12 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00086">86</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+<p>Get Modbus slave address. </p>
+<dl class="section return"><dt>Returns</dt><dd>uint8_t Configured Modbus device address </dd></dl>
 
-<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00021">conf</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00215">215</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+
+<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00045">conf</a>.</p>
 
 </div>
 </div>
@@ -801,9 +923,12 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00087">87</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+<p>Get Modbus baud rate. </p>
+<dl class="section return"><dt>Returns</dt><dd>uint32_t Configured Modbus communication speed </dd></dl>
 
-<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00021">conf</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00221">221</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+
+<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00045">conf</a>.</p>
 
 </div>
 </div>
@@ -830,9 +955,12 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00088">88</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+<p>Get RS485 RX pin number. </p>
+<dl class="section return"><dt>Returns</dt><dd>uint8_t GPIO pin for RS485 receive </dd></dl>
 
-<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00021">conf</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00227">227</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+
+<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00045">conf</a>.</p>
 
 </div>
 </div>
@@ -859,9 +987,12 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00089">89</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+<p>Get RS485 TX pin number. </p>
+<dl class="section return"><dt>Returns</dt><dd>uint8_t GPIO pin for RS485 transmit </dd></dl>
 
-<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00021">conf</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00233">233</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+
+<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00045">conf</a>.</p>
 
 </div>
 </div>
@@ -888,9 +1019,13 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00074">74</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+<p>Get the web server instance. </p>
+<dl class="section return"><dt>Returns</dt><dd>WebServer* Pointer to the HTTP web server</dd></dl>
+<p>Provides access to the web server for additional endpoint configuration </p>
 
-<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00024">server</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00166">166</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+
+<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00048">server</a>.</p>
 
 </div>
 </div>
@@ -917,9 +1052,12 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00081">81</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+<p>Get WiFi password from configuration. </p>
+<dl class="section return"><dt>Returns</dt><dd>String Configured WiFi password </dd></dl>
 
-<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00021">conf</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00185">185</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+
+<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00045">conf</a>.</p>
 
 </div>
 </div>
@@ -946,9 +1084,12 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00080">80</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+<p>Get WiFi SSID from configuration. </p>
+<dl class="section return"><dt>Returns</dt><dd>String Configured WiFi network name </dd></dl>
 
-<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00021">conf</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00179">179</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+
+<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00045">conf</a>.</p>
 
 </div>
 </div>
@@ -975,9 +1116,12 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00085">85</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+<p>Check if Modbus is enabled. </p>
+<dl class="section return"><dt>Returns</dt><dd>bool True if Modbus communication is enabled </dd></dl>
 
-<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00021">conf</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00209">209</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+
+<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00045">conf</a>.</p>
 
 </div>
 </div>
@@ -1004,9 +1148,12 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00077">77</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+<p>Check if configuration portal is active. </p>
+<dl class="section return"><dt>Returns</dt><dd>bool True if portal is currently running </dd></dl>
 
-<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00025">portalActive</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00172">172</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+
+<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00049">portalActive</a>.</p>
 
 </div>
 </div>
@@ -1025,9 +1172,12 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
+<p>Load alarms configuration from file. </p>
+<p>Restores alarm settings from LittleFS </p>
+
 <p class="definition">Definition at line <a class="el" href="_config_manager_8cpp_source.html#l00487">487</a> of file <a class="el" href="_config_manager_8cpp_source.html">ConfigManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00023">controller</a>, <a class="el" href="_alarm_8cpp_source.html#l00423">Alarm::setEnabled()</a>, and <a class="el" href="_alarm_8cpp_source.html#l00409">Alarm::setHysteresis()</a>.</p>
+<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00047">controller</a>, <a class="el" href="_alarm_8cpp_source.html#l00461">Alarm::setEnabled()</a>, and <a class="el" href="_alarm_8cpp_source.html#l00447">Alarm::setHysteresis()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_config_manager_8cpp_source.html#l00103">begin()</a>.</p>
 <div class="dynheader">
@@ -1058,9 +1208,12 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
+<p>Load measurement points configuration from file. </p>
+<p>Restores measurement point settings from LittleFS </p>
+
 <p class="definition">Definition at line <a class="el" href="_config_manager_8cpp_source.html#l00361">361</a> of file <a class="el" href="_config_manager_8cpp_source.html">ConfigManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00023">controller</a>, <a class="el" href="_sensor_8h_source.html#l00011">DS18B20</a>, <a class="el" href="_logger_manager_8h_source.html#l00101">LoggerManager::info()</a>, <a class="el" href="_sensor_8cpp_source.html#l00049">Sensor::initialize()</a>, <a class="el" href="_sensor_8h_source.html#l00012">PT1000</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00086">MeasurementPoint::setHighAlarmThreshold()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00072">MeasurementPoint::setLowAlarmThreshold()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00061">MeasurementPoint::setName()</a>, <a class="el" href="_sensor_8cpp_source.html#l00039">Sensor::setupDS18B20()</a>, and <a class="el" href="_sensor_8cpp_source.html#l00044">Sensor::setupPT1000()</a>.</p>
+<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00047">controller</a>, <a class="el" href="_sensor_8h_source.html#l00011">DS18B20</a>, <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>, <a class="el" href="_sensor_8cpp_source.html#l00049">Sensor::initialize()</a>, <a class="el" href="_sensor_8h_source.html#l00012">PT1000</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00086">MeasurementPoint::setHighAlarmThreshold()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00072">MeasurementPoint::setLowAlarmThreshold()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00061">MeasurementPoint::setName()</a>, <a class="el" href="_sensor_8cpp_source.html#l00039">Sensor::setupDS18B20()</a>, and <a class="el" href="_sensor_8cpp_source.html#l00044">Sensor::setupPT1000()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_config_manager_8cpp_source.html#l00103">begin()</a>.</p>
 <div class="dynheader">
@@ -1099,9 +1252,12 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Setup logging API endpoints. </p>
+<p>Configures endpoints for log file access and management </p>
+
 <p class="definition">Definition at line <a class="el" href="_config_manager_8cpp_source.html#l01550">1550</a> of file <a class="el" href="_config_manager_8cpp_source.html">ConfigManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8cpp_source.html#l01130">LoggerManager::getAlarmHistoryCsv()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l01050">LoggerManager::getAlarmHistoryJson()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l01865">LoggerManager::getAlarmStateLogFiles()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l01804">LoggerManager::getEventLogFilesStatic()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l01577">LoggerManager::getEventLogsCsv()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l01511">LoggerManager::getEventLogsJson()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l01718">LoggerManager::getEventLogStatsJson()</a>, and <a class="el" href="_config_manager_8h_source.html#l00024">server</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8cpp_source.html#l01130">LoggerManager::getAlarmHistoryCsv()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l01050">LoggerManager::getAlarmHistoryJson()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l01865">LoggerManager::getAlarmStateLogFiles()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l01804">LoggerManager::getEventLogFilesStatic()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l01577">LoggerManager::getEventLogsCsv()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l01511">LoggerManager::getEventLogsJson()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l01718">LoggerManager::getEventLogStatsJson()</a>, and <a class="el" href="_config_manager_8h_source.html#l00048">server</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_config_manager_8cpp_source.html#l00103">begin()</a>.</p>
 <div class="dynheader">
@@ -1140,9 +1296,18 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Static callback function for configuration changes. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">key</td><td>Configuration key that was changed</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Called by ConfigAssist when any configuration value is modified </p>
+
 <p class="definition">Definition at line <a class="el" href="_config_manager_8cpp_source.html#l00237">237</a> of file <a class="el" href="_config_manager_8cpp_source.html">ConfigManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00031">instance</a>.</p>
+<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00058">instance</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_config_manager_8cpp_source.html#l00103">begin()</a>.</p>
 <div class="dynheader">
@@ -1176,9 +1341,12 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Setup measurement points API endpoints. </p>
+<p>Configures endpoints for measurement point configuration and status </p>
+
 <p class="definition">Definition at line <a class="el" href="_config_manager_8cpp_source.html#l00970">970</a> of file <a class="el" href="_config_manager_8cpp_source.html">ConfigManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00023">controller</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00049">MeasurementPoint::getHighAlarmThreshold()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00045">MeasurementPoint::getLowAlarmThreshold()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00029">MeasurementPoint::getName()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00279">savePointsConfig()</a>, <a class="el" href="_config_manager_8h_source.html#l00024">server</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00086">MeasurementPoint::setHighAlarmThreshold()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00072">MeasurementPoint::setLowAlarmThreshold()</a>, and <a class="el" href="_measurement_point_8cpp_source.html#l00061">MeasurementPoint::setName()</a>.</p>
+<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00047">controller</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00049">MeasurementPoint::getHighAlarmThreshold()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00045">MeasurementPoint::getLowAlarmThreshold()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00029">MeasurementPoint::getName()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00279">savePointsConfig()</a>, <a class="el" href="_config_manager_8h_source.html#l00048">server</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00086">MeasurementPoint::setHighAlarmThreshold()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00072">MeasurementPoint::setLowAlarmThreshold()</a>, and <a class="el" href="_measurement_point_8cpp_source.html#l00061">MeasurementPoint::setName()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_config_manager_8cpp_source.html#l00103">begin()</a>.</p>
 <div class="dynheader">
@@ -1209,9 +1377,12 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
+<p>Reset minimum and maximum recorded values. </p>
+<p>Clears historical min/max temperature records for all measurement points </p>
+
 <p class="definition">Definition at line <a class="el" href="_config_manager_8cpp_source.html#l00272">272</a> of file <a class="el" href="_config_manager_8cpp_source.html">ConfigManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00023">controller</a>.</p>
+<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00047">controller</a>.</p>
 
 </div>
 </div>
@@ -1230,9 +1401,12 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
+<p>Save alarms configuration to file. </p>
+<p>Persists current alarm settings to LittleFS </p>
+
 <p class="definition">Definition at line <a class="el" href="_config_manager_8cpp_source.html#l00448">448</a> of file <a class="el" href="_config_manager_8cpp_source.html">ConfigManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00023">controller</a>, <a class="el" href="_alarm_8h_source.html#l00096">Alarm::getHysteresis()</a>, <a class="el" href="_alarm_8h_source.html#l00090">Alarm::getPointAddress()</a>, <a class="el" href="_alarm_8h_source.html#l00048">Alarm::getPriority()</a>, <a class="el" href="_alarm_8h_source.html#l00046">Alarm::getType()</a>, and <a class="el" href="_alarm_8h_source.html#l00088">Alarm::isEnabled()</a>.</p>
+<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00047">controller</a>, <a class="el" href="_alarm_8h_source.html#l00298">Alarm::getHysteresis()</a>, <a class="el" href="_alarm_8h_source.html#l00274">Alarm::getPointAddress()</a>, <a class="el" href="_alarm_8h_source.html#l00104">Alarm::getPriority()</a>, <a class="el" href="_alarm_8h_source.html#l00092">Alarm::getType()</a>, and <a class="el" href="_alarm_8h_source.html#l00262">Alarm::isEnabled()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_config_manager_8cpp_source.html#l01014">alarmsAPI()</a>, and <a class="el" href="_config_manager_8cpp_source.html#l00841">csvImportExportAPI()</a>.</p>
 <div class="dynheader">
@@ -1263,9 +1437,12 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
+<p>Save measurement points configuration to file. </p>
+<p>Persists current measurement point settings to LittleFS </p>
+
 <p class="definition">Definition at line <a class="el" href="_config_manager_8cpp_source.html#l00279">279</a> of file <a class="el" href="_config_manager_8cpp_source.html">ConfigManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00023">controller</a>, <a class="el" href="_sensor_8h_source.html#l00011">DS18B20</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00025">MeasurementPoint::getAddress()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00106">MeasurementPoint::getBoundSensor()</a>, <a class="el" href="_sensor_8cpp_source.html#l00195">Sensor::getDS18B20RomString()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00049">MeasurementPoint::getHighAlarmThreshold()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00045">MeasurementPoint::getLowAlarmThreshold()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00029">MeasurementPoint::getName()</a>, <a class="el" href="_sensor_8cpp_source.html#l00190">Sensor::getPT1000ChipSelectPin()</a>, <a class="el" href="_sensor_8cpp_source.html#l00153">Sensor::getType()</a>, <a class="el" href="_logger_manager_8h_source.html#l00101">LoggerManager::info()</a>, and <a class="el" href="_sensor_8h_source.html#l00012">PT1000</a>.</p>
+<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00047">controller</a>, <a class="el" href="_sensor_8h_source.html#l00011">DS18B20</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00025">MeasurementPoint::getAddress()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00106">MeasurementPoint::getBoundSensor()</a>, <a class="el" href="_sensor_8cpp_source.html#l00195">Sensor::getDS18B20RomString()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00049">MeasurementPoint::getHighAlarmThreshold()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00045">MeasurementPoint::getLowAlarmThreshold()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00029">MeasurementPoint::getName()</a>, <a class="el" href="_sensor_8cpp_source.html#l00190">Sensor::getPT1000ChipSelectPin()</a>, <a class="el" href="_sensor_8cpp_source.html#l00153">Sensor::getType()</a>, <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>, and <a class="el" href="_sensor_8h_source.html#l00012">PT1000</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_config_manager_8cpp_source.html#l01014">alarmsAPI()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00841">csvImportExportAPI()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00970">pointsAPI()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00717">sensorAPI()</a>, and <a class="el" href="_config_manager_8cpp_source.html#l00429">updatePointInConfig()</a>.</p>
 <div class="dynheader">
@@ -1304,9 +1481,12 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Setup sensor-related API endpoints. </p>
+<p>Configures endpoints for sensor discovery and management </p>
+
 <p class="definition">Definition at line <a class="el" href="_config_manager_8cpp_source.html#l00717">717</a> of file <a class="el" href="_config_manager_8cpp_source.html">ConfigManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00023">controller</a>, <a class="el" href="_sensor_8cpp_source.html#l00195">Sensor::getDS18B20RomString()</a>, <a class="el" href="_sensor_8cpp_source.html#l00190">Sensor::getPT1000ChipSelectPin()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00279">savePointsConfig()</a>, and <a class="el" href="_config_manager_8h_source.html#l00024">server</a>.</p>
+<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00047">controller</a>, <a class="el" href="_sensor_8cpp_source.html#l00195">Sensor::getDS18B20RomString()</a>, <a class="el" href="_sensor_8cpp_source.html#l00190">Sensor::getPT1000ChipSelectPin()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00279">savePointsConfig()</a>, and <a class="el" href="_config_manager_8h_source.html#l00048">server</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_config_manager_8cpp_source.html#l00103">begin()</a>.</p>
 <div class="dynheader">
@@ -1337,9 +1517,12 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
+<p>Update configuration system (call in main loop) </p>
+<p>Handles web server requests and configuration portal updates </p>
+
 <p class="definition">Definition at line <a class="el" href="_config_manager_8cpp_source.html#l00217">217</a> of file <a class="el" href="_config_manager_8cpp_source.html">ConfigManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00024">server</a>.</p>
+<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00048">server</a>.</p>
 
 </div>
 </div>
@@ -1382,9 +1565,23 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
+<p>Update a measurement point in configuration. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">address</td><td>Measurement point address (0-255) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">name</td><td>Human-readable name for the measurement point </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">lowAlarm</td><td>Low temperature alarm threshold </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">highAlarm</td><td>High temperature alarm threshold </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ds18b20RomString</td><td>DS18B20 ROM address as string (optional) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pt1000ChipSelect</td><td>PT1000 chip select pin (optional, -1 if not used) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bool True if update successful </dd></dl>
+
 <p class="definition">Definition at line <a class="el" href="_config_manager_8cpp_source.html#l00429">429</a> of file <a class="el" href="_config_manager_8cpp_source.html">ConfigManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00023">controller</a>, <a class="el" href="_config_manager_8cpp_source.html#l00279">savePointsConfig()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00086">MeasurementPoint::setHighAlarmThreshold()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00072">MeasurementPoint::setLowAlarmThreshold()</a>, and <a class="el" href="_measurement_point_8cpp_source.html#l00061">MeasurementPoint::setName()</a>.</p>
+<p class="reference">References <a class="el" href="_config_manager_8h_source.html#l00047">controller</a>, <a class="el" href="_config_manager_8cpp_source.html#l00279">savePointsConfig()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00086">MeasurementPoint::setHighAlarmThreshold()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00072">MeasurementPoint::setLowAlarmThreshold()</a>, and <a class="el" href="_measurement_point_8cpp_source.html#l00061">MeasurementPoint::setName()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1414,9 +1611,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00021">21</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+<p>ConfigAssist instance for web configuration. </p>
 
-<p class="reference">Referenced by <a class="el" href="_config_manager_8cpp_source.html#l01014">alarmsAPI()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00103">begin()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00081">ConfigManager()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00841">csvImportExportAPI()</a>, <a class="el" href="_config_manager_8h_source.html#l00116">getAcknowledgedDelayCritical()</a>, <a class="el" href="_config_manager_8h_source.html#l00117">getAcknowledgedDelayHigh()</a>, <a class="el" href="_config_manager_8h_source.html#l00119">getAcknowledgedDelayLow()</a>, <a class="el" href="_config_manager_8h_source.html#l00118">getAcknowledgedDelayMedium()</a>, <a class="el" href="_config_manager_8h_source.html#l00092">getAutoDiscover()</a>, <a class="el" href="_config_manager_8h_source.html#l00083">getDeviceId()</a>, <a class="el" href="_config_manager_8h_source.html#l00082">getHostname()</a>, <a class="el" href="_config_manager_8h_source.html#l00084">getMeasurementPeriod()</a>, <a class="el" href="_config_manager_8h_source.html#l00086">getModbusAddress()</a>, <a class="el" href="_config_manager_8h_source.html#l00087">getModbusBaudRate()</a>, <a class="el" href="_config_manager_8h_source.html#l00088">getRxPin()</a>, <a class="el" href="_config_manager_8h_source.html#l00089">getTxPin()</a>, <a class="el" href="_config_manager_8h_source.html#l00081">getWifiPassword()</a>, <a class="el" href="_config_manager_8h_source.html#l00080">getWifiSSID()</a>, and <a class="el" href="_config_manager_8h_source.html#l00085">isModbusEnabled()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00045">45</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_config_manager_8cpp_source.html#l01014">alarmsAPI()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00103">begin()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00081">ConfigManager()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00841">csvImportExportAPI()</a>, <a class="el" href="_config_manager_8h_source.html#l00302">getAcknowledgedDelayCritical()</a>, <a class="el" href="_config_manager_8h_source.html#l00308">getAcknowledgedDelayHigh()</a>, <a class="el" href="_config_manager_8h_source.html#l00320">getAcknowledgedDelayLow()</a>, <a class="el" href="_config_manager_8h_source.html#l00314">getAcknowledgedDelayMedium()</a>, <a class="el" href="_config_manager_8h_source.html#l00239">getAutoDiscover()</a>, <a class="el" href="_config_manager_8h_source.html#l00197">getDeviceId()</a>, <a class="el" href="_config_manager_8h_source.html#l00191">getHostname()</a>, <a class="el" href="_config_manager_8h_source.html#l00203">getMeasurementPeriod()</a>, <a class="el" href="_config_manager_8h_source.html#l00215">getModbusAddress()</a>, <a class="el" href="_config_manager_8h_source.html#l00221">getModbusBaudRate()</a>, <a class="el" href="_config_manager_8h_source.html#l00227">getRxPin()</a>, <a class="el" href="_config_manager_8h_source.html#l00233">getTxPin()</a>, <a class="el" href="_config_manager_8h_source.html#l00185">getWifiPassword()</a>, <a class="el" href="_config_manager_8h_source.html#l00179">getWifiSSID()</a>, and <a class="el" href="_config_manager_8h_source.html#l00209">isModbusEnabled()</a>.</p>
 
 </div>
 </div>
@@ -1440,7 +1639,9 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00022">22</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+<p>Helper for ConfigAssist operations. </p>
+
+<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00046">46</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_config_manager_8cpp_source.html#l00081">ConfigManager()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00222">connectWiFi()</a>, and <a class="el" href="_config_manager_8cpp_source.html#l00093">~ConfigManager()</a>.</p>
 
@@ -1466,7 +1667,9 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00023">23</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+<p>Reference to temperature controller. </p>
+
+<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00047">47</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_config_manager_8cpp_source.html#l01014">alarmsAPI()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00103">begin()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00081">ConfigManager()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00841">csvImportExportAPI()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00487">loadAlarmsConfig()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00361">loadPointsConfig()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00970">pointsAPI()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00272">resetMinMaxValues()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00448">saveAlarmsConfig()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00279">savePointsConfig()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00717">sensorAPI()</a>, and <a class="el" href="_config_manager_8cpp_source.html#l00429">updatePointInConfig()</a>.</p>
 
@@ -1492,9 +1695,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00020">20</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+<p>Manager for measurement point CSV operations. </p>
 
-<p class="reference">Referenced by <a class="el" href="_config_manager_8cpp_source.html#l00081">ConfigManager()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00841">csvImportExportAPI()</a>, and <a class="el" href="_config_manager_8h_source.html#l00114">getCSVManager()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00044">44</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_config_manager_8cpp_source.html#l00081">ConfigManager()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00841">csvImportExportAPI()</a>, and <a class="el" href="_config_manager_8h_source.html#l00296">getCSVManager()</a>.</p>
 
 </div>
 </div>
@@ -1518,7 +1723,9 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00031">31</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+<p>Static instance pointer for callbacks. </p>
+
+<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00058">58</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_config_manager_8cpp_source.html#l00081">ConfigManager()</a>, and <a class="el" href="_config_manager_8cpp_source.html#l00237">onConfigChanged()</a>.</p>
 
@@ -1544,9 +1751,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00025">25</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+<p>Flag indicating if configuration portal is active. </p>
 
-<p class="reference">Referenced by <a class="el" href="_config_manager_8cpp_source.html#l00081">ConfigManager()</a>, and <a class="el" href="_config_manager_8h_source.html#l00077">isPortalActive()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00049">49</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_config_manager_8cpp_source.html#l00081">ConfigManager()</a>, and <a class="el" href="_config_manager_8h_source.html#l00172">isPortalActive()</a>.</p>
 
 </div>
 </div>
@@ -1570,9 +1779,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00024">24</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+<p>HTTP web server instance. </p>
 
-<p class="reference">Referenced by <a class="el" href="_config_manager_8cpp_source.html#l01014">alarmsAPI()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00573">basicAPI()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00103">begin()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00081">ConfigManager()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00841">csvImportExportAPI()</a>, <a class="el" href="_config_manager_8cpp_source.html#l01682">downloadAPI()</a>, <a class="el" href="_config_manager_8h_source.html#l00074">getWebServer()</a>, <a class="el" href="_config_manager_8cpp_source.html#l01550">logsAPI()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00970">pointsAPI()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00717">sensorAPI()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00217">update()</a>, and <a class="el" href="_config_manager_8cpp_source.html#l00093">~ConfigManager()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00048">48</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_config_manager_8cpp_source.html#l01014">alarmsAPI()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00573">basicAPI()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00103">begin()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00081">ConfigManager()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00841">csvImportExportAPI()</a>, <a class="el" href="_config_manager_8cpp_source.html#l01682">downloadAPI()</a>, <a class="el" href="_config_manager_8h_source.html#l00166">getWebServer()</a>, <a class="el" href="_config_manager_8cpp_source.html#l01550">logsAPI()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00970">pointsAPI()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00717">sensorAPI()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00217">update()</a>, and <a class="el" href="_config_manager_8cpp_source.html#l00093">~ConfigManager()</a>.</p>
 
 </div>
 </div>
@@ -1596,7 +1807,9 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00019">19</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
+<p>Manager for settings CSV operations. </p>
+
+<p class="definition">Definition at line <a class="el" href="_config_manager_8h_source.html#l00043">43</a> of file <a class="el" href="_config_manager_8h_source.html">ConfigManager.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_config_manager_8cpp_source.html#l00081">ConfigManager()</a>, and <a class="el" href="_config_manager_8cpp_source.html#l00841">csvImportExportAPI()</a>.</p>
 

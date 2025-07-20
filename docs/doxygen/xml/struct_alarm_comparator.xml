@@ -19,19 +19,44 @@
           <declname>b</declname>
         </param>
         <briefdescription>
+<para>Comparison operator for alarm sorting. </para>
         </briefdescription>
         <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>First alarm to compare </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Second alarm to compare </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>bool True if alarm &apos;a&apos; should be sorted before alarm &apos;b&apos; </para>
+</simplesect>
+<simplesect kind="note"><para>Higher priority alarms sort first, older alarms sort first within same priority </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/Alarm.h" line="139" column="10" bodyfile="include/Alarm.h" bodystart="139" bodyend="144"/>
-        <references refid="class_alarm_1abe89e376d8cacb582717ad6a65526ee8" compoundref="_alarm_8h" startline="48" endline="48">Alarm::getPriority</references>
-        <references refid="class_alarm_1a7a4a3290a6a659542f82fe08a96736a8" compoundref="_alarm_8h" startline="50" endline="50">Alarm::getTimestamp</references>
+        <location file="include/Alarm.h" line="389" column="10" bodyfile="include/Alarm.h" bodystart="389" bodyend="394"/>
+        <references refid="class_alarm_1abe89e376d8cacb582717ad6a65526ee8" compoundref="_alarm_8h" startline="104" endline="104">Alarm::getPriority</references>
+        <references refid="class_alarm_1a7a4a3290a6a659542f82fe08a96736a8" compoundref="_alarm_8h" startline="116" endline="116">Alarm::getTimestamp</references>
       </memberdef>
     </sectiondef>
     <briefdescription>
+<para><ref refid="class_alarm" kindref="compound">Alarm</ref> comparison function for priority-based sorting. </para>
     </briefdescription>
     <detaileddescription>
+<para>Provides comparison logic for sorting alarms by priority (highest first) and timestamp (oldest first) for equal priorities </para>
     </detaileddescription>
     <collaborationgraph>
       <node id="1">
@@ -39,7 +64,7 @@
         <link refid="struct_alarm_comparator"/>
       </node>
     </collaborationgraph>
-    <location file="include/Alarm.h" line="138" column="1" bodyfile="include/Alarm.h" bodystart="138" bodyend="145"/>
+    <location file="include/Alarm.h" line="381" column="1" bodyfile="include/Alarm.h" bodystart="381" bodyend="395"/>
     <listofallmembers>
       <member refid="struct_alarm_comparator_1a9e59c2531a3bd641d0b3d0cc10bffe54" prot="public" virt="non-virtual"><scope>AlarmComparator</scope><name>operator()</name></member>
     </listofallmembers>

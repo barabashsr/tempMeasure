@@ -63,8 +63,6 @@
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
       </node>
       <node id="10">
         <label>MeasurementPoint.h</label>
@@ -233,56 +231,89 @@
     </invincdepgraph>
     <innerclass refid="class_c_s_v_config_manager" prot="public">CSVConfigManager</innerclass>
     <briefdescription>
+<para>CSV configuration import/export manager for measurement points and alarms. </para>
     </briefdescription>
     <detaileddescription>
+<para><simplesect kind="author"><para>Claude Code Session 20250720 </para>
+</simplesect>
+<simplesect kind="date"><para>2025-07-20</para>
+</simplesect>
+This file provides CSV-based configuration management for measurement points and alarm settings, enabling bulk configuration through CSV files.</para>
+<sect1 id="main_8cpp_1dependencies">
+<title>Dependencies</title><para><itemizedlist>
+<listitem><para>CSV_Parser.h for CSV parsing functionality</para>
+</listitem><listitem><para><ref refid="_temperature_controller_8h" kindref="compound">TemperatureController.h</ref> for system integration</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="main_8cpp_1hardware">
+<title>Hardware Requirements</title><para><itemizedlist>
+<listitem><para>ESP32 with LittleFS support for file operations </para>
+</listitem></itemizedlist>
+</para>
+</sect1>
     </detaileddescription>
     <programlisting>
-<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="2"><highlight class="normal"></highlight></codeline>
-<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Arduino.h&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;CSV_Parser.h&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_temperature_controller_8h" kindref="compound">TemperatureController.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="6"><highlight class="normal"></highlight></codeline>
-<codeline lineno="7" refid="class_c_s_v_config_manager" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_c_s_v_config_manager_1aeb5348105aeb04d73c45526f70d745f6" kindref="member">CSVConfigManager</ref><sp/>{</highlight></codeline>
-<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_c_s_v_config_manager_1aeb5348105aeb04d73c45526f70d745f6" kindref="member">CSVConfigManager</ref>(<ref refid="class_temperature_controller" kindref="compound">TemperatureController</ref>&amp;<sp/><ref refid="main_8cpp_1aecbe6ad38ed7d220ace280ea33d8ab45" kindref="member">controller</ref>);</highlight></codeline>
-<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>CSV<sp/>export/import<sp/>for<sp/>combined<sp/>points<sp/>and<sp/>alarms</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/>String<sp/><ref refid="class_c_s_v_config_manager_1a1c6cbc4c8a132762bf16a8ce9f7d0bfc" kindref="member">exportPointsWithAlarmsToCSV</ref>();</highlight></codeline>
-<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_c_s_v_config_manager_1aef1d9d5b47814730cb9f80554b6fd623" kindref="member">importPointsWithAlarmsFromCSV</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>String&amp;<sp/>csvData);</highlight></codeline>
-<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Individual<sp/>exports<sp/>(if<sp/>needed)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>String<sp/><ref refid="class_c_s_v_config_manager_1adfad868e17345181ef3239c1c0c28693" kindref="member">exportSensorsToCSV</ref>();</highlight></codeline>
-<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_c_s_v_config_manager_1a8d65bb402dd0ba796b1ab7c939b95f5c" kindref="member">importSensorsFromCSV</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>String&amp;<sp/>csvData);</highlight></codeline>
-<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>File<sp/>operations</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_c_s_v_config_manager_1a513e5f48c740fe3575b55bef003fbbb0" kindref="member">saveCSVToFile</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>String&amp;<sp/>filename,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>String&amp;<sp/>csvData);</highlight></codeline>
-<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>String<sp/><ref refid="class_c_s_v_config_manager_1a643e56244bc2075621641e05e754c9af" kindref="member">loadCSVFromFile</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>String&amp;<sp/>filename);</highlight></codeline>
-<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Validation</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_c_s_v_config_manager_1a4dca23384ad64615e2893ded0c66567c" kindref="member">validatePointsCSV</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>String&amp;<sp/>csvData);</highlight></codeline>
-<codeline lineno="25" refid="class_c_s_v_config_manager_1abf641fecbd2d9ae68c4a762908b37bfb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>String<sp/><ref refid="class_c_s_v_config_manager_1abf641fecbd2d9ae68c4a762908b37bfb" kindref="member">getLastError</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_c_s_v_config_manager_1a21fb0525c0a6d337f3cc8ddacaa928eb" kindref="member">_lastError</ref>;<sp/>}</highlight></codeline>
-<codeline lineno="26"><highlight class="normal"></highlight></codeline>
-<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="28" refid="class_c_s_v_config_manager_1af52a38cd84e7551a980d3153adea88bd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_temperature_controller" kindref="compound">TemperatureController</ref>&amp;<sp/><ref refid="class_c_s_v_config_manager_1af52a38cd84e7551a980d3153adea88bd" kindref="member">_controller</ref>;</highlight></codeline>
-<codeline lineno="29" refid="class_c_s_v_config_manager_1a21fb0525c0a6d337f3cc8ddacaa928eb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>String<sp/><ref refid="class_c_s_v_config_manager_1a21fb0525c0a6d337f3cc8ddacaa928eb" kindref="member">_lastError</ref>;</highlight></codeline>
-<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Helper<sp/>methods</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>String<sp/><ref refid="class_c_s_v_config_manager_1a7cbb73926f858ab8982287b94797ec7a" kindref="member">_escapeCSVField</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>String&amp;<sp/>field);</highlight></codeline>
-<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>String<sp/><ref refid="class_c_s_v_config_manager_1afc97b7e6d93109a6002fdf35737f8056" kindref="member">_unescapeCSVField</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>String&amp;<sp/>field);</highlight></codeline>
-<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_c_s_v_config_manager_1a7ecf23e1c03fa194bcf3afe52408d378" kindref="member">_parseAlarmFromCSV</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>pointAddress,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>String&amp;<sp/>alarmType,<sp/></highlight></codeline>
-<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>String&amp;<sp/>priority,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>String&amp;<sp/>enabled,<sp/></highlight></codeline>
-<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>String&amp;<sp/>hysteresis);</highlight></codeline>
-<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Additional<sp/>helper<sp/>methods<sp/>needed</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>String<sp/><ref refid="class_c_s_v_config_manager_1a69d938dbf9943440743733ffd70986af" kindref="member">_getAlarmTypeString</ref>(<ref refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2" kindref="member">AlarmType</ref><sp/>type);</highlight></codeline>
-<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2" kindref="member">AlarmType</ref><sp/><ref refid="class_c_s_v_config_manager_1aafeae1c990b637d6bfc59cb22d822620" kindref="member">_parseAlarmType</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>String&amp;<sp/>typeStr);</highlight></codeline>
-<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>String<sp/><ref refid="class_c_s_v_config_manager_1a42f3d6d3fe90a50339e53c550cbdcc4a" kindref="member">_getPriorityString</ref>(<ref refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321b" kindref="member">AlarmPriority</ref><sp/>priority);</highlight></codeline>
-<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321b" kindref="member">AlarmPriority</ref><sp/><ref refid="class_c_s_v_config_manager_1a99faac6c424979e035a85cb77515e092" kindref="member">_parsePriority</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>String&amp;<sp/>priorityStr);</highlight></codeline>
-<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_c_s_v_config_manager_1a2c2673398051c26184c9197aa751a6b3" kindref="member">_exportPointToCSV</ref>(String&amp;<sp/>csv,<sp/><ref refid="class_measurement_point" kindref="compound">MeasurementPoint</ref>*<sp/>point,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>String&amp;<sp/>pointType);</highlight></codeline>
-<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_c_s_v_config_manager_1ac91e29ab2468661df752e4e4b2f7186c" kindref="member">_parseCSVLine</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>String&amp;<sp/>line);</highlight></codeline>
-<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>String<sp/><ref refid="class_c_s_v_config_manager_1aa43c8405582f387b0330cc1e965f5117" kindref="member">_getAlarmPriorityForPoint</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>pointAddress,<sp/><ref refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2" kindref="member">AlarmType</ref><sp/>alarmType);</highlight></codeline>
-<codeline lineno="46"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Arduino.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;CSV_Parser.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_temperature_controller_8h" kindref="compound">TemperatureController.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28" refid="class_c_s_v_config_manager" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_c_s_v_config_manager_1aeb5348105aeb04d73c45526f70d745f6" kindref="member">CSVConfigManager</ref><sp/>{</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_c_s_v_config_manager_1aeb5348105aeb04d73c45526f70d745f6" kindref="member">CSVConfigManager</ref>(<ref refid="class_temperature_controller" kindref="compound">TemperatureController</ref>&amp;<sp/><ref refid="main_8cpp_1aecbe6ad38ed7d220ace280ea33d8ab45" kindref="member">controller</ref>);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>CSV<sp/>export/import<sp/>for<sp/>combined<sp/>points<sp/>and<sp/>alarms</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>String<sp/><ref refid="class_c_s_v_config_manager_1a1c6cbc4c8a132762bf16a8ce9f7d0bfc" kindref="member">exportPointsWithAlarmsToCSV</ref>();</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_c_s_v_config_manager_1aef1d9d5b47814730cb9f80554b6fd623" kindref="member">importPointsWithAlarmsFromCSV</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>String&amp;<sp/>csvData);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Individual<sp/>exports<sp/>(if<sp/>needed)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>String<sp/><ref refid="class_c_s_v_config_manager_1adfad868e17345181ef3239c1c0c28693" kindref="member">exportSensorsToCSV</ref>();</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_c_s_v_config_manager_1a8d65bb402dd0ba796b1ab7c939b95f5c" kindref="member">importSensorsFromCSV</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>String&amp;<sp/>csvData);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>File<sp/>operations</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_c_s_v_config_manager_1a513e5f48c740fe3575b55bef003fbbb0" kindref="member">saveCSVToFile</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>String&amp;<sp/>filename,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>String&amp;<sp/>csvData);</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>String<sp/><ref refid="class_c_s_v_config_manager_1a643e56244bc2075621641e05e754c9af" kindref="member">loadCSVFromFile</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>String&amp;<sp/>filename);</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Validation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_c_s_v_config_manager_1a4dca23384ad64615e2893ded0c66567c" kindref="member">validatePointsCSV</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>String&amp;<sp/>csvData);</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="101" refid="class_c_s_v_config_manager_1abf641fecbd2d9ae68c4a762908b37bfb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>String<sp/><ref refid="class_c_s_v_config_manager_1abf641fecbd2d9ae68c4a762908b37bfb" kindref="member">getLastError</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_c_s_v_config_manager_1a21fb0525c0a6d337f3cc8ddacaa928eb" kindref="member">_lastError</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="104" refid="class_c_s_v_config_manager_1af52a38cd84e7551a980d3153adea88bd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_temperature_controller" kindref="compound">TemperatureController</ref>&amp;<sp/><ref refid="class_c_s_v_config_manager_1af52a38cd84e7551a980d3153adea88bd" kindref="member">_controller</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="105" refid="class_c_s_v_config_manager_1a21fb0525c0a6d337f3cc8ddacaa928eb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>String<sp/><ref refid="class_c_s_v_config_manager_1a21fb0525c0a6d337f3cc8ddacaa928eb" kindref="member">_lastError</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Helper<sp/>methods</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/>String<sp/><ref refid="class_c_s_v_config_manager_1a7cbb73926f858ab8982287b94797ec7a" kindref="member">_escapeCSVField</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>String&amp;<sp/>field);</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>String<sp/><ref refid="class_c_s_v_config_manager_1afc97b7e6d93109a6002fdf35737f8056" kindref="member">_unescapeCSVField</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>String&amp;<sp/>field);</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_c_s_v_config_manager_1a7ecf23e1c03fa194bcf3afe52408d378" kindref="member">_parseAlarmFromCSV</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>pointAddress,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>String&amp;<sp/>alarmType,<sp/></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>String&amp;<sp/>priority,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>String&amp;<sp/>enabled,<sp/></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>String&amp;<sp/>hysteresis);</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Additional<sp/>helper<sp/>methods</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/>String<sp/><ref refid="class_c_s_v_config_manager_1a69d938dbf9943440743733ffd70986af" kindref="member">_getAlarmTypeString</ref>(<ref refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2" kindref="member">AlarmType</ref><sp/>type);</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2" kindref="member">AlarmType</ref><sp/><ref refid="class_c_s_v_config_manager_1aafeae1c990b637d6bfc59cb22d822620" kindref="member">_parseAlarmType</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>String&amp;<sp/>typeStr);</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/>String<sp/><ref refid="class_c_s_v_config_manager_1a42f3d6d3fe90a50339e53c550cbdcc4a" kindref="member">_getPriorityString</ref>(<ref refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321b" kindref="member">AlarmPriority</ref><sp/>priority);</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321b" kindref="member">AlarmPriority</ref><sp/><ref refid="class_c_s_v_config_manager_1a99faac6c424979e035a85cb77515e092" kindref="member">_parsePriority</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>String&amp;<sp/>priorityStr);</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_c_s_v_config_manager_1a2c2673398051c26184c9197aa751a6b3" kindref="member">_exportPointToCSV</ref>(String&amp;<sp/>csv,<sp/><ref refid="class_measurement_point" kindref="compound">MeasurementPoint</ref>*<sp/>point,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>String&amp;<sp/>pointType);</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_c_s_v_config_manager_1ac91e29ab2468661df752e4e4b2f7186c" kindref="member">_parseCSVLine</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>String&amp;<sp/>line);</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/>String<sp/><ref refid="class_c_s_v_config_manager_1aa43c8405582f387b0330cc1e965f5117" kindref="member">_getAlarmPriorityForPoint</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>pointAddress,<sp/><ref refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2" kindref="member">AlarmType</ref><sp/>alarmType);</highlight></codeline>
+<codeline lineno="192"><highlight class="normal">};</highlight></codeline>
     </programlisting>
     <location file="include/CSVConfigManager.h"/>
   </compounddef>

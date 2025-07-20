@@ -1,5 +1,24 @@
 # Industrial ESP32 Temperature Monitoring System
 
+## ⚠️ MANDATORY: AI Assistant Requirements
+
+**ALL AI assistants working on this project MUST:**
+1. ✅ Read and follow `/CLAUDE.md` instructions EXACTLY
+2. ✅ Create baseline commits before any changes
+3. ✅ Use the documented session workflow
+4. ✅ Generate documentation before and after changes
+5. ✅ Follow documentation-first approach
+
+**Failure to follow CLAUDE.md will result in rejected contributions.**
+
+**🔴 CRITICAL**: Before making ANY changes:
+- Read the complete CLAUDE.md file 
+- Create baseline commit: `git add -A && git commit -m "baseline: pre-session $(date +%Y%m%d_%H%M%S)"`
+- Start session: `.claude/scripts/start_session.sh`
+- Generate docs: `scripts/generate_docs.sh`
+
+---
+
 ## Device Description
 
 This industrial-grade ESP32-based device is designed for precision temperature monitoring in industrial environments. It collects temperature data from multiple sensors, including DS18B20 digital temperature sensors and PT1000/PT100 RTD sensors connected via MAX31865 modules. The system supports up to 50 DS18B20 sensors and 10 PT1000/PT100 sensors, with expansion capability for future sensor types.

@@ -92,6 +92,9 @@ $(function(){initNavTree('_indicator_interface_8h.html','',''); });
   <div class="headertitle"><div class="title">IndicatorInterface.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Hardware interface for PCF8575 I/O expander and SH1106 OLED display.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;Arduino.h&gt;</code><br />
 <code>#include &lt;Wire.h&gt;</code><br />
 <code>#include &lt;map&gt;</code><br />
@@ -116,9 +119,32 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Data Structures</h2></td></tr>
 <tr class="memitem:IndicatorInterface" id="r_IndicatorInterface"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_indicator_interface.html">IndicatorInterface</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface class for PCF8575 I/O expander and OLED display.  <a href="class_indicator_interface.html#details">More...</a><br /></td></tr>
 <tr class="memitem:IndicatorInterface_3A_3ABlinkingPort" id="r_IndicatorInterface_3A_3ABlinkingPort"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_indicator_interface_1_1_blinking_port.html">IndicatorInterface::BlinkingPort</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure for managing blinking port states.  <a href="struct_indicator_interface_1_1_blinking_port.html#details">More...</a><br /></td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Hardware interface for PCF8575 I/O expander and SH1106 OLED display. </p>
+<dl class="section author"><dt>Author</dt><dd>Claude Code Session 20250720 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2025-07-20</dd></dl>
+<p>This file provides a comprehensive interface for controlling PCF8575 I/O expander and SH1106 OLED display, including port control, interrupt handling, and display management.</p>
+<h1 class="doxsection"><a class="anchor" id="dependencies"></a>
+Dependencies</h1>
+<ul>
+<li>PCF8575.h for I/O expander control</li>
+<li>U8g2lib.h for OLED display control</li>
+<li>Wire.h for I2C communication</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="hardware"></a>
+Hardware Requirements</h1>
+<ul>
+<li>ESP32 with I2C capability</li>
+<li>PCF8575 16-bit I/O expander</li>
+<li>SH1106 128x64 OLED display </li>
+</ul>
+
+<p class="definition">Definition in file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">
 <div id="page-nav-resize-handle"></div>

@@ -93,6 +93,9 @@ $(function(){initNavTree('class_c_s_v_config_manager.html','',''); });
 </div><!--header-->
 <div class="contents">
 
+<p>CSV configuration manager for measurement points and alarms.  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_c_s_v_config_manager_8h_source.html">CSVConfigManager.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for CSVConfigManager:</div>
@@ -103,36 +106,59 @@ Collaboration diagram for CSVConfigManager:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aeb5348105aeb04d73c45526f70d745f6" id="r_aeb5348105aeb04d73c45526f70d745f6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeb5348105aeb04d73c45526f70d745f6">CSVConfigManager</a> (<a class="el" href="class_temperature_controller.html">TemperatureController</a> &amp;<a class="el" href="main_8cpp.html#aecbe6ad38ed7d220ace280ea33d8ab45">controller</a>)</td></tr>
+<tr class="memdesc:aeb5348105aeb04d73c45526f70d745f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for CSV configuration manager.  <br /></td></tr>
 <tr class="memitem:a1c6cbc4c8a132762bf16a8ce9f7d0bfc" id="r_a1c6cbc4c8a132762bf16a8ce9f7d0bfc"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1c6cbc4c8a132762bf16a8ce9f7d0bfc">exportPointsWithAlarmsToCSV</a> ()</td></tr>
+<tr class="memdesc:a1c6cbc4c8a132762bf16a8ce9f7d0bfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Export measurement points with alarm configuration to CSV.  <br /></td></tr>
 <tr class="memitem:aef1d9d5b47814730cb9f80554b6fd623" id="r_aef1d9d5b47814730cb9f80554b6fd623"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aef1d9d5b47814730cb9f80554b6fd623">importPointsWithAlarmsFromCSV</a> (const String &amp;csvData)</td></tr>
+<tr class="memdesc:aef1d9d5b47814730cb9f80554b6fd623"><td class="mdescLeft">&#160;</td><td class="mdescRight">Import measurement points and alarms from CSV data.  <br /></td></tr>
 <tr class="memitem:adfad868e17345181ef3239c1c0c28693" id="r_adfad868e17345181ef3239c1c0c28693"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adfad868e17345181ef3239c1c0c28693">exportSensorsToCSV</a> ()</td></tr>
+<tr class="memdesc:adfad868e17345181ef3239c1c0c28693"><td class="mdescLeft">&#160;</td><td class="mdescRight">Export only sensor configuration to CSV.  <br /></td></tr>
 <tr class="memitem:a8d65bb402dd0ba796b1ab7c939b95f5c" id="r_a8d65bb402dd0ba796b1ab7c939b95f5c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8d65bb402dd0ba796b1ab7c939b95f5c">importSensorsFromCSV</a> (const String &amp;csvData)</td></tr>
+<tr class="memdesc:a8d65bb402dd0ba796b1ab7c939b95f5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Import sensor configuration from CSV data.  <br /></td></tr>
 <tr class="memitem:a513e5f48c740fe3575b55bef003fbbb0" id="r_a513e5f48c740fe3575b55bef003fbbb0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a513e5f48c740fe3575b55bef003fbbb0">saveCSVToFile</a> (const String &amp;filename, const String &amp;csvData)</td></tr>
+<tr class="memdesc:a513e5f48c740fe3575b55bef003fbbb0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save CSV data to file system.  <br /></td></tr>
 <tr class="memitem:a643e56244bc2075621641e05e754c9af" id="r_a643e56244bc2075621641e05e754c9af"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a643e56244bc2075621641e05e754c9af">loadCSVFromFile</a> (const String &amp;filename)</td></tr>
+<tr class="memdesc:a643e56244bc2075621641e05e754c9af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load CSV data from file system.  <br /></td></tr>
 <tr class="memitem:a4dca23384ad64615e2893ded0c66567c" id="r_a4dca23384ad64615e2893ded0c66567c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4dca23384ad64615e2893ded0c66567c">validatePointsCSV</a> (const String &amp;csvData)</td></tr>
+<tr class="memdesc:a4dca23384ad64615e2893ded0c66567c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Validate CSV data format and content.  <br /></td></tr>
 <tr class="memitem:abf641fecbd2d9ae68c4a762908b37bfb" id="r_abf641fecbd2d9ae68c4a762908b37bfb"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abf641fecbd2d9ae68c4a762908b37bfb">getLastError</a> () const</td></tr>
+<tr class="memdesc:abf641fecbd2d9ae68c4a762908b37bfb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the last error message.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:a7cbb73926f858ab8982287b94797ec7a" id="r_a7cbb73926f858ab8982287b94797ec7a"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7cbb73926f858ab8982287b94797ec7a">_escapeCSVField</a> (const String &amp;field)</td></tr>
+<tr class="memdesc:a7cbb73926f858ab8982287b94797ec7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Escape special characters in CSV field.  <br /></td></tr>
 <tr class="memitem:afc97b7e6d93109a6002fdf35737f8056" id="r_afc97b7e6d93109a6002fdf35737f8056"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afc97b7e6d93109a6002fdf35737f8056">_unescapeCSVField</a> (const String &amp;field)</td></tr>
+<tr class="memdesc:afc97b7e6d93109a6002fdf35737f8056"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unescape CSV field back to original string.  <br /></td></tr>
 <tr class="memitem:a7ecf23e1c03fa194bcf3afe52408d378" id="r_a7ecf23e1c03fa194bcf3afe52408d378"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7ecf23e1c03fa194bcf3afe52408d378">_parseAlarmFromCSV</a> (int pointAddress, const String &amp;alarmType, const String &amp;priority, const String &amp;enabled, const String &amp;hysteresis)</td></tr>
+<tr class="memdesc:a7ecf23e1c03fa194bcf3afe52408d378"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse alarm configuration from CSV fields.  <br /></td></tr>
 <tr class="memitem:a69d938dbf9943440743733ffd70986af" id="r_a69d938dbf9943440743733ffd70986af"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a69d938dbf9943440743733ffd70986af">_getAlarmTypeString</a> (<a class="el" href="_alarm_8h.html#ab24e7dd602a82a4cf2afea61f26726e2">AlarmType</a> type)</td></tr>
+<tr class="memdesc:a69d938dbf9943440743733ffd70986af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert alarm type enum to string.  <br /></td></tr>
 <tr class="memitem:aafeae1c990b637d6bfc59cb22d822620" id="r_aafeae1c990b637d6bfc59cb22d822620"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_alarm_8h.html#ab24e7dd602a82a4cf2afea61f26726e2">AlarmType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aafeae1c990b637d6bfc59cb22d822620">_parseAlarmType</a> (const String &amp;typeStr)</td></tr>
+<tr class="memdesc:aafeae1c990b637d6bfc59cb22d822620"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse alarm type string to enum.  <br /></td></tr>
 <tr class="memitem:a42f3d6d3fe90a50339e53c550cbdcc4a" id="r_a42f3d6d3fe90a50339e53c550cbdcc4a"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a42f3d6d3fe90a50339e53c550cbdcc4a">_getPriorityString</a> (<a class="el" href="_alarm_8h.html#a5a708c1a1540361a33a030066a7c321b">AlarmPriority</a> priority)</td></tr>
+<tr class="memdesc:a42f3d6d3fe90a50339e53c550cbdcc4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert alarm priority enum to string.  <br /></td></tr>
 <tr class="memitem:a99faac6c424979e035a85cb77515e092" id="r_a99faac6c424979e035a85cb77515e092"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_alarm_8h.html#a5a708c1a1540361a33a030066a7c321b">AlarmPriority</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a99faac6c424979e035a85cb77515e092">_parsePriority</a> (const String &amp;priorityStr)</td></tr>
+<tr class="memdesc:a99faac6c424979e035a85cb77515e092"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse priority string to enum.  <br /></td></tr>
 <tr class="memitem:a2c2673398051c26184c9197aa751a6b3" id="r_a2c2673398051c26184c9197aa751a6b3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2c2673398051c26184c9197aa751a6b3">_exportPointToCSV</a> (String &amp;csv, <a class="el" href="class_measurement_point.html">MeasurementPoint</a> *point, const String &amp;pointType)</td></tr>
+<tr class="memdesc:a2c2673398051c26184c9197aa751a6b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Export single measurement point to CSV format.  <br /></td></tr>
 <tr class="memitem:ac91e29ab2468661df752e4e4b2f7186c" id="r_ac91e29ab2468661df752e4e4b2f7186c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac91e29ab2468661df752e4e4b2f7186c">_parseCSVLine</a> (const String &amp;line)</td></tr>
+<tr class="memdesc:ac91e29ab2468661df752e4e4b2f7186c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse single CSV line.  <br /></td></tr>
 <tr class="memitem:aa43c8405582f387b0330cc1e965f5117" id="r_aa43c8405582f387b0330cc1e965f5117"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa43c8405582f387b0330cc1e965f5117">_getAlarmPriorityForPoint</a> (int pointAddress, <a class="el" href="_alarm_8h.html#ab24e7dd602a82a4cf2afea61f26726e2">AlarmType</a> alarmType)</td></tr>
+<tr class="memdesc:aa43c8405582f387b0330cc1e965f5117"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get alarm priority for specific point and alarm type.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:af52a38cd84e7551a980d3153adea88bd" id="r_af52a38cd84e7551a980d3153adea88bd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_temperature_controller.html">TemperatureController</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af52a38cd84e7551a980d3153adea88bd">_controller</a></td></tr>
+<tr class="memdesc:af52a38cd84e7551a980d3153adea88bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference to temperature controller.  <br /></td></tr>
 <tr class="memitem:a21fb0525c0a6d337f3cc8ddacaa928eb" id="r_a21fb0525c0a6d337f3cc8ddacaa928eb"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a21fb0525c0a6d337f3cc8ddacaa928eb">_lastError</a></td></tr>
+<tr class="memdesc:a21fb0525c0a6d337f3cc8ddacaa928eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Last error message for debugging.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="_c_s_v_config_manager_8h_source.html#l00007">7</a> of file <a class="el" href="_c_s_v_config_manager_8h_source.html">CSVConfigManager.h</a>.</p>
+<div class="textblock"><p>CSV configuration manager for measurement points and alarms. </p>
+<p>Handles import/export of system configuration through CSV files, enabling bulk configuration management and backup/restore operations </p>
+
+<p class="definition">Definition at line <a class="el" href="_c_s_v_config_manager_8h_source.html#l00028">28</a> of file <a class="el" href="_c_s_v_config_manager_8h_source.html">CSVConfigManager.h</a>.</p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aeb5348105aeb04d73c45526f70d745f6" name="aeb5348105aeb04d73c45526f70d745f6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aeb5348105aeb04d73c45526f70d745f6">&#9670;&#160;</a></span>CSVConfigManager()</h2>
@@ -149,9 +175,18 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Constructor for CSV configuration manager. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">controller</td><td>Reference to the temperature controller</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Initializes CSV manager with temperature controller integration </p>
+
 <p class="definition">Definition at line <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00004">4</a> of file <a class="el" href="_c_s_v_config_manager_8cpp_source.html">CSVConfigManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_c_s_v_config_manager_8h_source.html#l00028">_controller</a>, <a class="el" href="_c_s_v_config_manager_8h_source.html#l00029">_lastError</a>, and <a class="el" href="main_8cpp.html#aecbe6ad38ed7d220ace280ea33d8ab45">controller</a>.</p>
+<p class="reference">References <a class="el" href="_c_s_v_config_manager_8h_source.html#l00104">_controller</a>, <a class="el" href="_c_s_v_config_manager_8h_source.html#l00105">_lastError</a>, and <a class="el" href="main_8cpp.html#aecbe6ad38ed7d220ace280ea33d8ab45">controller</a>.</p>
 
 </div>
 </div>
@@ -178,6 +213,16 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Escape special characters in CSV field. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">field</td><td>String field to escape </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>String Properly escaped CSV field</dd></dl>
+<p>Handles quotes, commas, and newlines in CSV fields </p>
 
 <p class="definition">Definition at line <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00143">143</a> of file <a class="el" href="_c_s_v_config_manager_8cpp_source.html">CSVConfigManager.cpp</a>.</p>
 
@@ -222,9 +267,20 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Export single measurement point to CSV format. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">csv</td><td>CSV string to append to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">point</td><td>Measurement point to export </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pointType</td><td>Type of measurement point (DS18B20, PT1000, etc.)</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Appends measurement point configuration to CSV string </p>
+
 <p class="definition">Definition at line <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00037">37</a> of file <a class="el" href="_c_s_v_config_manager_8cpp_source.html">CSVConfigManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_c_s_v_config_manager_8h_source.html#l00028">_controller</a>, <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00143">_escapeCSVField()</a>, <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00369">_getAlarmPriorityForPoint()</a>, <a class="el" href="_sensor_8h_source.html#l00011">DS18B20</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00025">MeasurementPoint::getAddress()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00106">MeasurementPoint::getBoundSensor()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00033">MeasurementPoint::getCurrentTemp()</a>, <a class="el" href="_sensor_8cpp_source.html#l00195">Sensor::getDS18B20RomString()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00049">MeasurementPoint::getHighAlarmThreshold()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00045">MeasurementPoint::getLowAlarmThreshold()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00041">MeasurementPoint::getMaxTemp()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00037">MeasurementPoint::getMinTemp()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00029">MeasurementPoint::getName()</a>, <a class="el" href="_sensor_8cpp_source.html#l00153">Sensor::getType()</a>, <a class="el" href="_alarm_8h_source.html#l00012">HIGH_TEMPERATURE</a>, <a class="el" href="_alarm_8h_source.html#l00013">LOW_TEMPERATURE</a>, <a class="el" href="_sensor_8h_source.html#l00012">PT1000</a>, <a class="el" href="_alarm_8h_source.html#l00015">SENSOR_DISCONNECTED</a>, and <a class="el" href="_alarm_8h_source.html#l00014">SENSOR_ERROR</a>.</p>
+<p class="reference">References <a class="el" href="_c_s_v_config_manager_8h_source.html#l00104">_controller</a>, <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00143">_escapeCSVField()</a>, <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00369">_getAlarmPriorityForPoint()</a>, <a class="el" href="_sensor_8h_source.html#l00011">DS18B20</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00025">MeasurementPoint::getAddress()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00106">MeasurementPoint::getBoundSensor()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00033">MeasurementPoint::getCurrentTemp()</a>, <a class="el" href="_sensor_8cpp_source.html#l00195">Sensor::getDS18B20RomString()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00049">MeasurementPoint::getHighAlarmThreshold()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00045">MeasurementPoint::getLowAlarmThreshold()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00041">MeasurementPoint::getMaxTemp()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00037">MeasurementPoint::getMinTemp()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00029">MeasurementPoint::getName()</a>, <a class="el" href="_sensor_8cpp_source.html#l00153">Sensor::getType()</a>, <a class="el" href="_alarm_8h_source.html#l00034">HIGH_TEMPERATURE</a>, <a class="el" href="_alarm_8h_source.html#l00035">LOW_TEMPERATURE</a>, <a class="el" href="_sensor_8h_source.html#l00012">PT1000</a>, <a class="el" href="_alarm_8h_source.html#l00037">SENSOR_DISCONNECTED</a>, and <a class="el" href="_alarm_8h_source.html#l00036">SENSOR_ERROR</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00008">exportPointsWithAlarmsToCSV()</a>.</p>
 <div class="dynheader">
@@ -267,9 +323,20 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Get alarm priority for specific point and alarm type. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pointAddress</td><td>Measurement point address </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">alarmType</td><td>Type of alarm </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>String Priority level as string</dd></dl>
+<p>Retrieves current alarm priority configuration </p>
+
 <p class="definition">Definition at line <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00369">369</a> of file <a class="el" href="_c_s_v_config_manager_8cpp_source.html">CSVConfigManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_c_s_v_config_manager_8h_source.html#l00028">_controller</a>, <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00186">_getPriorityString()</a>, <a class="el" href="_alarm_8h_source.html#l00090">Alarm::getPointAddress()</a>, <a class="el" href="_alarm_8h_source.html#l00048">Alarm::getPriority()</a>, and <a class="el" href="_alarm_8h_source.html#l00046">Alarm::getType()</a>.</p>
+<p class="reference">References <a class="el" href="_c_s_v_config_manager_8h_source.html#l00104">_controller</a>, <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00186">_getPriorityString()</a>, <a class="el" href="_alarm_8h_source.html#l00274">Alarm::getPointAddress()</a>, <a class="el" href="_alarm_8h_source.html#l00104">Alarm::getPriority()</a>, and <a class="el" href="_alarm_8h_source.html#l00092">Alarm::getType()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00037">_exportPointToCSV()</a>.</p>
 <div class="dynheader">
@@ -308,9 +375,18 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Convert alarm type enum to string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">type</td><td><a class="el" href="_alarm_8h.html#ab24e7dd602a82a4cf2afea61f26726e2" title="Enumeration defining different types of alarms.">AlarmType</a> enum value </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>String Human-readable alarm type string </dd></dl>
+
 <p class="definition">Definition at line <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00168">168</a> of file <a class="el" href="_c_s_v_config_manager_8cpp_source.html">CSVConfigManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00012">HIGH_TEMPERATURE</a>, <a class="el" href="_alarm_8h_source.html#l00013">LOW_TEMPERATURE</a>, <a class="el" href="_alarm_8h_source.html#l00015">SENSOR_DISCONNECTED</a>, and <a class="el" href="_alarm_8h_source.html#l00014">SENSOR_ERROR</a>.</p>
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00034">HIGH_TEMPERATURE</a>, <a class="el" href="_alarm_8h_source.html#l00035">LOW_TEMPERATURE</a>, <a class="el" href="_alarm_8h_source.html#l00037">SENSOR_DISCONNECTED</a>, and <a class="el" href="_alarm_8h_source.html#l00036">SENSOR_ERROR</a>.</p>
 
 </div>
 </div>
@@ -337,9 +413,18 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Convert alarm priority enum to string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">priority</td><td><a class="el" href="_alarm_8h.html#a5a708c1a1540361a33a030066a7c321b" title="Enumeration defining alarm priority levels.">AlarmPriority</a> enum value </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>String Human-readable priority string </dd></dl>
+
 <p class="definition">Definition at line <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00186">186</a> of file <a class="el" href="_c_s_v_config_manager_8cpp_source.html">CSVConfigManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00033">PRIORITY_CRITICAL</a>, <a class="el" href="_alarm_8h_source.html#l00032">PRIORITY_HIGH</a>, <a class="el" href="_alarm_8h_source.html#l00030">PRIORITY_LOW</a>, and <a class="el" href="_alarm_8h_source.html#l00031">PRIORITY_MEDIUM</a>.</p>
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00061">PRIORITY_CRITICAL</a>, <a class="el" href="_alarm_8h_source.html#l00060">PRIORITY_HIGH</a>, <a class="el" href="_alarm_8h_source.html#l00058">PRIORITY_LOW</a>, and <a class="el" href="_alarm_8h_source.html#l00059">PRIORITY_MEDIUM</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00369">_getAlarmPriorityForPoint()</a>.</p>
 <div class="dynheader">
@@ -392,9 +477,23 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Parse alarm configuration from CSV fields. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pointAddress</td><td>Measurement point address </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">alarmType</td><td><a class="el" href="class_alarm.html" title="Main alarm class for temperature monitoring system.">Alarm</a> type as string </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">priority</td><td><a class="el" href="class_alarm.html" title="Main alarm class for temperature monitoring system.">Alarm</a> priority as string </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">enabled</td><td><a class="el" href="class_alarm.html" title="Main alarm class for temperature monitoring system.">Alarm</a> enabled state as string </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">hysteresis</td><td>Hysteresis value as string </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bool True if alarm parsing successful</dd></dl>
+<p>Converts CSV string fields to alarm configuration </p>
+
 <p class="definition">Definition at line <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00120">120</a> of file <a class="el" href="_c_s_v_config_manager_8cpp_source.html">CSVConfigManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_c_s_v_config_manager_8h_source.html#l00028">_controller</a>, <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00178">_parseAlarmType()</a>, <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00196">_parsePriority()</a>, <a class="el" href="_alarm_8cpp_source.html#l00423">Alarm::setEnabled()</a>, and <a class="el" href="_alarm_8cpp_source.html#l00409">Alarm::setHysteresis()</a>.</p>
+<p class="reference">References <a class="el" href="_c_s_v_config_manager_8h_source.html#l00104">_controller</a>, <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00178">_parseAlarmType()</a>, <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00196">_parsePriority()</a>, <a class="el" href="_alarm_8cpp_source.html#l00461">Alarm::setEnabled()</a>, and <a class="el" href="_alarm_8cpp_source.html#l00447">Alarm::setHysteresis()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -426,9 +525,18 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Parse alarm type string to enum. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">typeStr</td><td><a class="el" href="class_alarm.html" title="Main alarm class for temperature monitoring system.">Alarm</a> type as string </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="_alarm_8h.html#ab24e7dd602a82a4cf2afea61f26726e2" title="Enumeration defining different types of alarms.">AlarmType</a> Corresponding enum value </dd></dl>
+
 <p class="definition">Definition at line <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00178">178</a> of file <a class="el" href="_c_s_v_config_manager_8cpp_source.html">CSVConfigManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00012">HIGH_TEMPERATURE</a>, <a class="el" href="_alarm_8h_source.html#l00013">LOW_TEMPERATURE</a>, <a class="el" href="_alarm_8h_source.html#l00015">SENSOR_DISCONNECTED</a>, and <a class="el" href="_alarm_8h_source.html#l00014">SENSOR_ERROR</a>.</p>
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00034">HIGH_TEMPERATURE</a>, <a class="el" href="_alarm_8h_source.html#l00035">LOW_TEMPERATURE</a>, <a class="el" href="_alarm_8h_source.html#l00037">SENSOR_DISCONNECTED</a>, and <a class="el" href="_alarm_8h_source.html#l00036">SENSOR_ERROR</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00120">_parseAlarmFromCSV()</a>.</p>
 <div class="dynheader">
@@ -462,9 +570,19 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Parse single CSV line. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">line</td><td>CSV line to parse </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bool True if line parsing successful</dd></dl>
+<p>Parses individual CSV line and applies configuration </p>
+
 <p class="definition">Definition at line <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00289">289</a> of file <a class="el" href="_c_s_v_config_manager_8cpp_source.html">CSVConfigManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_c_s_v_config_manager_8h_source.html#l00028">_controller</a>, <a class="el" href="_c_s_v_config_manager_8h_source.html#l00029">_lastError</a>, <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00196">_parsePriority()</a>, <a class="el" href="_alarm_8h_source.html#l00012">HIGH_TEMPERATURE</a>, <a class="el" href="_alarm_8h_source.html#l00013">LOW_TEMPERATURE</a>, <a class="el" href="_alarm_8h_source.html#l00015">SENSOR_DISCONNECTED</a>, <a class="el" href="_alarm_8h_source.html#l00014">SENSOR_ERROR</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00086">MeasurementPoint::setHighAlarmThreshold()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00072">MeasurementPoint::setLowAlarmThreshold()</a>, and <a class="el" href="_measurement_point_8cpp_source.html#l00061">MeasurementPoint::setName()</a>.</p>
+<p class="reference">References <a class="el" href="_c_s_v_config_manager_8h_source.html#l00104">_controller</a>, <a class="el" href="_c_s_v_config_manager_8h_source.html#l00105">_lastError</a>, <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00196">_parsePriority()</a>, <a class="el" href="_alarm_8h_source.html#l00034">HIGH_TEMPERATURE</a>, <a class="el" href="_alarm_8h_source.html#l00035">LOW_TEMPERATURE</a>, <a class="el" href="_alarm_8h_source.html#l00037">SENSOR_DISCONNECTED</a>, <a class="el" href="_alarm_8h_source.html#l00036">SENSOR_ERROR</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00086">MeasurementPoint::setHighAlarmThreshold()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00072">MeasurementPoint::setLowAlarmThreshold()</a>, and <a class="el" href="_measurement_point_8cpp_source.html#l00061">MeasurementPoint::setName()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00073">importPointsWithAlarmsFromCSV()</a>.</p>
 <div class="dynheader">
@@ -503,9 +621,18 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Parse priority string to enum. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">priorityStr</td><td>Priority as string </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="_alarm_8h.html#a5a708c1a1540361a33a030066a7c321b" title="Enumeration defining alarm priority levels.">AlarmPriority</a> Corresponding enum value </dd></dl>
+
 <p class="definition">Definition at line <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00196">196</a> of file <a class="el" href="_c_s_v_config_manager_8cpp_source.html">CSVConfigManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00033">PRIORITY_CRITICAL</a>, <a class="el" href="_alarm_8h_source.html#l00032">PRIORITY_HIGH</a>, <a class="el" href="_alarm_8h_source.html#l00030">PRIORITY_LOW</a>, and <a class="el" href="_alarm_8h_source.html#l00031">PRIORITY_MEDIUM</a>.</p>
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00061">PRIORITY_CRITICAL</a>, <a class="el" href="_alarm_8h_source.html#l00060">PRIORITY_HIGH</a>, <a class="el" href="_alarm_8h_source.html#l00058">PRIORITY_LOW</a>, and <a class="el" href="_alarm_8h_source.html#l00059">PRIORITY_MEDIUM</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00120">_parseAlarmFromCSV()</a>, and <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00289">_parseCSVLine()</a>.</p>
 <div class="dynheader">
@@ -539,6 +666,16 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Unescape CSV field back to original string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">field</td><td>Escaped CSV field </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>String Original unescaped string</dd></dl>
+<p>Reverses CSV field escaping </p>
+
 <p class="definition">Definition at line <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00159">159</a> of file <a class="el" href="_c_s_v_config_manager_8cpp_source.html">CSVConfigManager.cpp</a>.</p>
 
 </div>
@@ -558,9 +695,13 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
+<p>Export measurement points with alarm configuration to CSV. </p>
+<dl class="section return"><dt>Returns</dt><dd>String CSV formatted string containing all measurement points and alarms</dd></dl>
+<p>Generates comprehensive CSV export including point names, sensor configs, and alarm settings </p>
+
 <p class="definition">Definition at line <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00008">8</a> of file <a class="el" href="_c_s_v_config_manager_8cpp_source.html">CSVConfigManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_c_s_v_config_manager_8h_source.html#l00028">_controller</a>, and <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00037">_exportPointToCSV()</a>.</p>
+<p class="reference">References <a class="el" href="_c_s_v_config_manager_8h_source.html#l00104">_controller</a>, and <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00037">_exportPointToCSV()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -583,6 +724,10 @@ Here is the call graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Export only sensor configuration to CSV. </p>
+<dl class="section return"><dt>Returns</dt><dd>String CSV formatted string containing sensor configuration</dd></dl>
+<p>Exports sensor-specific settings without alarm configuration </p>
 
 <p class="definition">Definition at line <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00278">278</a> of file <a class="el" href="_c_s_v_config_manager_8cpp_source.html">CSVConfigManager.cpp</a>.</p>
 
@@ -611,9 +756,13 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_c_s_v_config_manager_8h_source.html#l00025">25</a> of file <a class="el" href="_c_s_v_config_manager_8h_source.html">CSVConfigManager.h</a>.</p>
+<p>Get the last error message. </p>
+<dl class="section return"><dt>Returns</dt><dd>String Description of the last error that occurred</dd></dl>
+<p>Provides detailed error information for debugging import/export issues </p>
 
-<p class="reference">References <a class="el" href="_c_s_v_config_manager_8h_source.html#l00029">_lastError</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_c_s_v_config_manager_8h_source.html#l00101">101</a> of file <a class="el" href="_c_s_v_config_manager_8h_source.html">CSVConfigManager.h</a>.</p>
+
+<p class="reference">References <a class="el" href="_c_s_v_config_manager_8h_source.html#l00105">_lastError</a>.</p>
 
 </div>
 </div>
@@ -632,9 +781,19 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
+<p>Import measurement points and alarms from CSV data. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">csvData</td><td>CSV formatted string containing configuration </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bool True if import successful, false if validation or parsing failed</dd></dl>
+<p>Parses CSV data and applies configuration to measurement points and alarms </p>
+
 <p class="definition">Definition at line <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00073">73</a> of file <a class="el" href="_c_s_v_config_manager_8cpp_source.html">CSVConfigManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_c_s_v_config_manager_8h_source.html#l00028">_controller</a>, <a class="el" href="_c_s_v_config_manager_8h_source.html#l00029">_lastError</a>, <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00289">_parseCSVLine()</a>, and <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00204">validatePointsCSV()</a>.</p>
+<p class="reference">References <a class="el" href="_c_s_v_config_manager_8h_source.html#l00104">_controller</a>, <a class="el" href="_c_s_v_config_manager_8h_source.html#l00105">_lastError</a>, <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00289">_parseCSVLine()</a>, and <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00204">validatePointsCSV()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -658,6 +817,16 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
+<p>Import sensor configuration from CSV data. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">csvData</td><td>CSV formatted string containing sensor configuration </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bool True if import successful</dd></dl>
+<p>Parses and applies sensor configuration from CSV data </p>
+
 <p class="definition">Definition at line <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00283">283</a> of file <a class="el" href="_c_s_v_config_manager_8cpp_source.html">CSVConfigManager.cpp</a>.</p>
 
 </div>
@@ -677,9 +846,19 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
+<p>Load CSV data from file system. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">filename</td><td>Name of file to load from LittleFS </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>String CSV data from file, empty string if load failed</dd></dl>
+<p>Reads CSV data from LittleFS with error handling </p>
+
 <p class="definition">Definition at line <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00259">259</a> of file <a class="el" href="_c_s_v_config_manager_8cpp_source.html">CSVConfigManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_c_s_v_config_manager_8h_source.html#l00029">_lastError</a>.</p>
+<p class="reference">References <a class="el" href="_c_s_v_config_manager_8h_source.html#l00105">_lastError</a>.</p>
 
 </div>
 </div>
@@ -702,9 +881,20 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
+<p>Save CSV data to file system. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">filename</td><td>Name of file to save (will be stored in LittleFS) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">csvData</td><td>CSV data to write to file </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bool True if file save successful</dd></dl>
+<p>Writes CSV data to LittleFS file system with error handling </p>
+
 <p class="definition">Definition at line <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00236">236</a> of file <a class="el" href="_c_s_v_config_manager_8cpp_source.html">CSVConfigManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_c_s_v_config_manager_8h_source.html#l00029">_lastError</a>.</p>
+<p class="reference">References <a class="el" href="_c_s_v_config_manager_8h_source.html#l00105">_lastError</a>.</p>
 
 </div>
 </div>
@@ -723,9 +913,19 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
+<p>Validate CSV data format and content. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">csvData</td><td>CSV data to validate </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bool True if CSV data is valid and can be imported</dd></dl>
+<p>Performs comprehensive validation of CSV structure, data types, and ranges </p>
+
 <p class="definition">Definition at line <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00204">204</a> of file <a class="el" href="_c_s_v_config_manager_8cpp_source.html">CSVConfigManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_c_s_v_config_manager_8h_source.html#l00029">_lastError</a>.</p>
+<p class="reference">References <a class="el" href="_c_s_v_config_manager_8h_source.html#l00105">_lastError</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00073">importPointsWithAlarmsFromCSV()</a>.</p>
 <div class="dynheader">
@@ -757,7 +957,9 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_c_s_v_config_manager_8h_source.html#l00028">28</a> of file <a class="el" href="_c_s_v_config_manager_8h_source.html">CSVConfigManager.h</a>.</p>
+<p>Reference to temperature controller. </p>
+
+<p class="definition">Definition at line <a class="el" href="_c_s_v_config_manager_8h_source.html#l00104">104</a> of file <a class="el" href="_c_s_v_config_manager_8h_source.html">CSVConfigManager.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00037">_exportPointToCSV()</a>, <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00369">_getAlarmPriorityForPoint()</a>, <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00120">_parseAlarmFromCSV()</a>, <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00289">_parseCSVLine()</a>, <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00004">CSVConfigManager()</a>, <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00008">exportPointsWithAlarmsToCSV()</a>, and <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00073">importPointsWithAlarmsFromCSV()</a>.</p>
 
@@ -783,9 +985,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_c_s_v_config_manager_8h_source.html#l00029">29</a> of file <a class="el" href="_c_s_v_config_manager_8h_source.html">CSVConfigManager.h</a>.</p>
+<p>Last error message for debugging. </p>
 
-<p class="reference">Referenced by <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00289">_parseCSVLine()</a>, <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00004">CSVConfigManager()</a>, <a class="el" href="_c_s_v_config_manager_8h_source.html#l00025">getLastError()</a>, <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00073">importPointsWithAlarmsFromCSV()</a>, <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00259">loadCSVFromFile()</a>, <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00236">saveCSVToFile()</a>, and <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00204">validatePointsCSV()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_c_s_v_config_manager_8h_source.html#l00105">105</a> of file <a class="el" href="_c_s_v_config_manager_8h_source.html">CSVConfigManager.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00289">_parseCSVLine()</a>, <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00004">CSVConfigManager()</a>, <a class="el" href="_c_s_v_config_manager_8h_source.html#l00101">getLastError()</a>, <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00073">importPointsWithAlarmsFromCSV()</a>, <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00259">loadCSVFromFile()</a>, <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00236">saveCSVToFile()</a>, and <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00204">validatePointsCSV()</a>.</p>
 
 </div>
 </div>

@@ -1,35 +1,56 @@
+/**
+ * @file LoggerManager.h
+ * @brief Comprehensive data and event logging system for temperature monitoring
+ * @author Claude Code Session 20250720
+ * @date 2025-07-20
+ * @details This file provides a complete logging solution including measurement data logging,
+ *          event logging, and alarm state logging with CSV format and file management.
+ * 
+ * @section dependencies Dependencies
+ * - FS.h and SD.h for file system operations
+ * - TimeManager.h for timestamp management
+ * - ArduinoJson for JSON data handling
+ * 
+ * @section hardware Hardware Requirements
+ * - ESP32 with SD card or LittleFS support
+ * - RTC module for accurate timestamps
+ */
+
 #ifndef LOGGERMANAGER_H
 #define LOGGERMANAGER_H
 
 #include <Arduino.h>
 #include "FS.h"
 #include "SD.h"
-//#include "TemperatureController.h"
 #include "TimeManager.h"
 #include <vector>
-#include "LoggerManager.h"
 
-// Add forward declaration instead
-class TemperatureController;  // Forward declaration
-class MeasurementPoint;
+// Forward declarations
+class TemperatureController;  ///< Forward declaration to avoid circular includes
+class MeasurementPoint;        ///< Forward declaration for measurement point class
 
+/**
+ * @brief Singleton logger manager for comprehensive system logging
+ * @details Provides measurement data logging, event logging, and alarm state logging
+ *          with automatic file management, CSV formatting, and date-based organization
+ */
 class LoggerManager {
 private:
-    static LoggerManager* _instance;
-    TemperatureController* _controller;
-    TimeManager* _timeManager;
-    fs::FS* _fs;
+    static LoggerManager* _instance;     ///< Singleton instance pointer
+    TemperatureController* _controller;  ///< Reference to temperature controller
+    TimeManager* _timeManager;           ///< Reference to time manager
+    fs::FS* _fs;                        ///< File system interface (SD or LittleFS)
     
-    unsigned long _logFrequency;     // Logging frequency in milliseconds
-    unsigned long _lastLogTime;     // Last time data was logged
-    String _currentLogFile;         // Current log file name
-    bool _headerWritten;            // Flag to track if header is written
+    unsigned long _logFrequency;     ///< Logging frequency in milliseconds
+    unsigned long _lastLogTime;      ///< Last time data was logged
+    String _currentLogFile;          ///< Current log file name
+    bool _headerWritten;             ///< Flag to track if header is written
     
     // Configuration
-    bool _enabled;
-    String _logDirectory;
-    bool _dailyFiles;               // Create new file each day
-    String _lastLogDate;            // Track date for daily file creation
+    bool _enabled;                   ///< Whether logging is enabled
+    String _logDirectory;            ///< Base directory for log files
+    bool _dailyFiles;                ///< Create new file each day
+    String _lastLogDate;             ///< Track date for daily file creation
     
     // Private methods
     String _generateLogFileName();
@@ -92,40 +113,131 @@ private:
 
     
 public:
+    /**
+     * @brief Constructor for LoggerManager
+     * @param[in] controller Reference to temperature controller
+     * @param[in] timeManager Reference to time manager for timestamps
+     * @param[in] filesystem Reference to file system (SD or LittleFS)
+     * @details Initializes logging system with required dependencies
+     */
     LoggerManager(TemperatureController& controller, TimeManager& timeManager, fs::FS& filesystem);
+    
+    /**
+     * @brief Destructor for LoggerManager
+     * @details Closes any open files and cleans up resources
+     */
     ~LoggerManager();
 
+    /**
+     * @brief Get singleton instance
+     * @return LoggerManager* Pointer to singleton instance
+     * @details Provides access to the global logger instance
+     */
     static LoggerManager* getInstance() { return _instance; }
     
-    // Add these static convenience methods
+    // Static convenience methods for global logging
+    /**
+     * @brief Log informational message (static convenience method)
+     * @param[in] source Source component or module
+     * @param[in] description Description of the event
+     * @return bool True if logging successful
+     */
     static bool info(const String& source, const String& description) {
         return _instance ? _instance->logInfo(source, description) : false;
     }
     
+    /**
+     * @brief Log warning message (static convenience method)
+     * @param[in] source Source component or module
+     * @param[in] description Description of the warning
+     * @return bool True if logging successful
+     */
     static bool warning(const String& source, const String& description) {
         return _instance ? _instance->logWarning(source, description) : false;
     }
     
+    /**
+     * @brief Log error message (static convenience method)
+     * @param[in] source Source component or module
+     * @param[in] description Description of the error
+     * @return bool True if logging successful
+     */
     static bool error(const String& source, const String& description) {
         return _instance ? _instance->logError(source, description) : false;
     }
     
+    /**
+     * @brief Log critical message (static convenience method)
+     * @param[in] source Source component or module
+     * @param[in] description Description of the critical event
+     * @return bool True if logging successful
+     */
     static bool critical(const String& source, const String& description) {
         return _instance ? _instance->logCritical(source, description) : false;
     }
     
     // Initialization
-    bool init(); 
+    /**
+     * @brief Initialize the logging system
+     * @return bool True if initialization successful
+     * @details Sets up file system, directories, and initial configuration
+     */
+    bool init();
+    
+    /**
+     * @brief Begin logging operations
+     * @return bool True if startup successful
+     * @details Starts the logging system and opens initial log files
+     */
     bool begin();
     
     // Configuration methods
+    /**
+     * @brief Set logging frequency
+     * @param[in] frequencyMs Frequency in milliseconds between log entries
+     */
     void setLogFrequency(unsigned long frequencyMs);
+    
+    /**
+     * @brief Get current logging frequency
+     * @return unsigned long Frequency in milliseconds
+     */
     unsigned long getLogFrequency() const;
+    
+    /**
+     * @brief Enable or disable logging
+     * @param[in] enabled True to enable logging
+     */
     void setEnabled(bool enabled);
+    
+    /**
+     * @brief Check if logging is enabled
+     * @return bool True if logging is enabled
+     */
     bool isEnabled() const;
+    
+    /**
+     * @brief Enable or disable daily file creation
+     * @param[in] enabled True to create new files daily
+     */
     void setDailyFiles(bool enabled);
+    
+    /**
+     * @brief Check if daily files are enabled
+     * @return bool True if daily files are enabled
+     */
     bool isDailyFiles() const;
+    
+    /**
+     * @brief Set base log directory
+     * @param[in] directory Directory path for log files
+     */
     void setLogDirectory(const String& directory);
+    
+    /**
+     * @brief Get current log directory
+     * @return String Current log directory path
+     */
     static String getLogDirectory();
     
     // Logging methods

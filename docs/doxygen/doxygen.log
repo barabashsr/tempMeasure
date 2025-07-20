@@ -2,6 +2,23 @@ warning: Tag 'CLASS_DIAGRAMS' at line 33 of file 'Doxyfile' has become obsolete.
          To avoid this warning please remove this line from your configuration file or upgrade it using "doxygen -u"
 warning: tag INPUT: input source 'lib' does not exist
 warning: source 'lib' is not a readable file or directory... skipping.
+/Users/sergeybarabash/robo/tempMeasure/src/main.cpp:9: warning: multiple use of section label 'dependencies' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 9)
+/Users/sergeybarabash/robo/tempMeasure/src/main.cpp:17: warning: multiple use of section label 'hardware' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 13)
+/Users/sergeybarabash/robo/tempMeasure/include/Alarm.h:9: warning: multiple use of section label 'dependencies' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 9)
+/Users/sergeybarabash/robo/tempMeasure/include/Alarm.h:14: warning: multiple use of section label 'hardware' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 13)
+/Users/sergeybarabash/robo/tempMeasure/include/ConfigManager.h:9: warning: multiple use of section label 'dependencies' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 9)
+/Users/sergeybarabash/robo/tempMeasure/include/ConfigManager.h:15: warning: multiple use of section label 'hardware' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 13)
+/Users/sergeybarabash/robo/tempMeasure/include/CSVConfigManager.h:9: warning: multiple use of section label 'dependencies' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 9)
+/Users/sergeybarabash/robo/tempMeasure/include/CSVConfigManager.h:13: warning: multiple use of section label 'hardware' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 13)
+/Users/sergeybarabash/robo/tempMeasure/include/IndicatorInterface.h:9: warning: multiple use of section label 'dependencies' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 9)
+/Users/sergeybarabash/robo/tempMeasure/include/IndicatorInterface.h:14: warning: multiple use of section label 'hardware' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 13)
+/Users/sergeybarabash/robo/tempMeasure/include/LoggerManager.h:9: warning: multiple use of section label 'dependencies' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 9)
+/Users/sergeybarabash/robo/tempMeasure/include/LoggerManager.h:14: warning: multiple use of section label 'hardware' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 13)
+/Users/sergeybarabash/robo/tempMeasure/include/MeasurementPoint.h:9: warning: multiple use of section label 'dependencies' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 9)
+/Users/sergeybarabash/robo/tempMeasure/include/MeasurementPoint.h:13: warning: multiple use of section label 'hardware' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 13)
+/Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp:39: warning: argument type from the argument list of Alarm::Alarm has multiple @param documentation sections
+/Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp:39: warning: argument source from the argument list of Alarm::Alarm has multiple @param documentation sections
+/Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp:39: warning: argument priority from the argument list of Alarm::Alarm has multiple @param documentation sections
 Doxygen version used: 1.14.0
 Searching for include files...
 Searching for example files...
@@ -1638,5 +1655,5 @@ Patching output file 500/502
 Patching output file 501/502
 Patching output file 502/502
 type lookup cache used 871/65536 hits=2756 misses=900
-symbol lookup cache used 2099/65536 hits=29056 misses=2099
+symbol lookup cache used 2117/65536 hits=31477 misses=2117
 finished...

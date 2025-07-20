@@ -93,6 +93,9 @@ $(function(){initNavTree('class_logger_manager.html','',''); });
 </div><!--header-->
 <div class="contents">
 
+<p>Forward declaration for measurement point class.  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for LoggerManager:</div>
@@ -103,16 +106,27 @@ Collaboration diagram for LoggerManager:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a321bbaf7cc3b3aa05c8ec036d4dbfea0" id="r_a321bbaf7cc3b3aa05c8ec036d4dbfea0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a321bbaf7cc3b3aa05c8ec036d4dbfea0">LoggerManager</a> (<a class="el" href="class_temperature_controller.html">TemperatureController</a> &amp;<a class="el" href="main_8cpp.html#aecbe6ad38ed7d220ace280ea33d8ab45">controller</a>, <a class="el" href="class_time_manager.html">TimeManager</a> &amp;<a class="el" href="main_8cpp.html#ad27a531589f8fed0687abe50e4ab32dc">timeManager</a>, fs::FS &amp;filesystem)</td></tr>
+<tr class="memdesc:a321bbaf7cc3b3aa05c8ec036d4dbfea0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for <a class="el" href="class_logger_manager.html" title="Forward declaration for measurement point class.">LoggerManager</a>.  <br /></td></tr>
 <tr class="memitem:a0738a5887eb50eba0f08a250b9aa7675" id="r_a0738a5887eb50eba0f08a250b9aa7675"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0738a5887eb50eba0f08a250b9aa7675">~LoggerManager</a> ()</td></tr>
+<tr class="memdesc:a0738a5887eb50eba0f08a250b9aa7675"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor for <a class="el" href="class_logger_manager.html" title="Forward declaration for measurement point class.">LoggerManager</a>.  <br /></td></tr>
 <tr class="memitem:a59e0690d922ec968bf64b1b5dda8fcbe" id="r_a59e0690d922ec968bf64b1b5dda8fcbe"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a59e0690d922ec968bf64b1b5dda8fcbe">init</a> ()</td></tr>
+<tr class="memdesc:a59e0690d922ec968bf64b1b5dda8fcbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the logging system.  <br /></td></tr>
 <tr class="memitem:a4acf0149820d73f4ed11340f63706841" id="r_a4acf0149820d73f4ed11340f63706841"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4acf0149820d73f4ed11340f63706841">begin</a> ()</td></tr>
+<tr class="memdesc:a4acf0149820d73f4ed11340f63706841"><td class="mdescLeft">&#160;</td><td class="mdescRight">Begin logging operations.  <br /></td></tr>
 <tr class="memitem:aaa96d30e5c7f752d4ca86b651058b1a5" id="r_aaa96d30e5c7f752d4ca86b651058b1a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaa96d30e5c7f752d4ca86b651058b1a5">setLogFrequency</a> (unsigned long frequencyMs)</td></tr>
+<tr class="memdesc:aaa96d30e5c7f752d4ca86b651058b1a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set logging frequency.  <br /></td></tr>
 <tr class="memitem:a32f3dead07eaf23b6722f70a1da049a4" id="r_a32f3dead07eaf23b6722f70a1da049a4"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a32f3dead07eaf23b6722f70a1da049a4">getLogFrequency</a> () const</td></tr>
+<tr class="memdesc:a32f3dead07eaf23b6722f70a1da049a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get current logging frequency.  <br /></td></tr>
 <tr class="memitem:a91a4ca2debe482ad07e93c50ba4b0828" id="r_a91a4ca2debe482ad07e93c50ba4b0828"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a91a4ca2debe482ad07e93c50ba4b0828">setEnabled</a> (bool enabled)</td></tr>
+<tr class="memdesc:a91a4ca2debe482ad07e93c50ba4b0828"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable or disable logging.  <br /></td></tr>
 <tr class="memitem:a185630e50e91531684cb325d035cbacc" id="r_a185630e50e91531684cb325d035cbacc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a185630e50e91531684cb325d035cbacc">isEnabled</a> () const</td></tr>
+<tr class="memdesc:a185630e50e91531684cb325d035cbacc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if logging is enabled.  <br /></td></tr>
 <tr class="memitem:a85a982d8f23de55b8e81759d014a0595" id="r_a85a982d8f23de55b8e81759d014a0595"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a85a982d8f23de55b8e81759d014a0595">setDailyFiles</a> (bool enabled)</td></tr>
+<tr class="memdesc:a85a982d8f23de55b8e81759d014a0595"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable or disable daily file creation.  <br /></td></tr>
 <tr class="memitem:ad4435bf2def9d476eae4614ffd58bb56" id="r_ad4435bf2def9d476eae4614ffd58bb56"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad4435bf2def9d476eae4614ffd58bb56">isDailyFiles</a> () const</td></tr>
+<tr class="memdesc:ad4435bf2def9d476eae4614ffd58bb56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if daily files are enabled.  <br /></td></tr>
 <tr class="memitem:a96c328bee3d3cd89e2131595906ef776" id="r_a96c328bee3d3cd89e2131595906ef776"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a96c328bee3d3cd89e2131595906ef776">setLogDirectory</a> (const String &amp;directory)</td></tr>
+<tr class="memdesc:a96c328bee3d3cd89e2131595906ef776"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set base log directory.  <br /></td></tr>
 <tr class="memitem:a830c86f1f27d3799eab1de908fc6b647" id="r_a830c86f1f27d3799eab1de908fc6b647"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a830c86f1f27d3799eab1de908fc6b647">update</a> ()</td></tr>
 <tr class="memitem:a32ce9f462269787130bee46b2c34b632" id="r_a32ce9f462269787130bee46b2c34b632"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a32ce9f462269787130bee46b2c34b632">logDataNow</a> ()</td></tr>
 <tr class="memitem:a445856fb9bb37bd5e61d5242d8996c1f" id="r_a445856fb9bb37bd5e61d5242d8996c1f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a445856fb9bb37bd5e61d5242d8996c1f">createNewLogFile</a> ()</td></tr>
@@ -148,11 +162,17 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:aa1d28a0eee6d794090563cdffe7f43c1" id="r_aa1d28a0eee6d794090563cdffe7f43c1"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_logger_manager.html">LoggerManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa1d28a0eee6d794090563cdffe7f43c1">getInstance</a> ()</td></tr>
+<tr class="memdesc:aa1d28a0eee6d794090563cdffe7f43c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get singleton instance.  <br /></td></tr>
 <tr class="memitem:a5c1373ccc47f4112b596fe6f84fbbc21" id="r_a5c1373ccc47f4112b596fe6f84fbbc21"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5c1373ccc47f4112b596fe6f84fbbc21">info</a> (const String &amp;source, const String &amp;description)</td></tr>
+<tr class="memdesc:a5c1373ccc47f4112b596fe6f84fbbc21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log informational message (static convenience method)  <br /></td></tr>
 <tr class="memitem:a0d52b0ff7bff22817e987ad753102854" id="r_a0d52b0ff7bff22817e987ad753102854"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0d52b0ff7bff22817e987ad753102854">warning</a> (const String &amp;source, const String &amp;description)</td></tr>
+<tr class="memdesc:a0d52b0ff7bff22817e987ad753102854"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log warning message (static convenience method)  <br /></td></tr>
 <tr class="memitem:aef24f00186213fa78be3b104a50d58e6" id="r_aef24f00186213fa78be3b104a50d58e6"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aef24f00186213fa78be3b104a50d58e6">error</a> (const String &amp;source, const String &amp;description)</td></tr>
+<tr class="memdesc:aef24f00186213fa78be3b104a50d58e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log error message (static convenience method)  <br /></td></tr>
 <tr class="memitem:adec54c926cce1f89ac492f0c647e2ba1" id="r_adec54c926cce1f89ac492f0c647e2ba1"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adec54c926cce1f89ac492f0c647e2ba1">critical</a> (const String &amp;source, const String &amp;description)</td></tr>
+<tr class="memdesc:adec54c926cce1f89ac492f0c647e2ba1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log critical message (static convenience method)  <br /></td></tr>
 <tr class="memitem:af7630428e323854b0bcf5e2159511f84" id="r_af7630428e323854b0bcf5e2159511f84"><td class="memItemLeft" align="right" valign="top">static String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af7630428e323854b0bcf5e2159511f84">getLogDirectory</a> ()</td></tr>
+<tr class="memdesc:af7630428e323854b0bcf5e2159511f84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get current log directory.  <br /></td></tr>
 <tr class="memitem:a2b670504d6ebd0c2c2f833caed6842d5" id="r_a2b670504d6ebd0c2c2f833caed6842d5"><td class="memItemLeft" align="right" valign="top">static std::vector&lt; String &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2b670504d6ebd0c2c2f833caed6842d5">getLogFiles</a> ()</td></tr>
 <tr class="memitem:aa74d58708cf5cdf8ddafad648edadcf7" id="r_aa74d58708cf5cdf8ddafad648edadcf7"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa74d58708cf5cdf8ddafad648edadcf7">logAlarmStateChange</a> (int pointNumber, const String &amp;pointName, const String &amp;alarmType, const String &amp;alarmPriority, const String &amp;previousState, const String &amp;newState, int16_t currentTemp, int16_t threshold)</td></tr>
 <tr class="memitem:a8e154caf5cdb9dd50722e2f52314e383" id="r_a8e154caf5cdb9dd50722e2f52314e383"><td class="memItemLeft" align="right" valign="top">static String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8e154caf5cdb9dd50722e2f52314e383">getEventLogsJson</a> (const String &amp;startDate, const String &amp;endDate)</td></tr>
@@ -206,16 +226,27 @@ Static Private Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:ac79c2496082ce8e6ecd42c77e1c5292d" id="r_ac79c2496082ce8e6ecd42c77e1c5292d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_temperature_controller.html">TemperatureController</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac79c2496082ce8e6ecd42c77e1c5292d">_controller</a></td></tr>
+<tr class="memdesc:ac79c2496082ce8e6ecd42c77e1c5292d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference to temperature controller.  <br /></td></tr>
 <tr class="memitem:aaa946fe85923b5fd13ff8bb1c9a3e011" id="r_aaa946fe85923b5fd13ff8bb1c9a3e011"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_time_manager.html">TimeManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaa946fe85923b5fd13ff8bb1c9a3e011">_timeManager</a></td></tr>
+<tr class="memdesc:aaa946fe85923b5fd13ff8bb1c9a3e011"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference to time manager.  <br /></td></tr>
 <tr class="memitem:af144897db95f5165f66ba0937d23847d" id="r_af144897db95f5165f66ba0937d23847d"><td class="memItemLeft" align="right" valign="top">fs::FS *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af144897db95f5165f66ba0937d23847d">_fs</a></td></tr>
+<tr class="memdesc:af144897db95f5165f66ba0937d23847d"><td class="mdescLeft">&#160;</td><td class="mdescRight">File system interface (SD or LittleFS)  <br /></td></tr>
 <tr class="memitem:aef22c2918f9cf454cb5264145d507719" id="r_aef22c2918f9cf454cb5264145d507719"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aef22c2918f9cf454cb5264145d507719">_logFrequency</a></td></tr>
+<tr class="memdesc:aef22c2918f9cf454cb5264145d507719"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logging frequency in milliseconds.  <br /></td></tr>
 <tr class="memitem:a73cceb1b111822d8c701b75fcc966b44" id="r_a73cceb1b111822d8c701b75fcc966b44"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a73cceb1b111822d8c701b75fcc966b44">_lastLogTime</a></td></tr>
+<tr class="memdesc:a73cceb1b111822d8c701b75fcc966b44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Last time data was logged.  <br /></td></tr>
 <tr class="memitem:abd02a9be4279f066d2a7d0ac17a1d392" id="r_abd02a9be4279f066d2a7d0ac17a1d392"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abd02a9be4279f066d2a7d0ac17a1d392">_currentLogFile</a></td></tr>
+<tr class="memdesc:abd02a9be4279f066d2a7d0ac17a1d392"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current log file name.  <br /></td></tr>
 <tr class="memitem:a049ebea196586a38022577833f2883e8" id="r_a049ebea196586a38022577833f2883e8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a049ebea196586a38022577833f2883e8">_headerWritten</a></td></tr>
+<tr class="memdesc:a049ebea196586a38022577833f2883e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag to track if header is written.  <br /></td></tr>
 <tr class="memitem:af1b758d10f352dc29e116a087a182531" id="r_af1b758d10f352dc29e116a087a182531"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af1b758d10f352dc29e116a087a182531">_enabled</a></td></tr>
+<tr class="memdesc:af1b758d10f352dc29e116a087a182531"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether logging is enabled.  <br /></td></tr>
 <tr class="memitem:a554f37e268c3aed53fba8c1af1f63ef4" id="r_a554f37e268c3aed53fba8c1af1f63ef4"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a554f37e268c3aed53fba8c1af1f63ef4">_logDirectory</a></td></tr>
+<tr class="memdesc:a554f37e268c3aed53fba8c1af1f63ef4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base directory for log files.  <br /></td></tr>
 <tr class="memitem:a998996a09ab35ff5a07ac18bccb7a9b8" id="r_a998996a09ab35ff5a07ac18bccb7a9b8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a998996a09ab35ff5a07ac18bccb7a9b8">_dailyFiles</a></td></tr>
+<tr class="memdesc:a998996a09ab35ff5a07ac18bccb7a9b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create new file each day.  <br /></td></tr>
 <tr class="memitem:a68e9c97c6ed88bdaeb91f2a11d4b16d7" id="r_a68e9c97c6ed88bdaeb91f2a11d4b16d7"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a68e9c97c6ed88bdaeb91f2a11d4b16d7">_lastLogDate</a></td></tr>
+<tr class="memdesc:a68e9c97c6ed88bdaeb91f2a11d4b16d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Track date for daily file creation.  <br /></td></tr>
 <tr class="memitem:a8ea4030601d5e8af884bedc9d7d430aa" id="r_a8ea4030601d5e8af884bedc9d7d430aa"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8ea4030601d5e8af884bedc9d7d430aa">_lastGeneratedHeader</a></td></tr>
 <tr class="memitem:aae032051a9478b9221328cc0027d3503" id="r_aae032051a9478b9221328cc0027d3503"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aae032051a9478b9221328cc0027d3503">_headerChanged</a></td></tr>
 <tr class="memitem:acac1c36f44bdfa0ade62054d82ee6a7e" id="r_acac1c36f44bdfa0ade62054d82ee6a7e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acac1c36f44bdfa0ade62054d82ee6a7e">_fileSequenceNumber</a></td></tr>
@@ -232,10 +263,14 @@ Private Attributes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-pri-static-attribs" class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
 Static Private Attributes</h2></td></tr>
 <tr class="memitem:a3f4c0cc78425ddd99d489740be325f4d" id="r_a3f4c0cc78425ddd99d489740be325f4d"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_logger_manager.html">LoggerManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3f4c0cc78425ddd99d489740be325f4d">_instance</a> = nullptr</td></tr>
+<tr class="memdesc:a3f4c0cc78425ddd99d489740be325f4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Singleton instance pointer.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00016">16</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
+<div class="textblock"><p>Forward declaration for measurement point class. </p>
+<p>Singleton logger manager for comprehensive system logging</p>
+<p>Provides measurement data logging, event logging, and alarm state logging with automatic file management, CSV formatting, and date-based organization </p>
+
+<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00037">37</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a321bbaf7cc3b3aa05c8ec036d4dbfea0" name="a321bbaf7cc3b3aa05c8ec036d4dbfea0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a321bbaf7cc3b3aa05c8ec036d4dbfea0">&#9670;&#160;</a></span>LoggerManager()</h2>
@@ -261,11 +296,22 @@ Static Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Constructor for <a class="el" href="class_logger_manager.html" title="Forward declaration for measurement point class.">LoggerManager</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">controller</td><td>Reference to temperature controller </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">timeManager</td><td>Reference to time manager for timestamps </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">filesystem</td><td>Reference to file system (SD or LittleFS)</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Initializes logging system with required dependencies </p>
+
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00008">8</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00077">_alarmStateLogDirectory</a>, <a class="el" href="_logger_manager_8h_source.html#l00076">_alarmStateLoggingEnabled</a>, <a class="el" href="_logger_manager_8h_source.html#l00019">_controller</a>, <a class="el" href="_logger_manager_8h_source.html#l00078">_currentAlarmStateLogFile</a>, <a class="el" href="_logger_manager_8h_source.html#l00065">_currentEventLogFile</a>, <a class="el" href="_logger_manager_8h_source.html#l00031">_dailyFiles</a>, <a class="el" href="_logger_manager_8h_source.html#l00029">_enabled</a>, <a class="el" href="_logger_manager_8h_source.html#l00064">_eventLogDirectory</a>, <a class="el" href="_logger_manager_8h_source.html#l00063">_eventLoggingEnabled</a>, <a class="el" href="_logger_manager_8h_source.html#l00055">_fileSequenceNumber</a>, <a class="el" href="_logger_manager_8h_source.html#l00021">_fs</a>, <a class="el" href="_logger_manager_8h_source.html#l00054">_headerChanged</a>, <a class="el" href="_logger_manager_8h_source.html#l00026">_headerWritten</a>, <a class="el" href="_logger_manager_8h_source.html#l00018">_instance</a>, <a class="el" href="_logger_manager_8h_source.html#l00079">_lastAlarmStateLogDate</a>, <a class="el" href="_logger_manager_8h_source.html#l00227">_lastError</a>, <a class="el" href="_logger_manager_8h_source.html#l00066">_lastEventLogDate</a>, <a class="el" href="_logger_manager_8h_source.html#l00053">_lastGeneratedHeader</a>, <a class="el" href="_logger_manager_8h_source.html#l00024">_lastLogTime</a>, <a class="el" href="_logger_manager_8h_source.html#l00030">_logDirectory</a>, <a class="el" href="_logger_manager_8h_source.html#l00023">_logFrequency</a>, <a class="el" href="_logger_manager_8h_source.html#l00020">_timeManager</a>, <a class="el" href="main_8cpp.html#aecbe6ad38ed7d220ace280ea33d8ab45">controller</a>, and <a class="el" href="main_8cpp.html#ad27a531589f8fed0687abe50e4ab32dc">timeManager</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00098">_alarmStateLogDirectory</a>, <a class="el" href="_logger_manager_8h_source.html#l00097">_alarmStateLoggingEnabled</a>, <a class="el" href="_logger_manager_8h_source.html#l00040">_controller</a>, <a class="el" href="_logger_manager_8h_source.html#l00099">_currentAlarmStateLogFile</a>, <a class="el" href="_logger_manager_8h_source.html#l00086">_currentEventLogFile</a>, <a class="el" href="_logger_manager_8h_source.html#l00052">_dailyFiles</a>, <a class="el" href="_logger_manager_8h_source.html#l00050">_enabled</a>, <a class="el" href="_logger_manager_8h_source.html#l00085">_eventLogDirectory</a>, <a class="el" href="_logger_manager_8h_source.html#l00084">_eventLoggingEnabled</a>, <a class="el" href="_logger_manager_8h_source.html#l00076">_fileSequenceNumber</a>, <a class="el" href="_logger_manager_8h_source.html#l00042">_fs</a>, <a class="el" href="_logger_manager_8h_source.html#l00075">_headerChanged</a>, <a class="el" href="_logger_manager_8h_source.html#l00047">_headerWritten</a>, <a class="el" href="_logger_manager_8h_source.html#l00039">_instance</a>, <a class="el" href="_logger_manager_8h_source.html#l00100">_lastAlarmStateLogDate</a>, <a class="el" href="_logger_manager_8h_source.html#l00339">_lastError</a>, <a class="el" href="_logger_manager_8h_source.html#l00087">_lastEventLogDate</a>, <a class="el" href="_logger_manager_8h_source.html#l00074">_lastGeneratedHeader</a>, <a class="el" href="_logger_manager_8h_source.html#l00045">_lastLogTime</a>, <a class="el" href="_logger_manager_8h_source.html#l00051">_logDirectory</a>, <a class="el" href="_logger_manager_8h_source.html#l00044">_logFrequency</a>, <a class="el" href="_logger_manager_8h_source.html#l00041">_timeManager</a>, <a class="el" href="main_8cpp.html#aecbe6ad38ed7d220ace280ea33d8ab45">controller</a>, and <a class="el" href="main_8cpp.html#ad27a531589f8fed0687abe50e4ab32dc">timeManager</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_logger_manager_8h_source.html#l00098">getInstance()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_logger_manager_8h_source.html#l00136">getInstance()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -288,6 +334,9 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Destructor for <a class="el" href="class_logger_manager.html" title="Forward declaration for measurement point class.">LoggerManager</a>. </p>
+<p>Closes any open files and cleans up resources </p>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00019">19</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
@@ -326,7 +375,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00926">926</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00078">_currentAlarmStateLogFile</a>, <a class="el" href="_logger_manager_8h_source.html#l00029">_enabled</a>, <a class="el" href="_logger_manager_8h_source.html#l00021">_fs</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00939">_writeAlarmStateHeader()</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00099">_currentAlarmStateLogFile</a>, <a class="el" href="_logger_manager_8h_source.html#l00050">_enabled</a>, <a class="el" href="_logger_manager_8h_source.html#l00042">_fs</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00939">_writeAlarmStateHeader()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00023">begin()</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00880">logAlarmState()</a>.</p>
 <div class="dynheader">
@@ -367,7 +416,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00353">353</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00029">_enabled</a>, <a class="el" href="_logger_manager_8h_source.html#l00021">_fs</a>, and <a class="el" href="_logger_manager_8h_source.html#l00030">_logDirectory</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00050">_enabled</a>, <a class="el" href="_logger_manager_8h_source.html#l00042">_fs</a>, and <a class="el" href="_logger_manager_8h_source.html#l00051">_logDirectory</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00023">begin()</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00071">init()</a>.</p>
 <div class="dynheader">
@@ -403,7 +452,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00784">784</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00065">_currentEventLogFile</a>, <a class="el" href="_logger_manager_8h_source.html#l00029">_enabled</a>, <a class="el" href="_logger_manager_8h_source.html#l00021">_fs</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00797">_writeEventHeader()</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00086">_currentEventLogFile</a>, <a class="el" href="_logger_manager_8h_source.html#l00050">_enabled</a>, <a class="el" href="_logger_manager_8h_source.html#l00042">_fs</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00797">_writeEventHeader()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00071">init()</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00681">logEvent()</a>.</p>
 <div class="dynheader">
@@ -594,7 +643,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00908">908</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00077">_alarmStateLogDirectory</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00379">_getCurrentDateString()</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00098">_alarmStateLogDirectory</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00379">_getCurrentDateString()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00023">begin()</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00880">logAlarmState()</a>.</p>
 <div class="dynheader">
@@ -635,7 +684,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00259">259</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00019">_controller</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00337">_escapeCSVField()</a>, and <a class="el" href="_measurement_point_8cpp_source.html#l00029">MeasurementPoint::getName()</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00040">_controller</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00337">_escapeCSVField()</a>, and <a class="el" href="_measurement_point_8cpp_source.html#l00029">MeasurementPoint::getName()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00424">_hasHeaderChanged()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00471">_recoverFromExistingFiles()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00280">_writeHeader()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00023">begin()</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00641">createNewLogFile()</a>.</p>
 <div class="dynheader">
@@ -676,7 +725,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00766">766</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00064">_eventLogDirectory</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00379">_getCurrentDateString()</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00085">_eventLogDirectory</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00379">_getCurrentDateString()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00071">init()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00681">logEvent()</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00147">update()</a>.</p>
 <div class="dynheader">
@@ -751,7 +800,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00237">237</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00055">_fileSequenceNumber</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00379">_getCurrentDateString()</a>, and <a class="el" href="_logger_manager_8h_source.html#l00030">_logDirectory</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00076">_fileSequenceNumber</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00379">_getCurrentDateString()</a>, and <a class="el" href="_logger_manager_8h_source.html#l00051">_logDirectory</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00232">_generateLogFileName()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00023">begin()</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00641">createNewLogFile()</a>.</p>
 <div class="dynheader">
@@ -796,7 +845,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l01175">1175</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00018">_instance</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l01276">_normalizeDate()</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00039">_instance</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l01276">_normalizeDate()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l01130">getAlarmHistoryCsv()</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l01050">getAlarmHistoryJson()</a>.</p>
 <div class="dynheader">
@@ -837,7 +886,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00379">379</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00020">_timeManager</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00041">_timeManager</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00908">_generateAlarmStateLogFileName()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00766">_generateEventLogFileName()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00232">_generateLogFileName()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00237">_generateLogFileNameWithSequence()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00471">_recoverFromExistingFiles()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00301">_writeDataRow()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00023">begin()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00071">init()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00880">logAlarmState()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00681">logEvent()</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00147">update()</a>.</p>
 <div class="dynheader">
@@ -873,7 +922,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00389">389</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00020">_timeManager</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00041">_timeManager</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00301">_writeDataRow()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00880">logAlarmState()</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00681">logEvent()</a>.</p>
 <div class="dynheader">
@@ -913,7 +962,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l01623">1623</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00018">_instance</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l01276">_normalizeDate()</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00039">_instance</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l01276">_normalizeDate()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l01577">getEventLogsCsv()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l01511">getEventLogsJson()</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l01718">getEventLogStatsJson()</a>.</p>
 <div class="dynheader">
@@ -954,7 +1003,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00532">532</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00021">_fs</a>, and <a class="el" href="_logger_manager_8h_source.html#l00030">_logDirectory</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00042">_fs</a>, and <a class="el" href="_logger_manager_8h_source.html#l00051">_logDirectory</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00569">_findHighestSequenceForDate()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00583">_findLatestFileForDate()</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00471">_recoverFromExistingFiles()</a>.</p>
 <div class="dynheader">
@@ -990,7 +1039,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00424">424</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8cpp_source.html#l00259">_generateCSVHeader()</a>, and <a class="el" href="_logger_manager_8h_source.html#l00053">_lastGeneratedHeader</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8cpp_source.html#l00259">_generateCSVHeader()</a>, and <a class="el" href="_logger_manager_8h_source.html#l00074">_lastGeneratedHeader</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00147">update()</a>.</p>
 <div class="dynheader">
@@ -1031,7 +1080,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00446">446</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00055">_fileSequenceNumber</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00076">_fileSequenceNumber</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00455">forceNewFile()</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00147">update()</a>.</p>
 <div class="dynheader">
@@ -1067,7 +1116,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l01039">1039</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00021">_fs</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00042">_fs</a>.</p>
 
 </div>
 </div>
@@ -1206,7 +1255,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00612">612</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00021">_fs</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00042">_fs</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00471">_recoverFromExistingFiles()</a>.</p>
 <div class="dynheader">
@@ -1242,7 +1291,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00471">471</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00025">_currentLogFile</a>, <a class="el" href="_logger_manager_8h_source.html#l00029">_enabled</a>, <a class="el" href="_logger_manager_8h_source.html#l00055">_fileSequenceNumber</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00569">_findHighestSequenceForDate()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00583">_findLatestFileForDate()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00259">_generateCSVHeader()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00379">_getCurrentDateString()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00532">_getFilesForDate()</a>, <a class="el" href="_logger_manager_8h_source.html#l00026">_headerWritten</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00612">_readHeaderFromFile()</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00046">_currentLogFile</a>, <a class="el" href="_logger_manager_8h_source.html#l00050">_enabled</a>, <a class="el" href="_logger_manager_8h_source.html#l00076">_fileSequenceNumber</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00569">_findHighestSequenceForDate()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00583">_findLatestFileForDate()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00259">_generateCSVHeader()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00379">_getCurrentDateString()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00532">_getFilesForDate()</a>, <a class="el" href="_logger_manager_8h_source.html#l00047">_headerWritten</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00612">_readHeaderFromFile()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00023">begin()</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00147">update()</a>.</p>
 <div class="dynheader">
@@ -1283,7 +1332,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00939">939</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00078">_currentAlarmStateLogFile</a>, <a class="el" href="_logger_manager_8h_source.html#l00029">_enabled</a>, <a class="el" href="_logger_manager_8h_source.html#l00021">_fs</a>, and <a class="el" href="_logger_manager_8h_source.html#l00227">_lastError</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00099">_currentAlarmStateLogFile</a>, <a class="el" href="_logger_manager_8h_source.html#l00050">_enabled</a>, <a class="el" href="_logger_manager_8h_source.html#l00042">_fs</a>, and <a class="el" href="_logger_manager_8h_source.html#l00339">_lastError</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00926">_ensureAlarmStateLogExists()</a>.</p>
 <div class="dynheader">
@@ -1358,7 +1407,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00960">960</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00078">_currentAlarmStateLogFile</a>, <a class="el" href="_logger_manager_8h_source.html#l00029">_enabled</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00337">_escapeCSVField()</a>, <a class="el" href="_logger_manager_8h_source.html#l00021">_fs</a>, and <a class="el" href="_logger_manager_8h_source.html#l00227">_lastError</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00099">_currentAlarmStateLogFile</a>, <a class="el" href="_logger_manager_8h_source.html#l00050">_enabled</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00337">_escapeCSVField()</a>, <a class="el" href="_logger_manager_8h_source.html#l00042">_fs</a>, and <a class="el" href="_logger_manager_8h_source.html#l00339">_lastError</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00880">logAlarmState()</a>.</p>
 <div class="dynheader">
@@ -1399,7 +1448,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00301">301</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00019">_controller</a>, <a class="el" href="_logger_manager_8h_source.html#l00025">_currentLogFile</a>, <a class="el" href="_logger_manager_8h_source.html#l00029">_enabled</a>, <a class="el" href="_logger_manager_8h_source.html#l00021">_fs</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00379">_getCurrentDateString()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00389">_getCurrentTimeString()</a>, <a class="el" href="_logger_manager_8h_source.html#l00227">_lastError</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00106">MeasurementPoint::getBoundSensor()</a>, and <a class="el" href="_measurement_point_8cpp_source.html#l00033">MeasurementPoint::getCurrentTemp()</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00040">_controller</a>, <a class="el" href="_logger_manager_8h_source.html#l00046">_currentLogFile</a>, <a class="el" href="_logger_manager_8h_source.html#l00050">_enabled</a>, <a class="el" href="_logger_manager_8h_source.html#l00042">_fs</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00379">_getCurrentDateString()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00389">_getCurrentTimeString()</a>, <a class="el" href="_logger_manager_8h_source.html#l00339">_lastError</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00106">MeasurementPoint::getBoundSensor()</a>, and <a class="el" href="_measurement_point_8cpp_source.html#l00033">MeasurementPoint::getCurrentTemp()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00190">logDataNow()</a>.</p>
 <div class="dynheader">
@@ -1440,7 +1489,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00797">797</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00065">_currentEventLogFile</a>, <a class="el" href="_logger_manager_8h_source.html#l00029">_enabled</a>, <a class="el" href="_logger_manager_8h_source.html#l00021">_fs</a>, and <a class="el" href="_logger_manager_8h_source.html#l00227">_lastError</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00086">_currentEventLogFile</a>, <a class="el" href="_logger_manager_8h_source.html#l00050">_enabled</a>, <a class="el" href="_logger_manager_8h_source.html#l00042">_fs</a>, and <a class="el" href="_logger_manager_8h_source.html#l00339">_lastError</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00784">_ensureEventLogExists()</a>.</p>
 <div class="dynheader">
@@ -1490,7 +1539,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00818">818</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00065">_currentEventLogFile</a>, <a class="el" href="_logger_manager_8h_source.html#l00029">_enabled</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00337">_escapeCSVField()</a>, <a class="el" href="_logger_manager_8h_source.html#l00021">_fs</a>, and <a class="el" href="_logger_manager_8h_source.html#l00227">_lastError</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00086">_currentEventLogFile</a>, <a class="el" href="_logger_manager_8h_source.html#l00050">_enabled</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00337">_escapeCSVField()</a>, <a class="el" href="_logger_manager_8h_source.html#l00042">_fs</a>, and <a class="el" href="_logger_manager_8h_source.html#l00339">_lastError</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00681">logEvent()</a>.</p>
 <div class="dynheader">
@@ -1531,7 +1580,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00280">280</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00025">_currentLogFile</a>, <a class="el" href="_logger_manager_8h_source.html#l00029">_enabled</a>, <a class="el" href="_logger_manager_8h_source.html#l00021">_fs</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00259">_generateCSVHeader()</a>, and <a class="el" href="_logger_manager_8h_source.html#l00227">_lastError</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00046">_currentLogFile</a>, <a class="el" href="_logger_manager_8h_source.html#l00050">_enabled</a>, <a class="el" href="_logger_manager_8h_source.html#l00042">_fs</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00259">_generateCSVHeader()</a>, and <a class="el" href="_logger_manager_8h_source.html#l00339">_lastError</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00190">logDataNow()</a>.</p>
 <div class="dynheader">
@@ -1562,9 +1611,13 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
+<p>Begin logging operations. </p>
+<dl class="section return"><dt>Returns</dt><dd>bool True if startup successful</dd></dl>
+<p>Starts the logging system and opens initial log files </p>
+
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00023">23</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00076">_alarmStateLoggingEnabled</a>, <a class="el" href="_logger_manager_8h_source.html#l00078">_currentAlarmStateLogFile</a>, <a class="el" href="_logger_manager_8h_source.html#l00025">_currentLogFile</a>, <a class="el" href="_logger_manager_8h_source.html#l00029">_enabled</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00926">_ensureAlarmStateLogExists()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00353">_ensureDirectoryExists()</a>, <a class="el" href="_logger_manager_8h_source.html#l00055">_fileSequenceNumber</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00908">_generateAlarmStateLogFileName()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00259">_generateCSVHeader()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00237">_generateLogFileNameWithSequence()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00379">_getCurrentDateString()</a>, <a class="el" href="_logger_manager_8h_source.html#l00026">_headerWritten</a>, <a class="el" href="_logger_manager_8h_source.html#l00079">_lastAlarmStateLogDate</a>, <a class="el" href="_logger_manager_8h_source.html#l00227">_lastError</a>, <a class="el" href="_logger_manager_8h_source.html#l00053">_lastGeneratedHeader</a>, <a class="el" href="_logger_manager_8h_source.html#l00032">_lastLogDate</a>, <a class="el" href="_logger_manager_8h_source.html#l00023">_logFrequency</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00471">_recoverFromExistingFiles()</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00705">logInfo()</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00097">_alarmStateLoggingEnabled</a>, <a class="el" href="_logger_manager_8h_source.html#l00099">_currentAlarmStateLogFile</a>, <a class="el" href="_logger_manager_8h_source.html#l00046">_currentLogFile</a>, <a class="el" href="_logger_manager_8h_source.html#l00050">_enabled</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00926">_ensureAlarmStateLogExists()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00353">_ensureDirectoryExists()</a>, <a class="el" href="_logger_manager_8h_source.html#l00076">_fileSequenceNumber</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00908">_generateAlarmStateLogFileName()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00259">_generateCSVHeader()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00237">_generateLogFileNameWithSequence()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00379">_getCurrentDateString()</a>, <a class="el" href="_logger_manager_8h_source.html#l00047">_headerWritten</a>, <a class="el" href="_logger_manager_8h_source.html#l00100">_lastAlarmStateLogDate</a>, <a class="el" href="_logger_manager_8h_source.html#l00339">_lastError</a>, <a class="el" href="_logger_manager_8h_source.html#l00074">_lastGeneratedHeader</a>, <a class="el" href="_logger_manager_8h_source.html#l00053">_lastLogDate</a>, <a class="el" href="_logger_manager_8h_source.html#l00044">_logFrequency</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00471">_recoverFromExistingFiles()</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00705">logInfo()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1616,7 +1669,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00641">641</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00025">_currentLogFile</a>, <a class="el" href="_logger_manager_8h_source.html#l00029">_enabled</a>, <a class="el" href="_logger_manager_8h_source.html#l00055">_fileSequenceNumber</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00259">_generateCSVHeader()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00237">_generateLogFileNameWithSequence()</a>, <a class="el" href="_logger_manager_8h_source.html#l00026">_headerWritten</a>, <a class="el" href="_logger_manager_8h_source.html#l00053">_lastGeneratedHeader</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00217">closeCurrentFile()</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00046">_currentLogFile</a>, <a class="el" href="_logger_manager_8h_source.html#l00050">_enabled</a>, <a class="el" href="_logger_manager_8h_source.html#l00076">_fileSequenceNumber</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00259">_generateCSVHeader()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00237">_generateLogFileNameWithSequence()</a>, <a class="el" href="_logger_manager_8h_source.html#l00047">_headerWritten</a>, <a class="el" href="_logger_manager_8h_source.html#l00074">_lastGeneratedHeader</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00217">closeCurrentFile()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00455">forceNewFile()</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00147">update()</a>.</p>
 <div class="dynheader">
@@ -1659,9 +1712,19 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00113">113</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
+<p>Log critical message (static convenience method) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">source</td><td>Source component or module </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">description</td><td>Description of the critical event </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bool True if logging successful </dd></dl>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00018">_instance</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00175">175</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
+
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00039">_instance</a>.</p>
 
 </div>
 </div>
@@ -1682,7 +1745,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l01030">1030</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00077">_alarmStateLogDirectory</a>, and <a class="el" href="_logger_manager_8h_source.html#l00021">_fs</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00098">_alarmStateLogDirectory</a>, and <a class="el" href="_logger_manager_8h_source.html#l00042">_fs</a>.</p>
 
 </div>
 </div>
@@ -1703,7 +1766,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00757">757</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00029">_enabled</a>, <a class="el" href="_logger_manager_8h_source.html#l00064">_eventLogDirectory</a>, and <a class="el" href="_logger_manager_8h_source.html#l00021">_fs</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00050">_enabled</a>, <a class="el" href="_logger_manager_8h_source.html#l00085">_eventLogDirectory</a>, and <a class="el" href="_logger_manager_8h_source.html#l00042">_fs</a>.</p>
 
 </div>
 </div>
@@ -1724,7 +1787,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00407">407</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00029">_enabled</a>, <a class="el" href="_logger_manager_8h_source.html#l00021">_fs</a>, and <a class="el" href="_logger_manager_8h_source.html#l00030">_logDirectory</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00050">_enabled</a>, <a class="el" href="_logger_manager_8h_source.html#l00042">_fs</a>, and <a class="el" href="_logger_manager_8h_source.html#l00051">_logDirectory</a>.</p>
 
 </div>
 </div>
@@ -1755,11 +1818,21 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00109">109</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
+<p>Log error message (static convenience method) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">source</td><td>Source component or module </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">description</td><td>Description of the error </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bool True if logging successful </dd></dl>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00018">_instance</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00165">165</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_config_manager_8cpp_source.html#l00841">ConfigManager::csvImportExportAPI()</a>, <a class="el" href="_temp_modbus_server_8cpp_source.html#l00154">TempModbusServer::readHoldingRegistersWorker()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00825">TemperatureController::unbindSensorFromPoint()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01210">TemperatureController::updateAllSensors()</a>, <a class="el" href="_alarm_8cpp_source.html#l00441">Alarm::updateCondition()</a>, <a class="el" href="_temp_modbus_server_8cpp_source.html#l00241">TempModbusServer::writeHoldingRegisterWorker()</a>, and <a class="el" href="_temp_modbus_server_8cpp_source.html#l00315">TempModbusServer::writeMultipleRegistersWorker()</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00039">_instance</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_config_manager_8cpp_source.html#l00841">ConfigManager::csvImportExportAPI()</a>, <a class="el" href="_temp_modbus_server_8cpp_source.html#l00154">TempModbusServer::readHoldingRegistersWorker()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00825">TemperatureController::unbindSensorFromPoint()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01210">TemperatureController::updateAllSensors()</a>, <a class="el" href="_alarm_8cpp_source.html#l00479">Alarm::updateCondition()</a>, <a class="el" href="_temp_modbus_server_8cpp_source.html#l00241">TempModbusServer::writeHoldingRegisterWorker()</a>, and <a class="el" href="_temp_modbus_server_8cpp_source.html#l00315">TempModbusServer::writeMultipleRegistersWorker()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1785,7 +1858,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00455">455</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00029">_enabled</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00446">_incrementSequenceNumber()</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00641">createNewLogFile()</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00050">_enabled</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00446">_incrementSequenceNumber()</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00641">createNewLogFile()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1823,7 +1896,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l01130">1130</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8cpp_source.html#l01175">_getAlarmLogFilesInRange()</a>, and <a class="el" href="_logger_manager_8h_source.html#l00018">_instance</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8cpp_source.html#l01175">_getAlarmLogFilesInRange()</a>, and <a class="el" href="_logger_manager_8h_source.html#l00039">_instance</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_config_manager_8cpp_source.html#l01550">ConfigManager::logsAPI()</a>.</p>
 <div class="dynheader">
@@ -1868,7 +1941,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l01050">1050</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8cpp_source.html#l01175">_getAlarmLogFilesInRange()</a>, <a class="el" href="_logger_manager_8h_source.html#l00018">_instance</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l01231">_parseAlarmStateLogEntry()</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8cpp_source.html#l01175">_getAlarmLogFilesInRange()</a>, <a class="el" href="_logger_manager_8h_source.html#l00039">_instance</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l01231">_parseAlarmStateLogEntry()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_config_manager_8cpp_source.html#l01550">ConfigManager::logsAPI()</a>.</p>
 <div class="dynheader">
@@ -1901,7 +1974,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00865">865</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00077">_alarmStateLogDirectory</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00098">_alarmStateLogDirectory</a>.</p>
 
 </div>
 </div>
@@ -1930,7 +2003,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l01865">1865</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00018">_instance</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00039">_instance</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_config_manager_8cpp_source.html#l01682">ConfigManager::downloadAPI()</a>, and <a class="el" href="_config_manager_8cpp_source.html#l01550">ConfigManager::logsAPI()</a>.</p>
 <div class="dynheader">
@@ -1958,7 +2031,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00999">999</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00078">_currentAlarmStateLogFile</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00099">_currentAlarmStateLogFile</a>.</p>
 
 </div>
 </div>
@@ -1979,7 +2052,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00726">726</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00065">_currentEventLogFile</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00086">_currentEventLogFile</a>.</p>
 
 </div>
 </div>
@@ -2000,7 +2073,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00213">213</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00025">_currentLogFile</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00046">_currentLogFile</a>.</p>
 
 </div>
 </div>
@@ -2021,7 +2094,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00462">462</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00055">_fileSequenceNumber</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00076">_fileSequenceNumber</a>.</p>
 
 </div>
 </div>
@@ -2042,7 +2115,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00676">676</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00064">_eventLogDirectory</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00085">_eventLogDirectory</a>.</p>
 
 </div>
 </div>
@@ -2063,7 +2136,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00730">730</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00064">_eventLogDirectory</a>, and <a class="el" href="_logger_manager_8h_source.html#l00021">_fs</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00085">_eventLogDirectory</a>, and <a class="el" href="_logger_manager_8h_source.html#l00042">_fs</a>.</p>
 
 </div>
 </div>
@@ -2092,7 +2165,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l01804">1804</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00018">_instance</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00039">_instance</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_config_manager_8cpp_source.html#l01682">ConfigManager::downloadAPI()</a>, and <a class="el" href="_config_manager_8cpp_source.html#l01550">ConfigManager::logsAPI()</a>.</p>
 <div class="dynheader">
@@ -2132,7 +2205,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l01577">1577</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8cpp_source.html#l01623">_getEventLogFilesInRange()</a>, and <a class="el" href="_logger_manager_8h_source.html#l00018">_instance</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8cpp_source.html#l01623">_getEventLogFilesInRange()</a>, and <a class="el" href="_logger_manager_8h_source.html#l00039">_instance</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_config_manager_8cpp_source.html#l01550">ConfigManager::logsAPI()</a>.</p>
 <div class="dynheader">
@@ -2177,7 +2250,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l01511">1511</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8cpp_source.html#l01623">_getEventLogFilesInRange()</a>, <a class="el" href="_logger_manager_8h_source.html#l00018">_instance</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l01678">_parseEventLogEntry()</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8cpp_source.html#l01623">_getEventLogFilesInRange()</a>, <a class="el" href="_logger_manager_8h_source.html#l00039">_instance</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l01678">_parseEventLogEntry()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_config_manager_8cpp_source.html#l01550">ConfigManager::logsAPI()</a>.</p>
 <div class="dynheader">
@@ -2222,7 +2295,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l01718">1718</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8cpp_source.html#l01623">_getEventLogFilesInRange()</a>, and <a class="el" href="_logger_manager_8h_source.html#l00018">_instance</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8cpp_source.html#l01623">_getEventLogFilesInRange()</a>, and <a class="el" href="_logger_manager_8h_source.html#l00039">_instance</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_config_manager_8cpp_source.html#l01550">ConfigManager::logsAPI()</a>.</p>
 <div class="dynheader">
@@ -2277,7 +2350,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l01892">1892</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00018">_instance</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l01941">getLogDirectoryPath()</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00039">_instance</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l01941">getLogDirectoryPath()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_config_manager_8cpp_source.html#l01682">ConfigManager::downloadAPI()</a>.</p>
 <div class="dynheader">
@@ -2316,9 +2389,13 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00098">98</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
+<p>Get singleton instance. </p>
+<dl class="section return"><dt>Returns</dt><dd>LoggerManager* Pointer to singleton instance</dd></dl>
+<p>Provides access to the global logger instance </p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00018">_instance</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00008">LoggerManager()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00136">136</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
+
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00039">_instance</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00008">LoggerManager()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2344,7 +2421,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00226">226</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00227">_lastError</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00339">_lastError</a>.</p>
 
 </div>
 </div>
@@ -2365,7 +2442,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00222">222</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00024">_lastLogTime</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00045">_lastLogTime</a>.</p>
 
 </div>
 </div>
@@ -2392,9 +2469,12 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Get current log directory. </p>
+<dl class="section return"><dt>Returns</dt><dd>String Current log directory path </dd></dl>
+
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00143">143</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00018">_instance</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00039">_instance</a>.</p>
 
 </div>
 </div>
@@ -2423,7 +2503,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l01941">1941</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00018">_instance</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00039">_instance</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l01892">getFileInfo()</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l01927">openLogFile()</a>.</p>
 <div class="dynheader">
@@ -2459,7 +2539,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l01838">1838</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00018">_instance</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00039">_instance</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_config_manager_8cpp_source.html#l01682">ConfigManager::downloadAPI()</a>.</p>
 <div class="dynheader">
@@ -2487,7 +2567,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00413">413</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00025">_currentLogFile</a>, <a class="el" href="_logger_manager_8h_source.html#l00029">_enabled</a>, and <a class="el" href="_logger_manager_8h_source.html#l00021">_fs</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00046">_currentLogFile</a>, <a class="el" href="_logger_manager_8h_source.html#l00050">_enabled</a>, and <a class="el" href="_logger_manager_8h_source.html#l00042">_fs</a>.</p>
 
 </div>
 </div>
@@ -2506,9 +2586,12 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
+<p>Get current logging frequency. </p>
+<dl class="section return"><dt>Returns</dt><dd>unsigned long Frequency in milliseconds </dd></dl>
+
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00115">115</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00023">_logFrequency</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00044">_logFrequency</a>.</p>
 
 </div>
 </div>
@@ -2539,11 +2622,21 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00101">101</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
+<p>Log informational message (static convenience method) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">source</td><td>Source component or module </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">description</td><td>Description of the event </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bool True if logging successful </dd></dl>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00018">_instance</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00145">145</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00069">Alarm::acknowledge()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01290">TemperatureController::addAlarm()</a>, <a class="el" href="_alarm_8cpp_source.html#l00022">Alarm::Alarm()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00103">ConfigManager::begin()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00060">TemperatureController::begin()</a>, <a class="el" href="_temp_modbus_server_8cpp_source.html#l00063">TempModbusServer::begin()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00802">TemperatureController::bindSensorToPointByChipSelect()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00775">TemperatureController::bindSensorToPointByRom()</a>, <a class="el" href="_alarm_8cpp_source.html#l00102">Alarm::clear()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00841">ConfigManager::csvImportExportAPI()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00881">TemperatureController::discoverDS18B20Sensors()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00956">TemperatureController::discoverPTSensors()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00408">TemperatureController::handleAlarmOutputs()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00361">ConfigManager::loadPointsConfig()</a>, <a class="el" href="_temp_modbus_server_8cpp_source.html#l00154">TempModbusServer::readHoldingRegistersWorker()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01348">TemperatureController::removeAlarm()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01146">TemperatureController::resetMinMaxValues()</a>, <a class="el" href="_alarm_8cpp_source.html#l00121">Alarm::resolve()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00279">ConfigManager::savePointsConfig()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01154">TemperatureController::setDeviceId()</a>, <a class="el" href="_alarm_8cpp_source.html#l00423">Alarm::setEnabled()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00086">MeasurementPoint::setHighAlarmThreshold()</a>, <a class="el" href="_alarm_8cpp_source.html#l00409">Alarm::setHysteresis()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00072">MeasurementPoint::setLowAlarmThreshold()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01171">TemperatureController::setMeasurementPeriod()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00061">MeasurementPoint::setName()</a>, <a class="el" href="_alarm_8cpp_source.html#l00395">Alarm::setPriority()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00966">IndicatorInterface::startBlinking()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00995">IndicatorInterface::stopBlinking()</a>, <a class="el" href="_temp_modbus_server_8cpp_source.html#l00003">TempModbusServer::TempModbusServer()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00825">TemperatureController::unbindSensorFromPoint()</a>, <a class="el" href="_alarm_8cpp_source.html#l00441">Alarm::updateCondition()</a>, <a class="el" href="_temp_modbus_server_8cpp_source.html#l00241">TempModbusServer::writeHoldingRegisterWorker()</a>, <a class="el" href="_temp_modbus_server_8cpp_source.html#l00315">TempModbusServer::writeMultipleRegistersWorker()</a>, and <a class="el" href="_alarm_8cpp_source.html#l00056">Alarm::~Alarm()</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00039">_instance</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00107">Alarm::acknowledge()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01290">TemperatureController::addAlarm()</a>, <a class="el" href="_alarm_8cpp_source.html#l00046">Alarm::Alarm()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00103">ConfigManager::begin()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00060">TemperatureController::begin()</a>, <a class="el" href="_temp_modbus_server_8cpp_source.html#l00063">TempModbusServer::begin()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00802">TemperatureController::bindSensorToPointByChipSelect()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00775">TemperatureController::bindSensorToPointByRom()</a>, <a class="el" href="_alarm_8cpp_source.html#l00140">Alarm::clear()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00841">ConfigManager::csvImportExportAPI()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00881">TemperatureController::discoverDS18B20Sensors()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00956">TemperatureController::discoverPTSensors()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00408">TemperatureController::handleAlarmOutputs()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00361">ConfigManager::loadPointsConfig()</a>, <a class="el" href="_temp_modbus_server_8cpp_source.html#l00154">TempModbusServer::readHoldingRegistersWorker()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01348">TemperatureController::removeAlarm()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01146">TemperatureController::resetMinMaxValues()</a>, <a class="el" href="_alarm_8cpp_source.html#l00159">Alarm::resolve()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00279">ConfigManager::savePointsConfig()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01154">TemperatureController::setDeviceId()</a>, <a class="el" href="_alarm_8cpp_source.html#l00461">Alarm::setEnabled()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00086">MeasurementPoint::setHighAlarmThreshold()</a>, <a class="el" href="_alarm_8cpp_source.html#l00447">Alarm::setHysteresis()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00072">MeasurementPoint::setLowAlarmThreshold()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01171">TemperatureController::setMeasurementPeriod()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00061">MeasurementPoint::setName()</a>, <a class="el" href="_alarm_8cpp_source.html#l00433">Alarm::setPriority()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00966">IndicatorInterface::startBlinking()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00995">IndicatorInterface::stopBlinking()</a>, <a class="el" href="_temp_modbus_server_8cpp_source.html#l00003">TempModbusServer::TempModbusServer()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00825">TemperatureController::unbindSensorFromPoint()</a>, <a class="el" href="_alarm_8cpp_source.html#l00479">Alarm::updateCondition()</a>, <a class="el" href="_temp_modbus_server_8cpp_source.html#l00241">TempModbusServer::writeHoldingRegisterWorker()</a>, <a class="el" href="_temp_modbus_server_8cpp_source.html#l00315">TempModbusServer::writeMultipleRegistersWorker()</a>, and <a class="el" href="_alarm_8cpp_source.html#l00088">Alarm::~Alarm()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -2567,9 +2660,13 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
+<p>Initialize the logging system. </p>
+<dl class="section return"><dt>Returns</dt><dd>bool True if initialization successful</dd></dl>
+<p>Sets up file system, directories, and initial configuration </p>
+
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00071">71</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00065">_currentEventLogFile</a>, <a class="el" href="_logger_manager_8h_source.html#l00025">_currentLogFile</a>, <a class="el" href="_logger_manager_8h_source.html#l00029">_enabled</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00353">_ensureDirectoryExists()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00784">_ensureEventLogExists()</a>, <a class="el" href="_logger_manager_8h_source.html#l00063">_eventLoggingEnabled</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00766">_generateEventLogFileName()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00379">_getCurrentDateString()</a>, <a class="el" href="_logger_manager_8h_source.html#l00227">_lastError</a>, <a class="el" href="_logger_manager_8h_source.html#l00066">_lastEventLogDate</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00705">logInfo()</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00086">_currentEventLogFile</a>, <a class="el" href="_logger_manager_8h_source.html#l00046">_currentLogFile</a>, <a class="el" href="_logger_manager_8h_source.html#l00050">_enabled</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00353">_ensureDirectoryExists()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00784">_ensureEventLogExists()</a>, <a class="el" href="_logger_manager_8h_source.html#l00084">_eventLoggingEnabled</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00766">_generateEventLogFileName()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00379">_getCurrentDateString()</a>, <a class="el" href="_logger_manager_8h_source.html#l00339">_lastError</a>, <a class="el" href="_logger_manager_8h_source.html#l00087">_lastEventLogDate</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00705">logInfo()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2595,7 +2692,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00854">854</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00076">_alarmStateLoggingEnabled</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00097">_alarmStateLoggingEnabled</a>.</p>
 
 </div>
 </div>
@@ -2614,9 +2711,12 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
+<p>Check if daily files are enabled. </p>
+<dl class="section return"><dt>Returns</dt><dd>bool True if daily files are enabled </dd></dl>
+
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00132">132</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00031">_dailyFiles</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00052">_dailyFiles</a>.</p>
 
 </div>
 </div>
@@ -2635,9 +2735,12 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
+<p>Check if logging is enabled. </p>
+<dl class="section return"><dt>Returns</dt><dd>bool True if logging is enabled </dd></dl>
+
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00124">124</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00029">_enabled</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00050">_enabled</a>.</p>
 
 </div>
 </div>
@@ -2658,7 +2761,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00665">665</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00063">_eventLoggingEnabled</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00084">_eventLoggingEnabled</a>.</p>
 
 </div>
 </div>
@@ -2713,7 +2816,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00880">880</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00076">_alarmStateLoggingEnabled</a>, <a class="el" href="_logger_manager_8h_source.html#l00078">_currentAlarmStateLogFile</a>, <a class="el" href="_logger_manager_8h_source.html#l00029">_enabled</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00926">_ensureAlarmStateLogExists()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00908">_generateAlarmStateLogFileName()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00379">_getCurrentDateString()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00389">_getCurrentTimeString()</a>, <a class="el" href="_logger_manager_8h_source.html#l00079">_lastAlarmStateLogDate</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00960">_writeAlarmStateRow()</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00097">_alarmStateLoggingEnabled</a>, <a class="el" href="_logger_manager_8h_source.html#l00099">_currentAlarmStateLogFile</a>, <a class="el" href="_logger_manager_8h_source.html#l00050">_enabled</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00926">_ensureAlarmStateLogExists()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00908">_generateAlarmStateLogFileName()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00379">_getCurrentDateString()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00389">_getCurrentTimeString()</a>, <a class="el" href="_logger_manager_8h_source.html#l00100">_lastAlarmStateLogDate</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00960">_writeAlarmStateRow()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2781,9 +2884,9 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00870">870</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00018">_instance</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00039">_instance</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00069">Alarm::acknowledge()</a>, and <a class="el" href="_alarm_8cpp_source.html#l00441">Alarm::updateCondition()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_alarm_8cpp_source.html#l00107">Alarm::acknowledge()</a>, and <a class="el" href="_alarm_8cpp_source.html#l00479">Alarm::updateCondition()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -2813,7 +2916,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00720">720</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00029">_enabled</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00681">logEvent()</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00050">_enabled</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00681">logEvent()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2839,7 +2942,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00190">190</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00029">_enabled</a>, <a class="el" href="_logger_manager_8h_source.html#l00026">_headerWritten</a>, <a class="el" href="_logger_manager_8h_source.html#l00024">_lastLogTime</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00301">_writeDataRow()</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00280">_writeHeader()</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00050">_enabled</a>, <a class="el" href="_logger_manager_8h_source.html#l00047">_headerWritten</a>, <a class="el" href="_logger_manager_8h_source.html#l00045">_lastLogTime</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00301">_writeDataRow()</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00280">_writeHeader()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00147">update()</a>.</p>
 <div class="dynheader">
@@ -2876,7 +2979,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00715">715</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00029">_enabled</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00681">logEvent()</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00050">_enabled</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00681">logEvent()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2911,7 +3014,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00681">681</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00065">_currentEventLogFile</a>, <a class="el" href="_logger_manager_8h_source.html#l00029">_enabled</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00784">_ensureEventLogExists()</a>, <a class="el" href="_logger_manager_8h_source.html#l00063">_eventLoggingEnabled</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00766">_generateEventLogFileName()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00379">_getCurrentDateString()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00389">_getCurrentTimeString()</a>, <a class="el" href="_logger_manager_8h_source.html#l00066">_lastEventLogDate</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00818">_writeEventRow()</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00086">_currentEventLogFile</a>, <a class="el" href="_logger_manager_8h_source.html#l00050">_enabled</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00784">_ensureEventLogExists()</a>, <a class="el" href="_logger_manager_8h_source.html#l00084">_eventLoggingEnabled</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00766">_generateEventLogFileName()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00379">_getCurrentDateString()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00389">_getCurrentTimeString()</a>, <a class="el" href="_logger_manager_8h_source.html#l00087">_lastEventLogDate</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00818">_writeEventRow()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00720">logCritical()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00715">logError()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00705">logInfo()</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00710">logWarning()</a>.</p>
 <div class="dynheader">
@@ -2948,7 +3051,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00705">705</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00029">_enabled</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00681">logEvent()</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00050">_enabled</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00681">logEvent()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00023">begin()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00071">init()</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00147">update()</a>.</p>
 <div class="dynheader">
@@ -2985,7 +3088,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00710">710</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00029">_enabled</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00681">logEvent()</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00050">_enabled</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00681">logEvent()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00147">update()</a>.</p>
 <div class="dynheader">
@@ -3030,7 +3133,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l01927">1927</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00018">_instance</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l01941">getLogDirectoryPath()</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00039">_instance</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l01941">getLogDirectoryPath()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_config_manager_8cpp_source.html#l01682">ConfigManager::downloadAPI()</a>.</p>
 <div class="dynheader">
@@ -3063,7 +3166,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00466">466</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00055">_fileSequenceNumber</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00076">_fileSequenceNumber</a>.</p>
 
 </div>
 </div>
@@ -3084,7 +3187,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00858">858</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00077">_alarmStateLogDirectory</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00098">_alarmStateLogDirectory</a>.</p>
 
 </div>
 </div>
@@ -3105,7 +3208,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00849">849</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00076">_alarmStateLoggingEnabled</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00097">_alarmStateLoggingEnabled</a>.</p>
 
 </div>
 </div>
@@ -3124,9 +3227,17 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
+<p>Enable or disable daily file creation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">enabled</td><td>True to create new files daily </td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00128">128</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00031">_dailyFiles</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00052">_dailyFiles</a>.</p>
 
 </div>
 </div>
@@ -3145,9 +3256,17 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
+<p>Enable or disable logging. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">enabled</td><td>True to enable logging </td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00119">119</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00029">_enabled</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00050">_enabled</a>.</p>
 
 </div>
 </div>
@@ -3168,7 +3287,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00669">669</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00064">_eventLogDirectory</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00085">_eventLogDirectory</a>.</p>
 
 </div>
 </div>
@@ -3189,7 +3308,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00660">660</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00063">_eventLoggingEnabled</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00084">_eventLoggingEnabled</a>.</p>
 
 </div>
 </div>
@@ -3208,9 +3327,17 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
+<p>Set base log directory. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">directory</td><td>Directory path for log files </td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00136">136</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00030">_logDirectory</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00051">_logDirectory</a>.</p>
 
 </div>
 </div>
@@ -3229,9 +3356,17 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
+<p>Set logging frequency. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">frequencyMs</td><td>Frequency in milliseconds between log entries </td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00109">109</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00023">_logFrequency</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00044">_logFrequency</a>.</p>
 
 </div>
 </div>
@@ -3252,7 +3387,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_logger_manager_8cpp_source.html#l00147">147</a> of file <a class="el" href="_logger_manager_8cpp_source.html">LoggerManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00065">_currentEventLogFile</a>, <a class="el" href="_logger_manager_8h_source.html#l00031">_dailyFiles</a>, <a class="el" href="_logger_manager_8h_source.html#l00029">_enabled</a>, <a class="el" href="_logger_manager_8h_source.html#l00063">_eventLoggingEnabled</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00766">_generateEventLogFileName()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00379">_getCurrentDateString()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00424">_hasHeaderChanged()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00446">_incrementSequenceNumber()</a>, <a class="el" href="_logger_manager_8h_source.html#l00066">_lastEventLogDate</a>, <a class="el" href="_logger_manager_8h_source.html#l00032">_lastLogDate</a>, <a class="el" href="_logger_manager_8h_source.html#l00024">_lastLogTime</a>, <a class="el" href="_logger_manager_8h_source.html#l00023">_logFrequency</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00471">_recoverFromExistingFiles()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00641">createNewLogFile()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00190">logDataNow()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00705">logInfo()</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00710">logWarning()</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00086">_currentEventLogFile</a>, <a class="el" href="_logger_manager_8h_source.html#l00052">_dailyFiles</a>, <a class="el" href="_logger_manager_8h_source.html#l00050">_enabled</a>, <a class="el" href="_logger_manager_8h_source.html#l00084">_eventLoggingEnabled</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00766">_generateEventLogFileName()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00379">_getCurrentDateString()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00424">_hasHeaderChanged()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00446">_incrementSequenceNumber()</a>, <a class="el" href="_logger_manager_8h_source.html#l00087">_lastEventLogDate</a>, <a class="el" href="_logger_manager_8h_source.html#l00053">_lastLogDate</a>, <a class="el" href="_logger_manager_8h_source.html#l00045">_lastLogTime</a>, <a class="el" href="_logger_manager_8h_source.html#l00044">_logFrequency</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00471">_recoverFromExistingFiles()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00641">createNewLogFile()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00190">logDataNow()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00705">logInfo()</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00710">logWarning()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -3288,11 +3423,21 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00105">105</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
+<p>Log warning message (static convenience method) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">source</td><td>Source component or module </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">description</td><td>Description of the warning </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bool True if logging successful </dd></dl>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00018">_instance</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00155">155</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01290">TemperatureController::addAlarm()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00103">ConfigManager::begin()</a>, <a class="el" href="_temp_modbus_server_8cpp_source.html#l00063">TempModbusServer::begin()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00802">TemperatureController::bindSensorToPointByChipSelect()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00775">TemperatureController::bindSensorToPointByRom()</a>, <a class="el" href="_alarm_8cpp_source.html#l00138">Alarm::reactivate()</a>, and <a class="el" href="_alarm_8cpp_source.html#l00441">Alarm::updateCondition()</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00039">_instance</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01290">TemperatureController::addAlarm()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00103">ConfigManager::begin()</a>, <a class="el" href="_temp_modbus_server_8cpp_source.html#l00063">TempModbusServer::begin()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00802">TemperatureController::bindSensorToPointByChipSelect()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00775">TemperatureController::bindSensorToPointByRom()</a>, <a class="el" href="_alarm_8cpp_source.html#l00176">Alarm::reactivate()</a>, and <a class="el" href="_alarm_8cpp_source.html#l00479">Alarm::updateCondition()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -3322,7 +3467,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00077">77</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00098">98</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00908">_generateAlarmStateLogFileName()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l01030">deleteAlarmStateLogFile()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00865">getAlarmStateLogDirectory()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00008">LoggerManager()</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00858">setAlarmStateLogDirectory()</a>.</p>
 
@@ -3348,7 +3493,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00076">76</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00097">97</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00023">begin()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00854">isAlarmStateLoggingEnabled()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00880">logAlarmState()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00008">LoggerManager()</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00849">setAlarmStateLoggingEnabled()</a>.</p>
 
@@ -3374,7 +3519,9 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00019">19</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
+<p>Reference to temperature controller. </p>
+
+<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00040">40</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00259">_generateCSVHeader()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00301">_writeDataRow()</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00008">LoggerManager()</a>.</p>
 
@@ -3400,7 +3547,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00078">78</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00099">99</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00926">_ensureAlarmStateLogExists()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00939">_writeAlarmStateHeader()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00960">_writeAlarmStateRow()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00023">begin()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00999">getCurrentAlarmStateLogFile()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00880">logAlarmState()</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00008">LoggerManager()</a>.</p>
 
@@ -3426,7 +3573,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00065">65</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00086">86</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00784">_ensureEventLogExists()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00797">_writeEventHeader()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00818">_writeEventRow()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00726">getCurrentEventLogFile()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00071">init()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00681">logEvent()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00008">LoggerManager()</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00147">update()</a>.</p>
 
@@ -3452,7 +3599,9 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00025">25</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
+<p>Current log file name. </p>
+
+<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00046">46</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00471">_recoverFromExistingFiles()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00301">_writeDataRow()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00280">_writeHeader()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00023">begin()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00641">createNewLogFile()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00213">getCurrentLogFile()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00413">getLogFileSize()</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00071">init()</a>.</p>
 
@@ -3478,7 +3627,9 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00031">31</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
+<p>Create new file each day. </p>
+
+<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00052">52</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00132">isDailyFiles()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00008">LoggerManager()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00128">setDailyFiles()</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00147">update()</a>.</p>
 
@@ -3504,7 +3655,9 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00029">29</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
+<p>Whether logging is enabled. </p>
+
+<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00050">50</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00926">_ensureAlarmStateLogExists()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00353">_ensureDirectoryExists()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00784">_ensureEventLogExists()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00471">_recoverFromExistingFiles()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00939">_writeAlarmStateHeader()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00960">_writeAlarmStateRow()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00301">_writeDataRow()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00797">_writeEventHeader()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00818">_writeEventRow()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00280">_writeHeader()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00023">begin()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00641">createNewLogFile()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00757">deleteEventLogFile()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00407">deleteLogFile()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00455">forceNewFile()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00413">getLogFileSize()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00071">init()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00124">isEnabled()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00880">logAlarmState()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00720">logCritical()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00190">logDataNow()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00715">logError()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00681">logEvent()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00008">LoggerManager()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00705">logInfo()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00710">logWarning()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00119">setEnabled()</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00147">update()</a>.</p>
 
@@ -3530,7 +3683,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00064">64</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00085">85</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00766">_generateEventLogFileName()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00757">deleteEventLogFile()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00676">getEventLogDirectory()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00730">getEventLogFiles()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00008">LoggerManager()</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00669">setEventLogDirectory()</a>.</p>
 
@@ -3556,7 +3709,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00063">63</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00084">84</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00071">init()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00665">isEventLoggingEnabled()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00681">logEvent()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00008">LoggerManager()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00660">setEventLoggingEnabled()</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00147">update()</a>.</p>
 
@@ -3582,7 +3735,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00055">55</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00076">76</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00237">_generateLogFileNameWithSequence()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00446">_incrementSequenceNumber()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00471">_recoverFromExistingFiles()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00023">begin()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00641">createNewLogFile()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00462">getCurrentSequenceNumber()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00008">LoggerManager()</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00466">resetSequenceNumber()</a>.</p>
 
@@ -3608,7 +3761,9 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00021">21</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
+<p>File system interface (SD or LittleFS) </p>
+
+<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00042">42</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00926">_ensureAlarmStateLogExists()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00353">_ensureDirectoryExists()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00784">_ensureEventLogExists()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00532">_getFilesForDate()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l01039">_isSDCardAvailable()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00612">_readHeaderFromFile()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00939">_writeAlarmStateHeader()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00960">_writeAlarmStateRow()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00301">_writeDataRow()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00797">_writeEventHeader()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00818">_writeEventRow()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00280">_writeHeader()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l01030">deleteAlarmStateLogFile()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00757">deleteEventLogFile()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00407">deleteLogFile()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00730">getEventLogFiles()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00413">getLogFileSize()</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00008">LoggerManager()</a>.</p>
 
@@ -3634,7 +3789,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00054">54</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00075">75</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00008">LoggerManager()</a>.</p>
 
@@ -3660,7 +3815,9 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00026">26</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
+<p>Flag to track if header is written. </p>
+
+<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00047">47</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00471">_recoverFromExistingFiles()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00023">begin()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00641">createNewLogFile()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00190">logDataNow()</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00008">LoggerManager()</a>.</p>
 
@@ -3686,9 +3843,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00018">18</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
+<p>Singleton instance pointer. </p>
 
-<p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l01175">_getAlarmLogFilesInRange()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l01623">_getEventLogFilesInRange()</a>, <a class="el" href="_logger_manager_8h_source.html#l00113">critical()</a>, <a class="el" href="_logger_manager_8h_source.html#l00109">error()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l01130">getAlarmHistoryCsv()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l01050">getAlarmHistoryJson()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l01865">getAlarmStateLogFiles()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l01804">getEventLogFilesStatic()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l01577">getEventLogsCsv()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l01511">getEventLogsJson()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l01718">getEventLogStatsJson()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l01892">getFileInfo()</a>, <a class="el" href="_logger_manager_8h_source.html#l00098">getInstance()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00143">getLogDirectory()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l01941">getLogDirectoryPath()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l01838">getLogFiles()</a>, <a class="el" href="_logger_manager_8h_source.html#l00101">info()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00870">logAlarmStateChange()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00008">LoggerManager()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l01927">openLogFile()</a>, and <a class="el" href="_logger_manager_8h_source.html#l00105">warning()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00039">39</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l01175">_getAlarmLogFilesInRange()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l01623">_getEventLogFilesInRange()</a>, <a class="el" href="_logger_manager_8h_source.html#l00175">critical()</a>, <a class="el" href="_logger_manager_8h_source.html#l00165">error()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l01130">getAlarmHistoryCsv()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l01050">getAlarmHistoryJson()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l01865">getAlarmStateLogFiles()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l01804">getEventLogFilesStatic()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l01577">getEventLogsCsv()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l01511">getEventLogsJson()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l01718">getEventLogStatsJson()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l01892">getFileInfo()</a>, <a class="el" href="_logger_manager_8h_source.html#l00136">getInstance()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00143">getLogDirectory()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l01941">getLogDirectoryPath()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l01838">getLogFiles()</a>, <a class="el" href="_logger_manager_8h_source.html#l00145">info()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00870">logAlarmStateChange()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00008">LoggerManager()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l01927">openLogFile()</a>, and <a class="el" href="_logger_manager_8h_source.html#l00155">warning()</a>.</p>
 
 </div>
 </div>
@@ -3712,7 +3871,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00079">79</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00100">100</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00023">begin()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00880">logAlarmState()</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00008">LoggerManager()</a>.</p>
 
@@ -3738,7 +3897,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00227">227</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00339">339</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00939">_writeAlarmStateHeader()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00960">_writeAlarmStateRow()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00301">_writeDataRow()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00797">_writeEventHeader()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00818">_writeEventRow()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00280">_writeHeader()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00023">begin()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00226">getLastError()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00071">init()</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00008">LoggerManager()</a>.</p>
 
@@ -3764,7 +3923,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00066">66</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00087">87</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00071">init()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00681">logEvent()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00008">LoggerManager()</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00147">update()</a>.</p>
 
@@ -3790,7 +3949,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00053">53</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00074">74</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00424">_hasHeaderChanged()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00023">begin()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00641">createNewLogFile()</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00008">LoggerManager()</a>.</p>
 
@@ -3816,7 +3975,9 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00032">32</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
+<p>Track date for daily file creation. </p>
+
+<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00053">53</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00023">begin()</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00147">update()</a>.</p>
 
@@ -3842,7 +4003,9 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00024">24</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
+<p>Last time data was logged. </p>
+
+<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00045">45</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00222">getLastLogTime()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00190">logDataNow()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00008">LoggerManager()</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00147">update()</a>.</p>
 
@@ -3868,7 +4031,9 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00030">30</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
+<p>Base directory for log files. </p>
+
+<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00051">51</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00353">_ensureDirectoryExists()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00237">_generateLogFileNameWithSequence()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00532">_getFilesForDate()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00407">deleteLogFile()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00008">LoggerManager()</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00136">setLogDirectory()</a>.</p>
 
@@ -3894,7 +4059,9 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00023">23</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
+<p>Logging frequency in milliseconds. </p>
+
+<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00044">44</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00023">begin()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00115">getLogFrequency()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00008">LoggerManager()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00109">setLogFrequency()</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00147">update()</a>.</p>
 
@@ -3920,7 +4087,9 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00020">20</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
+<p>Reference to time manager. </p>
+
+<p class="definition">Definition at line <a class="el" href="_logger_manager_8h_source.html#l00041">41</a> of file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_logger_manager_8cpp_source.html#l00379">_getCurrentDateString()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00389">_getCurrentTimeString()</a>, and <a class="el" href="_logger_manager_8cpp_source.html#l00008">LoggerManager()</a>.</p>
 

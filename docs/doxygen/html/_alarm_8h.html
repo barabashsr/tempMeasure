@@ -92,6 +92,9 @@ $(function(){initNavTree('_alarm_8h.html','',''); });
   <div class="headertitle"><div class="title">Alarm.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p><a class="el" href="class_alarm.html" title="Main alarm class for temperature monitoring system.">Alarm</a> management system for temperature monitoring.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;Arduino.h&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
 <code>#include &quot;<a class="el" href="_measurement_point_8h_source.html">MeasurementPoint.h</a>&quot;</code><br />
@@ -112,7 +115,9 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Data Structures</h2></td></tr>
 <tr class="memitem:Alarm" id="r_Alarm"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_alarm.html">Alarm</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main alarm class for temperature monitoring system.  <a href="class_alarm.html#details">More...</a><br /></td></tr>
 <tr class="memitem:AlarmComparator" id="r_AlarmComparator"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_alarm_comparator.html">AlarmComparator</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_alarm.html" title="Main alarm class for temperature monitoring system.">Alarm</a> comparison function for priority-based sorting.  <a href="struct_alarm_comparator.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -121,6 +126,7 @@ Enumerations</h2></td></tr>
 , <a class="el" href="#ab24e7dd602a82a4cf2afea61f26726e2a3993b9fcdbf9ec59e873519a4d02fe2f">SENSOR_ERROR</a>
 , <a class="el" href="#ab24e7dd602a82a4cf2afea61f26726e2ab4fed37e8cab6ef5684a361be786d8de">SENSOR_DISCONNECTED</a>
  }</td></tr>
+<tr class="memdesc:ab24e7dd602a82a4cf2afea61f26726e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumeration defining different types of alarms.  <a href="#ab24e7dd602a82a4cf2afea61f26726e2">More...</a><br /></td></tr>
 <tr class="memitem:a4999bf667fcedb69e70ee058d86785eb" id="r_a4999bf667fcedb69e70ee058d86785eb"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4999bf667fcedb69e70ee058d86785eb">AlarmStage</a> { <br />
 &#160;&#160;<a class="el" href="#a4999bf667fcedb69e70ee058d86785eba24d459a81449d7210c8f9a86c2913034">NEW</a>
 , <a class="el" href="#a4999bf667fcedb69e70ee058d86785eba62574ee27e6c5f985a6bc1dc344e7438">CLEARED</a>
@@ -130,13 +136,35 @@ Enumerations</h2></td></tr>
 &#160;&#160;<a class="el" href="#a4999bf667fcedb69e70ee058d86785eba18ff74f43da410c5529f7d6fca84f115">ACTIVE</a>
 <br />
  }</td></tr>
+<tr class="memdesc:a4999bf667fcedb69e70ee058d86785eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumeration defining alarm lifecycle stages.  <a href="#a4999bf667fcedb69e70ee058d86785eb">More...</a><br /></td></tr>
 <tr class="memitem:a5a708c1a1540361a33a030066a7c321b" id="r_a5a708c1a1540361a33a030066a7c321b"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5a708c1a1540361a33a030066a7c321b">AlarmPriority</a> { <a class="el" href="#a5a708c1a1540361a33a030066a7c321ba4a2343657e145cb3dab4f445d2c29b1f">PRIORITY_LOW</a>
 , <a class="el" href="#a5a708c1a1540361a33a030066a7c321ba7e5ab414d2d201947566a9c574a7b85f">PRIORITY_MEDIUM</a>
 , <a class="el" href="#a5a708c1a1540361a33a030066a7c321ba47a10a0fba7f10a751e6ea38f3d6a1e3">PRIORITY_HIGH</a>
 , <a class="el" href="#a5a708c1a1540361a33a030066a7c321ba5f9223804ac004dc2fad18afc18a3951">PRIORITY_CRITICAL</a>
  }</td></tr>
+<tr class="memdesc:a5a708c1a1540361a33a030066a7c321b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumeration defining alarm priority levels.  <a href="#a5a708c1a1540361a33a030066a7c321b">More...</a><br /></td></tr>
 </table>
-<a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Enumeration Type Documentation</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="class_alarm.html" title="Main alarm class for temperature monitoring system.">Alarm</a> management system for temperature monitoring. </p>
+<dl class="section author"><dt>Author</dt><dd>Claude Code Session 20250720 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2025-07-20</dd></dl>
+<p>This file contains the alarm system implementation for temperature monitoring. It provides comprehensive alarm handling with different types, priorities, and stages.</p>
+<h1 class="doxsection"><a class="anchor" id="dependencies"></a>
+Dependencies</h1>
+<ul>
+<li>Arduino.h for core functionality</li>
+<li><a class="el" href="_measurement_point_8h.html" title="Measurement point abstraction for temperature monitoring system.">MeasurementPoint.h</a> for measurement point association</li>
+<li><a class="el" href="_logger_manager_8h.html" title="Comprehensive data and event logging system for temperature monitoring.">LoggerManager.h</a> for alarm logging</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="hardware"></a>
+Hardware Requirements</h1>
+<ul>
+<li>ESP32 microcontroller</li>
+<li>Temperature sensors (DS18B20, PT1000) </li>
+</ul>
+
+<p class="definition">Definition in file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+</div><a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Enumeration Type Documentation</h2>
 <a id="a5a708c1a1540361a33a030066a7c321b" name="a5a708c1a1540361a33a030066a7c321b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5a708c1a1540361a33a030066a7c321b">&#9670;&#160;</a></span>AlarmPriority</h2>
 
@@ -156,14 +184,21 @@ Enumerations</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Enumeration defining alarm priority levels. </p>
+<p>Determines the urgency and handling of different alarms </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a5a708c1a1540361a33a030066a7c321ba4a2343657e145cb3dab4f445d2c29b1f" name="a5a708c1a1540361a33a030066a7c321ba4a2343657e145cb3dab4f445d2c29b1f"></a>PRIORITY_LOW&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a5a708c1a1540361a33a030066a7c321ba7e5ab414d2d201947566a9c574a7b85f" name="a5a708c1a1540361a33a030066a7c321ba7e5ab414d2d201947566a9c574a7b85f"></a>PRIORITY_MEDIUM&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a5a708c1a1540361a33a030066a7c321ba47a10a0fba7f10a751e6ea38f3d6a1e3" name="a5a708c1a1540361a33a030066a7c321ba47a10a0fba7f10a751e6ea38f3d6a1e3"></a>PRIORITY_HIGH&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a5a708c1a1540361a33a030066a7c321ba5f9223804ac004dc2fad18afc18a3951" name="a5a708c1a1540361a33a030066a7c321ba5f9223804ac004dc2fad18afc18a3951"></a>PRIORITY_CRITICAL&#160;</td><td class="fielddoc"></td></tr>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a5a708c1a1540361a33a030066a7c321ba4a2343657e145cb3dab4f445d2c29b1f" name="a5a708c1a1540361a33a030066a7c321ba4a2343657e145cb3dab4f445d2c29b1f"></a>PRIORITY_LOW&#160;</td><td class="fielddoc"><p>Low priority - informational alerts. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a5a708c1a1540361a33a030066a7c321ba7e5ab414d2d201947566a9c574a7b85f" name="a5a708c1a1540361a33a030066a7c321ba7e5ab414d2d201947566a9c574a7b85f"></a>PRIORITY_MEDIUM&#160;</td><td class="fielddoc"><p>Medium priority - standard operational alerts. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a5a708c1a1540361a33a030066a7c321ba47a10a0fba7f10a751e6ea38f3d6a1e3" name="a5a708c1a1540361a33a030066a7c321ba47a10a0fba7f10a751e6ea38f3d6a1e3"></a>PRIORITY_HIGH&#160;</td><td class="fielddoc"><p>High priority - important system alerts. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a5a708c1a1540361a33a030066a7c321ba5f9223804ac004dc2fad18afc18a3951" name="a5a708c1a1540361a33a030066a7c321ba5f9223804ac004dc2fad18afc18a3951"></a>PRIORITY_CRITICAL&#160;</td><td class="fielddoc"><p>Critical priority - immediate attention required. </p>
+</td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00029">29</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00057">57</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
 
 </div>
 </div>
@@ -186,15 +221,23 @@ Enumerations</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Enumeration defining alarm lifecycle stages. </p>
+<p>Tracks the progression of an alarm from initial trigger to resolution </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a4999bf667fcedb69e70ee058d86785eba24d459a81449d7210c8f9a86c2913034" name="a4999bf667fcedb69e70ee058d86785eba24d459a81449d7210c8f9a86c2913034"></a>NEW&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a4999bf667fcedb69e70ee058d86785eba62574ee27e6c5f985a6bc1dc344e7438" name="a4999bf667fcedb69e70ee058d86785eba62574ee27e6c5f985a6bc1dc344e7438"></a>CLEARED&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a4999bf667fcedb69e70ee058d86785eba874584b84df5da74c3964d8efbff7a02" name="a4999bf667fcedb69e70ee058d86785eba874584b84df5da74c3964d8efbff7a02"></a>RESOLVED&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a4999bf667fcedb69e70ee058d86785eba7e83ae21b9e9b168f12ba5a90ee82c94" name="a4999bf667fcedb69e70ee058d86785eba7e83ae21b9e9b168f12ba5a90ee82c94"></a>ACKNOWLEDGED&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a4999bf667fcedb69e70ee058d86785eba18ff74f43da410c5529f7d6fca84f115" name="a4999bf667fcedb69e70ee058d86785eba18ff74f43da410c5529f7d6fca84f115"></a>ACTIVE&#160;</td><td class="fielddoc"></td></tr>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a4999bf667fcedb69e70ee058d86785eba24d459a81449d7210c8f9a86c2913034" name="a4999bf667fcedb69e70ee058d86785eba24d459a81449d7210c8f9a86c2913034"></a>NEW&#160;</td><td class="fielddoc"><p><a class="el" href="class_alarm.html" title="Main alarm class for temperature monitoring system.">Alarm</a> just triggered, awaiting confirmation. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a4999bf667fcedb69e70ee058d86785eba62574ee27e6c5f985a6bc1dc344e7438" name="a4999bf667fcedb69e70ee058d86785eba62574ee27e6c5f985a6bc1dc344e7438"></a>CLEARED&#160;</td><td class="fielddoc"><p>Condition cleared but still in acknowledgment delay. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a4999bf667fcedb69e70ee058d86785eba874584b84df5da74c3964d8efbff7a02" name="a4999bf667fcedb69e70ee058d86785eba874584b84df5da74c3964d8efbff7a02"></a>RESOLVED&#160;</td><td class="fielddoc"><p><a class="el" href="class_alarm.html" title="Main alarm class for temperature monitoring system.">Alarm</a> fully resolved and inactive. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a4999bf667fcedb69e70ee058d86785eba7e83ae21b9e9b168f12ba5a90ee82c94" name="a4999bf667fcedb69e70ee058d86785eba7e83ae21b9e9b168f12ba5a90ee82c94"></a>ACKNOWLEDGED&#160;</td><td class="fielddoc"><p>Operator has acknowledged the alarm. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a4999bf667fcedb69e70ee058d86785eba18ff74f43da410c5529f7d6fca84f115" name="a4999bf667fcedb69e70ee058d86785eba18ff74f43da410c5529f7d6fca84f115"></a>ACTIVE&#160;</td><td class="fielddoc"><p><a class="el" href="class_alarm.html" title="Main alarm class for temperature monitoring system.">Alarm</a> confirmed and actively requiring attention. </p>
+</td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00019">19</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00045">45</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
 
 </div>
 </div>
@@ -217,14 +260,21 @@ Enumerations</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Enumeration defining different types of alarms. </p>
+<p>Specifies the various alarm conditions that can occur in the temperature monitoring system </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ab24e7dd602a82a4cf2afea61f26726e2a9ca8335873c44a53b8f7c5fc526ee59b" name="ab24e7dd602a82a4cf2afea61f26726e2a9ca8335873c44a53b8f7c5fc526ee59b"></a>HIGH_TEMPERATURE&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="ab24e7dd602a82a4cf2afea61f26726e2acf7e66cec00ad7027a2f00fec418ed71" name="ab24e7dd602a82a4cf2afea61f26726e2acf7e66cec00ad7027a2f00fec418ed71"></a>LOW_TEMPERATURE&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="ab24e7dd602a82a4cf2afea61f26726e2a3993b9fcdbf9ec59e873519a4d02fe2f" name="ab24e7dd602a82a4cf2afea61f26726e2a3993b9fcdbf9ec59e873519a4d02fe2f"></a>SENSOR_ERROR&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="ab24e7dd602a82a4cf2afea61f26726e2ab4fed37e8cab6ef5684a361be786d8de" name="ab24e7dd602a82a4cf2afea61f26726e2ab4fed37e8cab6ef5684a361be786d8de"></a>SENSOR_DISCONNECTED&#160;</td><td class="fielddoc"></td></tr>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ab24e7dd602a82a4cf2afea61f26726e2a9ca8335873c44a53b8f7c5fc526ee59b" name="ab24e7dd602a82a4cf2afea61f26726e2a9ca8335873c44a53b8f7c5fc526ee59b"></a>HIGH_TEMPERATURE&#160;</td><td class="fielddoc"><p>Temperature exceeds high threshold. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ab24e7dd602a82a4cf2afea61f26726e2acf7e66cec00ad7027a2f00fec418ed71" name="ab24e7dd602a82a4cf2afea61f26726e2acf7e66cec00ad7027a2f00fec418ed71"></a>LOW_TEMPERATURE&#160;</td><td class="fielddoc"><p>Temperature falls below low threshold. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ab24e7dd602a82a4cf2afea61f26726e2a3993b9fcdbf9ec59e873519a4d02fe2f" name="ab24e7dd602a82a4cf2afea61f26726e2a3993b9fcdbf9ec59e873519a4d02fe2f"></a>SENSOR_ERROR&#160;</td><td class="fielddoc"><p><a class="el" href="class_sensor.html">Sensor</a> communication or reading error. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ab24e7dd602a82a4cf2afea61f26726e2ab4fed37e8cab6ef5684a361be786d8de" name="ab24e7dd602a82a4cf2afea61f26726e2ab4fed37e8cab6ef5684a361be786d8de"></a>SENSOR_DISCONNECTED&#160;</td><td class="fielddoc"><p><a class="el" href="class_sensor.html">Sensor</a> physically disconnected. </p>
+</td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00011">11</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_alarm_8h_source.html#l00033">33</a> of file <a class="el" href="_alarm_8h_source.html">Alarm.h</a>.</p>
 
 </div>
 </div>

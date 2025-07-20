@@ -92,16 +92,18 @@ $(function(){initNavTree('_logger_manager_8h.html','',''); });
   <div class="headertitle"><div class="title">LoggerManager.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Comprehensive data and event logging system for temperature monitoring.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;Arduino.h&gt;</code><br />
 <code>#include &quot;FS.h&quot;</code><br />
 <code>#include &quot;SD.h&quot;</code><br />
 <code>#include &quot;<a class="el" href="_time_manager_8h_source.html">TimeManager.h</a>&quot;</code><br />
 <code>#include &lt;vector&gt;</code><br />
-<code>#include &quot;<a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for LoggerManager.h:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="_logger_manager_8h__incl.svg" width="706" height="186"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="_logger_manager_8h__incl.svg" width="706" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
@@ -114,8 +116,29 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Data Structures</h2></td></tr>
 <tr class="memitem:LoggerManager" id="r_LoggerManager"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_logger_manager.html">LoggerManager</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forward declaration for measurement point class.  <a href="class_logger_manager.html#details">More...</a><br /></td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Comprehensive data and event logging system for temperature monitoring. </p>
+<dl class="section author"><dt>Author</dt><dd>Claude Code Session 20250720 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2025-07-20</dd></dl>
+<p>This file provides a complete logging solution including measurement data logging, event logging, and alarm state logging with CSV format and file management.</p>
+<h1 class="doxsection"><a class="anchor" id="dependencies"></a>
+Dependencies</h1>
+<ul>
+<li>FS.h and SD.h for file system operations</li>
+<li><a class="el" href="_time_manager_8h.html">TimeManager.h</a> for timestamp management</li>
+<li>ArduinoJson for JSON data handling</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="hardware"></a>
+Hardware Requirements</h1>
+<ul>
+<li>ESP32 with SD card or LittleFS support</li>
+<li>RTC module for accurate timestamps </li>
+</ul>
+
+<p class="definition">Definition in file <a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>.</p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">
 <div id="page-nav-resize-handle"></div>

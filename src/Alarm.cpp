@@ -1,3 +1,19 @@
+/**
+ * @file Alarm.cpp
+ * @brief Implementation of alarm management system for temperature monitoring
+ * @author Claude Code Session 20250720
+ * @date 2025-07-20
+ * @details This file implements the alarm class functionality including lifecycle management,
+ *          state transitions, condition checking, and integration with logging system.
+ * 
+ * @section dependencies Dependencies
+ * - Alarm.h for class definitions
+ * - LoggerManager.h for event logging
+ * 
+ * @section hardware Hardware Requirements
+ * - Temperature sensors for alarm condition monitoring
+ */
+
 #include "Alarm.h"
 #include "LoggerManager.h" 
 
@@ -19,25 +35,37 @@
 //                   _source ? _source->getName().c_str() : "Unknown");
 // }
 
+/**
+ * @brief Constructor - Creates a new alarm instance
+ * @param[in] type Type of alarm being created
+ * @param[in] source Pointer to measurement point that triggered the alarm
+ * @param[in] priority Priority level for the alarm
+ * @details Initializes alarm with NEW stage, current timestamp, and default timeouts.
+ *          Generates configuration key and logs alarm creation event.
+ */
 Alarm::Alarm(AlarmType type, MeasurementPoint* source, AlarmPriority priority)
     : _type(type), _stage(AlarmStage::NEW), _priority(priority), _source(source),
       _timestamp(millis()), _acknowledgedTime(0), _clearedTime(0),
-      _acknowledgedDelay(10 * 60 * 1000), _delayTime(5 * 60 * 1000), 
-      _enabled(true), _hysteresis(1)
+      _acknowledgedDelay(10 * 60 * 1000), // Default 10 minutes acknowledged delay
+      _delayTime(5 * 60 * 1000),          // Default 5 minutes auto-resolve delay
+      _enabled(true), _hysteresis(1)      // Default 1 degree hysteresis
 {
+    // Generate unique configuration key for this alarm
     if (_source) {
         _configKey = "alarm_" + String(_source->getAddress()) + "_" + String(static_cast<int>(_type));
     }
 
+    // Generate initial display message
     _updateMessage();
     
-    // LOG: Alarm creation
+    // Log alarm creation event
     String source_ = "ALARM_" + String(_source ? _source->getAddress() : -1);
     String description = "New alarm created: " + getTypeString() + 
                         " for point " + String(_source ? _source->getAddress() : -1) + 
                         " (" + (_source ? _source->getName() : "Unknown") + ")";
     LoggerManager::info(source_, description);
     
+    // Debug output to serial
     Serial.printf("New alarm created: %s for point %d (%s)\n", 
                   getTypeString().c_str(), 
                   _source ? _source->getAddress() : -1,
@@ -53,19 +81,29 @@ Alarm::Alarm(AlarmType type, MeasurementPoint* source, AlarmPriority priority)
 //                   _source ? _source->getAddress() : -1);
 // }
 
+/**
+ * @brief Destructor - Cleans up alarm instance
+ * @details Logs alarm destruction event and outputs debug information
+ */
 Alarm::~Alarm() {
-    // LOG: Alarm destruction
+    // Log alarm destruction event
     String source_ = "ALARM_" + String(_source ? _source->getAddress() : -1);
     String description = "Alarm destroyed: " + getTypeString() + 
                         " for point " + String(_source ? _source->getAddress() : -1);
     LoggerManager::info(source_, description);
     
+    // Debug output to serial
     Serial.printf("Alarm destroyed: %s for point %d\n", 
                   getTypeString().c_str(), 
                   _source ? _source->getAddress() : -1);
 }
 
 
+/**
+ * @brief Acknowledge the alarm
+ * @details Transitions alarm from NEW or ACTIVE stage to ACKNOWLEDGED stage.
+ *          Records acknowledgment timestamp and logs the event.
+ */
 void Alarm::acknowledge() {
     if (_stage == AlarmStage::NEW || _stage == AlarmStage::ACTIVE) {
         String oldStage = getStageString();
@@ -73,7 +111,7 @@ void Alarm::acknowledge() {
         _acknowledgedTime = millis();
         _updateMessage();
         
-        // LOG: Manual acknowledgment
+        // Log acknowledgment event
         String source_ = "ALARM_" + String(_source ? _source->getAddress() : -1);
         String description = "Alarm acknowledged: " + getTypeString() + 
                             " for point " + String(_source ? _source->getAddress() : -1) + 
