@@ -223,14 +223,14 @@
 <simplesect kind="date"><para>2025-07-20</para>
 </simplesect>
 This file defines a measurement point class that represents a logical temperature measurement location with alarm thresholds, min/max tracking, and sensor binding.</para>
-<sect1 id="main_8cpp_1dependencies">
+<sect1 id="_time_manager_8cpp_1dependencies">
 <title>Dependencies</title><para><itemizedlist>
 <listitem><para><ref refid="_sensor_8h" kindref="compound">Sensor.h</ref> for physical sensor integration</para>
 </listitem><listitem><para><ref refid="_logger_manager_8h" kindref="compound">LoggerManager.h</ref> for event logging</para>
 </listitem></itemizedlist>
 </para>
 </sect1>
-<sect1 id="main_8cpp_1hardware">
+<sect1 id="_time_manager_8cpp_1hardware">
 <title>Hardware Requirements</title><para><itemizedlist>
 <listitem><para>Compatible with DS18B20 and PT1000 temperature sensors </para>
 </listitem></itemizedlist>

@@ -1,28 +1,28 @@
 <map id="TemperatureController::isPT1000Address" name="TemperatureController::isPT1000Address">
-<area shape="rect" id="Node000001" title=" " alt="" coords="1114,169,1263,210"/>
-<area shape="rect" id="Node000002" href="$class_temperature_controller.html#a494f057c234b4ff7526bde271aec9267" title=" " alt="" coords="910,169,1066,210"/>
+<area shape="rect" id="Node000001" title="Check if address is for PT1000 sensor." alt="" coords="1114,169,1263,210"/>
+<area shape="rect" id="Node000002" href="$class_temperature_controller.html#a494f057c234b4ff7526bde271aec9267" title="Get measurement point by address." alt="" coords="910,169,1066,210"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1099,192,1066,192,1066,187,1099,187"/>
-<area shape="rect" id="Node000003" href="$class_temperature_controller.html#ac5c3403746d7c850bf7929bf5ee3448a" title=" " alt="" coords="675,5,825,46"/>
+<area shape="rect" id="Node000003" href="$class_temperature_controller.html#ac5c3403746d7c850bf7929bf5ee3448a" title="Add alarm configuration." alt="" coords="675,5,825,46"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="961,158,917,108,890,83,860,61,824,44,826,40,863,57,893,79,921,104,965,155"/>
-<area shape="rect" id="Node000004" href="$class_temperature_controller.html#af4ab2c7b7a3934ab7837603a420b1ae2" title=" " alt="" coords="638,71,862,111"/>
+<area shape="rect" id="Node000004" href="$class_temperature_controller.html#af4ab2c7b7a3934ab7837603a420b1ae2" title="Bind sensor to measurement point by bus number." alt="" coords="638,71,862,111"/>
 <area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="937,164,861,127,826,114,828,109,863,122,940,159"/>
-<area shape="rect" id="Node000005" href="$class_temperature_controller.html#a84937fc1aed30193b817f3b062ce0cfc" title=" " alt="" coords="641,136,859,177"/>
+<area shape="rect" id="Node000005" href="$class_temperature_controller.html#a84937fc1aed30193b817f3b062ce0cfc" title="Bind PT1000 sensor to measurement point by chip select pin." alt="" coords="641,136,859,177"/>
 <area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="894,179,859,174,860,169,895,174"/>
-<area shape="rect" id="Node000006" href="$class_temperature_controller.html#a5d8f7c51bb176435a5035293a2db78f7" title=" " alt="" coords="659,201,841,242"/>
+<area shape="rect" id="Node000006" href="$class_temperature_controller.html#a5d8f7c51bb176435a5035293a2db78f7" title="Bind sensor to measurement point by ROM address." alt="" coords="659,201,841,242"/>
 <area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="895,205,842,212,841,207,894,200"/>
-<area shape="rect" id="Node000007" href="$class_temperature_controller.html#a9b4fe09d4c87dcf86e78b890012e1e72" title=" " alt="" coords="675,267,825,307"/>
+<area shape="rect" id="Node000007" href="$class_temperature_controller.html#a9b4fe09d4c87dcf86e78b890012e1e72" title="Get sensor bound to measurement point." alt="" coords="675,267,825,307"/>
 <area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="938,220,863,256,826,269,824,264,861,251,936,215"/>
-<area shape="rect" id="Node000013" href="$class_temperature_controller.html#a261c9b96540ec6680dfffd3a26e4ca00" title=" " alt="" coords="666,332,834,373"/>
+<area shape="rect" id="Node000013" href="$class_temperature_controller.html#a261c9b96540ec6680dfffd3a26e4ca00" title="Unbind sensor from measurement point." alt="" coords="666,332,834,373"/>
 <area shape="poly" id="edge13_Node000002_Node000013" title=" " alt="" coords="965,224,921,274,893,299,863,321,836,335,834,330,860,317,890,295,917,270,961,221"/>
-<area shape="rect" id="Node000008" href="$class_temperature_controller.html#a4e4770607486ebfc6eacafa704945c23" title=" " alt="" coords="433,235,590,275"/>
+<area shape="rect" id="Node000008" href="$class_temperature_controller.html#a4e4770607486ebfc6eacafa704945c23" title="Remove sensor by ROM address string." alt="" coords="433,235,590,275"/>
 <area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="660,278,590,268,591,263,660,272"/>
-<area shape="rect" id="Node000010" href="$class_temperature_controller.html#a5ac8af90de5dfd79a9a2e4c7270a98a3" title=" " alt="" coords="437,300,586,341"/>
+<area shape="rect" id="Node000010" href="$class_temperature_controller.html#a5ac8af90de5dfd79a9a2e4c7270a98a3" title="Update alarm states for all measurement points." alt="" coords="437,300,586,341"/>
 <area shape="poly" id="edge9_Node000007_Node000010" title=" " alt="" coords="660,302,587,313,586,307,659,297"/>
-<area shape="rect" id="Node000009" href="$class_temperature_controller.html#a57b74b40c88016965d07248981412f7d" title=" " alt="" coords="203,235,385,275"/>
+<area shape="rect" id="Node000009" href="$class_temperature_controller.html#a57b74b40c88016965d07248981412f7d" title="Discover DS18B20 sensors on all OneWire buses." alt="" coords="203,235,385,275"/>
 <area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="417,258,386,258,386,252,417,252"/>
-<area shape="rect" id="Node000011" href="$class_temperature_controller.html#aca5deddbf703001373424d876f87b5f2" title=" " alt="" coords="219,300,368,341"/>
+<area shape="rect" id="Node000011" href="$class_temperature_controller.html#aca5deddbf703001373424d876f87b5f2" title="Main update function &#45; must be called in loop()" alt="" coords="219,300,368,341"/>
 <area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="422,323,369,323,369,318,422,318"/>
-<area shape="rect" id="Node000012" href="$class_temperature_controller.html#a11948a87fe7df37543b86ecdd488b341" title=" " alt="" coords="5,300,155,341"/>
+<area shape="rect" id="Node000012" href="$class_temperature_controller.html#a11948a87fe7df37543b86ecdd488b341" title="Read temperature from all configured measurement points." alt="" coords="5,300,155,341"/>
 <area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="203,332,155,332,155,326,203,327"/>
 <area shape="poly" id="edge12_Node000012_Node000011" title=" " alt="" coords="170,309,219,309,219,314,170,314"/>
 </map>

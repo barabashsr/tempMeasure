@@ -92,6 +92,9 @@ $(function(){initNavTree('_register_map_8cpp.html','',''); });
   <div class="headertitle"><div class="title">RegisterMap.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Implementation of Modbus register mapping for temperature monitoring.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for RegisterMap.cpp:</div>
@@ -100,7 +103,26 @@ Include dependency graph for RegisterMap.cpp:</div>
 </div>
 </div>
 <p><a href="_register_map_8cpp_source.html">Go to the source code of this file.</a></p>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Implementation of Modbus register mapping for temperature monitoring. </p>
+<dl class="section author"><dt>Author</dt><dd>Claude Code Session 20250720_221011 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2025-01-20</dd></dl>
+<p>Implements the register map functionality for Modbus communication, providing access to temperature data, device status, and configuration.</p>
+<h1 class="doxsection"><a class="anchor" id="dependencies"></a>
+Dependencies</h1>
+<ul>
+<li><a class="el" href="_register_map_8h.html" title="Modbus register mapping for temperature monitoring system.">RegisterMap.h</a> for class definition</li>
+<li><a class="el" href="_measurement_point_8h.html" title="Measurement point abstraction for temperature monitoring system.">MeasurementPoint.h</a> for temperature data interface</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="hardware"></a>
+Hardware Requirements</h1>
+<ul>
+<li>Modbus RTU/TCP communication interface</li>
+<li>Temperature sensors (DS18B20, PT1000) </li>
+</ul>
+
+<p class="definition">Definition in file <a class="el" href="_register_map_8cpp_source.html">RegisterMap.cpp</a>.</p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">
 <div id="page-nav-resize-handle"></div>

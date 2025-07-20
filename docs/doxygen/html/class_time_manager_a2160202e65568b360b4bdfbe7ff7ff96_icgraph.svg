@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Initialize NTP client with current settings.">
 <polygon fill="#999999" stroke="#666666" points="516,-74.25 374,-74.25 374,-55 516,-55 516,-74.25"/>
 <text xml:space="preserve" text-anchor="middle" x="445" y="-60.75" font-family="Helvetica,sans-Serif" font-size="10.00">TimeManager::_initializeNTP</text>
 </a>
@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="class_time_manager.html#aa535067588a39cafa8ac49f8e342bd08" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="class_time_manager.html#aa535067588a39cafa8ac49f8e342bd08" target="_top" xlink:title="Initialize time manager and RTC.">
 <polygon fill="white" stroke="#666666" points="123.62,-112.25 19.12,-112.25 19.12,-93 123.62,-93 123.62,-112.25"/>
 <text xml:space="preserve" text-anchor="middle" x="71.38" y="-98.75" font-family="Helvetica,sans-Serif" font-size="10.00">TimeManager::begin</text>
 </a>
@@ -38,7 +38,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="class_time_manager.html#a9d5fe35fd4ba97491afde4647421d010" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="class_time_manager.html#a9d5fe35fd4ba97491afde4647421d010" target="_top" xlink:title="Load time configuration from persistent storage.">
 <polygon fill="white" stroke="#666666" points="322.25,-93.25 194.5,-93.25 194.5,-74 322.25,-74 322.25,-93.25"/>
 <text xml:space="preserve" text-anchor="middle" x="258.38" y="-79.75" font-family="Helvetica,sans-Serif" font-size="10.00">TimeManager::loadConfig</text>
 </a>
@@ -56,7 +56,7 @@
 <!-- Node4 -->
 <g id="Node000004" class="node">
 <title>Node4</title>
-<g id="a_Node000004"><a xlink:href="class_time_manager.html#aef071f85874c744b35768bc95bff7772" target="_top" xlink:title=" ">
+<g id="a_Node000004"><a xlink:href="class_time_manager.html#aef071f85874c744b35768bc95bff7772" target="_top" xlink:title="Set NTP server address.">
 <polygon fill="white" stroke="#666666" points="330.12,-56.25 186.62,-56.25 186.62,-37 330.12,-37 330.12,-56.25"/>
 <text xml:space="preserve" text-anchor="middle" x="258.38" y="-42.75" font-family="Helvetica,sans-Serif" font-size="10.00">TimeManager::setNTPServer</text>
 </a>
@@ -74,7 +74,7 @@
 <!-- Node5 -->
 <g id="Node000005" class="node">
 <title>Node5</title>
-<g id="a_Node000005"><a xlink:href="class_time_manager.html#accdbd3c07d63d6ed1f96fddbc4bf2e00" target="_top" xlink:title=" ">
+<g id="a_Node000005"><a xlink:href="class_time_manager.html#accdbd3c07d63d6ed1f96fddbc4bf2e00" target="_top" xlink:title="Set time from NTP server.">
 <polygon fill="white" stroke="#666666" points="338,-19.25 178.75,-19.25 178.75,0 338,0 338,-19.25"/>
 <text xml:space="preserve" text-anchor="middle" x="258.38" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">TimeManager::setTimeFromNTP</text>
 </a>
@@ -101,7 +101,7 @@
 <!-- Node6 -->
 <g id="Node000006" class="node">
 <title>Node6</title>
-<g id="a_Node000006"><a xlink:href="class_time_manager.html#aa8a8cc016ebb9ceabc4fee347a49cbdb" target="_top" xlink:title=" ">
+<g id="a_Node000006"><a xlink:href="class_time_manager.html#aa8a8cc016ebb9ceabc4fee347a49cbdb" target="_top" xlink:title="Force immediate NTP synchronization.">
 <polygon fill="white" stroke="#666666" points="142.75,-56.25 0,-56.25 0,-37 142.75,-37 142.75,-56.25"/>
 <text xml:space="preserve" text-anchor="middle" x="71.38" y="-42.75" font-family="Helvetica,sans-Serif" font-size="10.00">TimeManager::syncWithNTP</text>
 </a>
@@ -119,7 +119,7 @@
 <!-- Node7 -->
 <g id="Node000007" class="node">
 <title>Node7</title>
-<g id="a_Node000007"><a xlink:href="class_time_manager.html#a97d902b19861efc099141eeb846671a3" target="_top" xlink:title=" ">
+<g id="a_Node000007"><a xlink:href="class_time_manager.html#a97d902b19861efc099141eeb846671a3" target="_top" xlink:title="Update time from NTP if needed.">
 <polygon fill="white" stroke="#666666" points="126.62,-19.25 16.12,-19.25 16.12,0 126.62,0 126.62,-19.25"/>
 <text xml:space="preserve" text-anchor="middle" x="71.38" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">TimeManager::update</text>
 </a>

@@ -186,7 +186,7 @@
 <simplesect kind="date"><para>2025-07-20</para>
 </simplesect>
 This file provides a comprehensive interface for controlling PCF8575 I/O expander and SH1106 OLED display, including port control, interrupt handling, and display management.</para>
-<sect1 id="main_8cpp_1dependencies">
+<sect1 id="_time_manager_8cpp_1dependencies">
 <title>Dependencies</title><para><itemizedlist>
 <listitem><para>PCF8575.h for I/O expander control</para>
 </listitem><listitem><para>U8g2lib.h for OLED display control</para>
@@ -194,7 +194,7 @@ This file provides a comprehensive interface for controlling PCF8575 I/O expande
 </listitem></itemizedlist>
 </para>
 </sect1>
-<sect1 id="main_8cpp_1hardware">
+<sect1 id="_time_manager_8cpp_1hardware">
 <title>Hardware Requirements</title><para><itemizedlist>
 <listitem><para>ESP32 with I2C capability</para>
 </listitem><listitem><para>PCF8575 16-bit I/O expander</para>

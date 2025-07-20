@@ -39,7 +39,7 @@
 <!-- Node4 -->
 <g id="Node000004" class="node">
 <title>Node4</title>
-<g id="a_Node000004"><a xlink:href="class_temp_modbus_server.html#a7d4a0ced2cfd174a4697a85492e12a58" target="_top" xlink:title=" ">
+<g id="a_Node000004"><a xlink:href="class_temp_modbus_server.html#a7d4a0ced2cfd174a4697a85492e12a58" target="_top" xlink:title="Worker function for Read Holding Registers (FC03)">
 <polygon fill="white" stroke="#666666" points="478.5,-165.5 317.75,-165.5 317.75,-135 478.5,-135 478.5,-165.5"/>
 <text xml:space="preserve" text-anchor="start" x="325.75" y="-152" font-family="Helvetica,sans-Serif" font-size="10.00">TempModbusServer::readHolding</text>
 <text xml:space="preserve" text-anchor="middle" x="398.12" y="-140.75" font-family="Helvetica,sans-Serif" font-size="10.00">RegistersWorker</text>
@@ -58,7 +58,7 @@
 <!-- Node6 -->
 <g id="Node000006" class="node">
 <title>Node6</title>
-<g id="a_Node000006"><a xlink:href="class_temperature_controller.html#a261c9b96540ec6680dfffd3a26e4ca00" target="_top" xlink:title=" ">
+<g id="a_Node000006"><a xlink:href="class_temperature_controller.html#a261c9b96540ec6680dfffd3a26e4ca00" target="_top" xlink:title="Unbind sensor from measurement point.">
 <polygon fill="white" stroke="#666666" points="461.25,-214.5 335,-214.5 335,-184 461.25,-184 461.25,-214.5"/>
 <text xml:space="preserve" text-anchor="start" x="343" y="-201" font-family="Helvetica,sans-Serif" font-size="10.00">TemperatureController</text>
 <text xml:space="preserve" text-anchor="middle" x="398.12" y="-189.75" font-family="Helvetica,sans-Serif" font-size="10.00">::unbindSensorFromPoint</text>
@@ -77,7 +77,7 @@
 <!-- Node7 -->
 <g id="Node000007" class="node">
 <title>Node7</title>
-<g id="a_Node000007"><a xlink:href="class_temperature_controller.html#a23dca296a268baa9b8234c8bf9cf0c3e" target="_top" xlink:title=" ">
+<g id="a_Node000007"><a xlink:href="class_temperature_controller.html#a23dca296a268baa9b8234c8bf9cf0c3e" target="_top" xlink:title="Update temperature readings for all sensors.">
 <polygon fill="white" stroke="#666666" points="454.12,-263.5 342.12,-263.5 342.12,-233 454.12,-233 454.12,-263.5"/>
 <text xml:space="preserve" text-anchor="start" x="350.12" y="-250" font-family="Helvetica,sans-Serif" font-size="10.00">TemperatureController</text>
 <text xml:space="preserve" text-anchor="middle" x="398.12" y="-238.75" font-family="Helvetica,sans-Serif" font-size="10.00">::updateAllSensors</text>
@@ -114,7 +114,7 @@
 <!-- Node11 -->
 <g id="Node000011" class="node">
 <title>Node11</title>
-<g id="a_Node000011"><a xlink:href="class_temp_modbus_server.html#a88b7288d622b52f9e28b7c6075b75fe0" target="_top" xlink:title=" ">
+<g id="a_Node000011"><a xlink:href="class_temp_modbus_server.html#a88b7288d622b52f9e28b7c6075b75fe0" target="_top" xlink:title="Worker function for Write Single Register (FC06)">
 <polygon fill="white" stroke="#666666" points="479.62,-30.5 316.62,-30.5 316.62,0 479.62,0 479.62,-30.5"/>
 <text xml:space="preserve" text-anchor="start" x="324.62" y="-17" font-family="Helvetica,sans-Serif" font-size="10.00">TempModbusServer::writeHolding</text>
 <text xml:space="preserve" text-anchor="middle" x="398.12" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">RegisterWorker</text>
@@ -133,7 +133,7 @@
 <!-- Node12 -->
 <g id="Node000012" class="node">
 <title>Node12</title>
-<g id="a_Node000012"><a xlink:href="class_temp_modbus_server.html#a52236f3c77c42d126dcaee7515fa37d3" target="_top" xlink:title=" ">
+<g id="a_Node000012"><a xlink:href="class_temp_modbus_server.html#a52236f3c77c42d126dcaee7515fa37d3" target="_top" xlink:title="Worker function for Write Multiple Registers (FC16)">
 <polygon fill="white" stroke="#666666" points="480,-79.5 316.25,-79.5 316.25,-49 480,-49 480,-79.5"/>
 <text xml:space="preserve" text-anchor="start" x="324.25" y="-66" font-family="Helvetica,sans-Serif" font-size="10.00">TempModbusServer::writeMultiple</text>
 <text xml:space="preserve" text-anchor="middle" x="398.12" y="-54.75" font-family="Helvetica,sans-Serif" font-size="10.00">RegistersWorker</text>
@@ -170,7 +170,7 @@
 <!-- Node5 -->
 <g id="Node000005" class="node">
 <title>Node5</title>
-<g id="a_Node000005"><a xlink:href="class_temp_modbus_server.html#aac671b84770f4139745d08d05b5c1d92" target="_top" xlink:title=" ">
+<g id="a_Node000005"><a xlink:href="class_temp_modbus_server.html#aac671b84770f4139745d08d05b5c1d92" target="_top" xlink:title="Initialize and start Modbus server.">
 <polygon fill="white" stroke="#666666" points="280.25,-73.88 148,-73.88 148,-54.62 280.25,-54.62 280.25,-73.88"/>
 <text xml:space="preserve" text-anchor="middle" x="214.12" y="-60.38" font-family="Helvetica,sans-Serif" font-size="10.00">TempModbusServer::begin</text>
 </a>
@@ -188,7 +188,7 @@
 <!-- Node8 -->
 <g id="Node000008" class="node">
 <title>Node8</title>
-<g id="a_Node000008"><a xlink:href="class_temperature_controller.html#aca5deddbf703001373424d876f87b5f2" target="_top" xlink:title=" ">
+<g id="a_Node000008"><a xlink:href="class_temperature_controller.html#aca5deddbf703001373424d876f87b5f2" target="_top" xlink:title="Main update function &#45; must be called in loop()">
 <polygon fill="white" stroke="#666666" points="270.12,-263.5 158.12,-263.5 158.12,-233 270.12,-233 270.12,-263.5"/>
 <text xml:space="preserve" text-anchor="start" x="166.12" y="-250" font-family="Helvetica,sans-Serif" font-size="10.00">TemperatureController</text>
 <text xml:space="preserve" text-anchor="middle" x="214.12" y="-238.75" font-family="Helvetica,sans-Serif" font-size="10.00">::update</text>
@@ -207,7 +207,7 @@
 <!-- Node9 -->
 <g id="Node000009" class="node">
 <title>Node9</title>
-<g id="a_Node000009"><a xlink:href="class_temperature_controller.html#a11948a87fe7df37543b86ecdd488b341" target="_top" xlink:title=" ">
+<g id="a_Node000009"><a xlink:href="class_temperature_controller.html#a11948a87fe7df37543b86ecdd488b341" target="_top" xlink:title="Read temperature from all configured measurement points.">
 <polygon fill="white" stroke="#666666" points="112,-263.5 0,-263.5 0,-233 112,-233 112,-263.5"/>
 <text xml:space="preserve" text-anchor="start" x="8" y="-250" font-family="Helvetica,sans-Serif" font-size="10.00">TemperatureController</text>
 <text xml:space="preserve" text-anchor="middle" x="56" y="-238.75" font-family="Helvetica,sans-Serif" font-size="10.00">::readAllPoints</text>

@@ -1,3 +1,23 @@
+/**
+ * @file CSVConfigManager.cpp
+ * @brief Implementation of CSV configuration management for measurement points
+ * @author Claude Code Session 20250720_221011
+ * @date 2025-01-20
+ * @details Implements CSV export/import functionality for temperature measurement
+ *          points, including sensor configuration, alarm settings, and priorities.
+ * 
+ * @section dependencies Dependencies
+ * - CSVConfigManager.h for class definition
+ * - TemperatureController for measurement point access
+ * - LittleFS for file operations
+ * 
+ * @section format CSV Format
+ * - Header includes all configuration fields
+ * - Sample line with point -1 shows alarm priorities
+ * - Supports DS18B20 and PT1000 sensor configurations
+ * - Includes alarm threshold and priority settings
+ */
+
 #include "CSVConfigManager.h"
 #include <LittleFS.h>
 

@@ -92,6 +92,9 @@ $(function(){initNavTree('_time_manager_8h.html','',''); });
   <div class="headertitle"><div class="title">TimeManager.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Real-time clock and time synchronization management.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;Arduino.h&gt;</code><br />
 <code>#include &lt;WiFi.h&gt;</code><br />
 <code>#include &lt;Wire.h&gt;</code><br />
@@ -115,8 +118,31 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Data Structures</h2></td></tr>
 <tr class="memitem:TimeManager" id="r_TimeManager"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_time_manager.html">TimeManager</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Manages system time with RTC and NTP synchronization.  <a href="class_time_manager.html#details">More...</a><br /></td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Real-time clock and time synchronization management. </p>
+<dl class="section author"><dt>Author</dt><dd>Claude Code Session 20250720_221011 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2025-01-20</dd></dl>
+<p>Manages system time using DS3231 RTC with NTP synchronization support. Provides timezone handling, alarms, and time formatting capabilities.</p>
+<h1 class="doxsection"><a class="anchor" id="dependencies"></a>
+Dependencies</h1>
+<ul>
+<li>RTClib for DS3231 RTC interface</li>
+<li>NTPClient for network time synchronization</li>
+<li>WiFi libraries for NTP connectivity</li>
+<li>ArduinoJson for JSON output</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="hardware"></a>
+Hardware Requirements</h1>
+<ul>
+<li>DS3231 RTC module on I2C bus</li>
+<li>WiFi connectivity for NTP synchronization</li>
+<li>Default I2C pins: SDA=21, SCL=22 </li>
+</ul>
+
+<p class="definition">Definition in file <a class="el" href="_time_manager_8h_source.html">TimeManager.h</a>.</p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">
 <div id="page-nav-resize-handle"></div>

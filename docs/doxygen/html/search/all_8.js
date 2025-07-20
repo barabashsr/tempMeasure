@@ -7,7 +7,7 @@ var searchData=
   ['handleinterrupt_4',['handleInterrupt',['../class_indicator_interface.html#a4586496158d0d102742463c908d9b2c3',1,'IndicatorInterface']]],
   ['handlelowpriorityalarms_5',['handleLowPriorityAlarms',['../class_temperature_controller.html#a16cb79caee63ec4acdd539adbb74ba40',1,'TemperatureController']]],
   ['handlemediumpriorityalarms_6',['handleMediumPriorityAlarms',['../class_temperature_controller.html#a7da957a2899fb3b47d94d279c2099ca2',1,'TemperatureController']]],
-  ['hardware_20requirements_7',['Hardware Requirements',['../main_8cpp.html#hardware',1,'']]],
+  ['hardware_20requirements_7',['Hardware Requirements',['../_time_manager_8cpp.html#hardware',1,'']]],
   ['haslostpower_8',['hasLostPower',['../class_time_manager.html#a8103064c75b5a937ccbf410aff2847d5',1,'TimeManager']]],
   ['high_5falarm_5fds18b20_5fend_5freg_9',['HIGH_ALARM_DS18B20_END_REG',['../class_register_map.html#af1eec1485d0d78320e17476b87d57ad3',1,'RegisterMap']]],
   ['high_5falarm_5fds18b20_5fstart_5freg_10',['HIGH_ALARM_DS18B20_START_REG',['../class_register_map.html#a94eb0a7c3854218019f4d5047445c53b',1,'RegisterMap']]],

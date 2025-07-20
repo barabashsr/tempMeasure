@@ -92,6 +92,9 @@ $(function(){initNavTree('_sensor_8h.html','',''); });
   <div class="headertitle"><div class="title">Sensor.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Temperature sensor abstraction layer.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;Arduino.h&gt;</code><br />
 <code>#include &lt;OneWire.h&gt;</code><br />
 <code>#include &lt;DallasTemperature.h&gt;</code><br />
@@ -112,22 +115,55 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Data Structures</h2></td></tr>
 <tr class="memitem:Sensor" id="r_Sensor"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sensor.html">Sensor</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abstract temperature sensor interface.  <a href="class_sensor.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr class="memitem:a213c434cb928c4ca22513e2302632435" id="r_a213c434cb928c4ca22513e2302632435"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a213c434cb928c4ca22513e2302632435">SensorType</a> { <a class="el" href="#a213c434cb928c4ca22513e2302632435aac1bc058b939e1c55e1496c8574f3691">DS18B20</a>
 , <a class="el" href="#a213c434cb928c4ca22513e2302632435a481caba3768b84e8b68fb58b04ec595e">PT1000</a>
  }</td></tr>
+<tr class="memdesc:a213c434cb928c4ca22513e2302632435"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumeration of supported sensor types.  <a href="#a213c434cb928c4ca22513e2302632435">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
+<tr id="var-members-0" class="groupHeader"><td colspan="2"><div class="groupHeader">Error Status Bitmasks</div></td></tr>
+<tr><td colspan="2" class="ititle"><div class="groupText"><p>Bit flags for sensor error conditions </p>
+</div></td></tr>
 <tr class="memitem:a2414e990a5472bc239f99ae14c9ed66f" id="r_a2414e990a5472bc239f99ae14c9ed66f"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2414e990a5472bc239f99ae14c9ed66f">ERROR_COMMUNICATION</a> = 0x01</td></tr>
+<tr class="memdesc:a2414e990a5472bc239f99ae14c9ed66f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Communication error with sensor.  <br /></td></tr>
 <tr class="memitem:a5e765138e11b96eed4933eec3611b571" id="r_a5e765138e11b96eed4933eec3611b571"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5e765138e11b96eed4933eec3611b571">ERROR_OUT_OF_RANGE</a> = 0x02</td></tr>
+<tr class="memdesc:a5e765138e11b96eed4933eec3611b571"><td class="mdescLeft">&#160;</td><td class="mdescRight">Temperature reading out of valid range.  <br /></td></tr>
 <tr class="memitem:ab65c92ee1954ab03e64f69b1706726a8" id="r_ab65c92ee1954ab03e64f69b1706726a8"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab65c92ee1954ab03e64f69b1706726a8">ERROR_DISCONNECTED</a> = 0x04</td></tr>
+<tr class="memdesc:ab65c92ee1954ab03e64f69b1706726a8"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_sensor.html" title="Abstract temperature sensor interface.">Sensor</a> physically disconnected.  <br /></td></tr>
+<tr id="var-members-1" class="groupHeader"><td colspan="2"><div class="groupHeader">Alarm Status Bitmasks</div></td></tr>
+<tr><td colspan="2" class="ititle"><div class="groupText"><p>Bit flags for temperature alarm conditions </p>
+</div></td></tr>
 <tr class="memitem:a23317a6f5a20f7fff89a69642e417b1f" id="r_a23317a6f5a20f7fff89a69642e417b1f"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a23317a6f5a20f7fff89a69642e417b1f">ALARM_LOW_TEMP</a> = 0x01</td></tr>
+<tr class="memdesc:a23317a6f5a20f7fff89a69642e417b1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Temperature below low threshold.  <br /></td></tr>
 <tr class="memitem:a69ac9fe143e56b941b2e467e700f9f98" id="r_a69ac9fe143e56b941b2e467e700f9f98"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a69ac9fe143e56b941b2e467e700f9f98">ALARM_HIGH_TEMP</a> = 0x02</td></tr>
+<tr class="memdesc:a69ac9fe143e56b941b2e467e700f9f98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Temperature above high threshold.  <br /></td></tr>
 </table>
-<a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Enumeration Type Documentation</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Temperature sensor abstraction layer. </p>
+<dl class="section author"><dt>Author</dt><dd>Claude Code Session 20250720_221011 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2025-01-20</dd></dl>
+<p>Provides a unified interface for different temperature sensor types (DS18B20 and PT1000) with error handling, alarm management, and temperature tracking capabilities.</p>
+<h1 class="doxsection"><a class="anchor" id="dependencies"></a>
+Dependencies</h1>
+<ul>
+<li>OneWire library for DS18B20 communication</li>
+<li>DallasTemperature for DS18B20 interface</li>
+<li>Adafruit_MAX31865 for PT1000 RTD interface</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="hardware"></a>
+Hardware Requirements</h1>
+<ul>
+<li>DS18B20: OneWire digital temperature sensors</li>
+<li>PT1000: RTD sensors with MAX31865 interface </li>
+</ul>
+
+<p class="definition">Definition in file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
+</div><a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Enumeration Type Documentation</h2>
 <a id="a213c434cb928c4ca22513e2302632435" name="a213c434cb928c4ca22513e2302632435"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a213c434cb928c4ca22513e2302632435">&#9670;&#160;</a></span>SensorType</h2>
 
@@ -147,12 +183,16 @@ Variables</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Enumeration of supported sensor types. </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a213c434cb928c4ca22513e2302632435aac1bc058b939e1c55e1496c8574f3691" name="a213c434cb928c4ca22513e2302632435aac1bc058b939e1c55e1496c8574f3691"></a>DS18B20&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a213c434cb928c4ca22513e2302632435a481caba3768b84e8b68fb58b04ec595e" name="a213c434cb928c4ca22513e2302632435a481caba3768b84e8b68fb58b04ec595e"></a>PT1000&#160;</td><td class="fielddoc"></td></tr>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a213c434cb928c4ca22513e2302632435aac1bc058b939e1c55e1496c8574f3691" name="a213c434cb928c4ca22513e2302632435aac1bc058b939e1c55e1496c8574f3691"></a>DS18B20&#160;</td><td class="fielddoc"><p>Dallas DS18B20 digital temperature sensor. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a213c434cb928c4ca22513e2302632435a481caba3768b84e8b68fb58b04ec595e" name="a213c434cb928c4ca22513e2302632435a481caba3768b84e8b68fb58b04ec595e"></a>PT1000&#160;</td><td class="fielddoc"><p>PT1000 RTD temperature sensor. </p>
+</td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00010">10</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00032">32</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
 
 </div>
 </div>
@@ -177,9 +217,11 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00021">21</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
+<p>Temperature above high threshold. </p>
 
-<p class="reference">Referenced by <a class="el" href="_sensor_8cpp_source.html#l00182">Sensor::updateAlarmStatus()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00053">53</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_sensor_8cpp_source.html#l00200">Sensor::updateAlarmStatus()</a>.</p>
 
 </div>
 </div>
@@ -203,9 +245,11 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00020">20</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
+<p>Temperature below low threshold. </p>
 
-<p class="reference">Referenced by <a class="el" href="_sensor_8cpp_source.html#l00182">Sensor::updateAlarmStatus()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00052">52</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_sensor_8cpp_source.html#l00200">Sensor::updateAlarmStatus()</a>.</p>
 
 </div>
 </div>
@@ -229,9 +273,11 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00016">16</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
+<p>Communication error with sensor. </p>
 
-<p class="reference">Referenced by <a class="el" href="_sensor_8cpp_source.html#l00100">Sensor::readTemperature()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00042">42</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_sensor_8cpp_source.html#l00118">Sensor::readTemperature()</a>.</p>
 
 </div>
 </div>
@@ -255,9 +301,11 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00018">18</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
+<p><a class="el" href="class_sensor.html" title="Abstract temperature sensor interface.">Sensor</a> physically disconnected. </p>
 
-<p class="reference">Referenced by <a class="el" href="_sensor_8cpp_source.html#l00100">Sensor::readTemperature()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00044">44</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_sensor_8cpp_source.html#l00118">Sensor::readTemperature()</a>.</p>
 
 </div>
 </div>
@@ -281,9 +329,11 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00017">17</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
+<p>Temperature reading out of valid range. </p>
 
-<p class="reference">Referenced by <a class="el" href="_sensor_8cpp_source.html#l00100">Sensor::readTemperature()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00043">43</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_sensor_8cpp_source.html#l00118">Sensor::readTemperature()</a>.</p>
 
 </div>
 </div>

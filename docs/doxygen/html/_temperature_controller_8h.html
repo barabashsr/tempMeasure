@@ -92,6 +92,9 @@ $(function(){initNavTree('_temperature_controller_8h.html','',''); });
   <div class="headertitle"><div class="title">TemperatureController.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Central temperature monitoring and control system.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;Arduino.h&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
 <code>#include &quot;<a class="el" href="_sensor_8h_source.html">Sensor.h</a>&quot;</code><br />
@@ -119,8 +122,33 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Data Structures</h2></td></tr>
 <tr class="memitem:TemperatureController" id="r_TemperatureController"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_temperature_controller.html">TemperatureController</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main controller for temperature monitoring system.  <a href="class_temperature_controller.html#details">More...</a><br /></td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Central temperature monitoring and control system. </p>
+<dl class="section author"><dt>Author</dt><dd>Claude Code Session 20250720_221011 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2025-01-20</dd></dl>
+<p>This class manages all temperature sensors, measurement points, alarms, and system configuration for the temperature monitoring system. It provides interfaces for sensor discovery, data collection, alarm management, and Modbus communication through register mapping.</p>
+<h1 class="doxsection"><a class="anchor" id="dependencies"></a>
+Dependencies</h1>
+<ul>
+<li>OneWire library for DS18B20 sensors</li>
+<li>DallasTemperature for DS18B20 communication</li>
+<li>ArduinoJson for JSON serialization</li>
+<li>Custom classes: <a class="el" href="class_sensor.html" title="Abstract temperature sensor interface.">Sensor</a>, <a class="el" href="class_measurement_point.html" title="Logical measurement point for temperature monitoring.">MeasurementPoint</a>, <a class="el" href="class_register_map.html" title="Manages Modbus register mapping for temperature monitoring.">RegisterMap</a>, <a class="el" href="class_indicator_interface.html" title="Interface class for PCF8575 I/O expander and OLED display.">IndicatorInterface</a>, <a class="el" href="class_alarm.html" title="Main alarm class for temperature monitoring system.">Alarm</a></li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="hardware"></a>
+Hardware Requirements</h1>
+<ul>
+<li>Up to 4 OneWire buses for DS18B20 sensors</li>
+<li>Up to 4 SPI chip select pins for PT1000 sensors</li>
+<li>Support for up to 50 DS18B20 sensors</li>
+<li>Support for up to 10 PT1000 sensors</li>
+<li>LED indicators and relay outputs for alarm signaling </li>
+</ul>
+
+<p class="definition">Definition in file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">
 <div id="page-nav-resize-handle"></div>

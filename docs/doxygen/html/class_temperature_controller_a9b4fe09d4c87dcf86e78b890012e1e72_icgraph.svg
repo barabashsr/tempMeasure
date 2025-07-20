@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Get sensor bound to measurement point.">
 <polygon fill="#999999" stroke="#666666" points="586.75,-54.5 474.75,-54.5 474.75,-24 586.75,-24 586.75,-54.5"/>
 <text xml:space="preserve" text-anchor="start" x="482.75" y="-41" font-family="Helvetica,sans-Serif" font-size="10.00">TemperatureController</text>
 <text xml:space="preserve" text-anchor="middle" x="530.75" y="-29.75" font-family="Helvetica,sans-Serif" font-size="10.00">::getBoundSensor</text>
@@ -21,7 +21,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="class_temperature_controller.html#a4e4770607486ebfc6eacafa704945c23" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="class_temperature_controller.html#a4e4770607486ebfc6eacafa704945c23" target="_top" xlink:title="Remove sensor by ROM address string.">
 <polygon fill="white" stroke="#666666" points="438.75,-79.5 320.75,-79.5 320.75,-49 438.75,-49 438.75,-79.5"/>
 <text xml:space="preserve" text-anchor="start" x="328.75" y="-66" font-family="Helvetica,sans-Serif" font-size="10.00">TemperatureController</text>
 <text xml:space="preserve" text-anchor="middle" x="379.75" y="-54.75" font-family="Helvetica,sans-Serif" font-size="10.00">::removeSensorByRom</text>
@@ -40,7 +40,7 @@
 <!-- Node4 -->
 <g id="Node000004" class="node">
 <title>Node4</title>
-<g id="a_Node000004"><a xlink:href="class_temperature_controller.html#a5ac8af90de5dfd79a9a2e4c7270a98a3" target="_top" xlink:title=" ">
+<g id="a_Node000004"><a xlink:href="class_temperature_controller.html#a5ac8af90de5dfd79a9a2e4c7270a98a3" target="_top" xlink:title="Update alarm states for all measurement points.">
 <polygon fill="white" stroke="#666666" points="435.75,-30.5 323.75,-30.5 323.75,0 435.75,0 435.75,-30.5"/>
 <text xml:space="preserve" text-anchor="start" x="331.75" y="-17" font-family="Helvetica,sans-Serif" font-size="10.00">TemperatureController</text>
 <text xml:space="preserve" text-anchor="middle" x="379.75" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">::updateAlarms</text>
@@ -59,7 +59,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="class_temperature_controller.html#a57b74b40c88016965d07248981412f7d" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="class_temperature_controller.html#a57b74b40c88016965d07248981412f7d" target="_top" xlink:title="Discover DS18B20 sensors on all OneWire buses.">
 <polygon fill="white" stroke="#666666" points="284.75,-79.5 148,-79.5 148,-49 284.75,-49 284.75,-79.5"/>
 <text xml:space="preserve" text-anchor="start" x="156" y="-66" font-family="Helvetica,sans-Serif" font-size="10.00">TemperatureController</text>
 <text xml:space="preserve" text-anchor="middle" x="216.38" y="-54.75" font-family="Helvetica,sans-Serif" font-size="10.00">::discoverDS18B20Sensors</text>
@@ -78,7 +78,7 @@
 <!-- Node5 -->
 <g id="Node000005" class="node">
 <title>Node5</title>
-<g id="a_Node000005"><a xlink:href="class_temperature_controller.html#aca5deddbf703001373424d876f87b5f2" target="_top" xlink:title=" ">
+<g id="a_Node000005"><a xlink:href="class_temperature_controller.html#aca5deddbf703001373424d876f87b5f2" target="_top" xlink:title="Main update function &#45; must be called in loop()">
 <polygon fill="white" stroke="#666666" points="272.38,-30.5 160.38,-30.5 160.38,0 272.38,0 272.38,-30.5"/>
 <text xml:space="preserve" text-anchor="start" x="168.38" y="-17" font-family="Helvetica,sans-Serif" font-size="10.00">TemperatureController</text>
 <text xml:space="preserve" text-anchor="middle" x="216.38" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">::update</text>
@@ -97,7 +97,7 @@
 <!-- Node6 -->
 <g id="Node000006" class="node">
 <title>Node6</title>
-<g id="a_Node000006"><a xlink:href="class_temperature_controller.html#a11948a87fe7df37543b86ecdd488b341" target="_top" xlink:title=" ">
+<g id="a_Node000006"><a xlink:href="class_temperature_controller.html#a11948a87fe7df37543b86ecdd488b341" target="_top" xlink:title="Read temperature from all configured measurement points.">
 <polygon fill="white" stroke="#666666" points="112,-30.5 0,-30.5 0,0 112,0 112,-30.5"/>
 <text xml:space="preserve" text-anchor="start" x="8" y="-17" font-family="Helvetica,sans-Serif" font-size="10.00">TemperatureController</text>
 <text xml:space="preserve" text-anchor="middle" x="56" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">::readAllPoints</text>

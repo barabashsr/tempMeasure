@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['hardware_20requirements_0',['Hardware Requirements',['../main_8cpp.html#hardware',1,'']]]
+  ['dependencies_0',['Dependencies',['../_time_manager_8cpp.html#dependencies',1,'']]]
 ];

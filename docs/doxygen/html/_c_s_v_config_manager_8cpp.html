@@ -92,6 +92,9 @@ $(function(){initNavTree('_c_s_v_config_manager_8cpp.html','',''); });
   <div class="headertitle"><div class="title">CSVConfigManager.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Implementation of CSV configuration management for measurement points.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="_c_s_v_config_manager_8h_source.html">CSVConfigManager.h</a>&quot;</code><br />
 <code>#include &lt;LittleFS.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -101,7 +104,29 @@ Include dependency graph for CSVConfigManager.cpp:</div>
 </div>
 </div>
 <p><a href="_c_s_v_config_manager_8cpp_source.html">Go to the source code of this file.</a></p>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Implementation of CSV configuration management for measurement points. </p>
+<dl class="section author"><dt>Author</dt><dd>Claude Code Session 20250720_221011 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2025-01-20</dd></dl>
+<p>Implements CSV export/import functionality for temperature measurement points, including sensor configuration, alarm settings, and priorities.</p>
+<h1 class="doxsection"><a class="anchor" id="dependencies"></a>
+Dependencies</h1>
+<ul>
+<li><a class="el" href="_c_s_v_config_manager_8h.html" title="CSV configuration import/export manager for measurement points and alarms.">CSVConfigManager.h</a> for class definition</li>
+<li><a class="el" href="class_temperature_controller.html" title="Main controller for temperature monitoring system.">TemperatureController</a> for measurement point access</li>
+<li>LittleFS for file operations</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="format"></a>
+CSV Format</h1>
+<ul>
+<li>Header includes all configuration fields</li>
+<li>Sample line with point -1 shows alarm priorities</li>
+<li>Supports DS18B20 and PT1000 sensor configurations</li>
+<li>Includes alarm threshold and priority settings </li>
+</ul>
+
+<p class="definition">Definition in file <a class="el" href="_c_s_v_config_manager_8cpp_source.html">CSVConfigManager.cpp</a>.</p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">
 <div id="page-nav-resize-handle"></div>

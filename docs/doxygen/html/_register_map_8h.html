@@ -92,6 +92,9 @@ $(function(){initNavTree('_register_map_8h.html','',''); });
   <div class="headertitle"><div class="title">RegisterMap.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Modbus register mapping for temperature monitoring system.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="_measurement_point_8h_source.html">MeasurementPoint.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -110,8 +113,39 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Data Structures</h2></td></tr>
 <tr class="memitem:RegisterMap" id="r_RegisterMap"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_register_map.html">RegisterMap</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Manages Modbus register mapping for temperature monitoring.  <a href="class_register_map.html#details">More...</a><br /></td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Modbus register mapping for temperature monitoring system. </p>
+<dl class="section author"><dt>Author</dt><dd>Claude Code Session 20250720_221011 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2025-01-20</dd></dl>
+<p>Defines the Modbus register layout for external communication with the temperature monitoring system. Provides register addresses and access methods for device information, temperature data, and configuration parameters.</p>
+<h1 class="doxsection"><a class="anchor" id="dependencies"></a>
+Dependencies</h1>
+<ul>
+<li><a class="el" href="_measurement_point_8h.html" title="Measurement point abstraction for temperature monitoring system.">MeasurementPoint.h</a> for temperature data interface</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="hardware"></a>
+Hardware Requirements</h1>
+<ul>
+<li>Modbus RTU/TCP communication interface</li>
+<li>Support for 60 total measurement points (50 DS18B20 + 10 PT1000)</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="register_layout"></a>
+Register Layout</h1>
+<ul>
+<li>0-99: Device Information (ID, version, status)</li>
+<li>100-199: Current temperature values</li>
+<li>200-299: Minimum temperature values</li>
+<li>300-399: Maximum temperature values</li>
+<li>400-499: <a class="el" href="class_alarm.html" title="Main alarm class for temperature monitoring system.">Alarm</a> status flags</li>
+<li>500-599: Error status flags</li>
+<li>600-699: Low temperature alarm thresholds</li>
+<li>700-799: High temperature alarm thresholds </li>
+</ul>
+
+<p class="definition">Definition in file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">
 <div id="page-nav-resize-handle"></div>

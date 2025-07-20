@@ -1,3 +1,26 @@
+/**
+ * @file LoggerManager.cpp
+ * @brief Implementation of data logging and event management system
+ * @author Claude Code Session 20250720_221011
+ * @date 2025-01-20
+ * @details Implements LoggerManager for recording temperature data, system events,
+ *          and alarm states to CSV files with configurable intervals and formats.
+ * 
+ * @section dependencies Dependencies
+ * - LoggerManager.h for class definition
+ * - TemperatureController for temperature data access
+ * - TimeManager for timestamps
+ * - LittleFS/SPIFFS for file storage
+ * 
+ * @section features Features
+ * - Periodic temperature data logging to CSV
+ * - Event logging with timestamps
+ * - Alarm state change logging
+ * - Daily file rotation
+ * - Configurable logging intervals
+ * - Dynamic header generation based on active sensors
+ */
+
 #include "LoggerManager.h"
 #include "TemperatureController.h"  // Full include in .cpp file
 #include "MeasurementPoint.h"       // Add this include

@@ -1,3 +1,21 @@
+/**
+ * @file Sensor.cpp
+ * @brief Implementation of temperature sensor abstraction layer
+ * @author Claude Code Session 20250720_221011
+ * @date 2025-01-20
+ * @details Implements unified sensor interface for DS18B20 and PT1000 temperature
+ *          sensors with error handling, temperature tracking, and alarm management.
+ * 
+ * @section dependencies Dependencies
+ * - Sensor.h for class definition
+ * - OneWire and DallasTemperature for DS18B20
+ * - Adafruit_MAX31865 for PT1000 RTD sensors
+ * 
+ * @section hardware Hardware Requirements
+ * - DS18B20: OneWire digital sensors on GPIO pins
+ * - PT1000: RTD sensors with MAX31865 on SPI bus
+ */
+
 #include "Sensor.h"
 
 //SPI PINs

@@ -92,6 +92,9 @@ $(function(){initNavTree('_temp_modbus_server_8cpp.html','',''); });
   <div class="headertitle"><div class="title">TempModbusServer.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Implementation of Modbus RTU server for temperature monitoring.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="_temp_modbus_server_8h_source.html">TempModbusServer.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for TempModbusServer.cpp:</div>
@@ -100,7 +103,28 @@ Include dependency graph for TempModbusServer.cpp:</div>
 </div>
 </div>
 <p><a href="_temp_modbus_server_8cpp_source.html">Go to the source code of this file.</a></p>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Implementation of Modbus RTU server for temperature monitoring. </p>
+<dl class="section author"><dt>Author</dt><dd>Claude Code Session 20250720_221011 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2025-01-20</dd></dl>
+<p>Implements Modbus RTU server functionality with support for reading temperature data and configuring alarm thresholds via standard Modbus function codes.</p>
+<h1 class="doxsection"><a class="anchor" id="dependencies"></a>
+Dependencies</h1>
+<ul>
+<li><a class="el" href="_temp_modbus_server_8h.html" title="Modbus RTU server for temperature monitoring system.">TempModbusServer.h</a> for class definition</li>
+<li>ModbusServerRTU for protocol implementation</li>
+<li><a class="el" href="class_register_map.html" title="Manages Modbus register mapping for temperature monitoring.">RegisterMap</a> for data storage</li>
+<li><a class="el" href="class_logger_manager.html" title="Forward declaration for measurement point class.">LoggerManager</a> for transaction logging</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="hardware"></a>
+Hardware Requirements</h1>
+<ul>
+<li>RS485 transceiver with DE pin</li>
+<li>Hardware serial port for RTU communication </li>
+</ul>
+
+<p class="definition">Definition in file <a class="el" href="_temp_modbus_server_8cpp_source.html">TempModbusServer.cpp</a>.</p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">
 <div id="page-nav-resize-handle"></div>

@@ -1,3 +1,26 @@
+/**
+ * @file ConfigManager.cpp
+ * @brief Implementation of web-based configuration management system
+ * @author Claude Code Session 20250720_221011
+ * @date 2025-01-20
+ * @details Implements ConfigManager singleton for handling system configuration
+ *          through web interface, including WiFi settings, device parameters,
+ *          and temperature measurement point configuration.
+ * 
+ * @section dependencies Dependencies
+ * - ConfigManager.h for class definition
+ * - ConfigAssist for web configuration interface
+ * - ArduinoJson for JSON processing
+ * - LittleFS for configuration persistence
+ * 
+ * @section features Features
+ * - Web-based configuration interface
+ * - Persistent storage of settings
+ * - Measurement point configuration
+ * - WiFi credentials management
+ * - Alarm threshold configuration
+ */
+
 #include "ConfigManager.h"
 #include <ArduinoJson.h>
 

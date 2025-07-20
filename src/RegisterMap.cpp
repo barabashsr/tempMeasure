@@ -1,3 +1,20 @@
+/**
+ * @file RegisterMap.cpp
+ * @brief Implementation of Modbus register mapping for temperature monitoring
+ * @author Claude Code Session 20250720_221011
+ * @date 2025-01-20
+ * @details Implements the register map functionality for Modbus communication,
+ *          providing access to temperature data, device status, and configuration.
+ * 
+ * @section dependencies Dependencies
+ * - RegisterMap.h for class definition
+ * - MeasurementPoint.h for temperature data interface
+ * 
+ * @section hardware Hardware Requirements
+ * - Modbus RTU/TCP communication interface
+ * - Temperature sensors (DS18B20, PT1000)
+ */
+
 #include "RegisterMap.h"
 
 RegisterMap::RegisterMap() {

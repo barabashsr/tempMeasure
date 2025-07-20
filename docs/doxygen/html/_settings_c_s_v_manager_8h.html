@@ -92,6 +92,9 @@ $(function(){initNavTree('_settings_c_s_v_manager_8h.html','',''); });
   <div class="headertitle"><div class="title">SettingsCSVManager.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>CSV import/export manager for system settings.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;Arduino.h&gt;</code><br />
 <code>#include &quot;ConfigAssist.h&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -110,8 +113,30 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Data Structures</h2></td></tr>
 <tr class="memitem:SettingsCSVManager" id="r_SettingsCSVManager"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_settings_c_s_v_manager.html">SettingsCSVManager</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Manages CSV export/import of system settings.  <a href="class_settings_c_s_v_manager.html#details">More...</a><br /></td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>CSV import/export manager for system settings. </p>
+<dl class="section author"><dt>Author</dt><dd>Claude Code Session 20250720_221011 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2025-01-20</dd></dl>
+<p>Provides functionality to export and import system configuration settings in CSV format for easy backup and configuration management.</p>
+<h1 class="doxsection"><a class="anchor" id="dependencies"></a>
+Dependencies</h1>
+<ul>
+<li>ConfigAssist for configuration management</li>
+<li>Arduino String for data handling</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="features"></a>
+Features</h1>
+<ul>
+<li>Export all settings to CSV format</li>
+<li>Import settings from CSV with validation</li>
+<li>Handle special characters and escaping</li>
+<li>Support for acknowledged delay settings </li>
+</ul>
+
+<p class="definition">Definition in file <a class="el" href="_settings_c_s_v_manager_8h_source.html">SettingsCSVManager.h</a>.</p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">
 <div id="page-nav-resize-handle"></div>

@@ -11,15 +11,16 @@
         <name>_config</name>
         <qualifiedname>SettingsCSVManager::_config</qualifiedname>
         <briefdescription>
+<para>Reference to configuration manager. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/SettingsCSVManager.h" line="19" column="18" bodyfile="include/SettingsCSVManager.h" bodystart="19" bodyend="-1"/>
-        <referencedby refid="class_settings_c_s_v_manager_1aa4822a7de38a44a23e051d1a4c8dc3bf" compoundref="_settings_c_s_v_manager_8cpp" startline="91" endline="158">_parseCSVLine</referencedby>
-        <referencedby refid="class_settings_c_s_v_manager_1a7efabf3fcee7d86a42b8b25c48078450" compoundref="_settings_c_s_v_manager_8cpp" startline="7" endline="32">exportSettingsToCSV</referencedby>
-        <referencedby refid="class_settings_c_s_v_manager_1a39ed23cde861fad720870a5370bddfed" compoundref="_settings_c_s_v_manager_8cpp" startline="3" endline="5">SettingsCSVManager</referencedby>
+        <location file="include/SettingsCSVManager.h" line="73" column="18" bodyfile="include/SettingsCSVManager.h" bodystart="73" bodyend="-1"/>
+        <referencedby refid="class_settings_c_s_v_manager_1aa4822a7de38a44a23e051d1a4c8dc3bf" compoundref="_settings_c_s_v_manager_8cpp" startline="109" endline="176">_parseCSVLine</referencedby>
+        <referencedby refid="class_settings_c_s_v_manager_1a7efabf3fcee7d86a42b8b25c48078450" compoundref="_settings_c_s_v_manager_8cpp" startline="25" endline="50">exportSettingsToCSV</referencedby>
+        <referencedby refid="class_settings_c_s_v_manager_1a39ed23cde861fad720870a5370bddfed" compoundref="_settings_c_s_v_manager_8cpp" startline="21" endline="23">SettingsCSVManager</referencedby>
       </memberdef>
       <memberdef kind="variable" id="class_settings_c_s_v_manager_1a5bc7b46f41120f2d9b938db63cbd6f02" prot="private" static="no" mutable="no">
         <type>String</type>
@@ -28,17 +29,18 @@
         <name>_lastError</name>
         <qualifiedname>SettingsCSVManager::_lastError</qualifiedname>
         <briefdescription>
+<para>Last error message. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/SettingsCSVManager.h" line="20" column="12" bodyfile="include/SettingsCSVManager.h" bodystart="20" bodyend="-1"/>
-        <referencedby refid="class_settings_c_s_v_manager_1aa4822a7de38a44a23e051d1a4c8dc3bf" compoundref="_settings_c_s_v_manager_8cpp" startline="91" endline="158">_parseCSVLine</referencedby>
-        <referencedby refid="class_settings_c_s_v_manager_1abb0dbc41bc5e2ae1ae1c4a8bf8885770" compoundref="_settings_c_s_v_manager_8h" startline="16" endline="16">getLastError</referencedby>
-        <referencedby refid="class_settings_c_s_v_manager_1a1372d30cf87604e22bebf3ec8603454d" compoundref="_settings_c_s_v_manager_8cpp" startline="34" endline="67">importSettingsFromCSV</referencedby>
-        <referencedby refid="class_settings_c_s_v_manager_1a39ed23cde861fad720870a5370bddfed" compoundref="_settings_c_s_v_manager_8cpp" startline="3" endline="5">SettingsCSVManager</referencedby>
-        <referencedby refid="class_settings_c_s_v_manager_1abd602c47d611a0a812b04e06fb31c815" compoundref="_settings_c_s_v_manager_8cpp" startline="69" endline="89">validateSettingsCSV</referencedby>
+        <location file="include/SettingsCSVManager.h" line="74" column="12" bodyfile="include/SettingsCSVManager.h" bodystart="74" bodyend="-1"/>
+        <referencedby refid="class_settings_c_s_v_manager_1aa4822a7de38a44a23e051d1a4c8dc3bf" compoundref="_settings_c_s_v_manager_8cpp" startline="109" endline="176">_parseCSVLine</referencedby>
+        <referencedby refid="class_settings_c_s_v_manager_1abb0dbc41bc5e2ae1ae1c4a8bf8885770" compoundref="_settings_c_s_v_manager_8h" startline="70" endline="70">getLastError</referencedby>
+        <referencedby refid="class_settings_c_s_v_manager_1a1372d30cf87604e22bebf3ec8603454d" compoundref="_settings_c_s_v_manager_8cpp" startline="52" endline="85">importSettingsFromCSV</referencedby>
+        <referencedby refid="class_settings_c_s_v_manager_1a39ed23cde861fad720870a5370bddfed" compoundref="_settings_c_s_v_manager_8cpp" startline="21" endline="23">SettingsCSVManager</referencedby>
+        <referencedby refid="class_settings_c_s_v_manager_1abd602c47d611a0a812b04e06fb31c815" compoundref="_settings_c_s_v_manager_8cpp" startline="87" endline="107">validateSettingsCSV</referencedby>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -53,14 +55,25 @@
           <declname>config</declname>
         </param>
         <briefdescription>
+<para>Construct a new Settings CSV Manager object. </para>
         </briefdescription>
         <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">config</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to ConfigAssist instance </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/SettingsCSVManager.h" line="8" column="5" bodyfile="src/SettingsCSVManager.cpp" bodystart="3" bodyend="5"/>
-        <references refid="class_settings_c_s_v_manager_1ab6bfec4580dfd75c036c280149228ffc" compoundref="_settings_c_s_v_manager_8h" startline="19">_config</references>
-        <references refid="class_settings_c_s_v_manager_1a5bc7b46f41120f2d9b938db63cbd6f02" compoundref="_settings_c_s_v_manager_8h" startline="20">_lastError</references>
+        <location file="include/SettingsCSVManager.h" line="37" column="5" bodyfile="src/SettingsCSVManager.cpp" bodystart="21" bodyend="23"/>
+        <references refid="class_settings_c_s_v_manager_1ab6bfec4580dfd75c036c280149228ffc" compoundref="_settings_c_s_v_manager_8h" startline="73">_config</references>
+        <references refid="class_settings_c_s_v_manager_1a5bc7b46f41120f2d9b938db63cbd6f02" compoundref="_settings_c_s_v_manager_8h" startline="74">_lastError</references>
       </memberdef>
       <memberdef kind="function" id="class_settings_c_s_v_manager_1a7efabf3fcee7d86a42b8b25c48078450" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>String</type>
@@ -69,14 +82,18 @@
         <name>exportSettingsToCSV</name>
         <qualifiedname>SettingsCSVManager::exportSettingsToCSV</qualifiedname>
         <briefdescription>
+<para>Export all settings to CSV format. </para>
         </briefdescription>
         <detaileddescription>
+<para><simplesect kind="return"><para>String CSV formatted settings</para>
+</simplesect>
+Generates CSV with key-value pairs for all configuration items </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/SettingsCSVManager.h" line="11" column="12" bodyfile="src/SettingsCSVManager.cpp" bodystart="7" bodyend="32"/>
-        <references refid="class_settings_c_s_v_manager_1ab6bfec4580dfd75c036c280149228ffc" compoundref="_settings_c_s_v_manager_8h" startline="19">_config</references>
-        <references refid="class_settings_c_s_v_manager_1a3d258dd163c5eed187dc9a8b0e9dfc01" compoundref="_settings_c_s_v_manager_8cpp" startline="161" endline="175">_escapeCSVField</references>
+        <location file="include/SettingsCSVManager.h" line="45" column="12" bodyfile="src/SettingsCSVManager.cpp" bodystart="25" bodyend="50"/>
+        <references refid="class_settings_c_s_v_manager_1ab6bfec4580dfd75c036c280149228ffc" compoundref="_settings_c_s_v_manager_8h" startline="73">_config</references>
+        <references refid="class_settings_c_s_v_manager_1a3d258dd163c5eed187dc9a8b0e9dfc01" compoundref="_settings_c_s_v_manager_8cpp" startline="179" endline="193">_escapeCSVField</references>
       </memberdef>
       <memberdef kind="function" id="class_settings_c_s_v_manager_1a1372d30cf87604e22bebf3ec8603454d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -89,15 +106,30 @@
           <declname>csvData</declname>
         </param>
         <briefdescription>
+<para>Import settings from CSV data. </para>
         </briefdescription>
         <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">csvData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>CSV formatted configuration data </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if import successful </para>
+</simplesect>
+<simplesect kind="return"><para>false if CSV invalid or import failed</para>
+</simplesect>
+Validates and applies settings from CSV input </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/SettingsCSVManager.h" line="12" column="10" bodyfile="src/SettingsCSVManager.cpp" bodystart="34" bodyend="67"/>
-        <references refid="class_settings_c_s_v_manager_1a5bc7b46f41120f2d9b938db63cbd6f02" compoundref="_settings_c_s_v_manager_8h" startline="20">_lastError</references>
-        <references refid="class_settings_c_s_v_manager_1aa4822a7de38a44a23e051d1a4c8dc3bf" compoundref="_settings_c_s_v_manager_8cpp" startline="91" endline="158">_parseCSVLine</references>
-        <references refid="class_settings_c_s_v_manager_1abd602c47d611a0a812b04e06fb31c815" compoundref="_settings_c_s_v_manager_8cpp" startline="69" endline="89">validateSettingsCSV</references>
+        <location file="include/SettingsCSVManager.h" line="54" column="10" bodyfile="src/SettingsCSVManager.cpp" bodystart="52" bodyend="85"/>
+        <references refid="class_settings_c_s_v_manager_1a5bc7b46f41120f2d9b938db63cbd6f02" compoundref="_settings_c_s_v_manager_8h" startline="74">_lastError</references>
+        <references refid="class_settings_c_s_v_manager_1aa4822a7de38a44a23e051d1a4c8dc3bf" compoundref="_settings_c_s_v_manager_8cpp" startline="109" endline="176">_parseCSVLine</references>
+        <references refid="class_settings_c_s_v_manager_1abd602c47d611a0a812b04e06fb31c815" compoundref="_settings_c_s_v_manager_8cpp" startline="87" endline="107">validateSettingsCSV</references>
       </memberdef>
       <memberdef kind="function" id="class_settings_c_s_v_manager_1abd602c47d611a0a812b04e06fb31c815" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -110,14 +142,29 @@
           <declname>csvData</declname>
         </param>
         <briefdescription>
+<para>Validate CSV data without importing. </para>
         </briefdescription>
         <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">csvData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>CSV data to validate </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if CSV format is valid </para>
+</simplesect>
+<simplesect kind="return"><para>false if CSV format is invalid</para>
+</simplesect>
+Checks CSV structure and field validity </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/SettingsCSVManager.h" line="15" column="10" bodyfile="src/SettingsCSVManager.cpp" bodystart="69" bodyend="89"/>
-        <references refid="class_settings_c_s_v_manager_1a5bc7b46f41120f2d9b938db63cbd6f02" compoundref="_settings_c_s_v_manager_8h" startline="20">_lastError</references>
-        <referencedby refid="class_settings_c_s_v_manager_1a1372d30cf87604e22bebf3ec8603454d" compoundref="_settings_c_s_v_manager_8cpp" startline="34" endline="67">importSettingsFromCSV</referencedby>
+        <location file="include/SettingsCSVManager.h" line="64" column="10" bodyfile="src/SettingsCSVManager.cpp" bodystart="87" bodyend="107"/>
+        <references refid="class_settings_c_s_v_manager_1a5bc7b46f41120f2d9b938db63cbd6f02" compoundref="_settings_c_s_v_manager_8h" startline="74">_lastError</references>
+        <referencedby refid="class_settings_c_s_v_manager_1a1372d30cf87604e22bebf3ec8603454d" compoundref="_settings_c_s_v_manager_8cpp" startline="52" endline="85">importSettingsFromCSV</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_settings_c_s_v_manager_1abb0dbc41bc5e2ae1ae1c4a8bf8885770" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>String</type>
@@ -126,13 +173,17 @@
         <name>getLastError</name>
         <qualifiedname>SettingsCSVManager::getLastError</qualifiedname>
         <briefdescription>
+<para>Get last error message. </para>
         </briefdescription>
         <detaileddescription>
+<para><simplesect kind="return"><para>String Description of last error </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/SettingsCSVManager.h" line="16" column="12" bodyfile="include/SettingsCSVManager.h" bodystart="16" bodyend="16"/>
-        <references refid="class_settings_c_s_v_manager_1a5bc7b46f41120f2d9b938db63cbd6f02" compoundref="_settings_c_s_v_manager_8h" startline="20">_lastError</references>
+        <location file="include/SettingsCSVManager.h" line="70" column="12" bodyfile="include/SettingsCSVManager.h" bodystart="70" bodyend="70"/>
+        <references refid="class_settings_c_s_v_manager_1a5bc7b46f41120f2d9b938db63cbd6f02" compoundref="_settings_c_s_v_manager_8h" startline="74">_lastError</references>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-func">
@@ -147,13 +198,26 @@
           <declname>field</declname>
         </param>
         <briefdescription>
+<para>Escape special characters for CSV field. </para>
         </briefdescription>
         <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">field</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Field value to escape </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>String Escaped field value</para>
+</simplesect>
+Handles quotes, commas, and newlines </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/SettingsCSVManager.h" line="23" column="12" bodyfile="src/SettingsCSVManager.cpp" bodystart="161" bodyend="175"/>
-        <referencedby refid="class_settings_c_s_v_manager_1a7efabf3fcee7d86a42b8b25c48078450" compoundref="_settings_c_s_v_manager_8cpp" startline="7" endline="32">exportSettingsToCSV</referencedby>
+        <location file="include/SettingsCSVManager.h" line="83" column="12" bodyfile="src/SettingsCSVManager.cpp" bodystart="179" bodyend="193"/>
+        <referencedby refid="class_settings_c_s_v_manager_1a7efabf3fcee7d86a42b8b25c48078450" compoundref="_settings_c_s_v_manager_8cpp" startline="25" endline="50">exportSettingsToCSV</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_settings_c_s_v_manager_1ab560afb1aa799dcd6f98f91c896abfc5" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>String</type>
@@ -166,13 +230,26 @@
           <declname>field</declname>
         </param>
         <briefdescription>
+<para>Unescape CSV field value. </para>
         </briefdescription>
         <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">field</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Escaped field value </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>String Unescaped field value </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/SettingsCSVManager.h" line="24" column="12" bodyfile="src/SettingsCSVManager.cpp" bodystart="177" bodyend="187"/>
-        <referencedby refid="class_settings_c_s_v_manager_1aa4822a7de38a44a23e051d1a4c8dc3bf" compoundref="_settings_c_s_v_manager_8cpp" startline="91" endline="158">_parseCSVLine</referencedby>
+        <location file="include/SettingsCSVManager.h" line="90" column="12" bodyfile="src/SettingsCSVManager.cpp" bodystart="195" bodyend="205"/>
+        <referencedby refid="class_settings_c_s_v_manager_1aa4822a7de38a44a23e051d1a4c8dc3bf" compoundref="_settings_c_s_v_manager_8cpp" startline="109" endline="176">_parseCSVLine</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_settings_c_s_v_manager_1aa4822a7de38a44a23e051d1a4c8dc3bf" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -185,16 +262,31 @@
           <declname>line</declname>
         </param>
         <briefdescription>
+<para>Parse single CSV line. </para>
         </briefdescription>
         <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">line</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>CSV line to parse </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if line parsed successfully </para>
+</simplesect>
+<simplesect kind="return"><para>false if parsing failed </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/SettingsCSVManager.h" line="25" column="10" bodyfile="src/SettingsCSVManager.cpp" bodystart="91" bodyend="158"/>
-        <references refid="class_settings_c_s_v_manager_1ab6bfec4580dfd75c036c280149228ffc" compoundref="_settings_c_s_v_manager_8h" startline="19">_config</references>
-        <references refid="class_settings_c_s_v_manager_1a5bc7b46f41120f2d9b938db63cbd6f02" compoundref="_settings_c_s_v_manager_8h" startline="20">_lastError</references>
-        <references refid="class_settings_c_s_v_manager_1ab560afb1aa799dcd6f98f91c896abfc5" compoundref="_settings_c_s_v_manager_8cpp" startline="177" endline="187">_unescapeCSVField</references>
-        <referencedby refid="class_settings_c_s_v_manager_1a1372d30cf87604e22bebf3ec8603454d" compoundref="_settings_c_s_v_manager_8cpp" startline="34" endline="67">importSettingsFromCSV</referencedby>
+        <location file="include/SettingsCSVManager.h" line="98" column="10" bodyfile="src/SettingsCSVManager.cpp" bodystart="109" bodyend="176"/>
+        <references refid="class_settings_c_s_v_manager_1ab6bfec4580dfd75c036c280149228ffc" compoundref="_settings_c_s_v_manager_8h" startline="73">_config</references>
+        <references refid="class_settings_c_s_v_manager_1a5bc7b46f41120f2d9b938db63cbd6f02" compoundref="_settings_c_s_v_manager_8h" startline="74">_lastError</references>
+        <references refid="class_settings_c_s_v_manager_1ab560afb1aa799dcd6f98f91c896abfc5" compoundref="_settings_c_s_v_manager_8cpp" startline="195" endline="205">_unescapeCSVField</references>
+        <referencedby refid="class_settings_c_s_v_manager_1a1372d30cf87604e22bebf3ec8603454d" compoundref="_settings_c_s_v_manager_8cpp" startline="52" endline="85">importSettingsFromCSV</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_settings_c_s_v_manager_1a2949ac1de83ba2b674a2306b35193c74" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -207,12 +299,23 @@
           <declname>csv</declname>
         </param>
         <briefdescription>
+<para>Export acknowledged delay settings to CSV. </para>
         </briefdescription>
         <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="out">csv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>String to append delay settings to</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Exports alarm acknowledgment delay configurations </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/SettingsCSVManager.h" line="28" column="10"/>
+        <location file="include/SettingsCSVManager.h" line="106" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_settings_c_s_v_manager_1aed4c7a1488843f2bebfefbfe8f95e24b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -229,17 +332,42 @@
           <declname>value</declname>
         </param>
         <briefdescription>
+<para>Import acknowledged delay settings. </para>
         </briefdescription>
         <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Configuration key </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Configuration value </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if import successful </para>
+</simplesect>
+<simplesect kind="return"><para>false if import failed </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/SettingsCSVManager.h" line="29" column="10"/>
+        <location file="include/SettingsCSVManager.h" line="115" column="10"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
+<para>Manages CSV export/import of system settings. </para>
     </briefdescription>
     <detaileddescription>
+<para>Provides methods to convert system configuration to/from CSV format, with validation and error handling for safe configuration updates. </para>
     </detaileddescription>
     <collaborationgraph>
       <node id="1">
@@ -247,7 +375,7 @@
         <link refid="class_settings_c_s_v_manager"/>
       </node>
     </collaborationgraph>
-    <location file="include/SettingsCSVManager.h" line="6" column="1" bodyfile="include/SettingsCSVManager.h" bodystart="6" bodyend="30"/>
+    <location file="include/SettingsCSVManager.h" line="31" column="1" bodyfile="include/SettingsCSVManager.h" bodystart="31" bodyend="116"/>
     <listofallmembers>
       <member refid="class_settings_c_s_v_manager_1ab6bfec4580dfd75c036c280149228ffc" prot="private" virt="non-virtual"><scope>SettingsCSVManager</scope><name>_config</name></member>
       <member refid="class_settings_c_s_v_manager_1a3d258dd163c5eed187dc9a8b0e9dfc01" prot="private" virt="non-virtual"><scope>SettingsCSVManager</scope><name>_escapeCSVField</name></member>

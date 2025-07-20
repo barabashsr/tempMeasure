@@ -93,90 +93,160 @@ $(function(){initNavTree('class_register_map.html','',''); });
 </div><!--header-->
 <div class="contents">
 
+<p>Manages Modbus register mapping for temperature monitoring.  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for RegisterMap:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_register_map__coll__graph.svg" width="231" height="920"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_register_map__coll__graph.svg" width="231" height="1203"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a421bb31f92254150a6738952b1ff7944" id="r_a421bb31f92254150a6738952b1ff7944"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a421bb31f92254150a6738952b1ff7944">RegisterMap</a> ()</td></tr>
+<tr class="memdesc:a421bb31f92254150a6738952b1ff7944"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new Register Map object.  <br /></td></tr>
 <tr class="memitem:a20a6e3648ab58a7d01b387d15b198374" id="r_a20a6e3648ab58a7d01b387d15b198374"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a20a6e3648ab58a7d01b387d15b198374">readHoldingRegister</a> (uint16_t address)</td></tr>
+<tr class="memdesc:a20a6e3648ab58a7d01b387d15b198374"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read value from Modbus holding register.  <br /></td></tr>
 <tr class="memitem:a187e2d597d507f0c42da6a6a8d016da2" id="r_a187e2d597d507f0c42da6a6a8d016da2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a187e2d597d507f0c42da6a6a8d016da2">writeHoldingRegister</a> (uint16_t address, uint16_t value)</td></tr>
+<tr class="memdesc:a187e2d597d507f0c42da6a6a8d016da2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write value to Modbus holding register.  <br /></td></tr>
 <tr class="memitem:a2940213459a183fc06a2226f1cd1a48b" id="r_a2940213459a183fc06a2226f1cd1a48b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2940213459a183fc06a2226f1cd1a48b">updateFromMeasurementPoint</a> (const <a class="el" href="class_measurement_point.html">MeasurementPoint</a> &amp;point)</td></tr>
+<tr class="memdesc:a2940213459a183fc06a2226f1cd1a48b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update registers from measurement point data.  <br /></td></tr>
 <tr class="memitem:aa2f819b22096b8c14c421b415f7e83b7" id="r_aa2f819b22096b8c14c421b415f7e83b7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa2f819b22096b8c14c421b415f7e83b7">applyConfigToMeasurementPoint</a> (<a class="el" href="class_measurement_point.html">MeasurementPoint</a> &amp;point)</td></tr>
+<tr class="memdesc:aa2f819b22096b8c14c421b415f7e83b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apply configuration from registers to measurement point.  <br /></td></tr>
 <tr class="memitem:a1f102e7d0dd51d4750c916fb6e32c37a" id="r_a1f102e7d0dd51d4750c916fb6e32c37a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1f102e7d0dd51d4750c916fb6e32c37a">applyConfigFromMeasurementPoint</a> (const <a class="el" href="class_measurement_point.html">MeasurementPoint</a> &amp;point)</td></tr>
+<tr class="memdesc:a1f102e7d0dd51d4750c916fb6e32c37a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apply configuration from measurement point to registers.  <br /></td></tr>
 <tr class="memitem:afd76ed87ce39bf69769a41a268b9fddd" id="r_afd76ed87ce39bf69769a41a268b9fddd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afd76ed87ce39bf69769a41a268b9fddd">incrementActiveDS18B20</a> ()</td></tr>
+<tr class="memdesc:afd76ed87ce39bf69769a41a268b9fddd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increment active DS18B20 sensor count.  <br /></td></tr>
 <tr class="memitem:a744b3b98a6aaa92d1ffdba77b95c1ff3" id="r_a744b3b98a6aaa92d1ffdba77b95c1ff3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a744b3b98a6aaa92d1ffdba77b95c1ff3">decrementActiveDS18B20</a> ()</td></tr>
+<tr class="memdesc:a744b3b98a6aaa92d1ffdba77b95c1ff3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrement active DS18B20 sensor count.  <br /></td></tr>
 <tr class="memitem:aa199c20c499e16bfa1c2181e833eb4d7" id="r_aa199c20c499e16bfa1c2181e833eb4d7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa199c20c499e16bfa1c2181e833eb4d7">incrementActivePT1000</a> ()</td></tr>
+<tr class="memdesc:aa199c20c499e16bfa1c2181e833eb4d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increment active PT1000 sensor count.  <br /></td></tr>
 <tr class="memitem:ac884c0ee2c26df982ddeb21f9f9f4fe8" id="r_ac884c0ee2c26df982ddeb21f9f9f4fe8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac884c0ee2c26df982ddeb21f9f9f4fe8">decrementActivePT1000</a> ()</td></tr>
+<tr class="memdesc:ac884c0ee2c26df982ddeb21f9f9f4fe8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrement active PT1000 sensor count.  <br /></td></tr>
 <tr class="memitem:a8c38fa18dec0fe5a62d07f218169c44a" id="r_a8c38fa18dec0fe5a62d07f218169c44a"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8c38fa18dec0fe5a62d07f218169c44a">getDeviceId</a> () const</td></tr>
+<tr class="memdesc:a8c38fa18dec0fe5a62d07f218169c44a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get device ID.  <br /></td></tr>
 <tr class="memitem:a48d0afa7c0aabe6627aae579a85b635c" id="r_a48d0afa7c0aabe6627aae579a85b635c"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a48d0afa7c0aabe6627aae579a85b635c">getFirmwareVersion</a> () const</td></tr>
+<tr class="memdesc:a48d0afa7c0aabe6627aae579a85b635c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get firmware version.  <br /></td></tr>
 <tr class="memitem:a9fcb99c9ae7533fe8a02db3fdc2680bf" id="r_a9fcb99c9ae7533fe8a02db3fdc2680bf"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9fcb99c9ae7533fe8a02db3fdc2680bf">getNumActiveDS18B20</a> () const</td></tr>
+<tr class="memdesc:a9fcb99c9ae7533fe8a02db3fdc2680bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get number of active DS18B20 sensors.  <br /></td></tr>
 <tr class="memitem:ab54c225b63f87458fea29d47cec65d50" id="r_ab54c225b63f87458fea29d47cec65d50"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab54c225b63f87458fea29d47cec65d50">getNumActivePT1000</a> () const</td></tr>
+<tr class="memdesc:ab54c225b63f87458fea29d47cec65d50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get number of active PT1000 sensors.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-attribs" class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
+<tr id="pub-static-attribs-0" class="groupHeader"><td colspan="2"><div class="groupHeader">Register Address Constants</div></td></tr>
+<tr><td colspan="2" class="ititle"><div class="groupText"><p>Modbus register address definitions </p>
+</div></td></tr>
 <tr class="memitem:adbc8f6a4a506265d1ce3f51e0f3cc54c" id="r_adbc8f6a4a506265d1ce3f51e0f3cc54c"><td class="memItemLeft" align="right" valign="top">static const uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adbc8f6a4a506265d1ce3f51e0f3cc54c">DEVICE_ID_REG</a> = 0</td></tr>
+<tr class="memdesc:adbc8f6a4a506265d1ce3f51e0f3cc54c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Device ID register.  <br /></td></tr>
 <tr class="memitem:ab26cff5b72c66bd12efde9882586ddd4" id="r_ab26cff5b72c66bd12efde9882586ddd4"><td class="memItemLeft" align="right" valign="top">static const uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab26cff5b72c66bd12efde9882586ddd4">FIRMWARE_VERSION_REG</a> = 1</td></tr>
+<tr class="memdesc:ab26cff5b72c66bd12efde9882586ddd4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Firmware version register.  <br /></td></tr>
 <tr class="memitem:ac374b6189bebe5408e374965858bcd12" id="r_ac374b6189bebe5408e374965858bcd12"><td class="memItemLeft" align="right" valign="top">static const uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac374b6189bebe5408e374965858bcd12">NUM_DS18B20_REG</a> = 2</td></tr>
+<tr class="memdesc:ac374b6189bebe5408e374965858bcd12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Active DS18B20 count register.  <br /></td></tr>
 <tr class="memitem:a3229332b90e91982d730b5f3b29cd095" id="r_a3229332b90e91982d730b5f3b29cd095"><td class="memItemLeft" align="right" valign="top">static const uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3229332b90e91982d730b5f3b29cd095">NUM_PT1000_REG</a> = 3</td></tr>
+<tr class="memdesc:a3229332b90e91982d730b5f3b29cd095"><td class="mdescLeft">&#160;</td><td class="mdescRight">Active PT1000 count register.  <br /></td></tr>
 <tr class="memitem:ab20fe2486766932166ae63413b06c632" id="r_ab20fe2486766932166ae63413b06c632"><td class="memItemLeft" align="right" valign="top">static const uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab20fe2486766932166ae63413b06c632">DEVICE_STATUS_START_REG</a> = 4</td></tr>
+<tr class="memdesc:ab20fe2486766932166ae63413b06c632"><td class="mdescLeft">&#160;</td><td class="mdescRight">Device status start register.  <br /></td></tr>
 <tr class="memitem:a0c65d76fa4f8659e20148173aabb0042" id="r_a0c65d76fa4f8659e20148173aabb0042"><td class="memItemLeft" align="right" valign="top">static const uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0c65d76fa4f8659e20148173aabb0042">DEVICE_STATUS_END_REG</a> = 10</td></tr>
+<tr class="memdesc:a0c65d76fa4f8659e20148173aabb0042"><td class="mdescLeft">&#160;</td><td class="mdescRight">Device status end register.  <br /></td></tr>
 <tr class="memitem:a39e9da3852adc25710c836c4019e44ae" id="r_a39e9da3852adc25710c836c4019e44ae"><td class="memItemLeft" align="right" valign="top">static const uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a39e9da3852adc25710c836c4019e44ae">CURRENT_TEMP_DS18B20_START_REG</a> = 100</td></tr>
+<tr class="memdesc:a39e9da3852adc25710c836c4019e44ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">DS18B20 current temp start.  <br /></td></tr>
 <tr class="memitem:ab126164971f671096d5545ad7ce37e44" id="r_ab126164971f671096d5545ad7ce37e44"><td class="memItemLeft" align="right" valign="top">static const uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab126164971f671096d5545ad7ce37e44">CURRENT_TEMP_DS18B20_END_REG</a> = 149</td></tr>
+<tr class="memdesc:ab126164971f671096d5545ad7ce37e44"><td class="mdescLeft">&#160;</td><td class="mdescRight">DS18B20 current temp end.  <br /></td></tr>
 <tr class="memitem:ac88eb82c847956c9834ae0951cc6ce08" id="r_ac88eb82c847956c9834ae0951cc6ce08"><td class="memItemLeft" align="right" valign="top">static const uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac88eb82c847956c9834ae0951cc6ce08">CURRENT_TEMP_PT1000_START_REG</a> = 150</td></tr>
+<tr class="memdesc:ac88eb82c847956c9834ae0951cc6ce08"><td class="mdescLeft">&#160;</td><td class="mdescRight">PT1000 current temp start.  <br /></td></tr>
 <tr class="memitem:a5954549ec72525817e26df98db56522f" id="r_a5954549ec72525817e26df98db56522f"><td class="memItemLeft" align="right" valign="top">static const uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5954549ec72525817e26df98db56522f">CURRENT_TEMP_PT1000_END_REG</a> = 159</td></tr>
+<tr class="memdesc:a5954549ec72525817e26df98db56522f"><td class="mdescLeft">&#160;</td><td class="mdescRight">PT1000 current temp end.  <br /></td></tr>
 <tr class="memitem:afcbf3023e3bfed9d51c13e4a6e42f928" id="r_afcbf3023e3bfed9d51c13e4a6e42f928"><td class="memItemLeft" align="right" valign="top">static const uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afcbf3023e3bfed9d51c13e4a6e42f928">MIN_TEMP_DS18B20_START_REG</a> = 200</td></tr>
+<tr class="memdesc:afcbf3023e3bfed9d51c13e4a6e42f928"><td class="mdescLeft">&#160;</td><td class="mdescRight">DS18B20 min temp start.  <br /></td></tr>
 <tr class="memitem:a576333f5390da1b347ae48b946ae9929" id="r_a576333f5390da1b347ae48b946ae9929"><td class="memItemLeft" align="right" valign="top">static const uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a576333f5390da1b347ae48b946ae9929">MIN_TEMP_DS18B20_END_REG</a> = 249</td></tr>
+<tr class="memdesc:a576333f5390da1b347ae48b946ae9929"><td class="mdescLeft">&#160;</td><td class="mdescRight">DS18B20 min temp end.  <br /></td></tr>
 <tr class="memitem:ad7da44f97f02846b920eb0e4614ff00b" id="r_ad7da44f97f02846b920eb0e4614ff00b"><td class="memItemLeft" align="right" valign="top">static const uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad7da44f97f02846b920eb0e4614ff00b">MIN_TEMP_PT1000_START_REG</a> = 250</td></tr>
+<tr class="memdesc:ad7da44f97f02846b920eb0e4614ff00b"><td class="mdescLeft">&#160;</td><td class="mdescRight">PT1000 min temp start.  <br /></td></tr>
 <tr class="memitem:afc19f2966dac287307958f677c852282" id="r_afc19f2966dac287307958f677c852282"><td class="memItemLeft" align="right" valign="top">static const uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afc19f2966dac287307958f677c852282">MIN_TEMP_PT1000_END_REG</a> = 259</td></tr>
+<tr class="memdesc:afc19f2966dac287307958f677c852282"><td class="mdescLeft">&#160;</td><td class="mdescRight">PT1000 min temp end.  <br /></td></tr>
 <tr class="memitem:af5803660fef52ac6a6db5708a2d8e7ea" id="r_af5803660fef52ac6a6db5708a2d8e7ea"><td class="memItemLeft" align="right" valign="top">static const uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af5803660fef52ac6a6db5708a2d8e7ea">MAX_TEMP_DS18B20_START_REG</a> = 300</td></tr>
+<tr class="memdesc:af5803660fef52ac6a6db5708a2d8e7ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">DS18B20 max temp start.  <br /></td></tr>
 <tr class="memitem:af2c23fb0b122ce7adc8c9e624ebafc79" id="r_af2c23fb0b122ce7adc8c9e624ebafc79"><td class="memItemLeft" align="right" valign="top">static const uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af2c23fb0b122ce7adc8c9e624ebafc79">MAX_TEMP_DS18B20_END_REG</a> = 349</td></tr>
+<tr class="memdesc:af2c23fb0b122ce7adc8c9e624ebafc79"><td class="mdescLeft">&#160;</td><td class="mdescRight">DS18B20 max temp end.  <br /></td></tr>
 <tr class="memitem:ac4afc3ad850de38e362b364a361ca016" id="r_ac4afc3ad850de38e362b364a361ca016"><td class="memItemLeft" align="right" valign="top">static const uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac4afc3ad850de38e362b364a361ca016">MAX_TEMP_PT1000_START_REG</a> = 350</td></tr>
+<tr class="memdesc:ac4afc3ad850de38e362b364a361ca016"><td class="mdescLeft">&#160;</td><td class="mdescRight">PT1000 max temp start.  <br /></td></tr>
 <tr class="memitem:a90a709adb204896851b5c20293185f62" id="r_a90a709adb204896851b5c20293185f62"><td class="memItemLeft" align="right" valign="top">static const uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a90a709adb204896851b5c20293185f62">MAX_TEMP_PT1000_END_REG</a> = 359</td></tr>
+<tr class="memdesc:a90a709adb204896851b5c20293185f62"><td class="mdescLeft">&#160;</td><td class="mdescRight">PT1000 max temp end.  <br /></td></tr>
 <tr class="memitem:a8418bd7fbd2379830c5b2a2d5a7ceadb" id="r_a8418bd7fbd2379830c5b2a2d5a7ceadb"><td class="memItemLeft" align="right" valign="top">static const uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8418bd7fbd2379830c5b2a2d5a7ceadb">ALARM_STATUS_DS18B20_START_REG</a> = 400</td></tr>
+<tr class="memdesc:a8418bd7fbd2379830c5b2a2d5a7ceadb"><td class="mdescLeft">&#160;</td><td class="mdescRight">DS18B20 alarm status start.  <br /></td></tr>
 <tr class="memitem:abd46e2034937849cd923ae95ccc7f162" id="r_abd46e2034937849cd923ae95ccc7f162"><td class="memItemLeft" align="right" valign="top">static const uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abd46e2034937849cd923ae95ccc7f162">ALARM_STATUS_DS18B20_END_REG</a> = 449</td></tr>
+<tr class="memdesc:abd46e2034937849cd923ae95ccc7f162"><td class="mdescLeft">&#160;</td><td class="mdescRight">DS18B20 alarm status end.  <br /></td></tr>
 <tr class="memitem:afdec96eb8d80f30ea28ce83ee9b7987e" id="r_afdec96eb8d80f30ea28ce83ee9b7987e"><td class="memItemLeft" align="right" valign="top">static const uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afdec96eb8d80f30ea28ce83ee9b7987e">ALARM_STATUS_PT1000_START_REG</a> = 450</td></tr>
+<tr class="memdesc:afdec96eb8d80f30ea28ce83ee9b7987e"><td class="mdescLeft">&#160;</td><td class="mdescRight">PT1000 alarm status start.  <br /></td></tr>
 <tr class="memitem:ae6d88f1082bb40e31cbceb375d53124c" id="r_ae6d88f1082bb40e31cbceb375d53124c"><td class="memItemLeft" align="right" valign="top">static const uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae6d88f1082bb40e31cbceb375d53124c">ALARM_STATUS_PT1000_END_REG</a> = 459</td></tr>
+<tr class="memdesc:ae6d88f1082bb40e31cbceb375d53124c"><td class="mdescLeft">&#160;</td><td class="mdescRight">PT1000 alarm status end.  <br /></td></tr>
 <tr class="memitem:aa3f77b5d6b2f658f2d3a20c85306343b" id="r_aa3f77b5d6b2f658f2d3a20c85306343b"><td class="memItemLeft" align="right" valign="top">static const uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa3f77b5d6b2f658f2d3a20c85306343b">ERROR_STATUS_DS18B20_START_REG</a> = 500</td></tr>
+<tr class="memdesc:aa3f77b5d6b2f658f2d3a20c85306343b"><td class="mdescLeft">&#160;</td><td class="mdescRight">DS18B20 error status start.  <br /></td></tr>
 <tr class="memitem:afa62284c3729ac2d31c4b5ce6574ca17" id="r_afa62284c3729ac2d31c4b5ce6574ca17"><td class="memItemLeft" align="right" valign="top">static const uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afa62284c3729ac2d31c4b5ce6574ca17">ERROR_STATUS_DS18B20_END_REG</a> = 549</td></tr>
+<tr class="memdesc:afa62284c3729ac2d31c4b5ce6574ca17"><td class="mdescLeft">&#160;</td><td class="mdescRight">DS18B20 error status end.  <br /></td></tr>
 <tr class="memitem:aeebc854c6efa9a4ec8516ba2d2e818c2" id="r_aeebc854c6efa9a4ec8516ba2d2e818c2"><td class="memItemLeft" align="right" valign="top">static const uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeebc854c6efa9a4ec8516ba2d2e818c2">ERROR_STATUS_PT1000_START_REG</a> = 550</td></tr>
+<tr class="memdesc:aeebc854c6efa9a4ec8516ba2d2e818c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">PT1000 error status start.  <br /></td></tr>
 <tr class="memitem:ab73ef67a76c9661e42603af6be98f541" id="r_ab73ef67a76c9661e42603af6be98f541"><td class="memItemLeft" align="right" valign="top">static const uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab73ef67a76c9661e42603af6be98f541">ERROR_STATUS_PT1000_END_REG</a> = 559</td></tr>
+<tr class="memdesc:ab73ef67a76c9661e42603af6be98f541"><td class="mdescLeft">&#160;</td><td class="mdescRight">PT1000 error status end.  <br /></td></tr>
 <tr class="memitem:a2e50e7dee1282aca451046a5da3f4945" id="r_a2e50e7dee1282aca451046a5da3f4945"><td class="memItemLeft" align="right" valign="top">static const uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2e50e7dee1282aca451046a5da3f4945">LOW_ALARM_DS18B20_START_REG</a> = 600</td></tr>
+<tr class="memdesc:a2e50e7dee1282aca451046a5da3f4945"><td class="mdescLeft">&#160;</td><td class="mdescRight">DS18B20 low alarm start.  <br /></td></tr>
 <tr class="memitem:ab4f10d48e9025df265f05936303faac8" id="r_ab4f10d48e9025df265f05936303faac8"><td class="memItemLeft" align="right" valign="top">static const uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab4f10d48e9025df265f05936303faac8">LOW_ALARM_DS18B20_END_REG</a> = 649</td></tr>
+<tr class="memdesc:ab4f10d48e9025df265f05936303faac8"><td class="mdescLeft">&#160;</td><td class="mdescRight">DS18B20 low alarm end.  <br /></td></tr>
 <tr class="memitem:ab9fc284551b9b5dc4bd396705e879615" id="r_ab9fc284551b9b5dc4bd396705e879615"><td class="memItemLeft" align="right" valign="top">static const uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab9fc284551b9b5dc4bd396705e879615">LOW_ALARM_PT1000_START_REG</a> = 650</td></tr>
+<tr class="memdesc:ab9fc284551b9b5dc4bd396705e879615"><td class="mdescLeft">&#160;</td><td class="mdescRight">PT1000 low alarm start.  <br /></td></tr>
 <tr class="memitem:abb213088915f30411094b7c7cad17dd0" id="r_abb213088915f30411094b7c7cad17dd0"><td class="memItemLeft" align="right" valign="top">static const uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abb213088915f30411094b7c7cad17dd0">LOW_ALARM_PT1000_END_REG</a> = 659</td></tr>
+<tr class="memdesc:abb213088915f30411094b7c7cad17dd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">PT1000 low alarm end.  <br /></td></tr>
 <tr class="memitem:a94eb0a7c3854218019f4d5047445c53b" id="r_a94eb0a7c3854218019f4d5047445c53b"><td class="memItemLeft" align="right" valign="top">static const uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a94eb0a7c3854218019f4d5047445c53b">HIGH_ALARM_DS18B20_START_REG</a> = 700</td></tr>
+<tr class="memdesc:a94eb0a7c3854218019f4d5047445c53b"><td class="mdescLeft">&#160;</td><td class="mdescRight">DS18B20 high alarm start.  <br /></td></tr>
 <tr class="memitem:af1eec1485d0d78320e17476b87d57ad3" id="r_af1eec1485d0d78320e17476b87d57ad3"><td class="memItemLeft" align="right" valign="top">static const uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af1eec1485d0d78320e17476b87d57ad3">HIGH_ALARM_DS18B20_END_REG</a> = 749</td></tr>
+<tr class="memdesc:af1eec1485d0d78320e17476b87d57ad3"><td class="mdescLeft">&#160;</td><td class="mdescRight">DS18B20 high alarm end.  <br /></td></tr>
 <tr class="memitem:aedac92f3e99b5ea68ccfb649d4737470" id="r_aedac92f3e99b5ea68ccfb649d4737470"><td class="memItemLeft" align="right" valign="top">static const uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aedac92f3e99b5ea68ccfb649d4737470">HIGH_ALARM_PT1000_START_REG</a> = 750</td></tr>
+<tr class="memdesc:aedac92f3e99b5ea68ccfb649d4737470"><td class="mdescLeft">&#160;</td><td class="mdescRight">PT1000 high alarm start.  <br /></td></tr>
 <tr class="memitem:a48fad7e6eb2c495f3d90d0fe68f69343" id="r_a48fad7e6eb2c495f3d90d0fe68f69343"><td class="memItemLeft" align="right" valign="top">static const uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a48fad7e6eb2c495f3d90d0fe68f69343">HIGH_ALARM_PT1000_END_REG</a> = 759</td></tr>
+<tr class="memdesc:a48fad7e6eb2c495f3d90d0fe68f69343"><td class="mdescLeft">&#160;</td><td class="mdescRight">PT1000 high alarm end.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:abc2174dcfe96247d4f97e552a2363e50" id="r_abc2174dcfe96247d4f97e552a2363e50"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abc2174dcfe96247d4f97e552a2363e50">isValidAddress</a> (uint16_t address)</td></tr>
+<tr class="memdesc:abc2174dcfe96247d4f97e552a2363e50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if register address is valid.  <br /></td></tr>
 <tr class="memitem:a313522004347397fee66b57e9daed873" id="r_a313522004347397fee66b57e9daed873"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a313522004347397fee66b57e9daed873">isReadOnlyRegister</a> (uint16_t address)</td></tr>
+<tr class="memdesc:a313522004347397fee66b57e9daed873"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if register is read-only.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:aa98070c7197fdf26d743f4eed498fd66" id="r_aa98070c7197fdf26d743f4eed498fd66"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa98070c7197fdf26d743f4eed498fd66">deviceId</a></td></tr>
+<tr class="memdesc:aa98070c7197fdf26d743f4eed498fd66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Device identifier (register 0)  <br /></td></tr>
 <tr class="memitem:ae5b846e888d43b130096d3671dc8c0fb" id="r_ae5b846e888d43b130096d3671dc8c0fb"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae5b846e888d43b130096d3671dc8c0fb">firmwareVersion</a></td></tr>
+<tr class="memdesc:ae5b846e888d43b130096d3671dc8c0fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Firmware version (register 1)  <br /></td></tr>
 <tr class="memitem:a216b9abf3c7b9f7d6721ea2e96cb9ff7" id="r_a216b9abf3c7b9f7d6721ea2e96cb9ff7"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a216b9abf3c7b9f7d6721ea2e96cb9ff7">numActiveDS18B20</a></td></tr>
+<tr class="memdesc:a216b9abf3c7b9f7d6721ea2e96cb9ff7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of active DS18B20 sensors (register 2)  <br /></td></tr>
 <tr class="memitem:abc9a62bb029202c3d50baaa985f17737" id="r_abc9a62bb029202c3d50baaa985f17737"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abc9a62bb029202c3d50baaa985f17737">numActivePT1000</a></td></tr>
+<tr class="memdesc:abc9a62bb029202c3d50baaa985f17737"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of active PT1000 sensors (register 3)  <br /></td></tr>
 <tr class="memitem:a19e014a5afbfe86297b7dd8e3e4d1327" id="r_a19e014a5afbfe86297b7dd8e3e4d1327"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a19e014a5afbfe86297b7dd8e3e4d1327">deviceStatus</a> [7]</td></tr>
+<tr class="memdesc:a19e014a5afbfe86297b7dd8e3e4d1327"><td class="mdescLeft">&#160;</td><td class="mdescRight">Device status flags (registers 4-10)  <br /></td></tr>
 <tr class="memitem:aa875c2d7332c718c82d230549f566c10" id="r_aa875c2d7332c718c82d230549f566c10"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa875c2d7332c718c82d230549f566c10">currentTemps</a> [60]</td></tr>
+<tr class="memdesc:aa875c2d7332c718c82d230549f566c10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current temperature values (registers 100-159)  <br /></td></tr>
 <tr class="memitem:acae64e6c9f48a79cda39ac45367a9a97" id="r_acae64e6c9f48a79cda39ac45367a9a97"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acae64e6c9f48a79cda39ac45367a9a97">minTemps</a> [60]</td></tr>
+<tr class="memdesc:acae64e6c9f48a79cda39ac45367a9a97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum temperature values (registers 200-259)  <br /></td></tr>
 <tr class="memitem:a883e25ca7b65319483aa56e8ea8f1362" id="r_a883e25ca7b65319483aa56e8ea8f1362"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a883e25ca7b65319483aa56e8ea8f1362">maxTemps</a> [60]</td></tr>
+<tr class="memdesc:a883e25ca7b65319483aa56e8ea8f1362"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum temperature values (registers 300-359)  <br /></td></tr>
 <tr class="memitem:ac9753141e2fe23d742cca2d7e4572194" id="r_ac9753141e2fe23d742cca2d7e4572194"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac9753141e2fe23d742cca2d7e4572194">alarmStatus</a> [60]</td></tr>
+<tr class="memdesc:ac9753141e2fe23d742cca2d7e4572194"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_alarm.html" title="Main alarm class for temperature monitoring system.">Alarm</a> status flags (registers 400-459)  <br /></td></tr>
 <tr class="memitem:a5c46fc421fa321b430997811d3a23f56" id="r_a5c46fc421fa321b430997811d3a23f56"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5c46fc421fa321b430997811d3a23f56">errorStatus</a> [60]</td></tr>
+<tr class="memdesc:a5c46fc421fa321b430997811d3a23f56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Error status flags (registers 500-559)  <br /></td></tr>
 <tr class="memitem:aeb01f6f8df07fc282a17015c55de7c06" id="r_aeb01f6f8df07fc282a17015c55de7c06"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeb01f6f8df07fc282a17015c55de7c06">lowAlarmThresholds</a> [60]</td></tr>
+<tr class="memdesc:aeb01f6f8df07fc282a17015c55de7c06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Low temperature alarm thresholds (registers 600-659)  <br /></td></tr>
 <tr class="memitem:ae6ce504c8e4c620b908bd7c7bca9fec0" id="r_ae6ce504c8e4c620b908bd7c7bca9fec0"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae6ce504c8e4c620b908bd7c7bca9fec0">highAlarmThresholds</a> [60]</td></tr>
+<tr class="memdesc:ae6ce504c8e4c620b908bd7c7bca9fec0"><td class="mdescLeft">&#160;</td><td class="mdescRight">High temperature alarm thresholds (registers 700-759)  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00007">7</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<div class="textblock"><p>Manages Modbus register mapping for temperature monitoring. </p>
+<p>Provides a standardized register interface for external systems to access temperature data, device status, and configuration parameters. Implements Modbus holding register protocol with read/write capabilities. </p>
+
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00041">41</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a421bb31f92254150a6738952b1ff7944" name="a421bb31f92254150a6738952b1ff7944"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a421bb31f92254150a6738952b1ff7944">&#9670;&#160;</a></span>RegisterMap()</h2>
@@ -193,9 +263,12 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8cpp_source.html#l00003">3</a> of file <a class="el" href="_register_map_8cpp_source.html">RegisterMap.cpp</a>.</p>
+<p>Construct a new Register Map object. </p>
+<p>Initializes all registers to default values </p>
 
-<p class="reference">References <a class="el" href="_register_map_8h_source.html#l00020">alarmStatus</a>, <a class="el" href="_register_map_8h_source.html#l00017">currentTemps</a>, <a class="el" href="_register_map_8h_source.html#l00010">deviceId</a>, <a class="el" href="_register_map_8h_source.html#l00014">deviceStatus</a>, <a class="el" href="_register_map_8h_source.html#l00021">errorStatus</a>, <a class="el" href="_register_map_8h_source.html#l00011">firmwareVersion</a>, <a class="el" href="_register_map_8h_source.html#l00025">highAlarmThresholds</a>, <a class="el" href="_register_map_8h_source.html#l00024">lowAlarmThresholds</a>, <a class="el" href="_register_map_8h_source.html#l00019">maxTemps</a>, <a class="el" href="_register_map_8h_source.html#l00018">minTemps</a>, <a class="el" href="_register_map_8h_source.html#l00012">numActiveDS18B20</a>, and <a class="el" href="_register_map_8h_source.html#l00013">numActivePT1000</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_register_map_8cpp_source.html#l00020">20</a> of file <a class="el" href="_register_map_8cpp_source.html">RegisterMap.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_register_map_8h_source.html#l00054">alarmStatus</a>, <a class="el" href="_register_map_8h_source.html#l00051">currentTemps</a>, <a class="el" href="_register_map_8h_source.html#l00044">deviceId</a>, <a class="el" href="_register_map_8h_source.html#l00048">deviceStatus</a>, <a class="el" href="_register_map_8h_source.html#l00055">errorStatus</a>, <a class="el" href="_register_map_8h_source.html#l00045">firmwareVersion</a>, <a class="el" href="_register_map_8h_source.html#l00059">highAlarmThresholds</a>, <a class="el" href="_register_map_8h_source.html#l00058">lowAlarmThresholds</a>, <a class="el" href="_register_map_8h_source.html#l00053">maxTemps</a>, <a class="el" href="_register_map_8h_source.html#l00052">minTemps</a>, <a class="el" href="_register_map_8h_source.html#l00046">numActiveDS18B20</a>, and <a class="el" href="_register_map_8h_source.html#l00047">numActivePT1000</a>.</p>
 
 </div>
 </div>
@@ -215,9 +288,18 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8cpp_source.html#l00106">106</a> of file <a class="el" href="_register_map_8cpp_source.html">RegisterMap.cpp</a>.</p>
+<p>Apply configuration from measurement point to registers. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">point</td><td>Measurement point containing configuration</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Updates register thresholds from measurement point </p>
 
-<p class="reference">References <a class="el" href="_measurement_point_8cpp_source.html#l00025">MeasurementPoint::getAddress()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00049">MeasurementPoint::getHighAlarmThreshold()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00045">MeasurementPoint::getLowAlarmThreshold()</a>, <a class="el" href="_register_map_8h_source.html#l00025">highAlarmThresholds</a>, and <a class="el" href="_register_map_8h_source.html#l00024">lowAlarmThresholds</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_register_map_8cpp_source.html#l00123">123</a> of file <a class="el" href="_register_map_8cpp_source.html">RegisterMap.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_measurement_point_8cpp_source.html#l00045">MeasurementPoint::getAddress()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00069">MeasurementPoint::getHighAlarmThreshold()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00065">MeasurementPoint::getLowAlarmThreshold()</a>, <a class="el" href="_register_map_8h_source.html#l00059">highAlarmThresholds</a>, and <a class="el" href="_register_map_8h_source.html#l00058">lowAlarmThresholds</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -241,9 +323,18 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8cpp_source.html#l00097">97</a> of file <a class="el" href="_register_map_8cpp_source.html">RegisterMap.cpp</a>.</p>
+<p>Apply configuration from registers to measurement point. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">point</td><td>Measurement point to update with register values</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Updates alarm thresholds in measurement point </p>
 
-<p class="reference">References <a class="el" href="_measurement_point_8cpp_source.html#l00025">MeasurementPoint::getAddress()</a>, <a class="el" href="_register_map_8h_source.html#l00025">highAlarmThresholds</a>, <a class="el" href="_register_map_8h_source.html#l00024">lowAlarmThresholds</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00086">MeasurementPoint::setHighAlarmThreshold()</a>, and <a class="el" href="_measurement_point_8cpp_source.html#l00072">MeasurementPoint::setLowAlarmThreshold()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_register_map_8cpp_source.html#l00114">114</a> of file <a class="el" href="_register_map_8cpp_source.html">RegisterMap.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_measurement_point_8cpp_source.html#l00045">MeasurementPoint::getAddress()</a>, <a class="el" href="_register_map_8h_source.html#l00059">highAlarmThresholds</a>, <a class="el" href="_register_map_8h_source.html#l00058">lowAlarmThresholds</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00106">MeasurementPoint::setHighAlarmThreshold()</a>, and <a class="el" href="_measurement_point_8cpp_source.html#l00092">MeasurementPoint::setLowAlarmThreshold()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -275,9 +366,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00047">47</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>Decrement active DS18B20 sensor count. </p>
 
-<p class="reference">References <a class="el" href="_register_map_8h_source.html#l00012">numActiveDS18B20</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00132">132</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+
+<p class="reference">References <a class="el" href="_register_map_8h_source.html#l00046">numActiveDS18B20</a>.</p>
 
 </div>
 </div>
@@ -304,9 +397,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00049">49</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>Decrement active PT1000 sensor count. </p>
 
-<p class="reference">References <a class="el" href="_register_map_8h_source.html#l00013">numActivePT1000</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00142">142</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+
+<p class="reference">References <a class="el" href="_register_map_8h_source.html#l00047">numActivePT1000</a>.</p>
 
 </div>
 </div>
@@ -333,9 +428,12 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00051">51</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>Get device ID. </p>
+<dl class="section return"><dt>Returns</dt><dd>uint16_t Device identifier </dd></dl>
 
-<p class="reference">References <a class="el" href="_register_map_8h_source.html#l00010">deviceId</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00148">148</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+
+<p class="reference">References <a class="el" href="_register_map_8h_source.html#l00044">deviceId</a>.</p>
 
 </div>
 </div>
@@ -362,9 +460,12 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00052">52</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>Get firmware version. </p>
+<dl class="section return"><dt>Returns</dt><dd>uint16_t Firmware version number </dd></dl>
 
-<p class="reference">References <a class="el" href="_register_map_8h_source.html#l00011">firmwareVersion</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00154">154</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+
+<p class="reference">References <a class="el" href="_register_map_8h_source.html#l00045">firmwareVersion</a>.</p>
 
 </div>
 </div>
@@ -391,9 +492,12 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00053">53</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>Get number of active DS18B20 sensors. </p>
+<dl class="section return"><dt>Returns</dt><dd>uint16_t Active DS18B20 count </dd></dl>
 
-<p class="reference">References <a class="el" href="_register_map_8h_source.html#l00012">numActiveDS18B20</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00160">160</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+
+<p class="reference">References <a class="el" href="_register_map_8h_source.html#l00046">numActiveDS18B20</a>.</p>
 
 </div>
 </div>
@@ -420,9 +524,12 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00054">54</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>Get number of active PT1000 sensors. </p>
+<dl class="section return"><dt>Returns</dt><dd>uint16_t Active PT1000 count </dd></dl>
 
-<p class="reference">References <a class="el" href="_register_map_8h_source.html#l00013">numActivePT1000</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00166">166</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+
+<p class="reference">References <a class="el" href="_register_map_8h_source.html#l00047">numActivePT1000</a>.</p>
 
 </div>
 </div>
@@ -449,9 +556,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00046">46</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>Increment active DS18B20 sensor count. </p>
 
-<p class="reference">References <a class="el" href="_register_map_8h_source.html#l00012">numActiveDS18B20</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00127">127</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+
+<p class="reference">References <a class="el" href="_register_map_8h_source.html#l00046">numActiveDS18B20</a>.</p>
 
 </div>
 </div>
@@ -478,9 +587,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00048">48</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>Increment active PT1000 sensor count. </p>
 
-<p class="reference">References <a class="el" href="_register_map_8h_source.html#l00013">numActivePT1000</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00137">137</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+
+<p class="reference">References <a class="el" href="_register_map_8h_source.html#l00047">numActivePT1000</a>.</p>
 
 </div>
 </div>
@@ -507,11 +618,20 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8cpp_source.html#l00032">32</a> of file <a class="el" href="_register_map_8cpp_source.html">RegisterMap.cpp</a>.</p>
+<p>Check if register is read-only. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">address</td><td>Register address to check </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if register is read-only </dd></dl>
 
-<p class="reference">References <a class="el" href="_register_map_8h_source.html#l00087">HIGH_ALARM_DS18B20_START_REG</a>, <a class="el" href="_register_map_8h_source.html#l00090">HIGH_ALARM_PT1000_END_REG</a>, <a class="el" href="_register_map_8h_source.html#l00083">LOW_ALARM_DS18B20_START_REG</a>, and <a class="el" href="_register_map_8h_source.html#l00086">LOW_ALARM_PT1000_END_REG</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_register_map_8cpp_source.html#l00049">49</a> of file <a class="el" href="_register_map_8cpp_source.html">RegisterMap.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00068">writeHoldingRegister()</a>.</p>
+<p class="reference">References <a class="el" href="_register_map_8h_source.html#l00219">HIGH_ALARM_DS18B20_START_REG</a>, <a class="el" href="_register_map_8h_source.html#l00222">HIGH_ALARM_PT1000_END_REG</a>, <a class="el" href="_register_map_8h_source.html#l00213">LOW_ALARM_DS18B20_START_REG</a>, and <a class="el" href="_register_map_8h_source.html#l00216">LOW_ALARM_PT1000_END_REG</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00085">writeHoldingRegister()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -543,11 +663,20 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8cpp_source.html#l00020">20</a> of file <a class="el" href="_register_map_8cpp_source.html">RegisterMap.cpp</a>.</p>
+<p>Check if register address is valid. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">address</td><td>Register address to validate </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if address is within valid range </dd></dl>
 
-<p class="reference">References <a class="el" href="_register_map_8h_source.html#l00075">ALARM_STATUS_DS18B20_START_REG</a>, <a class="el" href="_register_map_8h_source.html#l00078">ALARM_STATUS_PT1000_END_REG</a>, <a class="el" href="_register_map_8h_source.html#l00063">CURRENT_TEMP_DS18B20_START_REG</a>, <a class="el" href="_register_map_8h_source.html#l00066">CURRENT_TEMP_PT1000_END_REG</a>, <a class="el" href="_register_map_8h_source.html#l00062">DEVICE_STATUS_END_REG</a>, <a class="el" href="_register_map_8h_source.html#l00079">ERROR_STATUS_DS18B20_START_REG</a>, <a class="el" href="_register_map_8h_source.html#l00082">ERROR_STATUS_PT1000_END_REG</a>, <a class="el" href="_register_map_8h_source.html#l00087">HIGH_ALARM_DS18B20_START_REG</a>, <a class="el" href="_register_map_8h_source.html#l00090">HIGH_ALARM_PT1000_END_REG</a>, <a class="el" href="_register_map_8h_source.html#l00083">LOW_ALARM_DS18B20_START_REG</a>, <a class="el" href="_register_map_8h_source.html#l00086">LOW_ALARM_PT1000_END_REG</a>, <a class="el" href="_register_map_8h_source.html#l00071">MAX_TEMP_DS18B20_START_REG</a>, <a class="el" href="_register_map_8h_source.html#l00074">MAX_TEMP_PT1000_END_REG</a>, <a class="el" href="_register_map_8h_source.html#l00067">MIN_TEMP_DS18B20_START_REG</a>, and <a class="el" href="_register_map_8h_source.html#l00070">MIN_TEMP_PT1000_END_REG</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_register_map_8cpp_source.html#l00037">37</a> of file <a class="el" href="_register_map_8cpp_source.html">RegisterMap.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00039">readHoldingRegister()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00068">writeHoldingRegister()</a>.</p>
+<p class="reference">References <a class="el" href="_register_map_8h_source.html#l00201">ALARM_STATUS_DS18B20_START_REG</a>, <a class="el" href="_register_map_8h_source.html#l00204">ALARM_STATUS_PT1000_END_REG</a>, <a class="el" href="_register_map_8h_source.html#l00183">CURRENT_TEMP_DS18B20_START_REG</a>, <a class="el" href="_register_map_8h_source.html#l00186">CURRENT_TEMP_PT1000_END_REG</a>, <a class="el" href="_register_map_8h_source.html#l00180">DEVICE_STATUS_END_REG</a>, <a class="el" href="_register_map_8h_source.html#l00207">ERROR_STATUS_DS18B20_START_REG</a>, <a class="el" href="_register_map_8h_source.html#l00210">ERROR_STATUS_PT1000_END_REG</a>, <a class="el" href="_register_map_8h_source.html#l00219">HIGH_ALARM_DS18B20_START_REG</a>, <a class="el" href="_register_map_8h_source.html#l00222">HIGH_ALARM_PT1000_END_REG</a>, <a class="el" href="_register_map_8h_source.html#l00213">LOW_ALARM_DS18B20_START_REG</a>, <a class="el" href="_register_map_8h_source.html#l00216">LOW_ALARM_PT1000_END_REG</a>, <a class="el" href="_register_map_8h_source.html#l00195">MAX_TEMP_DS18B20_START_REG</a>, <a class="el" href="_register_map_8h_source.html#l00198">MAX_TEMP_PT1000_END_REG</a>, <a class="el" href="_register_map_8h_source.html#l00189">MIN_TEMP_DS18B20_START_REG</a>, and <a class="el" href="_register_map_8h_source.html#l00192">MIN_TEMP_PT1000_END_REG</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00056">readHoldingRegister()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00085">writeHoldingRegister()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -571,9 +700,18 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8cpp_source.html#l00039">39</a> of file <a class="el" href="_register_map_8cpp_source.html">RegisterMap.cpp</a>.</p>
+<p>Read value from Modbus holding register. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">address</td><td>Register address to read </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>uint16_t Register value or 0xFFFF if invalid address </dd></dl>
 
-<p class="reference">References <a class="el" href="_register_map_8h_source.html#l00075">ALARM_STATUS_DS18B20_START_REG</a>, <a class="el" href="_register_map_8h_source.html#l00078">ALARM_STATUS_PT1000_END_REG</a>, <a class="el" href="_register_map_8h_source.html#l00020">alarmStatus</a>, <a class="el" href="_register_map_8h_source.html#l00063">CURRENT_TEMP_DS18B20_START_REG</a>, <a class="el" href="_register_map_8h_source.html#l00066">CURRENT_TEMP_PT1000_END_REG</a>, <a class="el" href="_register_map_8h_source.html#l00017">currentTemps</a>, <a class="el" href="_register_map_8h_source.html#l00057">DEVICE_ID_REG</a>, <a class="el" href="_register_map_8h_source.html#l00062">DEVICE_STATUS_END_REG</a>, <a class="el" href="_register_map_8h_source.html#l00061">DEVICE_STATUS_START_REG</a>, <a class="el" href="_register_map_8h_source.html#l00010">deviceId</a>, <a class="el" href="_register_map_8h_source.html#l00014">deviceStatus</a>, <a class="el" href="_register_map_8h_source.html#l00079">ERROR_STATUS_DS18B20_START_REG</a>, <a class="el" href="_register_map_8h_source.html#l00082">ERROR_STATUS_PT1000_END_REG</a>, <a class="el" href="_register_map_8h_source.html#l00021">errorStatus</a>, <a class="el" href="_register_map_8h_source.html#l00058">FIRMWARE_VERSION_REG</a>, <a class="el" href="_register_map_8h_source.html#l00011">firmwareVersion</a>, <a class="el" href="_register_map_8h_source.html#l00087">HIGH_ALARM_DS18B20_START_REG</a>, <a class="el" href="_register_map_8h_source.html#l00090">HIGH_ALARM_PT1000_END_REG</a>, <a class="el" href="_register_map_8h_source.html#l00025">highAlarmThresholds</a>, <a class="el" href="_register_map_8cpp_source.html#l00020">isValidAddress()</a>, <a class="el" href="_register_map_8h_source.html#l00083">LOW_ALARM_DS18B20_START_REG</a>, <a class="el" href="_register_map_8h_source.html#l00086">LOW_ALARM_PT1000_END_REG</a>, <a class="el" href="_register_map_8h_source.html#l00024">lowAlarmThresholds</a>, <a class="el" href="_register_map_8h_source.html#l00071">MAX_TEMP_DS18B20_START_REG</a>, <a class="el" href="_register_map_8h_source.html#l00074">MAX_TEMP_PT1000_END_REG</a>, <a class="el" href="_register_map_8h_source.html#l00019">maxTemps</a>, <a class="el" href="_register_map_8h_source.html#l00067">MIN_TEMP_DS18B20_START_REG</a>, <a class="el" href="_register_map_8h_source.html#l00070">MIN_TEMP_PT1000_END_REG</a>, <a class="el" href="_register_map_8h_source.html#l00018">minTemps</a>, <a class="el" href="_register_map_8h_source.html#l00059">NUM_DS18B20_REG</a>, <a class="el" href="_register_map_8h_source.html#l00060">NUM_PT1000_REG</a>, <a class="el" href="_register_map_8h_source.html#l00012">numActiveDS18B20</a>, and <a class="el" href="_register_map_8h_source.html#l00013">numActivePT1000</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_register_map_8cpp_source.html#l00056">56</a> of file <a class="el" href="_register_map_8cpp_source.html">RegisterMap.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_register_map_8h_source.html#l00201">ALARM_STATUS_DS18B20_START_REG</a>, <a class="el" href="_register_map_8h_source.html#l00204">ALARM_STATUS_PT1000_END_REG</a>, <a class="el" href="_register_map_8h_source.html#l00054">alarmStatus</a>, <a class="el" href="_register_map_8h_source.html#l00183">CURRENT_TEMP_DS18B20_START_REG</a>, <a class="el" href="_register_map_8h_source.html#l00186">CURRENT_TEMP_PT1000_END_REG</a>, <a class="el" href="_register_map_8h_source.html#l00051">currentTemps</a>, <a class="el" href="_register_map_8h_source.html#l00175">DEVICE_ID_REG</a>, <a class="el" href="_register_map_8h_source.html#l00180">DEVICE_STATUS_END_REG</a>, <a class="el" href="_register_map_8h_source.html#l00179">DEVICE_STATUS_START_REG</a>, <a class="el" href="_register_map_8h_source.html#l00044">deviceId</a>, <a class="el" href="_register_map_8h_source.html#l00048">deviceStatus</a>, <a class="el" href="_register_map_8h_source.html#l00207">ERROR_STATUS_DS18B20_START_REG</a>, <a class="el" href="_register_map_8h_source.html#l00210">ERROR_STATUS_PT1000_END_REG</a>, <a class="el" href="_register_map_8h_source.html#l00055">errorStatus</a>, <a class="el" href="_register_map_8h_source.html#l00176">FIRMWARE_VERSION_REG</a>, <a class="el" href="_register_map_8h_source.html#l00045">firmwareVersion</a>, <a class="el" href="_register_map_8h_source.html#l00219">HIGH_ALARM_DS18B20_START_REG</a>, <a class="el" href="_register_map_8h_source.html#l00222">HIGH_ALARM_PT1000_END_REG</a>, <a class="el" href="_register_map_8h_source.html#l00059">highAlarmThresholds</a>, <a class="el" href="_register_map_8cpp_source.html#l00037">isValidAddress()</a>, <a class="el" href="_register_map_8h_source.html#l00213">LOW_ALARM_DS18B20_START_REG</a>, <a class="el" href="_register_map_8h_source.html#l00216">LOW_ALARM_PT1000_END_REG</a>, <a class="el" href="_register_map_8h_source.html#l00058">lowAlarmThresholds</a>, <a class="el" href="_register_map_8h_source.html#l00195">MAX_TEMP_DS18B20_START_REG</a>, <a class="el" href="_register_map_8h_source.html#l00198">MAX_TEMP_PT1000_END_REG</a>, <a class="el" href="_register_map_8h_source.html#l00053">maxTemps</a>, <a class="el" href="_register_map_8h_source.html#l00189">MIN_TEMP_DS18B20_START_REG</a>, <a class="el" href="_register_map_8h_source.html#l00192">MIN_TEMP_PT1000_END_REG</a>, <a class="el" href="_register_map_8h_source.html#l00052">minTemps</a>, <a class="el" href="_register_map_8h_source.html#l00177">NUM_DS18B20_REG</a>, <a class="el" href="_register_map_8h_source.html#l00178">NUM_PT1000_REG</a>, <a class="el" href="_register_map_8h_source.html#l00046">numActiveDS18B20</a>, and <a class="el" href="_register_map_8h_source.html#l00047">numActivePT1000</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -597,9 +735,18 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8cpp_source.html#l00084">84</a> of file <a class="el" href="_register_map_8cpp_source.html">RegisterMap.cpp</a>.</p>
+<p>Update registers from measurement point data. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">point</td><td>Measurement point containing temperature data</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Updates current, min, max temperatures and status flags </p>
 
-<p class="reference">References <a class="el" href="_register_map_8h_source.html#l00020">alarmStatus</a>, <a class="el" href="_register_map_8h_source.html#l00017">currentTemps</a>, <a class="el" href="_register_map_8h_source.html#l00021">errorStatus</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00025">MeasurementPoint::getAddress()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00053">MeasurementPoint::getAlarmStatus()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00033">MeasurementPoint::getCurrentTemp()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00057">MeasurementPoint::getErrorStatus()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00041">MeasurementPoint::getMaxTemp()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00037">MeasurementPoint::getMinTemp()</a>, <a class="el" href="_register_map_8h_source.html#l00019">maxTemps</a>, and <a class="el" href="_register_map_8h_source.html#l00018">minTemps</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_register_map_8cpp_source.html#l00101">101</a> of file <a class="el" href="_register_map_8cpp_source.html">RegisterMap.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_register_map_8h_source.html#l00054">alarmStatus</a>, <a class="el" href="_register_map_8h_source.html#l00051">currentTemps</a>, <a class="el" href="_register_map_8h_source.html#l00055">errorStatus</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00045">MeasurementPoint::getAddress()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00073">MeasurementPoint::getAlarmStatus()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00053">MeasurementPoint::getCurrentTemp()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00077">MeasurementPoint::getErrorStatus()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00061">MeasurementPoint::getMaxTemp()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00057">MeasurementPoint::getMinTemp()</a>, <a class="el" href="_register_map_8h_source.html#l00053">maxTemps</a>, and <a class="el" href="_register_map_8h_source.html#l00052">minTemps</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -627,9 +774,21 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8cpp_source.html#l00068">68</a> of file <a class="el" href="_register_map_8cpp_source.html">RegisterMap.cpp</a>.</p>
+<p>Write value to Modbus holding register. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">address</td><td>Register address to write </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>Value to write </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if write successful </dd>
+<dd>
+false if address invalid or register is read-only </dd></dl>
 
-<p class="reference">References <a class="el" href="_register_map_8h_source.html#l00087">HIGH_ALARM_DS18B20_START_REG</a>, <a class="el" href="_register_map_8h_source.html#l00090">HIGH_ALARM_PT1000_END_REG</a>, <a class="el" href="_register_map_8h_source.html#l00025">highAlarmThresholds</a>, <a class="el" href="_register_map_8cpp_source.html#l00032">isReadOnlyRegister()</a>, <a class="el" href="_register_map_8cpp_source.html#l00020">isValidAddress()</a>, <a class="el" href="_register_map_8h_source.html#l00083">LOW_ALARM_DS18B20_START_REG</a>, <a class="el" href="_register_map_8h_source.html#l00086">LOW_ALARM_PT1000_END_REG</a>, and <a class="el" href="_register_map_8h_source.html#l00024">lowAlarmThresholds</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_register_map_8cpp_source.html#l00085">85</a> of file <a class="el" href="_register_map_8cpp_source.html">RegisterMap.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_register_map_8h_source.html#l00219">HIGH_ALARM_DS18B20_START_REG</a>, <a class="el" href="_register_map_8h_source.html#l00222">HIGH_ALARM_PT1000_END_REG</a>, <a class="el" href="_register_map_8h_source.html#l00059">highAlarmThresholds</a>, <a class="el" href="_register_map_8cpp_source.html#l00049">isReadOnlyRegister()</a>, <a class="el" href="_register_map_8cpp_source.html#l00037">isValidAddress()</a>, <a class="el" href="_register_map_8h_source.html#l00213">LOW_ALARM_DS18B20_START_REG</a>, <a class="el" href="_register_map_8h_source.html#l00216">LOW_ALARM_PT1000_END_REG</a>, and <a class="el" href="_register_map_8h_source.html#l00058">lowAlarmThresholds</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -659,7 +818,9 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00076">76</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>DS18B20 alarm status end. </p>
+
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00202">202</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
 
 </div>
 </div>
@@ -683,9 +844,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00075">75</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>DS18B20 alarm status start. </p>
 
-<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00020">isValidAddress()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00039">readHoldingRegister()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00201">201</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00037">isValidAddress()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00056">readHoldingRegister()</a>.</p>
 
 </div>
 </div>
@@ -709,9 +872,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00078">78</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>PT1000 alarm status end. </p>
 
-<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00020">isValidAddress()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00039">readHoldingRegister()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00204">204</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00037">isValidAddress()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00056">readHoldingRegister()</a>.</p>
 
 </div>
 </div>
@@ -735,7 +900,9 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00077">77</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>PT1000 alarm status start. </p>
+
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00203">203</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
 
 </div>
 </div>
@@ -759,9 +926,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00020">20</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p><a class="el" href="class_alarm.html" title="Main alarm class for temperature monitoring system.">Alarm</a> status flags (registers 400-459) </p>
 
-<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00039">readHoldingRegister()</a>, <a class="el" href="_register_map_8cpp_source.html#l00003">RegisterMap()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00084">updateFromMeasurementPoint()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00054">54</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00056">readHoldingRegister()</a>, <a class="el" href="_register_map_8cpp_source.html#l00020">RegisterMap()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00101">updateFromMeasurementPoint()</a>.</p>
 
 </div>
 </div>
@@ -785,7 +954,9 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00064">64</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>DS18B20 current temp end. </p>
+
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00184">184</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
 
 </div>
 </div>
@@ -809,9 +980,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00063">63</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>DS18B20 current temp start. </p>
 
-<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00020">isValidAddress()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00039">readHoldingRegister()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00183">183</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00037">isValidAddress()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00056">readHoldingRegister()</a>.</p>
 
 </div>
 </div>
@@ -835,9 +1008,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00066">66</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>PT1000 current temp end. </p>
 
-<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00020">isValidAddress()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00039">readHoldingRegister()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00186">186</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00037">isValidAddress()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00056">readHoldingRegister()</a>.</p>
 
 </div>
 </div>
@@ -861,7 +1036,9 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00065">65</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>PT1000 current temp start. </p>
+
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00185">185</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
 
 </div>
 </div>
@@ -885,9 +1062,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00017">17</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>Current temperature values (registers 100-159) </p>
 
-<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00039">readHoldingRegister()</a>, <a class="el" href="_register_map_8cpp_source.html#l00003">RegisterMap()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00084">updateFromMeasurementPoint()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00051">51</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00056">readHoldingRegister()</a>, <a class="el" href="_register_map_8cpp_source.html#l00020">RegisterMap()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00101">updateFromMeasurementPoint()</a>.</p>
 
 </div>
 </div>
@@ -911,9 +1090,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00057">57</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>Device ID register. </p>
 
-<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00039">readHoldingRegister()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00175">175</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00056">readHoldingRegister()</a>.</p>
 
 </div>
 </div>
@@ -937,9 +1118,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00062">62</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>Device status end register. </p>
 
-<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00020">isValidAddress()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00039">readHoldingRegister()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00180">180</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00037">isValidAddress()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00056">readHoldingRegister()</a>.</p>
 
 </div>
 </div>
@@ -963,9 +1146,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00061">61</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>Device status start register. </p>
 
-<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00039">readHoldingRegister()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00179">179</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00056">readHoldingRegister()</a>.</p>
 
 </div>
 </div>
@@ -989,9 +1174,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00010">10</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>Device identifier (register 0) </p>
 
-<p class="reference">Referenced by <a class="el" href="_register_map_8h_source.html#l00051">getDeviceId()</a>, <a class="el" href="_register_map_8cpp_source.html#l00039">readHoldingRegister()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00003">RegisterMap()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00044">44</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_register_map_8h_source.html#l00148">getDeviceId()</a>, <a class="el" href="_register_map_8cpp_source.html#l00056">readHoldingRegister()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00020">RegisterMap()</a>.</p>
 
 </div>
 </div>
@@ -1015,9 +1202,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00014">14</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>Device status flags (registers 4-10) </p>
 
-<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00039">readHoldingRegister()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00003">RegisterMap()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00048">48</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00056">readHoldingRegister()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00020">RegisterMap()</a>.</p>
 
 </div>
 </div>
@@ -1041,7 +1230,9 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00080">80</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>DS18B20 error status end. </p>
+
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00208">208</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
 
 </div>
 </div>
@@ -1065,9 +1256,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00079">79</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>DS18B20 error status start. </p>
 
-<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00020">isValidAddress()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00039">readHoldingRegister()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00207">207</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00037">isValidAddress()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00056">readHoldingRegister()</a>.</p>
 
 </div>
 </div>
@@ -1091,9 +1284,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00082">82</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>PT1000 error status end. </p>
 
-<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00020">isValidAddress()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00039">readHoldingRegister()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00210">210</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00037">isValidAddress()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00056">readHoldingRegister()</a>.</p>
 
 </div>
 </div>
@@ -1117,7 +1312,9 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00081">81</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>PT1000 error status start. </p>
+
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00209">209</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
 
 </div>
 </div>
@@ -1141,9 +1338,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00021">21</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>Error status flags (registers 500-559) </p>
 
-<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00039">readHoldingRegister()</a>, <a class="el" href="_register_map_8cpp_source.html#l00003">RegisterMap()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00084">updateFromMeasurementPoint()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00055">55</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00056">readHoldingRegister()</a>, <a class="el" href="_register_map_8cpp_source.html#l00020">RegisterMap()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00101">updateFromMeasurementPoint()</a>.</p>
 
 </div>
 </div>
@@ -1167,9 +1366,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00058">58</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>Firmware version register. </p>
 
-<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00039">readHoldingRegister()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00176">176</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00056">readHoldingRegister()</a>.</p>
 
 </div>
 </div>
@@ -1193,9 +1394,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00011">11</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>Firmware version (register 1) </p>
 
-<p class="reference">Referenced by <a class="el" href="_register_map_8h_source.html#l00052">getFirmwareVersion()</a>, <a class="el" href="_register_map_8cpp_source.html#l00039">readHoldingRegister()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00003">RegisterMap()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00045">45</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_register_map_8h_source.html#l00154">getFirmwareVersion()</a>, <a class="el" href="_register_map_8cpp_source.html#l00056">readHoldingRegister()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00020">RegisterMap()</a>.</p>
 
 </div>
 </div>
@@ -1219,7 +1422,9 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00088">88</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>DS18B20 high alarm end. </p>
+
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00220">220</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
 
 </div>
 </div>
@@ -1243,9 +1448,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00087">87</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>DS18B20 high alarm start. </p>
 
-<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00032">isReadOnlyRegister()</a>, <a class="el" href="_register_map_8cpp_source.html#l00020">isValidAddress()</a>, <a class="el" href="_register_map_8cpp_source.html#l00039">readHoldingRegister()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00068">writeHoldingRegister()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00219">219</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00049">isReadOnlyRegister()</a>, <a class="el" href="_register_map_8cpp_source.html#l00037">isValidAddress()</a>, <a class="el" href="_register_map_8cpp_source.html#l00056">readHoldingRegister()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00085">writeHoldingRegister()</a>.</p>
 
 </div>
 </div>
@@ -1269,9 +1476,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00090">90</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>PT1000 high alarm end. </p>
 
-<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00032">isReadOnlyRegister()</a>, <a class="el" href="_register_map_8cpp_source.html#l00020">isValidAddress()</a>, <a class="el" href="_register_map_8cpp_source.html#l00039">readHoldingRegister()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00068">writeHoldingRegister()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00222">222</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00049">isReadOnlyRegister()</a>, <a class="el" href="_register_map_8cpp_source.html#l00037">isValidAddress()</a>, <a class="el" href="_register_map_8cpp_source.html#l00056">readHoldingRegister()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00085">writeHoldingRegister()</a>.</p>
 
 </div>
 </div>
@@ -1295,7 +1504,9 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00089">89</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>PT1000 high alarm start. </p>
+
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00221">221</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
 
 </div>
 </div>
@@ -1319,9 +1530,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00025">25</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>High temperature alarm thresholds (registers 700-759) </p>
 
-<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00106">applyConfigFromMeasurementPoint()</a>, <a class="el" href="_register_map_8cpp_source.html#l00097">applyConfigToMeasurementPoint()</a>, <a class="el" href="_register_map_8cpp_source.html#l00039">readHoldingRegister()</a>, <a class="el" href="_register_map_8cpp_source.html#l00003">RegisterMap()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00068">writeHoldingRegister()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00059">59</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00123">applyConfigFromMeasurementPoint()</a>, <a class="el" href="_register_map_8cpp_source.html#l00114">applyConfigToMeasurementPoint()</a>, <a class="el" href="_register_map_8cpp_source.html#l00056">readHoldingRegister()</a>, <a class="el" href="_register_map_8cpp_source.html#l00020">RegisterMap()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00085">writeHoldingRegister()</a>.</p>
 
 </div>
 </div>
@@ -1345,7 +1558,9 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00084">84</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>DS18B20 low alarm end. </p>
+
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00214">214</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
 
 </div>
 </div>
@@ -1369,9 +1584,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00083">83</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>DS18B20 low alarm start. </p>
 
-<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00032">isReadOnlyRegister()</a>, <a class="el" href="_register_map_8cpp_source.html#l00020">isValidAddress()</a>, <a class="el" href="_register_map_8cpp_source.html#l00039">readHoldingRegister()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00068">writeHoldingRegister()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00213">213</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00049">isReadOnlyRegister()</a>, <a class="el" href="_register_map_8cpp_source.html#l00037">isValidAddress()</a>, <a class="el" href="_register_map_8cpp_source.html#l00056">readHoldingRegister()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00085">writeHoldingRegister()</a>.</p>
 
 </div>
 </div>
@@ -1395,9 +1612,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00086">86</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>PT1000 low alarm end. </p>
 
-<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00032">isReadOnlyRegister()</a>, <a class="el" href="_register_map_8cpp_source.html#l00020">isValidAddress()</a>, <a class="el" href="_register_map_8cpp_source.html#l00039">readHoldingRegister()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00068">writeHoldingRegister()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00216">216</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00049">isReadOnlyRegister()</a>, <a class="el" href="_register_map_8cpp_source.html#l00037">isValidAddress()</a>, <a class="el" href="_register_map_8cpp_source.html#l00056">readHoldingRegister()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00085">writeHoldingRegister()</a>.</p>
 
 </div>
 </div>
@@ -1421,7 +1640,9 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00085">85</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>PT1000 low alarm start. </p>
+
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00215">215</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
 
 </div>
 </div>
@@ -1445,9 +1666,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00024">24</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>Low temperature alarm thresholds (registers 600-659) </p>
 
-<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00106">applyConfigFromMeasurementPoint()</a>, <a class="el" href="_register_map_8cpp_source.html#l00097">applyConfigToMeasurementPoint()</a>, <a class="el" href="_register_map_8cpp_source.html#l00039">readHoldingRegister()</a>, <a class="el" href="_register_map_8cpp_source.html#l00003">RegisterMap()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00068">writeHoldingRegister()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00058">58</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00123">applyConfigFromMeasurementPoint()</a>, <a class="el" href="_register_map_8cpp_source.html#l00114">applyConfigToMeasurementPoint()</a>, <a class="el" href="_register_map_8cpp_source.html#l00056">readHoldingRegister()</a>, <a class="el" href="_register_map_8cpp_source.html#l00020">RegisterMap()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00085">writeHoldingRegister()</a>.</p>
 
 </div>
 </div>
@@ -1471,7 +1694,9 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00072">72</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>DS18B20 max temp end. </p>
+
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00196">196</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
 
 </div>
 </div>
@@ -1495,9 +1720,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00071">71</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>DS18B20 max temp start. </p>
 
-<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00020">isValidAddress()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00039">readHoldingRegister()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00195">195</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00037">isValidAddress()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00056">readHoldingRegister()</a>.</p>
 
 </div>
 </div>
@@ -1521,9 +1748,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00074">74</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>PT1000 max temp end. </p>
 
-<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00020">isValidAddress()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00039">readHoldingRegister()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00198">198</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00037">isValidAddress()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00056">readHoldingRegister()</a>.</p>
 
 </div>
 </div>
@@ -1547,7 +1776,9 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00073">73</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>PT1000 max temp start. </p>
+
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00197">197</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
 
 </div>
 </div>
@@ -1571,9 +1802,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00019">19</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>Maximum temperature values (registers 300-359) </p>
 
-<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00039">readHoldingRegister()</a>, <a class="el" href="_register_map_8cpp_source.html#l00003">RegisterMap()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00084">updateFromMeasurementPoint()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00053">53</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00056">readHoldingRegister()</a>, <a class="el" href="_register_map_8cpp_source.html#l00020">RegisterMap()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00101">updateFromMeasurementPoint()</a>.</p>
 
 </div>
 </div>
@@ -1597,7 +1830,9 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00068">68</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>DS18B20 min temp end. </p>
+
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00190">190</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
 
 </div>
 </div>
@@ -1621,9 +1856,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00067">67</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>DS18B20 min temp start. </p>
 
-<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00020">isValidAddress()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00039">readHoldingRegister()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00189">189</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00037">isValidAddress()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00056">readHoldingRegister()</a>.</p>
 
 </div>
 </div>
@@ -1647,9 +1884,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00070">70</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>PT1000 min temp end. </p>
 
-<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00020">isValidAddress()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00039">readHoldingRegister()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00192">192</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00037">isValidAddress()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00056">readHoldingRegister()</a>.</p>
 
 </div>
 </div>
@@ -1673,7 +1912,9 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00069">69</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>PT1000 min temp start. </p>
+
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00191">191</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
 
 </div>
 </div>
@@ -1697,9 +1938,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00018">18</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>Minimum temperature values (registers 200-259) </p>
 
-<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00039">readHoldingRegister()</a>, <a class="el" href="_register_map_8cpp_source.html#l00003">RegisterMap()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00084">updateFromMeasurementPoint()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00052">52</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00056">readHoldingRegister()</a>, <a class="el" href="_register_map_8cpp_source.html#l00020">RegisterMap()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00101">updateFromMeasurementPoint()</a>.</p>
 
 </div>
 </div>
@@ -1723,9 +1966,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00059">59</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>Active DS18B20 count register. </p>
 
-<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00039">readHoldingRegister()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00177">177</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00056">readHoldingRegister()</a>.</p>
 
 </div>
 </div>
@@ -1749,9 +1994,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00060">60</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>Active PT1000 count register. </p>
 
-<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00039">readHoldingRegister()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00178">178</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_register_map_8cpp_source.html#l00056">readHoldingRegister()</a>.</p>
 
 </div>
 </div>
@@ -1775,9 +2022,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00012">12</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>Number of active DS18B20 sensors (register 2) </p>
 
-<p class="reference">Referenced by <a class="el" href="_register_map_8h_source.html#l00047">decrementActiveDS18B20()</a>, <a class="el" href="_register_map_8h_source.html#l00053">getNumActiveDS18B20()</a>, <a class="el" href="_register_map_8h_source.html#l00046">incrementActiveDS18B20()</a>, <a class="el" href="_register_map_8cpp_source.html#l00039">readHoldingRegister()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00003">RegisterMap()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00046">46</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_register_map_8h_source.html#l00132">decrementActiveDS18B20()</a>, <a class="el" href="_register_map_8h_source.html#l00160">getNumActiveDS18B20()</a>, <a class="el" href="_register_map_8h_source.html#l00127">incrementActiveDS18B20()</a>, <a class="el" href="_register_map_8cpp_source.html#l00056">readHoldingRegister()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00020">RegisterMap()</a>.</p>
 
 </div>
 </div>
@@ -1801,9 +2050,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00013">13</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+<p>Number of active PT1000 sensors (register 3) </p>
 
-<p class="reference">Referenced by <a class="el" href="_register_map_8h_source.html#l00049">decrementActivePT1000()</a>, <a class="el" href="_register_map_8h_source.html#l00054">getNumActivePT1000()</a>, <a class="el" href="_register_map_8h_source.html#l00048">incrementActivePT1000()</a>, <a class="el" href="_register_map_8cpp_source.html#l00039">readHoldingRegister()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00003">RegisterMap()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00047">47</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_register_map_8h_source.html#l00142">decrementActivePT1000()</a>, <a class="el" href="_register_map_8h_source.html#l00166">getNumActivePT1000()</a>, <a class="el" href="_register_map_8h_source.html#l00137">incrementActivePT1000()</a>, <a class="el" href="_register_map_8cpp_source.html#l00056">readHoldingRegister()</a>, and <a class="el" href="_register_map_8cpp_source.html#l00020">RegisterMap()</a>.</p>
 
 </div>
 </div>

@@ -1,6 +1,6 @@
 <map id="MeasurementPoint::getBoundSensor" name="MeasurementPoint::getBoundSensor">
 <area shape="rect" id="Node000001" title="Get pointer to bound sensor." alt="" coords="928,215,1121,255"/>
-<area shape="rect" id="Node000002" href="$class_temperature_controller.html#a27da8ccc3effea555f440ce3e6f89b08" title=" " alt="" coords="695,5,856,46"/>
+<area shape="rect" id="Node000002" href="$class_temperature_controller.html#a27da8ccc3effea555f440ce3e6f89b08" title="Check measurement point for alarm conditions." alt="" coords="695,5,856,46"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1002,203,951,131,917,94,878,61,855,49,858,44,881,57,921,90,956,128,1006,200"/>
 <area shape="rect" id="Node000003" href="$class_c_s_v_config_manager.html#a2c2673398051c26184c9197aa751a6b3" title="Export single measurement point to CSV format." alt="" coords="703,71,848,111"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="988,206,939,164,878,125,847,112,849,107,881,121,942,160,992,202"/>
@@ -8,13 +8,13 @@
 <area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="964,210,879,176,837,164,839,159,881,171,966,205"/>
 <area shape="rect" id="Node000008" href="$class_config_manager.html#ae605c999fabc6344511f455618655326" title="Setup alarms API endpoints." alt="" coords="439,286,617,312"/>
 <area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="913,252,618,290,618,285,912,247"/>
-<area shape="rect" id="Node000010" href="$class_temperature_controller.html#a9b4fe09d4c87dcf86e78b890012e1e72" title=" " alt="" coords="701,185,850,226"/>
+<area shape="rect" id="Node000010" href="$class_temperature_controller.html#a9b4fe09d4c87dcf86e78b890012e1e72" title="Get sensor bound to measurement point." alt="" coords="701,185,850,226"/>
 <area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="912,224,850,217,851,212,912,219"/>
-<area shape="rect" id="Node000016" href="$class_temperature_controller.html#add39ba7dad38449bbf1787a5c9c51ef9" title=" " alt="" coords="701,300,850,341"/>
+<area shape="rect" id="Node000016" href="$class_temperature_controller.html#add39ba7dad38449bbf1787a5c9c51ef9" title="Get JSON representation of all measurement points." alt="" coords="701,300,850,341"/>
 <area shape="poly" id="edge16_Node000001_Node000016" title=" " alt="" coords="949,263,838,302,836,297,948,258"/>
 <area shape="rect" id="Node000017" href="$class_config_manager.html#a55b79da91c57039c483ddf5fceabbd64" title="Save measurement points configuration to file." alt="" coords="684,365,867,406"/>
 <area shape="poly" id="edge17_Node000001_Node000017" title=" " alt="" coords="994,268,943,312,881,355,853,367,851,362,878,350,940,308,990,264"/>
-<area shape="rect" id="Node000022" href="$class_temperature_controller.html#a261c9b96540ec6680dfffd3a26e4ca00" title=" " alt="" coords="691,431,860,471"/>
+<area shape="rect" id="Node000022" href="$class_temperature_controller.html#a261c9b96540ec6680dfffd3a26e4ca00" title="Unbind sensor from measurement point." alt="" coords="691,431,860,471"/>
 <area shape="poly" id="edge26_Node000001_Node000022" title=" " alt="" coords="1007,271,957,346,922,385,881,420,859,432,856,428,878,415,918,382,952,342,1003,268"/>
 <area shape="rect" id="Node000004" href="$class_c_s_v_config_manager.html#a1c6cbc4c8a132762bf16a8ce9f7d0bfc" title="Export measurement points with alarm configuration to CSV." alt="" coords="438,41,619,82"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="687,83,619,75,620,70,688,78"/>
@@ -24,15 +24,15 @@
 <area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="418,122,373,122,373,116,418,116"/>
 <area shape="rect" id="Node000009" href="$class_config_manager.html#a0497343220fc493f5cf9574922508908" title="Initialize the configuration system." alt="" coords="220,372,368,397"/>
 <area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="458,319,434,327,324,373,322,368,432,322,456,314"/>
-<area shape="rect" id="Node000011" href="$class_temperature_controller.html#a4e4770607486ebfc6eacafa704945c23" title=" " alt="" coords="450,156,607,197"/>
+<area shape="rect" id="Node000011" href="$class_temperature_controller.html#a4e4770607486ebfc6eacafa704945c23" title="Remove sensor by ROM address string." alt="" coords="450,156,607,197"/>
 <area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="685,198,607,188,607,183,686,192"/>
-<area shape="rect" id="Node000013" href="$class_temperature_controller.html#a5ac8af90de5dfd79a9a2e4c7270a98a3" title=" " alt="" coords="454,221,603,262"/>
+<area shape="rect" id="Node000013" href="$class_temperature_controller.html#a5ac8af90de5dfd79a9a2e4c7270a98a3" title="Update alarm states for all measurement points." alt="" coords="454,221,603,262"/>
 <area shape="poly" id="edge12_Node000010_Node000013" title=" " alt="" coords="686,221,604,233,603,228,685,216"/>
-<area shape="rect" id="Node000012" href="$class_temperature_controller.html#a57b74b40c88016965d07248981412f7d" title=" " alt="" coords="203,156,385,197"/>
+<area shape="rect" id="Node000012" href="$class_temperature_controller.html#a57b74b40c88016965d07248981412f7d" title="Discover DS18B20 sensors on all OneWire buses." alt="" coords="203,156,385,197"/>
 <area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="434,179,386,179,386,174,434,174"/>
-<area shape="rect" id="Node000014" href="$class_temperature_controller.html#aca5deddbf703001373424d876f87b5f2" title=" " alt="" coords="219,221,368,262"/>
+<area shape="rect" id="Node000014" href="$class_temperature_controller.html#aca5deddbf703001373424d876f87b5f2" title="Main update function &#45; must be called in loop()" alt="" coords="219,221,368,262"/>
 <area shape="poly" id="edge13_Node000013_Node000014" title=" " alt="" coords="438,244,369,244,369,239,438,239"/>
-<area shape="rect" id="Node000015" href="$class_temperature_controller.html#a11948a87fe7df37543b86ecdd488b341" title=" " alt="" coords="5,221,155,262"/>
+<area shape="rect" id="Node000015" href="$class_temperature_controller.html#a11948a87fe7df37543b86ecdd488b341" title="Read temperature from all configured measurement points." alt="" coords="5,221,155,262"/>
 <area shape="poly" id="edge14_Node000014_Node000015" title=" " alt="" coords="203,253,155,253,155,248,203,248"/>
 <area shape="poly" id="edge15_Node000015_Node000014" title=" " alt="" coords="170,230,219,230,219,236,170,235"/>
 <area shape="poly" id="edge18_Node000017_Node000008" title=" " alt="" coords="688,362,670,355,646,340,622,327,588,315,590,310,624,322,649,336,673,350,690,357"/>

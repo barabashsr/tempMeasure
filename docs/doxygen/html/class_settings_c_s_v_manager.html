@@ -93,6 +93,9 @@ $(function(){initNavTree('class_settings_c_s_v_manager.html','',''); });
 </div><!--header-->
 <div class="contents">
 
+<p>Manages CSV export/import of system settings.  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_settings_c_s_v_manager_8h_source.html">SettingsCSVManager.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for SettingsCSVManager:</div>
@@ -103,27 +106,41 @@ Collaboration diagram for SettingsCSVManager:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a39ed23cde861fad720870a5370bddfed" id="r_a39ed23cde861fad720870a5370bddfed"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a39ed23cde861fad720870a5370bddfed">SettingsCSVManager</a> (ConfigAssist &amp;config)</td></tr>
+<tr class="memdesc:a39ed23cde861fad720870a5370bddfed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new Settings CSV Manager object.  <br /></td></tr>
 <tr class="memitem:a7efabf3fcee7d86a42b8b25c48078450" id="r_a7efabf3fcee7d86a42b8b25c48078450"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7efabf3fcee7d86a42b8b25c48078450">exportSettingsToCSV</a> ()</td></tr>
+<tr class="memdesc:a7efabf3fcee7d86a42b8b25c48078450"><td class="mdescLeft">&#160;</td><td class="mdescRight">Export all settings to CSV format.  <br /></td></tr>
 <tr class="memitem:a1372d30cf87604e22bebf3ec8603454d" id="r_a1372d30cf87604e22bebf3ec8603454d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1372d30cf87604e22bebf3ec8603454d">importSettingsFromCSV</a> (const String &amp;csvData)</td></tr>
+<tr class="memdesc:a1372d30cf87604e22bebf3ec8603454d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Import settings from CSV data.  <br /></td></tr>
 <tr class="memitem:abd602c47d611a0a812b04e06fb31c815" id="r_abd602c47d611a0a812b04e06fb31c815"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abd602c47d611a0a812b04e06fb31c815">validateSettingsCSV</a> (const String &amp;csvData)</td></tr>
+<tr class="memdesc:abd602c47d611a0a812b04e06fb31c815"><td class="mdescLeft">&#160;</td><td class="mdescRight">Validate CSV data without importing.  <br /></td></tr>
 <tr class="memitem:abb0dbc41bc5e2ae1ae1c4a8bf8885770" id="r_abb0dbc41bc5e2ae1ae1c4a8bf8885770"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abb0dbc41bc5e2ae1ae1c4a8bf8885770">getLastError</a> () const</td></tr>
+<tr class="memdesc:abb0dbc41bc5e2ae1ae1c4a8bf8885770"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get last error message.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:a3d258dd163c5eed187dc9a8b0e9dfc01" id="r_a3d258dd163c5eed187dc9a8b0e9dfc01"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3d258dd163c5eed187dc9a8b0e9dfc01">_escapeCSVField</a> (const String &amp;field)</td></tr>
+<tr class="memdesc:a3d258dd163c5eed187dc9a8b0e9dfc01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Escape special characters for CSV field.  <br /></td></tr>
 <tr class="memitem:ab560afb1aa799dcd6f98f91c896abfc5" id="r_ab560afb1aa799dcd6f98f91c896abfc5"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab560afb1aa799dcd6f98f91c896abfc5">_unescapeCSVField</a> (const String &amp;field)</td></tr>
+<tr class="memdesc:ab560afb1aa799dcd6f98f91c896abfc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unescape CSV field value.  <br /></td></tr>
 <tr class="memitem:aa4822a7de38a44a23e051d1a4c8dc3bf" id="r_aa4822a7de38a44a23e051d1a4c8dc3bf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa4822a7de38a44a23e051d1a4c8dc3bf">_parseCSVLine</a> (const String &amp;line)</td></tr>
+<tr class="memdesc:aa4822a7de38a44a23e051d1a4c8dc3bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse single CSV line.  <br /></td></tr>
 <tr class="memitem:a2949ac1de83ba2b674a2306b35193c74" id="r_a2949ac1de83ba2b674a2306b35193c74"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2949ac1de83ba2b674a2306b35193c74">_exportAcknowledgedDelays</a> (String &amp;csv)</td></tr>
+<tr class="memdesc:a2949ac1de83ba2b674a2306b35193c74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Export acknowledged delay settings to CSV.  <br /></td></tr>
 <tr class="memitem:aed4c7a1488843f2bebfefbfe8f95e24b" id="r_aed4c7a1488843f2bebfefbfe8f95e24b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aed4c7a1488843f2bebfefbfe8f95e24b">_importAcknowledgedDelays</a> (const String &amp;key, const String &amp;value)</td></tr>
+<tr class="memdesc:aed4c7a1488843f2bebfefbfe8f95e24b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Import acknowledged delay settings.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:ab6bfec4580dfd75c036c280149228ffc" id="r_ab6bfec4580dfd75c036c280149228ffc"><td class="memItemLeft" align="right" valign="top">ConfigAssist &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab6bfec4580dfd75c036c280149228ffc">_config</a></td></tr>
+<tr class="memdesc:ab6bfec4580dfd75c036c280149228ffc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference to configuration manager.  <br /></td></tr>
 <tr class="memitem:a5bc7b46f41120f2d9b938db63cbd6f02" id="r_a5bc7b46f41120f2d9b938db63cbd6f02"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5bc7b46f41120f2d9b938db63cbd6f02">_lastError</a></td></tr>
+<tr class="memdesc:a5bc7b46f41120f2d9b938db63cbd6f02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Last error message.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="_settings_c_s_v_manager_8h_source.html#l00006">6</a> of file <a class="el" href="_settings_c_s_v_manager_8h_source.html">SettingsCSVManager.h</a>.</p>
+<div class="textblock"><p>Manages CSV export/import of system settings. </p>
+<p>Provides methods to convert system configuration to/from CSV format, with validation and error handling for safe configuration updates. </p>
+
+<p class="definition">Definition at line <a class="el" href="_settings_c_s_v_manager_8h_source.html#l00031">31</a> of file <a class="el" href="_settings_c_s_v_manager_8h_source.html">SettingsCSVManager.h</a>.</p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a39ed23cde861fad720870a5370bddfed" name="a39ed23cde861fad720870a5370bddfed"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a39ed23cde861fad720870a5370bddfed">&#9670;&#160;</a></span>SettingsCSVManager()</h2>
@@ -140,9 +157,17 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_settings_c_s_v_manager_8cpp_source.html#l00003">3</a> of file <a class="el" href="_settings_c_s_v_manager_8cpp_source.html">SettingsCSVManager.cpp</a>.</p>
+<p>Construct a new Settings CSV Manager object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">config</td><td>Reference to ConfigAssist instance </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="reference">References <a class="el" href="_settings_c_s_v_manager_8h_source.html#l00019">_config</a>, and <a class="el" href="_settings_c_s_v_manager_8h_source.html#l00020">_lastError</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_settings_c_s_v_manager_8cpp_source.html#l00021">21</a> of file <a class="el" href="_settings_c_s_v_manager_8cpp_source.html">SettingsCSVManager.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_settings_c_s_v_manager_8h_source.html#l00073">_config</a>, and <a class="el" href="_settings_c_s_v_manager_8h_source.html#l00074">_lastError</a>.</p>
 
 </div>
 </div>
@@ -170,9 +195,19 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_settings_c_s_v_manager_8cpp_source.html#l00161">161</a> of file <a class="el" href="_settings_c_s_v_manager_8cpp_source.html">SettingsCSVManager.cpp</a>.</p>
+<p>Escape special characters for CSV field. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">field</td><td>Field value to escape </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>String Escaped field value</dd></dl>
+<p>Handles quotes, commas, and newlines </p>
 
-<p class="reference">Referenced by <a class="el" href="_settings_c_s_v_manager_8cpp_source.html#l00007">exportSettingsToCSV()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_settings_c_s_v_manager_8cpp_source.html#l00179">179</a> of file <a class="el" href="_settings_c_s_v_manager_8cpp_source.html">SettingsCSVManager.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_settings_c_s_v_manager_8cpp_source.html#l00025">exportSettingsToCSV()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -204,6 +239,15 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Export acknowledged delay settings to CSV. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">csv</td><td>String to append delay settings to</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Exports alarm acknowledgment delay configurations </p>
+
 </div>
 </div>
 <a id="aed4c7a1488843f2bebfefbfe8f95e24b" name="aed4c7a1488843f2bebfefbfe8f95e24b"></a>
@@ -233,6 +277,18 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Import acknowledged delay settings. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">key</td><td>Configuration key </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>Configuration value </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if import successful </dd>
+<dd>
+false if import failed </dd></dl>
+
 </div>
 </div>
 <a id="aa4822a7de38a44a23e051d1a4c8dc3bf" name="aa4822a7de38a44a23e051d1a4c8dc3bf"></a>
@@ -258,11 +314,22 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_settings_c_s_v_manager_8cpp_source.html#l00091">91</a> of file <a class="el" href="_settings_c_s_v_manager_8cpp_source.html">SettingsCSVManager.cpp</a>.</p>
+<p>Parse single CSV line. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">line</td><td>CSV line to parse </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if line parsed successfully </dd>
+<dd>
+false if parsing failed </dd></dl>
 
-<p class="reference">References <a class="el" href="_settings_c_s_v_manager_8h_source.html#l00019">_config</a>, <a class="el" href="_settings_c_s_v_manager_8h_source.html#l00020">_lastError</a>, and <a class="el" href="_settings_c_s_v_manager_8cpp_source.html#l00177">_unescapeCSVField()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_settings_c_s_v_manager_8cpp_source.html#l00109">109</a> of file <a class="el" href="_settings_c_s_v_manager_8cpp_source.html">SettingsCSVManager.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_settings_c_s_v_manager_8cpp_source.html#l00034">importSettingsFromCSV()</a>.</p>
+<p class="reference">References <a class="el" href="_settings_c_s_v_manager_8h_source.html#l00073">_config</a>, <a class="el" href="_settings_c_s_v_manager_8h_source.html#l00074">_lastError</a>, and <a class="el" href="_settings_c_s_v_manager_8cpp_source.html#l00195">_unescapeCSVField()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_settings_c_s_v_manager_8cpp_source.html#l00052">importSettingsFromCSV()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -299,9 +366,18 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_settings_c_s_v_manager_8cpp_source.html#l00177">177</a> of file <a class="el" href="_settings_c_s_v_manager_8cpp_source.html">SettingsCSVManager.cpp</a>.</p>
+<p>Unescape CSV field value. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">field</td><td>Escaped field value </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>String Unescaped field value </dd></dl>
 
-<p class="reference">Referenced by <a class="el" href="_settings_c_s_v_manager_8cpp_source.html#l00091">_parseCSVLine()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_settings_c_s_v_manager_8cpp_source.html#l00195">195</a> of file <a class="el" href="_settings_c_s_v_manager_8cpp_source.html">SettingsCSVManager.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_settings_c_s_v_manager_8cpp_source.html#l00109">_parseCSVLine()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -325,9 +401,13 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_settings_c_s_v_manager_8cpp_source.html#l00007">7</a> of file <a class="el" href="_settings_c_s_v_manager_8cpp_source.html">SettingsCSVManager.cpp</a>.</p>
+<p>Export all settings to CSV format. </p>
+<dl class="section return"><dt>Returns</dt><dd>String CSV formatted settings</dd></dl>
+<p>Generates CSV with key-value pairs for all configuration items </p>
 
-<p class="reference">References <a class="el" href="_settings_c_s_v_manager_8h_source.html#l00019">_config</a>, and <a class="el" href="_settings_c_s_v_manager_8cpp_source.html#l00161">_escapeCSVField()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_settings_c_s_v_manager_8cpp_source.html#l00025">25</a> of file <a class="el" href="_settings_c_s_v_manager_8cpp_source.html">SettingsCSVManager.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_settings_c_s_v_manager_8h_source.html#l00073">_config</a>, and <a class="el" href="_settings_c_s_v_manager_8cpp_source.html#l00179">_escapeCSVField()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -359,9 +439,12 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_settings_c_s_v_manager_8h_source.html#l00016">16</a> of file <a class="el" href="_settings_c_s_v_manager_8h_source.html">SettingsCSVManager.h</a>.</p>
+<p>Get last error message. </p>
+<dl class="section return"><dt>Returns</dt><dd>String Description of last error </dd></dl>
 
-<p class="reference">References <a class="el" href="_settings_c_s_v_manager_8h_source.html#l00020">_lastError</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_settings_c_s_v_manager_8h_source.html#l00070">70</a> of file <a class="el" href="_settings_c_s_v_manager_8h_source.html">SettingsCSVManager.h</a>.</p>
+
+<p class="reference">References <a class="el" href="_settings_c_s_v_manager_8h_source.html#l00074">_lastError</a>.</p>
 
 </div>
 </div>
@@ -380,9 +463,21 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_settings_c_s_v_manager_8cpp_source.html#l00034">34</a> of file <a class="el" href="_settings_c_s_v_manager_8cpp_source.html">SettingsCSVManager.cpp</a>.</p>
+<p>Import settings from CSV data. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">csvData</td><td>CSV formatted configuration data </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if import successful </dd>
+<dd>
+false if CSV invalid or import failed</dd></dl>
+<p>Validates and applies settings from CSV input </p>
 
-<p class="reference">References <a class="el" href="_settings_c_s_v_manager_8h_source.html#l00020">_lastError</a>, <a class="el" href="_settings_c_s_v_manager_8cpp_source.html#l00091">_parseCSVLine()</a>, and <a class="el" href="_settings_c_s_v_manager_8cpp_source.html#l00069">validateSettingsCSV()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_settings_c_s_v_manager_8cpp_source.html#l00052">52</a> of file <a class="el" href="_settings_c_s_v_manager_8cpp_source.html">SettingsCSVManager.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_settings_c_s_v_manager_8h_source.html#l00074">_lastError</a>, <a class="el" href="_settings_c_s_v_manager_8cpp_source.html#l00109">_parseCSVLine()</a>, and <a class="el" href="_settings_c_s_v_manager_8cpp_source.html#l00087">validateSettingsCSV()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -406,11 +501,23 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_settings_c_s_v_manager_8cpp_source.html#l00069">69</a> of file <a class="el" href="_settings_c_s_v_manager_8cpp_source.html">SettingsCSVManager.cpp</a>.</p>
+<p>Validate CSV data without importing. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">csvData</td><td>CSV data to validate </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if CSV format is valid </dd>
+<dd>
+false if CSV format is invalid</dd></dl>
+<p>Checks CSV structure and field validity </p>
 
-<p class="reference">References <a class="el" href="_settings_c_s_v_manager_8h_source.html#l00020">_lastError</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_settings_c_s_v_manager_8cpp_source.html#l00087">87</a> of file <a class="el" href="_settings_c_s_v_manager_8cpp_source.html">SettingsCSVManager.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_settings_c_s_v_manager_8cpp_source.html#l00034">importSettingsFromCSV()</a>.</p>
+<p class="reference">References <a class="el" href="_settings_c_s_v_manager_8h_source.html#l00074">_lastError</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_settings_c_s_v_manager_8cpp_source.html#l00052">importSettingsFromCSV()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -440,9 +547,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_settings_c_s_v_manager_8h_source.html#l00019">19</a> of file <a class="el" href="_settings_c_s_v_manager_8h_source.html">SettingsCSVManager.h</a>.</p>
+<p>Reference to configuration manager. </p>
 
-<p class="reference">Referenced by <a class="el" href="_settings_c_s_v_manager_8cpp_source.html#l00091">_parseCSVLine()</a>, <a class="el" href="_settings_c_s_v_manager_8cpp_source.html#l00007">exportSettingsToCSV()</a>, and <a class="el" href="_settings_c_s_v_manager_8cpp_source.html#l00003">SettingsCSVManager()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_settings_c_s_v_manager_8h_source.html#l00073">73</a> of file <a class="el" href="_settings_c_s_v_manager_8h_source.html">SettingsCSVManager.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_settings_c_s_v_manager_8cpp_source.html#l00109">_parseCSVLine()</a>, <a class="el" href="_settings_c_s_v_manager_8cpp_source.html#l00025">exportSettingsToCSV()</a>, and <a class="el" href="_settings_c_s_v_manager_8cpp_source.html#l00021">SettingsCSVManager()</a>.</p>
 
 </div>
 </div>
@@ -466,9 +575,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_settings_c_s_v_manager_8h_source.html#l00020">20</a> of file <a class="el" href="_settings_c_s_v_manager_8h_source.html">SettingsCSVManager.h</a>.</p>
+<p>Last error message. </p>
 
-<p class="reference">Referenced by <a class="el" href="_settings_c_s_v_manager_8cpp_source.html#l00091">_parseCSVLine()</a>, <a class="el" href="_settings_c_s_v_manager_8h_source.html#l00016">getLastError()</a>, <a class="el" href="_settings_c_s_v_manager_8cpp_source.html#l00034">importSettingsFromCSV()</a>, <a class="el" href="_settings_c_s_v_manager_8cpp_source.html#l00003">SettingsCSVManager()</a>, and <a class="el" href="_settings_c_s_v_manager_8cpp_source.html#l00069">validateSettingsCSV()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_settings_c_s_v_manager_8h_source.html#l00074">74</a> of file <a class="el" href="_settings_c_s_v_manager_8h_source.html">SettingsCSVManager.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_settings_c_s_v_manager_8cpp_source.html#l00109">_parseCSVLine()</a>, <a class="el" href="_settings_c_s_v_manager_8h_source.html#l00070">getLastError()</a>, <a class="el" href="_settings_c_s_v_manager_8cpp_source.html#l00052">importSettingsFromCSV()</a>, <a class="el" href="_settings_c_s_v_manager_8cpp_source.html#l00021">SettingsCSVManager()</a>, and <a class="el" href="_settings_c_s_v_manager_8cpp_source.html#l00087">validateSettingsCSV()</a>.</p>
 
 </div>
 </div>

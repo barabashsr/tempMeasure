@@ -3,220 +3,10 @@
   <compounddef id="class_register_map" kind="class" language="C++" prot="public">
     <compoundname>RegisterMap</compoundname>
     <includes refid="_register_map_8h" local="no">RegisterMap.h</includes>
-    <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="class_register_map_1aa98070c7197fdf26d743f4eed498fd66" prot="private" static="no" mutable="no">
-        <type>uint16_t</type>
-        <definition>uint16_t RegisterMap::deviceId</definition>
-        <argsstring></argsstring>
-        <name>deviceId</name>
-        <qualifiedname>RegisterMap::deviceId</qualifiedname>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/RegisterMap.h" line="10" column="14" bodyfile="include/RegisterMap.h" bodystart="10" bodyend="-1"/>
-        <referencedby refid="class_register_map_1a8c38fa18dec0fe5a62d07f218169c44a" compoundref="_register_map_8h" startline="51" endline="51">getDeviceId</referencedby>
-        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="39" endline="66">readHoldingRegister</referencedby>
-        <referencedby refid="class_register_map_1a421bb31f92254150a6738952b1ff7944" compoundref="_register_map_8cpp" startline="3" endline="18">RegisterMap</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="class_register_map_1ae5b846e888d43b130096d3671dc8c0fb" prot="private" static="no" mutable="no">
-        <type>uint16_t</type>
-        <definition>uint16_t RegisterMap::firmwareVersion</definition>
-        <argsstring></argsstring>
-        <name>firmwareVersion</name>
-        <qualifiedname>RegisterMap::firmwareVersion</qualifiedname>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/RegisterMap.h" line="11" column="14" bodyfile="include/RegisterMap.h" bodystart="11" bodyend="-1"/>
-        <referencedby refid="class_register_map_1a48d0afa7c0aabe6627aae579a85b635c" compoundref="_register_map_8h" startline="52" endline="52">getFirmwareVersion</referencedby>
-        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="39" endline="66">readHoldingRegister</referencedby>
-        <referencedby refid="class_register_map_1a421bb31f92254150a6738952b1ff7944" compoundref="_register_map_8cpp" startline="3" endline="18">RegisterMap</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="class_register_map_1a216b9abf3c7b9f7d6721ea2e96cb9ff7" prot="private" static="no" mutable="no">
-        <type>uint16_t</type>
-        <definition>uint16_t RegisterMap::numActiveDS18B20</definition>
-        <argsstring></argsstring>
-        <name>numActiveDS18B20</name>
-        <qualifiedname>RegisterMap::numActiveDS18B20</qualifiedname>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/RegisterMap.h" line="12" column="14" bodyfile="include/RegisterMap.h" bodystart="12" bodyend="-1"/>
-        <referencedby refid="class_register_map_1a744b3b98a6aaa92d1ffdba77b95c1ff3" compoundref="_register_map_8h" startline="47" endline="47">decrementActiveDS18B20</referencedby>
-        <referencedby refid="class_register_map_1a9fcb99c9ae7533fe8a02db3fdc2680bf" compoundref="_register_map_8h" startline="53" endline="53">getNumActiveDS18B20</referencedby>
-        <referencedby refid="class_register_map_1afd76ed87ce39bf69769a41a268b9fddd" compoundref="_register_map_8h" startline="46" endline="46">incrementActiveDS18B20</referencedby>
-        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="39" endline="66">readHoldingRegister</referencedby>
-        <referencedby refid="class_register_map_1a421bb31f92254150a6738952b1ff7944" compoundref="_register_map_8cpp" startline="3" endline="18">RegisterMap</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="class_register_map_1abc9a62bb029202c3d50baaa985f17737" prot="private" static="no" mutable="no">
-        <type>uint16_t</type>
-        <definition>uint16_t RegisterMap::numActivePT1000</definition>
-        <argsstring></argsstring>
-        <name>numActivePT1000</name>
-        <qualifiedname>RegisterMap::numActivePT1000</qualifiedname>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/RegisterMap.h" line="13" column="14" bodyfile="include/RegisterMap.h" bodystart="13" bodyend="-1"/>
-        <referencedby refid="class_register_map_1ac884c0ee2c26df982ddeb21f9f9f4fe8" compoundref="_register_map_8h" startline="49" endline="49">decrementActivePT1000</referencedby>
-        <referencedby refid="class_register_map_1ab54c225b63f87458fea29d47cec65d50" compoundref="_register_map_8h" startline="54" endline="54">getNumActivePT1000</referencedby>
-        <referencedby refid="class_register_map_1aa199c20c499e16bfa1c2181e833eb4d7" compoundref="_register_map_8h" startline="48" endline="48">incrementActivePT1000</referencedby>
-        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="39" endline="66">readHoldingRegister</referencedby>
-        <referencedby refid="class_register_map_1a421bb31f92254150a6738952b1ff7944" compoundref="_register_map_8cpp" startline="3" endline="18">RegisterMap</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="class_register_map_1a19e014a5afbfe86297b7dd8e3e4d1327" prot="private" static="no" mutable="no">
-        <type>uint16_t</type>
-        <definition>uint16_t RegisterMap::deviceStatus[7]</definition>
-        <argsstring>[7]</argsstring>
-        <name>deviceStatus</name>
-        <qualifiedname>RegisterMap::deviceStatus</qualifiedname>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/RegisterMap.h" line="14" column="14" bodyfile="include/RegisterMap.h" bodystart="14" bodyend="-1"/>
-        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="39" endline="66">readHoldingRegister</referencedby>
-        <referencedby refid="class_register_map_1a421bb31f92254150a6738952b1ff7944" compoundref="_register_map_8cpp" startline="3" endline="18">RegisterMap</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="class_register_map_1aa875c2d7332c718c82d230549f566c10" prot="private" static="no" mutable="no">
-        <type>int16_t</type>
-        <definition>int16_t RegisterMap::currentTemps[60]</definition>
-        <argsstring>[60]</argsstring>
-        <name>currentTemps</name>
-        <qualifiedname>RegisterMap::currentTemps</qualifiedname>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/RegisterMap.h" line="17" column="13" bodyfile="include/RegisterMap.h" bodystart="17" bodyend="-1"/>
-        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="39" endline="66">readHoldingRegister</referencedby>
-        <referencedby refid="class_register_map_1a421bb31f92254150a6738952b1ff7944" compoundref="_register_map_8cpp" startline="3" endline="18">RegisterMap</referencedby>
-        <referencedby refid="class_register_map_1a2940213459a183fc06a2226f1cd1a48b" compoundref="_register_map_8cpp" startline="84" endline="95">updateFromMeasurementPoint</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="class_register_map_1acae64e6c9f48a79cda39ac45367a9a97" prot="private" static="no" mutable="no">
-        <type>int16_t</type>
-        <definition>int16_t RegisterMap::minTemps[60]</definition>
-        <argsstring>[60]</argsstring>
-        <name>minTemps</name>
-        <qualifiedname>RegisterMap::minTemps</qualifiedname>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/RegisterMap.h" line="18" column="13" bodyfile="include/RegisterMap.h" bodystart="18" bodyend="-1"/>
-        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="39" endline="66">readHoldingRegister</referencedby>
-        <referencedby refid="class_register_map_1a421bb31f92254150a6738952b1ff7944" compoundref="_register_map_8cpp" startline="3" endline="18">RegisterMap</referencedby>
-        <referencedby refid="class_register_map_1a2940213459a183fc06a2226f1cd1a48b" compoundref="_register_map_8cpp" startline="84" endline="95">updateFromMeasurementPoint</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="class_register_map_1a883e25ca7b65319483aa56e8ea8f1362" prot="private" static="no" mutable="no">
-        <type>int16_t</type>
-        <definition>int16_t RegisterMap::maxTemps[60]</definition>
-        <argsstring>[60]</argsstring>
-        <name>maxTemps</name>
-        <qualifiedname>RegisterMap::maxTemps</qualifiedname>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/RegisterMap.h" line="19" column="13" bodyfile="include/RegisterMap.h" bodystart="19" bodyend="-1"/>
-        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="39" endline="66">readHoldingRegister</referencedby>
-        <referencedby refid="class_register_map_1a421bb31f92254150a6738952b1ff7944" compoundref="_register_map_8cpp" startline="3" endline="18">RegisterMap</referencedby>
-        <referencedby refid="class_register_map_1a2940213459a183fc06a2226f1cd1a48b" compoundref="_register_map_8cpp" startline="84" endline="95">updateFromMeasurementPoint</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="class_register_map_1ac9753141e2fe23d742cca2d7e4572194" prot="private" static="no" mutable="no">
-        <type>uint16_t</type>
-        <definition>uint16_t RegisterMap::alarmStatus[60]</definition>
-        <argsstring>[60]</argsstring>
-        <name>alarmStatus</name>
-        <qualifiedname>RegisterMap::alarmStatus</qualifiedname>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/RegisterMap.h" line="20" column="14" bodyfile="include/RegisterMap.h" bodystart="20" bodyend="-1"/>
-        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="39" endline="66">readHoldingRegister</referencedby>
-        <referencedby refid="class_register_map_1a421bb31f92254150a6738952b1ff7944" compoundref="_register_map_8cpp" startline="3" endline="18">RegisterMap</referencedby>
-        <referencedby refid="class_register_map_1a2940213459a183fc06a2226f1cd1a48b" compoundref="_register_map_8cpp" startline="84" endline="95">updateFromMeasurementPoint</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="class_register_map_1a5c46fc421fa321b430997811d3a23f56" prot="private" static="no" mutable="no">
-        <type>uint16_t</type>
-        <definition>uint16_t RegisterMap::errorStatus[60]</definition>
-        <argsstring>[60]</argsstring>
-        <name>errorStatus</name>
-        <qualifiedname>RegisterMap::errorStatus</qualifiedname>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/RegisterMap.h" line="21" column="14" bodyfile="include/RegisterMap.h" bodystart="21" bodyend="-1"/>
-        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="39" endline="66">readHoldingRegister</referencedby>
-        <referencedby refid="class_register_map_1a421bb31f92254150a6738952b1ff7944" compoundref="_register_map_8cpp" startline="3" endline="18">RegisterMap</referencedby>
-        <referencedby refid="class_register_map_1a2940213459a183fc06a2226f1cd1a48b" compoundref="_register_map_8cpp" startline="84" endline="95">updateFromMeasurementPoint</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="class_register_map_1aeb01f6f8df07fc282a17015c55de7c06" prot="private" static="no" mutable="no">
-        <type>int16_t</type>
-        <definition>int16_t RegisterMap::lowAlarmThresholds[60]</definition>
-        <argsstring>[60]</argsstring>
-        <name>lowAlarmThresholds</name>
-        <qualifiedname>RegisterMap::lowAlarmThresholds</qualifiedname>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/RegisterMap.h" line="24" column="13" bodyfile="include/RegisterMap.h" bodystart="24" bodyend="-1"/>
-        <referencedby refid="class_register_map_1a1f102e7d0dd51d4750c916fb6e32c37a" compoundref="_register_map_8cpp" startline="106" endline="113">applyConfigFromMeasurementPoint</referencedby>
-        <referencedby refid="class_register_map_1aa2f819b22096b8c14c421b415f7e83b7" compoundref="_register_map_8cpp" startline="97" endline="104">applyConfigToMeasurementPoint</referencedby>
-        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="39" endline="66">readHoldingRegister</referencedby>
-        <referencedby refid="class_register_map_1a421bb31f92254150a6738952b1ff7944" compoundref="_register_map_8cpp" startline="3" endline="18">RegisterMap</referencedby>
-        <referencedby refid="class_register_map_1a187e2d597d507f0c42da6a6a8d016da2" compoundref="_register_map_8cpp" startline="68" endline="82">writeHoldingRegister</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="class_register_map_1ae6ce504c8e4c620b908bd7c7bca9fec0" prot="private" static="no" mutable="no">
-        <type>int16_t</type>
-        <definition>int16_t RegisterMap::highAlarmThresholds[60]</definition>
-        <argsstring>[60]</argsstring>
-        <name>highAlarmThresholds</name>
-        <qualifiedname>RegisterMap::highAlarmThresholds</qualifiedname>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/RegisterMap.h" line="25" column="13" bodyfile="include/RegisterMap.h" bodystart="25" bodyend="-1"/>
-        <referencedby refid="class_register_map_1a1f102e7d0dd51d4750c916fb6e32c37a" compoundref="_register_map_8cpp" startline="106" endline="113">applyConfigFromMeasurementPoint</referencedby>
-        <referencedby refid="class_register_map_1aa2f819b22096b8c14c421b415f7e83b7" compoundref="_register_map_8cpp" startline="97" endline="104">applyConfigToMeasurementPoint</referencedby>
-        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="39" endline="66">readHoldingRegister</referencedby>
-        <referencedby refid="class_register_map_1a421bb31f92254150a6738952b1ff7944" compoundref="_register_map_8cpp" startline="3" endline="18">RegisterMap</referencedby>
-        <referencedby refid="class_register_map_1a187e2d597d507f0c42da6a6a8d016da2" compoundref="_register_map_8cpp" startline="68" endline="82">writeHoldingRegister</referencedby>
-      </memberdef>
-    </sectiondef>
-    <sectiondef kind="public-static-attrib">
+    <sectiondef kind="user-defined">
+      <header>Register Address Constants</header>
+      <description><para>Modbus register address definitions </para>
+</description>
       <memberdef kind="variable" id="class_register_map_1adbc8f6a4a506265d1ce3f51e0f3cc54c" prot="public" static="yes" mutable="no">
         <type>const uint16_t</type>
         <definition>const uint16_t RegisterMap::DEVICE_ID_REG</definition>
@@ -225,13 +15,14 @@
         <qualifiedname>RegisterMap::DEVICE_ID_REG</qualifiedname>
         <initializer>= 0</initializer>
         <briefdescription>
+<para>Device ID register. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="57" column="27" bodyfile="include/RegisterMap.h" bodystart="57" bodyend="-1"/>
-        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="39" endline="66">readHoldingRegister</referencedby>
+        <location file="include/RegisterMap.h" line="175" column="27" bodyfile="include/RegisterMap.h" bodystart="175" bodyend="-1"/>
+        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="56" endline="83">readHoldingRegister</referencedby>
       </memberdef>
       <memberdef kind="variable" id="class_register_map_1ab26cff5b72c66bd12efde9882586ddd4" prot="public" static="yes" mutable="no">
         <type>const uint16_t</type>
@@ -241,13 +32,14 @@
         <qualifiedname>RegisterMap::FIRMWARE_VERSION_REG</qualifiedname>
         <initializer>= 1</initializer>
         <briefdescription>
+<para>Firmware version register. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="58" column="27" bodyfile="include/RegisterMap.h" bodystart="58" bodyend="-1"/>
-        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="39" endline="66">readHoldingRegister</referencedby>
+        <location file="include/RegisterMap.h" line="176" column="27" bodyfile="include/RegisterMap.h" bodystart="176" bodyend="-1"/>
+        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="56" endline="83">readHoldingRegister</referencedby>
       </memberdef>
       <memberdef kind="variable" id="class_register_map_1ac374b6189bebe5408e374965858bcd12" prot="public" static="yes" mutable="no">
         <type>const uint16_t</type>
@@ -257,13 +49,14 @@
         <qualifiedname>RegisterMap::NUM_DS18B20_REG</qualifiedname>
         <initializer>= 2</initializer>
         <briefdescription>
+<para>Active DS18B20 count register. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="59" column="27" bodyfile="include/RegisterMap.h" bodystart="59" bodyend="-1"/>
-        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="39" endline="66">readHoldingRegister</referencedby>
+        <location file="include/RegisterMap.h" line="177" column="27" bodyfile="include/RegisterMap.h" bodystart="177" bodyend="-1"/>
+        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="56" endline="83">readHoldingRegister</referencedby>
       </memberdef>
       <memberdef kind="variable" id="class_register_map_1a3229332b90e91982d730b5f3b29cd095" prot="public" static="yes" mutable="no">
         <type>const uint16_t</type>
@@ -273,13 +66,14 @@
         <qualifiedname>RegisterMap::NUM_PT1000_REG</qualifiedname>
         <initializer>= 3</initializer>
         <briefdescription>
+<para>Active PT1000 count register. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="60" column="27" bodyfile="include/RegisterMap.h" bodystart="60" bodyend="-1"/>
-        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="39" endline="66">readHoldingRegister</referencedby>
+        <location file="include/RegisterMap.h" line="178" column="27" bodyfile="include/RegisterMap.h" bodystart="178" bodyend="-1"/>
+        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="56" endline="83">readHoldingRegister</referencedby>
       </memberdef>
       <memberdef kind="variable" id="class_register_map_1ab20fe2486766932166ae63413b06c632" prot="public" static="yes" mutable="no">
         <type>const uint16_t</type>
@@ -289,13 +83,14 @@
         <qualifiedname>RegisterMap::DEVICE_STATUS_START_REG</qualifiedname>
         <initializer>= 4</initializer>
         <briefdescription>
+<para>Device status start register. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="61" column="27" bodyfile="include/RegisterMap.h" bodystart="61" bodyend="-1"/>
-        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="39" endline="66">readHoldingRegister</referencedby>
+        <location file="include/RegisterMap.h" line="179" column="27" bodyfile="include/RegisterMap.h" bodystart="179" bodyend="-1"/>
+        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="56" endline="83">readHoldingRegister</referencedby>
       </memberdef>
       <memberdef kind="variable" id="class_register_map_1a0c65d76fa4f8659e20148173aabb0042" prot="public" static="yes" mutable="no">
         <type>const uint16_t</type>
@@ -305,14 +100,15 @@
         <qualifiedname>RegisterMap::DEVICE_STATUS_END_REG</qualifiedname>
         <initializer>= 10</initializer>
         <briefdescription>
+<para>Device status end register. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="62" column="27" bodyfile="include/RegisterMap.h" bodystart="62" bodyend="-1"/>
-        <referencedby refid="class_register_map_1abc2174dcfe96247d4f97e552a2363e50" compoundref="_register_map_8cpp" startline="20" endline="30">isValidAddress</referencedby>
-        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="39" endline="66">readHoldingRegister</referencedby>
+        <location file="include/RegisterMap.h" line="180" column="27" bodyfile="include/RegisterMap.h" bodystart="180" bodyend="-1"/>
+        <referencedby refid="class_register_map_1abc2174dcfe96247d4f97e552a2363e50" compoundref="_register_map_8cpp" startline="37" endline="47">isValidAddress</referencedby>
+        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="56" endline="83">readHoldingRegister</referencedby>
       </memberdef>
       <memberdef kind="variable" id="class_register_map_1a39e9da3852adc25710c836c4019e44ae" prot="public" static="yes" mutable="no">
         <type>const uint16_t</type>
@@ -322,14 +118,15 @@
         <qualifiedname>RegisterMap::CURRENT_TEMP_DS18B20_START_REG</qualifiedname>
         <initializer>= 100</initializer>
         <briefdescription>
+<para>DS18B20 current temp start. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="63" column="27" bodyfile="include/RegisterMap.h" bodystart="63" bodyend="-1"/>
-        <referencedby refid="class_register_map_1abc2174dcfe96247d4f97e552a2363e50" compoundref="_register_map_8cpp" startline="20" endline="30">isValidAddress</referencedby>
-        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="39" endline="66">readHoldingRegister</referencedby>
+        <location file="include/RegisterMap.h" line="183" column="27" bodyfile="include/RegisterMap.h" bodystart="183" bodyend="-1"/>
+        <referencedby refid="class_register_map_1abc2174dcfe96247d4f97e552a2363e50" compoundref="_register_map_8cpp" startline="37" endline="47">isValidAddress</referencedby>
+        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="56" endline="83">readHoldingRegister</referencedby>
       </memberdef>
       <memberdef kind="variable" id="class_register_map_1ab126164971f671096d5545ad7ce37e44" prot="public" static="yes" mutable="no">
         <type>const uint16_t</type>
@@ -339,12 +136,13 @@
         <qualifiedname>RegisterMap::CURRENT_TEMP_DS18B20_END_REG</qualifiedname>
         <initializer>= 149</initializer>
         <briefdescription>
+<para>DS18B20 current temp end. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="64" column="27" bodyfile="include/RegisterMap.h" bodystart="64" bodyend="-1"/>
+        <location file="include/RegisterMap.h" line="184" column="27" bodyfile="include/RegisterMap.h" bodystart="184" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_register_map_1ac88eb82c847956c9834ae0951cc6ce08" prot="public" static="yes" mutable="no">
         <type>const uint16_t</type>
@@ -354,12 +152,13 @@
         <qualifiedname>RegisterMap::CURRENT_TEMP_PT1000_START_REG</qualifiedname>
         <initializer>= 150</initializer>
         <briefdescription>
+<para>PT1000 current temp start. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="65" column="27" bodyfile="include/RegisterMap.h" bodystart="65" bodyend="-1"/>
+        <location file="include/RegisterMap.h" line="185" column="27" bodyfile="include/RegisterMap.h" bodystart="185" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_register_map_1a5954549ec72525817e26df98db56522f" prot="public" static="yes" mutable="no">
         <type>const uint16_t</type>
@@ -369,14 +168,15 @@
         <qualifiedname>RegisterMap::CURRENT_TEMP_PT1000_END_REG</qualifiedname>
         <initializer>= 159</initializer>
         <briefdescription>
+<para>PT1000 current temp end. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="66" column="27" bodyfile="include/RegisterMap.h" bodystart="66" bodyend="-1"/>
-        <referencedby refid="class_register_map_1abc2174dcfe96247d4f97e552a2363e50" compoundref="_register_map_8cpp" startline="20" endline="30">isValidAddress</referencedby>
-        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="39" endline="66">readHoldingRegister</referencedby>
+        <location file="include/RegisterMap.h" line="186" column="27" bodyfile="include/RegisterMap.h" bodystart="186" bodyend="-1"/>
+        <referencedby refid="class_register_map_1abc2174dcfe96247d4f97e552a2363e50" compoundref="_register_map_8cpp" startline="37" endline="47">isValidAddress</referencedby>
+        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="56" endline="83">readHoldingRegister</referencedby>
       </memberdef>
       <memberdef kind="variable" id="class_register_map_1afcbf3023e3bfed9d51c13e4a6e42f928" prot="public" static="yes" mutable="no">
         <type>const uint16_t</type>
@@ -386,14 +186,15 @@
         <qualifiedname>RegisterMap::MIN_TEMP_DS18B20_START_REG</qualifiedname>
         <initializer>= 200</initializer>
         <briefdescription>
+<para>DS18B20 min temp start. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="67" column="27" bodyfile="include/RegisterMap.h" bodystart="67" bodyend="-1"/>
-        <referencedby refid="class_register_map_1abc2174dcfe96247d4f97e552a2363e50" compoundref="_register_map_8cpp" startline="20" endline="30">isValidAddress</referencedby>
-        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="39" endline="66">readHoldingRegister</referencedby>
+        <location file="include/RegisterMap.h" line="189" column="27" bodyfile="include/RegisterMap.h" bodystart="189" bodyend="-1"/>
+        <referencedby refid="class_register_map_1abc2174dcfe96247d4f97e552a2363e50" compoundref="_register_map_8cpp" startline="37" endline="47">isValidAddress</referencedby>
+        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="56" endline="83">readHoldingRegister</referencedby>
       </memberdef>
       <memberdef kind="variable" id="class_register_map_1a576333f5390da1b347ae48b946ae9929" prot="public" static="yes" mutable="no">
         <type>const uint16_t</type>
@@ -403,12 +204,13 @@
         <qualifiedname>RegisterMap::MIN_TEMP_DS18B20_END_REG</qualifiedname>
         <initializer>= 249</initializer>
         <briefdescription>
+<para>DS18B20 min temp end. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="68" column="27" bodyfile="include/RegisterMap.h" bodystart="68" bodyend="-1"/>
+        <location file="include/RegisterMap.h" line="190" column="27" bodyfile="include/RegisterMap.h" bodystart="190" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_register_map_1ad7da44f97f02846b920eb0e4614ff00b" prot="public" static="yes" mutable="no">
         <type>const uint16_t</type>
@@ -418,12 +220,13 @@
         <qualifiedname>RegisterMap::MIN_TEMP_PT1000_START_REG</qualifiedname>
         <initializer>= 250</initializer>
         <briefdescription>
+<para>PT1000 min temp start. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="69" column="27" bodyfile="include/RegisterMap.h" bodystart="69" bodyend="-1"/>
+        <location file="include/RegisterMap.h" line="191" column="27" bodyfile="include/RegisterMap.h" bodystart="191" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_register_map_1afc19f2966dac287307958f677c852282" prot="public" static="yes" mutable="no">
         <type>const uint16_t</type>
@@ -433,14 +236,15 @@
         <qualifiedname>RegisterMap::MIN_TEMP_PT1000_END_REG</qualifiedname>
         <initializer>= 259</initializer>
         <briefdescription>
+<para>PT1000 min temp end. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="70" column="27" bodyfile="include/RegisterMap.h" bodystart="70" bodyend="-1"/>
-        <referencedby refid="class_register_map_1abc2174dcfe96247d4f97e552a2363e50" compoundref="_register_map_8cpp" startline="20" endline="30">isValidAddress</referencedby>
-        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="39" endline="66">readHoldingRegister</referencedby>
+        <location file="include/RegisterMap.h" line="192" column="27" bodyfile="include/RegisterMap.h" bodystart="192" bodyend="-1"/>
+        <referencedby refid="class_register_map_1abc2174dcfe96247d4f97e552a2363e50" compoundref="_register_map_8cpp" startline="37" endline="47">isValidAddress</referencedby>
+        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="56" endline="83">readHoldingRegister</referencedby>
       </memberdef>
       <memberdef kind="variable" id="class_register_map_1af5803660fef52ac6a6db5708a2d8e7ea" prot="public" static="yes" mutable="no">
         <type>const uint16_t</type>
@@ -450,14 +254,15 @@
         <qualifiedname>RegisterMap::MAX_TEMP_DS18B20_START_REG</qualifiedname>
         <initializer>= 300</initializer>
         <briefdescription>
+<para>DS18B20 max temp start. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="71" column="27" bodyfile="include/RegisterMap.h" bodystart="71" bodyend="-1"/>
-        <referencedby refid="class_register_map_1abc2174dcfe96247d4f97e552a2363e50" compoundref="_register_map_8cpp" startline="20" endline="30">isValidAddress</referencedby>
-        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="39" endline="66">readHoldingRegister</referencedby>
+        <location file="include/RegisterMap.h" line="195" column="27" bodyfile="include/RegisterMap.h" bodystart="195" bodyend="-1"/>
+        <referencedby refid="class_register_map_1abc2174dcfe96247d4f97e552a2363e50" compoundref="_register_map_8cpp" startline="37" endline="47">isValidAddress</referencedby>
+        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="56" endline="83">readHoldingRegister</referencedby>
       </memberdef>
       <memberdef kind="variable" id="class_register_map_1af2c23fb0b122ce7adc8c9e624ebafc79" prot="public" static="yes" mutable="no">
         <type>const uint16_t</type>
@@ -467,12 +272,13 @@
         <qualifiedname>RegisterMap::MAX_TEMP_DS18B20_END_REG</qualifiedname>
         <initializer>= 349</initializer>
         <briefdescription>
+<para>DS18B20 max temp end. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="72" column="27" bodyfile="include/RegisterMap.h" bodystart="72" bodyend="-1"/>
+        <location file="include/RegisterMap.h" line="196" column="27" bodyfile="include/RegisterMap.h" bodystart="196" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_register_map_1ac4afc3ad850de38e362b364a361ca016" prot="public" static="yes" mutable="no">
         <type>const uint16_t</type>
@@ -482,12 +288,13 @@
         <qualifiedname>RegisterMap::MAX_TEMP_PT1000_START_REG</qualifiedname>
         <initializer>= 350</initializer>
         <briefdescription>
+<para>PT1000 max temp start. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="73" column="27" bodyfile="include/RegisterMap.h" bodystart="73" bodyend="-1"/>
+        <location file="include/RegisterMap.h" line="197" column="27" bodyfile="include/RegisterMap.h" bodystart="197" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_register_map_1a90a709adb204896851b5c20293185f62" prot="public" static="yes" mutable="no">
         <type>const uint16_t</type>
@@ -497,14 +304,15 @@
         <qualifiedname>RegisterMap::MAX_TEMP_PT1000_END_REG</qualifiedname>
         <initializer>= 359</initializer>
         <briefdescription>
+<para>PT1000 max temp end. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="74" column="27" bodyfile="include/RegisterMap.h" bodystart="74" bodyend="-1"/>
-        <referencedby refid="class_register_map_1abc2174dcfe96247d4f97e552a2363e50" compoundref="_register_map_8cpp" startline="20" endline="30">isValidAddress</referencedby>
-        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="39" endline="66">readHoldingRegister</referencedby>
+        <location file="include/RegisterMap.h" line="198" column="27" bodyfile="include/RegisterMap.h" bodystart="198" bodyend="-1"/>
+        <referencedby refid="class_register_map_1abc2174dcfe96247d4f97e552a2363e50" compoundref="_register_map_8cpp" startline="37" endline="47">isValidAddress</referencedby>
+        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="56" endline="83">readHoldingRegister</referencedby>
       </memberdef>
       <memberdef kind="variable" id="class_register_map_1a8418bd7fbd2379830c5b2a2d5a7ceadb" prot="public" static="yes" mutable="no">
         <type>const uint16_t</type>
@@ -514,14 +322,15 @@
         <qualifiedname>RegisterMap::ALARM_STATUS_DS18B20_START_REG</qualifiedname>
         <initializer>= 400</initializer>
         <briefdescription>
+<para>DS18B20 alarm status start. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="75" column="27" bodyfile="include/RegisterMap.h" bodystart="75" bodyend="-1"/>
-        <referencedby refid="class_register_map_1abc2174dcfe96247d4f97e552a2363e50" compoundref="_register_map_8cpp" startline="20" endline="30">isValidAddress</referencedby>
-        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="39" endline="66">readHoldingRegister</referencedby>
+        <location file="include/RegisterMap.h" line="201" column="27" bodyfile="include/RegisterMap.h" bodystart="201" bodyend="-1"/>
+        <referencedby refid="class_register_map_1abc2174dcfe96247d4f97e552a2363e50" compoundref="_register_map_8cpp" startline="37" endline="47">isValidAddress</referencedby>
+        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="56" endline="83">readHoldingRegister</referencedby>
       </memberdef>
       <memberdef kind="variable" id="class_register_map_1abd46e2034937849cd923ae95ccc7f162" prot="public" static="yes" mutable="no">
         <type>const uint16_t</type>
@@ -531,12 +340,13 @@
         <qualifiedname>RegisterMap::ALARM_STATUS_DS18B20_END_REG</qualifiedname>
         <initializer>= 449</initializer>
         <briefdescription>
+<para>DS18B20 alarm status end. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="76" column="27" bodyfile="include/RegisterMap.h" bodystart="76" bodyend="-1"/>
+        <location file="include/RegisterMap.h" line="202" column="27" bodyfile="include/RegisterMap.h" bodystart="202" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_register_map_1afdec96eb8d80f30ea28ce83ee9b7987e" prot="public" static="yes" mutable="no">
         <type>const uint16_t</type>
@@ -546,12 +356,13 @@
         <qualifiedname>RegisterMap::ALARM_STATUS_PT1000_START_REG</qualifiedname>
         <initializer>= 450</initializer>
         <briefdescription>
+<para>PT1000 alarm status start. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="77" column="27" bodyfile="include/RegisterMap.h" bodystart="77" bodyend="-1"/>
+        <location file="include/RegisterMap.h" line="203" column="27" bodyfile="include/RegisterMap.h" bodystart="203" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_register_map_1ae6d88f1082bb40e31cbceb375d53124c" prot="public" static="yes" mutable="no">
         <type>const uint16_t</type>
@@ -561,14 +372,15 @@
         <qualifiedname>RegisterMap::ALARM_STATUS_PT1000_END_REG</qualifiedname>
         <initializer>= 459</initializer>
         <briefdescription>
+<para>PT1000 alarm status end. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="78" column="27" bodyfile="include/RegisterMap.h" bodystart="78" bodyend="-1"/>
-        <referencedby refid="class_register_map_1abc2174dcfe96247d4f97e552a2363e50" compoundref="_register_map_8cpp" startline="20" endline="30">isValidAddress</referencedby>
-        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="39" endline="66">readHoldingRegister</referencedby>
+        <location file="include/RegisterMap.h" line="204" column="27" bodyfile="include/RegisterMap.h" bodystart="204" bodyend="-1"/>
+        <referencedby refid="class_register_map_1abc2174dcfe96247d4f97e552a2363e50" compoundref="_register_map_8cpp" startline="37" endline="47">isValidAddress</referencedby>
+        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="56" endline="83">readHoldingRegister</referencedby>
       </memberdef>
       <memberdef kind="variable" id="class_register_map_1aa3f77b5d6b2f658f2d3a20c85306343b" prot="public" static="yes" mutable="no">
         <type>const uint16_t</type>
@@ -578,14 +390,15 @@
         <qualifiedname>RegisterMap::ERROR_STATUS_DS18B20_START_REG</qualifiedname>
         <initializer>= 500</initializer>
         <briefdescription>
+<para>DS18B20 error status start. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="79" column="27" bodyfile="include/RegisterMap.h" bodystart="79" bodyend="-1"/>
-        <referencedby refid="class_register_map_1abc2174dcfe96247d4f97e552a2363e50" compoundref="_register_map_8cpp" startline="20" endline="30">isValidAddress</referencedby>
-        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="39" endline="66">readHoldingRegister</referencedby>
+        <location file="include/RegisterMap.h" line="207" column="27" bodyfile="include/RegisterMap.h" bodystart="207" bodyend="-1"/>
+        <referencedby refid="class_register_map_1abc2174dcfe96247d4f97e552a2363e50" compoundref="_register_map_8cpp" startline="37" endline="47">isValidAddress</referencedby>
+        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="56" endline="83">readHoldingRegister</referencedby>
       </memberdef>
       <memberdef kind="variable" id="class_register_map_1afa62284c3729ac2d31c4b5ce6574ca17" prot="public" static="yes" mutable="no">
         <type>const uint16_t</type>
@@ -595,12 +408,13 @@
         <qualifiedname>RegisterMap::ERROR_STATUS_DS18B20_END_REG</qualifiedname>
         <initializer>= 549</initializer>
         <briefdescription>
+<para>DS18B20 error status end. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="80" column="27" bodyfile="include/RegisterMap.h" bodystart="80" bodyend="-1"/>
+        <location file="include/RegisterMap.h" line="208" column="27" bodyfile="include/RegisterMap.h" bodystart="208" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_register_map_1aeebc854c6efa9a4ec8516ba2d2e818c2" prot="public" static="yes" mutable="no">
         <type>const uint16_t</type>
@@ -610,12 +424,13 @@
         <qualifiedname>RegisterMap::ERROR_STATUS_PT1000_START_REG</qualifiedname>
         <initializer>= 550</initializer>
         <briefdescription>
+<para>PT1000 error status start. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="81" column="27" bodyfile="include/RegisterMap.h" bodystart="81" bodyend="-1"/>
+        <location file="include/RegisterMap.h" line="209" column="27" bodyfile="include/RegisterMap.h" bodystart="209" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_register_map_1ab73ef67a76c9661e42603af6be98f541" prot="public" static="yes" mutable="no">
         <type>const uint16_t</type>
@@ -625,14 +440,15 @@
         <qualifiedname>RegisterMap::ERROR_STATUS_PT1000_END_REG</qualifiedname>
         <initializer>= 559</initializer>
         <briefdescription>
+<para>PT1000 error status end. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="82" column="27" bodyfile="include/RegisterMap.h" bodystart="82" bodyend="-1"/>
-        <referencedby refid="class_register_map_1abc2174dcfe96247d4f97e552a2363e50" compoundref="_register_map_8cpp" startline="20" endline="30">isValidAddress</referencedby>
-        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="39" endline="66">readHoldingRegister</referencedby>
+        <location file="include/RegisterMap.h" line="210" column="27" bodyfile="include/RegisterMap.h" bodystart="210" bodyend="-1"/>
+        <referencedby refid="class_register_map_1abc2174dcfe96247d4f97e552a2363e50" compoundref="_register_map_8cpp" startline="37" endline="47">isValidAddress</referencedby>
+        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="56" endline="83">readHoldingRegister</referencedby>
       </memberdef>
       <memberdef kind="variable" id="class_register_map_1a2e50e7dee1282aca451046a5da3f4945" prot="public" static="yes" mutable="no">
         <type>const uint16_t</type>
@@ -642,16 +458,17 @@
         <qualifiedname>RegisterMap::LOW_ALARM_DS18B20_START_REG</qualifiedname>
         <initializer>= 600</initializer>
         <briefdescription>
+<para>DS18B20 low alarm start. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="83" column="27" bodyfile="include/RegisterMap.h" bodystart="83" bodyend="-1"/>
-        <referencedby refid="class_register_map_1a313522004347397fee66b57e9daed873" compoundref="_register_map_8cpp" startline="32" endline="37">isReadOnlyRegister</referencedby>
-        <referencedby refid="class_register_map_1abc2174dcfe96247d4f97e552a2363e50" compoundref="_register_map_8cpp" startline="20" endline="30">isValidAddress</referencedby>
-        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="39" endline="66">readHoldingRegister</referencedby>
-        <referencedby refid="class_register_map_1a187e2d597d507f0c42da6a6a8d016da2" compoundref="_register_map_8cpp" startline="68" endline="82">writeHoldingRegister</referencedby>
+        <location file="include/RegisterMap.h" line="213" column="27" bodyfile="include/RegisterMap.h" bodystart="213" bodyend="-1"/>
+        <referencedby refid="class_register_map_1a313522004347397fee66b57e9daed873" compoundref="_register_map_8cpp" startline="49" endline="54">isReadOnlyRegister</referencedby>
+        <referencedby refid="class_register_map_1abc2174dcfe96247d4f97e552a2363e50" compoundref="_register_map_8cpp" startline="37" endline="47">isValidAddress</referencedby>
+        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="56" endline="83">readHoldingRegister</referencedby>
+        <referencedby refid="class_register_map_1a187e2d597d507f0c42da6a6a8d016da2" compoundref="_register_map_8cpp" startline="85" endline="99">writeHoldingRegister</referencedby>
       </memberdef>
       <memberdef kind="variable" id="class_register_map_1ab4f10d48e9025df265f05936303faac8" prot="public" static="yes" mutable="no">
         <type>const uint16_t</type>
@@ -661,12 +478,13 @@
         <qualifiedname>RegisterMap::LOW_ALARM_DS18B20_END_REG</qualifiedname>
         <initializer>= 649</initializer>
         <briefdescription>
+<para>DS18B20 low alarm end. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="84" column="27" bodyfile="include/RegisterMap.h" bodystart="84" bodyend="-1"/>
+        <location file="include/RegisterMap.h" line="214" column="27" bodyfile="include/RegisterMap.h" bodystart="214" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_register_map_1ab9fc284551b9b5dc4bd396705e879615" prot="public" static="yes" mutable="no">
         <type>const uint16_t</type>
@@ -676,12 +494,13 @@
         <qualifiedname>RegisterMap::LOW_ALARM_PT1000_START_REG</qualifiedname>
         <initializer>= 650</initializer>
         <briefdescription>
+<para>PT1000 low alarm start. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="85" column="27" bodyfile="include/RegisterMap.h" bodystart="85" bodyend="-1"/>
+        <location file="include/RegisterMap.h" line="215" column="27" bodyfile="include/RegisterMap.h" bodystart="215" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_register_map_1abb213088915f30411094b7c7cad17dd0" prot="public" static="yes" mutable="no">
         <type>const uint16_t</type>
@@ -691,16 +510,17 @@
         <qualifiedname>RegisterMap::LOW_ALARM_PT1000_END_REG</qualifiedname>
         <initializer>= 659</initializer>
         <briefdescription>
+<para>PT1000 low alarm end. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="86" column="27" bodyfile="include/RegisterMap.h" bodystart="86" bodyend="-1"/>
-        <referencedby refid="class_register_map_1a313522004347397fee66b57e9daed873" compoundref="_register_map_8cpp" startline="32" endline="37">isReadOnlyRegister</referencedby>
-        <referencedby refid="class_register_map_1abc2174dcfe96247d4f97e552a2363e50" compoundref="_register_map_8cpp" startline="20" endline="30">isValidAddress</referencedby>
-        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="39" endline="66">readHoldingRegister</referencedby>
-        <referencedby refid="class_register_map_1a187e2d597d507f0c42da6a6a8d016da2" compoundref="_register_map_8cpp" startline="68" endline="82">writeHoldingRegister</referencedby>
+        <location file="include/RegisterMap.h" line="216" column="27" bodyfile="include/RegisterMap.h" bodystart="216" bodyend="-1"/>
+        <referencedby refid="class_register_map_1a313522004347397fee66b57e9daed873" compoundref="_register_map_8cpp" startline="49" endline="54">isReadOnlyRegister</referencedby>
+        <referencedby refid="class_register_map_1abc2174dcfe96247d4f97e552a2363e50" compoundref="_register_map_8cpp" startline="37" endline="47">isValidAddress</referencedby>
+        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="56" endline="83">readHoldingRegister</referencedby>
+        <referencedby refid="class_register_map_1a187e2d597d507f0c42da6a6a8d016da2" compoundref="_register_map_8cpp" startline="85" endline="99">writeHoldingRegister</referencedby>
       </memberdef>
       <memberdef kind="variable" id="class_register_map_1a94eb0a7c3854218019f4d5047445c53b" prot="public" static="yes" mutable="no">
         <type>const uint16_t</type>
@@ -710,16 +530,17 @@
         <qualifiedname>RegisterMap::HIGH_ALARM_DS18B20_START_REG</qualifiedname>
         <initializer>= 700</initializer>
         <briefdescription>
+<para>DS18B20 high alarm start. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="87" column="27" bodyfile="include/RegisterMap.h" bodystart="87" bodyend="-1"/>
-        <referencedby refid="class_register_map_1a313522004347397fee66b57e9daed873" compoundref="_register_map_8cpp" startline="32" endline="37">isReadOnlyRegister</referencedby>
-        <referencedby refid="class_register_map_1abc2174dcfe96247d4f97e552a2363e50" compoundref="_register_map_8cpp" startline="20" endline="30">isValidAddress</referencedby>
-        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="39" endline="66">readHoldingRegister</referencedby>
-        <referencedby refid="class_register_map_1a187e2d597d507f0c42da6a6a8d016da2" compoundref="_register_map_8cpp" startline="68" endline="82">writeHoldingRegister</referencedby>
+        <location file="include/RegisterMap.h" line="219" column="27" bodyfile="include/RegisterMap.h" bodystart="219" bodyend="-1"/>
+        <referencedby refid="class_register_map_1a313522004347397fee66b57e9daed873" compoundref="_register_map_8cpp" startline="49" endline="54">isReadOnlyRegister</referencedby>
+        <referencedby refid="class_register_map_1abc2174dcfe96247d4f97e552a2363e50" compoundref="_register_map_8cpp" startline="37" endline="47">isValidAddress</referencedby>
+        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="56" endline="83">readHoldingRegister</referencedby>
+        <referencedby refid="class_register_map_1a187e2d597d507f0c42da6a6a8d016da2" compoundref="_register_map_8cpp" startline="85" endline="99">writeHoldingRegister</referencedby>
       </memberdef>
       <memberdef kind="variable" id="class_register_map_1af1eec1485d0d78320e17476b87d57ad3" prot="public" static="yes" mutable="no">
         <type>const uint16_t</type>
@@ -729,12 +550,13 @@
         <qualifiedname>RegisterMap::HIGH_ALARM_DS18B20_END_REG</qualifiedname>
         <initializer>= 749</initializer>
         <briefdescription>
+<para>DS18B20 high alarm end. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="88" column="27" bodyfile="include/RegisterMap.h" bodystart="88" bodyend="-1"/>
+        <location file="include/RegisterMap.h" line="220" column="27" bodyfile="include/RegisterMap.h" bodystart="220" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_register_map_1aedac92f3e99b5ea68ccfb649d4737470" prot="public" static="yes" mutable="no">
         <type>const uint16_t</type>
@@ -744,12 +566,13 @@
         <qualifiedname>RegisterMap::HIGH_ALARM_PT1000_START_REG</qualifiedname>
         <initializer>= 750</initializer>
         <briefdescription>
+<para>PT1000 high alarm start. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="89" column="27" bodyfile="include/RegisterMap.h" bodystart="89" bodyend="-1"/>
+        <location file="include/RegisterMap.h" line="221" column="27" bodyfile="include/RegisterMap.h" bodystart="221" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_register_map_1a48fad7e6eb2c495f3d90d0fe68f69343" prot="public" static="yes" mutable="no">
         <type>const uint16_t</type>
@@ -759,16 +582,242 @@
         <qualifiedname>RegisterMap::HIGH_ALARM_PT1000_END_REG</qualifiedname>
         <initializer>= 759</initializer>
         <briefdescription>
+<para>PT1000 high alarm end. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="90" column="27" bodyfile="include/RegisterMap.h" bodystart="90" bodyend="-1"/>
-        <referencedby refid="class_register_map_1a313522004347397fee66b57e9daed873" compoundref="_register_map_8cpp" startline="32" endline="37">isReadOnlyRegister</referencedby>
-        <referencedby refid="class_register_map_1abc2174dcfe96247d4f97e552a2363e50" compoundref="_register_map_8cpp" startline="20" endline="30">isValidAddress</referencedby>
-        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="39" endline="66">readHoldingRegister</referencedby>
-        <referencedby refid="class_register_map_1a187e2d597d507f0c42da6a6a8d016da2" compoundref="_register_map_8cpp" startline="68" endline="82">writeHoldingRegister</referencedby>
+        <location file="include/RegisterMap.h" line="222" column="27" bodyfile="include/RegisterMap.h" bodystart="222" bodyend="-1"/>
+        <referencedby refid="class_register_map_1a313522004347397fee66b57e9daed873" compoundref="_register_map_8cpp" startline="49" endline="54">isReadOnlyRegister</referencedby>
+        <referencedby refid="class_register_map_1abc2174dcfe96247d4f97e552a2363e50" compoundref="_register_map_8cpp" startline="37" endline="47">isValidAddress</referencedby>
+        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="56" endline="83">readHoldingRegister</referencedby>
+        <referencedby refid="class_register_map_1a187e2d597d507f0c42da6a6a8d016da2" compoundref="_register_map_8cpp" startline="85" endline="99">writeHoldingRegister</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_register_map_1aa98070c7197fdf26d743f4eed498fd66" prot="private" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t RegisterMap::deviceId</definition>
+        <argsstring></argsstring>
+        <name>deviceId</name>
+        <qualifiedname>RegisterMap::deviceId</qualifiedname>
+        <briefdescription>
+<para>Device identifier (register 0) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/RegisterMap.h" line="44" column="14" bodyfile="include/RegisterMap.h" bodystart="44" bodyend="-1"/>
+        <referencedby refid="class_register_map_1a8c38fa18dec0fe5a62d07f218169c44a" compoundref="_register_map_8h" startline="148" endline="148">getDeviceId</referencedby>
+        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="56" endline="83">readHoldingRegister</referencedby>
+        <referencedby refid="class_register_map_1a421bb31f92254150a6738952b1ff7944" compoundref="_register_map_8cpp" startline="20" endline="35">RegisterMap</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_register_map_1ae5b846e888d43b130096d3671dc8c0fb" prot="private" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t RegisterMap::firmwareVersion</definition>
+        <argsstring></argsstring>
+        <name>firmwareVersion</name>
+        <qualifiedname>RegisterMap::firmwareVersion</qualifiedname>
+        <briefdescription>
+<para>Firmware version (register 1) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/RegisterMap.h" line="45" column="14" bodyfile="include/RegisterMap.h" bodystart="45" bodyend="-1"/>
+        <referencedby refid="class_register_map_1a48d0afa7c0aabe6627aae579a85b635c" compoundref="_register_map_8h" startline="154" endline="154">getFirmwareVersion</referencedby>
+        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="56" endline="83">readHoldingRegister</referencedby>
+        <referencedby refid="class_register_map_1a421bb31f92254150a6738952b1ff7944" compoundref="_register_map_8cpp" startline="20" endline="35">RegisterMap</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_register_map_1a216b9abf3c7b9f7d6721ea2e96cb9ff7" prot="private" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t RegisterMap::numActiveDS18B20</definition>
+        <argsstring></argsstring>
+        <name>numActiveDS18B20</name>
+        <qualifiedname>RegisterMap::numActiveDS18B20</qualifiedname>
+        <briefdescription>
+<para>Number of active DS18B20 sensors (register 2) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/RegisterMap.h" line="46" column="14" bodyfile="include/RegisterMap.h" bodystart="46" bodyend="-1"/>
+        <referencedby refid="class_register_map_1a744b3b98a6aaa92d1ffdba77b95c1ff3" compoundref="_register_map_8h" startline="132" endline="132">decrementActiveDS18B20</referencedby>
+        <referencedby refid="class_register_map_1a9fcb99c9ae7533fe8a02db3fdc2680bf" compoundref="_register_map_8h" startline="160" endline="160">getNumActiveDS18B20</referencedby>
+        <referencedby refid="class_register_map_1afd76ed87ce39bf69769a41a268b9fddd" compoundref="_register_map_8h" startline="127" endline="127">incrementActiveDS18B20</referencedby>
+        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="56" endline="83">readHoldingRegister</referencedby>
+        <referencedby refid="class_register_map_1a421bb31f92254150a6738952b1ff7944" compoundref="_register_map_8cpp" startline="20" endline="35">RegisterMap</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_register_map_1abc9a62bb029202c3d50baaa985f17737" prot="private" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t RegisterMap::numActivePT1000</definition>
+        <argsstring></argsstring>
+        <name>numActivePT1000</name>
+        <qualifiedname>RegisterMap::numActivePT1000</qualifiedname>
+        <briefdescription>
+<para>Number of active PT1000 sensors (register 3) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/RegisterMap.h" line="47" column="14" bodyfile="include/RegisterMap.h" bodystart="47" bodyend="-1"/>
+        <referencedby refid="class_register_map_1ac884c0ee2c26df982ddeb21f9f9f4fe8" compoundref="_register_map_8h" startline="142" endline="142">decrementActivePT1000</referencedby>
+        <referencedby refid="class_register_map_1ab54c225b63f87458fea29d47cec65d50" compoundref="_register_map_8h" startline="166" endline="166">getNumActivePT1000</referencedby>
+        <referencedby refid="class_register_map_1aa199c20c499e16bfa1c2181e833eb4d7" compoundref="_register_map_8h" startline="137" endline="137">incrementActivePT1000</referencedby>
+        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="56" endline="83">readHoldingRegister</referencedby>
+        <referencedby refid="class_register_map_1a421bb31f92254150a6738952b1ff7944" compoundref="_register_map_8cpp" startline="20" endline="35">RegisterMap</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_register_map_1a19e014a5afbfe86297b7dd8e3e4d1327" prot="private" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t RegisterMap::deviceStatus[7]</definition>
+        <argsstring>[7]</argsstring>
+        <name>deviceStatus</name>
+        <qualifiedname>RegisterMap::deviceStatus</qualifiedname>
+        <briefdescription>
+<para>Device status flags (registers 4-10) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/RegisterMap.h" line="48" column="14" bodyfile="include/RegisterMap.h" bodystart="48" bodyend="-1"/>
+        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="56" endline="83">readHoldingRegister</referencedby>
+        <referencedby refid="class_register_map_1a421bb31f92254150a6738952b1ff7944" compoundref="_register_map_8cpp" startline="20" endline="35">RegisterMap</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_register_map_1aa875c2d7332c718c82d230549f566c10" prot="private" static="no" mutable="no">
+        <type>int16_t</type>
+        <definition>int16_t RegisterMap::currentTemps[60]</definition>
+        <argsstring>[60]</argsstring>
+        <name>currentTemps</name>
+        <qualifiedname>RegisterMap::currentTemps</qualifiedname>
+        <briefdescription>
+<para>Current temperature values (registers 100-159) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/RegisterMap.h" line="51" column="13" bodyfile="include/RegisterMap.h" bodystart="51" bodyend="-1"/>
+        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="56" endline="83">readHoldingRegister</referencedby>
+        <referencedby refid="class_register_map_1a421bb31f92254150a6738952b1ff7944" compoundref="_register_map_8cpp" startline="20" endline="35">RegisterMap</referencedby>
+        <referencedby refid="class_register_map_1a2940213459a183fc06a2226f1cd1a48b" compoundref="_register_map_8cpp" startline="101" endline="112">updateFromMeasurementPoint</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_register_map_1acae64e6c9f48a79cda39ac45367a9a97" prot="private" static="no" mutable="no">
+        <type>int16_t</type>
+        <definition>int16_t RegisterMap::minTemps[60]</definition>
+        <argsstring>[60]</argsstring>
+        <name>minTemps</name>
+        <qualifiedname>RegisterMap::minTemps</qualifiedname>
+        <briefdescription>
+<para>Minimum temperature values (registers 200-259) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/RegisterMap.h" line="52" column="13" bodyfile="include/RegisterMap.h" bodystart="52" bodyend="-1"/>
+        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="56" endline="83">readHoldingRegister</referencedby>
+        <referencedby refid="class_register_map_1a421bb31f92254150a6738952b1ff7944" compoundref="_register_map_8cpp" startline="20" endline="35">RegisterMap</referencedby>
+        <referencedby refid="class_register_map_1a2940213459a183fc06a2226f1cd1a48b" compoundref="_register_map_8cpp" startline="101" endline="112">updateFromMeasurementPoint</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_register_map_1a883e25ca7b65319483aa56e8ea8f1362" prot="private" static="no" mutable="no">
+        <type>int16_t</type>
+        <definition>int16_t RegisterMap::maxTemps[60]</definition>
+        <argsstring>[60]</argsstring>
+        <name>maxTemps</name>
+        <qualifiedname>RegisterMap::maxTemps</qualifiedname>
+        <briefdescription>
+<para>Maximum temperature values (registers 300-359) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/RegisterMap.h" line="53" column="13" bodyfile="include/RegisterMap.h" bodystart="53" bodyend="-1"/>
+        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="56" endline="83">readHoldingRegister</referencedby>
+        <referencedby refid="class_register_map_1a421bb31f92254150a6738952b1ff7944" compoundref="_register_map_8cpp" startline="20" endline="35">RegisterMap</referencedby>
+        <referencedby refid="class_register_map_1a2940213459a183fc06a2226f1cd1a48b" compoundref="_register_map_8cpp" startline="101" endline="112">updateFromMeasurementPoint</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_register_map_1ac9753141e2fe23d742cca2d7e4572194" prot="private" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t RegisterMap::alarmStatus[60]</definition>
+        <argsstring>[60]</argsstring>
+        <name>alarmStatus</name>
+        <qualifiedname>RegisterMap::alarmStatus</qualifiedname>
+        <briefdescription>
+<para><ref refid="class_alarm" kindref="compound">Alarm</ref> status flags (registers 400-459) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/RegisterMap.h" line="54" column="14" bodyfile="include/RegisterMap.h" bodystart="54" bodyend="-1"/>
+        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="56" endline="83">readHoldingRegister</referencedby>
+        <referencedby refid="class_register_map_1a421bb31f92254150a6738952b1ff7944" compoundref="_register_map_8cpp" startline="20" endline="35">RegisterMap</referencedby>
+        <referencedby refid="class_register_map_1a2940213459a183fc06a2226f1cd1a48b" compoundref="_register_map_8cpp" startline="101" endline="112">updateFromMeasurementPoint</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_register_map_1a5c46fc421fa321b430997811d3a23f56" prot="private" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t RegisterMap::errorStatus[60]</definition>
+        <argsstring>[60]</argsstring>
+        <name>errorStatus</name>
+        <qualifiedname>RegisterMap::errorStatus</qualifiedname>
+        <briefdescription>
+<para>Error status flags (registers 500-559) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/RegisterMap.h" line="55" column="14" bodyfile="include/RegisterMap.h" bodystart="55" bodyend="-1"/>
+        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="56" endline="83">readHoldingRegister</referencedby>
+        <referencedby refid="class_register_map_1a421bb31f92254150a6738952b1ff7944" compoundref="_register_map_8cpp" startline="20" endline="35">RegisterMap</referencedby>
+        <referencedby refid="class_register_map_1a2940213459a183fc06a2226f1cd1a48b" compoundref="_register_map_8cpp" startline="101" endline="112">updateFromMeasurementPoint</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_register_map_1aeb01f6f8df07fc282a17015c55de7c06" prot="private" static="no" mutable="no">
+        <type>int16_t</type>
+        <definition>int16_t RegisterMap::lowAlarmThresholds[60]</definition>
+        <argsstring>[60]</argsstring>
+        <name>lowAlarmThresholds</name>
+        <qualifiedname>RegisterMap::lowAlarmThresholds</qualifiedname>
+        <briefdescription>
+<para>Low temperature alarm thresholds (registers 600-659) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/RegisterMap.h" line="58" column="13" bodyfile="include/RegisterMap.h" bodystart="58" bodyend="-1"/>
+        <referencedby refid="class_register_map_1a1f102e7d0dd51d4750c916fb6e32c37a" compoundref="_register_map_8cpp" startline="123" endline="130">applyConfigFromMeasurementPoint</referencedby>
+        <referencedby refid="class_register_map_1aa2f819b22096b8c14c421b415f7e83b7" compoundref="_register_map_8cpp" startline="114" endline="121">applyConfigToMeasurementPoint</referencedby>
+        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="56" endline="83">readHoldingRegister</referencedby>
+        <referencedby refid="class_register_map_1a421bb31f92254150a6738952b1ff7944" compoundref="_register_map_8cpp" startline="20" endline="35">RegisterMap</referencedby>
+        <referencedby refid="class_register_map_1a187e2d597d507f0c42da6a6a8d016da2" compoundref="_register_map_8cpp" startline="85" endline="99">writeHoldingRegister</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_register_map_1ae6ce504c8e4c620b908bd7c7bca9fec0" prot="private" static="no" mutable="no">
+        <type>int16_t</type>
+        <definition>int16_t RegisterMap::highAlarmThresholds[60]</definition>
+        <argsstring>[60]</argsstring>
+        <name>highAlarmThresholds</name>
+        <qualifiedname>RegisterMap::highAlarmThresholds</qualifiedname>
+        <briefdescription>
+<para>High temperature alarm thresholds (registers 700-759) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/RegisterMap.h" line="59" column="13" bodyfile="include/RegisterMap.h" bodystart="59" bodyend="-1"/>
+        <referencedby refid="class_register_map_1a1f102e7d0dd51d4750c916fb6e32c37a" compoundref="_register_map_8cpp" startline="123" endline="130">applyConfigFromMeasurementPoint</referencedby>
+        <referencedby refid="class_register_map_1aa2f819b22096b8c14c421b415f7e83b7" compoundref="_register_map_8cpp" startline="114" endline="121">applyConfigToMeasurementPoint</referencedby>
+        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="56" endline="83">readHoldingRegister</referencedby>
+        <referencedby refid="class_register_map_1a421bb31f92254150a6738952b1ff7944" compoundref="_register_map_8cpp" startline="20" endline="35">RegisterMap</referencedby>
+        <referencedby refid="class_register_map_1a187e2d597d507f0c42da6a6a8d016da2" compoundref="_register_map_8cpp" startline="85" endline="99">writeHoldingRegister</referencedby>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-func">
@@ -783,29 +832,42 @@
           <declname>address</declname>
         </param>
         <briefdescription>
+<para>Check if register address is valid. </para>
         </briefdescription>
         <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">address</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Register address to validate </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if address is within valid range </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="28" column="10" bodyfile="src/RegisterMap.cpp" bodystart="20" bodyend="30"/>
-        <references refid="class_register_map_1a8418bd7fbd2379830c5b2a2d5a7ceadb" compoundref="_register_map_8h" startline="75">ALARM_STATUS_DS18B20_START_REG</references>
-        <references refid="class_register_map_1ae6d88f1082bb40e31cbceb375d53124c" compoundref="_register_map_8h" startline="78">ALARM_STATUS_PT1000_END_REG</references>
-        <references refid="class_register_map_1a39e9da3852adc25710c836c4019e44ae" compoundref="_register_map_8h" startline="63">CURRENT_TEMP_DS18B20_START_REG</references>
-        <references refid="class_register_map_1a5954549ec72525817e26df98db56522f" compoundref="_register_map_8h" startline="66">CURRENT_TEMP_PT1000_END_REG</references>
-        <references refid="class_register_map_1a0c65d76fa4f8659e20148173aabb0042" compoundref="_register_map_8h" startline="62">DEVICE_STATUS_END_REG</references>
-        <references refid="class_register_map_1aa3f77b5d6b2f658f2d3a20c85306343b" compoundref="_register_map_8h" startline="79">ERROR_STATUS_DS18B20_START_REG</references>
-        <references refid="class_register_map_1ab73ef67a76c9661e42603af6be98f541" compoundref="_register_map_8h" startline="82">ERROR_STATUS_PT1000_END_REG</references>
-        <references refid="class_register_map_1a94eb0a7c3854218019f4d5047445c53b" compoundref="_register_map_8h" startline="87">HIGH_ALARM_DS18B20_START_REG</references>
-        <references refid="class_register_map_1a48fad7e6eb2c495f3d90d0fe68f69343" compoundref="_register_map_8h" startline="90">HIGH_ALARM_PT1000_END_REG</references>
-        <references refid="class_register_map_1a2e50e7dee1282aca451046a5da3f4945" compoundref="_register_map_8h" startline="83">LOW_ALARM_DS18B20_START_REG</references>
-        <references refid="class_register_map_1abb213088915f30411094b7c7cad17dd0" compoundref="_register_map_8h" startline="86">LOW_ALARM_PT1000_END_REG</references>
-        <references refid="class_register_map_1af5803660fef52ac6a6db5708a2d8e7ea" compoundref="_register_map_8h" startline="71">MAX_TEMP_DS18B20_START_REG</references>
-        <references refid="class_register_map_1a90a709adb204896851b5c20293185f62" compoundref="_register_map_8h" startline="74">MAX_TEMP_PT1000_END_REG</references>
-        <references refid="class_register_map_1afcbf3023e3bfed9d51c13e4a6e42f928" compoundref="_register_map_8h" startline="67">MIN_TEMP_DS18B20_START_REG</references>
-        <references refid="class_register_map_1afc19f2966dac287307958f677c852282" compoundref="_register_map_8h" startline="70">MIN_TEMP_PT1000_END_REG</references>
-        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="39" endline="66">readHoldingRegister</referencedby>
-        <referencedby refid="class_register_map_1a187e2d597d507f0c42da6a6a8d016da2" compoundref="_register_map_8cpp" startline="68" endline="82">writeHoldingRegister</referencedby>
+        <location file="include/RegisterMap.h" line="67" column="10" bodyfile="src/RegisterMap.cpp" bodystart="37" bodyend="47"/>
+        <references refid="class_register_map_1a8418bd7fbd2379830c5b2a2d5a7ceadb" compoundref="_register_map_8h" startline="201">ALARM_STATUS_DS18B20_START_REG</references>
+        <references refid="class_register_map_1ae6d88f1082bb40e31cbceb375d53124c" compoundref="_register_map_8h" startline="204">ALARM_STATUS_PT1000_END_REG</references>
+        <references refid="class_register_map_1a39e9da3852adc25710c836c4019e44ae" compoundref="_register_map_8h" startline="183">CURRENT_TEMP_DS18B20_START_REG</references>
+        <references refid="class_register_map_1a5954549ec72525817e26df98db56522f" compoundref="_register_map_8h" startline="186">CURRENT_TEMP_PT1000_END_REG</references>
+        <references refid="class_register_map_1a0c65d76fa4f8659e20148173aabb0042" compoundref="_register_map_8h" startline="180">DEVICE_STATUS_END_REG</references>
+        <references refid="class_register_map_1aa3f77b5d6b2f658f2d3a20c85306343b" compoundref="_register_map_8h" startline="207">ERROR_STATUS_DS18B20_START_REG</references>
+        <references refid="class_register_map_1ab73ef67a76c9661e42603af6be98f541" compoundref="_register_map_8h" startline="210">ERROR_STATUS_PT1000_END_REG</references>
+        <references refid="class_register_map_1a94eb0a7c3854218019f4d5047445c53b" compoundref="_register_map_8h" startline="219">HIGH_ALARM_DS18B20_START_REG</references>
+        <references refid="class_register_map_1a48fad7e6eb2c495f3d90d0fe68f69343" compoundref="_register_map_8h" startline="222">HIGH_ALARM_PT1000_END_REG</references>
+        <references refid="class_register_map_1a2e50e7dee1282aca451046a5da3f4945" compoundref="_register_map_8h" startline="213">LOW_ALARM_DS18B20_START_REG</references>
+        <references refid="class_register_map_1abb213088915f30411094b7c7cad17dd0" compoundref="_register_map_8h" startline="216">LOW_ALARM_PT1000_END_REG</references>
+        <references refid="class_register_map_1af5803660fef52ac6a6db5708a2d8e7ea" compoundref="_register_map_8h" startline="195">MAX_TEMP_DS18B20_START_REG</references>
+        <references refid="class_register_map_1a90a709adb204896851b5c20293185f62" compoundref="_register_map_8h" startline="198">MAX_TEMP_PT1000_END_REG</references>
+        <references refid="class_register_map_1afcbf3023e3bfed9d51c13e4a6e42f928" compoundref="_register_map_8h" startline="189">MIN_TEMP_DS18B20_START_REG</references>
+        <references refid="class_register_map_1afc19f2966dac287307958f677c852282" compoundref="_register_map_8h" startline="192">MIN_TEMP_PT1000_END_REG</references>
+        <referencedby refid="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" compoundref="_register_map_8cpp" startline="56" endline="83">readHoldingRegister</referencedby>
+        <referencedby refid="class_register_map_1a187e2d597d507f0c42da6a6a8d016da2" compoundref="_register_map_8cpp" startline="85" endline="99">writeHoldingRegister</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_register_map_1a313522004347397fee66b57e9daed873" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -818,17 +880,30 @@
           <declname>address</declname>
         </param>
         <briefdescription>
+<para>Check if register is read-only. </para>
         </briefdescription>
         <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">address</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Register address to check </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if register is read-only </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="29" column="10" bodyfile="src/RegisterMap.cpp" bodystart="32" bodyend="37"/>
-        <references refid="class_register_map_1a94eb0a7c3854218019f4d5047445c53b" compoundref="_register_map_8h" startline="87">HIGH_ALARM_DS18B20_START_REG</references>
-        <references refid="class_register_map_1a48fad7e6eb2c495f3d90d0fe68f69343" compoundref="_register_map_8h" startline="90">HIGH_ALARM_PT1000_END_REG</references>
-        <references refid="class_register_map_1a2e50e7dee1282aca451046a5da3f4945" compoundref="_register_map_8h" startline="83">LOW_ALARM_DS18B20_START_REG</references>
-        <references refid="class_register_map_1abb213088915f30411094b7c7cad17dd0" compoundref="_register_map_8h" startline="86">LOW_ALARM_PT1000_END_REG</references>
-        <referencedby refid="class_register_map_1a187e2d597d507f0c42da6a6a8d016da2" compoundref="_register_map_8cpp" startline="68" endline="82">writeHoldingRegister</referencedby>
+        <location file="include/RegisterMap.h" line="74" column="10" bodyfile="src/RegisterMap.cpp" bodystart="49" bodyend="54"/>
+        <references refid="class_register_map_1a94eb0a7c3854218019f4d5047445c53b" compoundref="_register_map_8h" startline="219">HIGH_ALARM_DS18B20_START_REG</references>
+        <references refid="class_register_map_1a48fad7e6eb2c495f3d90d0fe68f69343" compoundref="_register_map_8h" startline="222">HIGH_ALARM_PT1000_END_REG</references>
+        <references refid="class_register_map_1a2e50e7dee1282aca451046a5da3f4945" compoundref="_register_map_8h" startline="213">LOW_ALARM_DS18B20_START_REG</references>
+        <references refid="class_register_map_1abb213088915f30411094b7c7cad17dd0" compoundref="_register_map_8h" startline="216">LOW_ALARM_PT1000_END_REG</references>
+        <referencedby refid="class_register_map_1a187e2d597d507f0c42da6a6a8d016da2" compoundref="_register_map_8cpp" startline="85" endline="99">writeHoldingRegister</referencedby>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -839,24 +914,26 @@
         <name>RegisterMap</name>
         <qualifiedname>RegisterMap::RegisterMap</qualifiedname>
         <briefdescription>
+<para>Construct a new Register Map object. </para>
         </briefdescription>
         <detaileddescription>
+<para>Initializes all registers to default values </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="32" column="5" bodyfile="src/RegisterMap.cpp" bodystart="3" bodyend="18"/>
-        <references refid="class_register_map_1ac9753141e2fe23d742cca2d7e4572194" compoundref="_register_map_8h" startline="20">alarmStatus</references>
-        <references refid="class_register_map_1aa875c2d7332c718c82d230549f566c10" compoundref="_register_map_8h" startline="17">currentTemps</references>
-        <references refid="class_register_map_1aa98070c7197fdf26d743f4eed498fd66" compoundref="_register_map_8h" startline="10">deviceId</references>
-        <references refid="class_register_map_1a19e014a5afbfe86297b7dd8e3e4d1327" compoundref="_register_map_8h" startline="14">deviceStatus</references>
-        <references refid="class_register_map_1a5c46fc421fa321b430997811d3a23f56" compoundref="_register_map_8h" startline="21">errorStatus</references>
-        <references refid="class_register_map_1ae5b846e888d43b130096d3671dc8c0fb" compoundref="_register_map_8h" startline="11">firmwareVersion</references>
-        <references refid="class_register_map_1ae6ce504c8e4c620b908bd7c7bca9fec0" compoundref="_register_map_8h" startline="25">highAlarmThresholds</references>
-        <references refid="class_register_map_1aeb01f6f8df07fc282a17015c55de7c06" compoundref="_register_map_8h" startline="24">lowAlarmThresholds</references>
-        <references refid="class_register_map_1a883e25ca7b65319483aa56e8ea8f1362" compoundref="_register_map_8h" startline="19">maxTemps</references>
-        <references refid="class_register_map_1acae64e6c9f48a79cda39ac45367a9a97" compoundref="_register_map_8h" startline="18">minTemps</references>
-        <references refid="class_register_map_1a216b9abf3c7b9f7d6721ea2e96cb9ff7" compoundref="_register_map_8h" startline="12">numActiveDS18B20</references>
-        <references refid="class_register_map_1abc9a62bb029202c3d50baaa985f17737" compoundref="_register_map_8h" startline="13">numActivePT1000</references>
+        <location file="include/RegisterMap.h" line="81" column="5" bodyfile="src/RegisterMap.cpp" bodystart="20" bodyend="35"/>
+        <references refid="class_register_map_1ac9753141e2fe23d742cca2d7e4572194" compoundref="_register_map_8h" startline="54">alarmStatus</references>
+        <references refid="class_register_map_1aa875c2d7332c718c82d230549f566c10" compoundref="_register_map_8h" startline="51">currentTemps</references>
+        <references refid="class_register_map_1aa98070c7197fdf26d743f4eed498fd66" compoundref="_register_map_8h" startline="44">deviceId</references>
+        <references refid="class_register_map_1a19e014a5afbfe86297b7dd8e3e4d1327" compoundref="_register_map_8h" startline="48">deviceStatus</references>
+        <references refid="class_register_map_1a5c46fc421fa321b430997811d3a23f56" compoundref="_register_map_8h" startline="55">errorStatus</references>
+        <references refid="class_register_map_1ae5b846e888d43b130096d3671dc8c0fb" compoundref="_register_map_8h" startline="45">firmwareVersion</references>
+        <references refid="class_register_map_1ae6ce504c8e4c620b908bd7c7bca9fec0" compoundref="_register_map_8h" startline="59">highAlarmThresholds</references>
+        <references refid="class_register_map_1aeb01f6f8df07fc282a17015c55de7c06" compoundref="_register_map_8h" startline="58">lowAlarmThresholds</references>
+        <references refid="class_register_map_1a883e25ca7b65319483aa56e8ea8f1362" compoundref="_register_map_8h" startline="53">maxTemps</references>
+        <references refid="class_register_map_1acae64e6c9f48a79cda39ac45367a9a97" compoundref="_register_map_8h" startline="52">minTemps</references>
+        <references refid="class_register_map_1a216b9abf3c7b9f7d6721ea2e96cb9ff7" compoundref="_register_map_8h" startline="46">numActiveDS18B20</references>
+        <references refid="class_register_map_1abc9a62bb029202c3d50baaa985f17737" compoundref="_register_map_8h" startline="47">numActivePT1000</references>
       </memberdef>
       <memberdef kind="function" id="class_register_map_1a20a6e3648ab58a7d01b387d15b198374" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>uint16_t</type>
@@ -869,45 +946,58 @@
           <declname>address</declname>
         </param>
         <briefdescription>
+<para>Read value from Modbus holding register. </para>
         </briefdescription>
         <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">address</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Register address to read </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>uint16_t Register value or 0xFFFF if invalid address </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="35" column="14" bodyfile="src/RegisterMap.cpp" bodystart="39" bodyend="66"/>
-        <references refid="class_register_map_1a8418bd7fbd2379830c5b2a2d5a7ceadb" compoundref="_register_map_8h" startline="75">ALARM_STATUS_DS18B20_START_REG</references>
-        <references refid="class_register_map_1ae6d88f1082bb40e31cbceb375d53124c" compoundref="_register_map_8h" startline="78">ALARM_STATUS_PT1000_END_REG</references>
-        <references refid="class_register_map_1ac9753141e2fe23d742cca2d7e4572194" compoundref="_register_map_8h" startline="20">alarmStatus</references>
-        <references refid="class_register_map_1a39e9da3852adc25710c836c4019e44ae" compoundref="_register_map_8h" startline="63">CURRENT_TEMP_DS18B20_START_REG</references>
-        <references refid="class_register_map_1a5954549ec72525817e26df98db56522f" compoundref="_register_map_8h" startline="66">CURRENT_TEMP_PT1000_END_REG</references>
-        <references refid="class_register_map_1aa875c2d7332c718c82d230549f566c10" compoundref="_register_map_8h" startline="17">currentTemps</references>
-        <references refid="class_register_map_1adbc8f6a4a506265d1ce3f51e0f3cc54c" compoundref="_register_map_8h" startline="57">DEVICE_ID_REG</references>
-        <references refid="class_register_map_1a0c65d76fa4f8659e20148173aabb0042" compoundref="_register_map_8h" startline="62">DEVICE_STATUS_END_REG</references>
-        <references refid="class_register_map_1ab20fe2486766932166ae63413b06c632" compoundref="_register_map_8h" startline="61">DEVICE_STATUS_START_REG</references>
-        <references refid="class_register_map_1aa98070c7197fdf26d743f4eed498fd66" compoundref="_register_map_8h" startline="10">deviceId</references>
-        <references refid="class_register_map_1a19e014a5afbfe86297b7dd8e3e4d1327" compoundref="_register_map_8h" startline="14">deviceStatus</references>
-        <references refid="class_register_map_1aa3f77b5d6b2f658f2d3a20c85306343b" compoundref="_register_map_8h" startline="79">ERROR_STATUS_DS18B20_START_REG</references>
-        <references refid="class_register_map_1ab73ef67a76c9661e42603af6be98f541" compoundref="_register_map_8h" startline="82">ERROR_STATUS_PT1000_END_REG</references>
-        <references refid="class_register_map_1a5c46fc421fa321b430997811d3a23f56" compoundref="_register_map_8h" startline="21">errorStatus</references>
-        <references refid="class_register_map_1ab26cff5b72c66bd12efde9882586ddd4" compoundref="_register_map_8h" startline="58">FIRMWARE_VERSION_REG</references>
-        <references refid="class_register_map_1ae5b846e888d43b130096d3671dc8c0fb" compoundref="_register_map_8h" startline="11">firmwareVersion</references>
-        <references refid="class_register_map_1a94eb0a7c3854218019f4d5047445c53b" compoundref="_register_map_8h" startline="87">HIGH_ALARM_DS18B20_START_REG</references>
-        <references refid="class_register_map_1a48fad7e6eb2c495f3d90d0fe68f69343" compoundref="_register_map_8h" startline="90">HIGH_ALARM_PT1000_END_REG</references>
-        <references refid="class_register_map_1ae6ce504c8e4c620b908bd7c7bca9fec0" compoundref="_register_map_8h" startline="25">highAlarmThresholds</references>
-        <references refid="class_register_map_1abc2174dcfe96247d4f97e552a2363e50" compoundref="_register_map_8cpp" startline="20" endline="30">isValidAddress</references>
-        <references refid="class_register_map_1a2e50e7dee1282aca451046a5da3f4945" compoundref="_register_map_8h" startline="83">LOW_ALARM_DS18B20_START_REG</references>
-        <references refid="class_register_map_1abb213088915f30411094b7c7cad17dd0" compoundref="_register_map_8h" startline="86">LOW_ALARM_PT1000_END_REG</references>
-        <references refid="class_register_map_1aeb01f6f8df07fc282a17015c55de7c06" compoundref="_register_map_8h" startline="24">lowAlarmThresholds</references>
-        <references refid="class_register_map_1af5803660fef52ac6a6db5708a2d8e7ea" compoundref="_register_map_8h" startline="71">MAX_TEMP_DS18B20_START_REG</references>
-        <references refid="class_register_map_1a90a709adb204896851b5c20293185f62" compoundref="_register_map_8h" startline="74">MAX_TEMP_PT1000_END_REG</references>
-        <references refid="class_register_map_1a883e25ca7b65319483aa56e8ea8f1362" compoundref="_register_map_8h" startline="19">maxTemps</references>
-        <references refid="class_register_map_1afcbf3023e3bfed9d51c13e4a6e42f928" compoundref="_register_map_8h" startline="67">MIN_TEMP_DS18B20_START_REG</references>
-        <references refid="class_register_map_1afc19f2966dac287307958f677c852282" compoundref="_register_map_8h" startline="70">MIN_TEMP_PT1000_END_REG</references>
-        <references refid="class_register_map_1acae64e6c9f48a79cda39ac45367a9a97" compoundref="_register_map_8h" startline="18">minTemps</references>
-        <references refid="class_register_map_1ac374b6189bebe5408e374965858bcd12" compoundref="_register_map_8h" startline="59">NUM_DS18B20_REG</references>
-        <references refid="class_register_map_1a3229332b90e91982d730b5f3b29cd095" compoundref="_register_map_8h" startline="60">NUM_PT1000_REG</references>
-        <references refid="class_register_map_1a216b9abf3c7b9f7d6721ea2e96cb9ff7" compoundref="_register_map_8h" startline="12">numActiveDS18B20</references>
-        <references refid="class_register_map_1abc9a62bb029202c3d50baaa985f17737" compoundref="_register_map_8h" startline="13">numActivePT1000</references>
+        <location file="include/RegisterMap.h" line="89" column="14" bodyfile="src/RegisterMap.cpp" bodystart="56" bodyend="83"/>
+        <references refid="class_register_map_1a8418bd7fbd2379830c5b2a2d5a7ceadb" compoundref="_register_map_8h" startline="201">ALARM_STATUS_DS18B20_START_REG</references>
+        <references refid="class_register_map_1ae6d88f1082bb40e31cbceb375d53124c" compoundref="_register_map_8h" startline="204">ALARM_STATUS_PT1000_END_REG</references>
+        <references refid="class_register_map_1ac9753141e2fe23d742cca2d7e4572194" compoundref="_register_map_8h" startline="54">alarmStatus</references>
+        <references refid="class_register_map_1a39e9da3852adc25710c836c4019e44ae" compoundref="_register_map_8h" startline="183">CURRENT_TEMP_DS18B20_START_REG</references>
+        <references refid="class_register_map_1a5954549ec72525817e26df98db56522f" compoundref="_register_map_8h" startline="186">CURRENT_TEMP_PT1000_END_REG</references>
+        <references refid="class_register_map_1aa875c2d7332c718c82d230549f566c10" compoundref="_register_map_8h" startline="51">currentTemps</references>
+        <references refid="class_register_map_1adbc8f6a4a506265d1ce3f51e0f3cc54c" compoundref="_register_map_8h" startline="175">DEVICE_ID_REG</references>
+        <references refid="class_register_map_1a0c65d76fa4f8659e20148173aabb0042" compoundref="_register_map_8h" startline="180">DEVICE_STATUS_END_REG</references>
+        <references refid="class_register_map_1ab20fe2486766932166ae63413b06c632" compoundref="_register_map_8h" startline="179">DEVICE_STATUS_START_REG</references>
+        <references refid="class_register_map_1aa98070c7197fdf26d743f4eed498fd66" compoundref="_register_map_8h" startline="44">deviceId</references>
+        <references refid="class_register_map_1a19e014a5afbfe86297b7dd8e3e4d1327" compoundref="_register_map_8h" startline="48">deviceStatus</references>
+        <references refid="class_register_map_1aa3f77b5d6b2f658f2d3a20c85306343b" compoundref="_register_map_8h" startline="207">ERROR_STATUS_DS18B20_START_REG</references>
+        <references refid="class_register_map_1ab73ef67a76c9661e42603af6be98f541" compoundref="_register_map_8h" startline="210">ERROR_STATUS_PT1000_END_REG</references>
+        <references refid="class_register_map_1a5c46fc421fa321b430997811d3a23f56" compoundref="_register_map_8h" startline="55">errorStatus</references>
+        <references refid="class_register_map_1ab26cff5b72c66bd12efde9882586ddd4" compoundref="_register_map_8h" startline="176">FIRMWARE_VERSION_REG</references>
+        <references refid="class_register_map_1ae5b846e888d43b130096d3671dc8c0fb" compoundref="_register_map_8h" startline="45">firmwareVersion</references>
+        <references refid="class_register_map_1a94eb0a7c3854218019f4d5047445c53b" compoundref="_register_map_8h" startline="219">HIGH_ALARM_DS18B20_START_REG</references>
+        <references refid="class_register_map_1a48fad7e6eb2c495f3d90d0fe68f69343" compoundref="_register_map_8h" startline="222">HIGH_ALARM_PT1000_END_REG</references>
+        <references refid="class_register_map_1ae6ce504c8e4c620b908bd7c7bca9fec0" compoundref="_register_map_8h" startline="59">highAlarmThresholds</references>
+        <references refid="class_register_map_1abc2174dcfe96247d4f97e552a2363e50" compoundref="_register_map_8cpp" startline="37" endline="47">isValidAddress</references>
+        <references refid="class_register_map_1a2e50e7dee1282aca451046a5da3f4945" compoundref="_register_map_8h" startline="213">LOW_ALARM_DS18B20_START_REG</references>
+        <references refid="class_register_map_1abb213088915f30411094b7c7cad17dd0" compoundref="_register_map_8h" startline="216">LOW_ALARM_PT1000_END_REG</references>
+        <references refid="class_register_map_1aeb01f6f8df07fc282a17015c55de7c06" compoundref="_register_map_8h" startline="58">lowAlarmThresholds</references>
+        <references refid="class_register_map_1af5803660fef52ac6a6db5708a2d8e7ea" compoundref="_register_map_8h" startline="195">MAX_TEMP_DS18B20_START_REG</references>
+        <references refid="class_register_map_1a90a709adb204896851b5c20293185f62" compoundref="_register_map_8h" startline="198">MAX_TEMP_PT1000_END_REG</references>
+        <references refid="class_register_map_1a883e25ca7b65319483aa56e8ea8f1362" compoundref="_register_map_8h" startline="53">maxTemps</references>
+        <references refid="class_register_map_1afcbf3023e3bfed9d51c13e4a6e42f928" compoundref="_register_map_8h" startline="189">MIN_TEMP_DS18B20_START_REG</references>
+        <references refid="class_register_map_1afc19f2966dac287307958f677c852282" compoundref="_register_map_8h" startline="192">MIN_TEMP_PT1000_END_REG</references>
+        <references refid="class_register_map_1acae64e6c9f48a79cda39ac45367a9a97" compoundref="_register_map_8h" startline="52">minTemps</references>
+        <references refid="class_register_map_1ac374b6189bebe5408e374965858bcd12" compoundref="_register_map_8h" startline="177">NUM_DS18B20_REG</references>
+        <references refid="class_register_map_1a3229332b90e91982d730b5f3b29cd095" compoundref="_register_map_8h" startline="178">NUM_PT1000_REG</references>
+        <references refid="class_register_map_1a216b9abf3c7b9f7d6721ea2e96cb9ff7" compoundref="_register_map_8h" startline="46">numActiveDS18B20</references>
+        <references refid="class_register_map_1abc9a62bb029202c3d50baaa985f17737" compoundref="_register_map_8h" startline="47">numActivePT1000</references>
       </memberdef>
       <memberdef kind="function" id="class_register_map_1a187e2d597d507f0c42da6a6a8d016da2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -924,20 +1014,43 @@
           <declname>value</declname>
         </param>
         <briefdescription>
+<para>Write value to Modbus holding register. </para>
         </briefdescription>
         <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">address</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Register address to write </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Value to write </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if write successful </para>
+</simplesect>
+<simplesect kind="return"><para>false if address invalid or register is read-only </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="36" column="10" bodyfile="src/RegisterMap.cpp" bodystart="68" bodyend="82"/>
-        <references refid="class_register_map_1a94eb0a7c3854218019f4d5047445c53b" compoundref="_register_map_8h" startline="87">HIGH_ALARM_DS18B20_START_REG</references>
-        <references refid="class_register_map_1a48fad7e6eb2c495f3d90d0fe68f69343" compoundref="_register_map_8h" startline="90">HIGH_ALARM_PT1000_END_REG</references>
-        <references refid="class_register_map_1ae6ce504c8e4c620b908bd7c7bca9fec0" compoundref="_register_map_8h" startline="25">highAlarmThresholds</references>
-        <references refid="class_register_map_1a313522004347397fee66b57e9daed873" compoundref="_register_map_8cpp" startline="32" endline="37">isReadOnlyRegister</references>
-        <references refid="class_register_map_1abc2174dcfe96247d4f97e552a2363e50" compoundref="_register_map_8cpp" startline="20" endline="30">isValidAddress</references>
-        <references refid="class_register_map_1a2e50e7dee1282aca451046a5da3f4945" compoundref="_register_map_8h" startline="83">LOW_ALARM_DS18B20_START_REG</references>
-        <references refid="class_register_map_1abb213088915f30411094b7c7cad17dd0" compoundref="_register_map_8h" startline="86">LOW_ALARM_PT1000_END_REG</references>
-        <references refid="class_register_map_1aeb01f6f8df07fc282a17015c55de7c06" compoundref="_register_map_8h" startline="24">lowAlarmThresholds</references>
+        <location file="include/RegisterMap.h" line="98" column="10" bodyfile="src/RegisterMap.cpp" bodystart="85" bodyend="99"/>
+        <references refid="class_register_map_1a94eb0a7c3854218019f4d5047445c53b" compoundref="_register_map_8h" startline="219">HIGH_ALARM_DS18B20_START_REG</references>
+        <references refid="class_register_map_1a48fad7e6eb2c495f3d90d0fe68f69343" compoundref="_register_map_8h" startline="222">HIGH_ALARM_PT1000_END_REG</references>
+        <references refid="class_register_map_1ae6ce504c8e4c620b908bd7c7bca9fec0" compoundref="_register_map_8h" startline="59">highAlarmThresholds</references>
+        <references refid="class_register_map_1a313522004347397fee66b57e9daed873" compoundref="_register_map_8cpp" startline="49" endline="54">isReadOnlyRegister</references>
+        <references refid="class_register_map_1abc2174dcfe96247d4f97e552a2363e50" compoundref="_register_map_8cpp" startline="37" endline="47">isValidAddress</references>
+        <references refid="class_register_map_1a2e50e7dee1282aca451046a5da3f4945" compoundref="_register_map_8h" startline="213">LOW_ALARM_DS18B20_START_REG</references>
+        <references refid="class_register_map_1abb213088915f30411094b7c7cad17dd0" compoundref="_register_map_8h" startline="216">LOW_ALARM_PT1000_END_REG</references>
+        <references refid="class_register_map_1aeb01f6f8df07fc282a17015c55de7c06" compoundref="_register_map_8h" startline="58">lowAlarmThresholds</references>
       </memberdef>
       <memberdef kind="function" id="class_register_map_1a2940213459a183fc06a2226f1cd1a48b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -950,23 +1063,34 @@
           <declname>point</declname>
         </param>
         <briefdescription>
+<para>Update registers from measurement point data. </para>
         </briefdescription>
         <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">point</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Measurement point containing temperature data</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Updates current, min, max temperatures and status flags </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="39" column="10" bodyfile="src/RegisterMap.cpp" bodystart="84" bodyend="95"/>
-        <references refid="class_register_map_1ac9753141e2fe23d742cca2d7e4572194" compoundref="_register_map_8h" startline="20">alarmStatus</references>
-        <references refid="class_register_map_1aa875c2d7332c718c82d230549f566c10" compoundref="_register_map_8h" startline="17">currentTemps</references>
-        <references refid="class_register_map_1a5c46fc421fa321b430997811d3a23f56" compoundref="_register_map_8h" startline="21">errorStatus</references>
-        <references refid="class_measurement_point_1a7b74a18d86e0e545264a774aa2c31cad" compoundref="_measurement_point_8cpp" startline="25" endline="27">MeasurementPoint::getAddress</references>
-        <references refid="class_measurement_point_1a1421d744f7982e528a579da02adb1919" compoundref="_measurement_point_8cpp" startline="53" endline="55">MeasurementPoint::getAlarmStatus</references>
-        <references refid="class_measurement_point_1aceaf14fde40bcd5331e5ea6a07d7dde8" compoundref="_measurement_point_8cpp" startline="33" endline="35">MeasurementPoint::getCurrentTemp</references>
-        <references refid="class_measurement_point_1a3fb0693931f12190a7f96e5d6be51b51" compoundref="_measurement_point_8cpp" startline="57" endline="59">MeasurementPoint::getErrorStatus</references>
-        <references refid="class_measurement_point_1a8677e00e0be369d7874f4982990dc56d" compoundref="_measurement_point_8cpp" startline="41" endline="43">MeasurementPoint::getMaxTemp</references>
-        <references refid="class_measurement_point_1adc31f012462c1623617d5f362bcb2c59" compoundref="_measurement_point_8cpp" startline="37" endline="39">MeasurementPoint::getMinTemp</references>
-        <references refid="class_register_map_1a883e25ca7b65319483aa56e8ea8f1362" compoundref="_register_map_8h" startline="19">maxTemps</references>
-        <references refid="class_register_map_1acae64e6c9f48a79cda39ac45367a9a97" compoundref="_register_map_8h" startline="18">minTemps</references>
+        <location file="include/RegisterMap.h" line="106" column="10" bodyfile="src/RegisterMap.cpp" bodystart="101" bodyend="112"/>
+        <references refid="class_register_map_1ac9753141e2fe23d742cca2d7e4572194" compoundref="_register_map_8h" startline="54">alarmStatus</references>
+        <references refid="class_register_map_1aa875c2d7332c718c82d230549f566c10" compoundref="_register_map_8h" startline="51">currentTemps</references>
+        <references refid="class_register_map_1a5c46fc421fa321b430997811d3a23f56" compoundref="_register_map_8h" startline="55">errorStatus</references>
+        <references refid="class_measurement_point_1a7b74a18d86e0e545264a774aa2c31cad" compoundref="_measurement_point_8cpp" startline="45" endline="47">MeasurementPoint::getAddress</references>
+        <references refid="class_measurement_point_1a1421d744f7982e528a579da02adb1919" compoundref="_measurement_point_8cpp" startline="73" endline="75">MeasurementPoint::getAlarmStatus</references>
+        <references refid="class_measurement_point_1aceaf14fde40bcd5331e5ea6a07d7dde8" compoundref="_measurement_point_8cpp" startline="53" endline="55">MeasurementPoint::getCurrentTemp</references>
+        <references refid="class_measurement_point_1a3fb0693931f12190a7f96e5d6be51b51" compoundref="_measurement_point_8cpp" startline="77" endline="79">MeasurementPoint::getErrorStatus</references>
+        <references refid="class_measurement_point_1a8677e00e0be369d7874f4982990dc56d" compoundref="_measurement_point_8cpp" startline="61" endline="63">MeasurementPoint::getMaxTemp</references>
+        <references refid="class_measurement_point_1adc31f012462c1623617d5f362bcb2c59" compoundref="_measurement_point_8cpp" startline="57" endline="59">MeasurementPoint::getMinTemp</references>
+        <references refid="class_register_map_1a883e25ca7b65319483aa56e8ea8f1362" compoundref="_register_map_8h" startline="53">maxTemps</references>
+        <references refid="class_register_map_1acae64e6c9f48a79cda39ac45367a9a97" compoundref="_register_map_8h" startline="52">minTemps</references>
       </memberdef>
       <memberdef kind="function" id="class_register_map_1aa2f819b22096b8c14c421b415f7e83b7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -979,17 +1103,28 @@
           <declname>point</declname>
         </param>
         <briefdescription>
+<para>Apply configuration from registers to measurement point. </para>
         </briefdescription>
         <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="inout">point</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Measurement point to update with register values</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Updates alarm thresholds in measurement point </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="42" column="10" bodyfile="src/RegisterMap.cpp" bodystart="97" bodyend="104"/>
-        <references refid="class_measurement_point_1a7b74a18d86e0e545264a774aa2c31cad" compoundref="_measurement_point_8cpp" startline="25" endline="27">MeasurementPoint::getAddress</references>
-        <references refid="class_register_map_1ae6ce504c8e4c620b908bd7c7bca9fec0" compoundref="_register_map_8h" startline="25">highAlarmThresholds</references>
-        <references refid="class_register_map_1aeb01f6f8df07fc282a17015c55de7c06" compoundref="_register_map_8h" startline="24">lowAlarmThresholds</references>
-        <references refid="class_measurement_point_1aefb47fef40f33161be5c6fddf0cf6329" compoundref="_measurement_point_8cpp" startline="86" endline="96">MeasurementPoint::setHighAlarmThreshold</references>
-        <references refid="class_measurement_point_1ac780917beebc11d705824cab8f43b94d" compoundref="_measurement_point_8cpp" startline="72" endline="84">MeasurementPoint::setLowAlarmThreshold</references>
+        <location file="include/RegisterMap.h" line="114" column="10" bodyfile="src/RegisterMap.cpp" bodystart="114" bodyend="121"/>
+        <references refid="class_measurement_point_1a7b74a18d86e0e545264a774aa2c31cad" compoundref="_measurement_point_8cpp" startline="45" endline="47">MeasurementPoint::getAddress</references>
+        <references refid="class_register_map_1ae6ce504c8e4c620b908bd7c7bca9fec0" compoundref="_register_map_8h" startline="59">highAlarmThresholds</references>
+        <references refid="class_register_map_1aeb01f6f8df07fc282a17015c55de7c06" compoundref="_register_map_8h" startline="58">lowAlarmThresholds</references>
+        <references refid="class_measurement_point_1aefb47fef40f33161be5c6fddf0cf6329" compoundref="_measurement_point_8cpp" startline="106" endline="116">MeasurementPoint::setHighAlarmThreshold</references>
+        <references refid="class_measurement_point_1ac780917beebc11d705824cab8f43b94d" compoundref="_measurement_point_8cpp" startline="92" endline="104">MeasurementPoint::setLowAlarmThreshold</references>
       </memberdef>
       <memberdef kind="function" id="class_register_map_1a1f102e7d0dd51d4750c916fb6e32c37a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1002,17 +1137,28 @@
           <declname>point</declname>
         </param>
         <briefdescription>
+<para>Apply configuration from measurement point to registers. </para>
         </briefdescription>
         <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">point</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Measurement point containing configuration</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Updates register thresholds from measurement point </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="43" column="10" bodyfile="src/RegisterMap.cpp" bodystart="106" bodyend="113"/>
-        <references refid="class_measurement_point_1a7b74a18d86e0e545264a774aa2c31cad" compoundref="_measurement_point_8cpp" startline="25" endline="27">MeasurementPoint::getAddress</references>
-        <references refid="class_measurement_point_1a71d6d440240f110cbd80c58bbc47aff6" compoundref="_measurement_point_8cpp" startline="49" endline="51">MeasurementPoint::getHighAlarmThreshold</references>
-        <references refid="class_measurement_point_1a6e538e117d9e22c6998b56519a51d6ba" compoundref="_measurement_point_8cpp" startline="45" endline="47">MeasurementPoint::getLowAlarmThreshold</references>
-        <references refid="class_register_map_1ae6ce504c8e4c620b908bd7c7bca9fec0" compoundref="_register_map_8h" startline="25">highAlarmThresholds</references>
-        <references refid="class_register_map_1aeb01f6f8df07fc282a17015c55de7c06" compoundref="_register_map_8h" startline="24">lowAlarmThresholds</references>
+        <location file="include/RegisterMap.h" line="121" column="10" bodyfile="src/RegisterMap.cpp" bodystart="123" bodyend="130"/>
+        <references refid="class_measurement_point_1a7b74a18d86e0e545264a774aa2c31cad" compoundref="_measurement_point_8cpp" startline="45" endline="47">MeasurementPoint::getAddress</references>
+        <references refid="class_measurement_point_1a71d6d440240f110cbd80c58bbc47aff6" compoundref="_measurement_point_8cpp" startline="69" endline="71">MeasurementPoint::getHighAlarmThreshold</references>
+        <references refid="class_measurement_point_1a6e538e117d9e22c6998b56519a51d6ba" compoundref="_measurement_point_8cpp" startline="65" endline="67">MeasurementPoint::getLowAlarmThreshold</references>
+        <references refid="class_register_map_1ae6ce504c8e4c620b908bd7c7bca9fec0" compoundref="_register_map_8h" startline="59">highAlarmThresholds</references>
+        <references refid="class_register_map_1aeb01f6f8df07fc282a17015c55de7c06" compoundref="_register_map_8h" startline="58">lowAlarmThresholds</references>
       </memberdef>
       <memberdef kind="function" id="class_register_map_1afd76ed87ce39bf69769a41a268b9fddd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -1021,13 +1167,14 @@
         <name>incrementActiveDS18B20</name>
         <qualifiedname>RegisterMap::incrementActiveDS18B20</qualifiedname>
         <briefdescription>
+<para>Increment active DS18B20 sensor count. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="46" column="10" bodyfile="include/RegisterMap.h" bodystart="46" bodyend="46"/>
-        <references refid="class_register_map_1a216b9abf3c7b9f7d6721ea2e96cb9ff7" compoundref="_register_map_8h" startline="12">numActiveDS18B20</references>
+        <location file="include/RegisterMap.h" line="127" column="10" bodyfile="include/RegisterMap.h" bodystart="127" bodyend="127"/>
+        <references refid="class_register_map_1a216b9abf3c7b9f7d6721ea2e96cb9ff7" compoundref="_register_map_8h" startline="46">numActiveDS18B20</references>
       </memberdef>
       <memberdef kind="function" id="class_register_map_1a744b3b98a6aaa92d1ffdba77b95c1ff3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -1036,13 +1183,14 @@
         <name>decrementActiveDS18B20</name>
         <qualifiedname>RegisterMap::decrementActiveDS18B20</qualifiedname>
         <briefdescription>
+<para>Decrement active DS18B20 sensor count. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="47" column="10" bodyfile="include/RegisterMap.h" bodystart="47" bodyend="47"/>
-        <references refid="class_register_map_1a216b9abf3c7b9f7d6721ea2e96cb9ff7" compoundref="_register_map_8h" startline="12">numActiveDS18B20</references>
+        <location file="include/RegisterMap.h" line="132" column="10" bodyfile="include/RegisterMap.h" bodystart="132" bodyend="132"/>
+        <references refid="class_register_map_1a216b9abf3c7b9f7d6721ea2e96cb9ff7" compoundref="_register_map_8h" startline="46">numActiveDS18B20</references>
       </memberdef>
       <memberdef kind="function" id="class_register_map_1aa199c20c499e16bfa1c2181e833eb4d7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -1051,13 +1199,14 @@
         <name>incrementActivePT1000</name>
         <qualifiedname>RegisterMap::incrementActivePT1000</qualifiedname>
         <briefdescription>
+<para>Increment active PT1000 sensor count. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="48" column="10" bodyfile="include/RegisterMap.h" bodystart="48" bodyend="48"/>
-        <references refid="class_register_map_1abc9a62bb029202c3d50baaa985f17737" compoundref="_register_map_8h" startline="13">numActivePT1000</references>
+        <location file="include/RegisterMap.h" line="137" column="10" bodyfile="include/RegisterMap.h" bodystart="137" bodyend="137"/>
+        <references refid="class_register_map_1abc9a62bb029202c3d50baaa985f17737" compoundref="_register_map_8h" startline="47">numActivePT1000</references>
       </memberdef>
       <memberdef kind="function" id="class_register_map_1ac884c0ee2c26df982ddeb21f9f9f4fe8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -1066,13 +1215,14 @@
         <name>decrementActivePT1000</name>
         <qualifiedname>RegisterMap::decrementActivePT1000</qualifiedname>
         <briefdescription>
+<para>Decrement active PT1000 sensor count. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="49" column="10" bodyfile="include/RegisterMap.h" bodystart="49" bodyend="49"/>
-        <references refid="class_register_map_1abc9a62bb029202c3d50baaa985f17737" compoundref="_register_map_8h" startline="13">numActivePT1000</references>
+        <location file="include/RegisterMap.h" line="142" column="10" bodyfile="include/RegisterMap.h" bodystart="142" bodyend="142"/>
+        <references refid="class_register_map_1abc9a62bb029202c3d50baaa985f17737" compoundref="_register_map_8h" startline="47">numActivePT1000</references>
       </memberdef>
       <memberdef kind="function" id="class_register_map_1a8c38fa18dec0fe5a62d07f218169c44a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>uint16_t</type>
@@ -1081,13 +1231,17 @@
         <name>getDeviceId</name>
         <qualifiedname>RegisterMap::getDeviceId</qualifiedname>
         <briefdescription>
+<para>Get device ID. </para>
         </briefdescription>
         <detaileddescription>
+<para><simplesect kind="return"><para>uint16_t Device identifier </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="51" column="14" bodyfile="include/RegisterMap.h" bodystart="51" bodyend="51"/>
-        <references refid="class_register_map_1aa98070c7197fdf26d743f4eed498fd66" compoundref="_register_map_8h" startline="10">deviceId</references>
+        <location file="include/RegisterMap.h" line="148" column="14" bodyfile="include/RegisterMap.h" bodystart="148" bodyend="148"/>
+        <references refid="class_register_map_1aa98070c7197fdf26d743f4eed498fd66" compoundref="_register_map_8h" startline="44">deviceId</references>
       </memberdef>
       <memberdef kind="function" id="class_register_map_1a48d0afa7c0aabe6627aae579a85b635c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>uint16_t</type>
@@ -1096,13 +1250,17 @@
         <name>getFirmwareVersion</name>
         <qualifiedname>RegisterMap::getFirmwareVersion</qualifiedname>
         <briefdescription>
+<para>Get firmware version. </para>
         </briefdescription>
         <detaileddescription>
+<para><simplesect kind="return"><para>uint16_t Firmware version number </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="52" column="14" bodyfile="include/RegisterMap.h" bodystart="52" bodyend="52"/>
-        <references refid="class_register_map_1ae5b846e888d43b130096d3671dc8c0fb" compoundref="_register_map_8h" startline="11">firmwareVersion</references>
+        <location file="include/RegisterMap.h" line="154" column="14" bodyfile="include/RegisterMap.h" bodystart="154" bodyend="154"/>
+        <references refid="class_register_map_1ae5b846e888d43b130096d3671dc8c0fb" compoundref="_register_map_8h" startline="45">firmwareVersion</references>
       </memberdef>
       <memberdef kind="function" id="class_register_map_1a9fcb99c9ae7533fe8a02db3fdc2680bf" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>uint16_t</type>
@@ -1111,13 +1269,17 @@
         <name>getNumActiveDS18B20</name>
         <qualifiedname>RegisterMap::getNumActiveDS18B20</qualifiedname>
         <briefdescription>
+<para>Get number of active DS18B20 sensors. </para>
         </briefdescription>
         <detaileddescription>
+<para><simplesect kind="return"><para>uint16_t Active DS18B20 count </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="53" column="14" bodyfile="include/RegisterMap.h" bodystart="53" bodyend="53"/>
-        <references refid="class_register_map_1a216b9abf3c7b9f7d6721ea2e96cb9ff7" compoundref="_register_map_8h" startline="12">numActiveDS18B20</references>
+        <location file="include/RegisterMap.h" line="160" column="14" bodyfile="include/RegisterMap.h" bodystart="160" bodyend="160"/>
+        <references refid="class_register_map_1a216b9abf3c7b9f7d6721ea2e96cb9ff7" compoundref="_register_map_8h" startline="46">numActiveDS18B20</references>
       </memberdef>
       <memberdef kind="function" id="class_register_map_1ab54c225b63f87458fea29d47cec65d50" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>uint16_t</type>
@@ -1126,18 +1288,24 @@
         <name>getNumActivePT1000</name>
         <qualifiedname>RegisterMap::getNumActivePT1000</qualifiedname>
         <briefdescription>
+<para>Get number of active PT1000 sensors. </para>
         </briefdescription>
         <detaileddescription>
+<para><simplesect kind="return"><para>uint16_t Active PT1000 count </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/RegisterMap.h" line="54" column="14" bodyfile="include/RegisterMap.h" bodystart="54" bodyend="54"/>
-        <references refid="class_register_map_1abc9a62bb029202c3d50baaa985f17737" compoundref="_register_map_8h" startline="13">numActivePT1000</references>
+        <location file="include/RegisterMap.h" line="166" column="14" bodyfile="include/RegisterMap.h" bodystart="166" bodyend="166"/>
+        <references refid="class_register_map_1abc9a62bb029202c3d50baaa985f17737" compoundref="_register_map_8h" startline="47">numActivePT1000</references>
       </memberdef>
     </sectiondef>
     <briefdescription>
+<para>Manages Modbus register mapping for temperature monitoring. </para>
     </briefdescription>
     <detaileddescription>
+<para>Provides a standardized register interface for external systems to access temperature data, device status, and configuration parameters. Implements Modbus holding register protocol with read/write capabilities. </para>
     </detaileddescription>
     <collaborationgraph>
       <node id="1">
@@ -1145,7 +1313,7 @@
         <link refid="class_register_map"/>
       </node>
     </collaborationgraph>
-    <location file="include/RegisterMap.h" line="7" column="1" bodyfile="include/RegisterMap.h" bodystart="7" bodyend="91"/>
+    <location file="include/RegisterMap.h" line="41" column="1" bodyfile="include/RegisterMap.h" bodystart="41" bodyend="225"/>
     <listofallmembers>
       <member refid="class_register_map_1abd46e2034937849cd923ae95ccc7f162" prot="public" virt="non-virtual"><scope>RegisterMap</scope><name>ALARM_STATUS_DS18B20_END_REG</name></member>
       <member refid="class_register_map_1a8418bd7fbd2379830c5b2a2d5a7ceadb" prot="public" virt="non-virtual"><scope>RegisterMap</scope><name>ALARM_STATUS_DS18B20_START_REG</name></member>

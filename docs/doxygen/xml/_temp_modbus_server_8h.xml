@@ -149,49 +149,77 @@
     </invincdepgraph>
     <innerclass refid="class_temp_modbus_server" prot="public">TempModbusServer</innerclass>
     <briefdescription>
+<para>Modbus RTU server for temperature monitoring system. </para>
     </briefdescription>
     <detaileddescription>
+<para><simplesect kind="author"><para>Claude Code Session 20250720_221011 </para>
+</simplesect>
+<simplesect kind="date"><para>2025-01-20</para>
+</simplesect>
+Implements a Modbus RTU server that provides access to temperature data and configuration through standard Modbus function codes.</para>
+<sect1 id="_time_manager_8cpp_1dependencies">
+<title>Dependencies</title><para><itemizedlist>
+<listitem><para>ModbusServerRTU for Modbus protocol implementation</para>
+</listitem><listitem><para><ref refid="class_register_map" kindref="compound">RegisterMap</ref> for register addressing and data storage</para>
+</listitem><listitem><para><ref refid="class_logger_manager" kindref="compound">LoggerManager</ref> for logging Modbus transactions</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="_time_manager_8cpp_1hardware">
+<title>Hardware Requirements</title><para><itemizedlist>
+<listitem><para>RS485 transceiver for Modbus RTU communication</para>
+</listitem><listitem><para>UART/Serial port for RTU communication</para>
+</listitem><listitem><para>DE (Driver Enable) pin for RS485 direction control </para>
+</listitem></itemizedlist>
+</para>
+</sect1>
     </detaileddescription>
     <programlisting>
-<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>TEMP_MODBUS_SERVER_H</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TEMP_MODBUS_SERVER_H</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="3"><highlight class="normal"></highlight></codeline>
-<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Arduino.h&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;ModbusServerRTU.h&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_register_map_8h" kindref="compound">RegisterMap.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_logger_manager_8h" kindref="compound">LoggerManager.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="8"><highlight class="normal"></highlight></codeline>
-<codeline lineno="9" refid="class_temp_modbus_server" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_temp_modbus_server_1a32478c395aa45fcdcafcd8790de50691" kindref="member">TempModbusServer</ref><sp/>{</highlight></codeline>
-<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="11" refid="class_temp_modbus_server_1a84bf329562ebb8bb9b9b55c120a4ddae" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>ModbusServerRTU*<sp/><ref refid="class_temp_modbus_server_1a84bf329562ebb8bb9b9b55c120a4ddae" kindref="member">mbServer</ref>;</highlight></codeline>
-<codeline lineno="12" refid="class_temp_modbus_server_1a9caa115b3b1a8131680cdc620a23139e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_register_map" kindref="compound">RegisterMap</ref>&amp;<sp/><ref refid="class_temp_modbus_server_1a9caa115b3b1a8131680cdc620a23139e" kindref="member">registerMap</ref>;</highlight></codeline>
-<codeline lineno="13" refid="class_temp_modbus_server_1a4db19b8c522c7241cc8507b26dae6997" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/><ref refid="class_temp_modbus_server_1a4db19b8c522c7241cc8507b26dae6997" kindref="member">serverID</ref>;</highlight></codeline>
-<codeline lineno="14" refid="class_temp_modbus_server_1afecdc5347ebf2b0a5729b2e8e2cb0642" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>HardwareSerial&amp;<sp/><ref refid="class_temp_modbus_server_1afecdc5347ebf2b0a5729b2e8e2cb0642" kindref="member">serial</ref>;</highlight></codeline>
-<codeline lineno="15" refid="class_temp_modbus_server_1ae3a8fcae5056d16b97c0281fc4bddf74" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_temp_modbus_server_1ae3a8fcae5056d16b97c0281fc4bddf74" kindref="member">rxPin</ref>;</highlight></codeline>
-<codeline lineno="16" refid="class_temp_modbus_server_1ab07ddf78bd3b4f6fde1f0e86e6eb4449" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_temp_modbus_server_1ab07ddf78bd3b4f6fde1f0e86e6eb4449" kindref="member">txPin</ref>;</highlight></codeline>
-<codeline lineno="17" refid="class_temp_modbus_server_1a91abdc37c36d4d2a8b070bd3031a2373" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_temp_modbus_server_1a91abdc37c36d4d2a8b070bd3031a2373" kindref="member">dePin</ref>;</highlight></codeline>
-<codeline lineno="18" refid="class_temp_modbus_server_1acd386ba587dcfd86230f2f4156ee7303" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_temp_modbus_server_1acd386ba587dcfd86230f2f4156ee7303" kindref="member">baudRate</ref>;</highlight></codeline>
-<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Worker<sp/>functions<sp/>for<sp/>different<sp/>Modbus<sp/>function<sp/>codes</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>ModbusMessage<sp/><ref refid="class_temp_modbus_server_1a7d4a0ced2cfd174a4697a85492e12a58" kindref="member">readHoldingRegistersWorker</ref>(ModbusMessage<sp/>request);</highlight></codeline>
-<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>ModbusMessage<sp/><ref refid="class_temp_modbus_server_1a88b7288d622b52f9e28b7c6075b75fe0" kindref="member">writeHoldingRegisterWorker</ref>(ModbusMessage<sp/>request);</highlight></codeline>
-<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>ModbusMessage<sp/><ref refid="class_temp_modbus_server_1a52236f3c77c42d126dcaee7515fa37d3" kindref="member">writeMultipleRegistersWorker</ref>(ModbusMessage<sp/>request);</highlight></codeline>
-<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Pointer<sp/>to<sp/>the<sp/>RegisterMap<sp/>instance<sp/>for<sp/>static<sp/>worker<sp/>functions</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="26" refid="class_temp_modbus_server_1a512f10fc6c18f19302b042bfc97bac80" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="class_register_map" kindref="compound">RegisterMap</ref>*<sp/><ref refid="class_temp_modbus_server_1a512f10fc6c18f19302b042bfc97bac80" kindref="member">registerMapPtr</ref>;</highlight></codeline>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>TEMP_MODBUS_SERVER_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TEMP_MODBUS_SERVER_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Arduino.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;ModbusServerRTU.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_register_map_8h" kindref="compound">RegisterMap.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_logger_manager_8h" kindref="compound">LoggerManager.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="27"><highlight class="normal"></highlight></codeline>
-<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_temp_modbus_server_1a32478c395aa45fcdcafcd8790de50691" kindref="member">TempModbusServer</ref>(<ref refid="class_register_map" kindref="compound">RegisterMap</ref>&amp;<sp/>regMap,<sp/>uint8_t<sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,<sp/>HardwareSerial&amp;<sp/>serialPort,<sp/></highlight></codeline>
-<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>rx,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>tx,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>de,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>baud<sp/>=<sp/>9600);</highlight></codeline>
-<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_temp_modbus_server_1ac703f8733fd8afdec9b315b266f5204a" kindref="member">~TempModbusServer</ref>();</highlight></codeline>
-<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_temp_modbus_server_1aac671b84770f4139745d08d05b5c1d92" kindref="member">begin</ref>();</highlight></codeline>
-<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_temp_modbus_server_1a8bbfa71756ccff5f4b80509c41078c6c" kindref="member">stop</ref>();</highlight></codeline>
-<codeline lineno="35"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="36"><highlight class="normal"></highlight></codeline>
-<codeline lineno="37"><highlight class="normal"></highlight></codeline>
-<codeline lineno="38"><highlight class="normal"></highlight></codeline>
-<codeline lineno="39"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>TEMP_MODBUS_SERVER_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36" refid="class_temp_modbus_server" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_temp_modbus_server_1a32478c395aa45fcdcafcd8790de50691" kindref="member">TempModbusServer</ref><sp/>{</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="38" refid="class_temp_modbus_server_1a84bf329562ebb8bb9b9b55c120a4ddae" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>ModbusServerRTU*<sp/><ref refid="class_temp_modbus_server_1a84bf329562ebb8bb9b9b55c120a4ddae" kindref="member">mbServer</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="39" refid="class_temp_modbus_server_1a9caa115b3b1a8131680cdc620a23139e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_register_map" kindref="compound">RegisterMap</ref>&amp;<sp/><ref refid="class_temp_modbus_server_1a9caa115b3b1a8131680cdc620a23139e" kindref="member">registerMap</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="40" refid="class_temp_modbus_server_1a4db19b8c522c7241cc8507b26dae6997" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/><ref refid="class_temp_modbus_server_1a4db19b8c522c7241cc8507b26dae6997" kindref="member">serverID</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="41" refid="class_temp_modbus_server_1afecdc5347ebf2b0a5729b2e8e2cb0642" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>HardwareSerial&amp;<sp/><ref refid="class_temp_modbus_server_1afecdc5347ebf2b0a5729b2e8e2cb0642" kindref="member">serial</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="42" refid="class_temp_modbus_server_1ae3a8fcae5056d16b97c0281fc4bddf74" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_temp_modbus_server_1ae3a8fcae5056d16b97c0281fc4bddf74" kindref="member">rxPin</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="43" refid="class_temp_modbus_server_1ab07ddf78bd3b4f6fde1f0e86e6eb4449" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_temp_modbus_server_1ab07ddf78bd3b4f6fde1f0e86e6eb4449" kindref="member">txPin</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="44" refid="class_temp_modbus_server_1a91abdc37c36d4d2a8b070bd3031a2373" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_temp_modbus_server_1a91abdc37c36d4d2a8b070bd3031a2373" kindref="member">dePin</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="45" refid="class_temp_modbus_server_1acd386ba587dcfd86230f2f4156ee7303" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_temp_modbus_server_1acd386ba587dcfd86230f2f4156ee7303" kindref="member">baudRate</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Worker<sp/>functions<sp/>for<sp/>different<sp/>Modbus<sp/>function<sp/>codes</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>ModbusMessage<sp/><ref refid="class_temp_modbus_server_1a7d4a0ced2cfd174a4697a85492e12a58" kindref="member">readHoldingRegistersWorker</ref>(ModbusMessage<sp/>request);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>ModbusMessage<sp/><ref refid="class_temp_modbus_server_1a88b7288d622b52f9e28b7c6075b75fe0" kindref="member">writeHoldingRegisterWorker</ref>(ModbusMessage<sp/>request);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>ModbusMessage<sp/><ref refid="class_temp_modbus_server_1a52236f3c77c42d126dcaee7515fa37d3" kindref="member">writeMultipleRegistersWorker</ref>(ModbusMessage<sp/>request);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Pointer<sp/>to<sp/>the<sp/>RegisterMap<sp/>instance<sp/>for<sp/>static<sp/>worker<sp/>functions</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73" refid="class_temp_modbus_server_1a512f10fc6c18f19302b042bfc97bac80" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="class_register_map" kindref="compound">RegisterMap</ref>*<sp/><ref refid="class_temp_modbus_server_1a512f10fc6c18f19302b042bfc97bac80" kindref="member">registerMapPtr</ref>;<sp/></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_temp_modbus_server_1a32478c395aa45fcdcafcd8790de50691" kindref="member">TempModbusServer</ref>(<ref refid="class_register_map" kindref="compound">RegisterMap</ref>&amp;<sp/>regMap,<sp/>uint8_t<sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,<sp/>HardwareSerial&amp;<sp/>serialPort,<sp/></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>rx,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>tx,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>de,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>baud<sp/>=<sp/>9600);</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_temp_modbus_server_1ac703f8733fd8afdec9b315b266f5204a" kindref="member">~TempModbusServer</ref>();</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_temp_modbus_server_1aac671b84770f4139745d08d05b5c1d92" kindref="member">begin</ref>();</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_temp_modbus_server_1a8bbfa71756ccff5f4b80509c41078c6c" kindref="member">stop</ref>();</highlight></codeline>
+<codeline lineno="109"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>TEMP_MODBUS_SERVER_H</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="include/TempModbusServer.h"/>
   </compounddef>

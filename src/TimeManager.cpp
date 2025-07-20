@@ -1,3 +1,23 @@
+/**
+ * @file TimeManager.cpp
+ * @brief Implementation of real-time clock and time synchronization management
+ * @author Claude Code Session 20250720_221011
+ * @date 2025-01-20
+ * @details Implements TimeManager class for DS3231 RTC control with NTP synchronization,
+ *          timezone management, alarms, and configuration persistence.
+ * 
+ * @section dependencies Dependencies
+ * - TimeManager.h for class definition
+ * - RTClib for DS3231 interface
+ * - NTPClient for time synchronization
+ * - LittleFS for configuration persistence
+ * - ArduinoJson for JSON formatting
+ * 
+ * @section hardware Hardware Requirements
+ * - DS3231 RTC module on I2C bus
+ * - WiFi connectivity for NTP synchronization
+ */
+
 #include "TimeManager.h"
 #include <LittleFS.h>
 

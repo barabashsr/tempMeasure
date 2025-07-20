@@ -93,6 +93,9 @@ $(function(){initNavTree('class_sensor.html','',''); });
 </div><!--header-->
 <div class="contents">
 
+<p>Abstract temperature sensor interface.  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_sensor_8h_source.html">Sensor.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for Sensor:</div>
@@ -103,62 +106,111 @@ Collaboration diagram for Sensor:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a3dc84897044b5f1848fd0f5444235eee" id="r_a3dc84897044b5f1848fd0f5444235eee"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3dc84897044b5f1848fd0f5444235eee">Sensor</a> (<a class="el" href="_sensor_8h.html#a213c434cb928c4ca22513e2302632435">SensorType</a> <a class="el" href="#a59be498582043f581a78851506f8e322">type</a>, uint8_t <a class="el" href="#a75b4ea06bdcd22f6591f24ae3a46983a">address</a>, const String &amp;<a class="el" href="#a9cf70c3e41501d89f6f9f48a3e9d1296">name</a>)</td></tr>
+<tr class="memdesc:a3dc84897044b5f1848fd0f5444235eee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="class_sensor.html" title="Abstract temperature sensor interface.">Sensor</a> object.  <br /></td></tr>
 <tr class="memitem:aee8c70e7ef05ce65e7ee33686b5d7db2" id="r_aee8c70e7ef05ce65e7ee33686b5d7db2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aee8c70e7ef05ce65e7ee33686b5d7db2">~Sensor</a> ()</td></tr>
+<tr class="memdesc:aee8c70e7ef05ce65e7ee33686b5d7db2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy the <a class="el" href="class_sensor.html" title="Abstract temperature sensor interface.">Sensor</a> object.  <br /></td></tr>
 <tr class="memitem:afefa1f627a7d2ab5a1157c271e7f2556" id="r_afefa1f627a7d2ab5a1157c271e7f2556"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afefa1f627a7d2ab5a1157c271e7f2556">setupDS18B20</a> (uint8_t pin, const uint8_t *deviceAddress)</td></tr>
+<tr class="memdesc:afefa1f627a7d2ab5a1157c271e7f2556"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure sensor as DS18B20.  <br /></td></tr>
 <tr class="memitem:aef73c8dc894e3695f50b4bece9601750" id="r_aef73c8dc894e3695f50b4bece9601750"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aef73c8dc894e3695f50b4bece9601750">setupPT1000</a> (uint8_t <a class="el" href="#ae982d7fa79bdc6e223632c69ca512b34">csPin</a>, uint8_t <a class="el" href="#a3f0651eab49ddc023248a11c3937bc23">maxAddress</a>)</td></tr>
+<tr class="memdesc:aef73c8dc894e3695f50b4bece9601750"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure sensor as PT1000.  <br /></td></tr>
 <tr class="memitem:a59dd5483b75d9366a0c50ccdd0345dec" id="r_a59dd5483b75d9366a0c50ccdd0345dec"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a59dd5483b75d9366a0c50ccdd0345dec">initialize</a> ()</td></tr>
+<tr class="memdesc:a59dd5483b75d9366a0c50ccdd0345dec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize sensor hardware.  <br /></td></tr>
 <tr class="memitem:a5f3828beedd045bf82b3542ec626bc7b" id="r_a5f3828beedd045bf82b3542ec626bc7b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5f3828beedd045bf82b3542ec626bc7b">readTemperature</a> ()</td></tr>
+<tr class="memdesc:a5f3828beedd045bf82b3542ec626bc7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read temperature from sensor.  <br /></td></tr>
 <tr class="memitem:a0f6f095e7cfdfffb2a395dfdae7cfa53" id="r_a0f6f095e7cfdfffb2a395dfdae7cfa53"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_sensor_8h.html#a213c434cb928c4ca22513e2302632435">SensorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0f6f095e7cfdfffb2a395dfdae7cfa53">getType</a> () const</td></tr>
+<tr class="memdesc:a0f6f095e7cfdfffb2a395dfdae7cfa53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get sensor type.  <br /></td></tr>
 <tr class="memitem:afa9861dabcb4cd9c7a83356873013946" id="r_afa9861dabcb4cd9c7a83356873013946"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afa9861dabcb4cd9c7a83356873013946">getAddress</a> () const</td></tr>
+<tr class="memdesc:afa9861dabcb4cd9c7a83356873013946"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get sensor logical address.  <br /></td></tr>
 <tr class="memitem:a60ec96ed03660b42681c1bcc99007033" id="r_a60ec96ed03660b42681c1bcc99007033"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a60ec96ed03660b42681c1bcc99007033">getName</a> () const</td></tr>
+<tr class="memdesc:a60ec96ed03660b42681c1bcc99007033"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get sensor name.  <br /></td></tr>
 <tr class="memitem:a95fe437024716bfdf3703e2c50a0756a" id="r_a95fe437024716bfdf3703e2c50a0756a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a95fe437024716bfdf3703e2c50a0756a">setName</a> (const String &amp;newName)</td></tr>
+<tr class="memdesc:a95fe437024716bfdf3703e2c50a0756a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set sensor name.  <br /></td></tr>
 <tr class="memitem:a3def93a2aff034f403af576b40b6f3f1" id="r_a3def93a2aff034f403af576b40b6f3f1"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3def93a2aff034f403af576b40b6f3f1">getCurrentTemp</a> () const</td></tr>
+<tr class="memdesc:a3def93a2aff034f403af576b40b6f3f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get current temperature.  <br /></td></tr>
 <tr class="memitem:a0897378dd7971fded81bf12d433833c5" id="r_a0897378dd7971fded81bf12d433833c5"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0897378dd7971fded81bf12d433833c5">getMinTemp</a> () const</td></tr>
+<tr class="memdesc:a0897378dd7971fded81bf12d433833c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get minimum recorded temperature.  <br /></td></tr>
 <tr class="memitem:abcaa8954ad75cf20e7c5aa1ef47b28ec" id="r_abcaa8954ad75cf20e7c5aa1ef47b28ec"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abcaa8954ad75cf20e7c5aa1ef47b28ec">getMaxTemp</a> () const</td></tr>
+<tr class="memdesc:abcaa8954ad75cf20e7c5aa1ef47b28ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get maximum recorded temperature.  <br /></td></tr>
 <tr class="memitem:aad2114350beb8e278e4b273f62439579" id="r_aad2114350beb8e278e4b273f62439579"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aad2114350beb8e278e4b273f62439579">getLowAlarmThreshold</a> () const</td></tr>
+<tr class="memdesc:aad2114350beb8e278e4b273f62439579"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get low temperature alarm threshold.  <br /></td></tr>
 <tr class="memitem:a8799541c60822f7600cde784aae36039" id="r_a8799541c60822f7600cde784aae36039"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8799541c60822f7600cde784aae36039">getHighAlarmThreshold</a> () const</td></tr>
+<tr class="memdesc:a8799541c60822f7600cde784aae36039"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get high temperature alarm threshold.  <br /></td></tr>
 <tr class="memitem:a70c7d2dbd1ad8782933301b367e64d09" id="r_a70c7d2dbd1ad8782933301b367e64d09"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a70c7d2dbd1ad8782933301b367e64d09">getAlarmStatus</a> () const</td></tr>
+<tr class="memdesc:a70c7d2dbd1ad8782933301b367e64d09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get alarm status flags.  <br /></td></tr>
 <tr class="memitem:a72ab978055decc37539815dfbc09f2a1" id="r_a72ab978055decc37539815dfbc09f2a1"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a72ab978055decc37539815dfbc09f2a1">getErrorStatus</a> () const</td></tr>
+<tr class="memdesc:a72ab978055decc37539815dfbc09f2a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get error status flags.  <br /></td></tr>
 <tr class="memitem:a6f57825e90b759ccdb9fe07b3a36953d" id="r_a6f57825e90b759ccdb9fe07b3a36953d"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6f57825e90b759ccdb9fe07b3a36953d">getPT1000ChipSelectPin</a> () const</td></tr>
+<tr class="memdesc:a6f57825e90b759ccdb9fe07b3a36953d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get PT1000 chip select pin.  <br /></td></tr>
 <tr class="memitem:aaa9739e019c01dba6fb55c58a27d9642" id="r_aaa9739e019c01dba6fb55c58a27d9642"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaa9739e019c01dba6fb55c58a27d9642">setAddress</a> (uint8_t newAddress)</td></tr>
+<tr class="memdesc:aaa9739e019c01dba6fb55c58a27d9642"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set sensor logical address.  <br /></td></tr>
 <tr class="memitem:ae2e32117bfa426768afd692d062a13f0" id="r_ae2e32117bfa426768afd692d062a13f0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae2e32117bfa426768afd692d062a13f0">setLowAlarmThreshold</a> (int16_t threshold)</td></tr>
+<tr class="memdesc:ae2e32117bfa426768afd692d062a13f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set low temperature alarm threshold.  <br /></td></tr>
 <tr class="memitem:a300550ed551df5688ff101e132c82d3e" id="r_a300550ed551df5688ff101e132c82d3e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a300550ed551df5688ff101e132c82d3e">setHighAlarmThreshold</a> (int16_t threshold)</td></tr>
+<tr class="memdesc:a300550ed551df5688ff101e132c82d3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set high temperature alarm threshold.  <br /></td></tr>
 <tr class="memitem:aebfce8b65a6bce594e406236bba4a469" id="r_aebfce8b65a6bce594e406236bba4a469"><td class="memItemLeft" align="right" valign="top">const uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aebfce8b65a6bce594e406236bba4a469">getDS18B20Address</a> () const</td></tr>
+<tr class="memdesc:aebfce8b65a6bce594e406236bba4a469"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get DS18B20 ROM address.  <br /></td></tr>
 <tr class="memitem:a578bbc9664e2af30cc837301039e5ecb" id="r_a578bbc9664e2af30cc837301039e5ecb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a578bbc9664e2af30cc837301039e5ecb">resetMinMaxTemp</a> ()</td></tr>
+<tr class="memdesc:a578bbc9664e2af30cc837301039e5ecb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset min/max temperature records.  <br /></td></tr>
 <tr class="memitem:a2f0b7d29f7a924deb465d2462698564d" id="r_a2f0b7d29f7a924deb465d2462698564d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2f0b7d29f7a924deb465d2462698564d">updateAlarmStatus</a> ()</td></tr>
+<tr class="memdesc:a2f0b7d29f7a924deb465d2462698564d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update alarm status based on current temperature.  <br /></td></tr>
 <tr class="memitem:a9f793cde2918130fbc77dad1aebfe53a" id="r_a9f793cde2918130fbc77dad1aebfe53a"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9f793cde2918130fbc77dad1aebfe53a">getDS18B20RomString</a> () const</td></tr>
+<tr class="memdesc:a9f793cde2918130fbc77dad1aebfe53a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get DS18B20 ROM address as hex string.  <br /></td></tr>
 <tr class="memitem:a3003106c642cc8a9ec5638ea06052ff4" id="r_a3003106c642cc8a9ec5638ea06052ff4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3003106c642cc8a9ec5638ea06052ff4">getDS18B20RomArray</a> (uint8_t out[8]) const</td></tr>
+<tr class="memdesc:a3003106c642cc8a9ec5638ea06052ff4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get DS18B20 ROM address as array.  <br /></td></tr>
 <tr class="memitem:ac42da3a37b0d6a9622344fe83f4c9047" id="r_ac42da3a37b0d6a9622344fe83f4c9047"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac42da3a37b0d6a9622344fe83f4c9047">getOneWirePin</a> ()</td></tr>
+<tr class="memdesc:ac42da3a37b0d6a9622344fe83f4c9047"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get OneWire bus pin.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a75b4ea06bdcd22f6591f24ae3a46983a" id="r_a75b4ea06bdcd22f6591f24ae3a46983a"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a75b4ea06bdcd22f6591f24ae3a46983a">address</a></td></tr>
+<tr class="memdesc:a75b4ea06bdcd22f6591f24ae3a46983a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logical sensor address.  <br /></td></tr>
 <tr class="memitem:a9cf70c3e41501d89f6f9f48a3e9d1296" id="r_a9cf70c3e41501d89f6f9f48a3e9d1296"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9cf70c3e41501d89f6f9f48a3e9d1296">name</a></td></tr>
+<tr class="memdesc:a9cf70c3e41501d89f6f9f48a3e9d1296"><td class="mdescLeft">&#160;</td><td class="mdescRight">Human-readable sensor name.  <br /></td></tr>
 <tr class="memitem:a59be498582043f581a78851506f8e322" id="r_a59be498582043f581a78851506f8e322"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_sensor_8h.html#a213c434cb928c4ca22513e2302632435">SensorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a59be498582043f581a78851506f8e322">type</a></td></tr>
+<tr class="memdesc:a59be498582043f581a78851506f8e322"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of sensor (DS18B20 or PT1000)  <br /></td></tr>
 <tr class="memitem:a1ad6234aa9a0d89ce962c61ee0580b0c" id="r_a1ad6234aa9a0d89ce962c61ee0580b0c"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1ad6234aa9a0d89ce962c61ee0580b0c">currentTemp</a></td></tr>
+<tr class="memdesc:a1ad6234aa9a0d89ce962c61ee0580b0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current temperature in 0.1°C units.  <br /></td></tr>
 <tr class="memitem:a70160b5ef0eadb7b131f4993011a6174" id="r_a70160b5ef0eadb7b131f4993011a6174"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a70160b5ef0eadb7b131f4993011a6174">minTemp</a></td></tr>
+<tr class="memdesc:a70160b5ef0eadb7b131f4993011a6174"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum recorded temperature.  <br /></td></tr>
 <tr class="memitem:a0752a16bf3b329064102d1110c8aa22c" id="r_a0752a16bf3b329064102d1110c8aa22c"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0752a16bf3b329064102d1110c8aa22c">maxTemp</a></td></tr>
+<tr class="memdesc:a0752a16bf3b329064102d1110c8aa22c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum recorded temperature.  <br /></td></tr>
 <tr class="memitem:a3a695e6c5e1fc511abb6aa0f93f4965c" id="r_a3a695e6c5e1fc511abb6aa0f93f4965c"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3a695e6c5e1fc511abb6aa0f93f4965c">lowAlarmThreshold</a></td></tr>
+<tr class="memdesc:a3a695e6c5e1fc511abb6aa0f93f4965c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Low temperature alarm threshold.  <br /></td></tr>
 <tr class="memitem:ad3088c793422688847fc7bd0c83e1c7a" id="r_ad3088c793422688847fc7bd0c83e1c7a"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad3088c793422688847fc7bd0c83e1c7a">highAlarmThreshold</a></td></tr>
+<tr class="memdesc:ad3088c793422688847fc7bd0c83e1c7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">High temperature alarm threshold.  <br /></td></tr>
 <tr class="memitem:a4700db8ae10648ce63e9c40097af2bf0" id="r_a4700db8ae10648ce63e9c40097af2bf0"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4700db8ae10648ce63e9c40097af2bf0">alarmStatus</a></td></tr>
+<tr class="memdesc:a4700db8ae10648ce63e9c40097af2bf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current alarm status flags.  <br /></td></tr>
 <tr class="memitem:a90c9d7cb2e9a0d1ca02eb0e03a4b8ceb" id="r_a90c9d7cb2e9a0d1ca02eb0e03a4b8ceb"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a90c9d7cb2e9a0d1ca02eb0e03a4b8ceb">errorStatus</a></td></tr>
+<tr class="memdesc:a90c9d7cb2e9a0d1ca02eb0e03a4b8ceb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current error status flags.  <br /></td></tr>
 <tr class="memitem:ae6e1281c6284fe26cc5617789aa3a3bf" id="r_ae6e1281c6284fe26cc5617789aa3a3bf"><td class="memItemLeft" align="right" valign="top">OneWire *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae6e1281c6284fe26cc5617789aa3a3bf">oneWire</a></td></tr>
+<tr class="memdesc:ae6e1281c6284fe26cc5617789aa3a3bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">OneWire interface for DS18B20.  <br /></td></tr>
 <tr class="memitem:ab0c028d4df2e4e568075b622965b0a76" id="r_ab0c028d4df2e4e568075b622965b0a76"><td class="memItemLeft" align="right" valign="top">DallasTemperature *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab0c028d4df2e4e568075b622965b0a76">dallasTemperature</a></td></tr>
+<tr class="memdesc:ab0c028d4df2e4e568075b622965b0a76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dallas temperature library instance.  <br /></td></tr>
 <tr class="memitem:a23b7a05faf6c66d07aed361c4ad8c896" id="r_a23b7a05faf6c66d07aed361c4ad8c896"><td class="memItemLeft" align="right" valign="top">Adafruit_MAX31865 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a23b7a05faf6c66d07aed361c4ad8c896">max31865</a></td></tr>
+<tr class="memdesc:a23b7a05faf6c66d07aed361c4ad8c896"><td class="mdescLeft">&#160;</td><td class="mdescRight">MAX31865 interface for PT1000.  <br /></td></tr>
 <tr class="memitem:"><td class="memItemLeft anon">union {&#160;</td><td class="memItemRight" valign="bottom"></td></tr>
 <tr class="memitem:"><td class="memItemLeft anon">&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight" valign="bottom"></td></tr>
 <tr class="memitem:adff18cab9322d7780426eace6688591b" id="r_adff18cab9322d7780426eace6688591b"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="#aa21039b897abee047fff39d2ed2ca9b0">oneWirePin</a>&#160;</td><td class="memItemRight" valign="bottom"></td></tr>
+<tr class="memdesc:adff18cab9322d7780426eace6688591b"><td class="mdescLeft">&#160;</td><td class="mdescRight">OneWire bus GPIO pin.  <a href="#aa21039b897abee047fff39d2ed2ca9b0">More...</a><br /></td></tr>
 <tr class="memitem:abae6e6a504047adb3a6adb8c484db80d" id="r_abae6e6a504047adb3a6adb8c484db80d"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="#aabda20f8fbc433bae5cc64e1f244af41">oneWireAddress</a> [8]&#160;</td><td class="memItemRight" valign="bottom"></td></tr>
+<tr class="memdesc:abae6e6a504047adb3a6adb8c484db80d"><td class="mdescLeft">&#160;</td><td class="mdescRight">8-byte ROM address  <a href="#aabda20f8fbc433bae5cc64e1f244af41">More...</a><br /></td></tr>
 <tr class="memitem:a70df518f090f00e7eaf74a396023eff0" id="r_a70df518f090f00e7eaf74a396023eff0"><td class="memItemLeft anonEnd" valign="top">&#160;&#160;&#160;}&#160;&#160;&#160;<a class="el" href="#a1192f63a34aa19a309d8c9ba2e3f8bd7">ds18b20</a></td></tr>
+<tr class="memdesc:a70df518f090f00e7eaf74a396023eff0"><td class="mdescLeft">&#160;</td><td class="mdescRight">DS18B20 connection parameters.  <a href="#a1192f63a34aa19a309d8c9ba2e3f8bd7">More...</a><br /></td></tr>
 <tr class="memitem:"><td class="memItemLeft anon">&#160;&#160;&#160;struct {&#160;</td><td class="memItemRight" valign="bottom"></td></tr>
 <tr class="memitem:a48286a1b4782b0c1b59fb6bf15a81a6f" id="r_a48286a1b4782b0c1b59fb6bf15a81a6f"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="#ae982d7fa79bdc6e223632c69ca512b34">csPin</a>&#160;</td><td class="memItemRight" valign="bottom"></td></tr>
+<tr class="memdesc:a48286a1b4782b0c1b59fb6bf15a81a6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">SPI chip select pin.  <a href="#ae982d7fa79bdc6e223632c69ca512b34">More...</a><br /></td></tr>
 <tr class="memitem:ab3c5e14615b842ce1c4b5bfcae3ee053" id="r_ab3c5e14615b842ce1c4b5bfcae3ee053"><td class="memItemLeft anon">&#160;&#160;&#160;&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="#a3f0651eab49ddc023248a11c3937bc23">maxAddress</a>&#160;</td><td class="memItemRight" valign="bottom"></td></tr>
+<tr class="memdesc:ab3c5e14615b842ce1c4b5bfcae3ee053"><td class="mdescLeft">&#160;</td><td class="mdescRight">MAX31865 I2C address.  <a href="#a3f0651eab49ddc023248a11c3937bc23">More...</a><br /></td></tr>
 <tr class="memitem:abd340289e1a890b049073ad8a657817d" id="r_abd340289e1a890b049073ad8a657817d"><td class="memItemLeft anonEnd" valign="top">&#160;&#160;&#160;}&#160;&#160;&#160;<a class="el" href="#a8ca8a9931ab07b445039fe8298329939">pt1000</a></td></tr>
+<tr class="memdesc:abd340289e1a890b049073ad8a657817d"><td class="mdescLeft">&#160;</td><td class="mdescRight">PT1000 connection parameters.  <a href="#a8ca8a9931ab07b445039fe8298329939">More...</a><br /></td></tr>
 <tr class="memitem:adaacf2cbc3623d86bad4c32496340a74" id="r_adaacf2cbc3623d86bad4c32496340a74"><td class="memItemLeft anonEnd" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adaacf2cbc3623d86bad4c32496340a74">connection</a></td></tr>
+<tr class="memdesc:adaacf2cbc3623d86bad4c32496340a74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Union for sensor-specific connection details.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00023">23</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
+<div class="textblock"><p>Abstract temperature sensor interface. </p>
+<p>Provides unified access to DS18B20 and PT1000 temperature sensors with common functionality for temperature reading, alarm management, and error handling. </p>
+
+<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00063">63</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a3dc84897044b5f1848fd0f5444235eee" name="a3dc84897044b5f1848fd0f5444235eee"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3dc84897044b5f1848fd0f5444235eee">&#9670;&#160;</a></span>Sensor()</h2>
@@ -184,9 +236,19 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00008">8</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
+<p>Construct a new <a class="el" href="class_sensor.html" title="Abstract temperature sensor interface.">Sensor</a> object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">type</td><td><a class="el" href="class_sensor.html" title="Abstract temperature sensor interface.">Sensor</a> type (DS18B20 or PT1000) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">address</td><td>Logical address for the sensor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">name</td><td>Human-readable name for the sensor </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="reference">References <a class="el" href="_sensor_8h_source.html#l00071">address</a>, <a class="el" href="_sensor_8h_source.html#l00080">alarmStatus</a>, <a class="el" href="#adaacf2cbc3623d86bad4c32496340a74">connection</a>, <a class="el" href="_sensor_8h_source.html#l00075">currentTemp</a>, <a class="el" href="_sensor_8h_source.html#l00085">dallasTemperature</a>, <a class="el" href="_sensor_8h_source.html#l00011">DS18B20</a>, <a class="el" href="_sensor_8h_source.html#l00081">errorStatus</a>, <a class="el" href="_sensor_8h_source.html#l00079">highAlarmThreshold</a>, <a class="el" href="_sensor_8h_source.html#l00078">lowAlarmThreshold</a>, <a class="el" href="_sensor_8h_source.html#l00086">max31865</a>, <a class="el" href="_sensor_8h_source.html#l00077">maxTemp</a>, <a class="el" href="_sensor_8h_source.html#l00076">minTemp</a>, <a class="el" href="_sensor_8h_source.html#l00072">name</a>, <a class="el" href="_sensor_8h_source.html#l00084">oneWire</a>, and <a class="el" href="_sensor_8h_source.html#l00073">type</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00026">26</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_sensor_8h_source.html#l00239">address</a>, <a class="el" href="_sensor_8h_source.html#l00248">alarmStatus</a>, <a class="el" href="#adaacf2cbc3623d86bad4c32496340a74">connection</a>, <a class="el" href="_sensor_8h_source.html#l00243">currentTemp</a>, <a class="el" href="_sensor_8h_source.html#l00253">dallasTemperature</a>, <a class="el" href="_sensor_8h_source.html#l00033">DS18B20</a>, <a class="el" href="_sensor_8h_source.html#l00249">errorStatus</a>, <a class="el" href="_sensor_8h_source.html#l00247">highAlarmThreshold</a>, <a class="el" href="_sensor_8h_source.html#l00246">lowAlarmThreshold</a>, <a class="el" href="_sensor_8h_source.html#l00254">max31865</a>, <a class="el" href="_sensor_8h_source.html#l00245">maxTemp</a>, <a class="el" href="_sensor_8h_source.html#l00244">minTemp</a>, <a class="el" href="_sensor_8h_source.html#l00240">name</a>, <a class="el" href="_sensor_8h_source.html#l00252">oneWire</a>, and <a class="el" href="_sensor_8h_source.html#l00241">type</a>.</p>
 
 </div>
 </div>
@@ -205,9 +267,12 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00024">24</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
+<p>Destroy the <a class="el" href="class_sensor.html" title="Abstract temperature sensor interface.">Sensor</a> object. </p>
+<p>Cleans up hardware interfaces and dynamic memory </p>
 
-<p class="reference">References <a class="el" href="_sensor_8h_source.html#l00085">dallasTemperature</a>, <a class="el" href="_sensor_8h_source.html#l00086">max31865</a>, and <a class="el" href="_sensor_8h_source.html#l00084">oneWire</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00042">42</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_sensor_8h_source.html#l00253">dallasTemperature</a>, <a class="el" href="_sensor_8h_source.html#l00254">max31865</a>, and <a class="el" href="_sensor_8h_source.html#l00252">oneWire</a>.</p>
 
 </div>
 </div>
@@ -227,9 +292,12 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00154">154</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
+<p>Get sensor logical address. </p>
+<dl class="section return"><dt>Returns</dt><dd>uint8_t <a class="el" href="class_sensor.html" title="Abstract temperature sensor interface.">Sensor</a> address </dd></dl>
 
-<p class="reference">References <a class="el" href="_sensor_8h_source.html#l00071">address</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00172">172</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_sensor_8h_source.html#l00239">address</a>.</p>
 
 </div>
 </div>
@@ -248,9 +316,13 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00163">163</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
+<p>Get alarm status flags. </p>
+<dl class="section return"><dt>Returns</dt><dd>uint8_t Bitmask of active alarms </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="_sensor_8h.html#a23317a6f5a20f7fff89a69642e417b1f" title="Temperature below low threshold.">ALARM_LOW_TEMP</a>, <a class="el" href="_sensor_8h.html#a69ac9fe143e56b941b2e467e700f9f98" title="Temperature above high threshold.">ALARM_HIGH_TEMP</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="_sensor_8h_source.html#l00080">alarmStatus</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00181">181</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_sensor_8h_source.html#l00248">alarmStatus</a>.</p>
 
 </div>
 </div>
@@ -269,9 +341,12 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00158">158</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
+<p>Get current temperature. </p>
+<dl class="section return"><dt>Returns</dt><dd>int16_t Temperature in 0.1°C units </dd></dl>
 
-<p class="reference">References <a class="el" href="_sensor_8h_source.html#l00075">currentTemp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00176">176</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_sensor_8h_source.html#l00243">currentTemp</a>.</p>
 
 </div>
 </div>
@@ -290,9 +365,13 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00170">170</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
+<p>Get DS18B20 ROM address. </p>
+<dl class="section return"><dt>Returns</dt><dd>const uint8_t* Pointer to 8-byte ROM address </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Only valid for DS18B20 sensors </dd></dl>
 
-<p class="reference">References <a class="el" href="#adaacf2cbc3623d86bad4c32496340a74">connection</a>, <a class="el" href="_sensor_8h_source.html#l00011">DS18B20</a>, and <a class="el" href="_sensor_8h_source.html#l00073">type</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00188">188</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="#adaacf2cbc3623d86bad4c32496340a74">connection</a>, <a class="el" href="_sensor_8h_source.html#l00033">DS18B20</a>, and <a class="el" href="_sensor_8h_source.html#l00241">type</a>.</p>
 
 </div>
 </div>
@@ -311,11 +390,19 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00205">205</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
+<p>Get DS18B20 ROM address as array. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">out</td><td>8-byte array to receive ROM address </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="reference">References <a class="el" href="#adaacf2cbc3623d86bad4c32496340a74">connection</a>, <a class="el" href="_sensor_8h_source.html#l00011">DS18B20</a>, and <a class="el" href="_sensor_8h_source.html#l00073">type</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00223">223</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01066">TemperatureController::getPointsJson()</a>.</p>
+<p class="reference">References <a class="el" href="#adaacf2cbc3623d86bad4c32496340a74">connection</a>, <a class="el" href="_sensor_8h_source.html#l00033">DS18B20</a>, and <a class="el" href="_sensor_8h_source.html#l00241">type</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01087">TemperatureController::getPointsJson()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -339,11 +426,14 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00195">195</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
+<p>Get DS18B20 ROM address as hex string. </p>
+<dl class="section return"><dt>Returns</dt><dd>String ROM address in hexadecimal format </dd></dl>
 
-<p class="reference">References <a class="el" href="#adaacf2cbc3623d86bad4c32496340a74">connection</a>, <a class="el" href="_sensor_8h_source.html#l00011">DS18B20</a>, and <a class="el" href="_sensor_8h_source.html#l00073">type</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00213">213</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00037">CSVConfigManager::_exportPointToCSV()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00718">TemperatureController::addSensor()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01066">TemperatureController::getPointsJson()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01008">TemperatureController::getSensorsJson()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00279">ConfigManager::savePointsConfig()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00717">ConfigManager::sensorAPI()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00825">TemperatureController::unbindSensorFromPoint()</a>.</p>
+<p class="reference">References <a class="el" href="#adaacf2cbc3623d86bad4c32496340a74">connection</a>, <a class="el" href="_sensor_8h_source.html#l00033">DS18B20</a>, and <a class="el" href="_sensor_8h_source.html#l00241">type</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00057">CSVConfigManager::_exportPointToCSV()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00739">TemperatureController::addSensor()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01087">TemperatureController::getPointsJson()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01029">TemperatureController::getSensorsJson()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00302">ConfigManager::savePointsConfig()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00740">ConfigManager::sensorAPI()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00846">TemperatureController::unbindSensorFromPoint()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -367,9 +457,13 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00164">164</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
+<p>Get error status flags. </p>
+<dl class="section return"><dt>Returns</dt><dd>uint8_t Bitmask of active errors </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="_sensor_8h.html#a2414e990a5472bc239f99ae14c9ed66f" title="Communication error with sensor.">ERROR_COMMUNICATION</a>, <a class="el" href="_sensor_8h.html#a5e765138e11b96eed4933eec3611b571" title="Temperature reading out of valid range.">ERROR_OUT_OF_RANGE</a>, <a class="el" href="_sensor_8h.html#ab65c92ee1954ab03e64f69b1706726a8" title="Sensor physically disconnected.">ERROR_DISCONNECTED</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="_sensor_8h_source.html#l00081">errorStatus</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00182">182</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_sensor_8h_source.html#l00249">errorStatus</a>.</p>
 
 </div>
 </div>
@@ -388,9 +482,12 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00162">162</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
+<p>Get high temperature alarm threshold. </p>
+<dl class="section return"><dt>Returns</dt><dd>int16_t High threshold in 0.1°C units </dd></dl>
 
-<p class="reference">References <a class="el" href="_sensor_8h_source.html#l00079">highAlarmThreshold</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00180">180</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_sensor_8h_source.html#l00247">highAlarmThreshold</a>.</p>
 
 </div>
 </div>
@@ -409,9 +506,12 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00161">161</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
+<p>Get low temperature alarm threshold. </p>
+<dl class="section return"><dt>Returns</dt><dd>int16_t Low threshold in 0.1°C units </dd></dl>
 
-<p class="reference">References <a class="el" href="_sensor_8h_source.html#l00078">lowAlarmThreshold</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00179">179</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_sensor_8h_source.html#l00246">lowAlarmThreshold</a>.</p>
 
 </div>
 </div>
@@ -430,9 +530,12 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00160">160</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
+<p>Get maximum recorded temperature. </p>
+<dl class="section return"><dt>Returns</dt><dd>int16_t Maximum temperature in 0.1°C units </dd></dl>
 
-<p class="reference">References <a class="el" href="_sensor_8h_source.html#l00077">maxTemp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00178">178</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_sensor_8h_source.html#l00245">maxTemp</a>.</p>
 
 </div>
 </div>
@@ -451,9 +554,12 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00159">159</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
+<p>Get minimum recorded temperature. </p>
+<dl class="section return"><dt>Returns</dt><dd>int16_t Minimum temperature in 0.1°C units </dd></dl>
 
-<p class="reference">References <a class="el" href="_sensor_8h_source.html#l00076">minTemp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00177">177</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_sensor_8h_source.html#l00244">minTemp</a>.</p>
 
 </div>
 </div>
@@ -472,11 +578,14 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00155">155</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
+<p>Get sensor name. </p>
+<dl class="section return"><dt>Returns</dt><dd>String <a class="el" href="class_sensor.html" title="Abstract temperature sensor interface.">Sensor</a> name </dd></dl>
 
-<p class="reference">References <a class="el" href="_sensor_8h_source.html#l00072">name</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00173">173</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00881">TemperatureController::discoverDS18B20Sensors()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00956">TemperatureController::discoverPTSensors()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l01260">TemperatureController::unbindSensorFromPointBySensor()</a>.</p>
+<p class="reference">References <a class="el" href="_sensor_8h_source.html#l00240">name</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00902">TemperatureController::discoverDS18B20Sensors()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00977">TemperatureController::discoverPTSensors()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l01281">TemperatureController::unbindSensorFromPointBySensor()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -508,11 +617,14 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00068">68</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
+<p>Get OneWire bus pin. </p>
+<dl class="section return"><dt>Returns</dt><dd>uint8_t OneWire pin number </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00236">236</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
 
 <p class="reference">References <a class="el" href="#adaacf2cbc3623d86bad4c32496340a74">connection</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00881">TemperatureController::discoverDS18B20Sensors()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l01240">TemperatureController::getSensorBus()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00902">TemperatureController::discoverDS18B20Sensors()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l01261">TemperatureController::getSensorBus()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -536,11 +648,14 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00190">190</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
+<p>Get PT1000 chip select pin. </p>
+<dl class="section return"><dt>Returns</dt><dd>uint8_t Chip select pin number </dd></dl>
 
-<p class="reference">References <a class="el" href="#adaacf2cbc3623d86bad4c32496340a74">connection</a>, <a class="el" href="_sensor_8h_source.html#l00012">PT1000</a>, and <a class="el" href="_sensor_8h_source.html#l00073">type</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00208">208</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00718">TemperatureController::addSensor()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00956">TemperatureController::discoverPTSensors()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01066">TemperatureController::getPointsJson()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01240">TemperatureController::getSensorBus()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00279">ConfigManager::savePointsConfig()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00717">ConfigManager::sensorAPI()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00825">TemperatureController::unbindSensorFromPoint()</a>.</p>
+<p class="reference">References <a class="el" href="#adaacf2cbc3623d86bad4c32496340a74">connection</a>, <a class="el" href="_sensor_8h_source.html#l00034">PT1000</a>, and <a class="el" href="_sensor_8h_source.html#l00241">type</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00739">TemperatureController::addSensor()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00977">TemperatureController::discoverPTSensors()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01087">TemperatureController::getPointsJson()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01261">TemperatureController::getSensorBus()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00302">ConfigManager::savePointsConfig()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00740">ConfigManager::sensorAPI()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00846">TemperatureController::unbindSensorFromPoint()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -564,11 +679,14 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00153">153</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
+<p>Get sensor type. </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="_sensor_8h.html#a213c434cb928c4ca22513e2302632435" title="Enumeration of supported sensor types.">SensorType</a> DS18B20 or PT1000 </dd></dl>
 
-<p class="reference">References <a class="el" href="_sensor_8h_source.html#l00073">type</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00171">171</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00037">CSVConfigManager::_exportPointToCSV()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00718">TemperatureController::addSensor()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01066">TemperatureController::getPointsJson()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01240">TemperatureController::getSensorBus()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01008">TemperatureController::getSensorsJson()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00279">ConfigManager::savePointsConfig()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00825">TemperatureController::unbindSensorFromPoint()</a>.</p>
+<p class="reference">References <a class="el" href="_sensor_8h_source.html#l00241">type</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00057">CSVConfigManager::_exportPointToCSV()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00739">TemperatureController::addSensor()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01087">TemperatureController::getPointsJson()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01261">TemperatureController::getSensorBus()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01029">TemperatureController::getSensorsJson()</a>, <a class="el" href="_config_manager_8cpp_source.html#l00302">ConfigManager::savePointsConfig()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00846">TemperatureController::unbindSensorFromPoint()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -592,11 +710,16 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00049">49</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
+<p>Initialize sensor hardware. </p>
+<dl class="section return"><dt>Returns</dt><dd>true if initialization successful </dd>
+<dd>
+false if hardware initialization failed </dd></dl>
 
-<p class="reference">References <a class="el" href="#adaacf2cbc3623d86bad4c32496340a74">connection</a>, <a class="el" href="_sensor_8h_source.html#l00085">dallasTemperature</a>, <a class="el" href="_sensor_8h_source.html#l00011">DS18B20</a>, <a class="el" href="_sensor_8h_source.html#l00086">max31865</a>, <a class="el" href="_sensor_8h_source.html#l00084">oneWire</a>, <a class="el" href="_sensor_8h_source.html#l00012">PT1000</a>, and <a class="el" href="_sensor_8h_source.html#l00073">type</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00067">67</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00881">TemperatureController::discoverDS18B20Sensors()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00956">TemperatureController::discoverPTSensors()</a>, and <a class="el" href="_config_manager_8cpp_source.html#l00361">ConfigManager::loadPointsConfig()</a>.</p>
+<p class="reference">References <a class="el" href="#adaacf2cbc3623d86bad4c32496340a74">connection</a>, <a class="el" href="_sensor_8h_source.html#l00253">dallasTemperature</a>, <a class="el" href="_sensor_8h_source.html#l00033">DS18B20</a>, <a class="el" href="_sensor_8h_source.html#l00254">max31865</a>, <a class="el" href="_sensor_8h_source.html#l00252">oneWire</a>, <a class="el" href="_sensor_8h_source.html#l00034">PT1000</a>, and <a class="el" href="_sensor_8h_source.html#l00241">type</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00902">TemperatureController::discoverDS18B20Sensors()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00977">TemperatureController::discoverPTSensors()</a>, and <a class="el" href="_config_manager_8cpp_source.html#l00384">ConfigManager::loadPointsConfig()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -620,9 +743,15 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00100">100</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
+<p>Read temperature from sensor. </p>
+<dl class="section return"><dt>Returns</dt><dd>true if reading successful </dd>
+<dd>
+false if reading failed</dd></dl>
+<p>Updates internal temperature values and error status </p>
 
-<p class="reference">References <a class="el" href="#adaacf2cbc3623d86bad4c32496340a74">connection</a>, <a class="el" href="_sensor_8h_source.html#l00075">currentTemp</a>, <a class="el" href="_sensor_8h_source.html#l00085">dallasTemperature</a>, <a class="el" href="_sensor_8h_source.html#l00011">DS18B20</a>, <a class="el" href="_sensor_8h_source.html#l00016">ERROR_COMMUNICATION</a>, <a class="el" href="_sensor_8h_source.html#l00018">ERROR_DISCONNECTED</a>, <a class="el" href="_sensor_8h_source.html#l00017">ERROR_OUT_OF_RANGE</a>, <a class="el" href="_sensor_8h_source.html#l00081">errorStatus</a>, <a class="el" href="_sensor_8h_source.html#l00086">max31865</a>, <a class="el" href="_sensor_8h_source.html#l00077">maxTemp</a>, <a class="el" href="_sensor_8h_source.html#l00076">minTemp</a>, <a class="el" href="_sensor_8h_source.html#l00012">PT1000</a>, <a class="el" href="_sensor_8h_source.html#l00073">type</a>, and <a class="el" href="_sensor_8cpp_source.html#l00182">updateAlarmStatus()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00118">118</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="#adaacf2cbc3623d86bad4c32496340a74">connection</a>, <a class="el" href="_sensor_8h_source.html#l00243">currentTemp</a>, <a class="el" href="_sensor_8h_source.html#l00253">dallasTemperature</a>, <a class="el" href="_sensor_8h_source.html#l00033">DS18B20</a>, <a class="el" href="_sensor_8h_source.html#l00042">ERROR_COMMUNICATION</a>, <a class="el" href="_sensor_8h_source.html#l00044">ERROR_DISCONNECTED</a>, <a class="el" href="_sensor_8h_source.html#l00043">ERROR_OUT_OF_RANGE</a>, <a class="el" href="_sensor_8h_source.html#l00249">errorStatus</a>, <a class="el" href="_sensor_8h_source.html#l00254">max31865</a>, <a class="el" href="_sensor_8h_source.html#l00245">maxTemp</a>, <a class="el" href="_sensor_8h_source.html#l00244">minTemp</a>, <a class="el" href="_sensor_8h_source.html#l00034">PT1000</a>, <a class="el" href="_sensor_8h_source.html#l00241">type</a>, and <a class="el" href="_sensor_8cpp_source.html#l00200">updateAlarmStatus()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -646,9 +775,11 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00177">177</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
+<p>Reset min/max temperature records. </p>
 
-<p class="reference">References <a class="el" href="_sensor_8h_source.html#l00075">currentTemp</a>, <a class="el" href="_sensor_8h_source.html#l00077">maxTemp</a>, and <a class="el" href="_sensor_8h_source.html#l00076">minTemp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00195">195</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_sensor_8h_source.html#l00243">currentTemp</a>, <a class="el" href="_sensor_8h_source.html#l00245">maxTemp</a>, and <a class="el" href="_sensor_8h_source.html#l00244">minTemp</a>.</p>
 
 </div>
 </div>
@@ -667,9 +798,17 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00166">166</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
+<p>Set sensor logical address. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">newAddress</td><td>New address value </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="reference">References <a class="el" href="_sensor_8h_source.html#l00071">address</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00184">184</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_sensor_8h_source.html#l00239">address</a>.</p>
 
 </div>
 </div>
@@ -688,9 +827,17 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00168">168</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
+<p>Set high temperature alarm threshold. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">threshold</td><td>Threshold in 0.1°C units </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="reference">References <a class="el" href="_sensor_8h_source.html#l00079">highAlarmThreshold</a>, and <a class="el" href="_sensor_8cpp_source.html#l00182">updateAlarmStatus()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00186">186</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_sensor_8h_source.html#l00247">highAlarmThreshold</a>, and <a class="el" href="_sensor_8cpp_source.html#l00200">updateAlarmStatus()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -714,9 +861,17 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00167">167</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
+<p>Set low temperature alarm threshold. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">threshold</td><td>Threshold in 0.1°C units </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="reference">References <a class="el" href="_sensor_8h_source.html#l00078">lowAlarmThreshold</a>, and <a class="el" href="_sensor_8cpp_source.html#l00182">updateAlarmStatus()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00185">185</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_sensor_8h_source.html#l00246">lowAlarmThreshold</a>, and <a class="el" href="_sensor_8cpp_source.html#l00200">updateAlarmStatus()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -740,9 +895,17 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00156">156</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
+<p>Set sensor name. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">newName</td><td>New name for sensor </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="reference">References <a class="el" href="_sensor_8h_source.html#l00072">name</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00174">174</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_sensor_8h_source.html#l00240">name</a>.</p>
 
 </div>
 </div>
@@ -765,11 +928,20 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00039">39</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
+<p>Configure sensor as DS18B20. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pin</td><td>OneWire bus pin number </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">deviceAddress</td><td>8-byte ROM address of DS18B20 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00057">57</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="#adaacf2cbc3623d86bad4c32496340a74">connection</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00881">TemperatureController::discoverDS18B20Sensors()</a>, and <a class="el" href="_config_manager_8cpp_source.html#l00361">ConfigManager::loadPointsConfig()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00902">TemperatureController::discoverDS18B20Sensors()</a>, and <a class="el" href="_config_manager_8cpp_source.html#l00384">ConfigManager::loadPointsConfig()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -797,11 +969,20 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00044">44</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
+<p>Configure sensor as PT1000. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">csPin</td><td>SPI chip select pin </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">maxAddress</td><td>MAX31865 I2C address </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="reference">References <a class="el" href="#adaacf2cbc3623d86bad4c32496340a74">connection</a>, <a class="el" href="_sensor_8h_source.html#l00095">csPin</a>, and <a class="el" href="_sensor_8h_source.html#l00096">maxAddress</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00062">62</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00956">TemperatureController::discoverPTSensors()</a>, and <a class="el" href="_config_manager_8cpp_source.html#l00361">ConfigManager::loadPointsConfig()</a>.</p>
+<p class="reference">References <a class="el" href="#adaacf2cbc3623d86bad4c32496340a74">connection</a>, <a class="el" href="_sensor_8h_source.html#l00272">csPin</a>, and <a class="el" href="_sensor_8h_source.html#l00273">maxAddress</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00977">TemperatureController::discoverPTSensors()</a>, and <a class="el" href="_config_manager_8cpp_source.html#l00384">ConfigManager::loadPointsConfig()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -825,11 +1006,14 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00182">182</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
+<p>Update alarm status based on current temperature. </p>
+<p>Call after reading temperature or changing thresholds </p>
 
-<p class="reference">References <a class="el" href="_sensor_8h_source.html#l00021">ALARM_HIGH_TEMP</a>, <a class="el" href="_sensor_8h_source.html#l00020">ALARM_LOW_TEMP</a>, <a class="el" href="_sensor_8h_source.html#l00080">alarmStatus</a>, <a class="el" href="_sensor_8h_source.html#l00075">currentTemp</a>, <a class="el" href="_sensor_8h_source.html#l00081">errorStatus</a>, <a class="el" href="_sensor_8h_source.html#l00079">highAlarmThreshold</a>, and <a class="el" href="_sensor_8h_source.html#l00078">lowAlarmThreshold</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sensor_8cpp_source.html#l00200">200</a> of file <a class="el" href="_sensor_8cpp_source.html">Sensor.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_sensor_8cpp_source.html#l00100">readTemperature()</a>, <a class="el" href="_sensor_8cpp_source.html#l00168">setHighAlarmThreshold()</a>, and <a class="el" href="_sensor_8cpp_source.html#l00167">setLowAlarmThreshold()</a>.</p>
+<p class="reference">References <a class="el" href="_sensor_8h_source.html#l00053">ALARM_HIGH_TEMP</a>, <a class="el" href="_sensor_8h_source.html#l00052">ALARM_LOW_TEMP</a>, <a class="el" href="_sensor_8h_source.html#l00248">alarmStatus</a>, <a class="el" href="_sensor_8h_source.html#l00243">currentTemp</a>, <a class="el" href="_sensor_8h_source.html#l00249">errorStatus</a>, <a class="el" href="_sensor_8h_source.html#l00247">highAlarmThreshold</a>, and <a class="el" href="_sensor_8h_source.html#l00246">lowAlarmThreshold</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_sensor_8cpp_source.html#l00118">readTemperature()</a>, <a class="el" href="_sensor_8cpp_source.html#l00186">setHighAlarmThreshold()</a>, and <a class="el" href="_sensor_8cpp_source.html#l00185">setLowAlarmThreshold()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -859,9 +1043,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00071">71</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
+<p>Logical sensor address. </p>
 
-<p class="reference">Referenced by <a class="el" href="_sensor_8cpp_source.html#l00154">getAddress()</a>, <a class="el" href="_sensor_8cpp_source.html#l00008">Sensor()</a>, and <a class="el" href="_sensor_8cpp_source.html#l00166">setAddress()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00239">239</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_sensor_8cpp_source.html#l00172">getAddress()</a>, <a class="el" href="_sensor_8cpp_source.html#l00026">Sensor()</a>, and <a class="el" href="_sensor_8cpp_source.html#l00184">setAddress()</a>.</p>
 
 </div>
 </div>
@@ -885,9 +1071,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00080">80</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
+<p>Current alarm status flags. </p>
 
-<p class="reference">Referenced by <a class="el" href="_sensor_8cpp_source.html#l00163">getAlarmStatus()</a>, <a class="el" href="_sensor_8cpp_source.html#l00008">Sensor()</a>, and <a class="el" href="_sensor_8cpp_source.html#l00182">updateAlarmStatus()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00248">248</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_sensor_8cpp_source.html#l00181">getAlarmStatus()</a>, <a class="el" href="_sensor_8cpp_source.html#l00026">Sensor()</a>, and <a class="el" href="_sensor_8cpp_source.html#l00200">updateAlarmStatus()</a>.</p>
 
 </div>
 </div>
@@ -903,7 +1091,10 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="_sensor_8cpp_source.html#l00170">getDS18B20Address()</a>, <a class="el" href="_sensor_8cpp_source.html#l00205">getDS18B20RomArray()</a>, <a class="el" href="_sensor_8cpp_source.html#l00195">getDS18B20RomString()</a>, <a class="el" href="_sensor_8h_source.html#l00068">getOneWirePin()</a>, <a class="el" href="_sensor_8cpp_source.html#l00190">getPT1000ChipSelectPin()</a>, <a class="el" href="_sensor_8cpp_source.html#l00049">initialize()</a>, <a class="el" href="_sensor_8cpp_source.html#l00100">readTemperature()</a>, <a class="el" href="_sensor_8cpp_source.html#l00008">Sensor()</a>, <a class="el" href="_sensor_8cpp_source.html#l00039">setupDS18B20()</a>, and <a class="el" href="_sensor_8cpp_source.html#l00044">setupPT1000()</a>.</p>
+<p>Union for sensor-specific connection details. </p>
+<p><a class="el" href="class_sensor.html" title="Abstract temperature sensor interface.">Sensor</a> connection details </p>
+
+<p class="reference">Referenced by <a class="el" href="_sensor_8cpp_source.html#l00188">getDS18B20Address()</a>, <a class="el" href="_sensor_8cpp_source.html#l00223">getDS18B20RomArray()</a>, <a class="el" href="_sensor_8cpp_source.html#l00213">getDS18B20RomString()</a>, <a class="el" href="_sensor_8h_source.html#l00236">getOneWirePin()</a>, <a class="el" href="_sensor_8cpp_source.html#l00208">getPT1000ChipSelectPin()</a>, <a class="el" href="_sensor_8cpp_source.html#l00067">initialize()</a>, <a class="el" href="_sensor_8cpp_source.html#l00118">readTemperature()</a>, <a class="el" href="_sensor_8cpp_source.html#l00026">Sensor()</a>, <a class="el" href="_sensor_8cpp_source.html#l00057">setupDS18B20()</a>, and <a class="el" href="_sensor_8cpp_source.html#l00062">setupPT1000()</a>.</p>
 
 </div>
 </div>
@@ -919,9 +1110,11 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00095">95</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
+<p>SPI chip select pin. </p>
 
-<p class="reference">Referenced by <a class="el" href="_sensor_8cpp_source.html#l00044">setupPT1000()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00272">272</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_sensor_8cpp_source.html#l00062">setupPT1000()</a>.</p>
 
 </div>
 </div>
@@ -945,9 +1138,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00075">75</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
+<p>Current temperature in 0.1°C units. </p>
 
-<p class="reference">Referenced by <a class="el" href="_sensor_8cpp_source.html#l00158">getCurrentTemp()</a>, <a class="el" href="_sensor_8cpp_source.html#l00100">readTemperature()</a>, <a class="el" href="_sensor_8cpp_source.html#l00177">resetMinMaxTemp()</a>, <a class="el" href="_sensor_8cpp_source.html#l00008">Sensor()</a>, and <a class="el" href="_sensor_8cpp_source.html#l00182">updateAlarmStatus()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00243">243</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_sensor_8cpp_source.html#l00176">getCurrentTemp()</a>, <a class="el" href="_sensor_8cpp_source.html#l00118">readTemperature()</a>, <a class="el" href="_sensor_8cpp_source.html#l00195">resetMinMaxTemp()</a>, <a class="el" href="_sensor_8cpp_source.html#l00026">Sensor()</a>, and <a class="el" href="_sensor_8cpp_source.html#l00200">updateAlarmStatus()</a>.</p>
 
 </div>
 </div>
@@ -971,9 +1166,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00085">85</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
+<p>Dallas temperature library instance. </p>
 
-<p class="reference">Referenced by <a class="el" href="_sensor_8cpp_source.html#l00049">initialize()</a>, <a class="el" href="_sensor_8cpp_source.html#l00100">readTemperature()</a>, <a class="el" href="_sensor_8cpp_source.html#l00008">Sensor()</a>, and <a class="el" href="_sensor_8cpp_source.html#l00024">~Sensor()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00253">253</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_sensor_8cpp_source.html#l00067">initialize()</a>, <a class="el" href="_sensor_8cpp_source.html#l00118">readTemperature()</a>, <a class="el" href="_sensor_8cpp_source.html#l00026">Sensor()</a>, and <a class="el" href="_sensor_8cpp_source.html#l00042">~Sensor()</a>.</p>
 
 </div>
 </div>
@@ -988,6 +1185,8 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>DS18B20 connection parameters. </p>
 
 </div>
 </div>
@@ -1011,9 +1210,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00081">81</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
+<p>Current error status flags. </p>
 
-<p class="reference">Referenced by <a class="el" href="_sensor_8cpp_source.html#l00164">getErrorStatus()</a>, <a class="el" href="_sensor_8cpp_source.html#l00100">readTemperature()</a>, <a class="el" href="_sensor_8cpp_source.html#l00008">Sensor()</a>, and <a class="el" href="_sensor_8cpp_source.html#l00182">updateAlarmStatus()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00249">249</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_sensor_8cpp_source.html#l00182">getErrorStatus()</a>, <a class="el" href="_sensor_8cpp_source.html#l00118">readTemperature()</a>, <a class="el" href="_sensor_8cpp_source.html#l00026">Sensor()</a>, and <a class="el" href="_sensor_8cpp_source.html#l00200">updateAlarmStatus()</a>.</p>
 
 </div>
 </div>
@@ -1037,9 +1238,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00079">79</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
+<p>High temperature alarm threshold. </p>
 
-<p class="reference">Referenced by <a class="el" href="_sensor_8cpp_source.html#l00162">getHighAlarmThreshold()</a>, <a class="el" href="_sensor_8cpp_source.html#l00008">Sensor()</a>, <a class="el" href="_sensor_8cpp_source.html#l00168">setHighAlarmThreshold()</a>, and <a class="el" href="_sensor_8cpp_source.html#l00182">updateAlarmStatus()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00247">247</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_sensor_8cpp_source.html#l00180">getHighAlarmThreshold()</a>, <a class="el" href="_sensor_8cpp_source.html#l00026">Sensor()</a>, <a class="el" href="_sensor_8cpp_source.html#l00186">setHighAlarmThreshold()</a>, and <a class="el" href="_sensor_8cpp_source.html#l00200">updateAlarmStatus()</a>.</p>
 
 </div>
 </div>
@@ -1063,9 +1266,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00078">78</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
+<p>Low temperature alarm threshold. </p>
 
-<p class="reference">Referenced by <a class="el" href="_sensor_8cpp_source.html#l00161">getLowAlarmThreshold()</a>, <a class="el" href="_sensor_8cpp_source.html#l00008">Sensor()</a>, <a class="el" href="_sensor_8cpp_source.html#l00167">setLowAlarmThreshold()</a>, and <a class="el" href="_sensor_8cpp_source.html#l00182">updateAlarmStatus()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00246">246</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_sensor_8cpp_source.html#l00179">getLowAlarmThreshold()</a>, <a class="el" href="_sensor_8cpp_source.html#l00026">Sensor()</a>, <a class="el" href="_sensor_8cpp_source.html#l00185">setLowAlarmThreshold()</a>, and <a class="el" href="_sensor_8cpp_source.html#l00200">updateAlarmStatus()</a>.</p>
 
 </div>
 </div>
@@ -1089,9 +1294,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00086">86</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
+<p>MAX31865 interface for PT1000. </p>
 
-<p class="reference">Referenced by <a class="el" href="_sensor_8cpp_source.html#l00049">initialize()</a>, <a class="el" href="_sensor_8cpp_source.html#l00100">readTemperature()</a>, <a class="el" href="_sensor_8cpp_source.html#l00008">Sensor()</a>, and <a class="el" href="_sensor_8cpp_source.html#l00024">~Sensor()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00254">254</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_sensor_8cpp_source.html#l00067">initialize()</a>, <a class="el" href="_sensor_8cpp_source.html#l00118">readTemperature()</a>, <a class="el" href="_sensor_8cpp_source.html#l00026">Sensor()</a>, and <a class="el" href="_sensor_8cpp_source.html#l00042">~Sensor()</a>.</p>
 
 </div>
 </div>
@@ -1107,9 +1314,11 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00096">96</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
+<p>MAX31865 I2C address. </p>
 
-<p class="reference">Referenced by <a class="el" href="_sensor_8cpp_source.html#l00044">setupPT1000()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00273">273</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_sensor_8cpp_source.html#l00062">setupPT1000()</a>.</p>
 
 </div>
 </div>
@@ -1133,9 +1342,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00077">77</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
+<p>Maximum recorded temperature. </p>
 
-<p class="reference">Referenced by <a class="el" href="_sensor_8cpp_source.html#l00160">getMaxTemp()</a>, <a class="el" href="_sensor_8cpp_source.html#l00100">readTemperature()</a>, <a class="el" href="_sensor_8cpp_source.html#l00177">resetMinMaxTemp()</a>, and <a class="el" href="_sensor_8cpp_source.html#l00008">Sensor()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00245">245</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_sensor_8cpp_source.html#l00178">getMaxTemp()</a>, <a class="el" href="_sensor_8cpp_source.html#l00118">readTemperature()</a>, <a class="el" href="_sensor_8cpp_source.html#l00195">resetMinMaxTemp()</a>, and <a class="el" href="_sensor_8cpp_source.html#l00026">Sensor()</a>.</p>
 
 </div>
 </div>
@@ -1159,9 +1370,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00076">76</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
+<p>Minimum recorded temperature. </p>
 
-<p class="reference">Referenced by <a class="el" href="_sensor_8cpp_source.html#l00159">getMinTemp()</a>, <a class="el" href="_sensor_8cpp_source.html#l00100">readTemperature()</a>, <a class="el" href="_sensor_8cpp_source.html#l00177">resetMinMaxTemp()</a>, and <a class="el" href="_sensor_8cpp_source.html#l00008">Sensor()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00244">244</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_sensor_8cpp_source.html#l00177">getMinTemp()</a>, <a class="el" href="_sensor_8cpp_source.html#l00118">readTemperature()</a>, <a class="el" href="_sensor_8cpp_source.html#l00195">resetMinMaxTemp()</a>, and <a class="el" href="_sensor_8cpp_source.html#l00026">Sensor()</a>.</p>
 
 </div>
 </div>
@@ -1185,9 +1398,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00072">72</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
+<p>Human-readable sensor name. </p>
 
-<p class="reference">Referenced by <a class="el" href="_sensor_8cpp_source.html#l00155">getName()</a>, <a class="el" href="_sensor_8cpp_source.html#l00008">Sensor()</a>, and <a class="el" href="_sensor_8cpp_source.html#l00156">setName()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00240">240</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_sensor_8cpp_source.html#l00173">getName()</a>, <a class="el" href="_sensor_8cpp_source.html#l00026">Sensor()</a>, and <a class="el" href="_sensor_8cpp_source.html#l00174">setName()</a>.</p>
 
 </div>
 </div>
@@ -1211,9 +1426,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00084">84</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
+<p>OneWire interface for DS18B20. </p>
 
-<p class="reference">Referenced by <a class="el" href="_sensor_8cpp_source.html#l00049">initialize()</a>, <a class="el" href="_sensor_8cpp_source.html#l00008">Sensor()</a>, and <a class="el" href="_sensor_8cpp_source.html#l00024">~Sensor()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00252">252</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_sensor_8cpp_source.html#l00067">initialize()</a>, <a class="el" href="_sensor_8cpp_source.html#l00026">Sensor()</a>, and <a class="el" href="_sensor_8cpp_source.html#l00042">~Sensor()</a>.</p>
 
 </div>
 </div>
@@ -1229,7 +1446,9 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00092">92</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
+<p>8-byte ROM address </p>
+
+<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00265">265</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
 
 </div>
 </div>
@@ -1245,7 +1464,9 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00091">91</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
+<p>OneWire bus GPIO pin. </p>
+
+<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00264">264</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
 
 </div>
 </div>
@@ -1260,6 +1481,8 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>PT1000 connection parameters. </p>
 
 </div>
 </div>
@@ -1283,9 +1506,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00073">73</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
+<p>Type of sensor (DS18B20 or PT1000) </p>
 
-<p class="reference">Referenced by <a class="el" href="_sensor_8cpp_source.html#l00170">getDS18B20Address()</a>, <a class="el" href="_sensor_8cpp_source.html#l00205">getDS18B20RomArray()</a>, <a class="el" href="_sensor_8cpp_source.html#l00195">getDS18B20RomString()</a>, <a class="el" href="_sensor_8cpp_source.html#l00190">getPT1000ChipSelectPin()</a>, <a class="el" href="_sensor_8cpp_source.html#l00153">getType()</a>, <a class="el" href="_sensor_8cpp_source.html#l00049">initialize()</a>, <a class="el" href="_sensor_8cpp_source.html#l00100">readTemperature()</a>, and <a class="el" href="_sensor_8cpp_source.html#l00008">Sensor()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sensor_8h_source.html#l00241">241</a> of file <a class="el" href="_sensor_8h_source.html">Sensor.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_sensor_8cpp_source.html#l00188">getDS18B20Address()</a>, <a class="el" href="_sensor_8cpp_source.html#l00223">getDS18B20RomArray()</a>, <a class="el" href="_sensor_8cpp_source.html#l00213">getDS18B20RomString()</a>, <a class="el" href="_sensor_8cpp_source.html#l00208">getPT1000ChipSelectPin()</a>, <a class="el" href="_sensor_8cpp_source.html#l00171">getType()</a>, <a class="el" href="_sensor_8cpp_source.html#l00067">initialize()</a>, <a class="el" href="_sensor_8cpp_source.html#l00118">readTemperature()</a>, and <a class="el" href="_sensor_8cpp_source.html#l00026">Sensor()</a>.</p>
 
 </div>
 </div>

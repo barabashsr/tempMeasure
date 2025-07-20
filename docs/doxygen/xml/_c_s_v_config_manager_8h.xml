@@ -239,14 +239,14 @@
 <simplesect kind="date"><para>2025-07-20</para>
 </simplesect>
 This file provides CSV-based configuration management for measurement points and alarm settings, enabling bulk configuration through CSV files.</para>
-<sect1 id="main_8cpp_1dependencies">
+<sect1 id="_time_manager_8cpp_1dependencies">
 <title>Dependencies</title><para><itemizedlist>
 <listitem><para>CSV_Parser.h for CSV parsing functionality</para>
 </listitem><listitem><para><ref refid="_temperature_controller_8h" kindref="compound">TemperatureController.h</ref> for system integration</para>
 </listitem></itemizedlist>
 </para>
 </sect1>
-<sect1 id="main_8cpp_1hardware">
+<sect1 id="_time_manager_8cpp_1hardware">
 <title>Hardware Requirements</title><para><itemizedlist>
 <listitem><para>ESP32 with LittleFS support for file operations </para>
 </listitem></itemizedlist>

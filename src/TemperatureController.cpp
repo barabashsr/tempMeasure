@@ -1,3 +1,24 @@
+/**
+ * @file TemperatureController.cpp
+ * @brief Implementation of the central temperature monitoring and control system
+ * @author Claude Code Session 20250720_221011
+ * @date 2025-01-20
+ * @details Implements temperature sensor management, measurement point control,
+ *          alarm processing, and system configuration for the temperature monitoring system.
+ * 
+ * @section dependencies Dependencies
+ * - OneWire library for DS18B20 communication
+ * - DallasTemperature for DS18B20 sensor interface
+ * - ArduinoJson for JSON serialization
+ * - Custom sensor and alarm implementations
+ * 
+ * @section hardware Hardware Support
+ * - 4 OneWire buses supporting up to 50 DS18B20 sensors
+ * - 4 SPI chip select lines for up to 10 PT1000 sensors
+ * - LED indicators and relay outputs for alarm signaling
+ * - OLED display for status and alarm visualization
+ */
+
 #include "TemperatureController.h"
 
 TemperatureController::TemperatureController(uint8_t oneWirePin[4], uint8_t csPin[4], IndicatorInterface& indicator)

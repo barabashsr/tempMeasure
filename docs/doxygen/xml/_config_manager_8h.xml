@@ -280,7 +280,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="include/ConfigManager.h" line="34" column="19" declfile="include/ConfigManager.h" declline="34" declcolumn="19"/>
-        <referencedby refid="class_config_manager_1abb5e68671c5a8087abb50b289d3522b4" compoundref="_config_manager_8cpp" startline="81" endline="91">ConfigManager::ConfigManager</referencedby>
+        <referencedby refid="class_config_manager_1abb5e68671c5a8087abb50b289d3522b4" compoundref="_config_manager_8cpp" startline="104" endline="114">ConfigManager::ConfigManager</referencedby>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -292,7 +292,7 @@
 <simplesect kind="date"><para>2025-07-20</para>
 </simplesect>
 This file provides comprehensive configuration management including WiFi setup, web interface, measurement point configuration, alarm settings, and CSV import/export.</para>
-<sect1 id="main_8cpp_1dependencies">
+<sect1 id="_time_manager_8cpp_1dependencies">
 <title>Dependencies</title><para><itemizedlist>
 <listitem><para>ConfigAssist.h for web-based configuration</para>
 </listitem><listitem><para>WebServer.h for HTTP API endpoints</para>
@@ -301,7 +301,7 @@ This file provides comprehensive configuration management including WiFi setup, 
 </listitem></itemizedlist>
 </para>
 </sect1>
-<sect1 id="main_8cpp_1hardware">
+<sect1 id="_time_manager_8cpp_1hardware">
 <title>Hardware Requirements</title><para><itemizedlist>
 <listitem><para>ESP32 with WiFi capability</para>
 </listitem><listitem><para>LittleFS file system support </para>

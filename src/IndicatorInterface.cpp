@@ -1,3 +1,24 @@
+/**
+ * @file IndicatorInterface.cpp
+ * @brief Implementation of user interface with OLED display and input handling
+ * @author Claude Code Session 20250720_221011
+ * @date 2025-01-20
+ * @details Implements IndicatorInterface class for managing OLED display output,
+ *          button/encoder input through PCF8575 I/O expander, and LED indicators.
+ * 
+ * @section dependencies Dependencies
+ * - IndicatorInterface.h for class definition
+ * - U8g2lib for OLED display control
+ * - PCF8575 library for I/O expansion
+ * - Wire library for I2C communication
+ * 
+ * @section hardware Hardware Requirements
+ * - SSD1306 OLED display (128x64)
+ * - PCF8575 I/O expander for buttons/encoders
+ * - Optional interrupt pin for input detection
+ * - LEDs connected to PCF8575 outputs
+ */
+
 #include "IndicatorInterface.h"
 
 

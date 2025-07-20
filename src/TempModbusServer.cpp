@@ -1,3 +1,23 @@
+/**
+ * @file TempModbusServer.cpp
+ * @brief Implementation of Modbus RTU server for temperature monitoring
+ * @author Claude Code Session 20250720_221011
+ * @date 2025-01-20
+ * @details Implements Modbus RTU server functionality with support for reading
+ *          temperature data and configuring alarm thresholds via standard
+ *          Modbus function codes.
+ * 
+ * @section dependencies Dependencies
+ * - TempModbusServer.h for class definition
+ * - ModbusServerRTU for protocol implementation
+ * - RegisterMap for data storage
+ * - LoggerManager for transaction logging
+ * 
+ * @section hardware Hardware Requirements
+ * - RS485 transceiver with DE pin
+ * - Hardware serial port for RTU communication
+ */
+
 #include "TempModbusServer.h"
 
 TempModbusServer::TempModbusServer(RegisterMap& regMap, 

@@ -1,3 +1,23 @@
+/**
+ * @file MeasurementPoint.cpp
+ * @brief Implementation of temperature measurement point management
+ * @author Claude Code Session 20250720_221011
+ * @date 2025-01-20
+ * @details Implements MeasurementPoint class for managing individual temperature
+ *          monitoring locations with sensor binding, alarm management, and data tracking.
+ * 
+ * @section dependencies Dependencies
+ * - MeasurementPoint.h for class definition
+ * - Sensor.h for temperature sensor interface
+ * 
+ * @section features Features
+ * - Sensor binding and unbinding
+ * - Temperature value tracking (current/min/max)
+ * - Alarm threshold management
+ * - Error status monitoring
+ * - Temperature reading from bound sensors
+ */
+
 #include "MeasurementPoint.h"
 
 

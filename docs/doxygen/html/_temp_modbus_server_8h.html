@@ -92,6 +92,9 @@ $(function(){initNavTree('_temp_modbus_server_8h.html','',''); });
   <div class="headertitle"><div class="title">TempModbusServer.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Modbus RTU server for temperature monitoring system.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;Arduino.h&gt;</code><br />
 <code>#include &quot;ModbusServerRTU.h&quot;</code><br />
 <code>#include &quot;<a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>&quot;</code><br />
@@ -112,8 +115,30 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Data Structures</h2></td></tr>
 <tr class="memitem:TempModbusServer" id="r_TempModbusServer"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_temp_modbus_server.html">TempModbusServer</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Modbus RTU server implementation for temperature monitoring.  <a href="class_temp_modbus_server.html#details">More...</a><br /></td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Modbus RTU server for temperature monitoring system. </p>
+<dl class="section author"><dt>Author</dt><dd>Claude Code Session 20250720_221011 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2025-01-20</dd></dl>
+<p>Implements a Modbus RTU server that provides access to temperature data and configuration through standard Modbus function codes.</p>
+<h1 class="doxsection"><a class="anchor" id="dependencies"></a>
+Dependencies</h1>
+<ul>
+<li>ModbusServerRTU for Modbus protocol implementation</li>
+<li><a class="el" href="class_register_map.html" title="Manages Modbus register mapping for temperature monitoring.">RegisterMap</a> for register addressing and data storage</li>
+<li><a class="el" href="class_logger_manager.html" title="Forward declaration for measurement point class.">LoggerManager</a> for logging Modbus transactions</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="hardware"></a>
+Hardware Requirements</h1>
+<ul>
+<li>RS485 transceiver for Modbus RTU communication</li>
+<li>UART/Serial port for RTU communication</li>
+<li>DE (Driver Enable) pin for RS485 direction control </li>
+</ul>
+
+<p class="definition">Definition in file <a class="el" href="_temp_modbus_server_8h_source.html">TempModbusServer.h</a>.</p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">
 <div id="page-nav-resize-handle"></div>

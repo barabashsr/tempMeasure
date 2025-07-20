@@ -8,7 +8,7 @@ var searchData=
   ['deletealarmstatelogfile_5',['deleteAlarmStateLogFile',['../class_logger_manager.html#a647d06128ee720bed0022299f97b37b4',1,'LoggerManager']]],
   ['deleteeventlogfile_6',['deleteEventLogFile',['../class_logger_manager.html#a90c66b71788381dafdde9233d557c5b2',1,'LoggerManager']]],
   ['deletelogfile_7',['deleteLogFile',['../class_logger_manager.html#a89aa88d2ed6cf85f31383bbce566c318',1,'LoggerManager']]],
-  ['dependencies_8',['Dependencies',['../main_8cpp.html#dependencies',1,'']]],
+  ['dependencies_8',['Dependencies',['../_time_manager_8cpp.html#dependencies',1,'']]],
   ['depin_9',['dePin',['../class_temp_modbus_server.html#a91abdc37c36d4d2a8b070bd3031a2373',1,'TempModbusServer']]],
   ['device_5fid_5freg_10',['DEVICE_ID_REG',['../class_register_map.html#adbc8f6a4a506265d1ce3f51e0f3cc54c',1,'RegisterMap']]],
   ['device_5fstatus_5fend_5freg_11',['DEVICE_STATUS_END_REG',['../class_register_map.html#a0c65d76fa4f8659e20148173aabb0042',1,'RegisterMap']]],

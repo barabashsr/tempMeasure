@@ -1,3 +1,21 @@
+/**
+ * @file SettingsCSVManager.cpp
+ * @brief Implementation of CSV import/export for system settings
+ * @author Claude Code Session 20250720_221011
+ * @date 2025-01-20
+ * @details Implements CSV serialization and deserialization of system configuration
+ *          with support for special character escaping and validation.
+ * 
+ * @section dependencies Dependencies
+ * - SettingsCSVManager.h for class definition
+ * - ConfigAssist for configuration storage
+ * 
+ * @section format CSV Format
+ * - Header: Setting,Value
+ * - Fields: key,value pairs
+ * - Escaping: Quotes and commas handled per RFC 4180
+ */
+
 #include "SettingsCSVManager.h"
 
 SettingsCSVManager::SettingsCSVManager(ConfigAssist& config) 

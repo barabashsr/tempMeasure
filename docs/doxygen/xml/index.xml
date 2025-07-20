@@ -403,18 +403,6 @@
     <member refid="class_measurement_point_1a71995209f2507e6cc15d01607f60767f" kind="function"><name>updateAlarmStatus</name></member>
   </compound>
   <compound refid="class_register_map" kind="class"><name>RegisterMap</name>
-    <member refid="class_register_map_1aa98070c7197fdf26d743f4eed498fd66" kind="variable"><name>deviceId</name></member>
-    <member refid="class_register_map_1ae5b846e888d43b130096d3671dc8c0fb" kind="variable"><name>firmwareVersion</name></member>
-    <member refid="class_register_map_1a216b9abf3c7b9f7d6721ea2e96cb9ff7" kind="variable"><name>numActiveDS18B20</name></member>
-    <member refid="class_register_map_1abc9a62bb029202c3d50baaa985f17737" kind="variable"><name>numActivePT1000</name></member>
-    <member refid="class_register_map_1a19e014a5afbfe86297b7dd8e3e4d1327" kind="variable"><name>deviceStatus</name></member>
-    <member refid="class_register_map_1aa875c2d7332c718c82d230549f566c10" kind="variable"><name>currentTemps</name></member>
-    <member refid="class_register_map_1acae64e6c9f48a79cda39ac45367a9a97" kind="variable"><name>minTemps</name></member>
-    <member refid="class_register_map_1a883e25ca7b65319483aa56e8ea8f1362" kind="variable"><name>maxTemps</name></member>
-    <member refid="class_register_map_1ac9753141e2fe23d742cca2d7e4572194" kind="variable"><name>alarmStatus</name></member>
-    <member refid="class_register_map_1a5c46fc421fa321b430997811d3a23f56" kind="variable"><name>errorStatus</name></member>
-    <member refid="class_register_map_1aeb01f6f8df07fc282a17015c55de7c06" kind="variable"><name>lowAlarmThresholds</name></member>
-    <member refid="class_register_map_1ae6ce504c8e4c620b908bd7c7bca9fec0" kind="variable"><name>highAlarmThresholds</name></member>
     <member refid="class_register_map_1adbc8f6a4a506265d1ce3f51e0f3cc54c" kind="variable"><name>DEVICE_ID_REG</name></member>
     <member refid="class_register_map_1ab26cff5b72c66bd12efde9882586ddd4" kind="variable"><name>FIRMWARE_VERSION_REG</name></member>
     <member refid="class_register_map_1ac374b6189bebe5408e374965858bcd12" kind="variable"><name>NUM_DS18B20_REG</name></member>
@@ -449,6 +437,18 @@
     <member refid="class_register_map_1af1eec1485d0d78320e17476b87d57ad3" kind="variable"><name>HIGH_ALARM_DS18B20_END_REG</name></member>
     <member refid="class_register_map_1aedac92f3e99b5ea68ccfb649d4737470" kind="variable"><name>HIGH_ALARM_PT1000_START_REG</name></member>
     <member refid="class_register_map_1a48fad7e6eb2c495f3d90d0fe68f69343" kind="variable"><name>HIGH_ALARM_PT1000_END_REG</name></member>
+    <member refid="class_register_map_1aa98070c7197fdf26d743f4eed498fd66" kind="variable"><name>deviceId</name></member>
+    <member refid="class_register_map_1ae5b846e888d43b130096d3671dc8c0fb" kind="variable"><name>firmwareVersion</name></member>
+    <member refid="class_register_map_1a216b9abf3c7b9f7d6721ea2e96cb9ff7" kind="variable"><name>numActiveDS18B20</name></member>
+    <member refid="class_register_map_1abc9a62bb029202c3d50baaa985f17737" kind="variable"><name>numActivePT1000</name></member>
+    <member refid="class_register_map_1a19e014a5afbfe86297b7dd8e3e4d1327" kind="variable"><name>deviceStatus</name></member>
+    <member refid="class_register_map_1aa875c2d7332c718c82d230549f566c10" kind="variable"><name>currentTemps</name></member>
+    <member refid="class_register_map_1acae64e6c9f48a79cda39ac45367a9a97" kind="variable"><name>minTemps</name></member>
+    <member refid="class_register_map_1a883e25ca7b65319483aa56e8ea8f1362" kind="variable"><name>maxTemps</name></member>
+    <member refid="class_register_map_1ac9753141e2fe23d742cca2d7e4572194" kind="variable"><name>alarmStatus</name></member>
+    <member refid="class_register_map_1a5c46fc421fa321b430997811d3a23f56" kind="variable"><name>errorStatus</name></member>
+    <member refid="class_register_map_1aeb01f6f8df07fc282a17015c55de7c06" kind="variable"><name>lowAlarmThresholds</name></member>
+    <member refid="class_register_map_1ae6ce504c8e4c620b908bd7c7bca9fec0" kind="variable"><name>highAlarmThresholds</name></member>
     <member refid="class_register_map_1abc2174dcfe96247d4f97e552a2363e50" kind="function"><name>isValidAddress</name></member>
     <member refid="class_register_map_1a313522004347397fee66b57e9daed873" kind="function"><name>isReadOnlyRegister</name></member>
     <member refid="class_register_map_1a421bb31f92254150a6738952b1ff7944" kind="function"><name>RegisterMap</name></member>
@@ -780,14 +780,14 @@
   <compound refid="_register_map_8h" kind="file"><name>RegisterMap.h</name>
   </compound>
   <compound refid="_sensor_8h" kind="file"><name>Sensor.h</name>
-    <member refid="_sensor_8h_1a213c434cb928c4ca22513e2302632435" kind="enum"><name>SensorType</name></member>
-    <member refid="_sensor_8h_1a213c434cb928c4ca22513e2302632435aac1bc058b939e1c55e1496c8574f3691" kind="enumvalue"><name>DS18B20</name></member>
-    <member refid="_sensor_8h_1a213c434cb928c4ca22513e2302632435a481caba3768b84e8b68fb58b04ec595e" kind="enumvalue"><name>PT1000</name></member>
     <member refid="_sensor_8h_1a2414e990a5472bc239f99ae14c9ed66f" kind="variable"><name>ERROR_COMMUNICATION</name></member>
     <member refid="_sensor_8h_1a5e765138e11b96eed4933eec3611b571" kind="variable"><name>ERROR_OUT_OF_RANGE</name></member>
     <member refid="_sensor_8h_1ab65c92ee1954ab03e64f69b1706726a8" kind="variable"><name>ERROR_DISCONNECTED</name></member>
     <member refid="_sensor_8h_1a23317a6f5a20f7fff89a69642e417b1f" kind="variable"><name>ALARM_LOW_TEMP</name></member>
     <member refid="_sensor_8h_1a69ac9fe143e56b941b2e467e700f9f98" kind="variable"><name>ALARM_HIGH_TEMP</name></member>
+    <member refid="_sensor_8h_1a213c434cb928c4ca22513e2302632435" kind="enum"><name>SensorType</name></member>
+    <member refid="_sensor_8h_1a213c434cb928c4ca22513e2302632435aac1bc058b939e1c55e1496c8574f3691" kind="enumvalue"><name>DS18B20</name></member>
+    <member refid="_sensor_8h_1a213c434cb928c4ca22513e2302632435a481caba3768b84e8b68fb58b04ec595e" kind="enumvalue"><name>PT1000</name></member>
   </compound>
   <compound refid="_settings_c_s_v_manager_8h" kind="file"><name>SettingsCSVManager.h</name>
   </compound>

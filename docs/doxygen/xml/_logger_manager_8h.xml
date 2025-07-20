@@ -231,7 +231,7 @@
 <simplesect kind="date"><para>2025-07-20</para>
 </simplesect>
 This file provides a complete logging solution including measurement data logging, event logging, and alarm state logging with CSV format and file management.</para>
-<sect1 id="main_8cpp_1dependencies">
+<sect1 id="_time_manager_8cpp_1dependencies">
 <title>Dependencies</title><para><itemizedlist>
 <listitem><para>FS.h and SD.h for file system operations</para>
 </listitem><listitem><para><ref refid="_time_manager_8h" kindref="compound">TimeManager.h</ref> for timestamp management</para>
@@ -239,7 +239,7 @@ This file provides a complete logging solution including measurement data loggin
 </listitem></itemizedlist>
 </para>
 </sect1>
-<sect1 id="main_8cpp_1hardware">
+<sect1 id="_time_manager_8cpp_1hardware">
 <title>Hardware Requirements</title><para><itemizedlist>
 <listitem><para>ESP32 with SD card or LittleFS support</para>
 </listitem><listitem><para>RTC module for accurate timestamps </para>

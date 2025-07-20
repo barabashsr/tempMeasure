@@ -2,8 +2,28 @@ warning: Tag 'CLASS_DIAGRAMS' at line 33 of file 'Doxyfile' has become obsolete.
          To avoid this warning please remove this line from your configuration file or upgrade it using "doxygen -u"
 warning: tag INPUT: input source 'lib' does not exist
 warning: source 'lib' is not a readable file or directory... skipping.
+/Users/sergeybarabash/robo/tempMeasure/src/ConfigManager.cpp:10: warning: multiple use of section label 'dependencies' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 9)
+/Users/sergeybarabash/robo/tempMeasure/src/CSVConfigManager.cpp:9: warning: multiple use of section label 'dependencies' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 9)
+/Users/sergeybarabash/robo/tempMeasure/src/IndicatorInterface.cpp:9: warning: multiple use of section label 'dependencies' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 9)
+/Users/sergeybarabash/robo/tempMeasure/src/IndicatorInterface.cpp:15: warning: multiple use of section label 'hardware' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 13)
+/Users/sergeybarabash/robo/tempMeasure/src/LoggerManager.cpp:9: warning: multiple use of section label 'dependencies' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 9)
+/Users/sergeybarabash/robo/tempMeasure/src/LoggerManager.cpp:15: warning: multiple use of section label 'features' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/ConfigManager.cpp, line 16)
 /Users/sergeybarabash/robo/tempMeasure/src/main.cpp:9: warning: multiple use of section label 'dependencies' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 9)
 /Users/sergeybarabash/robo/tempMeasure/src/main.cpp:17: warning: multiple use of section label 'hardware' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 13)
+/Users/sergeybarabash/robo/tempMeasure/src/MeasurementPoint.cpp:9: warning: multiple use of section label 'dependencies' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 9)
+/Users/sergeybarabash/robo/tempMeasure/src/MeasurementPoint.cpp:13: warning: multiple use of section label 'features' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/ConfigManager.cpp, line 16)
+/Users/sergeybarabash/robo/tempMeasure/src/RegisterMap.cpp:9: warning: multiple use of section label 'dependencies' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 9)
+/Users/sergeybarabash/robo/tempMeasure/src/RegisterMap.cpp:13: warning: multiple use of section label 'hardware' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 13)
+/Users/sergeybarabash/robo/tempMeasure/src/Sensor.cpp:9: warning: multiple use of section label 'dependencies' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 9)
+/Users/sergeybarabash/robo/tempMeasure/src/Sensor.cpp:14: warning: multiple use of section label 'hardware' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 13)
+/Users/sergeybarabash/robo/tempMeasure/src/SettingsCSVManager.cpp:9: warning: multiple use of section label 'dependencies' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 9)
+/Users/sergeybarabash/robo/tempMeasure/src/SettingsCSVManager.cpp:13: warning: multiple use of section label 'format' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/CSVConfigManager.cpp, line 14)
+/Users/sergeybarabash/robo/tempMeasure/src/TemperatureController.cpp:9: warning: multiple use of section label 'dependencies' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 9)
+/Users/sergeybarabash/robo/tempMeasure/src/TemperatureController.cpp:15: warning: multiple use of section label 'hardware' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 13)
+/Users/sergeybarabash/robo/tempMeasure/src/TempModbusServer.cpp:10: warning: multiple use of section label 'dependencies' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 9)
+/Users/sergeybarabash/robo/tempMeasure/src/TempModbusServer.cpp:16: warning: multiple use of section label 'hardware' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 13)
+/Users/sergeybarabash/robo/tempMeasure/src/TimeManager.cpp:9: warning: multiple use of section label 'dependencies' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 9)
+/Users/sergeybarabash/robo/tempMeasure/src/TimeManager.cpp:16: warning: multiple use of section label 'hardware' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 13)
 /Users/sergeybarabash/robo/tempMeasure/include/Alarm.h:9: warning: multiple use of section label 'dependencies' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 9)
 /Users/sergeybarabash/robo/tempMeasure/include/Alarm.h:14: warning: multiple use of section label 'hardware' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 13)
 /Users/sergeybarabash/robo/tempMeasure/include/ConfigManager.h:9: warning: multiple use of section label 'dependencies' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 9)
@@ -16,6 +36,18 @@ warning: source 'lib' is not a readable file or directory... skipping.
 /Users/sergeybarabash/robo/tempMeasure/include/LoggerManager.h:14: warning: multiple use of section label 'hardware' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 13)
 /Users/sergeybarabash/robo/tempMeasure/include/MeasurementPoint.h:9: warning: multiple use of section label 'dependencies' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 9)
 /Users/sergeybarabash/robo/tempMeasure/include/MeasurementPoint.h:13: warning: multiple use of section label 'hardware' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 13)
+/Users/sergeybarabash/robo/tempMeasure/include/RegisterMap.h:10: warning: multiple use of section label 'dependencies' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 9)
+/Users/sergeybarabash/robo/tempMeasure/include/RegisterMap.h:13: warning: multiple use of section label 'hardware' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 13)
+/Users/sergeybarabash/robo/tempMeasure/include/Sensor.h:10: warning: multiple use of section label 'dependencies' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 9)
+/Users/sergeybarabash/robo/tempMeasure/include/Sensor.h:15: warning: multiple use of section label 'hardware' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 13)
+/Users/sergeybarabash/robo/tempMeasure/include/SettingsCSVManager.h:9: warning: multiple use of section label 'dependencies' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 9)
+/Users/sergeybarabash/robo/tempMeasure/include/SettingsCSVManager.h:13: warning: multiple use of section label 'features' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/ConfigManager.cpp, line 16)
+/Users/sergeybarabash/robo/tempMeasure/include/TemperatureController.h:11: warning: multiple use of section label 'dependencies' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 9)
+/Users/sergeybarabash/robo/tempMeasure/include/TemperatureController.h:17: warning: multiple use of section label 'hardware' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 13)
+/Users/sergeybarabash/robo/tempMeasure/include/TempModbusServer.h:9: warning: multiple use of section label 'dependencies' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 9)
+/Users/sergeybarabash/robo/tempMeasure/include/TempModbusServer.h:14: warning: multiple use of section label 'hardware' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 13)
+/Users/sergeybarabash/robo/tempMeasure/include/TimeManager.h:9: warning: multiple use of section label 'dependencies' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 9)
+/Users/sergeybarabash/robo/tempMeasure/include/TimeManager.h:15: warning: multiple use of section label 'hardware' while adding section, (first occurrence: /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp, line 13)
 /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp:39: warning: argument type from the argument list of Alarm::Alarm has multiple @param documentation sections
 /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp:39: warning: argument source from the argument list of Alarm::Alarm has multiple @param documentation sections
 /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp:39: warning: argument priority from the argument list of Alarm::Alarm has multiple @param documentation sections
@@ -1655,5 +1687,5 @@ Patching output file 500/502
 Patching output file 501/502
 Patching output file 502/502
 type lookup cache used 871/65536 hits=2756 misses=900
-symbol lookup cache used 2117/65536 hits=31477 misses=2117
+symbol lookup cache used 2145/65536 hits=34615 misses=2145
 finished...

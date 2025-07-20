@@ -335,7 +335,7 @@
 <simplesect kind="date"><para>2025-07-20</para>
 </simplesect>
 This file contains the alarm system implementation for temperature monitoring. It provides comprehensive alarm handling with different types, priorities, and stages.</para>
-<sect1 id="main_8cpp_1dependencies">
+<sect1 id="_time_manager_8cpp_1dependencies">
 <title>Dependencies</title><para><itemizedlist>
 <listitem><para>Arduino.h for core functionality</para>
 </listitem><listitem><para><ref refid="_measurement_point_8h" kindref="compound">MeasurementPoint.h</ref> for measurement point association</para>
@@ -343,7 +343,7 @@ This file contains the alarm system implementation for temperature monitoring. I
 </listitem></itemizedlist>
 </para>
 </sect1>
-<sect1 id="main_8cpp_1hardware">
+<sect1 id="_time_manager_8cpp_1hardware">
 <title>Hardware Requirements</title><para><itemizedlist>
 <listitem><para>ESP32 microcontroller</para>
 </listitem><listitem><para>Temperature sensors (DS18B20, PT1000) </para>
