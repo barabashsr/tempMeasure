@@ -360,6 +360,60 @@ void TemperatureController::clearConfiguredAlarms() {
     }
 }
 
+void TemperatureController::ensureAlarmsForPoint(MeasurementPoint* point) {
+    if (!point) return;
+    
+    uint8_t address = point->getAddress();
+    
+    // Check and create LOW_TEMPERATURE alarm if not exists
+    String lowKey = "P" + String(address) + "_LOW_TEMP";
+    if (!findAlarm(lowKey)) {
+        Alarm* lowAlarm = new Alarm(AlarmType::LOW_TEMPERATURE, point);
+        lowAlarm->setConfigKey(lowKey);
+        lowAlarm->setPriority(AlarmPriority::MEDIUM);  // Default priority
+        lowAlarm->setEnabled(false);  // Default disabled
+        _configuredAlarms.push_back(lowAlarm);
+        Serial.printf("Created LOW_TEMPERATURE alarm for point %d\n", address);
+    }
+    
+    // Check and create HIGH_TEMPERATURE alarm if not exists
+    String highKey = "P" + String(address) + "_HIGH_TEMP";
+    if (!findAlarm(highKey)) {
+        Alarm* highAlarm = new Alarm(AlarmType::HIGH_TEMPERATURE, point);
+        highAlarm->setConfigKey(highKey);
+        highAlarm->setPriority(AlarmPriority::MEDIUM);  // Default priority
+        highAlarm->setEnabled(false);  // Default disabled
+        _configuredAlarms.push_back(highAlarm);
+        Serial.printf("Created HIGH_TEMPERATURE alarm for point %d\n", address);
+    }
+    
+    // Check and create SENSOR_ERROR alarm if not exists
+    String errorKey = "P" + String(address) + "_SENSOR_ERROR";
+    if (!findAlarm(errorKey)) {
+        Alarm* errorAlarm = new Alarm(AlarmType::SENSOR_ERROR, point);
+        errorAlarm->setConfigKey(errorKey);
+        errorAlarm->setPriority(AlarmPriority::HIGH);  // Default high priority
+        errorAlarm->setEnabled(point->hasSensor());  // Auto-enable if sensor bound
+        _configuredAlarms.push_back(errorAlarm);
+        Serial.printf("Created SENSOR_ERROR alarm for point %d (enabled=%d)\n", address, point->hasSensor());
+    }
+}
+
+std::vector<Alarm*> TemperatureController::getAlarmsForPoint(MeasurementPoint* point) {
+    std::vector<Alarm*> alarms;
+    if (!point) return alarms;
+    
+    uint8_t address = point->getAddress();
+    
+    for (auto alarm : _configuredAlarms) {
+        if (alarm->getSource() == point) {
+            alarms.push_back(alarm);
+        }
+    }
+    
+    return alarms;
+}
+
 
 
 // void TemperatureController::handleAlarmDisplay() {

@@ -312,6 +312,26 @@ void ConfigManager::savePointsConfig() {
         pointsConf[key + "_name"] = point->getName();
         pointsConf[key + "_low_alarm"] = String(point->getLowAlarmThreshold());
         pointsConf[key + "_high_alarm"] = String(point->getHighAlarmThreshold());
+        pointsConf[key + "_hysteresis"] = String(point->getHysteresis());
+
+        // Get alarm settings from TemperatureController
+        auto alarms = controller.getAlarmsForPoint(point);
+        for (auto alarm : alarms) {
+            String alarmKey = key;
+            switch (alarm->getType()) {
+                case AlarmType::LOW_TEMPERATURE:
+                    alarmKey += "_low";
+                    break;
+                case AlarmType::HIGH_TEMPERATURE:
+                    alarmKey += "_high";
+                    break;
+                case AlarmType::SENSOR_ERROR:
+                    alarmKey += "_error";
+                    break;
+            }
+            pointsConf[alarmKey + "_enable"] = String(alarm->isEnabled() ? "true" : "false");
+            pointsConf[alarmKey + "_priority"] = String(static_cast<int>(alarm->getPriority()));
+        }
 
         Sensor* bound = point->getBoundSensor();
         if (bound && bound->getType() == SensorType::DS18B20) {
@@ -331,6 +351,26 @@ void ConfigManager::savePointsConfig() {
         pointsConf[key + "_name"] = point->getName();
         pointsConf[key + "_low_alarm"] = String(point->getLowAlarmThreshold());
         pointsConf[key + "_high_alarm"] = String(point->getHighAlarmThreshold());
+        pointsConf[key + "_hysteresis"] = String(point->getHysteresis());
+
+        // Get alarm settings from TemperatureController
+        auto alarms = controller.getAlarmsForPoint(point);
+        for (auto alarm : alarms) {
+            String alarmKey = key;
+            switch (alarm->getType()) {
+                case AlarmType::LOW_TEMPERATURE:
+                    alarmKey += "_low";
+                    break;
+                case AlarmType::HIGH_TEMPERATURE:
+                    alarmKey += "_high";
+                    break;
+                case AlarmType::SENSOR_ERROR:
+                    alarmKey += "_error";
+                    break;
+            }
+            pointsConf[alarmKey + "_enable"] = String(alarm->isEnabled() ? "true" : "false");
+            pointsConf[alarmKey + "_priority"] = String(static_cast<int>(alarm->getPriority()));
+        }
 
         Sensor* bound = point->getBoundSensor();
         if (bound && bound->getType() == SensorType::PT1000) {
@@ -393,6 +433,17 @@ void ConfigManager::loadPointsConfig() {
         point->setName(pointsConf(key + "_name"));
         point->setLowAlarmThreshold(pointsConf(key + "_low_alarm").toInt());
         point->setHighAlarmThreshold(pointsConf(key + "_high_alarm").toInt());
+        
+        // Load hysteresis
+        String hysteresisStr = pointsConf(key + "_hysteresis");
+        if (!hysteresisStr.isEmpty()) {
+            point->setHysteresis(hysteresisStr.toInt());
+        } else {
+            point->setHysteresis(5); // Default 5 degrees
+        }
+        
+        // Load alarm settings - defer to after sensor binding
+        // so we can auto-enable sensor error alarm if bound
         uint8_t bus = pointsConf(key + "_sensor_bus").toInt();
         String rom = pointsConf(key + "_sensor_rom");
         if (rom.length() == 16) {
@@ -426,6 +477,15 @@ void ConfigManager::loadPointsConfig() {
         point->setName(pointsConf(key + "_name"));
         point->setLowAlarmThreshold(pointsConf(key + "_low_alarm").toInt());
         point->setHighAlarmThreshold(pointsConf(key + "_high_alarm").toInt());
+        
+        // Load hysteresis
+        String hysteresisStr = pointsConf(key + "_hysteresis");
+        if (!hysteresisStr.isEmpty()) {
+            point->setHysteresis(hysteresisStr.toInt());
+        } else {
+            point->setHysteresis(5); // Default 5 degrees
+        }
+        
         int cs = pointsConf(key + "_sensor_cs").toInt();
         if (cs > 0) {
             // Ensure the sensor exists and is initialized before binding
@@ -444,6 +504,119 @@ void ConfigManager::loadPointsConfig() {
             controller.unbindSensorFromPoint(address);
         }
     }
+    
+    // Load alarm configurations after sensor binding
+    // DS18B20 points
+    for (uint8_t i = 0; i < 50; ++i) {
+        MeasurementPoint* point = controller.getDS18B20Point(i);
+        if (!point) continue;
+        
+        String key = "ds_" + String(i);
+        
+        // Create all 3 alarms for this point if they don't exist
+        controller.ensureAlarmsForPoint(point);
+        
+        // Get alarms for this point
+        auto alarms = controller.getAlarmsForPoint(point);
+        for (auto alarm : alarms) {
+            String alarmKey = key;
+            switch (alarm->getType()) {
+                case AlarmType::LOW_TEMPERATURE:
+                    alarmKey += "_low";
+                    break;
+                case AlarmType::HIGH_TEMPERATURE:
+                    alarmKey += "_high";
+                    break;
+                case AlarmType::SENSOR_ERROR:
+                    alarmKey += "_error";
+                    break;
+            }
+            
+            // Load enable state
+            String enableStr = pointsConf(alarmKey + "_enable");
+            if (!enableStr.isEmpty()) {
+                alarm->setEnabled(enableStr == "true");
+            } else {
+                // Default: disabled for temperature alarms
+                if (alarm->getType() != AlarmType::SENSOR_ERROR) {
+                    alarm->setEnabled(false);
+                } else {
+                    // Auto-enable sensor error if sensor bound
+                    alarm->setEnabled(point->hasSensor());
+                }
+            }
+            
+            // Load priority
+            String priorityStr = pointsConf(alarmKey + "_priority");
+            if (!priorityStr.isEmpty()) {
+                alarm->setPriority(static_cast<AlarmPriority>(priorityStr.toInt()));
+            } else {
+                // Default priorities
+                if (alarm->getType() == AlarmType::SENSOR_ERROR) {
+                    alarm->setPriority(AlarmPriority::HIGH);
+                } else {
+                    alarm->setPriority(AlarmPriority::MEDIUM);
+                }
+            }
+        }
+    }
+    
+    // PT1000 points
+    for (uint8_t i = 0; i < 10; ++i) {
+        uint8_t address = 50 + i;
+        MeasurementPoint* point = controller.getPT1000Point(i);
+        if (!point) continue;
+        
+        String key = "pt_" + String(address);
+        
+        // Create all 3 alarms for this point if they don't exist
+        controller.ensureAlarmsForPoint(point);
+        
+        // Get alarms for this point
+        auto alarms = controller.getAlarmsForPoint(point);
+        for (auto alarm : alarms) {
+            String alarmKey = key;
+            switch (alarm->getType()) {
+                case AlarmType::LOW_TEMPERATURE:
+                    alarmKey += "_low";
+                    break;
+                case AlarmType::HIGH_TEMPERATURE:
+                    alarmKey += "_high";
+                    break;
+                case AlarmType::SENSOR_ERROR:
+                    alarmKey += "_error";
+                    break;
+            }
+            
+            // Load enable state
+            String enableStr = pointsConf(alarmKey + "_enable");
+            if (!enableStr.isEmpty()) {
+                alarm->setEnabled(enableStr == "true");
+            } else {
+                // Default: disabled for temperature alarms
+                if (alarm->getType() != AlarmType::SENSOR_ERROR) {
+                    alarm->setEnabled(false);
+                } else {
+                    // Auto-enable sensor error if sensor bound
+                    alarm->setEnabled(point->hasSensor());
+                }
+            }
+            
+            // Load priority
+            String priorityStr = pointsConf(alarmKey + "_priority");
+            if (!priorityStr.isEmpty()) {
+                alarm->setPriority(static_cast<AlarmPriority>(priorityStr.toInt()));
+            } else {
+                // Default priorities
+                if (alarm->getType() == AlarmType::SENSOR_ERROR) {
+                    alarm->setPriority(AlarmPriority::HIGH);
+                } else {
+                    alarm->setPriority(AlarmPriority::MEDIUM);
+                }
+            }
+        }
+    }
+    
     controller.applyConfigToRegisterMap();
 }
 
@@ -1441,11 +1614,36 @@ void ConfigManager::alarmsAPI(){
             pointObj["sensorBound"] = (point->getBoundSensor() != nullptr);
             pointObj["lowThreshold"] = point->getLowAlarmThreshold();
             pointObj["highThreshold"] = point->getHighAlarmThreshold();
-            // For now, set default priorities and hysteresis since MeasurementPoint doesn't store these
-            pointObj["lowPriority"] = 2; // Medium priority as default
-            pointObj["highPriority"] = 3; // High priority as default
-            pointObj["errorPriority"] = 3; // High priority as default
-            pointObj["hysteresis"] = 2; // Default hysteresis
+            pointObj["hysteresis"] = point->getHysteresis();
+            
+            // Get actual alarm settings from configured alarms
+            auto alarms = controller.getAlarmsForPoint(point);
+            
+            // Set defaults first
+            pointObj["lowPriority"] = 2; // Medium
+            pointObj["highPriority"] = 2; // Medium
+            pointObj["errorPriority"] = 3; // High
+            pointObj["lowEnabled"] = false;
+            pointObj["highEnabled"] = false;
+            pointObj["errorEnabled"] = false;
+            
+            // Update with actual values from alarms
+            for (auto alarm : alarms) {
+                switch (alarm->getType()) {
+                    case AlarmType::LOW_TEMPERATURE:
+                        pointObj["lowPriority"] = static_cast<int>(alarm->getPriority());
+                        pointObj["lowEnabled"] = alarm->isEnabled();
+                        break;
+                    case AlarmType::HIGH_TEMPERATURE:
+                        pointObj["highPriority"] = static_cast<int>(alarm->getPriority());
+                        pointObj["highEnabled"] = alarm->isEnabled();
+                        break;
+                    case AlarmType::SENSOR_ERROR:
+                        pointObj["errorPriority"] = static_cast<int>(alarm->getPriority());
+                        pointObj["errorEnabled"] = alarm->isEnabled();
+                        break;
+                }
+            }
         }
         
         // Get PT1000 points (50-59)
@@ -1460,11 +1658,36 @@ void ConfigManager::alarmsAPI(){
             pointObj["sensorBound"] = (point->getBoundSensor() != nullptr);
             pointObj["lowThreshold"] = point->getLowAlarmThreshold();
             pointObj["highThreshold"] = point->getHighAlarmThreshold();
-            // For now, set default priorities and hysteresis since MeasurementPoint doesn't store these
-            pointObj["lowPriority"] = 2; // Medium priority as default
-            pointObj["highPriority"] = 3; // High priority as default
-            pointObj["errorPriority"] = 3; // High priority as default
-            pointObj["hysteresis"] = 2; // Default hysteresis
+            pointObj["hysteresis"] = point->getHysteresis();
+            
+            // Get actual alarm settings from configured alarms
+            auto alarms = controller.getAlarmsForPoint(point);
+            
+            // Set defaults first
+            pointObj["lowPriority"] = 2; // Medium
+            pointObj["highPriority"] = 2; // Medium
+            pointObj["errorPriority"] = 3; // High
+            pointObj["lowEnabled"] = false;
+            pointObj["highEnabled"] = false;
+            pointObj["errorEnabled"] = false;
+            
+            // Update with actual values from alarms
+            for (auto alarm : alarms) {
+                switch (alarm->getType()) {
+                    case AlarmType::LOW_TEMPERATURE:
+                        pointObj["lowPriority"] = static_cast<int>(alarm->getPriority());
+                        pointObj["lowEnabled"] = alarm->isEnabled();
+                        break;
+                    case AlarmType::HIGH_TEMPERATURE:
+                        pointObj["highPriority"] = static_cast<int>(alarm->getPriority());
+                        pointObj["highEnabled"] = alarm->isEnabled();
+                        break;
+                    case AlarmType::SENSOR_ERROR:
+                        pointObj["errorPriority"] = static_cast<int>(alarm->getPriority());
+                        pointObj["errorEnabled"] = alarm->isEnabled();
+                        break;
+                }
+            }
         }
         
         String output;
@@ -1532,9 +1755,43 @@ void ConfigManager::alarmsAPI(){
                     point->setHighAlarmThreshold(change["highThreshold"].as<int16_t>());
                 }
                 
-                // TODO: Priority and hysteresis configuration will be handled through alarm system
-                // For now, we only update name and thresholds since MeasurementPoint doesn't store priorities/hysteresis
-                // Note: Priority and hysteresis are managed through configured alarms in the alarm system
+                // Update hysteresis if provided
+                if (change.containsKey("hysteresis")) {
+                    point->setHysteresis(change["hysteresis"].as<int16_t>());
+                }
+                
+                // Get alarms for this point
+                auto alarms = controller.getAlarmsForPoint(point);
+                
+                // Update alarm priorities and enable flags
+                for (auto alarm : alarms) {
+                    switch (alarm->getType()) {
+                        case AlarmType::LOW_TEMPERATURE:
+                            if (change.containsKey("lowPriority")) {
+                                alarm->setPriority(static_cast<AlarmPriority>(change["lowPriority"].as<int>()));
+                            }
+                            if (change.containsKey("lowEnabled")) {
+                                alarm->setEnabled(change["lowEnabled"].as<bool>());
+                            }
+                            break;
+                        case AlarmType::HIGH_TEMPERATURE:
+                            if (change.containsKey("highPriority")) {
+                                alarm->setPriority(static_cast<AlarmPriority>(change["highPriority"].as<int>()));
+                            }
+                            if (change.containsKey("highEnabled")) {
+                                alarm->setEnabled(change["highEnabled"].as<bool>());
+                            }
+                            break;
+                        case AlarmType::SENSOR_ERROR:
+                            if (change.containsKey("errorPriority")) {
+                                alarm->setPriority(static_cast<AlarmPriority>(change["errorPriority"].as<int>()));
+                            }
+                            if (change.containsKey("errorEnabled")) {
+                                alarm->setEnabled(change["errorEnabled"].as<bool>());
+                            }
+                            break;
+                    }
+                }
                 
                 updatedCount++;
                 

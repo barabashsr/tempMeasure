@@ -406,6 +406,20 @@ public:
      * @warning This deletes all alarm settings
      */
     void clearConfiguredAlarms();
+    
+    /**
+     * @brief Ensure all 3 alarm types exist for a measurement point
+     * @param[in] point Measurement point to create alarms for
+     * @details Creates LOW_TEMPERATURE, HIGH_TEMPERATURE, and SENSOR_ERROR alarms if they don't exist
+     */
+    void ensureAlarmsForPoint(MeasurementPoint* point);
+    
+    /**
+     * @brief Get all alarms associated with a measurement point
+     * @param[in] point Measurement point to get alarms for
+     * @return std::vector<Alarm*> Vector of alarms for the point
+     */
+    std::vector<Alarm*> getAlarmsForPoint(MeasurementPoint* point);
 
     // Alarm management (similar to sensor management)
     /**

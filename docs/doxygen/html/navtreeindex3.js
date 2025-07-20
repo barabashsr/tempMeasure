@@ -1,5 +1,7 @@
 var NAVTREEINDEX3 =
 {
+"class_time_manager.html#a26c74aae85b05e3c6fe59fec05f06b6b":[0,0,12,46],
+"class_time_manager.html#a2c0e88f3f6d491aecea922149947be48":[0,0,12,44],
 "class_time_manager.html#a2f3285d092bf9e23abe1cdf0b592354e":[0,0,12,30],
 "class_time_manager.html#a2fd2603fd69673cc8a31ae3ed658329d":[0,0,12,56],
 "class_time_manager.html#a3204ca6c3f394fdf73bd1868cdb3c8ed":[0,0,12,51],

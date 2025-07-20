@@ -353,13 +353,24 @@
                         <th>Name</th>
                         <th>Current Temp</th>
                         <th>Sensor Status</th>
-                        <th>Low Threshold</th>
-                        <th>Low Priority</th>
-                        <th>High Threshold</th>
-                        <th>High Priority</th>
-                        <th>Error Priority</th>
+                        <th colspan="2">Low Alarm</th>
+                        <th colspan="2">High Alarm</th>
+                        <th colspan="2">Error Alarm</th>
                         <th>Hysteresis</th>
                         <th>Actions</th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th>Threshold</th>
+                        <th>Enable/Priority</th>
+                        <th>Threshold</th>
+                        <th>Enable/Priority</th>
+                        <th colspan="2">Enable/Priority</th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody id="configTableBody">
@@ -452,6 +463,9 @@
                            onchange="updatePointConfig(${point.address}, 'lowThreshold', parseFloat(this.value))">
                 </td>
                 <td>
+                    <input type="checkbox" ${point.lowEnabled ? 'checked' : ''} 
+                           onchange="updatePointConfig(${point.address}, 'lowEnabled', this.checked)"
+                           style="margin-right: 5px;">
                     <select class="priority-select priority-${getPriorityClass(point.lowPriority)}"
                             onchange="updatePointConfig(${point.address}, 'lowPriority', parseInt(this.value)); this.className = 'priority-select priority-' + getPriorityClass(parseInt(this.value))">
                         ${generatePriorityOptions(point.lowPriority)}
@@ -463,12 +477,18 @@
                            onchange="updatePointConfig(${point.address}, 'highThreshold', parseFloat(this.value))">
                 </td>
                 <td>
+                    <input type="checkbox" ${point.highEnabled ? 'checked' : ''} 
+                           onchange="updatePointConfig(${point.address}, 'highEnabled', this.checked)"
+                           style="margin-right: 5px;">
                     <select class="priority-select priority-${getPriorityClass(point.highPriority)}"
                             onchange="updatePointConfig(${point.address}, 'highPriority', parseInt(this.value)); this.className = 'priority-select priority-' + getPriorityClass(parseInt(this.value))">
                         ${generatePriorityOptions(point.highPriority)}
                     </select>
                 </td>
-                <td>
+                <td colspan="2">
+                    <input type="checkbox" ${point.errorEnabled ? 'checked' : ''} 
+                           onchange="updatePointConfig(${point.address}, 'errorEnabled', this.checked)"
+                           style="margin-right: 5px;">
                     <select class="priority-select priority-${getPriorityClass(point.errorPriority)}"
                             onchange="updatePointConfig(${point.address}, 'errorPriority', parseInt(this.value)); this.className = 'priority-select priority-' + getPriorityClass(parseInt(this.value))">
                         ${generatePriorityOptions(point.errorPriority)}
@@ -556,6 +576,9 @@
                             lowPriority: point.lowPriority,
                             highPriority: point.highPriority,
                             errorPriority: point.errorPriority,
+                            lowEnabled: point.lowEnabled,
+                            highEnabled: point.highEnabled,
+                            errorEnabled: point.errorEnabled,
                             hysteresis: point.hysteresis
                         }))
                     })
@@ -581,12 +604,15 @@
         function resetPointToDefaults(address) {
             const point = configData.find(p => p.address === address);
             if (point) {
-                point.lowThreshold = 5;
-                point.highThreshold = 50;
+                point.lowThreshold = 0;
+                point.highThreshold = 80;
                 point.lowPriority = 2; // Medium
-                point.highPriority = 3; // High
+                point.highPriority = 2; // Medium
                 point.errorPriority = 3; // High
-                point.hysteresis = 2;
+                point.lowEnabled = false;
+                point.highEnabled = false;
+                point.errorEnabled = point.sensorBound; // Auto-enable if sensor bound
+                point.hysteresis = 5;
                 
                 hasUnsavedChanges = true;
                 displayConfiguration();
@@ -597,12 +623,15 @@
         function resetToDefaults() {
             if (confirm('Are you sure you want to reset ALL points to default alarm settings?')) {
                 configData.forEach(point => {
-                    point.lowThreshold = 5;
-                    point.highThreshold = 50;
+                    point.lowThreshold = 0;
+                    point.highThreshold = 80;
                     point.lowPriority = 2; // Medium
-                    point.highPriority = 3; // High
+                    point.highPriority = 2; // Medium
                     point.errorPriority = 3; // High
-                    point.hysteresis = 2;
+                    point.lowEnabled = false;
+                    point.highEnabled = false;
+                    point.errorEnabled = point.sensorBound; // Auto-enable if sensor bound
+                    point.hysteresis = 5;
                 });
                 
                 hasUnsavedChanges = true;
