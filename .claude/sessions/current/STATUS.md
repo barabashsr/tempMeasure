@@ -53,3 +53,15 @@
 - Implement actual alarm configuration updates in processCommands()
 - Handle relay control based on register values
 - Test with Modbus client simulator
+
+### Update: 09:15
+- Completed: Updated documentation files
+- Modified: docs/MODBUS_REGISTER_MAP.md - Corrected alarm configuration bit definitions
+- Modified: README.md - Added alarm control registers section (800-899)
+- Modified: docs/USER_MANUAL_RU.md - Added Modbus alarm configuration and web interface updates
+- Documentation now reflects:
+  - Separate enable bits and priority values for alarms
+  - Relay control registers
+  - Command execution register
+  - Web interface alarm enable/disable checkboxes
+  - Examples in Python for Modbus configuration

@@ -86,6 +86,33 @@ This industrial-grade ESP32-based device is designed for precision temperature m
 | 750-759 | High Temperature Alarm Thresholds - PT1000/PT100 (addresses 50-59) | INT16 | R/W |
 | 760-799 | Reserved for Future Sensor Types | - | - |
 
+### Alarm Control Registers (800-899)
+| Register Range | Description | Data Type | Access |
+|----------------|-------------|-----------|--------|
+| 800-849 | Alarm Configuration - DS18B20 (addresses 0-49) | UINT16 | R/W |
+| 850-859 | Alarm Configuration - PT1000/PT100 (addresses 50-59) | UINT16 | R/W |
+| 860-862 | Relay Control (Relay 1-3) | UINT16 | R/W |
+| 863-865 | Relay Status (Relay 1-3) | UINT16 | R |
+| 870-889 | Hysteresis Configuration | UINT16 | R/W |
+| 899 | Command Execution Register | UINT16 | W |
+
+## Alarm Configuration Bit Definitions (Registers 800-859)
+Each alarm configuration register contains:
+- Bit 0: Low Temperature Alarm Enable
+- Bit 1: High Temperature Alarm Enable
+- Bit 2: Sensor Error Alarm Enable
+- Bits 3-4: Low Temperature Priority (0=Low, 1=Medium, 2=High, 3=Critical)
+- Bits 5-6: High Temperature Priority (0=Low, 1=Medium, 2=High, 3=Critical)
+- Bits 7-8: Sensor Error Priority (0=Low, 1=Medium, 2=High, 3=Critical)
+
+## Relay Control Values (Registers 860-862)
+- 0: Auto (follows alarm logic)
+- 1: Force Off
+- 2: Force On
+
+## Command Register Values (Register 899)
+- 0x0001: Apply alarm configuration
+
 ## Alarm Status Bit Definitions
 Each alarm status register contains the following bit flags:
 - Bit 0: Low Temperature Alarm

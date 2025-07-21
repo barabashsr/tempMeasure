@@ -116,20 +116,23 @@ This document describes the complete Modbus RTU register map for the Temperature
 
 | Register Range | Description | Data Type | Bit Definition |
 |----------------|-------------|-----------|----------------|
-| 800-849 | DS18B20 Alarm Config | UINT8 | See config bits |
-| 850-859 | PT1000 Alarm Config | UINT8 | See config bits |
+| 800-849 | DS18B20 Alarm Config | UINT16 | See config bits |
+| 850-859 | PT1000 Alarm Config | UINT16 | See config bits |
 
 #### Alarm Configuration Bits
-- Bits 0-2: Low Temperature Priority (0-4, 4=Disabled)
-- Bits 3-5: High Temperature Priority (0-4, 4=Disabled)
-- Bits 6-7: Sensor Error Priority (0-3)
+- Bit 0: Low Temperature Alarm Enable (0=Disabled, 1=Enabled)
+- Bit 1: High Temperature Alarm Enable (0=Disabled, 1=Enabled)
+- Bit 2: Sensor Error Alarm Enable (0=Disabled, 1=Enabled)
+- Bits 3-4: Low Temperature Priority (0=Low, 1=Medium, 2=High, 3=Critical)
+- Bits 5-6: High Temperature Priority (0=Low, 1=Medium, 2=High, 3=Critical)
+- Bits 7-8: Sensor Error Priority (0=Low, 1=Medium, 2=High, 3=Critical)
+- Bits 9-15: Reserved
 
 Priority Values:
 - 0: Low
 - 1: Medium
 - 2: High
 - 3: Critical
-- 4: Disabled (for temperature alarms only)
 
 ### Relay Control (Registers 860-869) - Read/Write
 
@@ -205,10 +208,14 @@ Result: Threshold set to 300 = 30.0°C
 ```
 
 ### Configuring Alarm Priorities
-To set Point 0 with High=Critical, Low=Medium, Error=High:
+To set Point 0 with all alarms enabled, High=Critical, Low=Medium, Error=High:
 ```
-Value = (High << 3) | Low = (3 << 3) | 1 = 0x19
-Request:  01 06 03 20 00 19 [CRC]
+Enable bits: 0x07 (all enabled)
+Low priority = 1 (Medium) << 3 = 0x08
+High priority = 3 (Critical) << 5 = 0x60
+Error priority = 2 (High) << 7 = 0x100
+Value = 0x07 | 0x08 | 0x60 | 0x100 = 0x16F
+Request:  01 06 03 20 01 6F [CRC]
 ```
 
 ### Applying Configuration
@@ -274,8 +281,10 @@ print(f"Temperature: {temperature}°C")
 # Set high alarm threshold to 35°C
 instrument.write_register(700, 350, 0, 6, True)
 
-# Configure alarm priority (High=Critical)
-instrument.write_register(800, 0x18, 0, 6, False)
+# Configure alarm (all enabled, High=Critical, Low=Medium, Error=High)
+# Enable bits: 0x07, Low=Medium(1)<<3, High=Critical(3)<<5, Error=High(2)<<7
+alarm_config = 0x07 | (1 << 3) | (3 << 5) | (2 << 7)
+instrument.write_register(800, alarm_config, 0, 6, False)
 
 # Apply configuration
 instrument.write_register(899, 1, 0, 6, False)
@@ -287,3 +296,4 @@ instrument.write_register(899, 1, 0, 6, False)
 |---------|------|---------|
 | 1.0 | 2024-01-01 | Initial release |
 | 2.0 | 2024-12-30 | Added alarm configuration, relay control, extended status |
+| 2.1 | 2025-01-21 | Updated alarm configuration with separate enable bits and priority values |
