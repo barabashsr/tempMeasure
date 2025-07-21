@@ -312,11 +312,17 @@ void ConfigManager::savePointsConfig() {
         pointsConf[key + "_name"] = point->getName();
         pointsConf[key + "_low_alarm"] = String(point->getLowAlarmThreshold());
         pointsConf[key + "_high_alarm"] = String(point->getHighAlarmThreshold());
-        pointsConf[key + "_hysteresis"] = String(point->getHysteresis());
+        // Hysteresis is stored per alarm, not per point
+        // We'll use the first alarm's hysteresis as the default for all alarms of this point
+        auto pointAlarms = controller.getAlarmsForPoint(point);
+        int16_t hysteresis = 5; // Default
+        if (!pointAlarms.empty()) {
+            hysteresis = pointAlarms[0]->getHysteresis();
+        }
+        pointsConf[key + "_hysteresis"] = String(hysteresis);
 
         // Get alarm settings from TemperatureController
-        auto alarms = controller.getAlarmsForPoint(point);
-        for (auto alarm : alarms) {
+        for (auto alarm : pointAlarms) {
             String alarmKey = key;
             switch (alarm->getType()) {
                 case AlarmType::LOW_TEMPERATURE:
@@ -351,11 +357,17 @@ void ConfigManager::savePointsConfig() {
         pointsConf[key + "_name"] = point->getName();
         pointsConf[key + "_low_alarm"] = String(point->getLowAlarmThreshold());
         pointsConf[key + "_high_alarm"] = String(point->getHighAlarmThreshold());
-        pointsConf[key + "_hysteresis"] = String(point->getHysteresis());
+        // Hysteresis is stored per alarm, not per point
+        // We'll use the first alarm's hysteresis as the default for all alarms of this point
+        auto pointAlarms = controller.getAlarmsForPoint(point);
+        int16_t hysteresis = 5; // Default
+        if (!pointAlarms.empty()) {
+            hysteresis = pointAlarms[0]->getHysteresis();
+        }
+        pointsConf[key + "_hysteresis"] = String(hysteresis);
 
         // Get alarm settings from TemperatureController
-        auto alarms = controller.getAlarmsForPoint(point);
-        for (auto alarm : alarms) {
+        for (auto alarm : pointAlarms) {
             String alarmKey = key;
             switch (alarm->getType()) {
                 case AlarmType::LOW_TEMPERATURE:
@@ -434,12 +446,11 @@ void ConfigManager::loadPointsConfig() {
         point->setLowAlarmThreshold(pointsConf(key + "_low_alarm").toInt());
         point->setHighAlarmThreshold(pointsConf(key + "_high_alarm").toInt());
         
-        // Load hysteresis
+        // Load hysteresis - will be applied to alarms later
         String hysteresisStr = pointsConf(key + "_hysteresis");
+        int16_t hysteresis = 5; // Default
         if (!hysteresisStr.isEmpty()) {
-            point->setHysteresis(hysteresisStr.toInt());
-        } else {
-            point->setHysteresis(5); // Default 5 degrees
+            hysteresis = hysteresisStr.toInt();
         }
         
         // Load alarm settings - defer to after sensor binding
@@ -478,12 +489,11 @@ void ConfigManager::loadPointsConfig() {
         point->setLowAlarmThreshold(pointsConf(key + "_low_alarm").toInt());
         point->setHighAlarmThreshold(pointsConf(key + "_high_alarm").toInt());
         
-        // Load hysteresis
+        // Load hysteresis - will be applied to alarms later
         String hysteresisStr = pointsConf(key + "_hysteresis");
+        int16_t hysteresis = 5; // Default
         if (!hysteresisStr.isEmpty()) {
-            point->setHysteresis(hysteresisStr.toInt());
-        } else {
-            point->setHysteresis(5); // Default 5 degrees
+            hysteresis = hysteresisStr.toInt();
         }
         
         int cs = pointsConf(key + "_sensor_cs").toInt();
@@ -513,12 +523,21 @@ void ConfigManager::loadPointsConfig() {
         
         String key = "ds_" + String(i);
         
+        // Get hysteresis for this point
+        String hysteresisStr = pointsConf(key + "_hysteresis");
+        int16_t pointHysteresis = 5; // Default
+        if (!hysteresisStr.isEmpty()) {
+            pointHysteresis = hysteresisStr.toInt();
+        }
+        
         // Create all 3 alarms for this point if they don't exist
         controller.ensureAlarmsForPoint(point);
         
         // Get alarms for this point
         auto alarms = controller.getAlarmsForPoint(point);
         for (auto alarm : alarms) {
+            // Set hysteresis for all alarms of this point
+            alarm->setHysteresis(pointHysteresis);
             String alarmKey = key;
             switch (alarm->getType()) {
                 case AlarmType::LOW_TEMPERATURE:
@@ -542,7 +561,7 @@ void ConfigManager::loadPointsConfig() {
                     alarm->setEnabled(false);
                 } else {
                     // Auto-enable sensor error if sensor bound
-                    alarm->setEnabled(point->hasSensor());
+                    alarm->setEnabled(point->getBoundSensor() != nullptr);
                 }
             }
             
@@ -553,9 +572,9 @@ void ConfigManager::loadPointsConfig() {
             } else {
                 // Default priorities
                 if (alarm->getType() == AlarmType::SENSOR_ERROR) {
-                    alarm->setPriority(AlarmPriority::HIGH);
+                    alarm->setPriority(AlarmPriority::PRIORITY_HIGH);
                 } else {
-                    alarm->setPriority(AlarmPriority::MEDIUM);
+                    alarm->setPriority(AlarmPriority::PRIORITY_MEDIUM);
                 }
             }
         }
@@ -569,12 +588,21 @@ void ConfigManager::loadPointsConfig() {
         
         String key = "pt_" + String(address);
         
+        // Get hysteresis for this point
+        String hysteresisStr = pointsConf(key + "_hysteresis");
+        int16_t pointHysteresis = 5; // Default
+        if (!hysteresisStr.isEmpty()) {
+            pointHysteresis = hysteresisStr.toInt();
+        }
+        
         // Create all 3 alarms for this point if they don't exist
         controller.ensureAlarmsForPoint(point);
         
         // Get alarms for this point
         auto alarms = controller.getAlarmsForPoint(point);
         for (auto alarm : alarms) {
+            // Set hysteresis for all alarms of this point
+            alarm->setHysteresis(pointHysteresis);
             String alarmKey = key;
             switch (alarm->getType()) {
                 case AlarmType::LOW_TEMPERATURE:
@@ -598,7 +626,7 @@ void ConfigManager::loadPointsConfig() {
                     alarm->setEnabled(false);
                 } else {
                     // Auto-enable sensor error if sensor bound
-                    alarm->setEnabled(point->hasSensor());
+                    alarm->setEnabled(point->getBoundSensor() != nullptr);
                 }
             }
             
@@ -609,9 +637,9 @@ void ConfigManager::loadPointsConfig() {
             } else {
                 // Default priorities
                 if (alarm->getType() == AlarmType::SENSOR_ERROR) {
-                    alarm->setPriority(AlarmPriority::HIGH);
+                    alarm->setPriority(AlarmPriority::PRIORITY_HIGH);
                 } else {
-                    alarm->setPriority(AlarmPriority::MEDIUM);
+                    alarm->setPriority(AlarmPriority::PRIORITY_MEDIUM);
                 }
             }
         }
@@ -1614,7 +1642,13 @@ void ConfigManager::alarmsAPI(){
             pointObj["sensorBound"] = (point->getBoundSensor() != nullptr);
             pointObj["lowThreshold"] = point->getLowAlarmThreshold();
             pointObj["highThreshold"] = point->getHighAlarmThreshold();
-            pointObj["hysteresis"] = point->getHysteresis();
+            // Get hysteresis from the first alarm (all alarms for a point should have the same hysteresis)
+            int16_t pointHysteresis = 5; // Default
+            auto alarmsForHyst = controller.getAlarmsForPoint(point);
+            if (!alarmsForHyst.empty()) {
+                pointHysteresis = alarmsForHyst[0]->getHysteresis();
+            }
+            pointObj["hysteresis"] = pointHysteresis;
             
             // Get actual alarm settings from configured alarms
             auto alarms = controller.getAlarmsForPoint(point);
@@ -1658,7 +1692,13 @@ void ConfigManager::alarmsAPI(){
             pointObj["sensorBound"] = (point->getBoundSensor() != nullptr);
             pointObj["lowThreshold"] = point->getLowAlarmThreshold();
             pointObj["highThreshold"] = point->getHighAlarmThreshold();
-            pointObj["hysteresis"] = point->getHysteresis();
+            // Get hysteresis from the first alarm (all alarms for a point should have the same hysteresis)
+            int16_t pointHysteresis = 5; // Default
+            auto alarmsForHyst = controller.getAlarmsForPoint(point);
+            if (!alarmsForHyst.empty()) {
+                pointHysteresis = alarmsForHyst[0]->getHysteresis();
+            }
+            pointObj["hysteresis"] = pointHysteresis;
             
             // Get actual alarm settings from configured alarms
             auto alarms = controller.getAlarmsForPoint(point);
@@ -1755,9 +1795,10 @@ void ConfigManager::alarmsAPI(){
                     point->setHighAlarmThreshold(change["highThreshold"].as<int16_t>());
                 }
                 
-                // Update hysteresis if provided
+                // Update hysteresis if provided - will be applied to all alarms
+                int16_t hysteresis = -1;
                 if (change.containsKey("hysteresis")) {
-                    point->setHysteresis(change["hysteresis"].as<int16_t>());
+                    hysteresis = change["hysteresis"].as<int16_t>();
                 }
                 
                 // Get alarms for this point
@@ -1765,6 +1806,11 @@ void ConfigManager::alarmsAPI(){
                 
                 // Update alarm priorities and enable flags
                 for (auto alarm : alarms) {
+                    // Apply hysteresis if provided
+                    if (hysteresis >= 0) {
+                        alarm->setHysteresis(hysteresis);
+                    }
+                    
                     switch (alarm->getType()) {
                         case AlarmType::LOW_TEMPERATURE:
                             if (change.containsKey("lowPriority")) {

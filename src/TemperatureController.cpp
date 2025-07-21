@@ -370,7 +370,7 @@ void TemperatureController::ensureAlarmsForPoint(MeasurementPoint* point) {
     if (!findAlarm(lowKey)) {
         Alarm* lowAlarm = new Alarm(AlarmType::LOW_TEMPERATURE, point);
         lowAlarm->setConfigKey(lowKey);
-        lowAlarm->setPriority(AlarmPriority::MEDIUM);  // Default priority
+        lowAlarm->setPriority(AlarmPriority::PRIORITY_MEDIUM);  // Default priority
         lowAlarm->setEnabled(false);  // Default disabled
         _configuredAlarms.push_back(lowAlarm);
         Serial.printf("Created LOW_TEMPERATURE alarm for point %d\n", address);
@@ -381,7 +381,7 @@ void TemperatureController::ensureAlarmsForPoint(MeasurementPoint* point) {
     if (!findAlarm(highKey)) {
         Alarm* highAlarm = new Alarm(AlarmType::HIGH_TEMPERATURE, point);
         highAlarm->setConfigKey(highKey);
-        highAlarm->setPriority(AlarmPriority::MEDIUM);  // Default priority
+        highAlarm->setPriority(AlarmPriority::PRIORITY_MEDIUM);  // Default priority
         highAlarm->setEnabled(false);  // Default disabled
         _configuredAlarms.push_back(highAlarm);
         Serial.printf("Created HIGH_TEMPERATURE alarm for point %d\n", address);
@@ -392,10 +392,10 @@ void TemperatureController::ensureAlarmsForPoint(MeasurementPoint* point) {
     if (!findAlarm(errorKey)) {
         Alarm* errorAlarm = new Alarm(AlarmType::SENSOR_ERROR, point);
         errorAlarm->setConfigKey(errorKey);
-        errorAlarm->setPriority(AlarmPriority::HIGH);  // Default high priority
-        errorAlarm->setEnabled(point->hasSensor());  // Auto-enable if sensor bound
+        errorAlarm->setPriority(AlarmPriority::PRIORITY_HIGH);  // Default high priority
+        errorAlarm->setEnabled(point->getBoundSensor() != nullptr);  // Auto-enable if sensor bound
         _configuredAlarms.push_back(errorAlarm);
-        Serial.printf("Created SENSOR_ERROR alarm for point %d (enabled=%d)\n", address, point->hasSensor());
+        Serial.printf("Created SENSOR_ERROR alarm for point %d (enabled=%d)\n", address, point->getBoundSensor() != nullptr);
     }
 }
 
@@ -1162,7 +1162,7 @@ String TemperatureController::getPointsJson() {
         if (bound && bound->getType() == SensorType::DS18B20) {
             obj["sensorType"] = "DS18B20";
             obj["sensorRomString"] = bound->getDS18B20RomString();
-            JsonArray romArr = obj.createNestedArray("sensorRomArray");
+            JsonArray romArr = obj["sensorRomArray"].to<JsonArray>();
             uint8_t rom[8];
             bound->getDS18B20RomArray(rom);
             for (int j = 0; j < 8; ++j) romArr.add(rom[j]);

@@ -1,23 +1,25 @@
 <map id="ConfigManager::loadPointsConfig" name="ConfigManager::loadPointsConfig">
-<area shape="rect" id="Node000001" title="Load measurement points configuration from file." alt="" coords="5,171,184,212"/>
-<area shape="rect" id="Node000002" href="$class_logger_manager.html#a5c1373ccc47f4112b596fe6f84fbbc21" title="Log informational message (static convenience method)" alt="" coords="490,85,629,111"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="114,169,164,127,196,107,231,92,293,78,357,73,419,74,475,80,474,85,419,80,358,78,294,83,232,97,199,111,167,131,118,173"/>
-<area shape="rect" id="Node000003" href="$class_sensor.html#a59dd5483b75d9366a0c50ccdd0345dec" title="Initialize sensor hardware." alt="" coords="269,236,386,262"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="180,210,258,229,257,234,179,215"/>
-<area shape="rect" id="Node000004" href="$class_measurement_point.html#aefb47fef40f33161be5c6fddf0cf6329" title="Set high alarm threshold." alt="" coords="236,171,419,212"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="184,189,220,189,220,194,184,194"/>
-<area shape="rect" id="Node000006" href="$class_measurement_point.html#ac780917beebc11d705824cab8f43b94d" title="Set low alarm threshold." alt="" coords="237,106,418,146"/>
-<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="169,168,237,149,238,154,170,173"/>
-<area shape="rect" id="Node000007" href="$class_measurement_point.html#ae3abe83ed3e7979a906c7d753ac9d22d" title="Set measurement point name." alt="" coords="232,5,423,31"/>
-<area shape="poly" id="edge9_Node000001_Node000007" title=" " alt="" coords="109,169,158,110,192,77,230,48,257,35,259,39,233,52,196,81,162,113,113,172"/>
-<area shape="rect" id="Node000008" href="$class_sensor.html#afefa1f627a7d2ab5a1157c271e7f2556" title="Configure sensor as DS18B20." alt="" coords="248,285,406,311"/>
-<area shape="poly" id="edge11_Node000001_Node000008" title=" " alt="" coords="126,210,174,242,233,272,249,278,247,283,231,277,172,246,123,214"/>
-<area shape="rect" id="Node000009" href="$class_sensor.html#aef73c8dc894e3695f50b4bece9601750" title="Configure sensor as PT1000." alt="" coords="254,335,401,360"/>
-<area shape="poly" id="edge12_Node000001_Node000009" title=" " alt="" coords="113,211,163,266,196,296,233,321,243,326,241,331,230,326,193,300,159,270,109,214"/>
-<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="393,168,422,156,446,141,470,125,496,114,498,119,472,130,448,145,424,161,395,173"/>
-<area shape="rect" id="Node000005" href="$class_measurement_point.html#a71995209f2507e6cc15d01607f60767f" title="Update alarm status based on current temperature." alt="" coords="471,139,648,180"/>
-<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="419,176,455,171,456,176,420,181"/>
-<area shape="poly" id="edge7_Node000006_Node000002" title=" " alt="" coords="418,113,474,106,475,111,418,118"/>
-<area shape="poly" id="edge8_Node000006_Node000005" title=" " alt="" coords="419,137,456,142,455,147,418,142"/>
-<area shape="poly" id="edge10_Node000007_Node000002" title=" " alt="" coords="370,29,424,48,508,77,506,82,422,53,368,34"/>
+<area shape="rect" id="Node000001" title="Load measurement points configuration from file." alt="" coords="5,204,184,245"/>
+<area shape="rect" id="Node000002" href="$class_measurement_point.html#a81c7ae93a9314344967d0f31c6fefe2f" title="Get pointer to bound sensor." alt="" coords="232,5,425,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="107,202,156,134,191,96,230,62,248,51,251,55,233,66,194,100,160,138,111,205"/>
+<area shape="rect" id="Node000003" href="$class_logger_manager.html#a5c1373ccc47f4112b596fe6f84fbbc21" title="Log informational message (static convenience method)" alt="" coords="492,150,631,176"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="110,202,159,151,193,125,231,106,284,91,327,88,371,95,426,106,477,121,523,141,521,145,476,126,424,111,370,100,327,94,284,96,233,111,196,130,163,155,114,205"/>
+<area shape="rect" id="Node000004" href="$class_sensor.html#a59dd5483b75d9366a0c50ccdd0345dec" title="Initialize sensor hardware." alt="" coords="270,301,387,326"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="137,243,233,286,256,294,254,299,231,291,134,248"/>
+<area shape="rect" id="Node000005" href="$class_measurement_point.html#aefb47fef40f33161be5c6fddf0cf6329" title="Set high alarm threshold." alt="" coords="237,171,420,211"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="184,209,221,204,221,209,184,214"/>
+<area shape="rect" id="Node000007" href="$class_measurement_point.html#ac780917beebc11d705824cab8f43b94d" title="Set low alarm threshold." alt="" coords="238,236,418,277"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="184,234,223,239,222,245,184,239"/>
+<area shape="rect" id="Node000008" href="$class_measurement_point.html#ae3abe83ed3e7979a906c7d753ac9d22d" title="Set measurement point name." alt="" coords="233,121,424,146"/>
+<area shape="poly" id="edge10_Node000001_Node000008" title=" " alt="" coords="133,201,179,178,231,157,254,149,256,154,233,161,181,183,135,206"/>
+<area shape="rect" id="Node000009" href="$class_sensor.html#afefa1f627a7d2ab5a1157c271e7f2556" title="Configure sensor as DS18B20." alt="" coords="249,350,408,376"/>
+<area shape="poly" id="edge12_Node000001_Node000009" title=" " alt="" coords="116,243,166,291,198,315,233,337,245,342,243,347,230,341,195,320,163,295,113,247"/>
+<area shape="rect" id="Node000010" href="$class_sensor.html#aef73c8dc894e3695f50b4bece9601750" title="Configure sensor as PT1000." alt="" coords="255,400,402,425"/>
+<area shape="poly" id="edge13_Node000001_Node000010" title=" " alt="" coords="109,244,129,276,157,314,192,353,233,386,242,391,239,396,230,391,188,357,153,318,125,279,105,246"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="420,177,476,171,477,176,420,183"/>
+<area shape="rect" id="Node000006" href="$class_measurement_point.html#a71995209f2507e6cc15d01607f60767f" title="Update alarm status based on current temperature." alt="" coords="473,204,650,245"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="421,201,458,207,457,212,420,207"/>
+<area shape="poly" id="edge8_Node000007_Node000003" title=" " alt="" coords="395,233,424,221,448,205,472,190,498,179,500,184,474,195,450,210,426,225,397,238"/>
+<area shape="poly" id="edge9_Node000007_Node000006" title=" " alt="" coords="418,241,457,236,458,241,419,247"/>
+<area shape="poly" id="edge11_Node000008_Node000003" title=" " alt="" coords="424,143,477,150,476,155,424,148"/>
 </map>
