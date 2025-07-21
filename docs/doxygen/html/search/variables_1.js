@@ -1,11 +1,25 @@
 var searchData=
 [
   ['address_0',['address',['../class_measurement_point.html#a13e1f193f0588973d8fe6b836ebe0fb9',1,'MeasurementPoint::address'],['../class_sensor.html#a75b4ea06bdcd22f6591f24ae3a46983a',1,'Sensor::address']]],
-  ['alarm_5fhigh_5ftemp_1',['ALARM_HIGH_TEMP',['../_sensor_8h.html#a69ac9fe143e56b941b2e467e700f9f98',1,'Sensor.h']]],
-  ['alarm_5flow_5ftemp_2',['ALARM_LOW_TEMP',['../_sensor_8h.html#a23317a6f5a20f7fff89a69642e417b1f',1,'Sensor.h']]],
-  ['alarm_5fstatus_5fds18b20_5fend_5freg_3',['ALARM_STATUS_DS18B20_END_REG',['../class_register_map.html#abd46e2034937849cd923ae95ccc7f162',1,'RegisterMap']]],
-  ['alarm_5fstatus_5fds18b20_5fstart_5freg_4',['ALARM_STATUS_DS18B20_START_REG',['../class_register_map.html#a8418bd7fbd2379830c5b2a2d5a7ceadb',1,'RegisterMap']]],
-  ['alarm_5fstatus_5fpt1000_5fend_5freg_5',['ALARM_STATUS_PT1000_END_REG',['../class_register_map.html#ae6d88f1082bb40e31cbceb375d53124c',1,'RegisterMap']]],
-  ['alarm_5fstatus_5fpt1000_5fstart_5freg_6',['ALARM_STATUS_PT1000_START_REG',['../class_register_map.html#afdec96eb8d80f30ea28ce83ee9b7987e',1,'RegisterMap']]],
-  ['alarmstatus_7',['alarmStatus',['../class_measurement_point.html#a18c9fe4e70a4cc17473fd9df8a3c6b68',1,'MeasurementPoint::alarmStatus'],['../class_register_map.html#ac9753141e2fe23d742cca2d7e4572194',1,'RegisterMap::alarmStatus'],['../class_sensor.html#a4700db8ae10648ce63e9c40097af2bf0',1,'Sensor::alarmStatus']]]
+  ['alarm_5fconfig_5fds18b20_5fend_5freg_1',['ALARM_CONFIG_DS18B20_END_REG',['../class_register_map.html#ac99812bbb5c2872c1b9aeab10f85b06d',1,'RegisterMap']]],
+  ['alarm_5fconfig_5fds18b20_5fstart_5freg_2',['ALARM_CONFIG_DS18B20_START_REG',['../class_register_map.html#ade263025855c5e58313342eac4d99965',1,'RegisterMap']]],
+  ['alarm_5fconfig_5ferror_5fenable_5fbit_3',['ALARM_CONFIG_ERROR_ENABLE_BIT',['../class_register_map.html#a6b267ae2d46f49a63e2215fb573a1beb',1,'RegisterMap']]],
+  ['alarm_5fconfig_5ferror_5fpriority_5fmask_4',['ALARM_CONFIG_ERROR_PRIORITY_MASK',['../class_register_map.html#a22ab718574b623169a3938c0799ef1fd',1,'RegisterMap']]],
+  ['alarm_5fconfig_5ferror_5fpriority_5fshift_5',['ALARM_CONFIG_ERROR_PRIORITY_SHIFT',['../class_register_map.html#a80213794342fd35a7b2da48eaff70394',1,'RegisterMap']]],
+  ['alarm_5fconfig_5fhigh_5fenable_5fbit_6',['ALARM_CONFIG_HIGH_ENABLE_BIT',['../class_register_map.html#a5cf94a5ad58133ff28d5d80bdd459706',1,'RegisterMap']]],
+  ['alarm_5fconfig_5fhigh_5fpriority_5fmask_7',['ALARM_CONFIG_HIGH_PRIORITY_MASK',['../class_register_map.html#acc98fefd1fbb487f034dc9b30520d822',1,'RegisterMap']]],
+  ['alarm_5fconfig_5fhigh_5fpriority_5fshift_8',['ALARM_CONFIG_HIGH_PRIORITY_SHIFT',['../class_register_map.html#a6eef9ee14553949e023ac58d79a1ccc5',1,'RegisterMap']]],
+  ['alarm_5fconfig_5flow_5fenable_5fbit_9',['ALARM_CONFIG_LOW_ENABLE_BIT',['../class_register_map.html#adc7d514d7f0d28275561a382ccc596c0',1,'RegisterMap']]],
+  ['alarm_5fconfig_5flow_5fpriority_5fmask_10',['ALARM_CONFIG_LOW_PRIORITY_MASK',['../class_register_map.html#a9589c50f5b30e6d51357e20087ff6c13',1,'RegisterMap']]],
+  ['alarm_5fconfig_5flow_5fpriority_5fshift_11',['ALARM_CONFIG_LOW_PRIORITY_SHIFT',['../class_register_map.html#a3f673b15cd7bcf88eb1eb6cfea58c8cf',1,'RegisterMap']]],
+  ['alarm_5fconfig_5fpt1000_5fend_5freg_12',['ALARM_CONFIG_PT1000_END_REG',['../class_register_map.html#a5c6049b2bedaf7c378aa2764c35307dc',1,'RegisterMap']]],
+  ['alarm_5fconfig_5fpt1000_5fstart_5freg_13',['ALARM_CONFIG_PT1000_START_REG',['../class_register_map.html#a0a73e60354edc71292991b1afff56fe3',1,'RegisterMap']]],
+  ['alarm_5fhigh_5ftemp_14',['ALARM_HIGH_TEMP',['../_sensor_8h.html#a69ac9fe143e56b941b2e467e700f9f98',1,'Sensor.h']]],
+  ['alarm_5flow_5ftemp_15',['ALARM_LOW_TEMP',['../_sensor_8h.html#a23317a6f5a20f7fff89a69642e417b1f',1,'Sensor.h']]],
+  ['alarm_5fstatus_5fds18b20_5fend_5freg_16',['ALARM_STATUS_DS18B20_END_REG',['../class_register_map.html#abd46e2034937849cd923ae95ccc7f162',1,'RegisterMap']]],
+  ['alarm_5fstatus_5fds18b20_5fstart_5freg_17',['ALARM_STATUS_DS18B20_START_REG',['../class_register_map.html#a8418bd7fbd2379830c5b2a2d5a7ceadb',1,'RegisterMap']]],
+  ['alarm_5fstatus_5fpt1000_5fend_5freg_18',['ALARM_STATUS_PT1000_END_REG',['../class_register_map.html#ae6d88f1082bb40e31cbceb375d53124c',1,'RegisterMap']]],
+  ['alarm_5fstatus_5fpt1000_5fstart_5freg_19',['ALARM_STATUS_PT1000_START_REG',['../class_register_map.html#afdec96eb8d80f30ea28ce83ee9b7987e',1,'RegisterMap']]],
+  ['alarmconfig_20',['alarmConfig',['../class_register_map.html#a940577c2a15971b500abb147fc5224c5',1,'RegisterMap']]],
+  ['alarmstatus_21',['alarmStatus',['../class_measurement_point.html#a18c9fe4e70a4cc17473fd9df8a3c6b68',1,'MeasurementPoint::alarmStatus'],['../class_register_map.html#ac9753141e2fe23d742cca2d7e4572194',1,'RegisterMap::alarmStatus'],['../class_sensor.html#a4700db8ae10648ce63e9c40097af2bf0',1,'Sensor::alarmStatus']]]
 ];

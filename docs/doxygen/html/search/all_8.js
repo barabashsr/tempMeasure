@@ -15,5 +15,8 @@ var searchData=
   ['high_5falarm_5fpt1000_5fstart_5freg_12',['HIGH_ALARM_PT1000_START_REG',['../class_register_map.html#aedac92f3e99b5ea68ccfb649d4737470',1,'RegisterMap']]],
   ['high_5ftemperature_13',['HIGH_TEMPERATURE',['../_alarm_8h.html#ab24e7dd602a82a4cf2afea61f26726e2a9ca8335873c44a53b8f7c5fc526ee59b',1,'Alarm.h']]],
   ['highalarmthreshold_14',['highAlarmThreshold',['../class_measurement_point.html#a63f7bd3c914d6b77bc6828cc83f4fef6',1,'MeasurementPoint::highAlarmThreshold'],['../class_sensor.html#ad3088c793422688847fc7bd0c83e1c7a',1,'Sensor::highAlarmThreshold']]],
-  ['highalarmthresholds_15',['highAlarmThresholds',['../class_register_map.html#ae6ce504c8e4c620b908bd7c7bca9fec0',1,'RegisterMap']]]
+  ['highalarmthresholds_15',['highAlarmThresholds',['../class_register_map.html#ae6ce504c8e4c620b908bd7c7bca9fec0',1,'RegisterMap']]],
+  ['hysteresis_16',['hysteresis',['../class_register_map.html#a487fafd44e4414c1cbc326a89536f4a7',1,'RegisterMap']]],
+  ['hysteresis_5fend_5freg_17',['HYSTERESIS_END_REG',['../class_register_map.html#aa10efcd89966c83fac1b009c0614c876',1,'RegisterMap']]],
+  ['hysteresis_5fstart_5freg_18',['HYSTERESIS_START_REG',['../class_register_map.html#abd3e2ddd35bca03f8050526875912ce9',1,'RegisterMap']]]
 ];

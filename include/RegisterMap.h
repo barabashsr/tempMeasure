@@ -23,6 +23,10 @@
  * - 500-599: Error status flags
  * - 600-699: Low temperature alarm thresholds
  * - 700-799: High temperature alarm thresholds
+ * - 800-859: Alarm configuration (enable flags and priorities)
+ * - 860-869: Relay control
+ * - 870-889: Hysteresis configuration
+ * - 899: Command register
  */
 
 #ifndef REGISTER_MAP_H
@@ -57,6 +61,13 @@ private:
     // Configuration Registers (600-799)
     int16_t lowAlarmThresholds[60];      ///< Low temperature alarm thresholds (registers 600-659)
     int16_t highAlarmThresholds[60];     ///< High temperature alarm thresholds (registers 700-759)
+
+    // Alarm Control Registers (800-899)
+    uint16_t alarmConfig[60];             ///< Alarm configuration (enable flags and priorities) (registers 800-859)
+    uint16_t relayControl[6];             ///< Relay control and status (registers 860-865)
+    uint16_t hysteresis[20];              ///< Hysteresis values (registers 870-889)
+    uint16_t commandRegister;             ///< Command execution register (register 899)
+    bool commandPending;                  ///< Flag indicating command needs processing
 
     // Helpers
     /**
@@ -166,6 +177,58 @@ public:
     uint16_t getNumActivePT1000() const { return numActivePT1000; }
 
     /**
+     * @brief Check if a command is pending execution
+     * @return true if command needs to be processed
+     */
+    bool isCommandPending() const { return commandPending; }
+    
+    /**
+     * @brief Get the pending command value
+     * @return uint16_t Command value
+     */
+    uint16_t getPendingCommand() const { return commandRegister; }
+    
+    /**
+     * @brief Clear the pending command flag
+     */
+    void clearPendingCommand() { commandPending = false; commandRegister = 0; }
+    
+    /**
+     * @brief Get alarm configuration for a point
+     * @param[in] pointIndex Point index (0-59)
+     * @return uint16_t Alarm configuration register value
+     */
+    uint16_t getAlarmConfig(uint8_t pointIndex) const;
+    
+    /**
+     * @brief Set relay control mode
+     * @param[in] relayIndex Relay index (0-2)
+     * @param[in] mode Control mode (0=Auto, 1=Force Off, 2=Force On)
+     */
+    void setRelayControl(uint8_t relayIndex, uint16_t mode);
+    
+    /**
+     * @brief Get relay control mode
+     * @param[in] relayIndex Relay index (0-2)
+     * @return uint16_t Control mode
+     */
+    uint16_t getRelayControl(uint8_t relayIndex) const;
+    
+    /**
+     * @brief Set relay status
+     * @param[in] relayIndex Relay index (0-2)
+     * @param[in] state Relay state (0=Off, 1=On)
+     */
+    void setRelayStatus(uint8_t relayIndex, bool state);
+    
+    /**
+     * @brief Get relay status
+     * @param[in] relayIndex Relay index (0-2)
+     * @return bool Relay state
+     */
+    bool getRelayStatus(uint8_t relayIndex) const;
+
+    /**
      * @name Register Address Constants
      * @brief Modbus register address definitions
      * @{
@@ -220,6 +283,38 @@ public:
     static const uint16_t HIGH_ALARM_DS18B20_END_REG = 749;      ///< DS18B20 high alarm end
     static const uint16_t HIGH_ALARM_PT1000_START_REG = 750;     ///< PT1000 high alarm start
     static const uint16_t HIGH_ALARM_PT1000_END_REG = 759;       ///< PT1000 high alarm end
+    
+    // Alarm Configuration Registers (800-859)
+    static const uint16_t ALARM_CONFIG_DS18B20_START_REG = 800;   ///< DS18B20 alarm config start
+    static const uint16_t ALARM_CONFIG_DS18B20_END_REG = 849;     ///< DS18B20 alarm config end
+    static const uint16_t ALARM_CONFIG_PT1000_START_REG = 850;    ///< PT1000 alarm config start
+    static const uint16_t ALARM_CONFIG_PT1000_END_REG = 859;      ///< PT1000 alarm config end
+    
+    // Relay Control Registers (860-869)
+    static const uint16_t RELAY_CONTROL_START_REG = 860;          ///< Relay control start
+    static const uint16_t RELAY_STATUS_START_REG = 863;           ///< Relay status start
+    static const uint16_t RELAY_CONTROL_END_REG = 865;            ///< Relay control/status end
+    
+    // Hysteresis Registers (870-889)
+    static const uint16_t HYSTERESIS_START_REG = 870;             ///< Hysteresis start
+    static const uint16_t HYSTERESIS_END_REG = 889;               ///< Hysteresis end
+    
+    // Command Register
+    static const uint16_t COMMAND_REG = 899;                      ///< Command execution register
+    
+    // Alarm Configuration Bit Masks
+    static const uint16_t ALARM_CONFIG_LOW_ENABLE_BIT = 0x0001;   ///< Bit 0: Low temp alarm enable
+    static const uint16_t ALARM_CONFIG_HIGH_ENABLE_BIT = 0x0002;  ///< Bit 1: High temp alarm enable
+    static const uint16_t ALARM_CONFIG_ERROR_ENABLE_BIT = 0x0004; ///< Bit 2: Sensor error alarm enable
+    static const uint16_t ALARM_CONFIG_LOW_PRIORITY_MASK = 0x0018;  ///< Bits 3-4: Low priority
+    static const uint16_t ALARM_CONFIG_HIGH_PRIORITY_MASK = 0x0060; ///< Bits 5-6: High priority
+    static const uint16_t ALARM_CONFIG_ERROR_PRIORITY_MASK = 0x0180;///< Bits 7-8: Error priority
+    static const uint16_t ALARM_CONFIG_LOW_PRIORITY_SHIFT = 3;    ///< Shift for low priority bits
+    static const uint16_t ALARM_CONFIG_HIGH_PRIORITY_SHIFT = 5;   ///< Shift for high priority bits
+    static const uint16_t ALARM_CONFIG_ERROR_PRIORITY_SHIFT = 7;  ///< Shift for error priority bits
+    
+    // Command Values
+    static const uint16_t CMD_APPLY_ALARM_CONFIG = 0x0001;        ///< Apply alarm configuration
     
     /** @} */ // end of Register Address Constants
 };

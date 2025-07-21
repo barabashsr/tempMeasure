@@ -106,6 +106,13 @@ public:
      * @details Stops server and releases resources
      */
     void stop();
+    
+    /**
+     * @brief Process pending commands from Modbus writes
+     * @details Checks for pending commands in register map and executes them
+     * @note Should be called periodically from main loop
+     */
+    void processCommands();
 };
 
 

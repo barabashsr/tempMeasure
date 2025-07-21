@@ -58,3 +58,93 @@ When a sensor is bound to a measurement point, the sensor error alarm should aut
 ### Expected Files to Modify:
 - ConfigManager.cpp - sensor binding API endpoint
 - Possibly TemperatureController.cpp - if binding happens there
+## Planning Update: 2025-07-21 08:15 - CORRECTED with separate enable bits
+
+### Register Organization Understanding:
+The register map follows a different pattern than initially understood:
+- **3-digit register format: XYY**
+  - X = Section (1-7)
+  - YY = Point address (00-59)
+  
+Example: Register 435
+- 4 = Alarm status section
+- 35 = Point address 35 (DS18B20)
+
+### Current Register Sections (from README.md):
+1. **0-99**: Device information
+2. **100-199**: Current temperature (1XX where XX=point)
+3. **200-299**: Min temperature (2XX where XX=point)
+4. **300-399**: Max temperature (3XX where XX=point)
+5. **400-499**: Alarm status (4XX where XX=point)
+6. **500-599**: Error status (5XX where XX=point)
+7. **600-699**: Low temperature thresholds (6XX where XX=point)
+8. **700-799**: High temperature thresholds (7XX where XX=point)
+
+### New Registers Needed for Alarm Control:
+Based on requirements, we need:
+1. **800-859**: Alarm configuration (priorities and enable states)
+   - Format: 8XX where XX=point address
+   - Each register contains alarm config for one point
+   
+2. **860-869**: Relay control
+   - 860: Relay 1 control (0=Auto, 1=Force Off, 2=Force On)
+   - 861: Relay 2 control
+   - 862: Relay 3 control
+   - 863-865: Relay current states (read-only)
+   
+3. **870-889**: Hysteresis configuration
+   - Format: 87X where X=0-9 for different alarm types or global
+   
+4. **899**: Command register
+   - Write 0x0001 to apply alarm configuration
+
+### Implementation Steps:
+
+#### Step 1: Update RegisterMap.h
+- Add new register constants for sections 8XX
+- Add storage arrays for alarm config, relay control, hysteresis
+- Update validation methods to accept new ranges
+
+#### Step 2: Update RegisterMap.cpp
+- Extend `readHoldingRegister()` to handle:
+  - 800-859: Read alarm configuration
+  - 860-865: Read relay control/status
+  - 870-889: Read hysteresis values
+- Extend `writeHoldingRegister()` to handle:
+  - 800-859: Write alarm configuration
+  - 860-862: Write relay control
+  - 870-889: Write hysteresis
+  - 899: Execute commands
+
+#### Step 3: Add alarm configuration mapping
+- Create methods to convert between:
+  - Register bits ↔ AlarmPriority enum
+  - Enable/disable states
+  - Relay control modes
+
+#### Step 4: Implement command execution
+- Add `executeCommand()` method
+- Handle command 0x0001: Apply alarm configuration
+  - Update TemperatureController alarms
+  - Save to configuration files
+
+#### Step 5: Update TempModbusServer
+- Ensure callbacks properly handle new registers
+- Trigger configuration updates when needed
+- Update relay outputs based on control registers
+
+### Alarm Configuration Register Format (8XX) - REVISED:
+Better bit allocation with separate enable flags:
+- Bit 0: Low Temperature Alarm Enable (0=disabled, 1=enabled)
+- Bit 1: High Temperature Alarm Enable (0=disabled, 1=enabled)  
+- Bit 2: Sensor Error Alarm Enable (0=disabled, 1=enabled)
+- Bits 3-4: Low Temperature Priority (0=Low, 1=Medium, 2=High, 3=Critical)
+- Bits 5-6: High Temperature Priority (0=Low, 1=Medium, 2=High, 3=Critical)
+- Bits 7-8: Sensor Error Priority (0=Low, 1=Medium, 2=High, 3=Critical)
+- Bits 9-15: Reserved
+
+This gives us:
+- Independent enable/disable control for each alarm type
+- 2 bits for priority (supports 4 priority levels)
+- Clear separation between enable state and priority level
+EOF < /dev/null

@@ -311,25 +311,30 @@ $(function(){initNavTree('main_8cpp_source.html','',''); });
 <div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>    <span class="comment">// Update temperature controller (reads sensors and updates measurement points)</span></div>
 <div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>    <a class="code hl_variable" href="main_8cpp.html#aecbe6ad38ed7d220ace280ea33d8ab45">controller</a>.update();</div>
 <div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    </div>
-<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    <span class="comment">// Periodic status output (when not in configuration portal mode)</span></div>
-<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>    <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> lastPrintTime = 0;</div>
-<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>    <span class="keywordflow">if</span> (!<a class="code hl_variable" href="main_8cpp.html#a064a914bb7eaaf470d545cab5f0c0066">configManager</a>-&gt;isPortalActive() &amp;&amp; </div>
-<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>        millis() - lastPrintTime &gt; <a class="code hl_variable" href="main_8cpp.html#aecbe6ad38ed7d220ace280ea33d8ab45">controller</a>.getMeasurementPeriod()) {</div>
-<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>        </div>
-<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>        <span class="comment">// Uncomment for detailed status output:</span></div>
-<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>        <span class="comment">// Serial.println(&quot;\nSystem Status:&quot;);</span></div>
-<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>        <span class="comment">// Serial.println(controller.getSystemStatusJson());</span></div>
-<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>        <span class="comment">// Serial.println(controller.getPointsJson());</span></div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    <span class="comment">// Process any pending Modbus commands</span></div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="main_8cpp.html#a4d17575d4300b383a3726118c7dba5ef">modbusServer</a>) {</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>        <a class="code hl_variable" href="main_8cpp.html#a4d17575d4300b383a3726118c7dba5ef">modbusServer</a>-&gt;processCommands();</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>    }</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    </div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>    <span class="comment">// Periodic status output (when not in configuration portal mode)</span></div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>    <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> lastPrintTime = 0;</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    <span class="keywordflow">if</span> (!<a class="code hl_variable" href="main_8cpp.html#a064a914bb7eaaf470d545cab5f0c0066">configManager</a>-&gt;isPortalActive() &amp;&amp; </div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>        millis() - lastPrintTime &gt; <a class="code hl_variable" href="main_8cpp.html#aecbe6ad38ed7d220ace280ea33d8ab45">controller</a>.getMeasurementPeriod()) {</div>
 <div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>        </div>
-<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>        lastPrintTime = millis();</div>
-<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>    }</div>
-<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>    </div>
-<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>    <span class="comment">// Update logger (handles periodic data logging and file management)</span></div>
-<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>    <a class="code hl_variable" href="main_8cpp.html#a543ccc95fbe6dd49b01bdc937630a4ac">logger</a>.update();</div>
-<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>    </div>
-<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>    <span class="comment">// Brief delay to prevent excessive CPU usage</span></div>
-<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>    delay(100);</div>
-<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>}</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>        <span class="comment">// Uncomment for detailed status output:</span></div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>        <span class="comment">// Serial.println(&quot;\nSystem Status:&quot;);</span></div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>        <span class="comment">// Serial.println(controller.getSystemStatusJson());</span></div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>        <span class="comment">// Serial.println(controller.getPointsJson());</span></div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>        </div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>        lastPrintTime = millis();</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>    }</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>    </div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>    <span class="comment">// Update logger (handles periodic data logging and file management)</span></div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>    <a class="code hl_variable" href="main_8cpp.html#a543ccc95fbe6dd49b01bdc937630a4ac">logger</a>.update();</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>    </div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>    <span class="comment">// Brief delay to prevent excessive CPU usage</span></div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>    delay(100);</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>}</div>
 </div>
 <div class="ttc" id="a_config_manager_8h_html"><div class="ttname"><a href="_config_manager_8h.html">ConfigManager.h</a></div><div class="ttdoc">Configuration management system for temperature monitoring device.</div></div>
 <div class="ttc" id="a_indicator_interface_8h_html"><div class="ttname"><a href="_indicator_interface_8h.html">IndicatorInterface.h</a></div><div class="ttdoc">Hardware interface for PCF8575 I/O expander and SH1106 OLED display.</div></div>

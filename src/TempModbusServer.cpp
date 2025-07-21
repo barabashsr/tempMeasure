@@ -398,3 +398,65 @@ ModbusMessage TempModbusServer::writeMultipleRegistersWorker(ModbusMessage reque
     
     return response;
 }
+
+void TempModbusServer::processCommands() {
+    // Check if there's a pending command in the register map
+    if (registerMap.isCommandPending()) {
+        uint16_t command = registerMap.getPendingCommand();
+        
+        LoggerManager::info("MODBUS_CMD", 
+            "Processing command: 0x" + String(command, HEX));
+        
+        switch (command) {
+            case RegisterMap::CMD_APPLY_ALARM_CONFIG:
+                // Command 0x0001: Apply alarm configuration
+                LoggerManager::info("MODBUS_CMD", "Applying alarm configuration from Modbus");
+                
+                // TODO: Here we need to interact with TemperatureController
+                // to update alarm configurations based on register values
+                // This requires access to TemperatureController instance
+                
+                // For now, log what would be done
+                for (uint8_t i = 0; i < 60; i++) {
+                    uint16_t config = registerMap.getAlarmConfig(i);
+                    if (config != 0) {
+                        bool lowEnabled = (config & RegisterMap::ALARM_CONFIG_LOW_ENABLE_BIT) != 0;
+                        bool highEnabled = (config & RegisterMap::ALARM_CONFIG_HIGH_ENABLE_BIT) != 0;
+                        bool errorEnabled = (config & RegisterMap::ALARM_CONFIG_ERROR_ENABLE_BIT) != 0;
+                        
+                        uint8_t lowPriority = (config & RegisterMap::ALARM_CONFIG_LOW_PRIORITY_MASK) >> 
+                                            RegisterMap::ALARM_CONFIG_LOW_PRIORITY_SHIFT;
+                        uint8_t highPriority = (config & RegisterMap::ALARM_CONFIG_HIGH_PRIORITY_MASK) >> 
+                                             RegisterMap::ALARM_CONFIG_HIGH_PRIORITY_SHIFT;
+                        uint8_t errorPriority = (config & RegisterMap::ALARM_CONFIG_ERROR_PRIORITY_MASK) >> 
+                                              RegisterMap::ALARM_CONFIG_ERROR_PRIORITY_SHIFT;
+                        
+                        LoggerManager::info("MODBUS_CMD", 
+                            "Point " + String(i) + ": Low(" + 
+                            (lowEnabled ? "ON" : "OFF") + ",P" + String(lowPriority) + ") High(" +
+                            (highEnabled ? "ON" : "OFF") + ",P" + String(highPriority) + ") Error(" +
+                            (errorEnabled ? "ON" : "OFF") + ",P" + String(errorPriority) + ")");
+                    }
+                }
+                
+                // Update relay control states
+                for (uint8_t i = 0; i < 3; i++) {
+                    uint16_t control = registerMap.getRelayControl(i);
+                    LoggerManager::info("MODBUS_CMD", 
+                        "Relay " + String(i + 1) + " control: " + 
+                        (control == 0 ? "Auto" : (control == 1 ? "Force Off" : "Force On")));
+                }
+                
+                break;
+                
+            default:
+                LoggerManager::warning("MODBUS_CMD", 
+                    "Unknown command: 0x" + String(command, HEX));
+                break;
+        }
+        
+        // Clear the pending command
+        registerMap.clearPendingCommand();
+        LoggerManager::info("MODBUS_CMD", "Command processing complete");
+    }
+}

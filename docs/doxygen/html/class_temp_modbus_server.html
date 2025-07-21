@@ -100,7 +100,7 @@ $(function(){initNavTree('class_temp_modbus_server.html','',''); });
 <div class="dynheader">
 Collaboration diagram for TempModbusServer:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_temp_modbus_server__coll__graph.svg" width="231" height="1606"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_temp_modbus_server__coll__graph.svg" width="231" height="1544"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -113,6 +113,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:aac671b84770f4139745d08d05b5c1d92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize and start Modbus server.  <br /></td></tr>
 <tr class="memitem:a8bbfa71756ccff5f4b80509c41078c6c" id="r_a8bbfa71756ccff5f4b80509c41078c6c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8bbfa71756ccff5f4b80509c41078c6c">stop</a> ()</td></tr>
 <tr class="memdesc:a8bbfa71756ccff5f4b80509c41078c6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop Modbus server.  <br /></td></tr>
+<tr class="memitem:a0debe38364d9025833706a6f74d5655a" id="r_a0debe38364d9025833706a6f74d5655a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0debe38364d9025833706a6f74d5655a">processCommands</a> ()</td></tr>
+<tr class="memdesc:a0debe38364d9025833706a6f74d5655a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process pending commands from Modbus writes.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-static-methods" class="groupheader"><a id="pri-static-methods" name="pri-static-methods"></a>
 Static Private Member Functions</h2></td></tr>
@@ -275,6 +277,35 @@ false if initialization failed</dd></dl>
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_temp_modbus_server_aac671b84770f4139745d08d05b5c1d92_cgraph.svg" width="646" height="262"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a0debe38364d9025833706a6f74d5655a" name="a0debe38364d9025833706a6f74d5655a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0debe38364d9025833706a6f74d5655a">&#9670;&#160;</a></span>processCommands()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TempModbusServer::processCommands </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Process pending commands from Modbus writes. </p>
+<p>Checks for pending commands in register map and executes them </p><dl class="section note"><dt>Note</dt><dd>Should be called periodically from main loop </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_temp_modbus_server_8cpp_source.html#l00402">402</a> of file <a class="el" href="_temp_modbus_server_8cpp_source.html">TempModbusServer.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_register_map_8h_source.html#l00308">RegisterMap::ALARM_CONFIG_ERROR_ENABLE_BIT</a>, <a class="el" href="_register_map_8h_source.html#l00311">RegisterMap::ALARM_CONFIG_ERROR_PRIORITY_MASK</a>, <a class="el" href="_register_map_8h_source.html#l00314">RegisterMap::ALARM_CONFIG_ERROR_PRIORITY_SHIFT</a>, <a class="el" href="_register_map_8h_source.html#l00307">RegisterMap::ALARM_CONFIG_HIGH_ENABLE_BIT</a>, <a class="el" href="_register_map_8h_source.html#l00310">RegisterMap::ALARM_CONFIG_HIGH_PRIORITY_MASK</a>, <a class="el" href="_register_map_8h_source.html#l00313">RegisterMap::ALARM_CONFIG_HIGH_PRIORITY_SHIFT</a>, <a class="el" href="_register_map_8h_source.html#l00306">RegisterMap::ALARM_CONFIG_LOW_ENABLE_BIT</a>, <a class="el" href="_register_map_8h_source.html#l00309">RegisterMap::ALARM_CONFIG_LOW_PRIORITY_MASK</a>, <a class="el" href="_register_map_8h_source.html#l00312">RegisterMap::ALARM_CONFIG_LOW_PRIORITY_SHIFT</a>, <a class="el" href="_register_map_8h_source.html#l00317">RegisterMap::CMD_APPLY_ALARM_CONFIG</a>, <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>, <a class="el" href="_temp_modbus_server_8h_source.html#l00039">registerMap</a>, and <a class="el" href="_logger_manager_8h_source.html#l00155">LoggerManager::warning()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_temp_modbus_server_a0debe38364d9025833706a6f74d5655a_cgraph.svg" width="414" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -563,7 +594,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_temp_modbus_server_8h_source.html#l00039">39</a> of file <a class="el" href="_temp_modbus_server_8h_source.html">TempModbusServer.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temp_modbus_server_8cpp_source.html#l00023">TempModbusServer()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temp_modbus_server_8cpp_source.html#l00402">processCommands()</a>, and <a class="el" href="_temp_modbus_server_8cpp_source.html#l00023">TempModbusServer()</a>.</p>
 
 </div>
 </div>

@@ -573,7 +573,7 @@
         <location file="src/main.cpp" line="82" column="23"/>
         <referencedby refid="class_c_s_v_config_manager_1aeb5348105aeb04d73c45526f70d745f6" compoundref="_c_s_v_config_manager_8cpp" startline="24" endline="26">CSVConfigManager::CSVConfigManager</referencedby>
         <referencedby refid="class_logger_manager_1a321bbaf7cc3b3aa05c8ec036d4dbfea0" compoundref="_logger_manager_8cpp" startline="31" endline="39">LoggerManager::LoggerManager</referencedby>
-        <referencedby refid="main_8cpp_1afe461d27b9c48d5921c00d521181f12f" compoundref="main_8cpp" startline="250" endline="278">loop</referencedby>
+        <referencedby refid="main_8cpp_1afe461d27b9c48d5921c00d521181f12f" compoundref="main_8cpp" startline="250" endline="283">loop</referencedby>
         <referencedby refid="main_8cpp_1a4fc01d736fe50cf5b977f755b675f11d" compoundref="main_8cpp" startline="101" endline="243">setup</referencedby>
       </memberdef>
       <memberdef kind="variable" id="main_8cpp_1a064a914bb7eaaf470d545cab5f0c0066" prot="public" static="no" mutable="no">
@@ -589,7 +589,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="src/main.cpp" line="85" column="15" bodyfile="src/main.cpp" bodystart="85" bodyend="-1"/>
-        <referencedby refid="main_8cpp_1afe461d27b9c48d5921c00d521181f12f" compoundref="main_8cpp" startline="250" endline="278">loop</referencedby>
+        <referencedby refid="main_8cpp_1afe461d27b9c48d5921c00d521181f12f" compoundref="main_8cpp" startline="250" endline="283">loop</referencedby>
         <referencedby refid="main_8cpp_1a4fc01d736fe50cf5b977f755b675f11d" compoundref="main_8cpp" startline="101" endline="243">setup</referencedby>
       </memberdef>
       <memberdef kind="variable" id="main_8cpp_1a4d17575d4300b383a3726118c7dba5ef" prot="public" static="no" mutable="no">
@@ -605,6 +605,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="src/main.cpp" line="88" column="18" bodyfile="src/main.cpp" bodystart="88" bodyend="-1"/>
+        <referencedby refid="main_8cpp_1afe461d27b9c48d5921c00d521181f12f" compoundref="main_8cpp" startline="250" endline="283">loop</referencedby>
         <referencedby refid="main_8cpp_1a4fc01d736fe50cf5b977f755b675f11d" compoundref="main_8cpp" startline="101" endline="243">setup</referencedby>
       </memberdef>
       <memberdef kind="variable" id="main_8cpp_1ad27a531589f8fed0687abe50e4ab32dc" prot="public" static="no" mutable="no">
@@ -621,7 +622,7 @@
         </inbodydescription>
         <location file="src/main.cpp" line="91" column="13"/>
         <referencedby refid="class_logger_manager_1a321bbaf7cc3b3aa05c8ec036d4dbfea0" compoundref="_logger_manager_8cpp" startline="31" endline="39">LoggerManager::LoggerManager</referencedby>
-        <referencedby refid="main_8cpp_1afe461d27b9c48d5921c00d521181f12f" compoundref="main_8cpp" startline="250" endline="278">loop</referencedby>
+        <referencedby refid="main_8cpp_1afe461d27b9c48d5921c00d521181f12f" compoundref="main_8cpp" startline="250" endline="283">loop</referencedby>
         <referencedby refid="main_8cpp_1a4fc01d736fe50cf5b977f755b675f11d" compoundref="main_8cpp" startline="101" endline="243">setup</referencedby>
       </memberdef>
       <memberdef kind="variable" id="main_8cpp_1a543ccc95fbe6dd49b01bdc937630a4ac" prot="public" static="no" mutable="no">
@@ -637,7 +638,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="src/main.cpp" line="94" column="15"/>
-        <referencedby refid="main_8cpp_1afe461d27b9c48d5921c00d521181f12f" compoundref="main_8cpp" startline="250" endline="278">loop</referencedby>
+        <referencedby refid="main_8cpp_1afe461d27b9c48d5921c00d521181f12f" compoundref="main_8cpp" startline="250" endline="283">loop</referencedby>
         <referencedby refid="main_8cpp_1a4fc01d736fe50cf5b977f755b675f11d" compoundref="main_8cpp" startline="101" endline="243">setup</referencedby>
       </memberdef>
     </sectiondef>
@@ -688,10 +689,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="src/main.cpp" line="250" column="6" bodyfile="src/main.cpp" bodystart="250" bodyend="278"/>
+        <location file="src/main.cpp" line="250" column="6" bodyfile="src/main.cpp" bodystart="250" bodyend="283"/>
         <references refid="main_8cpp_1a064a914bb7eaaf470d545cab5f0c0066" compoundref="main_8cpp" startline="85">configManager</references>
         <references refid="main_8cpp_1aecbe6ad38ed7d220ace280ea33d8ab45">controller</references>
         <references refid="main_8cpp_1a543ccc95fbe6dd49b01bdc937630a4ac">logger</references>
+        <references refid="main_8cpp_1a4d17575d4300b383a3726118c7dba5ef" compoundref="main_8cpp" startline="88">modbusServer</references>
         <references refid="main_8cpp_1ad27a531589f8fed0687abe50e4ab32dc">timeManager</references>
       </memberdef>
     </sectiondef>
@@ -946,25 +948,30 @@ This is the main application file that initializes and coordinates all system co
 <codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Update<sp/>temperature<sp/>controller<sp/>(reads<sp/>sensors<sp/>and<sp/>updates<sp/>measurement<sp/>points)</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="main_8cpp_1aecbe6ad38ed7d220ace280ea33d8ab45" kindref="member">controller</ref>.update();</highlight></codeline>
 <codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Periodic<sp/>status<sp/>output<sp/>(when<sp/>not<sp/>in<sp/>configuration<sp/>portal<sp/>mode)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>lastPrintTime<sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="main_8cpp_1a064a914bb7eaaf470d545cab5f0c0066" kindref="member">configManager</ref>-&gt;isPortalActive()<sp/>&amp;&amp;<sp/></highlight></codeline>
-<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>millis()<sp/>-<sp/>lastPrintTime<sp/>&gt;<sp/><ref refid="main_8cpp_1aecbe6ad38ed7d220ace280ea33d8ab45" kindref="member">controller</ref>.getMeasurementPeriod())<sp/>{</highlight></codeline>
-<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Uncomment<sp/>for<sp/>detailed<sp/>status<sp/>output:</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Serial.println(&quot;\nSystem<sp/>Status:&quot;);</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Serial.println(controller.getSystemStatusJson());</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Serial.println(controller.getPointsJson());</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Process<sp/>any<sp/>pending<sp/>Modbus<sp/>commands</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="main_8cpp_1a4d17575d4300b383a3726118c7dba5ef" kindref="member">modbusServer</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="main_8cpp_1a4d17575d4300b383a3726118c7dba5ef" kindref="member">modbusServer</ref>-&gt;processCommands();</highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Periodic<sp/>status<sp/>output<sp/>(when<sp/>not<sp/>in<sp/>configuration<sp/>portal<sp/>mode)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>lastPrintTime<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="main_8cpp_1a064a914bb7eaaf470d545cab5f0c0066" kindref="member">configManager</ref>-&gt;isPortalActive()<sp/>&amp;&amp;<sp/></highlight></codeline>
+<codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>millis()<sp/>-<sp/>lastPrintTime<sp/>&gt;<sp/><ref refid="main_8cpp_1aecbe6ad38ed7d220ace280ea33d8ab45" kindref="member">controller</ref>.getMeasurementPeriod())<sp/>{</highlight></codeline>
 <codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lastPrintTime<sp/>=<sp/>millis();</highlight></codeline>
-<codeline lineno="271"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Update<sp/>logger<sp/>(handles<sp/>periodic<sp/>data<sp/>logging<sp/>and<sp/>file<sp/>management)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="main_8cpp_1a543ccc95fbe6dd49b01bdc937630a4ac" kindref="member">logger</ref>.update();</highlight></codeline>
-<codeline lineno="275"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Brief<sp/>delay<sp/>to<sp/>prevent<sp/>excessive<sp/>CPU<sp/>usage</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/>delay(100);</highlight></codeline>
-<codeline lineno="278"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Uncomment<sp/>for<sp/>detailed<sp/>status<sp/>output:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="271"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Serial.println(&quot;\nSystem<sp/>Status:&quot;);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Serial.println(controller.getSystemStatusJson());</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Serial.println(controller.getPointsJson());</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="275"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lastPrintTime<sp/>=<sp/>millis();</highlight></codeline>
+<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Update<sp/>logger<sp/>(handles<sp/>periodic<sp/>data<sp/>logging<sp/>and<sp/>file<sp/>management)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="main_8cpp_1a543ccc95fbe6dd49b01bdc937630a4ac" kindref="member">logger</ref>.update();</highlight></codeline>
+<codeline lineno="280"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Brief<sp/>delay<sp/>to<sp/>prevent<sp/>excessive<sp/>CPU<sp/>usage</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="282"><highlight class="normal"><sp/><sp/><sp/><sp/>delay(100);</highlight></codeline>
+<codeline lineno="283"><highlight class="normal">}</highlight></codeline>
     </programlisting>
     <location file="src/main.cpp"/>
   </compounddef>

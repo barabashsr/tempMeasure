@@ -437,6 +437,26 @@
     <member refid="class_register_map_1af1eec1485d0d78320e17476b87d57ad3" kind="variable"><name>HIGH_ALARM_DS18B20_END_REG</name></member>
     <member refid="class_register_map_1aedac92f3e99b5ea68ccfb649d4737470" kind="variable"><name>HIGH_ALARM_PT1000_START_REG</name></member>
     <member refid="class_register_map_1a48fad7e6eb2c495f3d90d0fe68f69343" kind="variable"><name>HIGH_ALARM_PT1000_END_REG</name></member>
+    <member refid="class_register_map_1ade263025855c5e58313342eac4d99965" kind="variable"><name>ALARM_CONFIG_DS18B20_START_REG</name></member>
+    <member refid="class_register_map_1ac99812bbb5c2872c1b9aeab10f85b06d" kind="variable"><name>ALARM_CONFIG_DS18B20_END_REG</name></member>
+    <member refid="class_register_map_1a0a73e60354edc71292991b1afff56fe3" kind="variable"><name>ALARM_CONFIG_PT1000_START_REG</name></member>
+    <member refid="class_register_map_1a5c6049b2bedaf7c378aa2764c35307dc" kind="variable"><name>ALARM_CONFIG_PT1000_END_REG</name></member>
+    <member refid="class_register_map_1ab6ebaf4c9d19bc744a6c8eb0ab2e75f0" kind="variable"><name>RELAY_CONTROL_START_REG</name></member>
+    <member refid="class_register_map_1a0649e328e6a150b784f327cc1108f910" kind="variable"><name>RELAY_STATUS_START_REG</name></member>
+    <member refid="class_register_map_1a00c0a741a30e1ff93792b07754408ec1" kind="variable"><name>RELAY_CONTROL_END_REG</name></member>
+    <member refid="class_register_map_1abd3e2ddd35bca03f8050526875912ce9" kind="variable"><name>HYSTERESIS_START_REG</name></member>
+    <member refid="class_register_map_1aa10efcd89966c83fac1b009c0614c876" kind="variable"><name>HYSTERESIS_END_REG</name></member>
+    <member refid="class_register_map_1a1f243fb6760e24f1c3a52a10427ac01b" kind="variable"><name>COMMAND_REG</name></member>
+    <member refid="class_register_map_1adc7d514d7f0d28275561a382ccc596c0" kind="variable"><name>ALARM_CONFIG_LOW_ENABLE_BIT</name></member>
+    <member refid="class_register_map_1a5cf94a5ad58133ff28d5d80bdd459706" kind="variable"><name>ALARM_CONFIG_HIGH_ENABLE_BIT</name></member>
+    <member refid="class_register_map_1a6b267ae2d46f49a63e2215fb573a1beb" kind="variable"><name>ALARM_CONFIG_ERROR_ENABLE_BIT</name></member>
+    <member refid="class_register_map_1a9589c50f5b30e6d51357e20087ff6c13" kind="variable"><name>ALARM_CONFIG_LOW_PRIORITY_MASK</name></member>
+    <member refid="class_register_map_1acc98fefd1fbb487f034dc9b30520d822" kind="variable"><name>ALARM_CONFIG_HIGH_PRIORITY_MASK</name></member>
+    <member refid="class_register_map_1a22ab718574b623169a3938c0799ef1fd" kind="variable"><name>ALARM_CONFIG_ERROR_PRIORITY_MASK</name></member>
+    <member refid="class_register_map_1a3f673b15cd7bcf88eb1eb6cfea58c8cf" kind="variable"><name>ALARM_CONFIG_LOW_PRIORITY_SHIFT</name></member>
+    <member refid="class_register_map_1a6eef9ee14553949e023ac58d79a1ccc5" kind="variable"><name>ALARM_CONFIG_HIGH_PRIORITY_SHIFT</name></member>
+    <member refid="class_register_map_1a80213794342fd35a7b2da48eaff70394" kind="variable"><name>ALARM_CONFIG_ERROR_PRIORITY_SHIFT</name></member>
+    <member refid="class_register_map_1adeab377c26bee797a763cd32231ba476" kind="variable"><name>CMD_APPLY_ALARM_CONFIG</name></member>
     <member refid="class_register_map_1aa98070c7197fdf26d743f4eed498fd66" kind="variable"><name>deviceId</name></member>
     <member refid="class_register_map_1ae5b846e888d43b130096d3671dc8c0fb" kind="variable"><name>firmwareVersion</name></member>
     <member refid="class_register_map_1a216b9abf3c7b9f7d6721ea2e96cb9ff7" kind="variable"><name>numActiveDS18B20</name></member>
@@ -449,6 +469,11 @@
     <member refid="class_register_map_1a5c46fc421fa321b430997811d3a23f56" kind="variable"><name>errorStatus</name></member>
     <member refid="class_register_map_1aeb01f6f8df07fc282a17015c55de7c06" kind="variable"><name>lowAlarmThresholds</name></member>
     <member refid="class_register_map_1ae6ce504c8e4c620b908bd7c7bca9fec0" kind="variable"><name>highAlarmThresholds</name></member>
+    <member refid="class_register_map_1a940577c2a15971b500abb147fc5224c5" kind="variable"><name>alarmConfig</name></member>
+    <member refid="class_register_map_1a8a79e873217f9137db65e64c42574da8" kind="variable"><name>relayControl</name></member>
+    <member refid="class_register_map_1a487fafd44e4414c1cbc326a89536f4a7" kind="variable"><name>hysteresis</name></member>
+    <member refid="class_register_map_1a9b87e1ac9f4527f43e0ebb07c1227058" kind="variable"><name>commandRegister</name></member>
+    <member refid="class_register_map_1a437e6ab3bd784b4b2a2035d4a14761ed" kind="variable"><name>commandPending</name></member>
     <member refid="class_register_map_1abc2174dcfe96247d4f97e552a2363e50" kind="function"><name>isValidAddress</name></member>
     <member refid="class_register_map_1a313522004347397fee66b57e9daed873" kind="function"><name>isReadOnlyRegister</name></member>
     <member refid="class_register_map_1a421bb31f92254150a6738952b1ff7944" kind="function"><name>RegisterMap</name></member>
@@ -465,6 +490,14 @@
     <member refid="class_register_map_1a48d0afa7c0aabe6627aae579a85b635c" kind="function"><name>getFirmwareVersion</name></member>
     <member refid="class_register_map_1a9fcb99c9ae7533fe8a02db3fdc2680bf" kind="function"><name>getNumActiveDS18B20</name></member>
     <member refid="class_register_map_1ab54c225b63f87458fea29d47cec65d50" kind="function"><name>getNumActivePT1000</name></member>
+    <member refid="class_register_map_1ad2ad18c349021595da1bb4ad949be7ec" kind="function"><name>isCommandPending</name></member>
+    <member refid="class_register_map_1abdba3d3a971246ed5087245224f20df8" kind="function"><name>getPendingCommand</name></member>
+    <member refid="class_register_map_1af342d67a72fc264a809d8afb291181e3" kind="function"><name>clearPendingCommand</name></member>
+    <member refid="class_register_map_1af20a55d55e6b20bee49c941b171fbdec" kind="function"><name>getAlarmConfig</name></member>
+    <member refid="class_register_map_1a3c1e4495c5a8998470d792222c23fb1a" kind="function"><name>setRelayControl</name></member>
+    <member refid="class_register_map_1ab4fea462af4380229ea2443dfee22535" kind="function"><name>getRelayControl</name></member>
+    <member refid="class_register_map_1aca50699b0bad842f5e9c4967dbd6316c" kind="function"><name>setRelayStatus</name></member>
+    <member refid="class_register_map_1ae7a529c57a947f21ea19f761785ffffc" kind="function"><name>getRelayStatus</name></member>
   </compound>
   <compound refid="class_sensor" kind="class"><name>Sensor</name>
     <member refid="class_sensor_1a75b4ea06bdcd22f6591f24ae3a46983a" kind="variable"><name>address</name></member>
@@ -685,6 +718,7 @@
     <member refid="class_temp_modbus_server_1ac703f8733fd8afdec9b315b266f5204a" kind="function"><name>~TempModbusServer</name></member>
     <member refid="class_temp_modbus_server_1aac671b84770f4139745d08d05b5c1d92" kind="function"><name>begin</name></member>
     <member refid="class_temp_modbus_server_1a8bbfa71756ccff5f4b80509c41078c6c" kind="function"><name>stop</name></member>
+    <member refid="class_temp_modbus_server_1a0debe38364d9025833706a6f74d5655a" kind="function"><name>processCommands</name></member>
   </compound>
   <compound refid="class_time_manager" kind="class"><name>TimeManager</name>
     <member refid="class_time_manager_1abe00ffc1b0527b13103868d587e30f23" kind="variable"><name>_rtc</name></member>

@@ -257,6 +257,11 @@ void loop() {
     // Update temperature controller (reads sensors and updates measurement points)
     controller.update();
     
+    // Process any pending Modbus commands
+    if (modbusServer) {
+        modbusServer->processCommands();
+    }
+    
     // Periodic status output (when not in configuration portal mode)
     static unsigned long lastPrintTime = 0;
     if (!configManager->isPortalActive() && 

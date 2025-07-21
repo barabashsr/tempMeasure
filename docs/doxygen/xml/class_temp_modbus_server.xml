@@ -36,6 +36,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="include/TempModbusServer.h" line="39" column="17" bodyfile="include/TempModbusServer.h" bodystart="39" bodyend="-1"/>
+        <referencedby refid="class_temp_modbus_server_1a0debe38364d9025833706a6f74d5655a" compoundref="_temp_modbus_server_8cpp" startline="402" endline="462">processCommands</referencedby>
         <referencedby refid="class_temp_modbus_server_1a32478c395aa45fcdcafcd8790de50691" compoundref="_temp_modbus_server_8cpp" startline="23" endline="46">TempModbusServer</referencedby>
       </memberdef>
       <memberdef kind="variable" id="class_temp_modbus_server_1a4db19b8c522c7241cc8507b26dae6997" prot="private" static="no" mutable="no">
@@ -452,6 +453,37 @@ Configures serial port, registers worker functions, and starts listening for Mod
         </inbodydescription>
         <location file="include/TempModbusServer.h" line="108" column="10" bodyfile="src/TempModbusServer.cpp" bodystart="126" bodyend="129"/>
       </memberdef>
+      <memberdef kind="function" id="class_temp_modbus_server_1a0debe38364d9025833706a6f74d5655a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void TempModbusServer::processCommands</definition>
+        <argsstring>()</argsstring>
+        <name>processCommands</name>
+        <qualifiedname>TempModbusServer::processCommands</qualifiedname>
+        <briefdescription>
+<para>Process pending commands from Modbus writes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Checks for pending commands in register map and executes them <simplesect kind="note"><para>Should be called periodically from main loop </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/TempModbusServer.h" line="115" column="10" bodyfile="src/TempModbusServer.cpp" bodystart="402" bodyend="462"/>
+        <references refid="class_register_map_1a6b267ae2d46f49a63e2215fb573a1beb" compoundref="_register_map_8h" startline="308">RegisterMap::ALARM_CONFIG_ERROR_ENABLE_BIT</references>
+        <references refid="class_register_map_1a22ab718574b623169a3938c0799ef1fd" compoundref="_register_map_8h" startline="311">RegisterMap::ALARM_CONFIG_ERROR_PRIORITY_MASK</references>
+        <references refid="class_register_map_1a80213794342fd35a7b2da48eaff70394" compoundref="_register_map_8h" startline="314">RegisterMap::ALARM_CONFIG_ERROR_PRIORITY_SHIFT</references>
+        <references refid="class_register_map_1a5cf94a5ad58133ff28d5d80bdd459706" compoundref="_register_map_8h" startline="307">RegisterMap::ALARM_CONFIG_HIGH_ENABLE_BIT</references>
+        <references refid="class_register_map_1acc98fefd1fbb487f034dc9b30520d822" compoundref="_register_map_8h" startline="310">RegisterMap::ALARM_CONFIG_HIGH_PRIORITY_MASK</references>
+        <references refid="class_register_map_1a6eef9ee14553949e023ac58d79a1ccc5" compoundref="_register_map_8h" startline="313">RegisterMap::ALARM_CONFIG_HIGH_PRIORITY_SHIFT</references>
+        <references refid="class_register_map_1adc7d514d7f0d28275561a382ccc596c0" compoundref="_register_map_8h" startline="306">RegisterMap::ALARM_CONFIG_LOW_ENABLE_BIT</references>
+        <references refid="class_register_map_1a9589c50f5b30e6d51357e20087ff6c13" compoundref="_register_map_8h" startline="309">RegisterMap::ALARM_CONFIG_LOW_PRIORITY_MASK</references>
+        <references refid="class_register_map_1a3f673b15cd7bcf88eb1eb6cfea58c8cf" compoundref="_register_map_8h" startline="312">RegisterMap::ALARM_CONFIG_LOW_PRIORITY_SHIFT</references>
+        <references refid="class_register_map_1adeab377c26bee797a763cd32231ba476" compoundref="_register_map_8h" startline="317">RegisterMap::CMD_APPLY_ALARM_CONFIG</references>
+        <references refid="class_logger_manager_1a5c1373ccc47f4112b596fe6f84fbbc21" compoundref="_logger_manager_8h" startline="145" endline="147">LoggerManager::info</references>
+        <references refid="class_temp_modbus_server_1a9caa115b3b1a8131680cdc620a23139e" compoundref="_temp_modbus_server_8h" startline="39">registerMap</references>
+        <references refid="class_logger_manager_1a0d52b0ff7bff22817e987ad753102854" compoundref="_logger_manager_8h" startline="155" endline="157">LoggerManager::warning</references>
+      </memberdef>
     </sectiondef>
     <briefdescription>
 <para>Modbus RTU server implementation for temperature monitoring. </para>
@@ -473,12 +505,13 @@ Configures serial port, registers worker functions, and starts listening for Mod
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="include/TempModbusServer.h" line="36" column="1" bodyfile="include/TempModbusServer.h" bodystart="36" bodyend="109"/>
+    <location file="include/TempModbusServer.h" line="36" column="1" bodyfile="include/TempModbusServer.h" bodystart="36" bodyend="116"/>
     <listofallmembers>
       <member refid="class_temp_modbus_server_1acd386ba587dcfd86230f2f4156ee7303" prot="private" virt="non-virtual"><scope>TempModbusServer</scope><name>baudRate</name></member>
       <member refid="class_temp_modbus_server_1aac671b84770f4139745d08d05b5c1d92" prot="public" virt="non-virtual"><scope>TempModbusServer</scope><name>begin</name></member>
       <member refid="class_temp_modbus_server_1a91abdc37c36d4d2a8b070bd3031a2373" prot="private" virt="non-virtual"><scope>TempModbusServer</scope><name>dePin</name></member>
       <member refid="class_temp_modbus_server_1a84bf329562ebb8bb9b9b55c120a4ddae" prot="private" virt="non-virtual"><scope>TempModbusServer</scope><name>mbServer</name></member>
+      <member refid="class_temp_modbus_server_1a0debe38364d9025833706a6f74d5655a" prot="public" virt="non-virtual"><scope>TempModbusServer</scope><name>processCommands</name></member>
       <member refid="class_temp_modbus_server_1a7d4a0ced2cfd174a4697a85492e12a58" prot="private" virt="non-virtual"><scope>TempModbusServer</scope><name>readHoldingRegistersWorker</name></member>
       <member refid="class_temp_modbus_server_1a9caa115b3b1a8131680cdc620a23139e" prot="private" virt="non-virtual"><scope>TempModbusServer</scope><name>registerMap</name></member>
       <member refid="class_temp_modbus_server_1a512f10fc6c18f19302b042bfc97bac80" prot="private" virt="non-virtual"><scope>TempModbusServer</scope><name>registerMapPtr</name></member>

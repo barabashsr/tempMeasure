@@ -22,6 +22,9 @@ RegisterMap::RegisterMap() {
     firmwareVersion = 0x0100;
     numActiveDS18B20 = 0;
     numActivePT1000 = 0;
+    commandRegister = 0;
+    commandPending = false;
+    
     for (int i = 0; i < 7; i++) deviceStatus[i] = 0;
     for (int i = 0; i < 60; i++) {
         currentTemps[i] = 0;
@@ -31,6 +34,20 @@ RegisterMap::RegisterMap() {
         errorStatus[i] = 0;
         lowAlarmThresholds[i] = -10;
         highAlarmThresholds[i] = 50;
+        // Initialize alarm config with all alarms disabled, medium priority
+        alarmConfig[i] = (1 << ALARM_CONFIG_LOW_PRIORITY_SHIFT) | 
+                        (1 << ALARM_CONFIG_HIGH_PRIORITY_SHIFT) | 
+                        (1 << ALARM_CONFIG_ERROR_PRIORITY_SHIFT);
+    }
+    
+    // Initialize relay control (all auto mode)
+    for (int i = 0; i < 6; i++) {
+        relayControl[i] = 0;
+    }
+    
+    // Initialize hysteresis to 5 degrees
+    for (int i = 0; i < 20; i++) {
+        hysteresis[i] = 50; // 5.0 degrees in 0.1 degree units
     }
 }
 
@@ -43,13 +60,21 @@ bool RegisterMap::isValidAddress(uint16_t address) {
     if (address >= ERROR_STATUS_DS18B20_START_REG && address <= ERROR_STATUS_PT1000_END_REG) return true;
     if (address >= LOW_ALARM_DS18B20_START_REG && address <= LOW_ALARM_PT1000_END_REG) return true;
     if (address >= HIGH_ALARM_DS18B20_START_REG && address <= HIGH_ALARM_PT1000_END_REG) return true;
+    if (address >= ALARM_CONFIG_DS18B20_START_REG && address <= ALARM_CONFIG_PT1000_END_REG) return true;
+    if (address >= RELAY_CONTROL_START_REG && address <= RELAY_CONTROL_END_REG) return true;
+    if (address >= HYSTERESIS_START_REG && address <= HYSTERESIS_END_REG) return true;
+    if (address == COMMAND_REG) return true;
     return false;
 }
 
 bool RegisterMap::isReadOnlyRegister(uint16_t address) {
-    // Only alarm thresholds are writable
+    // Writable registers
     if (address >= LOW_ALARM_DS18B20_START_REG && address <= LOW_ALARM_PT1000_END_REG) return false;
     if (address >= HIGH_ALARM_DS18B20_START_REG && address <= HIGH_ALARM_PT1000_END_REG) return false;
+    if (address >= ALARM_CONFIG_DS18B20_START_REG && address <= ALARM_CONFIG_PT1000_END_REG) return false;
+    if (address >= RELAY_CONTROL_START_REG && address <= RELAY_CONTROL_START_REG + 2) return false; // Only control, not status
+    if (address >= HYSTERESIS_START_REG && address <= HYSTERESIS_END_REG) return false;
+    if (address == COMMAND_REG) return false;
     return true;
 }
 
@@ -78,6 +103,22 @@ uint16_t RegisterMap::readHoldingRegister(uint16_t address) {
         return lowAlarmThresholds[address - LOW_ALARM_DS18B20_START_REG];
     if (address >= HIGH_ALARM_DS18B20_START_REG && address <= HIGH_ALARM_PT1000_END_REG)
         return highAlarmThresholds[address - HIGH_ALARM_DS18B20_START_REG];
+    
+    // Alarm configuration registers
+    if (address >= ALARM_CONFIG_DS18B20_START_REG && address <= ALARM_CONFIG_PT1000_END_REG)
+        return alarmConfig[address - ALARM_CONFIG_DS18B20_START_REG];
+    
+    // Relay control and status registers
+    if (address >= RELAY_CONTROL_START_REG && address <= RELAY_CONTROL_END_REG)
+        return relayControl[address - RELAY_CONTROL_START_REG];
+    
+    // Hysteresis registers
+    if (address >= HYSTERESIS_START_REG && address <= HYSTERESIS_END_REG)
+        return hysteresis[address - HYSTERESIS_START_REG];
+    
+    // Command register
+    if (address == COMMAND_REG)
+        return commandRegister;
 
     return 0xFFFF;
 }
@@ -86,7 +127,7 @@ bool RegisterMap::writeHoldingRegister(uint16_t address, uint16_t value) {
     if (!isValidAddress(address)) return false;
     if (isReadOnlyRegister(address)) return false;
 
-    // Only alarm thresholds are writable
+    // Alarm thresholds
     if (address >= LOW_ALARM_DS18B20_START_REG && address <= LOW_ALARM_PT1000_END_REG) {
         lowAlarmThresholds[address - LOW_ALARM_DS18B20_START_REG] = static_cast<int16_t>(value);
         return true;
@@ -95,6 +136,32 @@ bool RegisterMap::writeHoldingRegister(uint16_t address, uint16_t value) {
         highAlarmThresholds[address - HIGH_ALARM_DS18B20_START_REG] = static_cast<int16_t>(value);
         return true;
     }
+    
+    // Alarm configuration
+    if (address >= ALARM_CONFIG_DS18B20_START_REG && address <= ALARM_CONFIG_PT1000_END_REG) {
+        alarmConfig[address - ALARM_CONFIG_DS18B20_START_REG] = value;
+        return true;
+    }
+    
+    // Relay control (only control registers, not status)
+    if (address >= RELAY_CONTROL_START_REG && address <= RELAY_CONTROL_START_REG + 2) {
+        relayControl[address - RELAY_CONTROL_START_REG] = value;
+        return true;
+    }
+    
+    // Hysteresis
+    if (address >= HYSTERESIS_START_REG && address <= HYSTERESIS_END_REG) {
+        hysteresis[address - HYSTERESIS_START_REG] = value;
+        return true;
+    }
+    
+    // Command register
+    if (address == COMMAND_REG) {
+        commandRegister = value;
+        commandPending = true;
+        return true;
+    }
+    
     return false;
 }
 
@@ -127,4 +194,37 @@ void RegisterMap::applyConfigFromMeasurementPoint(const MeasurementPoint& point)
         highAlarmThresholds[idx] = point.getHighAlarmThreshold();
         //Serial.printf("applyConfigFromMeasurementPoint(%d): LAS: %d, HAS: %d\n", idx, lowAlarmThresholds[idx], highAlarmThresholds[idx]);
     }
+}
+
+uint16_t RegisterMap::getAlarmConfig(uint8_t pointIndex) const {
+    if (pointIndex < 60) {
+        return alarmConfig[pointIndex];
+    }
+    return 0;
+}
+
+void RegisterMap::setRelayControl(uint8_t relayIndex, uint16_t mode) {
+    if (relayIndex < 3) {
+        relayControl[relayIndex] = mode;
+    }
+}
+
+uint16_t RegisterMap::getRelayControl(uint8_t relayIndex) const {
+    if (relayIndex < 3) {
+        return relayControl[relayIndex];
+    }
+    return 0;
+}
+
+void RegisterMap::setRelayStatus(uint8_t relayIndex, bool state) {
+    if (relayIndex < 3) {
+        relayControl[3 + relayIndex] = state ? 1 : 0;
+    }
+}
+
+bool RegisterMap::getRelayStatus(uint8_t relayIndex) const {
+    if (relayIndex < 3) {
+        return relayControl[3 + relayIndex] != 0;
+    }
+    return false;
 }
