@@ -931,6 +931,24 @@ void ConfigManager::basicAPI(){
         }
     });
 
+    server->on("/alarm-config.html", HTTP_GET, [this]() {
+        if (LittleFS.exists("/alarm-config.html")) {
+            server->sendHeader("HTTP/1.1 200 OK", "");
+            server->sendHeader("Content-Type", "text/html");
+            server->sendHeader("Connection", "close");
+            server->sendHeader("Cache-Control", "max-age=3600");
+            File file = LittleFS.open("/alarm-config.html", "r");
+            server->streamFile(file, "text/html");
+            Serial.println("SERVER: /alarm-config.html");
+            file.close();
+        } else {
+            server->sendHeader("HTTP/1.1 200 OK", "");
+            server->sendHeader("Content-Type", "text/plain");
+            server->sendHeader("Connection", "close");
+            server->send(404, "text/plain", "alarm-config.html page not found");
+        }
+    });
+
     
 
     // Add CORS support for OPTIONS requests
