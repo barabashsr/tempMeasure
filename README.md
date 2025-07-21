@@ -28,6 +28,9 @@ This industrial-grade ESP32-based device is designed for precision temperature m
 - MODBUS-RTU communication over RS485
 - Web interface for configuration and monitoring
 - Configurable alarm thresholds for each sensor
+- Multi-priority alarm system (Low/Medium/High/Critical)
+- LED indication for alarm states
+- Relay outputs for external signaling (siren/beacon)
 - Error detection and reporting
 - Temperature range: -40°C to +200°C (integer Celsius values)
 - Industrial-grade reliability and accuracy
@@ -112,6 +115,20 @@ Each alarm configuration register contains:
 - 0: Auto (follows alarm logic)
 - 1: Force Off
 - 2: Force On
+
+### Relay Behavior in Auto Mode:
+- **Relay 1 (Siren)**: Activates on ANY active alarm of ANY priority. Turns off only when ALL active alarms are acknowledged.
+- **Relay 2 (Beacon)**: 
+  - Critical/High priority: Constant ON
+  - Medium priority: Blinking (2s on/30s off)
+  - Low priority: OFF
+- **Relay 3**: Modbus control only (spare)
+
+### LED Indication:
+- **Green LED**: ON when system is healthy (no alarms)
+- **Red LED**: ON for Critical priority alarms
+- **Yellow LED**: ON for High priority alarms
+- **Blue LED**: ON for Medium priority, Blinking (200ms/2000ms) for Low priority
 
 ## Command Register Values (Register 899)
 - 0x0001: Apply alarm configuration

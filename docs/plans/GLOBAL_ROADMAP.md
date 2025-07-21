@@ -53,19 +53,21 @@ Temperature Control System - PlatformIO-based embedded system for monitoring and
 
 ## 📋 Implementation Roadmap (Based on Briefs)
 
-### Priority 1: Relay Control Logic
-1. **Relay Control Based on Alarm Priority and State**
-   - Implement notification scenarios from brief:
+### Priority 1: Relay Control Logic ✓ COMPLETED
+1. **Relay Control Based on Alarm Priority and State** ✓
+   - Implemented notification scenarios:
+     - Relay1 (Siren): ON for ANY active alarm (any priority), OFF when all acknowledged
      - CRITICAL: Siren ON + Beacon ON (constant) → Acknowledged: Beacon ON (constant)
-     - HIGH: Beacon ON (constant) → Acknowledged: Beacon ON (blink 2s on/30s off)
-     - MEDIUM: Beacon ON (blink 2s on/30s off) → Acknowledged: Beacon OFF
-     - LOW: No relay action
-   - Handle multiple active alarms (use highest priority)
+     - HIGH: Siren ON + Beacon ON (constant) → Acknowledged: Beacon ON (blink 2s on/30s off)
+     - MEDIUM: Siren ON + Beacon ON (blink 2s on/30s off) → Acknowledged: Beacon OFF
+     - LOW: Siren ON + No beacon action
+   - Handles multiple active alarms (uses highest priority for beacon)
 
-2. **Relay Control via Modbus RTU**
-   - Implement registers 860-862 handling
+2. **Relay Control via Modbus RTU** ✓
+   - Implemented registers 860-862 handling
    - Modes: 0=Auto, 1=Force Off, 2=Force On
    - Relay 3 controlled via Modbus only
+   - Status feedback in registers 11-13
 
 ### Priority 2: Display & LED Improvements
 1. **Circular Text Scrolling**

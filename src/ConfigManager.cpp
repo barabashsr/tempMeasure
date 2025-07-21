@@ -1780,12 +1780,9 @@ void ConfigManager::alarmsAPI(){
             return;
         }
         
-        Serial.printf("Received POST data: %s\n", server->arg("plain").c_str());
-        
         DynamicJsonDocument doc(8192); // Large enough for multiple points
         DeserializationError err = deserializeJson(doc, server->arg("plain"));
         if (err) {
-            Serial.printf("JSON deserialization error: %s\n", err.c_str());
             server->send(400, "application/json", "{\"error\":\"Invalid JSON format\"}");
             return;
         }

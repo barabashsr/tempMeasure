@@ -523,7 +523,8 @@ void TemperatureController::handleAlarmOutputs() {
     // Apply alarm notification logic based on priority and acknowledgment state
     // Following the specification table from PLANNING_RESULTS.md
     
-    bool relay1State = false; // Siren
+    // Relay1 (Siren) - on for ANY active alarm of ANY priority
+    bool relay1State = (criticalActive + highActive + mediumActive + lowActive) > 0;
     bool relay2State = false; // Flash beacon
     bool redLedState = false;
     bool yellowLedState = false;
@@ -547,7 +548,7 @@ void TemperatureController::handleAlarmOutputs() {
             relay2State = true;
         } else {
             // CRITICAL active: Siren ON + Beacon ON (constant)
-            relay1State = true;
+            // relay1State already set based on ANY active alarm
             relay2State = true;
         }
         // Red LED solid for critical alarms
