@@ -2161,7 +2161,7 @@ Provides access to the global logger instance </para>
         <referencedby refid="class_config_manager_1a9b7af07b85bf9cc3ac05603db6e89fd2" compoundref="_config_manager_8cpp" startline="1100" endline="1228">ConfigManager::csvImportExportAPI</referencedby>
         <referencedby refid="class_temperature_controller_1a57b74b40c88016965d07248981412f7d" compoundref="_temperature_controller_8cpp" startline="1079" endline="1151">TemperatureController::discoverDS18B20Sensors</referencedby>
         <referencedby refid="class_temperature_controller_1a79e98c9a1d42de787a66e02b250b7a74" compoundref="_temperature_controller_8cpp" startline="1154" endline="1203">TemperatureController::discoverPTSensors</referencedby>
-        <referencedby refid="class_temperature_controller_1a760bb05985e2ea9950c7f5cdc7f6669b" compoundref="_temperature_controller_8cpp" startline="2138" endline="2174">TemperatureController::forceRelayState</referencedby>
+        <referencedby refid="class_temperature_controller_1a760bb05985e2ea9950c7f5cdc7f6669b" compoundref="_temperature_controller_8cpp" startline="2142" endline="2178">TemperatureController::forceRelayState</referencedby>
         <referencedby refid="class_temperature_controller_1a82e4c37ff4121eaf5e00e9c52381e840" compoundref="_temperature_controller_8cpp" startline="500" endline="728">TemperatureController::handleAlarmOutputs</referencedby>
         <referencedby refid="class_config_manager_1a04edc14e642ecadb9ccb87be05d1d878" compoundref="_config_manager_8cpp" startline="448" endline="661">ConfigManager::loadPointsConfig</referencedby>
         <referencedby refid="class_temp_modbus_server_1a0debe38364d9025833706a6f74d5655a" compoundref="_temp_modbus_server_8cpp" startline="427" endline="487">TempModbusServer::processCommands</referencedby>
@@ -2236,7 +2236,7 @@ Provides access to the global logger instance </para>
         <referencedby refid="class_temp_modbus_server_1aac671b84770f4139745d08d05b5c1d92" compoundref="_temp_modbus_server_8cpp" startline="87" endline="126">TempModbusServer::begin</referencedby>
         <referencedby refid="class_temperature_controller_1a84937fc1aed30193b817f3b062ce0cfc" compoundref="_temperature_controller_8cpp" startline="992" endline="1014">TemperatureController::bindSensorToPointByChipSelect</referencedby>
         <referencedby refid="class_temperature_controller_1a5d8f7c51bb176435a5035293a2db78f7" compoundref="_temperature_controller_8cpp" startline="967" endline="990">TemperatureController::bindSensorToPointByRom</referencedby>
-        <referencedby refid="class_temperature_controller_1a760bb05985e2ea9950c7f5cdc7f6669b" compoundref="_temperature_controller_8cpp" startline="2138" endline="2174">TemperatureController::forceRelayState</referencedby>
+        <referencedby refid="class_temperature_controller_1a760bb05985e2ea9950c7f5cdc7f6669b" compoundref="_temperature_controller_8cpp" startline="2142" endline="2178">TemperatureController::forceRelayState</referencedby>
         <referencedby refid="class_temp_modbus_server_1a0debe38364d9025833706a6f74d5655a" compoundref="_temp_modbus_server_8cpp" startline="427" endline="487">TempModbusServer::processCommands</referencedby>
         <referencedby refid="class_alarm_1af8d75ee8622a2a96f4bc9b408e9668e5" compoundref="_alarm_8cpp" startline="176" endline="193">Alarm::reactivate</referencedby>
         <referencedby refid="class_alarm_1abc87fe39e6a9b5beb9f09df780f67621" compoundref="_alarm_8cpp" startline="477" endline="624">Alarm::updateCondition</referencedby>
@@ -2285,8 +2285,8 @@ Provides access to the global logger instance </para>
         <location file="include/LoggerManager.h" line="165" column="17" bodyfile="include/LoggerManager.h" bodystart="165" bodyend="167"/>
         <references refid="class_logger_manager_1a3f4c0cc78425ddd99d489740be325f4d" compoundref="_logger_manager_8h" startline="39">_instance</references>
         <referencedby refid="class_config_manager_1a9b7af07b85bf9cc3ac05603db6e89fd2" compoundref="_config_manager_8cpp" startline="1100" endline="1228">ConfigManager::csvImportExportAPI</referencedby>
-        <referencedby refid="class_temperature_controller_1a760bb05985e2ea9950c7f5cdc7f6669b" compoundref="_temperature_controller_8cpp" startline="2138" endline="2174">TemperatureController::forceRelayState</referencedby>
-        <referencedby refid="class_temperature_controller_1aac890ae08b5eddcf272771ecdba61453" compoundref="_temperature_controller_8cpp" startline="2127" endline="2136">TemperatureController::getRelayActualState</referencedby>
+        <referencedby refid="class_temperature_controller_1a760bb05985e2ea9950c7f5cdc7f6669b" compoundref="_temperature_controller_8cpp" startline="2142" endline="2178">TemperatureController::forceRelayState</referencedby>
+        <referencedby refid="class_temperature_controller_1aac890ae08b5eddcf272771ecdba61453" compoundref="_temperature_controller_8cpp" startline="2131" endline="2140">TemperatureController::getRelayActualState</referencedby>
         <referencedby refid="class_temperature_controller_1a61ff288cbeaa86dc21c610c778dba64e" compoundref="_temperature_controller_8cpp" startline="2076" endline="2085">TemperatureController::getRelayControlMode</referencedby>
         <referencedby refid="class_temp_modbus_server_1a7d4a0ced2cfd174a4697a85492e12a58" compoundref="_temp_modbus_server_8cpp" startline="178" endline="240">TempModbusServer::readHoldingRegistersWorker</referencedby>
         <referencedby refid="class_temperature_controller_1a8b0a764517c60705322f033be420c628" compoundref="_temperature_controller_8cpp" startline="2045" endline="2074">TemperatureController::setRelayControlMode</referencedby>

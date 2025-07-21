@@ -2103,9 +2103,13 @@ bool TemperatureController::getRelayCommandedState(uint8_t relayNumber) const {
     // For AUTO mode, return alarm-based state
     switch (relayNumber) {
         case 1: {
-            // Relay1 (Siren) - only on for active critical alarms
-            int criticalActive = getAlarmCount(AlarmPriority::PRIORITY_CRITICAL, AlarmStage::ACTIVE);
-            return criticalActive > 0;
+            // Relay1 (Siren) - on for ANY active alarm of ANY priority
+            // Turns off only when ALL alarms are acknowledged
+            int totalActive = getAlarmCount(AlarmPriority::PRIORITY_LOW, AlarmStage::ACTIVE) +
+                              getAlarmCount(AlarmPriority::PRIORITY_MEDIUM, AlarmStage::ACTIVE) +
+                              getAlarmCount(AlarmPriority::PRIORITY_HIGH, AlarmStage::ACTIVE) +
+                              getAlarmCount(AlarmPriority::PRIORITY_CRITICAL, AlarmStage::ACTIVE);
+            return totalActive > 0;
         }
         case 2: {
             // Relay2 (Beacon) - complex logic based on priority and state
