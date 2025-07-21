@@ -2396,7 +2396,7 @@ Includes alarm type, priority, state, and associated point </para>
         <references refid="class_temperature_controller_1a57ddffe7bca803a83c6ae54fff8b8633" compoundref="_temperature_controller_8h" startline="660">_configuredAlarms</references>
         <references refid="class_measurement_point_1a7b74a18d86e0e545264a774aa2c31cad" compoundref="_measurement_point_8cpp" startline="45" endline="47">MeasurementPoint::getAddress</references>
         <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba24d459a81449d7210c8f9a86c2913034" compoundref="_alarm_8h" startline="46">NEW</references>
-        <references refid="class_alarm_1ad116a3e8b622810e1769568fbac16379" compoundref="_alarm_8cpp" startline="429" endline="431">Alarm::setConfigKey</references>
+        <references refid="class_alarm_1ad116a3e8b622810e1769568fbac16379" compoundref="_alarm_8cpp" startline="433" endline="435">Alarm::setConfigKey</references>
         <referencedby refid="class_temperature_controller_1a27da8ccc3effea555f440ce3e6f89b08" compoundref="_temperature_controller_8cpp" startline="237" endline="260">_checkPointForAlarms</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_temperature_controller_1abb3d16c1efa5754a2e64b5dc5dd4f4cc" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
@@ -2436,7 +2436,7 @@ Includes alarm type, priority, state, and associated point </para>
         <location file="include/TemperatureController.h" line="389" column="10" bodyfile="src/TemperatureController.cpp" bodystart="310" bodyend="316"/>
         <references refid="class_alarm_1aa14f5a764303b269f04573867e2e4fc8" compoundref="_alarm_8cpp" startline="107" endline="136">Alarm::acknowledge</references>
         <references refid="class_temperature_controller_1abb3d16c1efa5754a2e64b5dc5dd4f4cc" compoundref="_temperature_controller_8cpp" startline="300" endline="307">getHighestPriorityAlarm</references>
-        <references refid="class_alarm_1adaf4b74537e11d5643ba5a8ae07fe10e" compoundref="_alarm_8cpp" startline="366" endline="372">Alarm::getStatusText</references>
+        <references refid="class_alarm_1adaf4b74537e11d5643ba5a8ae07fe10e" compoundref="_alarm_8cpp" startline="370" endline="376">Alarm::getStatusText</references>
       </memberdef>
       <memberdef kind="function" id="class_temperature_controller_1ae1ac307e5332c85a007b38a484b8a1c7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2530,9 +2530,9 @@ Creates LOW_TEMPERATURE, HIGH_TEMPERATURE, and SENSOR_ERROR alarms if they don&a
         <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba47a10a0fba7f10a751e6ea38f3d6a1e3" compoundref="_alarm_8h" startline="60">PRIORITY_HIGH</references>
         <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba7e5ab414d2d201947566a9c574a7b85f" compoundref="_alarm_8h" startline="59">PRIORITY_MEDIUM</references>
         <references refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2a3993b9fcdbf9ec59e873519a4d02fe2f" compoundref="_alarm_8h" startline="36">SENSOR_ERROR</references>
-        <references refid="class_alarm_1ad116a3e8b622810e1769568fbac16379" compoundref="_alarm_8cpp" startline="429" endline="431">Alarm::setConfigKey</references>
-        <references refid="class_alarm_1acb8f203b2e2317c1f835bb4b19123f3f" compoundref="_alarm_8cpp" startline="461" endline="470">Alarm::setEnabled</references>
-        <references refid="class_alarm_1a5095c54c304a52ebbaca5a2ea74059cd" compoundref="_alarm_8cpp" startline="433" endline="445">Alarm::setPriority</references>
+        <references refid="class_alarm_1ad116a3e8b622810e1769568fbac16379" compoundref="_alarm_8cpp" startline="433" endline="435">Alarm::setConfigKey</references>
+        <references refid="class_alarm_1acb8f203b2e2317c1f835bb4b19123f3f" compoundref="_alarm_8cpp" startline="465" endline="474">Alarm::setEnabled</references>
+        <references refid="class_alarm_1a5095c54c304a52ebbaca5a2ea74059cd" compoundref="_alarm_8cpp" startline="437" endline="449">Alarm::setPriority</references>
       </memberdef>
       <memberdef kind="function" id="class_temperature_controller_1a880028883101197527de57f626e14512" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; <ref refid="class_alarm" kindref="compound">Alarm</ref> * &gt;</type>
@@ -2631,14 +2631,14 @@ Creates LOW_TEMPERATURE, HIGH_TEMPERATURE, and SENSOR_ERROR alarms if they don&a
         <references refid="class_temperature_controller_1aa97ba23c998b2cfc732786e2307e60fa" compoundref="_temperature_controller_8cpp" startline="1965" endline="1973">_getPriorityString</references>
         <references refid="class_temperature_controller_1a494f057c234b4ff7526bde271aec9267" compoundref="_temperature_controller_8cpp" startline="825" endline="831">getMeasurementPoint</references>
         <references refid="class_measurement_point_1aa3a80d373c7609c7b178bf7353ffdd7a" compoundref="_measurement_point_8cpp" startline="49" endline="51">MeasurementPoint::getName</references>
-        <references refid="class_alarm_1abd578ec75a5ac9bce00b7ce7207c5d8c" compoundref="_alarm_8cpp" startline="378" endline="386">Alarm::getTypeString</references>
+        <references refid="class_alarm_1abd578ec75a5ac9bce00b7ce7207c5d8c" compoundref="_alarm_8cpp" startline="382" endline="390">Alarm::getTypeString</references>
         <references refid="class_logger_manager_1a5c1373ccc47f4112b596fe6f84fbbc21" compoundref="_logger_manager_8h" startline="145" endline="147">LoggerManager::info</references>
         <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba5f9223804ac004dc2fad18afc18a3951" compoundref="_alarm_8h" startline="61">PRIORITY_CRITICAL</references>
         <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba47a10a0fba7f10a751e6ea38f3d6a1e3" compoundref="_alarm_8h" startline="60">PRIORITY_HIGH</references>
         <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba4a2343657e145cb3dab4f445d2c29b1f" compoundref="_alarm_8h" startline="58">PRIORITY_LOW</references>
         <references refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321ba7e5ab414d2d201947566a9c574a7b85f" compoundref="_alarm_8h" startline="59">PRIORITY_MEDIUM</references>
-        <references refid="class_alarm_1a3f5329f9c026bad4f5171423fcaf51b0" compoundref="_alarm_8cpp" startline="628" endline="630">Alarm::setAcknowledgedDelay</references>
-        <references refid="class_alarm_1ad116a3e8b622810e1769568fbac16379" compoundref="_alarm_8cpp" startline="429" endline="431">Alarm::setConfigKey</references>
+        <references refid="class_alarm_1a3f5329f9c026bad4f5171423fcaf51b0" compoundref="_alarm_8cpp" startline="632" endline="634">Alarm::setAcknowledgedDelay</references>
+        <references refid="class_alarm_1ad116a3e8b622810e1769568fbac16379" compoundref="_alarm_8cpp" startline="433" endline="435">Alarm::setConfigKey</references>
         <references refid="class_logger_manager_1a0d52b0ff7bff22817e987ad753102854" compoundref="_logger_manager_8h" startline="155" endline="157">LoggerManager::warning</references>
       </memberdef>
       <memberdef kind="function" id="class_temperature_controller_1ac39c426da2e1f9dff4abe1d9b550b723" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -2733,8 +2733,8 @@ Creates LOW_TEMPERATURE, HIGH_TEMPERATURE, and SENSOR_ERROR alarms if they don&a
         </inbodydescription>
         <location file="include/TemperatureController.h" line="451" column="10" bodyfile="src/TemperatureController.cpp" bodystart="1492" bodyend="1500"/>
         <references refid="class_temperature_controller_1ae7d9c642f7ae697c2679e61d4da45868" compoundref="_temperature_controller_8cpp" startline="1502" endline="1509">findAlarm</references>
-        <references refid="class_alarm_1acb8f203b2e2317c1f835bb4b19123f3f" compoundref="_alarm_8cpp" startline="461" endline="470">Alarm::setEnabled</references>
-        <references refid="class_alarm_1a5095c54c304a52ebbaca5a2ea74059cd" compoundref="_alarm_8cpp" startline="433" endline="445">Alarm::setPriority</references>
+        <references refid="class_alarm_1acb8f203b2e2317c1f835bb4b19123f3f" compoundref="_alarm_8cpp" startline="465" endline="474">Alarm::setEnabled</references>
+        <references refid="class_alarm_1a5095c54c304a52ebbaca5a2ea74059cd" compoundref="_alarm_8cpp" startline="437" endline="449">Alarm::setPriority</references>
       </memberdef>
       <memberdef kind="function" id="class_temperature_controller_1ae7d9c642f7ae697c2679e61d4da45868" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="class_alarm" kindref="compound">Alarm</ref> *</type>
