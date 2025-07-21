@@ -116,6 +116,7 @@ var class_temperature_controller =
     [ "_currentActiveAlarmIndex", "class_temperature_controller.html#a21c88d4fb28ca5365b082de0790d861c", null ],
     [ "_currentDisplayedAlarm", "class_temperature_controller.html#a98355f65a59f91b4e5d5c8e70e5e7695", null ],
     [ "_displayingActiveAlarm", "class_temperature_controller.html#aa881d2bbb58b22ac952aa781d997ee01", null ],
+    [ "_greenLedState", "class_temperature_controller.html#a999459f5c7d5320ad12c90bf0948a551", null ],
     [ "_lastAlarmCheck", "class_temperature_controller.html#ac0cd8ac0fd76c008b3af737f12467e32", null ],
     [ "_lastAlarmDisplayTime", "class_temperature_controller.html#af5090245265f1d7bacc7e9e545fc240d", null ],
     [ "_lastButtonPressTime", "class_temperature_controller.html#a669c6e7452f2bbd21b16b97b0de228cc", null ],

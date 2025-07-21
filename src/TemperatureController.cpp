@@ -480,6 +480,23 @@ std::vector<Alarm*> TemperatureController::getAlarmsForPoint(MeasurementPoint* p
 //         indicator.writePort("Relay2", false);
 //     }
 // }
+/**
+ * @brief Handle alarm outputs including LEDs and relays based on alarm priorities
+ * 
+ * LED Logic:
+ * - GREEN: Solid when no alarms (system OK)  
+ * - RED: Solid for CRITICAL priority alarms
+ * - YELLOW: Solid for HIGH priority alarms
+ * - BLUE: Solid for MEDIUM priority, Blinking for LOW priority
+ * 
+ * Relay Logic:
+ * - CRITICAL: Siren + Beacon ON (acknowledged: Beacon only)
+ * - HIGH: Beacon ON (acknowledged: Beacon blink 2s/30s)
+ * - MEDIUM: Beacon blink 2s/30s (acknowledged: OFF)
+ * - LOW: No relay action
+ * 
+ * Implements intelligent blinking state management to prevent restart cycles
+ */
 void TemperatureController::handleAlarmOutputs() {
     // Get alarm counts by priority and stage for precise control
     int criticalActive = getAlarmCount(AlarmPriority::PRIORITY_CRITICAL, AlarmStage::ACTIVE);
@@ -512,10 +529,17 @@ void TemperatureController::handleAlarmOutputs() {
     bool yellowLedState = false;
     bool blueLedState = false;
     
-    // Stop all blinking first - we'll restart as needed
-    indicator.stopBlinking("Relay2");
-    indicator.stopBlinking("YellowLED");
-    indicator.stopBlinking("BlueLED");
+    // Track what should be blinking to avoid unnecessary restarts
+    static bool relay2WasBlinking = false;
+    static bool blueLedWasBlinking = false;
+    static unsigned long relay2LastOn = 0, relay2LastOff = 0;
+    static unsigned long blueLastOn = 0, blueLastOff = 0;
+    
+    // Determine new blinking requirements
+    bool relay2ShouldBlink = false;
+    bool blueLedShouldBlink = false;
+    unsigned long relay2OnTime = 0, relay2OffTime = 0;
+    unsigned long blueOnTime = 0, blueOffTime = 0;
     
     if (hasCritical) {
         if (criticalAcknowledgedOnly) {
@@ -526,36 +550,67 @@ void TemperatureController::handleAlarmOutputs() {
             relay1State = true;
             relay2State = true;
         }
-        // Red LED always on for critical alarms
+        // Red LED solid for critical alarms
         redLedState = true;
-        yellowLedState = true; // Both LEDs for critical
     } else if (hasHigh) {
         if (highAcknowledgedOnly) {
             // HIGH acknowledged: Beacon ON (blink 2s on/30s off)
-            indicator.startBlinking("Relay2", 2000, 30000);
+            relay2ShouldBlink = true;
+            relay2OnTime = 2000;
+            relay2OffTime = 30000;
         } else {
             // HIGH active: Beacon ON (constant)
             relay2State = true;
         }
-        // Red LED for high priority (when not acknowledged)
-        redLedState = !highAcknowledgedOnly;
+        // Yellow LED solid for high priority
         yellowLedState = true;
     } else if (hasMedium) {
         if (!mediumAcknowledgedOnly) {
             // MEDIUM active: Beacon ON (blink 2s on/30s off)
-            indicator.startBlinking("Relay2", 2000, 30000);
+            relay2ShouldBlink = true;
+            relay2OnTime = 2000;
+            relay2OffTime = 30000;
         }
         // MEDIUM acknowledged: Beacon OFF (no relay action)
-        // Yellow LED blinking for medium priority
-        if (!mediumAcknowledgedOnly) {
-            indicator.startBlinking("YellowLED", 2000, 30000);
-        }
+        // Blue LED solid for medium priority
+        blueLedState = true;
     } else if (hasLow) {
         // LOW priority: No relay action (as per specification)
         // Blue LED blinking for low priority alarms
         if (!lowAcknowledgedOnly) {
-            indicator.startBlinking("BlueLED", 200, 2000);  // 200ms on, 2000ms off - faster, less intrusive
+            blueLedShouldBlink = true;
+            blueOnTime = 200;
+            blueOffTime = 2000;  // 200ms on, 2000ms off - short flash
         }
+    }
+    
+    // Green LED is ON when there are no alarms (system OK)
+    bool greenLedState = !hasCritical && !hasHigh && !hasMedium && !hasLow;
+    
+    // Update relay2 blinking only if state changed
+    if (relay2ShouldBlink != relay2WasBlinking || 
+        (relay2ShouldBlink && (relay2OnTime != relay2LastOn || relay2OffTime != relay2LastOff))) {
+        if (relay2ShouldBlink) {
+            indicator.startBlinking("Relay2", relay2OnTime, relay2OffTime);
+        } else {
+            indicator.stopBlinking("Relay2");
+        }
+        relay2WasBlinking = relay2ShouldBlink;
+        relay2LastOn = relay2OnTime;
+        relay2LastOff = relay2OffTime;
+    }
+    
+    // Update blue LED blinking only if state changed
+    if (blueLedShouldBlink != blueLedWasBlinking || 
+        (blueLedShouldBlink && (blueOnTime != blueLastOn || blueOffTime != blueLastOff))) {
+        if (blueLedShouldBlink) {
+            indicator.startBlinking("BlueLED", blueOnTime, blueOffTime);
+        } else {
+            indicator.stopBlinking("BlueLED");
+        }
+        blueLedWasBlinking = blueLedShouldBlink;
+        blueLastOn = blueOnTime;
+        blueLastOff = blueOffTime;
     }
     
     // Log alarm summary periodically
@@ -654,12 +709,21 @@ void TemperatureController::handleAlarmOutputs() {
         _yellowLedState = yellowLedState;
     }
     
-    if (blueLedState != _blueLedState) {
+    if (!blueLedShouldBlink && blueLedState != _blueLedState) {
         LoggerManager::info("INDICATION", 
             "Blue LED state change: " + String(_blueLedState ? "ON" : "OFF") + 
             " -> " + String(blueLedState ? "ON" : "OFF"));
         indicator.writePort("BlueLED", blueLedState);
         _blueLedState = blueLedState;
+    }
+    
+    // Update green LED state (system OK indicator)
+    if (greenLedState != _greenLedState) {
+        LoggerManager::info("INDICATION", 
+            "Green LED state change: " + String(_greenLedState ? "ON" : "OFF") + 
+            " -> " + String(greenLedState ? "ON" : "OFF"));
+        indicator.writePort("GreenLED", greenLedState);
+        _greenLedState = greenLedState;
     }
 }
 

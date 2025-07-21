@@ -371,6 +371,8 @@ Private Attributes</h2></td></tr>
 <tr class="memdesc:a3ff6a77480a1aec366fe324216d72569"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current state of relay 3 (Modbus-only)  <br /></td></tr>
 <tr class="memitem:a01c4086be4fa74e89b108428ac3756ea" id="r_a01c4086be4fa74e89b108428ac3756ea"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a01c4086be4fa74e89b108428ac3756ea">_redLedState</a> = false</td></tr>
 <tr class="memdesc:a01c4086be4fa74e89b108428ac3756ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current state of red LED.  <br /></td></tr>
+<tr class="memitem:a999459f5c7d5320ad12c90bf0948a551" id="r_a999459f5c7d5320ad12c90bf0948a551"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a999459f5c7d5320ad12c90bf0948a551">_greenLedState</a> = false</td></tr>
+<tr class="memdesc:a999459f5c7d5320ad12c90bf0948a551"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current state of green LED (system OK)  <br /></td></tr>
 <tr class="memitem:ada44ea25043f4cc35dd01cad67979acf" id="r_ada44ea25043f4cc35dd01cad67979acf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ada44ea25043f4cc35dd01cad67979acf">_yellowLedState</a> = false</td></tr>
 <tr class="memdesc:ada44ea25043f4cc35dd01cad67979acf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current state of yellow LED.  <br /></td></tr>
 <tr class="memitem:aec910974cd40cafef22d5e5c5e730512" id="r_aec910974cd40cafef22d5e5c5e730512"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aec910974cd40cafef22d5e5c5e730512">_blueLedState</a> = false</td></tr>
@@ -446,7 +448,7 @@ Private Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l00024">24</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00769">_acknowledgedAlarmDisplayDelay</a>, <a class="el" href="_temperature_controller_8h_source.html#l00767">_currentAcknowledgedAlarmIndex</a>, <a class="el" href="_temperature_controller_8h_source.html#l00766">_currentActiveAlarmIndex</a>, <a class="el" href="_temperature_controller_8h_source.html#l00668">_currentDisplayedAlarm</a>, <a class="el" href="_temperature_controller_8h_source.html#l00770">_displayingActiveAlarm</a>, <a class="el" href="_temperature_controller_8h_source.html#l00661">_lastAlarmCheck</a>, <a class="el" href="_temperature_controller_8h_source.html#l00768">_lastAlarmDisplayTime</a>, <a class="el" href="_temperature_controller_8h_source.html#l00664">_lastButtonPressTime</a>, <a class="el" href="_temperature_controller_8h_source.html#l00663">_lastButtonState</a>, <a class="el" href="_temperature_controller_8h_source.html#l00669">_okDisplayStartTime</a>, <a class="el" href="_temperature_controller_8h_source.html#l00670">_showingOK</a>, <a class="el" href="_temperature_controller_8h_source.html#l00657">chipSelectPin</a>, <a class="el" href="_temperature_controller_8h_source.html#l00642">dallasSensors</a>, <a class="el" href="_temperature_controller_8h_source.html#l00652">deviceId</a>, <a class="el" href="_temperature_controller_8h_source.html#l00645">dsPoints</a>, <a class="el" href="_temperature_controller_8h_source.html#l00653">firmwareVersion</a>, <a class="el" href="_temperature_controller_8h_source.html#l00640">indicator</a>, <a class="el" href="_temperature_controller_8h_source.html#l00654">lastMeasurementTime</a>, <a class="el" href="_temperature_controller_8h_source.html#l00651">measurementPeriodSeconds</a>, <a class="el" href="_temperature_controller_8h_source.html#l00641">oneWireBuses</a>, <a class="el" href="_temperature_controller_8h_source.html#l00656">oneWireBusPin</a>, <a class="el" href="_temperature_controller_8h_source.html#l00646">ptPoints</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00655">systemInitialized</a>.</p>
+<p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00770">_acknowledgedAlarmDisplayDelay</a>, <a class="el" href="_temperature_controller_8h_source.html#l00768">_currentAcknowledgedAlarmIndex</a>, <a class="el" href="_temperature_controller_8h_source.html#l00767">_currentActiveAlarmIndex</a>, <a class="el" href="_temperature_controller_8h_source.html#l00668">_currentDisplayedAlarm</a>, <a class="el" href="_temperature_controller_8h_source.html#l00771">_displayingActiveAlarm</a>, <a class="el" href="_temperature_controller_8h_source.html#l00661">_lastAlarmCheck</a>, <a class="el" href="_temperature_controller_8h_source.html#l00769">_lastAlarmDisplayTime</a>, <a class="el" href="_temperature_controller_8h_source.html#l00664">_lastButtonPressTime</a>, <a class="el" href="_temperature_controller_8h_source.html#l00663">_lastButtonState</a>, <a class="el" href="_temperature_controller_8h_source.html#l00669">_okDisplayStartTime</a>, <a class="el" href="_temperature_controller_8h_source.html#l00670">_showingOK</a>, <a class="el" href="_temperature_controller_8h_source.html#l00657">chipSelectPin</a>, <a class="el" href="_temperature_controller_8h_source.html#l00642">dallasSensors</a>, <a class="el" href="_temperature_controller_8h_source.html#l00652">deviceId</a>, <a class="el" href="_temperature_controller_8h_source.html#l00645">dsPoints</a>, <a class="el" href="_temperature_controller_8h_source.html#l00653">firmwareVersion</a>, <a class="el" href="_temperature_controller_8h_source.html#l00640">indicator</a>, <a class="el" href="_temperature_controller_8h_source.html#l00654">lastMeasurementTime</a>, <a class="el" href="_temperature_controller_8h_source.html#l00651">measurementPeriodSeconds</a>, <a class="el" href="_temperature_controller_8h_source.html#l00641">oneWireBuses</a>, <a class="el" href="_temperature_controller_8h_source.html#l00656">oneWireBusPin</a>, <a class="el" href="_temperature_controller_8h_source.html#l00646">ptPoints</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00655">systemInitialized</a>.</p>
 
 </div>
 </div>
@@ -500,11 +502,11 @@ Private Attributes</h2></td></tr>
 
 <p>Check for button press and handle acknowledgment. </p>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01925">1925</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01989">1989</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00764">_activeAlarmsQueue</a>, <a class="el" href="_temperature_controller_8h_source.html#l00766">_currentActiveAlarmIndex</a>, <a class="el" href="_temperature_controller_8h_source.html#l00668">_currentDisplayedAlarm</a>, <a class="el" href="_temperature_controller_8h_source.html#l00770">_displayingActiveAlarm</a>, <a class="el" href="_temperature_controller_8h_source.html#l00768">_lastAlarmDisplayTime</a>, <a class="el" href="_temperature_controller_8h_source.html#l00663">_lastButtonState</a>, <a class="el" href="_alarm_8h_source.html#l00050">ACTIVE</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00640">indicator</a>.</p>
+<p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00765">_activeAlarmsQueue</a>, <a class="el" href="_temperature_controller_8h_source.html#l00767">_currentActiveAlarmIndex</a>, <a class="el" href="_temperature_controller_8h_source.html#l00668">_currentDisplayedAlarm</a>, <a class="el" href="_temperature_controller_8h_source.html#l00771">_displayingActiveAlarm</a>, <a class="el" href="_temperature_controller_8h_source.html#l00769">_lastAlarmDisplayTime</a>, <a class="el" href="_temperature_controller_8h_source.html#l00663">_lastButtonState</a>, <a class="el" href="_alarm_8h_source.html#l00050">ACTIVE</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00640">indicator</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01773">handleAlarmDisplay()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00146">update()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01837">handleAlarmDisplay()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00146">update()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -598,9 +600,9 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if comparison matches </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01714">1714</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01778">1778</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01699">getAlarmCount()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l01679">getAlarmCount()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01763">getAlarmCount()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l01743">getAlarmCount()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -652,9 +654,9 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if comparison matches </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01733">1733</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01797">1797</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01699">getAlarmCount()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l01689">getAlarmCount()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01763">getAlarmCount()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l01753">getAlarmCount()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -688,11 +690,11 @@ Here is the caller graph for this function:</div>
 
 <p>Display next acknowledged alarm. </p>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01848">1848</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01912">1912</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00765">_acknowledgedAlarmsQueue</a>, <a class="el" href="_temperature_controller_8h_source.html#l00767">_currentAcknowledgedAlarmIndex</a>, <a class="el" href="_temperature_controller_8h_source.html#l00668">_currentDisplayedAlarm</a>, <a class="el" href="_temperature_controller_8h_source.html#l00768">_lastAlarmDisplayTime</a>, <a class="el" href="_temperature_controller_8h_source.html#l00670">_showingOK</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00640">indicator</a>.</p>
+<p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00766">_acknowledgedAlarmsQueue</a>, <a class="el" href="_temperature_controller_8h_source.html#l00768">_currentAcknowledgedAlarmIndex</a>, <a class="el" href="_temperature_controller_8h_source.html#l00668">_currentDisplayedAlarm</a>, <a class="el" href="_temperature_controller_8h_source.html#l00769">_lastAlarmDisplayTime</a>, <a class="el" href="_temperature_controller_8h_source.html#l00670">_showingOK</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00640">indicator</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01875">_handleAlarmDisplayRotation()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01939">_handleAlarmDisplayRotation()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -726,11 +728,11 @@ Here is the caller graph for this function:</div>
 
 <p>Display next active alarm in rotation. </p>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01823">1823</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01887">1887</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00764">_activeAlarmsQueue</a>, <a class="el" href="_temperature_controller_8h_source.html#l00766">_currentActiveAlarmIndex</a>, <a class="el" href="_temperature_controller_8h_source.html#l00668">_currentDisplayedAlarm</a>, <a class="el" href="_temperature_controller_8h_source.html#l00670">_showingOK</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00640">indicator</a>.</p>
+<p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00765">_activeAlarmsQueue</a>, <a class="el" href="_temperature_controller_8h_source.html#l00767">_currentActiveAlarmIndex</a>, <a class="el" href="_temperature_controller_8h_source.html#l00668">_currentDisplayedAlarm</a>, <a class="el" href="_temperature_controller_8h_source.html#l00670">_showingOK</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00640">indicator</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01875">_handleAlarmDisplayRotation()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01939">_handleAlarmDisplayRotation()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -771,7 +773,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>String <a class="el" href="class_alarm.html" title="Main alarm class for temperature monitoring system.">Alarm</a> type as string </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01960">1960</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l02024">2024</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="_alarm_8h_source.html#l00034">HIGH_TEMPERATURE</a>, <a class="el" href="_alarm_8h_source.html#l00035">LOW_TEMPERATURE</a>, <a class="el" href="_alarm_8h_source.html#l00037">SENSOR_DISCONNECTED</a>, and <a class="el" href="_alarm_8h_source.html#l00036">SENSOR_ERROR</a>.</p>
 
@@ -809,11 +811,11 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>String Priority as string </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01970">1970</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l02034">2034</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="_alarm_8h_source.html#l00061">PRIORITY_CRITICAL</a>, <a class="el" href="_alarm_8h_source.html#l00060">PRIORITY_HIGH</a>, <a class="el" href="_alarm_8h_source.html#l00058">PRIORITY_LOW</a>, and <a class="el" href="_alarm_8h_source.html#l00059">PRIORITY_MEDIUM</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01424">addAlarm()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01488">addAlarm()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -847,11 +849,11 @@ Here is the caller graph for this function:</div>
 
 <p>Handle alarm display rotation timing. </p>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01875">1875</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01939">1939</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00769">_acknowledgedAlarmDisplayDelay</a>, <a class="el" href="_temperature_controller_8h_source.html#l00765">_acknowledgedAlarmsQueue</a>, <a class="el" href="_temperature_controller_8h_source.html#l00764">_activeAlarmsQueue</a>, <a class="el" href="_temperature_controller_8h_source.html#l00767">_currentAcknowledgedAlarmIndex</a>, <a class="el" href="_temperature_controller_8h_source.html#l00766">_currentActiveAlarmIndex</a>, <a class="el" href="_temperature_controller_8h_source.html#l00668">_currentDisplayedAlarm</a>, <a class="el" href="_temperature_controller_8h_source.html#l00770">_displayingActiveAlarm</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01848">_displayNextAcknowledgedAlarm()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01823">_displayNextActiveAlarm()</a>, <a class="el" href="_temperature_controller_8h_source.html#l00768">_lastAlarmDisplayTime</a>, <a class="el" href="_temperature_controller_8h_source.html#l00669">_okDisplayStartTime</a>, <a class="el" href="_temperature_controller_8h_source.html#l00670">_showingOK</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00766">_showOKAndTurnOffOLED()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00755">_updateNormalDisplay()</a>, <a class="el" href="_alarm_8h_source.html#l00049">ACKNOWLEDGED</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00640">indicator</a>.</p>
+<p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00770">_acknowledgedAlarmDisplayDelay</a>, <a class="el" href="_temperature_controller_8h_source.html#l00766">_acknowledgedAlarmsQueue</a>, <a class="el" href="_temperature_controller_8h_source.html#l00765">_activeAlarmsQueue</a>, <a class="el" href="_temperature_controller_8h_source.html#l00768">_currentAcknowledgedAlarmIndex</a>, <a class="el" href="_temperature_controller_8h_source.html#l00767">_currentActiveAlarmIndex</a>, <a class="el" href="_temperature_controller_8h_source.html#l00668">_currentDisplayedAlarm</a>, <a class="el" href="_temperature_controller_8h_source.html#l00771">_displayingActiveAlarm</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01912">_displayNextAcknowledgedAlarm()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01887">_displayNextActiveAlarm()</a>, <a class="el" href="_temperature_controller_8h_source.html#l00769">_lastAlarmDisplayTime</a>, <a class="el" href="_temperature_controller_8h_source.html#l00669">_okDisplayStartTime</a>, <a class="el" href="_temperature_controller_8h_source.html#l00670">_showingOK</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00830">_showOKAndTurnOffOLED()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00819">_updateNormalDisplay()</a>, <a class="el" href="_alarm_8h_source.html#l00049">ACKNOWLEDGED</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00640">indicator</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01773">handleAlarmDisplay()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01837">handleAlarmDisplay()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -890,9 +892,9 @@ Here is the caller graph for this function:</div>
 
 <p>Handle LED blinking for low priority alarms. </p>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01753">1753</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01817">1817</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00756">_blinkOffTime</a>, <a class="el" href="_temperature_controller_8h_source.html#l00755">_blinkOnTime</a>, <a class="el" href="_temperature_controller_8h_source.html#l00754">_lastLowPriorityBlinkTime</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00753">_lowPriorityBlinkState</a>.</p>
+<p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00757">_blinkOffTime</a>, <a class="el" href="_temperature_controller_8h_source.html#l00756">_blinkOnTime</a>, <a class="el" href="_temperature_controller_8h_source.html#l00755">_lastLowPriorityBlinkTime</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00754">_lowPriorityBlinkState</a>.</p>
 
 </div>
 </div>
@@ -971,11 +973,11 @@ Here is the caller graph for this function:</div>
 
 <p>Show OK status and turn off OLED after delay. </p>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l00766">766</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l00830">830</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00669">_okDisplayStartTime</a>, <a class="el" href="_temperature_controller_8h_source.html#l00670">_showingOK</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00640">indicator</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01875">_handleAlarmDisplayRotation()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01939">_handleAlarmDisplayRotation()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1009,11 +1011,11 @@ Here is the caller graph for this function:</div>
 
 <p>Update alarm display queues. </p>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01787">1787</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01851">1851</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00765">_acknowledgedAlarmsQueue</a>, <a class="el" href="_temperature_controller_8h_source.html#l00764">_activeAlarmsQueue</a>, <a class="el" href="_alarm_8h_source.html#l00049">ACKNOWLEDGED</a>, <a class="el" href="_alarm_8h_source.html#l00050">ACTIVE</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00327">getActiveAlarms()</a>, and <a class="el" href="_alarm_8h_source.html#l00116">Alarm::getTimestamp()</a>.</p>
+<p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00766">_acknowledgedAlarmsQueue</a>, <a class="el" href="_temperature_controller_8h_source.html#l00765">_activeAlarmsQueue</a>, <a class="el" href="_alarm_8h_source.html#l00049">ACKNOWLEDGED</a>, <a class="el" href="_alarm_8h_source.html#l00050">ACTIVE</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00327">getActiveAlarms()</a>, and <a class="el" href="_alarm_8h_source.html#l00116">Alarm::getTimestamp()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01773">handleAlarmDisplay()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01837">handleAlarmDisplay()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1052,11 +1054,11 @@ Here is the caller graph for this function:</div>
 
 <p>Update normal temperature display. </p>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l00755">755</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l00819">819</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00640">indicator</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01875">_handleAlarmDisplayRotation()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01939">_handleAlarmDisplayRotation()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1155,9 +1157,9 @@ Here is the call graph for this function:</div>
 <dd>
 false if alarm already exists or invalid parameters </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01424">1424</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01488">1488</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00717">_acknowledgedDelayCritical</a>, <a class="el" href="_temperature_controller_8h_source.html#l00718">_acknowledgedDelayHigh</a>, <a class="el" href="_temperature_controller_8h_source.html#l00720">_acknowledgedDelayLow</a>, <a class="el" href="_temperature_controller_8h_source.html#l00719">_acknowledgedDelayMedium</a>, <a class="el" href="_temperature_controller_8h_source.html#l00660">_configuredAlarms</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01970">_getPriorityString()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00830">getMeasurementPoint()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00049">MeasurementPoint::getName()</a>, <a class="el" href="_alarm_8cpp_source.html#l00376">Alarm::getTypeString()</a>, <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>, <a class="el" href="_alarm_8h_source.html#l00061">PRIORITY_CRITICAL</a>, <a class="el" href="_alarm_8h_source.html#l00060">PRIORITY_HIGH</a>, <a class="el" href="_alarm_8h_source.html#l00058">PRIORITY_LOW</a>, <a class="el" href="_alarm_8h_source.html#l00059">PRIORITY_MEDIUM</a>, <a class="el" href="_alarm_8cpp_source.html#l00628">Alarm::setAcknowledgedDelay()</a>, <a class="el" href="_alarm_8cpp_source.html#l00427">Alarm::setConfigKey()</a>, and <a class="el" href="_logger_manager_8h_source.html#l00155">LoggerManager::warning()</a>.</p>
+<p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00717">_acknowledgedDelayCritical</a>, <a class="el" href="_temperature_controller_8h_source.html#l00718">_acknowledgedDelayHigh</a>, <a class="el" href="_temperature_controller_8h_source.html#l00720">_acknowledgedDelayLow</a>, <a class="el" href="_temperature_controller_8h_source.html#l00719">_acknowledgedDelayMedium</a>, <a class="el" href="_temperature_controller_8h_source.html#l00660">_configuredAlarms</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l02034">_getPriorityString()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00894">getMeasurementPoint()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00049">MeasurementPoint::getName()</a>, <a class="el" href="_alarm_8cpp_source.html#l00376">Alarm::getTypeString()</a>, <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>, <a class="el" href="_alarm_8h_source.html#l00061">PRIORITY_CRITICAL</a>, <a class="el" href="_alarm_8h_source.html#l00060">PRIORITY_HIGH</a>, <a class="el" href="_alarm_8h_source.html#l00058">PRIORITY_LOW</a>, <a class="el" href="_alarm_8h_source.html#l00059">PRIORITY_MEDIUM</a>, <a class="el" href="_alarm_8cpp_source.html#l00628">Alarm::setAcknowledgedDelay()</a>, <a class="el" href="_alarm_8cpp_source.html#l00427">Alarm::setConfigKey()</a>, and <a class="el" href="_logger_manager_8h_source.html#l00155">LoggerManager::warning()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1192,9 +1194,9 @@ Here is the call graph for this function:</div>
 <dd>
 false if sensor already exists or nullptr </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l00846">846</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l00910">910</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_sensor_8h_source.html#l00033">DS18B20</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00891">findSensorByChipSelect()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00881">findSensorByRom()</a>, <a class="el" href="_sensor_8cpp_source.html#l00213">Sensor::getDS18B20RomString()</a>, <a class="el" href="_sensor_8cpp_source.html#l00208">Sensor::getPT1000ChipSelectPin()</a>, <a class="el" href="_sensor_8cpp_source.html#l00171">Sensor::getType()</a>, <a class="el" href="_sensor_8h_source.html#l00034">PT1000</a>, <a class="el" href="_temperature_controller_8h_source.html#l00650">registerMap</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00647">sensors</a>.</p>
+<p class="reference">References <a class="el" href="_sensor_8h_source.html#l00033">DS18B20</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00955">findSensorByChipSelect()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00945">findSensorByRom()</a>, <a class="el" href="_sensor_8cpp_source.html#l00213">Sensor::getDS18B20RomString()</a>, <a class="el" href="_sensor_8cpp_source.html#l00208">Sensor::getPT1000ChipSelectPin()</a>, <a class="el" href="_sensor_8cpp_source.html#l00171">Sensor::getType()</a>, <a class="el" href="_sensor_8h_source.html#l00034">PT1000</a>, <a class="el" href="_temperature_controller_8h_source.html#l00650">registerMap</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00647">sensors</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1221,11 +1223,11 @@ Here is the call graph for this function:</div>
 <p>Apply acknowledged delays to existing alarms. </p>
 <p>Updates all existing alarms with current delay settings </p>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01610">1610</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01674">1674</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00717">_acknowledgedDelayCritical</a>, <a class="el" href="_temperature_controller_8h_source.html#l00718">_acknowledgedDelayHigh</a>, <a class="el" href="_temperature_controller_8h_source.html#l00720">_acknowledgedDelayLow</a>, <a class="el" href="_temperature_controller_8h_source.html#l00719">_acknowledgedDelayMedium</a>, <a class="el" href="_temperature_controller_8h_source.html#l00660">_configuredAlarms</a>, <a class="el" href="_alarm_8h_source.html#l00061">PRIORITY_CRITICAL</a>, <a class="el" href="_alarm_8h_source.html#l00060">PRIORITY_HIGH</a>, <a class="el" href="_alarm_8h_source.html#l00058">PRIORITY_LOW</a>, and <a class="el" href="_alarm_8h_source.html#l00059">PRIORITY_MEDIUM</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01572">setAcknowledgedDelayCritical()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01577">setAcknowledgedDelayHigh()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01587">setAcknowledgedDelayLow()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l01582">setAcknowledgedDelayMedium()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01636">setAcknowledgedDelayCritical()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01641">setAcknowledgedDelayHigh()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01651">setAcknowledgedDelayLow()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l01646">setAcknowledgedDelayMedium()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1252,7 +1254,7 @@ Here is the caller graph for this function:</div>
 <p>Apply configuration from register map to system. </p>
 <p>Updates system settings from Modbus register values </p>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01001">1001</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01065">1065</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00645">dsPoints</a>, <a class="el" href="_temperature_controller_8h_source.html#l00646">ptPoints</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00650">registerMap</a>.</p>
 
@@ -1276,7 +1278,7 @@ Here is the caller graph for this function:</div>
 <p>Apply current system configuration to register map. </p>
 <p>Updates Modbus registers with current system settings </p>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01008">1008</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01072">1072</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00645">dsPoints</a>, <a class="el" href="_temperature_controller_8h_source.html#l00646">ptPoints</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00650">registerMap</a>.</p>
 
@@ -1305,7 +1307,7 @@ false if initialization failed</dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l00081">81</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00652">deviceId</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01090">discoverPTSensors()</a>, <a class="el" href="_temperature_controller_8h_source.html#l00653">firmwareVersion</a>, <a class="el" href="_temperature_controller_8h_source.html#l00640">indicator</a>, <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>, <a class="el" href="_temperature_controller_8h_source.html#l00650">registerMap</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00655">systemInitialized</a>.</p>
+<p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00652">deviceId</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01154">discoverPTSensors()</a>, <a class="el" href="_temperature_controller_8h_source.html#l00653">firmwareVersion</a>, <a class="el" href="_temperature_controller_8h_source.html#l00640">indicator</a>, <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>, <a class="el" href="_temperature_controller_8h_source.html#l00650">registerMap</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00655">systemInitialized</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1345,9 +1347,9 @@ Here is the call graph for this function:</div>
 <dd>
 false if invalid bus or point </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01547">1547</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01611">1611</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_measurement_point_8cpp_source.html#l00118">MeasurementPoint::bindSensor()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00830">getMeasurementPoint()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01374">getSensorBus()</a>, <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>, <a class="el" href="_sensor_8h_source.html#l00034">PT1000</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00647">sensors</a>.</p>
+<p class="reference">References <a class="el" href="_measurement_point_8cpp_source.html#l00118">MeasurementPoint::bindSensor()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00894">getMeasurementPoint()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01438">getSensorBus()</a>, <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>, <a class="el" href="_sensor_8h_source.html#l00034">PT1000</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00647">sensors</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1387,9 +1389,9 @@ Here is the call graph for this function:</div>
 <dd>
 false if sensor or point not found </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l00928">928</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l00992">992</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_measurement_point_8cpp_source.html#l00118">MeasurementPoint::bindSensor()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00891">findSensorByChipSelect()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00830">getMeasurementPoint()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00049">MeasurementPoint::getName()</a>, <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01394">unbindSensorFromPointBySensor()</a>, and <a class="el" href="_logger_manager_8h_source.html#l00155">LoggerManager::warning()</a>.</p>
+<p class="reference">References <a class="el" href="_measurement_point_8cpp_source.html#l00118">MeasurementPoint::bindSensor()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00955">findSensorByChipSelect()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00894">getMeasurementPoint()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00049">MeasurementPoint::getName()</a>, <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01458">unbindSensorFromPointBySensor()</a>, and <a class="el" href="_logger_manager_8h_source.html#l00155">LoggerManager::warning()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1429,9 +1431,9 @@ Here is the call graph for this function:</div>
 <dd>
 false if sensor or point not found </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l00903">903</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l00967">967</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_measurement_point_8cpp_source.html#l00118">MeasurementPoint::bindSensor()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00881">findSensorByRom()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00830">getMeasurementPoint()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00049">MeasurementPoint::getName()</a>, <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01394">unbindSensorFromPointBySensor()</a>, and <a class="el" href="_logger_manager_8h_source.html#l00155">LoggerManager::warning()</a>.</p>
+<p class="reference">References <a class="el" href="_measurement_point_8cpp_source.html#l00118">MeasurementPoint::bindSensor()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00945">findSensorByRom()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00894">getMeasurementPoint()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00049">MeasurementPoint::getName()</a>, <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01458">unbindSensorFromPointBySensor()</a>, and <a class="el" href="_logger_manager_8h_source.html#l00155">LoggerManager::warning()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1561,9 +1563,9 @@ Here is the caller graph for this function:</div>
 false if no sensors found</dd></dl>
 <p>Scans all 4 OneWire buses for DS18B20 sensors </p>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01015">1015</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01079">1079</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00642">dallasSensors</a>, <a class="el" href="_sensor_8h_source.html#l00033">DS18B20</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00881">findSensorByRom()</a>, <a class="el" href="_sensor_8cpp_source.html#l00173">Sensor::getName()</a>, <a class="el" href="_sensor_8h_source.html#l00236">Sensor::getOneWirePin()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01374">getSensorBus()</a>, <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>, <a class="el" href="_sensor_8cpp_source.html#l00067">Sensor::initialize()</a>, <a class="el" href="_temperature_controller_8h_source.html#l00656">oneWireBusPin</a>, <a class="el" href="_temperature_controller_8h_source.html#l00650">registerMap</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00863">removeSensorByRom()</a>, <a class="el" href="_temperature_controller_8h_source.html#l00647">sensors</a>, and <a class="el" href="_sensor_8cpp_source.html#l00057">Sensor::setupDS18B20()</a>.</p>
+<p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00642">dallasSensors</a>, <a class="el" href="_sensor_8h_source.html#l00033">DS18B20</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00945">findSensorByRom()</a>, <a class="el" href="_sensor_8cpp_source.html#l00173">Sensor::getName()</a>, <a class="el" href="_sensor_8h_source.html#l00236">Sensor::getOneWirePin()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01438">getSensorBus()</a>, <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>, <a class="el" href="_sensor_8cpp_source.html#l00067">Sensor::initialize()</a>, <a class="el" href="_temperature_controller_8h_source.html#l00656">oneWireBusPin</a>, <a class="el" href="_temperature_controller_8h_source.html#l00650">registerMap</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00927">removeSensorByRom()</a>, <a class="el" href="_temperature_controller_8h_source.html#l00647">sensors</a>, and <a class="el" href="_sensor_8cpp_source.html#l00057">Sensor::setupDS18B20()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1593,9 +1595,9 @@ Here is the call graph for this function:</div>
 false if no sensors found</dd></dl>
 <p>Checks all 4 chip select pins for PT1000 sensors </p>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01090">1090</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01154">1154</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00657">chipSelectPin</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00891">findSensorByChipSelect()</a>, <a class="el" href="_sensor_8cpp_source.html#l00173">Sensor::getName()</a>, <a class="el" href="_sensor_8cpp_source.html#l00208">Sensor::getPT1000ChipSelectPin()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01374">getSensorBus()</a>, <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>, <a class="el" href="_sensor_8cpp_source.html#l00067">Sensor::initialize()</a>, <a class="el" href="_sensor_8h_source.html#l00034">PT1000</a>, <a class="el" href="_temperature_controller_8h_source.html#l00650">registerMap</a>, <a class="el" href="_temperature_controller_8h_source.html#l00647">sensors</a>, and <a class="el" href="_sensor_8cpp_source.html#l00062">Sensor::setupPT1000()</a>.</p>
+<p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00657">chipSelectPin</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00955">findSensorByChipSelect()</a>, <a class="el" href="_sensor_8cpp_source.html#l00173">Sensor::getName()</a>, <a class="el" href="_sensor_8cpp_source.html#l00208">Sensor::getPT1000ChipSelectPin()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01438">getSensorBus()</a>, <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>, <a class="el" href="_sensor_8cpp_source.html#l00067">Sensor::initialize()</a>, <a class="el" href="_sensor_8h_source.html#l00034">PT1000</a>, <a class="el" href="_temperature_controller_8h_source.html#l00650">registerMap</a>, <a class="el" href="_temperature_controller_8h_source.html#l00647">sensors</a>, and <a class="el" href="_sensor_8cpp_source.html#l00062">Sensor::setupPT1000()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00081">begin()</a>.</p>
 <div class="dynheader">
@@ -1637,7 +1639,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l00363">363</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00660">_configuredAlarms</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01507">findAlarm()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00045">MeasurementPoint::getAddress()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00126">MeasurementPoint::getBoundSensor()</a>, <a class="el" href="_alarm_8h_source.html#l00034">HIGH_TEMPERATURE</a>, <a class="el" href="_alarm_8h_source.html#l00035">LOW_TEMPERATURE</a>, <a class="el" href="_alarm_8h_source.html#l00060">PRIORITY_HIGH</a>, <a class="el" href="_alarm_8h_source.html#l00059">PRIORITY_MEDIUM</a>, <a class="el" href="_alarm_8h_source.html#l00036">SENSOR_ERROR</a>, <a class="el" href="_alarm_8cpp_source.html#l00427">Alarm::setConfigKey()</a>, <a class="el" href="_alarm_8cpp_source.html#l00459">Alarm::setEnabled()</a>, and <a class="el" href="_alarm_8cpp_source.html#l00431">Alarm::setPriority()</a>.</p>
+<p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00660">_configuredAlarms</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01571">findAlarm()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00045">MeasurementPoint::getAddress()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00126">MeasurementPoint::getBoundSensor()</a>, <a class="el" href="_alarm_8h_source.html#l00034">HIGH_TEMPERATURE</a>, <a class="el" href="_alarm_8h_source.html#l00035">LOW_TEMPERATURE</a>, <a class="el" href="_alarm_8h_source.html#l00060">PRIORITY_HIGH</a>, <a class="el" href="_alarm_8h_source.html#l00059">PRIORITY_MEDIUM</a>, <a class="el" href="_alarm_8h_source.html#l00036">SENSOR_ERROR</a>, <a class="el" href="_alarm_8cpp_source.html#l00427">Alarm::setConfigKey()</a>, <a class="el" href="_alarm_8cpp_source.html#l00459">Alarm::setEnabled()</a>, and <a class="el" href="_alarm_8cpp_source.html#l00431">Alarm::setPriority()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1670,11 +1672,11 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Alarm* Pointer to alarm or nullptr if not found </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01507">1507</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01571">1571</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00660">_configuredAlarms</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00363">ensureAlarmsForPoint()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l01497">updateAlarm()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00363">ensureAlarmsForPoint()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l01561">updateAlarm()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1707,11 +1709,11 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Sensor* Pointer to sensor or nullptr if not found </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l00891">891</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l00955">955</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="_sensor_8h_source.html#l00034">PT1000</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00647">sensors</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00846">addSensor()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00928">bindSensorToPointByChipSelect()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l01090">discoverPTSensors()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00910">addSensor()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00992">bindSensorToPointByChipSelect()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l01154">discoverPTSensors()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1744,11 +1746,11 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Sensor* Pointer to sensor or nullptr if not found </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l00881">881</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l00945">945</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="_sensor_8h_source.html#l00033">DS18B20</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00647">sensors</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00846">addSensor()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00903">bindSensorToPointByRom()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l01015">discoverDS18B20Sensors()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00910">addSensor()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00967">bindSensorToPointByRom()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l01079">discoverDS18B20Sensors()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1786,9 +1788,9 @@ Here is the caller graph for this function:</div>
 </dl>
 <p>Only works when relay is in FORCE_OFF or FORCE_ON mode </p>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l02074">2074</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l02138">2138</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00722">_relay1State</a>, <a class="el" href="_temperature_controller_8h_source.html#l00723">_relay2State</a>, <a class="el" href="_temperature_controller_8h_source.html#l00724">_relay3State</a>, <a class="el" href="_register_map_8h_source.html#l00340">AUTO</a>, <a class="el" href="_logger_manager_8h_source.html#l00165">LoggerManager::error()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l02012">getRelayControlMode()</a>, <a class="el" href="_temperature_controller_8h_source.html#l00640">indicator</a>, <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>, and <a class="el" href="_logger_manager_8h_source.html#l00155">LoggerManager::warning()</a>.</p>
+<p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00722">_relay1State</a>, <a class="el" href="_temperature_controller_8h_source.html#l00723">_relay2State</a>, <a class="el" href="_temperature_controller_8h_source.html#l00724">_relay3State</a>, <a class="el" href="_register_map_8h_source.html#l00340">AUTO</a>, <a class="el" href="_logger_manager_8h_source.html#l00165">LoggerManager::error()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l02076">getRelayControlMode()</a>, <a class="el" href="_temperature_controller_8h_source.html#l00640">indicator</a>, <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>, and <a class="el" href="_logger_manager_8h_source.html#l00155">LoggerManager::warning()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1815,7 +1817,7 @@ Here is the call graph for this function:</div>
 <p>Get acknowledge delay for critical alarms. </p>
 <dl class="section return"><dt>Returns</dt><dd>unsigned long Delay in milliseconds </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01593">1593</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01657">1657</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00717">_acknowledgedDelayCritical</a>.</p>
 
@@ -1839,7 +1841,7 @@ Here is the call graph for this function:</div>
 <p>Get acknowledge delay for high priority alarms. </p>
 <dl class="section return"><dt>Returns</dt><dd>unsigned long Delay in milliseconds </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01597">1597</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01661">1661</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00718">_acknowledgedDelayHigh</a>.</p>
 
@@ -1863,7 +1865,7 @@ Here is the call graph for this function:</div>
 <p>Get acknowledge delay for low priority alarms. </p>
 <dl class="section return"><dt>Returns</dt><dd>unsigned long Delay in milliseconds </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01605">1605</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01669">1669</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00720">_acknowledgedDelayLow</a>.</p>
 
@@ -1887,7 +1889,7 @@ Here is the call graph for this function:</div>
 <p>Get acknowledge delay for medium priority alarms. </p>
 <dl class="section return"><dt>Returns</dt><dd>unsigned long Delay in milliseconds </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01601">1601</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01665">1665</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00719">_acknowledgedDelayMedium</a>.</p>
 
@@ -1915,7 +1917,7 @@ Here is the call graph for this function:</div>
 
 <p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00660">_configuredAlarms</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01787">_updateAlarmQueues()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00179">updateAlarms()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01851">_updateAlarmQueues()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00179">updateAlarms()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1948,7 +1950,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Alarm* Pointer to alarm or nullptr if invalid index </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01516">1516</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01580">1580</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00660">_configuredAlarms</a>.</p>
 
@@ -1984,7 +1986,7 @@ Here is the caller graph for this function:</div>
 
 <p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00660">_configuredAlarms</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l02023">getRelayCommandedState()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00483">handleAlarmOutputs()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l02087">getRelayCommandedState()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00500">handleAlarmOutputs()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -2034,9 +2036,9 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>int Number of alarms matching both criteria </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01699">1699</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01763">1763</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_temperature_controller_8cpp_source.html#l01714">_comparePriority()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01733">_compareStage()</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00660">_configuredAlarms</a>.</p>
+<p class="reference">References <a class="el" href="_temperature_controller_8cpp_source.html#l01778">_comparePriority()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01797">_compareStage()</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00660">_configuredAlarms</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2074,9 +2076,9 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>int Number of alarms matching criteria </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01679">1679</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01743">1743</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_temperature_controller_8cpp_source.html#l01714">_comparePriority()</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00660">_configuredAlarms</a>.</p>
+<p class="reference">References <a class="el" href="_temperature_controller_8cpp_source.html#l01778">_comparePriority()</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00660">_configuredAlarms</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2114,9 +2116,9 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>int Number of alarms matching criteria </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01689">1689</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01753">1753</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_temperature_controller_8cpp_source.html#l01733">_compareStage()</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00660">_configuredAlarms</a>.</p>
+<p class="reference">References <a class="el" href="_temperature_controller_8cpp_source.html#l01797">_compareStage()</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00660">_configuredAlarms</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2179,7 +2181,7 @@ Here is the call graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>String JSON array of alarm objects</dd></dl>
 <p>Includes alarm type, priority, state, and associated point </p>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l00772">772</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l00836">836</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00660">_configuredAlarms</a>, and <a class="el" href="_alarm_8h_source.html#l00034">HIGH_TEMPERATURE</a>.</p>
 
@@ -2209,11 +2211,11 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Sensor* Pointer to bound sensor or nullptr if not bound </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l00975">975</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01039">1039</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_measurement_point_8cpp_source.html#l00126">MeasurementPoint::getBoundSensor()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00830">getMeasurementPoint()</a>.</p>
+<p class="reference">References <a class="el" href="_measurement_point_8cpp_source.html#l00126">MeasurementPoint::getBoundSensor()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00894">getMeasurementPoint()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00863">removeSensorByRom()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00179">updateAlarms()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00927">removeSensorByRom()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00179">updateAlarms()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2277,7 +2279,7 @@ Here is the caller graph for this function:</div>
 <p>Get device ID. </p>
 <dl class="section return"><dt>Returns</dt><dd>uint16_t Current device identifier </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01296">1296</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01360">1360</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00652">deviceId</a>.</p>
 
@@ -2301,11 +2303,11 @@ Here is the caller graph for this function:</div>
 <p>Get count of discovered DS18B20 sensors. </p>
 <dl class="section return"><dt>Returns</dt><dd>int Number of DS18B20 sensors </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01324">1324</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01388">1388</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="_sensor_8h_source.html#l00033">DS18B20</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00647">sensors</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01261">getSystemStatusJson()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01325">getSystemStatusJson()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -2338,7 +2340,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>MeasurementPoint* Pointer to DS18B20 point or nullptr if invalid index </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l00838">838</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l00902">902</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00645">dsPoints</a>.</p>
 
@@ -2362,7 +2364,7 @@ Here is the caller graph for this function:</div>
 <p>Get firmware version. </p>
 <dl class="section return"><dt>Returns</dt><dd>uint16_t Current firmware version </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01303">1303</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01367">1367</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00653">firmwareVersion</a>.</p>
 
@@ -2417,7 +2419,7 @@ Here is the caller graph for this function:</div>
 <p>Get measurement period. </p>
 <dl class="section return"><dt>Returns</dt><dd>uint16_t Current measurement period in seconds </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01316">1316</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01380">1380</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00651">measurementPeriodSeconds</a>.</p>
 
@@ -2447,11 +2449,11 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>MeasurementPoint* Pointer to measurement point or nullptr if invalid address </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l00830">830</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l00894">894</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00645">dsPoints</a>, <a class="el" href="_temperature_controller_8h_source.html#l00678">isDS18B20Address()</a>, <a class="el" href="_temperature_controller_8h_source.html#l00685">isPT1000Address()</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00646">ptPoints</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01424">addAlarm()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01547">bindSensorToPointByBusNumber()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00928">bindSensorToPointByChipSelect()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00903">bindSensorToPointByRom()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00975">getBoundSensor()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00952">unbindSensorFromPoint()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01488">addAlarm()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01611">bindSensorToPointByBusNumber()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00992">bindSensorToPointByChipSelect()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00967">bindSensorToPointByRom()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01039">getBoundSensor()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l01016">unbindSensorFromPoint()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2489,7 +2491,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>uint8_t GPIO pin number or 0xFF if invalid bus </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01370">1370</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01434">1434</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00656">oneWireBusPin</a>.</p>
 
@@ -2514,9 +2516,9 @@ Here is the caller graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>String JSON array of measurement point objects</dd></dl>
 <p>Includes point address, name, value, limits, and alarm status </p>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01200">1200</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01264">1264</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_sensor_8h_source.html#l00033">DS18B20</a>, <a class="el" href="_temperature_controller_8h_source.html#l00645">dsPoints</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00045">MeasurementPoint::getAddress()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00073">MeasurementPoint::getAlarmStatus()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00126">MeasurementPoint::getBoundSensor()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00053">MeasurementPoint::getCurrentTemp()</a>, <a class="el" href="_sensor_8cpp_source.html#l00223">Sensor::getDS18B20RomArray()</a>, <a class="el" href="_sensor_8cpp_source.html#l00213">Sensor::getDS18B20RomString()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00077">MeasurementPoint::getErrorStatus()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00069">MeasurementPoint::getHighAlarmThreshold()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00065">MeasurementPoint::getLowAlarmThreshold()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00061">MeasurementPoint::getMaxTemp()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00057">MeasurementPoint::getMinTemp()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00049">MeasurementPoint::getName()</a>, <a class="el" href="_sensor_8cpp_source.html#l00208">Sensor::getPT1000ChipSelectPin()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01374">getSensorBus()</a>, <a class="el" href="_sensor_8cpp_source.html#l00171">Sensor::getType()</a>, <a class="el" href="_sensor_8h_source.html#l00034">PT1000</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00646">ptPoints</a>.</p>
+<p class="reference">References <a class="el" href="_sensor_8h_source.html#l00033">DS18B20</a>, <a class="el" href="_temperature_controller_8h_source.html#l00645">dsPoints</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00045">MeasurementPoint::getAddress()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00073">MeasurementPoint::getAlarmStatus()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00126">MeasurementPoint::getBoundSensor()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00053">MeasurementPoint::getCurrentTemp()</a>, <a class="el" href="_sensor_8cpp_source.html#l00223">Sensor::getDS18B20RomArray()</a>, <a class="el" href="_sensor_8cpp_source.html#l00213">Sensor::getDS18B20RomString()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00077">MeasurementPoint::getErrorStatus()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00069">MeasurementPoint::getHighAlarmThreshold()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00065">MeasurementPoint::getLowAlarmThreshold()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00061">MeasurementPoint::getMaxTemp()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00057">MeasurementPoint::getMinTemp()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00049">MeasurementPoint::getName()</a>, <a class="el" href="_sensor_8cpp_source.html#l00208">Sensor::getPT1000ChipSelectPin()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01438">getSensorBus()</a>, <a class="el" href="_sensor_8cpp_source.html#l00171">Sensor::getType()</a>, <a class="el" href="_sensor_8h_source.html#l00034">PT1000</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00646">ptPoints</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2543,11 +2545,11 @@ Here is the call graph for this function:</div>
 <p>Get count of discovered PT1000 sensors. </p>
 <dl class="section return"><dt>Returns</dt><dd>int Number of PT1000 sensors </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01334">1334</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01398">1398</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="_sensor_8h_source.html#l00034">PT1000</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00647">sensors</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01261">getSystemStatusJson()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01325">getSystemStatusJson()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -2580,7 +2582,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>MeasurementPoint* Pointer to PT1000 point or nullptr if invalid index </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l00842">842</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l00906">906</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00646">ptPoints</a>.</p>
 
@@ -2642,11 +2644,11 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>bool Actual hardware state of relay </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l02063">2063</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l02127">2127</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00722">_relay1State</a>, <a class="el" href="_temperature_controller_8h_source.html#l00723">_relay2State</a>, <a class="el" href="_temperature_controller_8h_source.html#l00724">_relay3State</a>, and <a class="el" href="_logger_manager_8h_source.html#l00165">LoggerManager::error()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00987">updateRegisterMap()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01051">updateRegisterMap()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2684,11 +2686,11 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>bool Commanded state (what system wants relay to be) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l02023">2023</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l02087">2087</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00049">ACKNOWLEDGED</a>, <a class="el" href="_alarm_8h_source.html#l00050">ACTIVE</a>, <a class="el" href="_register_map_8h_source.html#l00341">FORCE_OFF</a>, <a class="el" href="_register_map_8h_source.html#l00342">FORCE_ON</a>, <a class="el" href="_temperature_controller_8h_source.html#l00471">getAlarmCount()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l02012">getRelayControlMode()</a>, <a class="el" href="_alarm_8h_source.html#l00061">PRIORITY_CRITICAL</a>, <a class="el" href="_alarm_8h_source.html#l00060">PRIORITY_HIGH</a>, and <a class="el" href="_alarm_8h_source.html#l00059">PRIORITY_MEDIUM</a>.</p>
+<p class="reference">References <a class="el" href="_alarm_8h_source.html#l00049">ACKNOWLEDGED</a>, <a class="el" href="_alarm_8h_source.html#l00050">ACTIVE</a>, <a class="el" href="_register_map_8h_source.html#l00341">FORCE_OFF</a>, <a class="el" href="_register_map_8h_source.html#l00342">FORCE_ON</a>, <a class="el" href="_temperature_controller_8h_source.html#l00471">getAlarmCount()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l02076">getRelayControlMode()</a>, <a class="el" href="_alarm_8h_source.html#l00061">PRIORITY_CRITICAL</a>, <a class="el" href="_alarm_8h_source.html#l00060">PRIORITY_HIGH</a>, and <a class="el" href="_alarm_8h_source.html#l00059">PRIORITY_MEDIUM</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00987">updateRegisterMap()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01051">updateRegisterMap()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2726,11 +2728,11 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="_register_map_8h.html#a23d2c66363244223543ad6ffc35c2072" title="Defines control modes for relay operation.">RelayControlMode</a> Current control mode </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l02012">2012</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l02076">2076</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00730">_relay1Mode</a>, <a class="el" href="_temperature_controller_8h_source.html#l00731">_relay2Mode</a>, <a class="el" href="_temperature_controller_8h_source.html#l00732">_relay3Mode</a>, <a class="el" href="_register_map_8h_source.html#l00340">AUTO</a>, and <a class="el" href="_logger_manager_8h_source.html#l00165">LoggerManager::error()</a>.</p>
+<p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00731">_relay1Mode</a>, <a class="el" href="_temperature_controller_8h_source.html#l00732">_relay2Mode</a>, <a class="el" href="_temperature_controller_8h_source.html#l00733">_relay3Mode</a>, <a class="el" href="_register_map_8h_source.html#l00340">AUTO</a>, and <a class="el" href="_logger_manager_8h_source.html#l00165">LoggerManager::error()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l02074">forceRelayState()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l02023">getRelayCommandedState()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l02138">forceRelayState()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l02087">getRelayCommandedState()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2768,11 +2770,11 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>int Bus number (0-3) or -1 if not found </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01374">1374</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01438">1438</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00657">chipSelectPin</a>, <a class="el" href="_sensor_8h_source.html#l00033">DS18B20</a>, <a class="el" href="_sensor_8h_source.html#l00236">Sensor::getOneWirePin()</a>, <a class="el" href="_sensor_8cpp_source.html#l00208">Sensor::getPT1000ChipSelectPin()</a>, <a class="el" href="_sensor_8cpp_source.html#l00171">Sensor::getType()</a>, <a class="el" href="_temperature_controller_8h_source.html#l00656">oneWireBusPin</a>, and <a class="el" href="_sensor_8h_source.html#l00034">PT1000</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01547">bindSensorToPointByBusNumber()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01015">discoverDS18B20Sensors()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01090">discoverPTSensors()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01200">getPointsJson()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01142">getSensorsJson()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l01344">updateAllSensors()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01611">bindSensorToPointByBusNumber()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01079">discoverDS18B20Sensors()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01154">discoverPTSensors()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01264">getPointsJson()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01206">getSensorsJson()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l01408">updateAllSensors()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2810,7 +2812,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Sensor* Pointer to sensor or nullptr if invalid index </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l00899">899</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l00963">963</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00647">sensors</a>.</p>
 
@@ -2867,9 +2869,9 @@ Here is the caller graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>String JSON array of sensor objects</dd></dl>
 <p>Includes sensor type, ROM/CS, binding status, and current value </p>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01142">1142</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01206">1206</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_sensor_8h_source.html#l00033">DS18B20</a>, <a class="el" href="_temperature_controller_8h_source.html#l00645">dsPoints</a>, <a class="el" href="_sensor_8cpp_source.html#l00213">Sensor::getDS18B20RomString()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01374">getSensorBus()</a>, <a class="el" href="_sensor_8cpp_source.html#l00171">Sensor::getType()</a>, <a class="el" href="_sensor_8h_source.html#l00034">PT1000</a>, <a class="el" href="_temperature_controller_8h_source.html#l00646">ptPoints</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00647">sensors</a>.</p>
+<p class="reference">References <a class="el" href="_sensor_8h_source.html#l00033">DS18B20</a>, <a class="el" href="_temperature_controller_8h_source.html#l00645">dsPoints</a>, <a class="el" href="_sensor_8cpp_source.html#l00213">Sensor::getDS18B20RomString()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01438">getSensorBus()</a>, <a class="el" href="_sensor_8cpp_source.html#l00171">Sensor::getType()</a>, <a class="el" href="_sensor_8h_source.html#l00034">PT1000</a>, <a class="el" href="_temperature_controller_8h_source.html#l00646">ptPoints</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00647">sensors</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2897,9 +2899,9 @@ Here is the call graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>String JSON object with system information</dd></dl>
 <p>Includes device ID, firmware version, sensor counts, alarm status </p>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01261">1261</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01325">1325</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00652">deviceId</a>, <a class="el" href="_temperature_controller_8h_source.html#l00653">firmwareVersion</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01324">getDS18B20Count()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01334">getPT1000Count()</a>, <a class="el" href="_temperature_controller_8h_source.html#l00651">measurementPeriodSeconds</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00650">registerMap</a>.</p>
+<p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00652">deviceId</a>, <a class="el" href="_temperature_controller_8h_source.html#l00653">firmwareVersion</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01388">getDS18B20Count()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01398">getPT1000Count()</a>, <a class="el" href="_temperature_controller_8h_source.html#l00651">measurementPeriodSeconds</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00650">registerMap</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2926,9 +2928,9 @@ Here is the call graph for this function:</div>
 <p>Handle alarm display on OLED/LEDs. </p>
 <p>Updates display with highest priority active alarm </p>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01773">1773</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01837">1837</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_temperature_controller_8cpp_source.html#l01925">_checkButtonPress()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01875">_handleAlarmDisplayRotation()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01787">_updateAlarmQueues()</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00640">indicator</a>.</p>
+<p class="reference">References <a class="el" href="_temperature_controller_8cpp_source.html#l01989">_checkButtonPress()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01939">_handleAlarmDisplayRotation()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01851">_updateAlarmQueues()</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00640">indicator</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00146">update()</a>.</p>
 <div class="dynheader">
@@ -2960,13 +2962,28 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Handle alarm output signals. </p>
-<p>Controls relays and LEDs based on alarm states </p>
+<p>Handle alarm outputs including LEDs and relays based on alarm priorities.</p>
+<p>Controls relays and LEDs based on alarm states</p>
+<p>LED Logic:</p><ul>
+<li>GREEN: Solid when no alarms (system OK) <br  />
+</li>
+<li>RED: Solid for CRITICAL priority alarms</li>
+<li>YELLOW: Solid for HIGH priority alarms</li>
+<li>BLUE: Solid for MEDIUM priority, Blinking for LOW priority</li>
+</ul>
+<p>Relay Logic:</p><ul>
+<li>CRITICAL: Siren + Beacon ON (acknowledged: Beacon only)</li>
+<li>HIGH: Beacon ON (acknowledged: Beacon blink 2s/30s)</li>
+<li>MEDIUM: Beacon blink 2s/30s (acknowledged: OFF)</li>
+<li>LOW: No relay action</li>
+</ul>
+<p>Implements intelligent blinking state management to prevent restart cycles </p>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l00483">483</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l00500">500</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00727">_blueLedState</a>, <a class="el" href="_temperature_controller_8h_source.html#l00725">_redLedState</a>, <a class="el" href="_temperature_controller_8h_source.html#l00730">_relay1Mode</a>, <a class="el" href="_temperature_controller_8h_source.html#l00722">_relay1State</a>, <a class="el" href="_temperature_controller_8h_source.html#l00731">_relay2Mode</a>, <a class="el" href="_temperature_controller_8h_source.html#l00723">_relay2State</a>, <a class="el" href="_temperature_controller_8h_source.html#l00732">_relay3Mode</a>, <a class="el" href="_temperature_controller_8h_source.html#l00724">_relay3State</a>, <a class="el" href="_temperature_controller_8h_source.html#l00726">_yellowLedState</a>, <a class="el" href="_alarm_8h_source.html#l00049">ACKNOWLEDGED</a>, <a class="el" href="_alarm_8h_source.html#l00050">ACTIVE</a>, <a class="el" href="_register_map_8h_source.html#l00340">AUTO</a>, <a class="el" href="_register_map_8h_source.html#l00341">FORCE_OFF</a>, <a class="el" href="_register_map_8h_source.html#l00342">FORCE_ON</a>, <a class="el" href="_temperature_controller_8h_source.html#l00471">getAlarmCount()</a>, <a class="el" href="_temperature_controller_8h_source.html#l00640">indicator</a>, <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>, <a class="el" href="_alarm_8h_source.html#l00061">PRIORITY_CRITICAL</a>, <a class="el" href="_alarm_8h_source.html#l00060">PRIORITY_HIGH</a>, <a class="el" href="_alarm_8h_source.html#l00058">PRIORITY_LOW</a>, and <a class="el" href="_alarm_8h_source.html#l00059">PRIORITY_MEDIUM</a>.</p>
+<p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00728">_blueLedState</a>, <a class="el" href="_temperature_controller_8h_source.html#l00726">_greenLedState</a>, <a class="el" href="_temperature_controller_8h_source.html#l00725">_redLedState</a>, <a class="el" href="_temperature_controller_8h_source.html#l00731">_relay1Mode</a>, <a class="el" href="_temperature_controller_8h_source.html#l00722">_relay1State</a>, <a class="el" href="_temperature_controller_8h_source.html#l00732">_relay2Mode</a>, <a class="el" href="_temperature_controller_8h_source.html#l00723">_relay2State</a>, <a class="el" href="_temperature_controller_8h_source.html#l00733">_relay3Mode</a>, <a class="el" href="_temperature_controller_8h_source.html#l00724">_relay3State</a>, <a class="el" href="_temperature_controller_8h_source.html#l00727">_yellowLedState</a>, <a class="el" href="_alarm_8h_source.html#l00049">ACKNOWLEDGED</a>, <a class="el" href="_alarm_8h_source.html#l00050">ACTIVE</a>, <a class="el" href="_register_map_8h_source.html#l00340">AUTO</a>, <a class="el" href="_register_map_8h_source.html#l00341">FORCE_OFF</a>, <a class="el" href="_register_map_8h_source.html#l00342">FORCE_ON</a>, <a class="el" href="_temperature_controller_8h_source.html#l00471">getAlarmCount()</a>, <a class="el" href="_temperature_controller_8h_source.html#l00640">indicator</a>, <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>, <a class="el" href="_alarm_8h_source.html#l00061">PRIORITY_CRITICAL</a>, <a class="el" href="_alarm_8h_source.html#l00060">PRIORITY_HIGH</a>, <a class="el" href="_alarm_8h_source.html#l00058">PRIORITY_LOW</a>, and <a class="el" href="_alarm_8h_source.html#l00059">PRIORITY_MEDIUM</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01981">setRelayControlMode()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00146">update()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l02045">setRelayControlMode()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00146">update()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2998,7 +3015,7 @@ Here is the caller graph for this function:</div>
 <p>Handle critical priority alarms. </p>
 <p>Implements specific behavior for critical alarms </p>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01523">1523</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01587">1587</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
 </div>
 </div>
@@ -3020,7 +3037,7 @@ Here is the caller graph for this function:</div>
 <p>Handle high priority alarms. </p>
 <p>Implements specific behavior for high priority alarms </p>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01532">1532</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01596">1596</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
 </div>
 </div>
@@ -3042,7 +3059,7 @@ Here is the caller graph for this function:</div>
 <p>Handle low priority alarms. </p>
 <p>Implements specific behavior for low priority alarms </p>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01542">1542</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01606">1606</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
 </div>
 </div>
@@ -3064,7 +3081,7 @@ Here is the caller graph for this function:</div>
 <p>Handle medium priority alarms. </p>
 <p>Implements specific behavior for medium priority alarms </p>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01538">1538</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01602">1602</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
 </div>
 </div>
@@ -3102,7 +3119,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00678">678</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00830">getMeasurementPoint()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00894">getMeasurementPoint()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -3145,7 +3162,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00685">685</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00830">getMeasurementPoint()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00894">getMeasurementPoint()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -3172,7 +3189,7 @@ Here is the caller graph for this function:</div>
 <p>Read temperature from all configured measurement points. </p>
 <p>Updates temperature values for all points with bound sensors </p>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l00980">980</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01044">1044</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00645">dsPoints</a>, <a class="el" href="_temperature_controller_8h_source.html#l00646">ptPoints</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00146">update()</a>.</p>
 
@@ -3216,7 +3233,7 @@ Here is the caller graph for this function:</div>
 <dd>
 false if alarm not found </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01482">1482</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01546">1546</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00660">_configuredAlarms</a>, and <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>.</p>
 <div class="dynheader">
@@ -3253,11 +3270,11 @@ Here is the call graph for this function:</div>
 <dd>
 false if sensor not found </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l00863">863</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l00927">927</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_sensor_8h_source.html#l00033">DS18B20</a>, <a class="el" href="_temperature_controller_8h_source.html#l00645">dsPoints</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00975">getBoundSensor()</a>, <a class="el" href="_temperature_controller_8h_source.html#l00650">registerMap</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00647">sensors</a>.</p>
+<p class="reference">References <a class="el" href="_sensor_8h_source.html#l00033">DS18B20</a>, <a class="el" href="_temperature_controller_8h_source.html#l00645">dsPoints</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01039">getBoundSensor()</a>, <a class="el" href="_temperature_controller_8h_source.html#l00650">registerMap</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00647">sensors</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01015">discoverDS18B20Sensors()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01079">discoverDS18B20Sensors()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -3289,7 +3306,7 @@ Here is the caller graph for this function:</div>
 <p>Reset min/max values for all measurement points. </p>
 <p>Clears historical minimum and maximum temperature records </p>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01280">1280</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01344">1344</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00645">dsPoints</a>, <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00646">ptPoints</a>.</p>
 <div class="dynheader">
@@ -3323,9 +3340,9 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01572">1572</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01636">1636</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00717">_acknowledgedDelayCritical</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l01610">applyAcknowledgedDelaysToAlarms()</a>.</p>
+<p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00717">_acknowledgedDelayCritical</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l01674">applyAcknowledgedDelaysToAlarms()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -3357,9 +3374,9 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01577">1577</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01641">1641</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00718">_acknowledgedDelayHigh</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l01610">applyAcknowledgedDelaysToAlarms()</a>.</p>
+<p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00718">_acknowledgedDelayHigh</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l01674">applyAcknowledgedDelaysToAlarms()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -3391,9 +3408,9 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01587">1587</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01651">1651</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00720">_acknowledgedDelayLow</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l01610">applyAcknowledgedDelaysToAlarms()</a>.</p>
+<p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00720">_acknowledgedDelayLow</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l01674">applyAcknowledgedDelaysToAlarms()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -3425,9 +3442,9 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01582">1582</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01646">1646</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00719">_acknowledgedDelayMedium</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l01610">applyAcknowledgedDelaysToAlarms()</a>.</p>
+<p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00719">_acknowledgedDelayMedium</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l01674">applyAcknowledgedDelaysToAlarms()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -3459,7 +3476,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01288">1288</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01352">1352</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00652">deviceId</a>, <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00650">registerMap</a>.</p>
 <div class="dynheader">
@@ -3493,7 +3510,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01298">1298</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01362">1362</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00653">firmwareVersion</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00650">registerMap</a>.</p>
 
@@ -3522,7 +3539,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01305">1305</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01369">1369</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00651">measurementPeriodSeconds</a>.</p>
 <div class="dynheader">
@@ -3561,7 +3578,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01320">1320</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01384">1384</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00656">oneWireBusPin</a>.</p>
 
@@ -3596,9 +3613,9 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if mode set successfully </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01981">1981</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l02045">2045</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00730">_relay1Mode</a>, <a class="el" href="_temperature_controller_8h_source.html#l00731">_relay2Mode</a>, <a class="el" href="_temperature_controller_8h_source.html#l00732">_relay3Mode</a>, <a class="el" href="_register_map_8h_source.html#l00340">AUTO</a>, <a class="el" href="_logger_manager_8h_source.html#l00165">LoggerManager::error()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00483">handleAlarmOutputs()</a>, <a class="el" href="_temperature_controller_8h_source.html#l00640">indicator</a>, and <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>.</p>
+<p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00731">_relay1Mode</a>, <a class="el" href="_temperature_controller_8h_source.html#l00732">_relay2Mode</a>, <a class="el" href="_temperature_controller_8h_source.html#l00733">_relay3Mode</a>, <a class="el" href="_register_map_8h_source.html#l00340">AUTO</a>, <a class="el" href="_logger_manager_8h_source.html#l00165">LoggerManager::error()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00500">handleAlarmOutputs()</a>, <a class="el" href="_temperature_controller_8h_source.html#l00640">indicator</a>, and <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -3633,9 +3650,9 @@ Here is the call graph for this function:</div>
 <dd>
 false if point not found or not bound </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l00952">952</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01016">1016</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_sensor_8h_source.html#l00033">DS18B20</a>, <a class="el" href="_logger_manager_8h_source.html#l00165">LoggerManager::error()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00126">MeasurementPoint::getBoundSensor()</a>, <a class="el" href="_sensor_8cpp_source.html#l00213">Sensor::getDS18B20RomString()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00830">getMeasurementPoint()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00049">MeasurementPoint::getName()</a>, <a class="el" href="_sensor_8cpp_source.html#l00208">Sensor::getPT1000ChipSelectPin()</a>, <a class="el" href="_sensor_8cpp_source.html#l00171">Sensor::getType()</a>, <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>, and <a class="el" href="_measurement_point_8cpp_source.html#l00122">MeasurementPoint::unbindSensor()</a>.</p>
+<p class="reference">References <a class="el" href="_sensor_8h_source.html#l00033">DS18B20</a>, <a class="el" href="_logger_manager_8h_source.html#l00165">LoggerManager::error()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00126">MeasurementPoint::getBoundSensor()</a>, <a class="el" href="_sensor_8cpp_source.html#l00213">Sensor::getDS18B20RomString()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00894">getMeasurementPoint()</a>, <a class="el" href="_measurement_point_8cpp_source.html#l00049">MeasurementPoint::getName()</a>, <a class="el" href="_sensor_8cpp_source.html#l00208">Sensor::getPT1000ChipSelectPin()</a>, <a class="el" href="_sensor_8cpp_source.html#l00171">Sensor::getType()</a>, <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>, and <a class="el" href="_measurement_point_8cpp_source.html#l00122">MeasurementPoint::unbindSensor()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -3670,11 +3687,11 @@ Here is the call graph for this function:</div>
 <dd>
 false if sensor not bound to any point </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01394">1394</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01458">1458</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00645">dsPoints</a>, <a class="el" href="_sensor_8cpp_source.html#l00173">Sensor::getName()</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00646">ptPoints</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00928">bindSensorToPointByChipSelect()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00903">bindSensorToPointByRom()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00992">bindSensorToPointByChipSelect()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00967">bindSensorToPointByRom()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -3708,9 +3725,9 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l00146">146</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_temperature_controller_8cpp_source.html#l01925">_checkButtonPress()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01773">handleAlarmDisplay()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00483">handleAlarmOutputs()</a>, <a class="el" href="_temperature_controller_8h_source.html#l00640">indicator</a>, <a class="el" href="_temperature_controller_8h_source.html#l00654">lastMeasurementTime</a>, <a class="el" href="_temperature_controller_8h_source.html#l00651">measurementPeriodSeconds</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00980">readAllPoints()</a>, <a class="el" href="_temperature_controller_8h_source.html#l00655">systemInitialized</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00179">updateAlarms()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01344">updateAllSensors()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00987">updateRegisterMap()</a>.</p>
+<p class="reference">References <a class="el" href="_temperature_controller_8cpp_source.html#l01989">_checkButtonPress()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01837">handleAlarmDisplay()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00500">handleAlarmOutputs()</a>, <a class="el" href="_temperature_controller_8h_source.html#l00640">indicator</a>, <a class="el" href="_temperature_controller_8h_source.html#l00654">lastMeasurementTime</a>, <a class="el" href="_temperature_controller_8h_source.html#l00651">measurementPeriodSeconds</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01044">readAllPoints()</a>, <a class="el" href="_temperature_controller_8h_source.html#l00655">systemInitialized</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00179">updateAlarms()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01408">updateAllSensors()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l01051">updateRegisterMap()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00980">readAllPoints()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01044">readAllPoints()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -3761,9 +3778,9 @@ Here is the caller graph for this function:</div>
 <dd>
 false if alarm not found </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01497">1497</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01561">1561</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_temperature_controller_8cpp_source.html#l01507">findAlarm()</a>, <a class="el" href="_alarm_8cpp_source.html#l00459">Alarm::setEnabled()</a>, and <a class="el" href="_alarm_8cpp_source.html#l00431">Alarm::setPriority()</a>.</p>
+<p class="reference">References <a class="el" href="_temperature_controller_8cpp_source.html#l01571">findAlarm()</a>, <a class="el" href="_alarm_8cpp_source.html#l00459">Alarm::setEnabled()</a>, and <a class="el" href="_alarm_8cpp_source.html#l00431">Alarm::setPriority()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -3792,7 +3809,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l00179">179</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00662">_alarmCheckInterval</a>, <a class="el" href="_temperature_controller_8h_source.html#l00660">_configuredAlarms</a>, <a class="el" href="_temperature_controller_8h_source.html#l00661">_lastAlarmCheck</a>, <a class="el" href="_temperature_controller_8h_source.html#l00645">dsPoints</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00327">getActiveAlarms()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00975">getBoundSensor()</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00646">ptPoints</a>.</p>
+<p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00662">_alarmCheckInterval</a>, <a class="el" href="_temperature_controller_8h_source.html#l00660">_configuredAlarms</a>, <a class="el" href="_temperature_controller_8h_source.html#l00661">_lastAlarmCheck</a>, <a class="el" href="_temperature_controller_8h_source.html#l00645">dsPoints</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00327">getActiveAlarms()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01039">getBoundSensor()</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00646">ptPoints</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00146">update()</a>.</p>
 <div class="dynheader">
@@ -3826,9 +3843,9 @@ Here is the caller graph for this function:</div>
 <p>Update temperature readings for all sensors. </p>
 <p>Forces immediate temperature reading from all sensors </p>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01344">1344</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01408">1408</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_sensor_8h_source.html#l00033">DS18B20</a>, <a class="el" href="_logger_manager_8h_source.html#l00165">LoggerManager::error()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01374">getSensorBus()</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00647">sensors</a>.</p>
+<p class="reference">References <a class="el" href="_sensor_8h_source.html#l00033">DS18B20</a>, <a class="el" href="_logger_manager_8h_source.html#l00165">LoggerManager::error()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01438">getSensorBus()</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00647">sensors</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00146">update()</a>.</p>
 <div class="dynheader">
@@ -3862,9 +3879,9 @@ Here is the caller graph for this function:</div>
 <p>Update register map with current values from measurement points. </p>
 <p>Synchronizes Modbus registers with current temperature data </p>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l00987">987</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8cpp_source.html#l01051">1051</a> of file <a class="el" href="_temperature_controller_8cpp_source.html">TemperatureController.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00645">dsPoints</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l02063">getRelayActualState()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l02023">getRelayCommandedState()</a>, <a class="el" href="_temperature_controller_8h_source.html#l00646">ptPoints</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00650">registerMap</a>.</p>
+<p class="reference">References <a class="el" href="_temperature_controller_8h_source.html#l00645">dsPoints</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l02127">getRelayActualState()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l02087">getRelayCommandedState()</a>, <a class="el" href="_temperature_controller_8h_source.html#l00646">ptPoints</a>, and <a class="el" href="_temperature_controller_8h_source.html#l00650">registerMap</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00146">update()</a>.</p>
 <div class="dynheader">
@@ -3903,9 +3920,9 @@ Here is the caller graph for this function:</div>
 
 <p>Delay before showing acknowledged alarms. </p>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00769">769</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00770">770</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01875">_handleAlarmDisplayRotation()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00024">TemperatureController()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01939">_handleAlarmDisplayRotation()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00024">TemperatureController()</a>.</p>
 
 </div>
 </div>
@@ -3931,9 +3948,9 @@ Here is the caller graph for this function:</div>
 
 <p>Queue of acknowledged alarms for display. </p>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00765">765</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00766">766</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01848">_displayNextAcknowledgedAlarm()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01875">_handleAlarmDisplayRotation()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l01787">_updateAlarmQueues()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01912">_displayNextAcknowledgedAlarm()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01939">_handleAlarmDisplayRotation()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l01851">_updateAlarmQueues()</a>.</p>
 
 </div>
 </div>
@@ -3961,7 +3978,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00717">717</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01424">addAlarm()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01610">applyAcknowledgedDelaysToAlarms()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01593">getAcknowledgedDelayCritical()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l01572">setAcknowledgedDelayCritical()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01488">addAlarm()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01674">applyAcknowledgedDelaysToAlarms()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01657">getAcknowledgedDelayCritical()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l01636">setAcknowledgedDelayCritical()</a>.</p>
 
 </div>
 </div>
@@ -3989,7 +4006,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00718">718</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01424">addAlarm()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01610">applyAcknowledgedDelaysToAlarms()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01597">getAcknowledgedDelayHigh()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l01577">setAcknowledgedDelayHigh()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01488">addAlarm()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01674">applyAcknowledgedDelaysToAlarms()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01661">getAcknowledgedDelayHigh()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l01641">setAcknowledgedDelayHigh()</a>.</p>
 
 </div>
 </div>
@@ -4017,7 +4034,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00720">720</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01424">addAlarm()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01610">applyAcknowledgedDelaysToAlarms()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01605">getAcknowledgedDelayLow()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l01587">setAcknowledgedDelayLow()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01488">addAlarm()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01674">applyAcknowledgedDelaysToAlarms()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01669">getAcknowledgedDelayLow()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l01651">setAcknowledgedDelayLow()</a>.</p>
 
 </div>
 </div>
@@ -4045,7 +4062,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00719">719</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01424">addAlarm()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01610">applyAcknowledgedDelaysToAlarms()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01601">getAcknowledgedDelayMedium()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l01582">setAcknowledgedDelayMedium()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01488">addAlarm()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01674">applyAcknowledgedDelaysToAlarms()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01665">getAcknowledgedDelayMedium()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l01646">setAcknowledgedDelayMedium()</a>.</p>
 
 </div>
 </div>
@@ -4071,9 +4088,9 @@ Here is the caller graph for this function:</div>
 
 <p>Queue of active alarms for display rotation. </p>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00764">764</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00765">765</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01925">_checkButtonPress()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01823">_displayNextActiveAlarm()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01875">_handleAlarmDisplayRotation()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l01787">_updateAlarmQueues()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01989">_checkButtonPress()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01887">_displayNextActiveAlarm()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01939">_handleAlarmDisplayRotation()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l01851">_updateAlarmQueues()</a>.</p>
 
 </div>
 </div>
@@ -4127,9 +4144,9 @@ Here is the caller graph for this function:</div>
 
 <p>Blink off duration (30 seconds) </p>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00756">756</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00757">757</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01753">_handleLowPriorityBlinking()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01817">_handleLowPriorityBlinking()</a>.</p>
 
 </div>
 </div>
@@ -4155,9 +4172,9 @@ Here is the caller graph for this function:</div>
 
 <p>Blink on duration (2 seconds) </p>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00755">755</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00756">756</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01753">_handleLowPriorityBlinking()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01817">_handleLowPriorityBlinking()</a>.</p>
 
 </div>
 </div>
@@ -4183,9 +4200,9 @@ Here is the caller graph for this function:</div>
 
 <p>Current state of blue LED. </p>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00727">727</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00728">728</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00483">handleAlarmOutputs()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00500">handleAlarmOutputs()</a>.</p>
 
 </div>
 </div>
@@ -4239,7 +4256,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00660">660</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00262">_hasAlarmForPoint()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00318">acknowledgeAllAlarms()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01424">addAlarm()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01610">applyAcknowledgedDelaysToAlarms()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00352">clearConfiguredAlarms()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00337">clearResolvedAlarms()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00275">createAlarm()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00363">ensureAlarmsForPoint()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01507">findAlarm()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00327">getActiveAlarms()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01516">getAlarmByIndex()</a>, <a class="el" href="_temperature_controller_8h_source.html#l00471">getAlarmCount()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01699">getAlarmCount()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01679">getAlarmCount()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01689">getAlarmCount()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00402">getAlarmsForPoint()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00772">getAlarmsJson()</a>, <a class="el" href="_temperature_controller_8h_source.html#l00477">getConfiguredAlarms()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00300">getHighestPriorityAlarm()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01482">removeAlarm()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00179">updateAlarms()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00061">~TemperatureController()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00262">_hasAlarmForPoint()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00318">acknowledgeAllAlarms()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01488">addAlarm()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01674">applyAcknowledgedDelaysToAlarms()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00352">clearConfiguredAlarms()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00337">clearResolvedAlarms()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00275">createAlarm()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00363">ensureAlarmsForPoint()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01571">findAlarm()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00327">getActiveAlarms()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01580">getAlarmByIndex()</a>, <a class="el" href="_temperature_controller_8h_source.html#l00471">getAlarmCount()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01763">getAlarmCount()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01743">getAlarmCount()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01753">getAlarmCount()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00402">getAlarmsForPoint()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00836">getAlarmsJson()</a>, <a class="el" href="_temperature_controller_8h_source.html#l00477">getConfiguredAlarms()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00300">getHighestPriorityAlarm()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01546">removeAlarm()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00179">updateAlarms()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00061">~TemperatureController()</a>.</p>
 
 </div>
 </div>
@@ -4265,9 +4282,9 @@ Here is the caller graph for this function:</div>
 
 <p>Current index in acknowledged alarms queue. </p>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00767">767</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00768">768</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01848">_displayNextAcknowledgedAlarm()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01875">_handleAlarmDisplayRotation()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00024">TemperatureController()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01912">_displayNextAcknowledgedAlarm()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01939">_handleAlarmDisplayRotation()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00024">TemperatureController()</a>.</p>
 
 </div>
 </div>
@@ -4293,9 +4310,9 @@ Here is the caller graph for this function:</div>
 
 <p>Current index in active alarms queue. </p>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00766">766</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00767">767</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01925">_checkButtonPress()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01823">_displayNextActiveAlarm()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01875">_handleAlarmDisplayRotation()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00024">TemperatureController()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01989">_checkButtonPress()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01887">_displayNextActiveAlarm()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01939">_handleAlarmDisplayRotation()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00024">TemperatureController()</a>.</p>
 
 </div>
 </div>
@@ -4323,7 +4340,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00668">668</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01925">_checkButtonPress()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01848">_displayNextAcknowledgedAlarm()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01823">_displayNextActiveAlarm()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01875">_handleAlarmDisplayRotation()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00352">clearConfiguredAlarms()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00337">clearResolvedAlarms()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00024">TemperatureController()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01989">_checkButtonPress()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01912">_displayNextAcknowledgedAlarm()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01887">_displayNextActiveAlarm()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01939">_handleAlarmDisplayRotation()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00352">clearConfiguredAlarms()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00337">clearResolvedAlarms()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00024">TemperatureController()</a>.</p>
 
 </div>
 </div>
@@ -4349,9 +4366,37 @@ Here is the caller graph for this function:</div>
 
 <p>Flag indicating if displaying active alarm. </p>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00770">770</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00771">771</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01925">_checkButtonPress()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01875">_handleAlarmDisplayRotation()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00024">TemperatureController()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01989">_checkButtonPress()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01939">_handleAlarmDisplayRotation()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00024">TemperatureController()</a>.</p>
+
+</div>
+</div>
+<a id="a999459f5c7d5320ad12c90bf0948a551" name="a999459f5c7d5320ad12c90bf0948a551"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a999459f5c7d5320ad12c90bf0948a551">&#9670;&#160;</a></span>_greenLedState</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool TemperatureController::_greenLedState = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Current state of green LED (system OK) </p>
+
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00726">726</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00500">handleAlarmOutputs()</a>.</p>
 
 </div>
 </div>
@@ -4405,9 +4450,9 @@ Here is the caller graph for this function:</div>
 
 <p>Last alarm display update timestamp. </p>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00768">768</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00769">769</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01925">_checkButtonPress()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01848">_displayNextAcknowledgedAlarm()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01875">_handleAlarmDisplayRotation()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00024">TemperatureController()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01989">_checkButtonPress()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01912">_displayNextAcknowledgedAlarm()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01939">_handleAlarmDisplayRotation()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00024">TemperatureController()</a>.</p>
 
 </div>
 </div>
@@ -4463,7 +4508,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00663">663</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01925">_checkButtonPress()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00024">TemperatureController()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01989">_checkButtonPress()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00024">TemperatureController()</a>.</p>
 
 </div>
 </div>
@@ -4489,9 +4534,9 @@ Here is the caller graph for this function:</div>
 
 <p>Last blink state change timestamp. </p>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00754">754</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00755">755</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01753">_handleLowPriorityBlinking()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01817">_handleLowPriorityBlinking()</a>.</p>
 
 </div>
 </div>
@@ -4517,9 +4562,9 @@ Here is the caller graph for this function:</div>
 
 <p>Current blink state for low priority alarms. </p>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00753">753</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00754">754</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01753">_handleLowPriorityBlinking()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01817">_handleLowPriorityBlinking()</a>.</p>
 
 </div>
 </div>
@@ -4547,7 +4592,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00669">669</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01875">_handleAlarmDisplayRotation()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00766">_showOKAndTurnOffOLED()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00024">TemperatureController()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01939">_handleAlarmDisplayRotation()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00830">_showOKAndTurnOffOLED()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00024">TemperatureController()</a>.</p>
 
 </div>
 </div>
@@ -4575,7 +4620,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00725">725</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00483">handleAlarmOutputs()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00500">handleAlarmOutputs()</a>.</p>
 
 </div>
 </div>
@@ -4601,9 +4646,9 @@ Here is the caller graph for this function:</div>
 
 <p>Control mode for relay 1. </p>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00730">730</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00731">731</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l02012">getRelayControlMode()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00483">handleAlarmOutputs()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l01981">setRelayControlMode()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l02076">getRelayControlMode()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00500">handleAlarmOutputs()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l02045">setRelayControlMode()</a>.</p>
 
 </div>
 </div>
@@ -4631,7 +4676,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00722">722</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l02074">forceRelayState()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l02063">getRelayActualState()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00483">handleAlarmOutputs()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l02138">forceRelayState()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l02127">getRelayActualState()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00500">handleAlarmOutputs()</a>.</p>
 
 </div>
 </div>
@@ -4657,9 +4702,9 @@ Here is the caller graph for this function:</div>
 
 <p>Control mode for relay 2. </p>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00731">731</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00732">732</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l02012">getRelayControlMode()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00483">handleAlarmOutputs()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l01981">setRelayControlMode()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l02076">getRelayControlMode()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00500">handleAlarmOutputs()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l02045">setRelayControlMode()</a>.</p>
 
 </div>
 </div>
@@ -4687,7 +4732,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00723">723</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l02074">forceRelayState()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l02063">getRelayActualState()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00483">handleAlarmOutputs()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l02138">forceRelayState()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l02127">getRelayActualState()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00500">handleAlarmOutputs()</a>.</p>
 
 </div>
 </div>
@@ -4713,9 +4758,9 @@ Here is the caller graph for this function:</div>
 
 <p>Control mode for relay 3. </p>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00732">732</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00733">733</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l02012">getRelayControlMode()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00483">handleAlarmOutputs()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l01981">setRelayControlMode()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l02076">getRelayControlMode()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00500">handleAlarmOutputs()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l02045">setRelayControlMode()</a>.</p>
 
 </div>
 </div>
@@ -4743,7 +4788,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00724">724</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l02074">forceRelayState()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l02063">getRelayActualState()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00483">handleAlarmOutputs()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l02138">forceRelayState()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l02127">getRelayActualState()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00500">handleAlarmOutputs()</a>.</p>
 
 </div>
 </div>
@@ -4771,7 +4816,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00670">670</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01848">_displayNextAcknowledgedAlarm()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01823">_displayNextActiveAlarm()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01875">_handleAlarmDisplayRotation()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00766">_showOKAndTurnOffOLED()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00024">TemperatureController()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01912">_displayNextAcknowledgedAlarm()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01887">_displayNextActiveAlarm()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01939">_handleAlarmDisplayRotation()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00830">_showOKAndTurnOffOLED()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00024">TemperatureController()</a>.</p>
 
 </div>
 </div>
@@ -4797,9 +4842,9 @@ Here is the caller graph for this function:</div>
 
 <p>Current state of yellow LED. </p>
 
-<p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00726">726</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00727">727</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00483">handleAlarmOutputs()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00500">handleAlarmOutputs()</a>.</p>
 
 </div>
 </div>
@@ -4827,7 +4872,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00657">657</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01090">discoverPTSensors()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01374">getSensorBus()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00024">TemperatureController()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01154">discoverPTSensors()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01438">getSensorBus()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00024">TemperatureController()</a>.</p>
 
 </div>
 </div>
@@ -4855,7 +4900,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00642">642</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01015">discoverDS18B20Sensors()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00024">TemperatureController()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00061">~TemperatureController()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01079">discoverDS18B20Sensors()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00024">TemperatureController()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00061">~TemperatureController()</a>.</p>
 
 </div>
 </div>
@@ -4883,7 +4928,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00652">652</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00081">begin()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01296">getDeviceId()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01261">getSystemStatusJson()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01288">setDeviceId()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00024">TemperatureController()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00081">begin()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01360">getDeviceId()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01325">getSystemStatusJson()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01352">setDeviceId()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00024">TemperatureController()</a>.</p>
 
 </div>
 </div>
@@ -4911,7 +4956,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00645">645</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01001">applyConfigFromRegisterMap()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01008">applyConfigToRegisterMap()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00838">getDS18B20Point()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00830">getMeasurementPoint()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01200">getPointsJson()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01142">getSensorsJson()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00980">readAllPoints()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00863">removeSensorByRom()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01280">resetMinMaxValues()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00024">TemperatureController()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01394">unbindSensorFromPointBySensor()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00179">updateAlarms()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00987">updateRegisterMap()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01065">applyConfigFromRegisterMap()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01072">applyConfigToRegisterMap()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00902">getDS18B20Point()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00894">getMeasurementPoint()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01264">getPointsJson()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01206">getSensorsJson()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01044">readAllPoints()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00927">removeSensorByRom()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01344">resetMinMaxValues()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00024">TemperatureController()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01458">unbindSensorFromPointBySensor()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00179">updateAlarms()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l01051">updateRegisterMap()</a>.</p>
 
 </div>
 </div>
@@ -4939,7 +4984,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00653">653</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00081">begin()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01303">getFirmwareVersion()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01261">getSystemStatusJson()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01298">setFirmwareVersion()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00024">TemperatureController()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00081">begin()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01367">getFirmwareVersion()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01325">getSystemStatusJson()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01362">setFirmwareVersion()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00024">TemperatureController()</a>.</p>
 
 </div>
 </div>
@@ -4967,7 +5012,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00640">640</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01925">_checkButtonPress()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01848">_displayNextAcknowledgedAlarm()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01823">_displayNextActiveAlarm()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01875">_handleAlarmDisplayRotation()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00766">_showOKAndTurnOffOLED()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00755">_updateNormalDisplay()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00081">begin()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l02074">forceRelayState()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01773">handleAlarmDisplay()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00483">handleAlarmOutputs()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01981">setRelayControlMode()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00024">TemperatureController()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00146">update()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01989">_checkButtonPress()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01912">_displayNextAcknowledgedAlarm()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01887">_displayNextActiveAlarm()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01939">_handleAlarmDisplayRotation()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00830">_showOKAndTurnOffOLED()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00819">_updateNormalDisplay()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00081">begin()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l02138">forceRelayState()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01837">handleAlarmDisplay()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00500">handleAlarmOutputs()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l02045">setRelayControlMode()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00024">TemperatureController()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00146">update()</a>.</p>
 
 </div>
 </div>
@@ -5023,7 +5068,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00651">651</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01316">getMeasurementPeriod()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01261">getSystemStatusJson()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01305">setMeasurementPeriod()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00024">TemperatureController()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00146">update()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01380">getMeasurementPeriod()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01325">getSystemStatusJson()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01369">setMeasurementPeriod()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00024">TemperatureController()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00146">update()</a>.</p>
 
 </div>
 </div>
@@ -5079,7 +5124,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00656">656</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01015">discoverDS18B20Sensors()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01370">getOneWirePin()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01374">getSensorBus()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01320">setOneWireBusPin()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00024">TemperatureController()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01079">discoverDS18B20Sensors()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01434">getOneWirePin()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01438">getSensorBus()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01384">setOneWireBusPin()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00024">TemperatureController()</a>.</p>
 
 </div>
 </div>
@@ -5107,7 +5152,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00646">646</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01001">applyConfigFromRegisterMap()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01008">applyConfigToRegisterMap()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00830">getMeasurementPoint()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01200">getPointsJson()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00842">getPT1000Point()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01142">getSensorsJson()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00980">readAllPoints()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01280">resetMinMaxValues()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00024">TemperatureController()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01394">unbindSensorFromPointBySensor()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00179">updateAlarms()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00987">updateRegisterMap()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l01065">applyConfigFromRegisterMap()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01072">applyConfigToRegisterMap()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00894">getMeasurementPoint()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01264">getPointsJson()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00906">getPT1000Point()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01206">getSensorsJson()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01044">readAllPoints()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01344">resetMinMaxValues()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00024">TemperatureController()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01458">unbindSensorFromPointBySensor()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00179">updateAlarms()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l01051">updateRegisterMap()</a>.</p>
 
 </div>
 </div>
@@ -5135,7 +5180,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00650">650</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00846">addSensor()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01001">applyConfigFromRegisterMap()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01008">applyConfigToRegisterMap()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00081">begin()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01015">discoverDS18B20Sensors()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01090">discoverPTSensors()</a>, <a class="el" href="_temperature_controller_8h_source.html#l00260">getRegisterMap()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01261">getSystemStatusJson()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00863">removeSensorByRom()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01288">setDeviceId()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01298">setFirmwareVersion()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00987">updateRegisterMap()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00910">addSensor()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01065">applyConfigFromRegisterMap()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01072">applyConfigToRegisterMap()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00081">begin()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01079">discoverDS18B20Sensors()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01154">discoverPTSensors()</a>, <a class="el" href="_temperature_controller_8h_source.html#l00260">getRegisterMap()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01325">getSystemStatusJson()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00927">removeSensorByRom()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01352">setDeviceId()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01362">setFirmwareVersion()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l01051">updateRegisterMap()</a>.</p>
 
 </div>
 </div>
@@ -5163,7 +5208,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_temperature_controller_8h_source.html#l00647">647</a> of file <a class="el" href="_temperature_controller_8h_source.html">TemperatureController.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00846">addSensor()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01547">bindSensorToPointByBusNumber()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01015">discoverDS18B20Sensors()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01090">discoverPTSensors()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00891">findSensorByChipSelect()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00881">findSensorByRom()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01324">getDS18B20Count()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01334">getPT1000Count()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00899">getSensorByIndex()</a>, <a class="el" href="_temperature_controller_8h_source.html#l00127">getSensorCount()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01142">getSensorsJson()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00863">removeSensorByRom()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01344">updateAllSensors()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00061">~TemperatureController()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l00910">addSensor()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01611">bindSensorToPointByBusNumber()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01079">discoverDS18B20Sensors()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01154">discoverPTSensors()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00955">findSensorByChipSelect()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00945">findSensorByRom()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01388">getDS18B20Count()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01398">getPT1000Count()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00963">getSensorByIndex()</a>, <a class="el" href="_temperature_controller_8h_source.html#l00127">getSensorCount()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01206">getSensorsJson()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l00927">removeSensorByRom()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01408">updateAllSensors()</a>, and <a class="el" href="_temperature_controller_8cpp_source.html#l00061">~TemperatureController()</a>.</p>
 
 </div>
 </div>

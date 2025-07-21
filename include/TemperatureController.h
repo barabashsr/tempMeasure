@@ -723,6 +723,7 @@ private:
     bool _relay2State = false;                     ///< Current state of relay 2
     bool _relay3State = false;                     ///< Current state of relay 3 (Modbus-only)
     bool _redLedState = false;                     ///< Current state of red LED
+    bool _greenLedState = false;                   ///< Current state of green LED (system OK)
     bool _yellowLedState = false;                  ///< Current state of yellow LED
     bool _blueLedState = false;                    ///< Current state of blue LED
     
