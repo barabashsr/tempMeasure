@@ -90,4 +90,48 @@ Created comprehensive roadmap with 5 priority areas:
 5. Modbus RTU Completion - explicit triggers, safety validations
 
 Current status: Foundation complete, ready to implement priority features
+
+## New Session: 2025-07-21 11:36 - Implementing Relay Control Keystone
+### Task: Relay Control Based on Alarm Priority and State
+### Status: Completed
+
+### Update: 12:00:00
+- Completed: Implemented relay control system with Modbus override
+- Added RelayControlMode enum (AUTO/FORCE_OFF/FORCE_ON)
+- Modified TemperatureController with relay control methods
+- Updated handleAlarmOutputs() to respect Modbus modes
+- Added relay status registers 11-13
+- Modified TempModbusServer to handle relay writes
+- Fixed compilation errors by adding controller reference
+- Updated all three documentation files
+- Next: Fix hysteresis bug
+
+### Update: 13:00:00
+- Completed: Fixed hysteresis logic bug in Alarm.cpp
+- Corrected HIGH_TEMPERATURE alarm: activate at threshold, clear at (threshold - hysteresis)
+- Corrected LOW_TEMPERATURE alarm: activate at threshold, clear at (threshold + hysteresis)
+- Successfully compiled and committed changes
+- Documentation regenerated automatically via git hook
+
+### Summary of Implementation:
+1. **Relay Control System:**
+   - RelayControlMode enum for AUTO/FORCE_OFF/FORCE_ON
+   - Relay 1: Siren for critical alarms only
+   - Relay 2: Beacon with complex priority logic
+   - Relay 3: Modbus-only control (spare)
+   - Modbus registers 860-862 for control
+   - Status feedback in registers 11-13
+
+2. **Hysteresis Fix:**
+   - Fixed alarm oscillation at threshold values
+   - Proper hysteresis implementation for both alarm types
+
+3. **Documentation Updates:**
+   - README.md: Added relay control section
+   - MODBUS_REGISTER_MAP.md: New registers documented
+   - USER_MANUAL_RU.md: Russian documentation added
+
+### Pending Tasks:
+- Add unit tests for relay priority control
+- Clarify Relay3 hardware port assignment
 EOF < /dev/null

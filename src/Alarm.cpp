@@ -208,11 +208,11 @@ bool Alarm::_checkCondition() {
                 // Hysteresis logic for HIGH_TEMPERATURE:
                 // - Activate when temp >= threshold
                 // - Remain active until temp < (threshold - hysteresis)
-                if (_stage == AlarmStage::ACTIVE || _stage == AlarmStage::ACKNOWLEDGED) {
-                    // Alarm is active, stay active unless temp drops below (threshold - hysteresis)
+                if (_stage == AlarmStage::ACTIVE || _stage == AlarmStage::ACKNOWLEDGED || _stage == AlarmStage::CLEARED) {
+                    // Alarm is active or cleared (but not resolved), check if it should remain/return
                     condition = currentTemp >= (threshold - _hysteresis);
                 } else {
-                    // Alarm is not active, activate only when temp reaches or exceeds threshold
+                    // Alarm is NEW or RESOLVED, activate only when temp reaches or exceeds threshold
                     condition = currentTemp >= threshold;
                 }
                 Serial.printf("HIGH_TEMP check: Point %d, Temp=%d, Threshold=%d, Hysteresis=%d, Stage=%s, Condition=%s\n",
@@ -227,11 +227,11 @@ bool Alarm::_checkCondition() {
                 // Hysteresis logic for LOW_TEMPERATURE:
                 // - Activate when temp <= threshold
                 // - Remain active until temp > (threshold + hysteresis)
-                if (_stage == AlarmStage::ACTIVE || _stage == AlarmStage::ACKNOWLEDGED) {
-                    // Alarm is active, stay active unless temp rises above (threshold + hysteresis)
+                if (_stage == AlarmStage::ACTIVE || _stage == AlarmStage::ACKNOWLEDGED || _stage == AlarmStage::CLEARED) {
+                    // Alarm is active or cleared (but not resolved), check if it should remain/return
                     condition = currentTemp <= (threshold + _hysteresis);
                 } else {
-                    // Alarm is not active, activate only when temp drops to or below threshold
+                    // Alarm is NEW or RESOLVED, activate only when temp drops to or below threshold
                     condition = currentTemp <= threshold;
                 }
                 Serial.printf("LOW_TEMP check: Point %d, Temp=%d, Threshold=%d, Hysteresis=%d, Stage=%s, Condition=%s\n",
