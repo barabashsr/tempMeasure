@@ -205,7 +205,7 @@ bool Alarm::_checkCondition() {
         case AlarmType::HIGH_TEMPERATURE:
             {
                 int16_t threshold = _source->getHighAlarmThreshold();
-                if (_stage == AlarmStage::CLEARED) {
+                if (_stage == AlarmStage::CLEARED || _stage == AlarmStage::ACKNOWLEDGED || _stage == AlarmStage::ACTIVE) {
                     // When cleared, need temperature to go below threshold - hysteresis
                     condition = currentTemp >= (threshold - _hysteresis);
                 } else {
@@ -221,7 +221,7 @@ bool Alarm::_checkCondition() {
         case AlarmType::LOW_TEMPERATURE:
             {
                 int16_t threshold = _source->getLowAlarmThreshold();
-                if (_stage == AlarmStage::CLEARED) {
+                if (_stage == AlarmStage::CLEARED || _stage == AlarmStage::ACKNOWLEDGED || _stage == AlarmStage::ACTIVE) {
                     // When cleared, need temperature to go above threshold + hysteresis
                     condition = currentTemp <= (threshold + _hysteresis);
                 } else {
@@ -480,12 +480,10 @@ bool Alarm::updateCondition() {
         return true;
     }
     
-    bool conditionExists = _checkCondition();
+    
     AlarmStage oldStage = _stage;
     
-    Serial.printf("Alarm update: Point %d, Type=%s, Stage=%s, Condition=%s\n",
-                  _source->getAddress(), getTypeString().c_str(), 
-                  getStageString().c_str(), conditionExists ? "EXISTS" : "CLEARED");
+    
     
     String source_ = "ALARM_" + String(_source->getAddress());
     String baseDescription = getTypeString() + " alarm for point " + 
@@ -493,6 +491,10 @@ bool Alarm::updateCondition() {
     
     // Get current temperature and threshold for logging
     int16_t currentTemp = _source->getCurrentTemp();
+    bool conditionExists = _checkCondition();
+    Serial.printf("Alarm update: Point %d, Type=%s, Stage=%s, Condition=%s\n",
+                  _source->getAddress(), getTypeString().c_str(), 
+                  getStageString().c_str(), conditionExists ? "EXISTS" : "CLEARED");
     int16_t threshold = 0;
     
     switch (_type) {
@@ -583,7 +585,7 @@ bool Alarm::updateCondition() {
                                                  "CLEARED", "ACTIVE", currentTemp, threshold);
                 
                 Serial.printf("Alarm %s: CLEARED -> ACTIVE (condition returned)\n", getTypeString().c_str());
-            } else if (isDelayElapsed()) {
+            } else {//if (isDelayElapsed()) {
                 resolve();
                 
                 // LOG: CLEARED -> RESOLVED (delay elapsed)

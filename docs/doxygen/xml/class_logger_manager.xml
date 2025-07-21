@@ -2149,41 +2149,41 @@ Provides access to the global logger instance </para>
         <location file="include/LoggerManager.h" line="145" column="17" bodyfile="include/LoggerManager.h" bodystart="145" bodyend="147"/>
         <references refid="class_logger_manager_1a3f4c0cc78425ddd99d489740be325f4d" compoundref="_logger_manager_8h" startline="39">_instance</references>
         <referencedby refid="class_alarm_1aa14f5a764303b269f04573867e2e4fc8" compoundref="_alarm_8cpp" startline="107" endline="136">Alarm::acknowledge</referencedby>
-        <referencedby refid="class_temperature_controller_1ac5c3403746d7c850bf7929bf5ee3448a" compoundref="_temperature_controller_8cpp" startline="1419" endline="1475">TemperatureController::addAlarm</referencedby>
+        <referencedby refid="class_temperature_controller_1ac5c3403746d7c850bf7929bf5ee3448a" compoundref="_temperature_controller_8cpp" startline="1424" endline="1480">TemperatureController::addAlarm</referencedby>
         <referencedby refid="class_alarm_1abf159b68e429d66de4ab2d10c2ccd44b" compoundref="_alarm_8cpp" startline="46" endline="73">Alarm::Alarm</referencedby>
-        <referencedby refid="class_config_manager_1a0497343220fc493f5cf9574922508908" compoundref="_config_manager_8cpp" startline="131" endline="243">ConfigManager::begin</referencedby>
+        <referencedby refid="class_config_manager_1a0497343220fc493f5cf9574922508908" compoundref="_config_manager_8cpp" startline="138" endline="250">ConfigManager::begin</referencedby>
         <referencedby refid="class_temperature_controller_1af59d6d6d48ed8ddfb968a1fa2dce6768" compoundref="_temperature_controller_8cpp" startline="81" endline="144">TemperatureController::begin</referencedby>
         <referencedby refid="class_temp_modbus_server_1aac671b84770f4139745d08d05b5c1d92" compoundref="_temp_modbus_server_8cpp" startline="87" endline="126">TempModbusServer::begin</referencedby>
-        <referencedby refid="class_temperature_controller_1af4ab2c7b7a3934ab7837603a420b1ae2" compoundref="_temperature_controller_8cpp" startline="1542" endline="1561">TemperatureController::bindSensorToPointByBusNumber</referencedby>
-        <referencedby refid="class_temperature_controller_1a84937fc1aed30193b817f3b062ce0cfc" compoundref="_temperature_controller_8cpp" startline="923" endline="945">TemperatureController::bindSensorToPointByChipSelect</referencedby>
-        <referencedby refid="class_temperature_controller_1a5d8f7c51bb176435a5035293a2db78f7" compoundref="_temperature_controller_8cpp" startline="898" endline="921">TemperatureController::bindSensorToPointByRom</referencedby>
+        <referencedby refid="class_temperature_controller_1af4ab2c7b7a3934ab7837603a420b1ae2" compoundref="_temperature_controller_8cpp" startline="1547" endline="1566">TemperatureController::bindSensorToPointByBusNumber</referencedby>
+        <referencedby refid="class_temperature_controller_1a84937fc1aed30193b817f3b062ce0cfc" compoundref="_temperature_controller_8cpp" startline="928" endline="950">TemperatureController::bindSensorToPointByChipSelect</referencedby>
+        <referencedby refid="class_temperature_controller_1a5d8f7c51bb176435a5035293a2db78f7" compoundref="_temperature_controller_8cpp" startline="903" endline="926">TemperatureController::bindSensorToPointByRom</referencedby>
         <referencedby refid="class_alarm_1adc66e3d22e173b00c59b040369030a17" compoundref="_alarm_8cpp" startline="140" endline="157">Alarm::clear</referencedby>
-        <referencedby refid="class_config_manager_1a9b7af07b85bf9cc3ac05603db6e89fd2" compoundref="_config_manager_8cpp" startline="1093" endline="1221">ConfigManager::csvImportExportAPI</referencedby>
-        <referencedby refid="class_temperature_controller_1a57b74b40c88016965d07248981412f7d" compoundref="_temperature_controller_8cpp" startline="1010" endline="1082">TemperatureController::discoverDS18B20Sensors</referencedby>
-        <referencedby refid="class_temperature_controller_1a79e98c9a1d42de787a66e02b250b7a74" compoundref="_temperature_controller_8cpp" startline="1085" endline="1134">TemperatureController::discoverPTSensors</referencedby>
-        <referencedby refid="class_temperature_controller_1a760bb05985e2ea9950c7f5cdc7f6669b" compoundref="_temperature_controller_8cpp" startline="2069" endline="2105">TemperatureController::forceRelayState</referencedby>
-        <referencedby refid="class_temperature_controller_1a82e4c37ff4121eaf5e00e9c52381e840" compoundref="_temperature_controller_8cpp" startline="483" endline="659">TemperatureController::handleAlarmOutputs</referencedby>
-        <referencedby refid="class_config_manager_1a04edc14e642ecadb9ccb87be05d1d878" compoundref="_config_manager_8cpp" startline="441" endline="654">ConfigManager::loadPointsConfig</referencedby>
+        <referencedby refid="class_config_manager_1a9b7af07b85bf9cc3ac05603db6e89fd2" compoundref="_config_manager_8cpp" startline="1100" endline="1228">ConfigManager::csvImportExportAPI</referencedby>
+        <referencedby refid="class_temperature_controller_1a57b74b40c88016965d07248981412f7d" compoundref="_temperature_controller_8cpp" startline="1015" endline="1087">TemperatureController::discoverDS18B20Sensors</referencedby>
+        <referencedby refid="class_temperature_controller_1a79e98c9a1d42de787a66e02b250b7a74" compoundref="_temperature_controller_8cpp" startline="1090" endline="1139">TemperatureController::discoverPTSensors</referencedby>
+        <referencedby refid="class_temperature_controller_1a760bb05985e2ea9950c7f5cdc7f6669b" compoundref="_temperature_controller_8cpp" startline="2074" endline="2110">TemperatureController::forceRelayState</referencedby>
+        <referencedby refid="class_temperature_controller_1a82e4c37ff4121eaf5e00e9c52381e840" compoundref="_temperature_controller_8cpp" startline="483" endline="664">TemperatureController::handleAlarmOutputs</referencedby>
+        <referencedby refid="class_config_manager_1a04edc14e642ecadb9ccb87be05d1d878" compoundref="_config_manager_8cpp" startline="448" endline="661">ConfigManager::loadPointsConfig</referencedby>
         <referencedby refid="class_temp_modbus_server_1a0debe38364d9025833706a6f74d5655a" compoundref="_temp_modbus_server_8cpp" startline="427" endline="487">TempModbusServer::processCommands</referencedby>
         <referencedby refid="class_temp_modbus_server_1a7d4a0ced2cfd174a4697a85492e12a58" compoundref="_temp_modbus_server_8cpp" startline="178" endline="240">TempModbusServer::readHoldingRegistersWorker</referencedby>
-        <referencedby refid="class_temperature_controller_1ac39c426da2e1f9dff4abe1d9b550b723" compoundref="_temperature_controller_8cpp" startline="1477" endline="1490">TemperatureController::removeAlarm</referencedby>
-        <referencedby refid="class_temperature_controller_1a1ecad2d878922493c93fe9baa9be10d3" compoundref="_temperature_controller_8cpp" startline="1275" endline="1281">TemperatureController::resetMinMaxValues</referencedby>
+        <referencedby refid="class_temperature_controller_1ac39c426da2e1f9dff4abe1d9b550b723" compoundref="_temperature_controller_8cpp" startline="1482" endline="1495">TemperatureController::removeAlarm</referencedby>
+        <referencedby refid="class_temperature_controller_1a1ecad2d878922493c93fe9baa9be10d3" compoundref="_temperature_controller_8cpp" startline="1280" endline="1286">TemperatureController::resetMinMaxValues</referencedby>
         <referencedby refid="class_alarm_1a73e7673d61f82aa21441c75f2cee2c6f" compoundref="_alarm_8cpp" startline="159" endline="173">Alarm::resolve</referencedby>
-        <referencedby refid="class_config_manager_1a55b79da91c57039c483ddf5fceabbd64" compoundref="_config_manager_8cpp" startline="307" endline="400">ConfigManager::savePointsConfig</referencedby>
-        <referencedby refid="class_temperature_controller_1a5a9f98c140498fee9a3dba8f8af1cb49" compoundref="_temperature_controller_8cpp" startline="1283" endline="1289">TemperatureController::setDeviceId</referencedby>
+        <referencedby refid="class_config_manager_1a55b79da91c57039c483ddf5fceabbd64" compoundref="_config_manager_8cpp" startline="314" endline="407">ConfigManager::savePointsConfig</referencedby>
+        <referencedby refid="class_temperature_controller_1a5a9f98c140498fee9a3dba8f8af1cb49" compoundref="_temperature_controller_8cpp" startline="1288" endline="1294">TemperatureController::setDeviceId</referencedby>
         <referencedby refid="class_alarm_1acb8f203b2e2317c1f835bb4b19123f3f" compoundref="_alarm_8cpp" startline="459" endline="468">Alarm::setEnabled</referencedby>
         <referencedby refid="class_measurement_point_1aefb47fef40f33161be5c6fddf0cf6329" compoundref="_measurement_point_8cpp" startline="106" endline="116">MeasurementPoint::setHighAlarmThreshold</referencedby>
         <referencedby refid="class_alarm_1a8d031874090c0c0e548a1f2e41ea4979" compoundref="_alarm_8cpp" startline="445" endline="457">Alarm::setHysteresis</referencedby>
         <referencedby refid="class_measurement_point_1ac780917beebc11d705824cab8f43b94d" compoundref="_measurement_point_8cpp" startline="92" endline="104">MeasurementPoint::setLowAlarmThreshold</referencedby>
-        <referencedby refid="class_temperature_controller_1a08f5d97d74f6364588cf22dadd9a746e" compoundref="_temperature_controller_8cpp" startline="1300" endline="1309">TemperatureController::setMeasurementPeriod</referencedby>
+        <referencedby refid="class_temperature_controller_1a08f5d97d74f6364588cf22dadd9a746e" compoundref="_temperature_controller_8cpp" startline="1305" endline="1314">TemperatureController::setMeasurementPeriod</referencedby>
         <referencedby refid="class_measurement_point_1ae3abe83ed3e7979a906c7d753ac9d22d" compoundref="_measurement_point_8cpp" startline="81" endline="90">MeasurementPoint::setName</referencedby>
         <referencedby refid="class_alarm_1a5095c54c304a52ebbaca5a2ea74059cd" compoundref="_alarm_8cpp" startline="431" endline="443">Alarm::setPriority</referencedby>
-        <referencedby refid="class_temperature_controller_1a8b0a764517c60705322f033be420c628" compoundref="_temperature_controller_8cpp" startline="1976" endline="2005">TemperatureController::setRelayControlMode</referencedby>
+        <referencedby refid="class_temperature_controller_1a8b0a764517c60705322f033be420c628" compoundref="_temperature_controller_8cpp" startline="1981" endline="2010">TemperatureController::setRelayControlMode</referencedby>
         <referencedby refid="class_indicator_interface_1aafa418167df7eb74fc90fca14818a5eb" compoundref="_indicator_interface_8cpp" startline="987" endline="1014">IndicatorInterface::startBlinking</referencedby>
         <referencedby refid="class_indicator_interface_1a4458930151b73e21364fada5ba6fe129" compoundref="_indicator_interface_8cpp" startline="1016" endline="1028">IndicatorInterface::stopBlinking</referencedby>
         <referencedby refid="class_temp_modbus_server_1a483537c88cf38543835cf6d9c1a81d9d" compoundref="_temp_modbus_server_8cpp" startline="24" endline="49">TempModbusServer::TempModbusServer</referencedby>
-        <referencedby refid="class_temperature_controller_1a261c9b96540ec6680dfffd3a26e4ca00" compoundref="_temperature_controller_8cpp" startline="947" endline="968">TemperatureController::unbindSensorFromPoint</referencedby>
-        <referencedby refid="class_alarm_1abc87fe39e6a9b5beb9f09df780f67621" compoundref="_alarm_8cpp" startline="477" endline="622">Alarm::updateCondition</referencedby>
+        <referencedby refid="class_temperature_controller_1a261c9b96540ec6680dfffd3a26e4ca00" compoundref="_temperature_controller_8cpp" startline="952" endline="973">TemperatureController::unbindSensorFromPoint</referencedby>
+        <referencedby refid="class_alarm_1abc87fe39e6a9b5beb9f09df780f67621" compoundref="_alarm_8cpp" startline="477" endline="624">Alarm::updateCondition</referencedby>
         <referencedby refid="class_temp_modbus_server_1a88b7288d622b52f9e28b7c6075b75fe0" compoundref="_temp_modbus_server_8cpp" startline="265" endline="314">TempModbusServer::writeHoldingRegisterWorker</referencedby>
         <referencedby refid="class_temp_modbus_server_1a52236f3c77c42d126dcaee7515fa37d3" compoundref="_temp_modbus_server_8cpp" startline="360" endline="425">TempModbusServer::writeMultipleRegistersWorker</referencedby>
         <referencedby refid="class_alarm_1adb5fc73041badc6a082b78874559c002" compoundref="_alarm_8cpp" startline="88" endline="99">Alarm::~Alarm</referencedby>
@@ -2231,15 +2231,15 @@ Provides access to the global logger instance </para>
         </inbodydescription>
         <location file="include/LoggerManager.h" line="155" column="17" bodyfile="include/LoggerManager.h" bodystart="155" bodyend="157"/>
         <references refid="class_logger_manager_1a3f4c0cc78425ddd99d489740be325f4d" compoundref="_logger_manager_8h" startline="39">_instance</references>
-        <referencedby refid="class_temperature_controller_1ac5c3403746d7c850bf7929bf5ee3448a" compoundref="_temperature_controller_8cpp" startline="1419" endline="1475">TemperatureController::addAlarm</referencedby>
-        <referencedby refid="class_config_manager_1a0497343220fc493f5cf9574922508908" compoundref="_config_manager_8cpp" startline="131" endline="243">ConfigManager::begin</referencedby>
+        <referencedby refid="class_temperature_controller_1ac5c3403746d7c850bf7929bf5ee3448a" compoundref="_temperature_controller_8cpp" startline="1424" endline="1480">TemperatureController::addAlarm</referencedby>
+        <referencedby refid="class_config_manager_1a0497343220fc493f5cf9574922508908" compoundref="_config_manager_8cpp" startline="138" endline="250">ConfigManager::begin</referencedby>
         <referencedby refid="class_temp_modbus_server_1aac671b84770f4139745d08d05b5c1d92" compoundref="_temp_modbus_server_8cpp" startline="87" endline="126">TempModbusServer::begin</referencedby>
-        <referencedby refid="class_temperature_controller_1a84937fc1aed30193b817f3b062ce0cfc" compoundref="_temperature_controller_8cpp" startline="923" endline="945">TemperatureController::bindSensorToPointByChipSelect</referencedby>
-        <referencedby refid="class_temperature_controller_1a5d8f7c51bb176435a5035293a2db78f7" compoundref="_temperature_controller_8cpp" startline="898" endline="921">TemperatureController::bindSensorToPointByRom</referencedby>
-        <referencedby refid="class_temperature_controller_1a760bb05985e2ea9950c7f5cdc7f6669b" compoundref="_temperature_controller_8cpp" startline="2069" endline="2105">TemperatureController::forceRelayState</referencedby>
+        <referencedby refid="class_temperature_controller_1a84937fc1aed30193b817f3b062ce0cfc" compoundref="_temperature_controller_8cpp" startline="928" endline="950">TemperatureController::bindSensorToPointByChipSelect</referencedby>
+        <referencedby refid="class_temperature_controller_1a5d8f7c51bb176435a5035293a2db78f7" compoundref="_temperature_controller_8cpp" startline="903" endline="926">TemperatureController::bindSensorToPointByRom</referencedby>
+        <referencedby refid="class_temperature_controller_1a760bb05985e2ea9950c7f5cdc7f6669b" compoundref="_temperature_controller_8cpp" startline="2074" endline="2110">TemperatureController::forceRelayState</referencedby>
         <referencedby refid="class_temp_modbus_server_1a0debe38364d9025833706a6f74d5655a" compoundref="_temp_modbus_server_8cpp" startline="427" endline="487">TempModbusServer::processCommands</referencedby>
         <referencedby refid="class_alarm_1af8d75ee8622a2a96f4bc9b408e9668e5" compoundref="_alarm_8cpp" startline="176" endline="193">Alarm::reactivate</referencedby>
-        <referencedby refid="class_alarm_1abc87fe39e6a9b5beb9f09df780f67621" compoundref="_alarm_8cpp" startline="477" endline="622">Alarm::updateCondition</referencedby>
+        <referencedby refid="class_alarm_1abc87fe39e6a9b5beb9f09df780f67621" compoundref="_alarm_8cpp" startline="477" endline="624">Alarm::updateCondition</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_logger_manager_1aef24f00186213fa78be3b104a50d58e6" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -2284,15 +2284,15 @@ Provides access to the global logger instance </para>
         </inbodydescription>
         <location file="include/LoggerManager.h" line="165" column="17" bodyfile="include/LoggerManager.h" bodystart="165" bodyend="167"/>
         <references refid="class_logger_manager_1a3f4c0cc78425ddd99d489740be325f4d" compoundref="_logger_manager_8h" startline="39">_instance</references>
-        <referencedby refid="class_config_manager_1a9b7af07b85bf9cc3ac05603db6e89fd2" compoundref="_config_manager_8cpp" startline="1093" endline="1221">ConfigManager::csvImportExportAPI</referencedby>
-        <referencedby refid="class_temperature_controller_1a760bb05985e2ea9950c7f5cdc7f6669b" compoundref="_temperature_controller_8cpp" startline="2069" endline="2105">TemperatureController::forceRelayState</referencedby>
-        <referencedby refid="class_temperature_controller_1aac890ae08b5eddcf272771ecdba61453" compoundref="_temperature_controller_8cpp" startline="2058" endline="2067">TemperatureController::getRelayActualState</referencedby>
-        <referencedby refid="class_temperature_controller_1a61ff288cbeaa86dc21c610c778dba64e" compoundref="_temperature_controller_8cpp" startline="2007" endline="2016">TemperatureController::getRelayControlMode</referencedby>
+        <referencedby refid="class_config_manager_1a9b7af07b85bf9cc3ac05603db6e89fd2" compoundref="_config_manager_8cpp" startline="1100" endline="1228">ConfigManager::csvImportExportAPI</referencedby>
+        <referencedby refid="class_temperature_controller_1a760bb05985e2ea9950c7f5cdc7f6669b" compoundref="_temperature_controller_8cpp" startline="2074" endline="2110">TemperatureController::forceRelayState</referencedby>
+        <referencedby refid="class_temperature_controller_1aac890ae08b5eddcf272771ecdba61453" compoundref="_temperature_controller_8cpp" startline="2063" endline="2072">TemperatureController::getRelayActualState</referencedby>
+        <referencedby refid="class_temperature_controller_1a61ff288cbeaa86dc21c610c778dba64e" compoundref="_temperature_controller_8cpp" startline="2012" endline="2021">TemperatureController::getRelayControlMode</referencedby>
         <referencedby refid="class_temp_modbus_server_1a7d4a0ced2cfd174a4697a85492e12a58" compoundref="_temp_modbus_server_8cpp" startline="178" endline="240">TempModbusServer::readHoldingRegistersWorker</referencedby>
-        <referencedby refid="class_temperature_controller_1a8b0a764517c60705322f033be420c628" compoundref="_temperature_controller_8cpp" startline="1976" endline="2005">TemperatureController::setRelayControlMode</referencedby>
-        <referencedby refid="class_temperature_controller_1a261c9b96540ec6680dfffd3a26e4ca00" compoundref="_temperature_controller_8cpp" startline="947" endline="968">TemperatureController::unbindSensorFromPoint</referencedby>
-        <referencedby refid="class_temperature_controller_1a23dca296a268baa9b8234c8bf9cf0c3e" compoundref="_temperature_controller_8cpp" startline="1339" endline="1363">TemperatureController::updateAllSensors</referencedby>
-        <referencedby refid="class_alarm_1abc87fe39e6a9b5beb9f09df780f67621" compoundref="_alarm_8cpp" startline="477" endline="622">Alarm::updateCondition</referencedby>
+        <referencedby refid="class_temperature_controller_1a8b0a764517c60705322f033be420c628" compoundref="_temperature_controller_8cpp" startline="1981" endline="2010">TemperatureController::setRelayControlMode</referencedby>
+        <referencedby refid="class_temperature_controller_1a261c9b96540ec6680dfffd3a26e4ca00" compoundref="_temperature_controller_8cpp" startline="952" endline="973">TemperatureController::unbindSensorFromPoint</referencedby>
+        <referencedby refid="class_temperature_controller_1a23dca296a268baa9b8234c8bf9cf0c3e" compoundref="_temperature_controller_8cpp" startline="1344" endline="1368">TemperatureController::updateAllSensors</referencedby>
+        <referencedby refid="class_alarm_1abc87fe39e6a9b5beb9f09df780f67621" compoundref="_alarm_8cpp" startline="477" endline="624">Alarm::updateCondition</referencedby>
         <referencedby refid="class_temp_modbus_server_1a88b7288d622b52f9e28b7c6075b75fe0" compoundref="_temp_modbus_server_8cpp" startline="265" endline="314">TempModbusServer::writeHoldingRegisterWorker</referencedby>
         <referencedby refid="class_temp_modbus_server_1a52236f3c77c42d126dcaee7515fa37d3" compoundref="_temp_modbus_server_8cpp" startline="360" endline="425">TempModbusServer::writeMultipleRegistersWorker</referencedby>
       </memberdef>
@@ -2373,7 +2373,7 @@ Provides access to the global logger instance </para>
         </inbodydescription>
         <location file="include/LoggerManager.h" line="251" column="24" bodyfile="src/LoggerManager.cpp" bodystart="1861" bodyend="1885"/>
         <references refid="class_logger_manager_1a3f4c0cc78425ddd99d489740be325f4d" compoundref="_logger_manager_8h" startline="39">_instance</references>
-        <referencedby refid="class_config_manager_1a3b28982c79587a287c8ddf0acf47f71d" compoundref="_config_manager_8cpp" startline="2036" endline="2237">ConfigManager::downloadAPI</referencedby>
+        <referencedby refid="class_config_manager_1a3b28982c79587a287c8ddf0acf47f71d" compoundref="_config_manager_8cpp" startline="2043" endline="2244">ConfigManager::downloadAPI</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_logger_manager_1aa74d58708cf5cdf8ddafad648edadcf7" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -2422,7 +2422,7 @@ Provides access to the global logger instance </para>
         <location file="include/LoggerManager.h" line="291" column="17" bodyfile="src/LoggerManager.cpp" bodystart="893" bodyend="900"/>
         <references refid="class_logger_manager_1a3f4c0cc78425ddd99d489740be325f4d" compoundref="_logger_manager_8h" startline="39">_instance</references>
         <referencedby refid="class_alarm_1aa14f5a764303b269f04573867e2e4fc8" compoundref="_alarm_8cpp" startline="107" endline="136">Alarm::acknowledge</referencedby>
-        <referencedby refid="class_alarm_1abc87fe39e6a9b5beb9f09df780f67621" compoundref="_alarm_8cpp" startline="477" endline="622">Alarm::updateCondition</referencedby>
+        <referencedby refid="class_alarm_1abc87fe39e6a9b5beb9f09df780f67621" compoundref="_alarm_8cpp" startline="477" endline="624">Alarm::updateCondition</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_logger_manager_1a8e154caf5cdb9dd50722e2f52314e383" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>String</type>
@@ -2448,7 +2448,7 @@ Provides access to the global logger instance </para>
         <references refid="class_logger_manager_1ad3222128e4c210c2006e314966c511f5" compoundref="_logger_manager_8cpp" startline="1646" endline="1698">_getEventLogFilesInRange</references>
         <references refid="class_logger_manager_1a3f4c0cc78425ddd99d489740be325f4d" compoundref="_logger_manager_8h" startline="39">_instance</references>
         <references refid="class_logger_manager_1a26f82b651be286678438022bbfbd21d7" compoundref="_logger_manager_8cpp" startline="1701" endline="1738">_parseEventLogEntry</references>
-        <referencedby refid="class_config_manager_1a9e977107b4795fcbce0482711ff1ce7a" compoundref="_config_manager_8cpp" startline="1904" endline="2034">ConfigManager::logsAPI</referencedby>
+        <referencedby refid="class_config_manager_1a9e977107b4795fcbce0482711ff1ce7a" compoundref="_config_manager_8cpp" startline="1911" endline="2041">ConfigManager::logsAPI</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_logger_manager_1a752cebdb1c0344890d265af9daee8313" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>String</type>
@@ -2473,7 +2473,7 @@ Provides access to the global logger instance </para>
         <location file="include/LoggerManager.h" line="317" column="19" bodyfile="src/LoggerManager.cpp" bodystart="1600" bodyend="1643"/>
         <references refid="class_logger_manager_1ad3222128e4c210c2006e314966c511f5" compoundref="_logger_manager_8cpp" startline="1646" endline="1698">_getEventLogFilesInRange</references>
         <references refid="class_logger_manager_1a3f4c0cc78425ddd99d489740be325f4d" compoundref="_logger_manager_8h" startline="39">_instance</references>
-        <referencedby refid="class_config_manager_1a9e977107b4795fcbce0482711ff1ce7a" compoundref="_config_manager_8cpp" startline="1904" endline="2034">ConfigManager::logsAPI</referencedby>
+        <referencedby refid="class_config_manager_1a9e977107b4795fcbce0482711ff1ce7a" compoundref="_config_manager_8cpp" startline="1911" endline="2041">ConfigManager::logsAPI</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_logger_manager_1ab16e7ab4b0cc70674b9b87118f72d805" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>String</type>
@@ -2498,7 +2498,7 @@ Provides access to the global logger instance </para>
         <location file="include/LoggerManager.h" line="318" column="19" bodyfile="src/LoggerManager.cpp" bodystart="1741" bodyend="1824"/>
         <references refid="class_logger_manager_1ad3222128e4c210c2006e314966c511f5" compoundref="_logger_manager_8cpp" startline="1646" endline="1698">_getEventLogFilesInRange</references>
         <references refid="class_logger_manager_1a3f4c0cc78425ddd99d489740be325f4d" compoundref="_logger_manager_8h" startline="39">_instance</references>
-        <referencedby refid="class_config_manager_1a9e977107b4795fcbce0482711ff1ce7a" compoundref="_config_manager_8cpp" startline="1904" endline="2034">ConfigManager::logsAPI</referencedby>
+        <referencedby refid="class_config_manager_1a9e977107b4795fcbce0482711ff1ce7a" compoundref="_config_manager_8cpp" startline="1911" endline="2041">ConfigManager::logsAPI</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_logger_manager_1af04d8d79f7bcb9ff4dace5b490502b50" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>String</type>
@@ -2524,7 +2524,7 @@ Provides access to the global logger instance </para>
         <references refid="class_logger_manager_1a0bd4f43205e247f114f1a49a8de438d5" compoundref="_logger_manager_8cpp" startline="1198" endline="1253">_getAlarmLogFilesInRange</references>
         <references refid="class_logger_manager_1a3f4c0cc78425ddd99d489740be325f4d" compoundref="_logger_manager_8h" startline="39">_instance</references>
         <references refid="class_logger_manager_1a5ec50d53433ca34a292d19dfb30042fc" compoundref="_logger_manager_8cpp" startline="1254" endline="1297">_parseAlarmStateLogEntry</references>
-        <referencedby refid="class_config_manager_1a9e977107b4795fcbce0482711ff1ce7a" compoundref="_config_manager_8cpp" startline="1904" endline="2034">ConfigManager::logsAPI</referencedby>
+        <referencedby refid="class_config_manager_1a9e977107b4795fcbce0482711ff1ce7a" compoundref="_config_manager_8cpp" startline="1911" endline="2041">ConfigManager::logsAPI</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_logger_manager_1a612d1bdfbfd0d93f9452fd7bac8775ca" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>String</type>
@@ -2549,7 +2549,7 @@ Provides access to the global logger instance </para>
         <location file="include/LoggerManager.h" line="323" column="19" bodyfile="src/LoggerManager.cpp" bodystart="1153" bodyend="1196"/>
         <references refid="class_logger_manager_1a0bd4f43205e247f114f1a49a8de438d5" compoundref="_logger_manager_8cpp" startline="1198" endline="1253">_getAlarmLogFilesInRange</references>
         <references refid="class_logger_manager_1a3f4c0cc78425ddd99d489740be325f4d" compoundref="_logger_manager_8h" startline="39">_instance</references>
-        <referencedby refid="class_config_manager_1a9e977107b4795fcbce0482711ff1ce7a" compoundref="_config_manager_8cpp" startline="1904" endline="2034">ConfigManager::logsAPI</referencedby>
+        <referencedby refid="class_config_manager_1a9e977107b4795fcbce0482711ff1ce7a" compoundref="_config_manager_8cpp" startline="1911" endline="2041">ConfigManager::logsAPI</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_logger_manager_1a782a868803b4e2861169796aad7b8b60" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; String &gt;</type>
@@ -2565,8 +2565,8 @@ Provides access to the global logger instance </para>
         </inbodydescription>
         <location file="include/LoggerManager.h" line="327" column="24" bodyfile="src/LoggerManager.cpp" bodystart="1827" bodyend="1856"/>
         <references refid="class_logger_manager_1a3f4c0cc78425ddd99d489740be325f4d" compoundref="_logger_manager_8h" startline="39">_instance</references>
-        <referencedby refid="class_config_manager_1a3b28982c79587a287c8ddf0acf47f71d" compoundref="_config_manager_8cpp" startline="2036" endline="2237">ConfigManager::downloadAPI</referencedby>
-        <referencedby refid="class_config_manager_1a9e977107b4795fcbce0482711ff1ce7a" compoundref="_config_manager_8cpp" startline="1904" endline="2034">ConfigManager::logsAPI</referencedby>
+        <referencedby refid="class_config_manager_1a3b28982c79587a287c8ddf0acf47f71d" compoundref="_config_manager_8cpp" startline="2043" endline="2244">ConfigManager::downloadAPI</referencedby>
+        <referencedby refid="class_config_manager_1a9e977107b4795fcbce0482711ff1ce7a" compoundref="_config_manager_8cpp" startline="1911" endline="2041">ConfigManager::logsAPI</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_logger_manager_1a19e6a7d2c3ad2b1d3fa5acb578fb1619" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; String &gt;</type>
@@ -2582,8 +2582,8 @@ Provides access to the global logger instance </para>
         </inbodydescription>
         <location file="include/LoggerManager.h" line="328" column="24" bodyfile="src/LoggerManager.cpp" bodystart="1888" bodyend="1912"/>
         <references refid="class_logger_manager_1a3f4c0cc78425ddd99d489740be325f4d" compoundref="_logger_manager_8h" startline="39">_instance</references>
-        <referencedby refid="class_config_manager_1a3b28982c79587a287c8ddf0acf47f71d" compoundref="_config_manager_8cpp" startline="2036" endline="2237">ConfigManager::downloadAPI</referencedby>
-        <referencedby refid="class_config_manager_1a9e977107b4795fcbce0482711ff1ce7a" compoundref="_config_manager_8cpp" startline="1904" endline="2034">ConfigManager::logsAPI</referencedby>
+        <referencedby refid="class_config_manager_1a3b28982c79587a287c8ddf0acf47f71d" compoundref="_config_manager_8cpp" startline="2043" endline="2244">ConfigManager::downloadAPI</referencedby>
+        <referencedby refid="class_config_manager_1a9e977107b4795fcbce0482711ff1ce7a" compoundref="_config_manager_8cpp" startline="1911" endline="2041">ConfigManager::logsAPI</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_logger_manager_1acb4313c65e6a661229f2c3d662f1c059" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -2616,7 +2616,7 @@ Provides access to the global logger instance </para>
         <location file="include/LoggerManager.h" line="331" column="17" bodyfile="src/LoggerManager.cpp" bodystart="1915" bodyend="1947"/>
         <references refid="class_logger_manager_1a3f4c0cc78425ddd99d489740be325f4d" compoundref="_logger_manager_8h" startline="39">_instance</references>
         <references refid="class_logger_manager_1a72c969cc82b969c4899dc4d2c8280f0b" compoundref="_logger_manager_8cpp" startline="1964" endline="1978">getLogDirectoryPath</references>
-        <referencedby refid="class_config_manager_1a3b28982c79587a287c8ddf0acf47f71d" compoundref="_config_manager_8cpp" startline="2036" endline="2237">ConfigManager::downloadAPI</referencedby>
+        <referencedby refid="class_config_manager_1a3b28982c79587a287c8ddf0acf47f71d" compoundref="_config_manager_8cpp" startline="2043" endline="2244">ConfigManager::downloadAPI</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_logger_manager_1a92719154d919a9bd45a8ea192e70dfcc" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>File</type>
@@ -2641,7 +2641,7 @@ Provides access to the global logger instance </para>
         <location file="include/LoggerManager.h" line="334" column="17" bodyfile="src/LoggerManager.cpp" bodystart="1950" bodyend="1961"/>
         <references refid="class_logger_manager_1a3f4c0cc78425ddd99d489740be325f4d" compoundref="_logger_manager_8h" startline="39">_instance</references>
         <references refid="class_logger_manager_1a72c969cc82b969c4899dc4d2c8280f0b" compoundref="_logger_manager_8cpp" startline="1964" endline="1978">getLogDirectoryPath</references>
-        <referencedby refid="class_config_manager_1a3b28982c79587a287c8ddf0acf47f71d" compoundref="_config_manager_8cpp" startline="2036" endline="2237">ConfigManager::downloadAPI</referencedby>
+        <referencedby refid="class_config_manager_1a3b28982c79587a287c8ddf0acf47f71d" compoundref="_config_manager_8cpp" startline="2043" endline="2244">ConfigManager::downloadAPI</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_logger_manager_1a72c969cc82b969c4899dc4d2c8280f0b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>String</type>

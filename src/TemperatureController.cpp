@@ -501,6 +501,7 @@ void TemperatureController::handleAlarmOutputs() {
     bool criticalAcknowledgedOnly = (criticalActive == 0 && criticalAcknowledged > 0);
     bool highAcknowledgedOnly = (highActive == 0 && highAcknowledged > 0);
     bool mediumAcknowledgedOnly = (mediumActive == 0 && mediumAcknowledged > 0);
+    bool lowAcknowledgedOnly = (lowActive == 0 && lowAcknowledged > 0);
     
     // Apply alarm notification logic based on priority and acknowledgment state
     // Following the specification table from PLANNING_RESULTS.md
@@ -514,6 +515,7 @@ void TemperatureController::handleAlarmOutputs() {
     // Stop all blinking first - we'll restart as needed
     indicator.stopBlinking("Relay2");
     indicator.stopBlinking("YellowLED");
+    indicator.stopBlinking("BlueLED");
     
     if (hasCritical) {
         if (criticalAcknowledgedOnly) {
@@ -550,7 +552,10 @@ void TemperatureController::handleAlarmOutputs() {
         }
     } else if (hasLow) {
         // LOW priority: No relay action (as per specification)
-        // No LED indication for low priority
+        // Blue LED blinking for low priority alarms
+        if (!lowAcknowledgedOnly) {
+            indicator.startBlinking("BlueLED", 200, 2000);  // 200ms on, 2000ms off - faster, less intrusive
+        }
     }
     
     // Log alarm summary periodically

@@ -1,38 +1,36 @@
 <map id="Alarm::updateCondition" name="Alarm::updateCondition">
-<area shape="rect" id="Node000001" title="Update alarm condition based on current measurement." alt="" coords="5,308,163,334"/>
-<area shape="rect" id="Node000002" href="$class_alarm.html#a28229f40ec51928641f04cd1e505bd6c" title="Check if alarm condition is currently met." alt="" coords="231,5,391,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="85,307,96,259,118,190,135,152,155,114,180,79,209,48,227,36,230,40,212,52,184,82,160,117,140,154,123,191,101,261,90,309"/>
-<area shape="rect" id="Node000003" href="$class_alarm.html#a5f0ead4dbd06aa64bd316d99dc587302" title="Get alarm stage as string." alt="" coords="466,31,615,56"/>
-<area shape="poly" id="edge11_Node000001_Node000003" title=" " alt="" coords="86,307,98,265,121,206,158,143,181,116,209,92,251,74,313,61,450,46,450,51,313,66,253,79,212,96,185,119,162,147,126,208,103,266,91,309"/>
-<area shape="rect" id="Node000004" href="$class_alarm.html#a052a73879f5cd039f6f7cb7ce02e6a9d" title="Get priority as string (internal version)" alt="" coords="229,107,392,132"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="89,306,106,275,132,232,167,188,209,149,233,136,235,141,212,154,171,192,136,235,110,277,94,309"/>
-<area shape="rect" id="Node000005" href="$class_alarm.html#a11b2da560dbc8653fa9dec671a78b980" title="Update the alarm display message." alt="" coords="459,208,621,234"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="91,306,109,280,136,248,170,217,210,193,245,182,283,175,358,175,429,185,488,200,486,205,428,190,358,180,283,180,247,187,212,198,173,221,139,252,113,283,96,309"/>
-<area shape="rect" id="Node000007" href="$class_alarm.html#adc66e3d22e173b00c59b040369030a17" title="Clear the alarm condition." alt="" coords="265,208,356,234"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="102,305,149,274,210,242,249,230,251,235,212,247,152,278,105,310"/>
-<area shape="rect" id="Node000008" href="$class_alarm.html#abd578ec75a5ac9bce00b7ce7207c5d8c" title="Get alarm type as string." alt="" coords="468,257,612,283"/>
-<area shape="poly" id="edge12_Node000001_Node000008" title=" " alt="" coords="163,315,280,307,411,293,463,284,464,289,411,298,281,312,163,320"/>
-<area shape="rect" id="Node000009" href="$class_logger_manager.html#a5c1373ccc47f4112b596fe6f84fbbc21" title="Log informational message (static convenience method)" alt="" coords="470,307,610,332"/>
-<area shape="poly" id="edge13_Node000001_Node000009" title=" " alt="" coords="163,332,211,337,311,342,411,337,455,332,455,337,411,342,311,347,210,342,163,337"/>
-<area shape="rect" id="Node000010" href="$class_logger_manager.html#aef24f00186213fa78be3b104a50d58e6" title="Log error message (static convenience method)" alt="" coords="239,409,383,435"/>
-<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="108,332,155,359,212,388,248,401,246,406,210,393,152,364,105,336"/>
-<area shape="rect" id="Node000011" href="$class_alarm.html#a6404e8478e8c2d726e9399ea1f2268b2" title="Check if acknowledged delay has elapsed." alt="" coords="215,459,407,500"/>
-<area shape="poly" id="edge14_Node000001_Node000011" title=" " alt="" coords="97,332,143,387,175,418,212,445,220,450,217,454,209,450,172,422,139,390,93,336"/>
-<area shape="rect" id="Node000012" href="$class_alarm.html#aa14465fadcd29ef9b872f4b679d1d5b3" title="Check if the alarm delay period has elapsed." alt="" coords="234,524,388,550"/>
-<area shape="poly" id="edge15_Node000001_Node000012" title=" " alt="" coords="92,333,107,368,133,416,168,467,189,490,212,509,221,515,218,520,209,514,185,494,163,470,128,419,103,371,88,335"/>
-<area shape="rect" id="Node000013" href="$class_logger_manager.html#aa74d58708cf5cdf8ddafad648edadcf7" title=" " alt="" coords="211,574,411,614"/>
-<area shape="poly" id="edge16_Node000001_Node000013" title=" " alt="" coords="91,333,104,377,127,438,163,503,186,534,212,560,216,563,213,567,209,564,182,537,159,506,122,440,98,378,86,335"/>
-<area shape="rect" id="Node000014" href="$class_alarm.html#a73e7673d61f82aa21441c75f2cee2c6f" title="Resolve the alarm completely." alt="" coords="258,257,364,283"/>
-<area shape="poly" id="edge17_Node000001_Node000014" title=" " alt="" coords="144,305,242,283,244,288,145,310"/>
-<area shape="rect" id="Node000015" href="$class_logger_manager.html#a0d52b0ff7bff22817e987ad753102854" title="Log warning message (static convenience method)" alt="" coords="229,639,392,664"/>
-<area shape="poly" id="edge21_Node000001_Node000015" title=" " alt="" coords="89,334,98,388,118,467,134,509,155,551,181,590,212,624,218,629,215,633,209,628,177,594,150,554,129,512,113,468,92,389,84,335"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="392,24,450,31,449,36,391,30"/>
-<area shape="rect" id="Node000006" href="$class_alarm.html#a480e1d6d474da0cd4e5dd557e41cb87e" title="Get formatted display text for UI." alt="" coords="669,208,820,234"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="622,218,654,218,654,224,622,224"/>
-<area shape="poly" id="edge7_Node000007_Node000005" title=" " alt="" coords="357,218,443,218,443,224,357,224"/>
-<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="358,228,463,251,462,256,356,233"/>
-<area shape="poly" id="edge9_Node000007_Node000009" title=" " alt="" coords="358,224,385,231,412,243,428,255,437,268,446,281,461,293,469,298,466,302,457,298,442,285,433,271,424,259,410,247,384,236,356,229"/>
-<area shape="poly" id="edge18_Node000014_Node000005" title=" " alt="" coords="363,256,462,235,463,240,364,262"/>
-<area shape="poly" id="edge19_Node000014_Node000008" title=" " alt="" coords="364,268,453,268,453,273,364,273"/>
-<area shape="poly" id="edge20_Node000014_Node000009" title=" " alt="" coords="364,279,463,300,462,305,363,284"/>
+<area shape="rect" id="Node000001" title="Update alarm condition based on current measurement." alt="" coords="5,277,163,303"/>
+<area shape="rect" id="Node000002" href="$class_alarm.html#a28229f40ec51928641f04cd1e505bd6c" title="Check if alarm condition is currently met." alt="" coords="231,52,391,78"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="87,276,101,238,126,187,162,133,184,108,209,87,216,82,219,87,212,91,188,112,166,136,131,189,106,240,92,278"/>
+<area shape="rect" id="Node000003" href="$class_alarm.html#a5f0ead4dbd06aa64bd316d99dc587302" title="Get alarm stage as string." alt="" coords="466,27,615,52"/>
+<area shape="poly" id="edge11_Node000001_Node000003" title=" " alt="" coords="84,277,94,229,116,162,132,126,153,92,178,62,209,37,242,21,277,10,314,4,351,3,421,8,482,20,481,25,421,13,351,8,314,10,279,15,244,26,212,42,182,66,157,95,137,129,120,164,99,230,90,278"/>
+<area shape="rect" id="Node000004" href="$class_alarm.html#a052a73879f5cd039f6f7cb7ce02e6a9d" title="Get priority as string (internal version)" alt="" coords="229,101,392,127"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="91,275,136,213,170,176,209,144,235,130,237,135,212,148,174,180,140,216,95,278"/>
+<area shape="rect" id="Node000005" href="$class_alarm.html#a11b2da560dbc8653fa9dec671a78b980" title="Update the alarm display message." alt="" coords="459,203,621,228"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="95,275,141,229,173,205,210,188,245,178,282,173,357,172,426,182,484,195,483,200,425,187,356,178,283,178,246,183,212,193,176,210,144,233,98,279"/>
+<area shape="rect" id="Node000007" href="$class_alarm.html#adc66e3d22e173b00c59b040369030a17" title="Clear the alarm condition." alt="" coords="265,203,356,228"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="114,274,210,237,249,226,251,231,212,242,116,279"/>
+<area shape="rect" id="Node000008" href="$class_alarm.html#abd578ec75a5ac9bce00b7ce7207c5d8c" title="Get alarm type as string." alt="" coords="468,252,612,278"/>
+<area shape="poly" id="edge12_Node000001_Node000008" title=" " alt="" coords="163,292,280,294,411,287,468,279,469,284,411,293,280,299,163,297"/>
+<area shape="rect" id="Node000009" href="$class_logger_manager.html#a5c1373ccc47f4112b596fe6f84fbbc21" title="Log informational message (static convenience method)" alt="" coords="470,301,610,327"/>
+<area shape="poly" id="edge13_Node000001_Node000009" title=" " alt="" coords="115,301,160,318,211,331,274,338,339,338,455,327,456,332,339,344,274,343,210,337,158,323,114,306"/>
+<area shape="rect" id="Node000010" href="$class_logger_manager.html#aef24f00186213fa78be3b104a50d58e6" title="Log error message (static convenience method)" alt="" coords="239,404,383,430"/>
+<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="101,301,149,341,212,382,244,396,242,401,209,387,145,345,98,306"/>
+<area shape="rect" id="Node000011" href="$class_alarm.html#a6404e8478e8c2d726e9399ea1f2268b2" title="Check if acknowledged delay has elapsed." alt="" coords="215,454,407,494"/>
+<area shape="poly" id="edge14_Node000001_Node000011" title=" " alt="" coords="95,302,139,368,173,406,212,440,219,444,216,449,209,444,169,410,135,371,90,305"/>
+<area shape="rect" id="Node000012" href="$class_logger_manager.html#aa74d58708cf5cdf8ddafad648edadcf7" title=" " alt="" coords="211,519,411,560"/>
+<area shape="poly" id="edge15_Node000001_Node000012" title=" " alt="" coords="92,303,106,342,131,396,166,454,188,481,212,504,219,509,215,513,209,508,184,484,162,457,126,399,101,344,87,304"/>
+<area shape="rect" id="Node000013" href="$class_alarm.html#a73e7673d61f82aa21441c75f2cee2c6f" title="Resolve the alarm completely." alt="" coords="258,252,364,278"/>
+<area shape="poly" id="edge16_Node000001_Node000013" title=" " alt="" coords="163,279,242,270,243,275,163,284"/>
+<area shape="rect" id="Node000014" href="$class_logger_manager.html#a0d52b0ff7bff22817e987ad753102854" title="Log warning message (static convenience method)" alt="" coords="229,584,392,610"/>
+<area shape="poly" id="edge20_Node000001_Node000014" title=" " alt="" coords="90,303,99,353,121,425,137,464,157,503,182,539,212,569,218,574,215,578,209,573,178,542,153,506,132,467,116,427,94,354,84,304"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="391,53,449,47,450,52,392,59"/>
+<area shape="rect" id="Node000006" href="$class_alarm.html#a480e1d6d474da0cd4e5dd557e41cb87e" title="Get formatted display text for UI." alt="" coords="669,203,820,228"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="622,213,654,213,654,218,622,218"/>
+<area shape="poly" id="edge7_Node000007_Node000005" title=" " alt="" coords="357,213,443,213,443,218,357,218"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="358,223,463,245,462,251,356,228"/>
+<area shape="poly" id="edge9_Node000007_Node000009" title=" " alt="" coords="358,218,385,225,412,237,428,250,437,263,446,276,461,288,469,292,466,297,457,292,442,279,433,266,424,253,410,242,384,230,356,223"/>
+<area shape="poly" id="edge17_Node000013_Node000005" title=" " alt="" coords="363,251,462,229,463,235,364,256"/>
+<area shape="poly" id="edge18_Node000013_Node000008" title=" " alt="" coords="364,262,453,262,453,267,364,267"/>
+<area shape="poly" id="edge19_Node000013_Node000009" title=" " alt="" coords="364,273,463,295,462,300,363,279"/>
 </map>

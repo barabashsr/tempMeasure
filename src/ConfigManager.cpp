@@ -33,15 +33,22 @@ ConfigManager* ConfigManager::instance = nullptr;
     //       label: WiFi Password
     //       default: a111222333
 
+    //       - st_ssid:
+    //       label: WiFi SSID
+    //       default: Polza
+    //   - st_pass:
+    //       label: WiFi Password
+    //       default: 1122334455667788
+
 // YAML configuration definition
 const char* VARIABLES_DEF_YAML PROGMEM = R"~(
     Wifi settings:
       - st_ssid:
           label: WiFi SSID
-          default: Polza
+          default: RT-WiFi-D58A
       - st_pass:
           label: WiFi Password
-          default: 1122334455667788
+          default: QpPuggeV
       - host_name:
           label: Device Hostname
           default: 'temp-monitor-{mac}'

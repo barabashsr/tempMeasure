@@ -502,8 +502,8 @@
         </inbodydescription>
         <location file="include/Sensor.h" line="85" column="10" bodyfile="src/Sensor.cpp" bodystart="57" bodyend="60"/>
         <references refid="class_sensor_1adaacf2cbc3623d86bad4c32496340a74">connection</references>
-        <referencedby refid="class_temperature_controller_1a57b74b40c88016965d07248981412f7d" compoundref="_temperature_controller_8cpp" startline="1010" endline="1082">TemperatureController::discoverDS18B20Sensors</referencedby>
-        <referencedby refid="class_config_manager_1a04edc14e642ecadb9ccb87be05d1d878" compoundref="_config_manager_8cpp" startline="441" endline="654">ConfigManager::loadPointsConfig</referencedby>
+        <referencedby refid="class_temperature_controller_1a57b74b40c88016965d07248981412f7d" compoundref="_temperature_controller_8cpp" startline="1015" endline="1087">TemperatureController::discoverDS18B20Sensors</referencedby>
+        <referencedby refid="class_config_manager_1a04edc14e642ecadb9ccb87be05d1d878" compoundref="_config_manager_8cpp" startline="448" endline="661">ConfigManager::loadPointsConfig</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_sensor_1aef73c8dc894e3695f50b4bece9601750" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -548,8 +548,8 @@
         <references refid="class_sensor_1adaacf2cbc3623d86bad4c32496340a74">connection</references>
         <references refid="class_sensor_1ae982d7fa79bdc6e223632c69ca512b34" compoundref="_sensor_8h" startline="272">csPin</references>
         <references refid="class_sensor_1a3f0651eab49ddc023248a11c3937bc23" compoundref="_sensor_8h" startline="273">maxAddress</references>
-        <referencedby refid="class_temperature_controller_1a79e98c9a1d42de787a66e02b250b7a74" compoundref="_temperature_controller_8cpp" startline="1085" endline="1134">TemperatureController::discoverPTSensors</referencedby>
-        <referencedby refid="class_config_manager_1a04edc14e642ecadb9ccb87be05d1d878" compoundref="_config_manager_8cpp" startline="441" endline="654">ConfigManager::loadPointsConfig</referencedby>
+        <referencedby refid="class_temperature_controller_1a79e98c9a1d42de787a66e02b250b7a74" compoundref="_temperature_controller_8cpp" startline="1090" endline="1139">TemperatureController::discoverPTSensors</referencedby>
+        <referencedby refid="class_config_manager_1a04edc14e642ecadb9ccb87be05d1d878" compoundref="_config_manager_8cpp" startline="448" endline="661">ConfigManager::loadPointsConfig</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_sensor_1a59dd5483b75d9366a0c50ccdd0345dec" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -577,9 +577,9 @@
         <references refid="class_sensor_1ae6e1281c6284fe26cc5617789aa3a3bf" compoundref="_sensor_8h" startline="252">oneWire</references>
         <references refid="_sensor_8h_1a213c434cb928c4ca22513e2302632435a481caba3768b84e8b68fb58b04ec595e" compoundref="_sensor_8h" startline="34">PT1000</references>
         <references refid="class_sensor_1a59be498582043f581a78851506f8e322" compoundref="_sensor_8h" startline="241">type</references>
-        <referencedby refid="class_temperature_controller_1a57b74b40c88016965d07248981412f7d" compoundref="_temperature_controller_8cpp" startline="1010" endline="1082">TemperatureController::discoverDS18B20Sensors</referencedby>
-        <referencedby refid="class_temperature_controller_1a79e98c9a1d42de787a66e02b250b7a74" compoundref="_temperature_controller_8cpp" startline="1085" endline="1134">TemperatureController::discoverPTSensors</referencedby>
-        <referencedby refid="class_config_manager_1a04edc14e642ecadb9ccb87be05d1d878" compoundref="_config_manager_8cpp" startline="441" endline="654">ConfigManager::loadPointsConfig</referencedby>
+        <referencedby refid="class_temperature_controller_1a57b74b40c88016965d07248981412f7d" compoundref="_temperature_controller_8cpp" startline="1015" endline="1087">TemperatureController::discoverDS18B20Sensors</referencedby>
+        <referencedby refid="class_temperature_controller_1a79e98c9a1d42de787a66e02b250b7a74" compoundref="_temperature_controller_8cpp" startline="1090" endline="1139">TemperatureController::discoverPTSensors</referencedby>
+        <referencedby refid="class_config_manager_1a04edc14e642ecadb9ccb87be05d1d878" compoundref="_config_manager_8cpp" startline="448" endline="661">ConfigManager::loadPointsConfig</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_sensor_1a5f3828beedd045bf82b3542ec626bc7b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -634,12 +634,12 @@ Updates internal temperature values and error status </para>
         <location file="include/Sensor.h" line="114" column="16" bodyfile="src/Sensor.cpp" bodystart="171" bodyend="171"/>
         <references refid="class_sensor_1a59be498582043f581a78851506f8e322" compoundref="_sensor_8h" startline="241">type</references>
         <referencedby refid="class_c_s_v_config_manager_1a2c2673398051c26184c9197aa751a6b3" compoundref="_c_s_v_config_manager_8cpp" startline="57" endline="90">CSVConfigManager::_exportPointToCSV</referencedby>
-        <referencedby refid="class_temperature_controller_1aafd155cdb06d2f411d3640df99815246" compoundref="_temperature_controller_8cpp" startline="841" endline="856">TemperatureController::addSensor</referencedby>
-        <referencedby refid="class_temperature_controller_1add39ba7dad38449bbf1787a5c9c51ef9" compoundref="_temperature_controller_8cpp" startline="1195" endline="1254">TemperatureController::getPointsJson</referencedby>
-        <referencedby refid="class_temperature_controller_1a01e04714a1712aa10c34276850971a12" compoundref="_temperature_controller_8cpp" startline="1369" endline="1385">TemperatureController::getSensorBus</referencedby>
-        <referencedby refid="class_temperature_controller_1a58f7a683f6e4c08dbfdfc43c1e740f15" compoundref="_temperature_controller_8cpp" startline="1137" endline="1193">TemperatureController::getSensorsJson</referencedby>
-        <referencedby refid="class_config_manager_1a55b79da91c57039c483ddf5fceabbd64" compoundref="_config_manager_8cpp" startline="307" endline="400">ConfigManager::savePointsConfig</referencedby>
-        <referencedby refid="class_temperature_controller_1a261c9b96540ec6680dfffd3a26e4ca00" compoundref="_temperature_controller_8cpp" startline="947" endline="968">TemperatureController::unbindSensorFromPoint</referencedby>
+        <referencedby refid="class_temperature_controller_1aafd155cdb06d2f411d3640df99815246" compoundref="_temperature_controller_8cpp" startline="846" endline="861">TemperatureController::addSensor</referencedby>
+        <referencedby refid="class_temperature_controller_1add39ba7dad38449bbf1787a5c9c51ef9" compoundref="_temperature_controller_8cpp" startline="1200" endline="1259">TemperatureController::getPointsJson</referencedby>
+        <referencedby refid="class_temperature_controller_1a01e04714a1712aa10c34276850971a12" compoundref="_temperature_controller_8cpp" startline="1374" endline="1390">TemperatureController::getSensorBus</referencedby>
+        <referencedby refid="class_temperature_controller_1a58f7a683f6e4c08dbfdfc43c1e740f15" compoundref="_temperature_controller_8cpp" startline="1142" endline="1198">TemperatureController::getSensorsJson</referencedby>
+        <referencedby refid="class_config_manager_1a55b79da91c57039c483ddf5fceabbd64" compoundref="_config_manager_8cpp" startline="314" endline="407">ConfigManager::savePointsConfig</referencedby>
+        <referencedby refid="class_temperature_controller_1a261c9b96540ec6680dfffd3a26e4ca00" compoundref="_temperature_controller_8cpp" startline="952" endline="973">TemperatureController::unbindSensorFromPoint</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_sensor_1afa9861dabcb4cd9c7a83356873013946" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>uint8_t</type>
@@ -678,9 +678,9 @@ Updates internal temperature values and error status </para>
         </inbodydescription>
         <location file="include/Sensor.h" line="126" column="12" bodyfile="src/Sensor.cpp" bodystart="173" bodyend="173"/>
         <references refid="class_sensor_1a9cf70c3e41501d89f6f9f48a3e9d1296" compoundref="_sensor_8h" startline="240">name</references>
-        <referencedby refid="class_temperature_controller_1a57b74b40c88016965d07248981412f7d" compoundref="_temperature_controller_8cpp" startline="1010" endline="1082">TemperatureController::discoverDS18B20Sensors</referencedby>
-        <referencedby refid="class_temperature_controller_1a79e98c9a1d42de787a66e02b250b7a74" compoundref="_temperature_controller_8cpp" startline="1085" endline="1134">TemperatureController::discoverPTSensors</referencedby>
-        <referencedby refid="class_temperature_controller_1ad3819418f9f301f3f7047ba686a11be0" compoundref="_temperature_controller_8cpp" startline="1389" endline="1415">TemperatureController::unbindSensorFromPointBySensor</referencedby>
+        <referencedby refid="class_temperature_controller_1a57b74b40c88016965d07248981412f7d" compoundref="_temperature_controller_8cpp" startline="1015" endline="1087">TemperatureController::discoverDS18B20Sensors</referencedby>
+        <referencedby refid="class_temperature_controller_1a79e98c9a1d42de787a66e02b250b7a74" compoundref="_temperature_controller_8cpp" startline="1090" endline="1139">TemperatureController::discoverPTSensors</referencedby>
+        <referencedby refid="class_temperature_controller_1ad3819418f9f301f3f7047ba686a11be0" compoundref="_temperature_controller_8cpp" startline="1394" endline="1420">TemperatureController::unbindSensorFromPointBySensor</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_sensor_1a95fe437024716bfdf3703e2c50a0756a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -869,13 +869,13 @@ Updates internal temperature values and error status </para>
         <references refid="class_sensor_1adaacf2cbc3623d86bad4c32496340a74">connection</references>
         <references refid="_sensor_8h_1a213c434cb928c4ca22513e2302632435a481caba3768b84e8b68fb58b04ec595e" compoundref="_sensor_8h" startline="34">PT1000</references>
         <references refid="class_sensor_1a59be498582043f581a78851506f8e322" compoundref="_sensor_8h" startline="241">type</references>
-        <referencedby refid="class_temperature_controller_1aafd155cdb06d2f411d3640df99815246" compoundref="_temperature_controller_8cpp" startline="841" endline="856">TemperatureController::addSensor</referencedby>
-        <referencedby refid="class_temperature_controller_1a79e98c9a1d42de787a66e02b250b7a74" compoundref="_temperature_controller_8cpp" startline="1085" endline="1134">TemperatureController::discoverPTSensors</referencedby>
-        <referencedby refid="class_temperature_controller_1add39ba7dad38449bbf1787a5c9c51ef9" compoundref="_temperature_controller_8cpp" startline="1195" endline="1254">TemperatureController::getPointsJson</referencedby>
-        <referencedby refid="class_temperature_controller_1a01e04714a1712aa10c34276850971a12" compoundref="_temperature_controller_8cpp" startline="1369" endline="1385">TemperatureController::getSensorBus</referencedby>
-        <referencedby refid="class_config_manager_1a55b79da91c57039c483ddf5fceabbd64" compoundref="_config_manager_8cpp" startline="307" endline="400">ConfigManager::savePointsConfig</referencedby>
-        <referencedby refid="class_config_manager_1a45b1ce1f09401af0b6f700cf4388b233" compoundref="_config_manager_8cpp" startline="969" endline="1092">ConfigManager::sensorAPI</referencedby>
-        <referencedby refid="class_temperature_controller_1a261c9b96540ec6680dfffd3a26e4ca00" compoundref="_temperature_controller_8cpp" startline="947" endline="968">TemperatureController::unbindSensorFromPoint</referencedby>
+        <referencedby refid="class_temperature_controller_1aafd155cdb06d2f411d3640df99815246" compoundref="_temperature_controller_8cpp" startline="846" endline="861">TemperatureController::addSensor</referencedby>
+        <referencedby refid="class_temperature_controller_1a79e98c9a1d42de787a66e02b250b7a74" compoundref="_temperature_controller_8cpp" startline="1090" endline="1139">TemperatureController::discoverPTSensors</referencedby>
+        <referencedby refid="class_temperature_controller_1add39ba7dad38449bbf1787a5c9c51ef9" compoundref="_temperature_controller_8cpp" startline="1200" endline="1259">TemperatureController::getPointsJson</referencedby>
+        <referencedby refid="class_temperature_controller_1a01e04714a1712aa10c34276850971a12" compoundref="_temperature_controller_8cpp" startline="1374" endline="1390">TemperatureController::getSensorBus</referencedby>
+        <referencedby refid="class_config_manager_1a55b79da91c57039c483ddf5fceabbd64" compoundref="_config_manager_8cpp" startline="314" endline="407">ConfigManager::savePointsConfig</referencedby>
+        <referencedby refid="class_config_manager_1a45b1ce1f09401af0b6f700cf4388b233" compoundref="_config_manager_8cpp" startline="976" endline="1099">ConfigManager::sensorAPI</referencedby>
+        <referencedby refid="class_temperature_controller_1a261c9b96540ec6680dfffd3a26e4ca00" compoundref="_temperature_controller_8cpp" startline="952" endline="973">TemperatureController::unbindSensorFromPoint</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_sensor_1aaa9739e019c01dba6fb55c58a27d9642" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1057,12 +1057,12 @@ Updates internal temperature values and error status </para>
         <references refid="_sensor_8h_1a213c434cb928c4ca22513e2302632435aac1bc058b939e1c55e1496c8574f3691" compoundref="_sensor_8h" startline="33">DS18B20</references>
         <references refid="class_sensor_1a59be498582043f581a78851506f8e322" compoundref="_sensor_8h" startline="241">type</references>
         <referencedby refid="class_c_s_v_config_manager_1a2c2673398051c26184c9197aa751a6b3" compoundref="_c_s_v_config_manager_8cpp" startline="57" endline="90">CSVConfigManager::_exportPointToCSV</referencedby>
-        <referencedby refid="class_temperature_controller_1aafd155cdb06d2f411d3640df99815246" compoundref="_temperature_controller_8cpp" startline="841" endline="856">TemperatureController::addSensor</referencedby>
-        <referencedby refid="class_temperature_controller_1add39ba7dad38449bbf1787a5c9c51ef9" compoundref="_temperature_controller_8cpp" startline="1195" endline="1254">TemperatureController::getPointsJson</referencedby>
-        <referencedby refid="class_temperature_controller_1a58f7a683f6e4c08dbfdfc43c1e740f15" compoundref="_temperature_controller_8cpp" startline="1137" endline="1193">TemperatureController::getSensorsJson</referencedby>
-        <referencedby refid="class_config_manager_1a55b79da91c57039c483ddf5fceabbd64" compoundref="_config_manager_8cpp" startline="307" endline="400">ConfigManager::savePointsConfig</referencedby>
-        <referencedby refid="class_config_manager_1a45b1ce1f09401af0b6f700cf4388b233" compoundref="_config_manager_8cpp" startline="969" endline="1092">ConfigManager::sensorAPI</referencedby>
-        <referencedby refid="class_temperature_controller_1a261c9b96540ec6680dfffd3a26e4ca00" compoundref="_temperature_controller_8cpp" startline="947" endline="968">TemperatureController::unbindSensorFromPoint</referencedby>
+        <referencedby refid="class_temperature_controller_1aafd155cdb06d2f411d3640df99815246" compoundref="_temperature_controller_8cpp" startline="846" endline="861">TemperatureController::addSensor</referencedby>
+        <referencedby refid="class_temperature_controller_1add39ba7dad38449bbf1787a5c9c51ef9" compoundref="_temperature_controller_8cpp" startline="1200" endline="1259">TemperatureController::getPointsJson</referencedby>
+        <referencedby refid="class_temperature_controller_1a58f7a683f6e4c08dbfdfc43c1e740f15" compoundref="_temperature_controller_8cpp" startline="1142" endline="1198">TemperatureController::getSensorsJson</referencedby>
+        <referencedby refid="class_config_manager_1a55b79da91c57039c483ddf5fceabbd64" compoundref="_config_manager_8cpp" startline="314" endline="407">ConfigManager::savePointsConfig</referencedby>
+        <referencedby refid="class_config_manager_1a45b1ce1f09401af0b6f700cf4388b233" compoundref="_config_manager_8cpp" startline="976" endline="1099">ConfigManager::sensorAPI</referencedby>
+        <referencedby refid="class_temperature_controller_1a261c9b96540ec6680dfffd3a26e4ca00" compoundref="_temperature_controller_8cpp" startline="952" endline="973">TemperatureController::unbindSensorFromPoint</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_sensor_1a3003106c642cc8a9ec5638ea06052ff4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1096,7 +1096,7 @@ Updates internal temperature values and error status </para>
         <references refid="class_sensor_1adaacf2cbc3623d86bad4c32496340a74">connection</references>
         <references refid="_sensor_8h_1a213c434cb928c4ca22513e2302632435aac1bc058b939e1c55e1496c8574f3691" compoundref="_sensor_8h" startline="33">DS18B20</references>
         <references refid="class_sensor_1a59be498582043f581a78851506f8e322" compoundref="_sensor_8h" startline="241">type</references>
-        <referencedby refid="class_temperature_controller_1add39ba7dad38449bbf1787a5c9c51ef9" compoundref="_temperature_controller_8cpp" startline="1195" endline="1254">TemperatureController::getPointsJson</referencedby>
+        <referencedby refid="class_temperature_controller_1add39ba7dad38449bbf1787a5c9c51ef9" compoundref="_temperature_controller_8cpp" startline="1200" endline="1259">TemperatureController::getPointsJson</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_sensor_1ac42da3a37b0d6a9622344fe83f4c9047" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>uint8_t</type>
@@ -1116,8 +1116,8 @@ Updates internal temperature values and error status </para>
         </inbodydescription>
         <location file="include/Sensor.h" line="236" column="13" bodyfile="include/Sensor.h" bodystart="236" bodyend="236"/>
         <references refid="class_sensor_1adaacf2cbc3623d86bad4c32496340a74">connection</references>
-        <referencedby refid="class_temperature_controller_1a57b74b40c88016965d07248981412f7d" compoundref="_temperature_controller_8cpp" startline="1010" endline="1082">TemperatureController::discoverDS18B20Sensors</referencedby>
-        <referencedby refid="class_temperature_controller_1a01e04714a1712aa10c34276850971a12" compoundref="_temperature_controller_8cpp" startline="1369" endline="1385">TemperatureController::getSensorBus</referencedby>
+        <referencedby refid="class_temperature_controller_1a57b74b40c88016965d07248981412f7d" compoundref="_temperature_controller_8cpp" startline="1015" endline="1087">TemperatureController::discoverDS18B20Sensors</referencedby>
+        <referencedby refid="class_temperature_controller_1a01e04714a1712aa10c34276850971a12" compoundref="_temperature_controller_8cpp" startline="1374" endline="1390">TemperatureController::getSensorBus</referencedby>
       </memberdef>
     </sectiondef>
     <briefdescription>
