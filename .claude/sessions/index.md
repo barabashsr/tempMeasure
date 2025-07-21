@@ -3,3 +3,8 @@
 - Task:  Auto-enable sensor error alarm on sensor binding
 - Duration:  to Mon Jul 21 07:49:27 MSK 2025
 - Commits:        7
+
+## 20250721_113620_completed
+- Task:  Implement alarm control via Modbus RTU
+- Duration:  to Mon Jul 21 11:36:21 MSK 2025
+- Commits:        8

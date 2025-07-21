@@ -509,3 +509,6 @@ AI assistants that skip this workflow will have their work:
 - `.claude/scripts/archive_session.sh` - Session archiving with summary
 - `.git/hooks/pre-commit` - Auto-generates docs on commit
 
+### Task Guidelines
+
+- **The questions should be tast-like with question numbers and letters for answers**
