@@ -78,3 +78,11 @@ After successful sensor binding, the code:
 
 ### Files Modified:
 - src/TemperatureController.cpp - Added auto-enable logic in 3 locations
+### Update: 07:35:00 - Auto-enable Fix
+- Issue: Auto-enable logic in binding functions was getting overridden by config loading
+- Root cause: Timing issue - auto-enable happened during binding, but config loading happened after and reset the state
+- Solution: Removed redundant auto-enable logic from binding functions (3 locations)
+- The config loading already has correct logic (lines 563-565) that auto-enables sensor error alarms if sensor is bound and no saved state exists
+- Modified: src/TemperatureController.cpp - removed auto-enable from bindSensorToPointByRom, bindSensorToPointByChipSelect, bindSensorToPointByBusNumber
+- Result: Compilation successful
+EOF < /dev/null

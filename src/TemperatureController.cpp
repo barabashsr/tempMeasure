@@ -859,17 +859,6 @@ bool TemperatureController::bindSensorToPointByRom(const String& romString, uint
         return false;} 
 
         point->bindSensor(sensor);
-    
-        // Auto-enable sensor error alarm when sensor is bound
-        auto alarms = getAlarmsForPoint(point);
-        for (auto alarm : alarms) {
-            if (alarm->getType() == AlarmType::SENSOR_ERROR) {
-                alarm->setEnabled(true);
-                LoggerManager::info("BINDING", 
-                    "Auto-enabled sensor error alarm for point " + String(pointAddress));
-                break;
-            }
-        }
 
         String pointName = point->getName().isEmpty() ? 
             "Point_" + String(pointAddress) : point->getName();
@@ -898,17 +887,6 @@ bool TemperatureController::bindSensorToPointByChipSelect(uint8_t csPin, uint8_t
             " to point " + String(pointAddress));
         return false;}
     point->bindSensor(sensor);
-    
-    // Auto-enable sensor error alarm when sensor is bound
-    auto alarms = getAlarmsForPoint(point);
-    for (auto alarm : alarms) {
-        if (alarm->getType() == AlarmType::SENSOR_ERROR) {
-            alarm->setEnabled(true);
-            LoggerManager::info("BINDING", 
-                "Auto-enabled sensor error alarm for point " + String(pointAddress));
-            break;
-        }
-    }
     
     String pointName = point->getName().isEmpty() ? 
             "Point_" + String(pointAddress) : point->getName();
@@ -1515,17 +1493,6 @@ bool TemperatureController::bindSensorToPointByBusNumber(uint8_t busNumber, uint
                 MeasurementPoint* point = getMeasurementPoint(pointAddress);
                 if (point) {
                     point->bindSensor(sensor);
-                    
-                    // Auto-enable sensor error alarm when sensor is bound
-                    auto alarms = getAlarmsForPoint(point);
-                    for (auto alarm : alarms) {
-                        if (alarm->getType() == AlarmType::SENSOR_ERROR) {
-                            alarm->setEnabled(true);
-                            LoggerManager::info("BINDING", 
-                                "Auto-enabled sensor error alarm for point " + String(pointAddress));
-                            break;
-                        }
-                    }
                     
                     LoggerManager::info("BINDING", 
                         "PT1000 sensor on bus " + String(busNumber) + 

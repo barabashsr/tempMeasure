@@ -1,47 +1,41 @@
 <map id="MeasurementPoint::getAddress" name="MeasurementPoint::getAddress">
-<area shape="rect" id="Node000001" title="Get measurement point address." alt="" coords="772,308,977,333"/>
-<area shape="rect" id="Node000002" href="$class_c_s_v_config_manager.html#a2c2673398051c26184c9197aa751a6b3" title="Export single measurement point to CSV format." alt="" coords="526,5,671,46"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="863,294,845,243,816,180,776,116,751,86,723,61,698,47,671,37,672,32,700,42,726,57,755,83,780,112,821,178,850,241,868,292"/>
-<area shape="rect" id="Node000004" href="$class_config_manager.html#ae605c999fabc6344511f455618655326" title="Setup alarms API endpoints." alt="" coords="224,561,402,586"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="864,348,843,387,813,434,773,480,726,517,701,528,667,538,583,554,403,571,403,566,582,548,666,533,699,523,723,513,770,476,808,431,838,385,859,346"/>
-<area shape="rect" id="Node000006" href="$class_register_map.html#a1f102e7d0dd51d4750c916fb6e32c37a" title="Apply configuration from measurement point to registers." alt="" coords="512,136,685,177"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="850,298,796,244,761,216,723,192,684,176,686,171,726,187,764,212,799,240,854,294"/>
-<area shape="rect" id="Node000007" href="$class_register_map.html#aa2f819b22096b8c14c421b415f7e83b7" title="Apply configuration from registers to measurement point." alt="" coords="512,201,685,242"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="832,303,723,258,684,245,686,240,725,252,834,298"/>
-<area shape="rect" id="Node000008" href="$class_temperature_controller.html#aa64384fb8503814b46a7d55f53ccb53a" title="Create new alarm for measurement point." alt="" coords="524,71,673,111"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="858,295,837,257,807,211,768,165,723,127,699,114,673,105,675,100,701,109,726,122,772,162,811,208,841,254,863,292"/>
-<area shape="rect" id="Node000010" href="$class_temperature_controller.html#ad174e0411bd48422d8e3812fd28a7a0b" title="Ensure all 3 alarm types exist for a measurement point." alt="" coords="520,332,678,373"/>
-<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="757,337,678,346,678,341,756,331"/>
-<area shape="rect" id="Node000011" href="$class_temperature_controller.html#a880028883101197527de57f626e14512" title="Get all alarms associated with a measurement point." alt="" coords="524,267,673,307"/>
-<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="756,309,674,299,674,293,757,303"/>
-<area shape="rect" id="Node000015" href="$class_temperature_controller.html#add39ba7dad38449bbf1787a5c9c51ef9" title="Get JSON representation of all measurement points." alt="" coords="524,463,673,503"/>
-<area shape="poly" id="edge14_Node000001_Node000015" title=" " alt="" coords="854,347,799,400,764,428,726,452,675,472,673,467,723,447,761,424,796,396,850,343"/>
-<area shape="rect" id="Node000016" href="$class_config_manager.html#a55b79da91c57039c483ddf5fceabbd64" title="Save measurement points configuration to file." alt="" coords="508,397,690,438"/>
-<area shape="poly" id="edge15_Node000001_Node000016" title=" " alt="" coords="833,343,725,387,686,399,684,394,723,382,831,338"/>
-<area shape="rect" id="Node000021" href="$class_register_map.html#a2940213459a183fc06a2226f1cd1a48b" title="Update registers from measurement point data." alt="" coords="473,577,724,618"/>
-<area shape="poly" id="edge24_Node000001_Node000021" title=" " alt="" coords="866,348,847,394,817,452,777,510,753,537,726,561,695,579,692,575,723,557,749,534,773,507,812,449,842,392,861,346"/>
-<area shape="rect" id="Node000003" href="$class_c_s_v_config_manager.html#a1c6cbc4c8a132762bf16a8ce9f7d0bfc" title="Export measurement points with alarm configuration to CSV." alt="" coords="223,5,404,46"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="511,28,405,28,405,23,511,23"/>
-<area shape="rect" id="Node000005" href="$class_config_manager.html#a0497343220fc493f5cf9574922508908" title="Initialize the configuration system." alt="" coords="5,454,154,480"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="217,558,201,552,140,517,94,482,98,478,143,513,203,547,219,553"/>
-<area shape="rect" id="Node000009" href="$class_temperature_controller.html#a27da8ccc3effea555f440ce3e6f89b08" title="Check measurement point for alarm conditions." alt="" coords="233,71,394,111"/>
-<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="508,94,395,94,395,88,508,88"/>
-<area shape="rect" id="Node000012" href="$class_temperature_controller.html#af4ab2c7b7a3934ab7837603a420b1ae2" title="Bind sensor to measurement point by bus number." alt="" coords="202,201,425,242"/>
-<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="508,269,405,245,406,240,509,264"/>
-<area shape="rect" id="Node000013" href="$class_temperature_controller.html#a84937fc1aed30193b817f3b062ce0cfc" title="Bind PT1000 sensor to measurement point by chip select pin." alt="" coords="204,267,422,307"/>
-<area shape="poly" id="edge12_Node000011_Node000013" title=" " alt="" coords="508,290,423,290,423,284,508,284"/>
-<area shape="rect" id="Node000014" href="$class_temperature_controller.html#a5d8f7c51bb176435a5035293a2db78f7" title="Bind sensor to measurement point by ROM address." alt="" coords="222,136,404,177"/>
-<area shape="poly" id="edge13_Node000011_Node000014" title=" " alt="" coords="508,274,471,256,455,240,447,223,438,207,423,192,401,179,404,175,427,188,443,204,451,221,459,237,475,251,510,269"/>
-<area shape="poly" id="edge16_Node000016_Node000004" title=" " alt="" coords="495,440,475,453,464,464,458,476,452,501,446,527,439,540,427,552,404,565,402,560,423,548,434,536,441,525,447,500,453,474,460,461,471,449,492,436"/>
-<area shape="rect" id="Node000017" href="$class_config_manager.html#a9b7af07b85bf9cc3ac05603db6e89fd2" title="Setup CSV import/export API endpoints." alt="" coords="226,332,401,373"/>
-<area shape="poly" id="edge17_Node000016_Node000017" title=" " alt="" coords="492,396,401,375,402,370,493,391"/>
-<area shape="rect" id="Node000018" href="$class_config_manager.html#a471a844085c27f3a8a8f9394d9c14677" title="Setup measurement points API endpoints." alt="" coords="226,397,400,422"/>
-<area shape="poly" id="edge19_Node000016_Node000018" title=" " alt="" coords="492,417,401,415,401,409,492,412"/>
-<area shape="rect" id="Node000019" href="$class_config_manager.html#a45b1ce1f09401af0b6f700cf4388b233" title="Setup sensor&#45;related API endpoints." alt="" coords="224,512,402,537"/>
-<area shape="poly" id="edge21_Node000016_Node000019" title=" " alt="" coords="495,443,474,453,460,465,451,477,442,489,426,501,398,513,396,508,424,497,438,486,447,474,456,461,472,449,492,439"/>
-<area shape="rect" id="Node000020" href="$class_config_manager.html#a0daf50bbd376beb24a5400a86e893338" title="Update a measurement point in configuration." alt="" coords="220,447,406,487"/>
-<area shape="poly" id="edge23_Node000016_Node000020" title=" " alt="" coords="493,439,407,454,406,448,492,433"/>
-<area shape="poly" id="edge18_Node000017_Node000005" title=" " alt="" coords="216,381,203,387,144,422,98,456,95,452,141,417,200,382,214,376"/>
-<area shape="poly" id="edge20_Node000018_Node000005" title=" " alt="" coords="238,429,202,438,131,456,129,451,201,432,236,424"/>
-<area shape="poly" id="edge22_Node000019_Node000005" title=" " alt="" coords="236,510,201,502,129,483,131,478,202,496,238,505"/>
+<area shape="rect" id="Node000001" title="Get measurement point address." alt="" coords="735,308,940,333"/>
+<area shape="rect" id="Node000002" href="$class_c_s_v_config_manager.html#a2c2673398051c26184c9197aa751a6b3" title="Export single measurement point to CSV format." alt="" coords="489,5,634,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="826,294,808,243,779,180,739,116,714,86,686,61,661,47,634,37,635,32,663,42,689,57,718,83,743,112,784,178,813,241,831,292"/>
+<area shape="rect" id="Node000004" href="$class_config_manager.html#ae605c999fabc6344511f455618655326" title="Setup alarms API endpoints." alt="" coords="206,426,384,452"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="827,349,808,389,778,436,738,482,714,502,689,517,653,533,622,542,593,547,564,547,506,536,435,518,399,505,365,488,312,455,315,450,368,484,401,500,437,512,507,531,565,541,592,541,620,537,651,528,686,513,711,497,734,478,773,433,803,386,823,346"/>
+<area shape="rect" id="Node000006" href="$class_register_map.html#a1f102e7d0dd51d4750c916fb6e32c37a" title="Apply configuration from measurement point to registers." alt="" coords="476,136,648,177"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="813,298,759,244,724,216,686,192,647,176,649,171,689,187,727,212,762,240,817,294"/>
+<area shape="rect" id="Node000007" href="$class_register_map.html#aa2f819b22096b8c14c421b415f7e83b7" title="Apply configuration from registers to measurement point." alt="" coords="476,201,648,242"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="795,303,686,258,647,245,649,240,688,252,797,298"/>
+<area shape="rect" id="Node000008" href="$class_temperature_controller.html#aa64384fb8503814b46a7d55f53ccb53a" title="Create new alarm for measurement point." alt="" coords="487,71,636,111"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="821,295,800,257,770,211,731,165,686,127,662,114,636,105,638,100,664,109,689,122,735,162,774,208,804,254,826,292"/>
+<area shape="rect" id="Node000010" href="$class_temperature_controller.html#ad174e0411bd48422d8e3812fd28a7a0b" title="Ensure all 3 alarm types exist for a measurement point." alt="" coords="482,332,641,373"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="720,337,641,346,641,341,719,331"/>
+<area shape="rect" id="Node000011" href="$class_temperature_controller.html#a880028883101197527de57f626e14512" title="Get all alarms associated with a measurement point." alt="" coords="487,397,636,438"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="796,343,688,387,637,402,636,397,686,382,794,338"/>
+<area shape="rect" id="Node000012" href="$class_temperature_controller.html#add39ba7dad38449bbf1787a5c9c51ef9" title="Get JSON representation of all measurement points." alt="" coords="487,463,636,503"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="817,347,762,400,727,428,689,452,638,472,636,467,686,447,724,424,759,396,813,343"/>
+<area shape="rect" id="Node000013" href="$class_config_manager.html#a55b79da91c57039c483ddf5fceabbd64" title="Save measurement points configuration to file." alt="" coords="470,267,653,307"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="719,309,653,301,654,295,720,303"/>
+<area shape="rect" id="Node000018" href="$class_register_map.html#a2940213459a183fc06a2226f1cd1a48b" title="Update registers from measurement point data." alt="" coords="436,577,687,618"/>
+<area shape="poly" id="edge21_Node000001_Node000018" title=" " alt="" coords="829,348,810,394,780,452,740,510,716,537,689,561,658,579,655,575,686,557,712,534,736,507,775,449,805,392,824,346"/>
+<area shape="rect" id="Node000003" href="$class_c_s_v_config_manager.html#a1c6cbc4c8a132762bf16a8ce9f7d0bfc" title="Export measurement points with alarm configuration to CSV." alt="" coords="204,5,386,46"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="473,28,386,28,386,23,473,23"/>
+<area shape="rect" id="Node000005" href="$class_config_manager.html#a0497343220fc493f5cf9574922508908" title="Initialize the configuration system." alt="" coords="5,276,154,301"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="213,422,200,416,164,389,132,358,88,303,92,300,136,354,167,385,203,411,215,418"/>
+<area shape="rect" id="Node000009" href="$class_temperature_controller.html#a27da8ccc3effea555f440ce3e6f89b08" title="Check measurement point for alarm conditions." alt="" coords="214,71,376,111"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="471,94,376,94,376,88,471,88"/>
+<area shape="poly" id="edge13_Node000013_Node000004" title=" " alt="" coords="458,310,438,322,427,333,421,344,415,368,408,392,401,404,390,416,370,428,367,423,386,412,397,401,403,390,409,366,416,342,423,330,434,318,455,305"/>
+<area shape="rect" id="Node000014" href="$class_config_manager.html#a9b7af07b85bf9cc3ac05603db6e89fd2" title="Setup CSV import/export API endpoints." alt="" coords="207,296,382,337"/>
+<area shape="poly" id="edge14_Node000013_Node000014" title=" " alt="" coords="455,301,383,309,383,304,455,296"/>
+<area shape="rect" id="Node000015" href="$class_config_manager.html#a471a844085c27f3a8a8f9394d9c14677" title="Setup measurement points API endpoints." alt="" coords="208,197,382,222"/>
+<area shape="poly" id="edge16_Node000013_Node000015" title=" " alt="" coords="461,264,435,256,387,236,352,226,354,221,389,231,437,251,462,259"/>
+<area shape="rect" id="Node000016" href="$class_config_manager.html#a45b1ce1f09401af0b6f700cf4388b233" title="Setup sensor&#45;related API endpoints." alt="" coords="206,246,384,272"/>
+<area shape="poly" id="edge18_Node000013_Node000016" title=" " alt="" coords="455,278,384,271,385,266,455,273"/>
+<area shape="rect" id="Node000017" href="$class_config_manager.html#a0daf50bbd376beb24a5400a86e893338" title="Update a measurement point in configuration." alt="" coords="202,361,388,402"/>
+<area shape="poly" id="edge20_Node000013_Node000017" title=" " alt="" coords="457,315,437,323,413,336,389,351,360,363,357,358,387,346,410,332,435,318,456,310"/>
+<area shape="poly" id="edge15_Node000014_Node000005" title=" " alt="" coords="192,306,154,301,155,295,192,300"/>
+<area shape="poly" id="edge17_Node000015_Node000005" title=" " alt="" coords="222,230,203,236,108,277,106,272,201,231,221,225"/>
+<area shape="poly" id="edge19_Node000016_Node000005" title=" " alt="" coords="191,276,154,281,153,276,190,271"/>
 </map>
