@@ -33,10 +33,10 @@ const char* VARIABLES_DEF_YAML PROGMEM = R"~(
     Wifi settings:
       - st_ssid:
           label: WiFi SSID
-          default: Beeline_2G_F13F37
+          default: Tenda_B3E6F0_EXT
       - st_pass:
           label: WiFi Password
-          default: 1122334455667788
+          default: a111222333
       - host_name:
           label: Device Hostname
           default: 'temp-monitor-{mac}'
@@ -214,7 +214,7 @@ bool ConfigManager::begin() {
     // Load sensor configuration
     //loadSensorConfig();
     loadPointsConfig();
-    loadAlarmsConfig();
+    // loadAlarmsConfig(); // Now handled within loadPointsConfig()
     Serial.println("CM.begin(): Sensor data loaded:");
     //Serial.println(controller.getSensorsJson());
     
@@ -710,6 +710,10 @@ void ConfigManager::saveAlarmsConfig() {
 
 void ConfigManager::loadAlarmsConfig() {
     Serial.println("Loading alarms configuration...");
+    Serial.println("WARNING: loadAlarmsConfig() is deprecated - alarms are now managed through loadPointsConfig()");
+    return; // Exit early to prevent deleting alarms
+    
+    /* Deprecated - alarms are now managed through points configuration
     ConfigAssist alarmsConf("/alarms.ini", false);
     
     // Clear existing configured alarms first
@@ -792,6 +796,7 @@ void ConfigManager::loadAlarmsConfig() {
     }
     
     Serial.printf("Loaded %d valid alarm configurations\n", loadedCount);
+    */
 }
 
 void ConfigManager::basicAPI(){
