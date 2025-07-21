@@ -512,11 +512,10 @@
 
         function generatePriorityOptions(selectedValue) {
             const priorities = [
-                { value: 0, label: 'Disabled' },
-                { value: 1, label: 'Low' },
-                { value: 2, label: 'Medium' },
-                { value: 3, label: 'High' },
-                { value: 4, label: 'Critical' }
+                { value: 0, label: 'Low' },
+                { value: 1, label: 'Medium' },
+                { value: 2, label: 'High' },
+                { value: 3, label: 'Critical' }
             ];
             
             return priorities.map(p => 
@@ -525,8 +524,8 @@
         }
 
         function getPriorityClass(priority) {
-            const classes = ['disabled', 'low', 'medium', 'high', 'critical'];
-            return classes[priority] || 'disabled';
+            const classes = ['low', 'medium', 'high', 'critical'];
+            return classes[priority] || 'low';
         }
 
         function getTempStatusClass(temp, low, high) {
