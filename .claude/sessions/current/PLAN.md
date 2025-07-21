@@ -37,10 +37,24 @@
 5. **Name Editing**: Keep existing implementation if working
 
 ### Implementation Steps:
-- [ ] Step 1: Update points2.ini structure to include alarm enable flags and priorities
-- [ ] Step 2: Modify ConfigManager to save/load alarm settings (enable flags, priorities, hysteresis)
-- [ ] Step 3: Update TemperatureController to pre-create all alarms at startup
-- [ ] Step 4: Add enable checkboxes to alarm-config.html
-- [ ] Step 5: Update /api/alarm-config to return actual alarm settings instead of hardcoded values
-- [ ] Step 6: Test compilation and fix errors
-- [ ] Step 7: Test API endpoints functionality
+- [x] Step 1: Update points2.ini structure to include alarm enable flags and priorities
+- [x] Step 2: Modify ConfigManager to save/load alarm settings (enable flags, priorities, hysteresis)
+- [x] Step 3: Update TemperatureController to pre-create all alarms at startup
+- [x] Step 4: Add enable checkboxes to alarm-config.html
+- [x] Step 5: Update /api/alarm-config to return actual alarm settings instead of hardcoded values
+- [x] Step 6: Test compilation and fix errors
+- [x] Step 7: Test API endpoints functionality
+
+## Planning Update: 2025-01-21 07:07
+
+### Task: Auto-enable sensor error alarm on sensor binding
+When a sensor is bound to a measurement point, the sensor error alarm should automatically be enabled.
+
+### Investigation Strategy:
+1. Find where sensor binding occurs (likely in sensor-config API)
+2. Locate the code that binds sensors to points
+3. Add logic to enable sensor error alarm after successful binding
+
+### Expected Files to Modify:
+- ConfigManager.cpp - sensor binding API endpoint
+- Possibly TemperatureController.cpp - if binding happens there

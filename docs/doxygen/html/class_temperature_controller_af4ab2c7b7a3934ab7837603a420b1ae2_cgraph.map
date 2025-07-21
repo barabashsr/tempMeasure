@@ -1,19 +1,25 @@
 <map id="TemperatureController::bindSensorToPointByBusNumber" name="TemperatureController::bindSensorToPointByBusNumber">
-<area shape="rect" id="Node000001" title="Bind sensor to measurement point by bus number." alt="" coords="5,71,229,111"/>
-<area shape="rect" id="Node000002" href="$class_measurement_point.html#a3c3af28d9aabc9e5b9e2e370eaa29ce0" title="Bind a physical sensor to this measurement point." alt="" coords="277,21,480,46"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="212,67,301,48,302,53,213,73"/>
-<area shape="rect" id="Node000003" href="$class_temperature_controller.html#a494f057c234b4ff7526bde271aec9267" title="Get measurement point by address." alt="" coords="300,71,456,111"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="229,88,285,88,285,94,229,94"/>
-<area shape="rect" id="Node000006" href="$class_temperature_controller.html#a01e04714a1712aa10c34276850971a12" title="Get bus number for a sensor." alt="" coords="304,156,453,197"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="182,109,300,148,298,153,181,114"/>
-<area shape="rect" id="Node000004" href="$class_temperature_controller.html#ad322a5bab8d5788a586206004248f673" title="Check if address is for DS18B20 sensor." alt="" coords="562,5,711,46"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="456,69,546,46,547,51,458,74"/>
-<area shape="rect" id="Node000005" href="$class_temperature_controller.html#a13125ddcf29cb56d27403818543618af" title="Check if address is for PT1000 sensor." alt="" coords="562,71,711,111"/>
-<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="457,88,546,88,546,94,457,94"/>
-<area shape="rect" id="Node000007" href="$class_sensor.html#ac42da3a37b0d6a9622344fe83f4c9047" title="Get OneWire bus pin." alt="" coords="557,136,715,161"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="453,166,542,156,542,161,454,171"/>
-<area shape="rect" id="Node000008" href="$class_sensor.html#a6f57825e90b759ccdb9fe07b3a36953d" title="Get PT1000 chip select pin." alt="" coords="528,185,744,210"/>
-<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="454,180,512,185,512,190,453,185"/>
-<area shape="rect" id="Node000009" href="$class_sensor.html#a0f6f095e7cfdfffb2a395dfdae7cfa53" title="Get sensor type." alt="" coords="578,234,694,260"/>
-<area shape="poly" id="edge8_Node000006_Node000009" title=" " alt="" coords="443,195,529,220,564,229,562,234,527,226,441,200"/>
+<area shape="rect" id="Node000001" title="Bind sensor to measurement point by bus number." alt="" coords="5,120,229,161"/>
+<area shape="rect" id="Node000002" href="$class_measurement_point.html#a3c3af28d9aabc9e5b9e2e370eaa29ce0" title="Bind a physical sensor to this measurement point." alt="" coords="277,5,480,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="145,118,203,79,276,41,296,33,298,38,278,46,206,84,148,122"/>
+<area shape="rect" id="Node000003" href="$class_temperature_controller.html#a880028883101197527de57f626e14512" title="Get all alarms associated with a measurement point." alt="" coords="304,55,453,96"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="201,117,288,95,289,100,202,122"/>
+<area shape="rect" id="Node000005" href="$class_temperature_controller.html#a494f057c234b4ff7526bde271aec9267" title="Get measurement point by address." alt="" coords="300,120,456,161"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="229,138,285,138,285,144,229,144"/>
+<area shape="rect" id="Node000008" href="$class_temperature_controller.html#a01e04714a1712aa10c34276850971a12" title="Get bus number for a sensor." alt="" coords="304,186,453,226"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="202,159,289,181,288,186,201,164"/>
+<area shape="rect" id="Node000012" href="$class_logger_manager.html#a5c1373ccc47f4112b596fe6f84fbbc21" title="Log informational message (static convenience method)" alt="" coords="309,251,448,276"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="148,159,206,198,278,236,298,243,296,248,276,241,203,203,145,164"/>
+<area shape="rect" id="Node000004" href="$class_measurement_point.html#a7b74a18d86e0e545264a774aa2c31cad" title="Get measurement point address." alt="" coords="534,9,738,35"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="453,57,555,36,556,41,454,63"/>
+<area shape="rect" id="Node000006" href="$class_temperature_controller.html#ad322a5bab8d5788a586206004248f673" title="Check if address is for DS18B20 sensor." alt="" coords="562,59,711,100"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="456,120,545,98,547,103,458,125"/>
+<area shape="rect" id="Node000007" href="$class_temperature_controller.html#a13125ddcf29cb56d27403818543618af" title="Check if address is for PT1000 sensor." alt="" coords="562,124,711,165"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="457,139,546,141,546,146,457,145"/>
+<area shape="rect" id="Node000009" href="$class_sensor.html#ac42da3a37b0d6a9622344fe83f4c9047" title="Get OneWire bus pin." alt="" coords="557,189,715,215"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="453,202,541,201,541,206,454,208"/>
+<area shape="rect" id="Node000010" href="$class_sensor.html#a6f57825e90b759ccdb9fe07b3a36953d" title="Get PT1000 chip select pin." alt="" coords="528,239,744,264"/>
+<area shape="poly" id="edge9_Node000008_Node000010" title=" " alt="" coords="454,217,545,233,544,238,453,222"/>
+<area shape="rect" id="Node000011" href="$class_sensor.html#a0f6f095e7cfdfffb2a395dfdae7cfa53" title="Get sensor type." alt="" coords="578,288,694,314"/>
+<area shape="poly" id="edge10_Node000008_Node000011" title=" " alt="" coords="454,224,481,236,496,246,506,256,515,266,529,274,564,287,562,292,527,279,512,270,502,260,492,250,479,240,452,229"/>
 </map>

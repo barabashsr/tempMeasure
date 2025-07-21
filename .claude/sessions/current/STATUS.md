@@ -54,3 +54,27 @@ The alarm configuration interface is now fully implemented with:
 - Run test_alarm_api.py to validate API functionality
 - Test web interface alarm enable/disable functionality
 - Verify alarm state persistence across reboots
+
+## Session: 2025-01-21 07:05
+### Task: Auto-enable sensor error alarm on sensor binding
+
+### Update: 07:15:00 - Feature Implementation
+- Completed: Added auto-enable logic for sensor error alarms
+- Modified: TemperatureController.cpp - all three binding methods
+- Added: Logic to find and enable SENSOR_ERROR alarm after successful binding
+- Result: Compilation successful
+
+### Implementation Details:
+Added auto-enable logic in three sensor binding methods:
+1. `bindSensorToPointByRom` - for DS18B20 sensors (line 863-872)
+2. `bindSensorToPointByChipSelect` - for PT1000 sensors (line 902-911)
+3. `bindSensorToPointByBusNumber` - for CSV import of PT1000 sensors (line 1519-1528)
+
+After successful sensor binding, the code:
+- Gets all alarms for the point using `getAlarmsForPoint`
+- Finds the SENSOR_ERROR type alarm
+- Enables it using `setEnabled(true)`
+- Logs the auto-enable action
+
+### Files Modified:
+- src/TemperatureController.cpp - Added auto-enable logic in 3 locations
