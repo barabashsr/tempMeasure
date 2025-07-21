@@ -1780,9 +1780,12 @@ void ConfigManager::alarmsAPI(){
             return;
         }
         
+        Serial.printf("Received POST data: %s\n", server->arg("plain").c_str());
+        
         DynamicJsonDocument doc(8192); // Large enough for multiple points
         DeserializationError err = deserializeJson(doc, server->arg("plain"));
         if (err) {
+            Serial.printf("JSON deserialization error: %s\n", err.c_str());
             server->send(400, "application/json", "{\"error\":\"Invalid JSON format\"}");
             return;
         }
@@ -1849,7 +1852,9 @@ void ConfigManager::alarmsAPI(){
                     switch (alarm->getType()) {
                         case AlarmType::LOW_TEMPERATURE:
                             if (change.containsKey("lowPriority")) {
-                                alarm->setPriority(static_cast<AlarmPriority>(change["lowPriority"].as<int>()));
+                                int priority = change["lowPriority"].as<int>();
+                                Serial.printf("Setting LOW alarm priority to %d for point %d\n", priority, address);
+                                alarm->setPriority(static_cast<AlarmPriority>(priority));
                             }
                             if (change.containsKey("lowEnabled")) {
                                 alarm->setEnabled(change["lowEnabled"].as<bool>());
@@ -1857,7 +1862,9 @@ void ConfigManager::alarmsAPI(){
                             break;
                         case AlarmType::HIGH_TEMPERATURE:
                             if (change.containsKey("highPriority")) {
-                                alarm->setPriority(static_cast<AlarmPriority>(change["highPriority"].as<int>()));
+                                int priority = change["highPriority"].as<int>();
+                                Serial.printf("Setting HIGH alarm priority to %d for point %d\n", priority, address);
+                                alarm->setPriority(static_cast<AlarmPriority>(priority));
                             }
                             if (change.containsKey("highEnabled")) {
                                 alarm->setEnabled(change["highEnabled"].as<bool>());
@@ -1865,7 +1872,9 @@ void ConfigManager::alarmsAPI(){
                             break;
                         case AlarmType::SENSOR_ERROR:
                             if (change.containsKey("errorPriority")) {
-                                alarm->setPriority(static_cast<AlarmPriority>(change["errorPriority"].as<int>()));
+                                int priority = change["errorPriority"].as<int>();
+                                Serial.printf("Setting ERROR alarm priority to %d for point %d\n", priority, address);
+                                alarm->setPriority(static_cast<AlarmPriority>(priority));
                             }
                             if (change.containsKey("errorEnabled")) {
                                 alarm->setEnabled(change["errorEnabled"].as<bool>());
