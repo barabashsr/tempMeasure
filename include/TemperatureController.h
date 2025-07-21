@@ -500,6 +500,44 @@ public:
      * @details Implements specific behavior for low priority alarms
      */
     void handleLowPriorityAlarms();
+    
+    // Relay control methods
+    /**
+     * @brief Set relay control mode
+     * @param[in] relayNumber Relay number (1-3)
+     * @param[in] mode Control mode (AUTO/FORCE_OFF/FORCE_ON)
+     * @return true if mode set successfully
+     */
+    bool setRelayControlMode(uint8_t relayNumber, RelayControlMode mode);
+    
+    /**
+     * @brief Get relay control mode
+     * @param[in] relayNumber Relay number (1-3)
+     * @return RelayControlMode Current control mode
+     */
+    RelayControlMode getRelayControlMode(uint8_t relayNumber) const;
+    
+    /**
+     * @brief Get relay commanded state
+     * @param[in] relayNumber Relay number (1-3)
+     * @return bool Commanded state (what system wants relay to be)
+     */
+    bool getRelayCommandedState(uint8_t relayNumber) const;
+    
+    /**
+     * @brief Get relay actual state
+     * @param[in] relayNumber Relay number (1-3)
+     * @return bool Actual hardware state of relay
+     */
+    bool getRelayActualState(uint8_t relayNumber) const;
+    
+    /**
+     * @brief Force relay state (for Modbus control)
+     * @param[in] relayNumber Relay number (1-3)
+     * @param[in] state Desired relay state
+     * @details Only works when relay is in FORCE_OFF or FORCE_ON mode
+     */
+    void forceRelayState(uint8_t relayNumber, bool state);
 
     /**
      * @brief Bind sensor to measurement point by bus number
@@ -683,9 +721,15 @@ private:
 
     bool _relay1State = false;                     ///< Current state of relay 1
     bool _relay2State = false;                     ///< Current state of relay 2
+    bool _relay3State = false;                     ///< Current state of relay 3 (Modbus-only)
     bool _redLedState = false;                     ///< Current state of red LED
     bool _yellowLedState = false;                  ///< Current state of yellow LED
     bool _blueLedState = false;                    ///< Current state of blue LED
+    
+    // Relay control modes
+    RelayControlMode _relay1Mode = RelayControlMode::AUTO;  ///< Control mode for relay 1
+    RelayControlMode _relay2Mode = RelayControlMode::AUTO;  ///< Control mode for relay 2
+    RelayControlMode _relay3Mode = RelayControlMode::AUTO;  ///< Control mode for relay 3
 
     /**
      * @brief Compare alarm priority with comparison operator

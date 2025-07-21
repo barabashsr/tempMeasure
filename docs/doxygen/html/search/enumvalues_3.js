@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['high_5ftemperature_0',['HIGH_TEMPERATURE',['../_alarm_8h.html#ab24e7dd602a82a4cf2afea61f26726e2a9ca8335873c44a53b8f7c5fc526ee59b',1,'Alarm.h']]]
+  ['force_5foff_0',['FORCE_OFF',['../_register_map_8h.html#a23d2c66363244223543ad6ffc35c2072ac8225807a03b18f4128cf970a3c1d90b',1,'RegisterMap.h']]],
+  ['force_5fon_1',['FORCE_ON',['../_register_map_8h.html#a23d2c66363244223543ad6ffc35c2072a98229e484e8eaf35fafe232b46339924',1,'RegisterMap.h']]]
 ];

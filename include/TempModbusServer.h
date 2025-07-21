@@ -25,6 +25,9 @@
 #include "RegisterMap.h"
 #include "LoggerManager.h"
 
+// Forward declaration
+class TemperatureController;
+
 /**
  * @class TempModbusServer
  * @brief Modbus RTU server implementation for temperature monitoring
@@ -43,6 +46,7 @@ private:
     int txPin;                          ///< UART TX pin
     int dePin;                          ///< RS485 Driver Enable pin
     int baudRate;                       ///< Serial baud rate
+    TemperatureController* controller;  ///< Pointer to temperature controller
     
     // Worker functions for different Modbus function codes
     /**
@@ -71,11 +75,13 @@ private:
     
     // Pointer to the RegisterMap instance for static worker functions
     static RegisterMap* registerMapPtr; ///< Static pointer for worker functions
+    static TemperatureController* controllerPtr; ///< Static pointer to temperature controller
 
 public:
     /**
      * @brief Construct a new Temp Modbus Server object
      * @param[in] regMap Reference to register map
+     * @param[in] controller Reference to temperature controller
      * @param[in] id Modbus server ID (1-247)
      * @param[in] serialPort Hardware serial port to use
      * @param[in] rx RX pin number
@@ -83,7 +89,7 @@ public:
      * @param[in] de Driver Enable pin for RS485
      * @param[in] baud Baud rate (default: 9600)
      */
-    TempModbusServer(RegisterMap& regMap, uint8_t id, HardwareSerial& serialPort, 
+    TempModbusServer(RegisterMap& regMap, TemperatureController& controller, uint8_t id, HardwareSerial& serialPort, 
                  int rx, int tx, int de, int baud = 9600);
     
     /**

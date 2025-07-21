@@ -100,13 +100,13 @@ $(function(){initNavTree('class_temp_modbus_server.html','',''); });
 <div class="dynheader">
 Collaboration diagram for TempModbusServer:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_temp_modbus_server__coll__graph.svg" width="231" height="1544"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_temp_modbus_server__coll__graph.svg" width="811" height="3503"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a32478c395aa45fcdcafcd8790de50691" id="r_a32478c395aa45fcdcafcd8790de50691"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a32478c395aa45fcdcafcd8790de50691">TempModbusServer</a> (<a class="el" href="class_register_map.html">RegisterMap</a> &amp;regMap, uint8_t id, HardwareSerial &amp;serialPort, int rx, int tx, int de, int baud=9600)</td></tr>
-<tr class="memdesc:a32478c395aa45fcdcafcd8790de50691"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new Temp Modbus Server object.  <br /></td></tr>
+<tr class="memitem:a483537c88cf38543835cf6d9c1a81d9d" id="r_a483537c88cf38543835cf6d9c1a81d9d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a483537c88cf38543835cf6d9c1a81d9d">TempModbusServer</a> (<a class="el" href="class_register_map.html">RegisterMap</a> &amp;regMap, <a class="el" href="class_temperature_controller.html">TemperatureController</a> &amp;<a class="el" href="#a1b87630d285f12a2b180b21f2acb5584">controller</a>, uint8_t id, HardwareSerial &amp;serialPort, int rx, int tx, int de, int baud=9600)</td></tr>
+<tr class="memdesc:a483537c88cf38543835cf6d9c1a81d9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new Temp Modbus Server object.  <br /></td></tr>
 <tr class="memitem:ac703f8733fd8afdec9b315b266f5204a" id="r_ac703f8733fd8afdec9b315b266f5204a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac703f8733fd8afdec9b315b266f5204a">~TempModbusServer</a> ()</td></tr>
 <tr class="memdesc:ac703f8733fd8afdec9b315b266f5204a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy the Temp Modbus Server object.  <br /></td></tr>
 <tr class="memitem:aac671b84770f4139745d08d05b5c1d92" id="r_aac671b84770f4139745d08d05b5c1d92"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aac671b84770f4139745d08d05b5c1d92">begin</a> ()</td></tr>
@@ -143,20 +143,24 @@ Private Attributes</h2></td></tr>
 <tr class="memdesc:a91abdc37c36d4d2a8b070bd3031a2373"><td class="mdescLeft">&#160;</td><td class="mdescRight">RS485 Driver Enable pin.  <br /></td></tr>
 <tr class="memitem:acd386ba587dcfd86230f2f4156ee7303" id="r_acd386ba587dcfd86230f2f4156ee7303"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acd386ba587dcfd86230f2f4156ee7303">baudRate</a></td></tr>
 <tr class="memdesc:acd386ba587dcfd86230f2f4156ee7303"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serial baud rate.  <br /></td></tr>
+<tr class="memitem:a1b87630d285f12a2b180b21f2acb5584" id="r_a1b87630d285f12a2b180b21f2acb5584"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_temperature_controller.html">TemperatureController</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1b87630d285f12a2b180b21f2acb5584">controller</a></td></tr>
+<tr class="memdesc:a1b87630d285f12a2b180b21f2acb5584"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to temperature controller.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-static-attribs" class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
 Static Private Attributes</h2></td></tr>
 <tr class="memitem:a512f10fc6c18f19302b042bfc97bac80" id="r_a512f10fc6c18f19302b042bfc97bac80"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_register_map.html">RegisterMap</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a512f10fc6c18f19302b042bfc97bac80">registerMapPtr</a> = nullptr</td></tr>
 <tr class="memdesc:a512f10fc6c18f19302b042bfc97bac80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static pointer for worker functions.  <br /></td></tr>
+<tr class="memitem:adefc0e4358d5ac9626c4186f6925bf03" id="r_adefc0e4358d5ac9626c4186f6925bf03"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_temperature_controller.html">TemperatureController</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adefc0e4358d5ac9626c4186f6925bf03">controllerPtr</a> = nullptr</td></tr>
+<tr class="memdesc:adefc0e4358d5ac9626c4186f6925bf03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static pointer to temperature controller.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Modbus RTU server implementation for temperature monitoring. </p>
 <p>Provides Modbus RTU communication interface for reading temperature values, status information, and configuring alarm thresholds. Supports function codes 03 (Read Holding Registers), 06 (Write Single Register), and 16 (Write Multiple Registers). </p>
 
-<p class="definition">Definition at line <a class="el" href="_temp_modbus_server_8h_source.html#l00036">36</a> of file <a class="el" href="_temp_modbus_server_8h_source.html">TempModbusServer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temp_modbus_server_8h_source.html#l00039">39</a> of file <a class="el" href="_temp_modbus_server_8h_source.html">TempModbusServer.h</a>.</p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a32478c395aa45fcdcafcd8790de50691" name="a32478c395aa45fcdcafcd8790de50691"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a32478c395aa45fcdcafcd8790de50691">&#9670;&#160;</a></span>TempModbusServer()</h2>
+<a id="a483537c88cf38543835cf6d9c1a81d9d" name="a483537c88cf38543835cf6d9c1a81d9d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a483537c88cf38543835cf6d9c1a81d9d">&#9670;&#160;</a></span>TempModbusServer()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -165,6 +169,11 @@ Static Private Attributes</h2></td></tr>
           <td class="memname">TempModbusServer::TempModbusServer </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_register_map.html">RegisterMap</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>regMap</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_temperature_controller.html">TemperatureController</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>controller</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -203,6 +212,7 @@ Static Private Attributes</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">regMap</td><td>Reference to register map </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">controller</td><td>Reference to temperature controller </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">id</td><td>Modbus server ID (1-247) </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">serialPort</td><td>Hardware serial port to use </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">rx</td><td>RX pin number </td></tr>
@@ -213,13 +223,13 @@ Static Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_temp_modbus_server_8cpp_source.html#l00023">23</a> of file <a class="el" href="_temp_modbus_server_8cpp_source.html">TempModbusServer.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temp_modbus_server_8cpp_source.html#l00024">24</a> of file <a class="el" href="_temp_modbus_server_8cpp_source.html">TempModbusServer.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_temp_modbus_server_8h_source.html#l00045">baudRate</a>, <a class="el" href="_temp_modbus_server_8h_source.html#l00044">dePin</a>, <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>, <a class="el" href="_temp_modbus_server_8h_source.html#l00038">mbServer</a>, <a class="el" href="_temp_modbus_server_8h_source.html#l00039">registerMap</a>, <a class="el" href="_temp_modbus_server_8h_source.html#l00073">registerMapPtr</a>, <a class="el" href="_temp_modbus_server_8h_source.html#l00042">rxPin</a>, <a class="el" href="_temp_modbus_server_8h_source.html#l00041">serial</a>, <a class="el" href="_temp_modbus_server_8h_source.html#l00040">serverID</a>, and <a class="el" href="_temp_modbus_server_8h_source.html#l00043">txPin</a>.</p>
+<p class="reference">References <a class="el" href="_temp_modbus_server_8h_source.html#l00048">baudRate</a>, <a class="el" href="_temp_modbus_server_8h_source.html#l00049">controller</a>, <a class="el" href="_temp_modbus_server_8h_source.html#l00078">controllerPtr</a>, <a class="el" href="_temp_modbus_server_8h_source.html#l00047">dePin</a>, <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>, <a class="el" href="_temp_modbus_server_8h_source.html#l00041">mbServer</a>, <a class="el" href="_temp_modbus_server_8h_source.html#l00042">registerMap</a>, <a class="el" href="_temp_modbus_server_8h_source.html#l00077">registerMapPtr</a>, <a class="el" href="_temp_modbus_server_8h_source.html#l00045">rxPin</a>, <a class="el" href="_temp_modbus_server_8h_source.html#l00044">serial</a>, <a class="el" href="_temp_modbus_server_8h_source.html#l00043">serverID</a>, and <a class="el" href="_temp_modbus_server_8h_source.html#l00046">txPin</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_temp_modbus_server_a32478c395aa45fcdcafcd8790de50691_cgraph.svg" width="422" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_temp_modbus_server_a483537c88cf38543835cf6d9c1a81d9d_cgraph.svg" width="422" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -242,9 +252,9 @@ Here is the call graph for this function:</div>
 <p>Destroy the Temp Modbus Server object. </p>
 <p>Cleans up Modbus server resources </p>
 
-<p class="definition">Definition at line <a class="el" href="_temp_modbus_server_8cpp_source.html#l00051">51</a> of file <a class="el" href="_temp_modbus_server_8cpp_source.html">TempModbusServer.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temp_modbus_server_8cpp_source.html#l00055">55</a> of file <a class="el" href="_temp_modbus_server_8cpp_source.html">TempModbusServer.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_temp_modbus_server_8h_source.html#l00038">mbServer</a>.</p>
+<p class="reference">References <a class="el" href="_temp_modbus_server_8h_source.html#l00041">mbServer</a>.</p>
 
 </div>
 </div>
@@ -270,9 +280,9 @@ Here is the call graph for this function:</div>
 false if initialization failed</dd></dl>
 <p>Configures serial port, registers worker functions, and starts listening for Modbus requests </p>
 
-<p class="definition">Definition at line <a class="el" href="_temp_modbus_server_8cpp_source.html#l00083">83</a> of file <a class="el" href="_temp_modbus_server_8cpp_source.html">TempModbusServer.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temp_modbus_server_8cpp_source.html#l00087">87</a> of file <a class="el" href="_temp_modbus_server_8cpp_source.html">TempModbusServer.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_temp_modbus_server_8h_source.html#l00045">baudRate</a>, <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>, <a class="el" href="_temp_modbus_server_8h_source.html#l00038">mbServer</a>, <a class="el" href="_temp_modbus_server_8cpp_source.html#l00174">readHoldingRegistersWorker()</a>, <a class="el" href="_temp_modbus_server_8h_source.html#l00042">rxPin</a>, <a class="el" href="_temp_modbus_server_8h_source.html#l00041">serial</a>, <a class="el" href="_temp_modbus_server_8h_source.html#l00040">serverID</a>, <a class="el" href="_temp_modbus_server_8h_source.html#l00043">txPin</a>, <a class="el" href="_logger_manager_8h_source.html#l00155">LoggerManager::warning()</a>, <a class="el" href="_temp_modbus_server_8cpp_source.html#l00261">writeHoldingRegisterWorker()</a>, and <a class="el" href="_temp_modbus_server_8cpp_source.html#l00335">writeMultipleRegistersWorker()</a>.</p>
+<p class="reference">References <a class="el" href="_temp_modbus_server_8h_source.html#l00048">baudRate</a>, <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>, <a class="el" href="_temp_modbus_server_8h_source.html#l00041">mbServer</a>, <a class="el" href="_temp_modbus_server_8cpp_source.html#l00178">readHoldingRegistersWorker()</a>, <a class="el" href="_temp_modbus_server_8h_source.html#l00045">rxPin</a>, <a class="el" href="_temp_modbus_server_8h_source.html#l00044">serial</a>, <a class="el" href="_temp_modbus_server_8h_source.html#l00043">serverID</a>, <a class="el" href="_temp_modbus_server_8h_source.html#l00046">txPin</a>, <a class="el" href="_logger_manager_8h_source.html#l00155">LoggerManager::warning()</a>, <a class="el" href="_temp_modbus_server_8cpp_source.html#l00265">writeHoldingRegisterWorker()</a>, and <a class="el" href="_temp_modbus_server_8cpp_source.html#l00360">writeMultipleRegistersWorker()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -299,9 +309,9 @@ Here is the call graph for this function:</div>
 <p>Process pending commands from Modbus writes. </p>
 <p>Checks for pending commands in register map and executes them </p><dl class="section note"><dt>Note</dt><dd>Should be called periodically from main loop </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_temp_modbus_server_8cpp_source.html#l00402">402</a> of file <a class="el" href="_temp_modbus_server_8cpp_source.html">TempModbusServer.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temp_modbus_server_8cpp_source.html#l00427">427</a> of file <a class="el" href="_temp_modbus_server_8cpp_source.html">TempModbusServer.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_register_map_8h_source.html#l00308">RegisterMap::ALARM_CONFIG_ERROR_ENABLE_BIT</a>, <a class="el" href="_register_map_8h_source.html#l00311">RegisterMap::ALARM_CONFIG_ERROR_PRIORITY_MASK</a>, <a class="el" href="_register_map_8h_source.html#l00314">RegisterMap::ALARM_CONFIG_ERROR_PRIORITY_SHIFT</a>, <a class="el" href="_register_map_8h_source.html#l00307">RegisterMap::ALARM_CONFIG_HIGH_ENABLE_BIT</a>, <a class="el" href="_register_map_8h_source.html#l00310">RegisterMap::ALARM_CONFIG_HIGH_PRIORITY_MASK</a>, <a class="el" href="_register_map_8h_source.html#l00313">RegisterMap::ALARM_CONFIG_HIGH_PRIORITY_SHIFT</a>, <a class="el" href="_register_map_8h_source.html#l00306">RegisterMap::ALARM_CONFIG_LOW_ENABLE_BIT</a>, <a class="el" href="_register_map_8h_source.html#l00309">RegisterMap::ALARM_CONFIG_LOW_PRIORITY_MASK</a>, <a class="el" href="_register_map_8h_source.html#l00312">RegisterMap::ALARM_CONFIG_LOW_PRIORITY_SHIFT</a>, <a class="el" href="_register_map_8h_source.html#l00317">RegisterMap::CMD_APPLY_ALARM_CONFIG</a>, <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>, <a class="el" href="_temp_modbus_server_8h_source.html#l00039">registerMap</a>, and <a class="el" href="_logger_manager_8h_source.html#l00155">LoggerManager::warning()</a>.</p>
+<p class="reference">References <a class="el" href="_register_map_8h_source.html#l00319">RegisterMap::ALARM_CONFIG_ERROR_ENABLE_BIT</a>, <a class="el" href="_register_map_8h_source.html#l00322">RegisterMap::ALARM_CONFIG_ERROR_PRIORITY_MASK</a>, <a class="el" href="_register_map_8h_source.html#l00325">RegisterMap::ALARM_CONFIG_ERROR_PRIORITY_SHIFT</a>, <a class="el" href="_register_map_8h_source.html#l00318">RegisterMap::ALARM_CONFIG_HIGH_ENABLE_BIT</a>, <a class="el" href="_register_map_8h_source.html#l00321">RegisterMap::ALARM_CONFIG_HIGH_PRIORITY_MASK</a>, <a class="el" href="_register_map_8h_source.html#l00324">RegisterMap::ALARM_CONFIG_HIGH_PRIORITY_SHIFT</a>, <a class="el" href="_register_map_8h_source.html#l00317">RegisterMap::ALARM_CONFIG_LOW_ENABLE_BIT</a>, <a class="el" href="_register_map_8h_source.html#l00320">RegisterMap::ALARM_CONFIG_LOW_PRIORITY_MASK</a>, <a class="el" href="_register_map_8h_source.html#l00323">RegisterMap::ALARM_CONFIG_LOW_PRIORITY_SHIFT</a>, <a class="el" href="_register_map_8h_source.html#l00328">RegisterMap::CMD_APPLY_ALARM_CONFIG</a>, <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>, <a class="el" href="_temp_modbus_server_8h_source.html#l00042">registerMap</a>, and <a class="el" href="_logger_manager_8h_source.html#l00155">LoggerManager::warning()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -343,11 +353,11 @@ Here is the call graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>ModbusMessage Response message with register data </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>Static function called by Modbus library </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_temp_modbus_server_8cpp_source.html#l00174">174</a> of file <a class="el" href="_temp_modbus_server_8cpp_source.html">TempModbusServer.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temp_modbus_server_8cpp_source.html#l00178">178</a> of file <a class="el" href="_temp_modbus_server_8cpp_source.html">TempModbusServer.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00165">LoggerManager::error()</a>, <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>, and <a class="el" href="_temp_modbus_server_8h_source.html#l00073">registerMapPtr</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00165">LoggerManager::error()</a>, <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>, and <a class="el" href="_temp_modbus_server_8h_source.html#l00077">registerMapPtr</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temp_modbus_server_8cpp_source.html#l00083">begin()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temp_modbus_server_8cpp_source.html#l00087">begin()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -379,7 +389,7 @@ Here is the caller graph for this function:</div>
 <p>Stop Modbus server. </p>
 <p>Stops server and releases resources </p>
 
-<p class="definition">Definition at line <a class="el" href="_temp_modbus_server_8cpp_source.html#l00126">126</a> of file <a class="el" href="_temp_modbus_server_8cpp_source.html">TempModbusServer.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temp_modbus_server_8cpp_source.html#l00130">130</a> of file <a class="el" href="_temp_modbus_server_8cpp_source.html">TempModbusServer.cpp</a>.</p>
 
 </div>
 </div>
@@ -416,11 +426,11 @@ Here is the caller graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>ModbusMessage Response message with confirmation </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>Static function called by Modbus library </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_temp_modbus_server_8cpp_source.html#l00261">261</a> of file <a class="el" href="_temp_modbus_server_8cpp_source.html">TempModbusServer.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temp_modbus_server_8cpp_source.html#l00265">265</a> of file <a class="el" href="_temp_modbus_server_8cpp_source.html">TempModbusServer.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00165">LoggerManager::error()</a>, <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>, and <a class="el" href="_temp_modbus_server_8h_source.html#l00073">registerMapPtr</a>.</p>
+<p class="reference">References <a class="el" href="_temp_modbus_server_8h_source.html#l00078">controllerPtr</a>, <a class="el" href="_logger_manager_8h_source.html#l00165">LoggerManager::error()</a>, <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>, and <a class="el" href="_temp_modbus_server_8h_source.html#l00077">registerMapPtr</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temp_modbus_server_8cpp_source.html#l00083">begin()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temp_modbus_server_8cpp_source.html#l00087">begin()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -467,11 +477,11 @@ Here is the caller graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>ModbusMessage Response message with confirmation </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>Static function called by Modbus library </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_temp_modbus_server_8cpp_source.html#l00335">335</a> of file <a class="el" href="_temp_modbus_server_8cpp_source.html">TempModbusServer.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temp_modbus_server_8cpp_source.html#l00360">360</a> of file <a class="el" href="_temp_modbus_server_8cpp_source.html">TempModbusServer.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00165">LoggerManager::error()</a>, <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>, and <a class="el" href="_temp_modbus_server_8h_source.html#l00073">registerMapPtr</a>.</p>
+<p class="reference">References <a class="el" href="_logger_manager_8h_source.html#l00165">LoggerManager::error()</a>, <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>, and <a class="el" href="_temp_modbus_server_8h_source.html#l00077">registerMapPtr</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temp_modbus_server_8cpp_source.html#l00083">begin()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temp_modbus_server_8cpp_source.html#l00087">begin()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -508,9 +518,65 @@ Here is the caller graph for this function:</div>
 
 <p>Serial baud rate. </p>
 
-<p class="definition">Definition at line <a class="el" href="_temp_modbus_server_8h_source.html#l00045">45</a> of file <a class="el" href="_temp_modbus_server_8h_source.html">TempModbusServer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temp_modbus_server_8h_source.html#l00048">48</a> of file <a class="el" href="_temp_modbus_server_8h_source.html">TempModbusServer.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temp_modbus_server_8cpp_source.html#l00083">begin()</a>, and <a class="el" href="_temp_modbus_server_8cpp_source.html#l00023">TempModbusServer()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temp_modbus_server_8cpp_source.html#l00087">begin()</a>, and <a class="el" href="_temp_modbus_server_8cpp_source.html#l00024">TempModbusServer()</a>.</p>
+
+</div>
+</div>
+<a id="a1b87630d285f12a2b180b21f2acb5584" name="a1b87630d285f12a2b180b21f2acb5584"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b87630d285f12a2b180b21f2acb5584">&#9670;&#160;</a></span>controller</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_temperature_controller.html">TemperatureController</a>* TempModbusServer::controller</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Pointer to temperature controller. </p>
+
+<p class="definition">Definition at line <a class="el" href="_temp_modbus_server_8h_source.html#l00049">49</a> of file <a class="el" href="_temp_modbus_server_8h_source.html">TempModbusServer.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_temp_modbus_server_8cpp_source.html#l00024">TempModbusServer()</a>.</p>
+
+</div>
+</div>
+<a id="adefc0e4358d5ac9626c4186f6925bf03" name="adefc0e4358d5ac9626c4186f6925bf03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adefc0e4358d5ac9626c4186f6925bf03">&#9670;&#160;</a></span>controllerPtr</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_temperature_controller.html">TemperatureController</a> * TempModbusServer::controllerPtr = nullptr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Static pointer to temperature controller. </p>
+
+<p class="definition">Definition at line <a class="el" href="_temp_modbus_server_8h_source.html#l00078">78</a> of file <a class="el" href="_temp_modbus_server_8h_source.html">TempModbusServer.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_temp_modbus_server_8cpp_source.html#l00024">TempModbusServer()</a>, and <a class="el" href="_temp_modbus_server_8cpp_source.html#l00265">writeHoldingRegisterWorker()</a>.</p>
 
 </div>
 </div>
@@ -536,9 +602,9 @@ Here is the caller graph for this function:</div>
 
 <p>RS485 Driver Enable pin. </p>
 
-<p class="definition">Definition at line <a class="el" href="_temp_modbus_server_8h_source.html#l00044">44</a> of file <a class="el" href="_temp_modbus_server_8h_source.html">TempModbusServer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temp_modbus_server_8h_source.html#l00047">47</a> of file <a class="el" href="_temp_modbus_server_8h_source.html">TempModbusServer.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temp_modbus_server_8cpp_source.html#l00023">TempModbusServer()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temp_modbus_server_8cpp_source.html#l00024">TempModbusServer()</a>.</p>
 
 </div>
 </div>
@@ -564,9 +630,9 @@ Here is the caller graph for this function:</div>
 
 <p>Modbus RTU server instance. </p>
 
-<p class="definition">Definition at line <a class="el" href="_temp_modbus_server_8h_source.html#l00038">38</a> of file <a class="el" href="_temp_modbus_server_8h_source.html">TempModbusServer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temp_modbus_server_8h_source.html#l00041">41</a> of file <a class="el" href="_temp_modbus_server_8h_source.html">TempModbusServer.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temp_modbus_server_8cpp_source.html#l00083">begin()</a>, <a class="el" href="_temp_modbus_server_8cpp_source.html#l00023">TempModbusServer()</a>, and <a class="el" href="_temp_modbus_server_8cpp_source.html#l00051">~TempModbusServer()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temp_modbus_server_8cpp_source.html#l00087">begin()</a>, <a class="el" href="_temp_modbus_server_8cpp_source.html#l00024">TempModbusServer()</a>, and <a class="el" href="_temp_modbus_server_8cpp_source.html#l00055">~TempModbusServer()</a>.</p>
 
 </div>
 </div>
@@ -592,9 +658,9 @@ Here is the caller graph for this function:</div>
 
 <p>Reference to register map. </p>
 
-<p class="definition">Definition at line <a class="el" href="_temp_modbus_server_8h_source.html#l00039">39</a> of file <a class="el" href="_temp_modbus_server_8h_source.html">TempModbusServer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temp_modbus_server_8h_source.html#l00042">42</a> of file <a class="el" href="_temp_modbus_server_8h_source.html">TempModbusServer.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temp_modbus_server_8cpp_source.html#l00402">processCommands()</a>, and <a class="el" href="_temp_modbus_server_8cpp_source.html#l00023">TempModbusServer()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temp_modbus_server_8cpp_source.html#l00427">processCommands()</a>, and <a class="el" href="_temp_modbus_server_8cpp_source.html#l00024">TempModbusServer()</a>.</p>
 
 </div>
 </div>
@@ -620,9 +686,9 @@ Here is the caller graph for this function:</div>
 
 <p>Static pointer for worker functions. </p>
 
-<p class="definition">Definition at line <a class="el" href="_temp_modbus_server_8h_source.html#l00073">73</a> of file <a class="el" href="_temp_modbus_server_8h_source.html">TempModbusServer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temp_modbus_server_8h_source.html#l00077">77</a> of file <a class="el" href="_temp_modbus_server_8h_source.html">TempModbusServer.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temp_modbus_server_8cpp_source.html#l00174">readHoldingRegistersWorker()</a>, <a class="el" href="_temp_modbus_server_8cpp_source.html#l00023">TempModbusServer()</a>, <a class="el" href="_temp_modbus_server_8cpp_source.html#l00261">writeHoldingRegisterWorker()</a>, and <a class="el" href="_temp_modbus_server_8cpp_source.html#l00335">writeMultipleRegistersWorker()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temp_modbus_server_8cpp_source.html#l00178">readHoldingRegistersWorker()</a>, <a class="el" href="_temp_modbus_server_8cpp_source.html#l00024">TempModbusServer()</a>, <a class="el" href="_temp_modbus_server_8cpp_source.html#l00265">writeHoldingRegisterWorker()</a>, and <a class="el" href="_temp_modbus_server_8cpp_source.html#l00360">writeMultipleRegistersWorker()</a>.</p>
 
 </div>
 </div>
@@ -648,9 +714,9 @@ Here is the caller graph for this function:</div>
 
 <p>UART RX pin. </p>
 
-<p class="definition">Definition at line <a class="el" href="_temp_modbus_server_8h_source.html#l00042">42</a> of file <a class="el" href="_temp_modbus_server_8h_source.html">TempModbusServer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temp_modbus_server_8h_source.html#l00045">45</a> of file <a class="el" href="_temp_modbus_server_8h_source.html">TempModbusServer.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temp_modbus_server_8cpp_source.html#l00083">begin()</a>, and <a class="el" href="_temp_modbus_server_8cpp_source.html#l00023">TempModbusServer()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temp_modbus_server_8cpp_source.html#l00087">begin()</a>, and <a class="el" href="_temp_modbus_server_8cpp_source.html#l00024">TempModbusServer()</a>.</p>
 
 </div>
 </div>
@@ -676,9 +742,9 @@ Here is the caller graph for this function:</div>
 
 <p>Hardware serial port reference. </p>
 
-<p class="definition">Definition at line <a class="el" href="_temp_modbus_server_8h_source.html#l00041">41</a> of file <a class="el" href="_temp_modbus_server_8h_source.html">TempModbusServer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temp_modbus_server_8h_source.html#l00044">44</a> of file <a class="el" href="_temp_modbus_server_8h_source.html">TempModbusServer.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temp_modbus_server_8cpp_source.html#l00083">begin()</a>, and <a class="el" href="_temp_modbus_server_8cpp_source.html#l00023">TempModbusServer()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temp_modbus_server_8cpp_source.html#l00087">begin()</a>, and <a class="el" href="_temp_modbus_server_8cpp_source.html#l00024">TempModbusServer()</a>.</p>
 
 </div>
 </div>
@@ -704,9 +770,9 @@ Here is the caller graph for this function:</div>
 
 <p>Modbus server ID (1-247) </p>
 
-<p class="definition">Definition at line <a class="el" href="_temp_modbus_server_8h_source.html#l00040">40</a> of file <a class="el" href="_temp_modbus_server_8h_source.html">TempModbusServer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temp_modbus_server_8h_source.html#l00043">43</a> of file <a class="el" href="_temp_modbus_server_8h_source.html">TempModbusServer.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temp_modbus_server_8cpp_source.html#l00083">begin()</a>, and <a class="el" href="_temp_modbus_server_8cpp_source.html#l00023">TempModbusServer()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temp_modbus_server_8cpp_source.html#l00087">begin()</a>, and <a class="el" href="_temp_modbus_server_8cpp_source.html#l00024">TempModbusServer()</a>.</p>
 
 </div>
 </div>
@@ -732,9 +798,9 @@ Here is the caller graph for this function:</div>
 
 <p>UART TX pin. </p>
 
-<p class="definition">Definition at line <a class="el" href="_temp_modbus_server_8h_source.html#l00043">43</a> of file <a class="el" href="_temp_modbus_server_8h_source.html">TempModbusServer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_temp_modbus_server_8h_source.html#l00046">46</a> of file <a class="el" href="_temp_modbus_server_8h_source.html">TempModbusServer.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temp_modbus_server_8cpp_source.html#l00083">begin()</a>, and <a class="el" href="_temp_modbus_server_8cpp_source.html#l00023">TempModbusServer()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temp_modbus_server_8cpp_source.html#l00087">begin()</a>, and <a class="el" href="_temp_modbus_server_8cpp_source.html#l00024">TempModbusServer()</a>.</p>
 
 </div>
 </div>

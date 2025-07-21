@@ -23,6 +23,7 @@ var class_register_map =
     [ "setRelayControl", "class_register_map.html#a3c1e4495c5a8998470d792222c23fb1a", null ],
     [ "setRelayStatus", "class_register_map.html#aca50699b0bad842f5e9c4967dbd6316c", null ],
     [ "updateFromMeasurementPoint", "class_register_map.html#a2940213459a183fc06a2226f1cd1a48b", null ],
+    [ "updateRelayStatusRegister", "class_register_map.html#ac55a22f08440b36292791ab22ba8ad2a", null ],
     [ "writeHoldingRegister", "class_register_map.html#a187e2d597d507f0c42da6a6a8d016da2", null ],
     [ "ALARM_CONFIG_DS18B20_END_REG", "class_register_map.html#ac99812bbb5c2872c1b9aeab10f85b06d", null ],
     [ "ALARM_CONFIG_DS18B20_START_REG", "class_register_map.html#ade263025855c5e58313342eac4d99965", null ],
@@ -93,6 +94,9 @@ var class_register_map =
     [ "numActivePT1000", "class_register_map.html#abc9a62bb029202c3d50baaa985f17737", null ],
     [ "RELAY_CONTROL_END_REG", "class_register_map.html#a00c0a741a30e1ff93792b07754408ec1", null ],
     [ "RELAY_CONTROL_START_REG", "class_register_map.html#ab6ebaf4c9d19bc744a6c8eb0ab2e75f0", null ],
+    [ "RELAY_STATUS_REG_END", "class_register_map.html#a909bc6f8138e55d5830cd444f264e120", null ],
+    [ "RELAY_STATUS_REG_START", "class_register_map.html#a04ab92b12fc37e43418e89290b5c3949", null ],
     [ "RELAY_STATUS_START_REG", "class_register_map.html#a0649e328e6a150b784f327cc1108f910", null ],
-    [ "relayControl", "class_register_map.html#a8a79e873217f9137db65e64c42574da8", null ]
+    [ "relayControl", "class_register_map.html#a8a79e873217f9137db65e64c42574da8", null ],
+    [ "relayStatus", "class_register_map.html#a9a7dbc503df6a072c760fbcc5c5e3009", null ]
 ];

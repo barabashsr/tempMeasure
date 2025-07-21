@@ -205,6 +205,7 @@ void setup() {
         
         modbusServer = new TempModbusServer(
             controller.getRegisterMap(),
+            controller,
             configManager->getModbusAddress(),
             Serial2,
             RX_PIN,

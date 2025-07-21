@@ -13,5 +13,6 @@ var searchData=
   ['updatefrommeasurementpoint_10',['updateFromMeasurementPoint',['../class_register_map.html#a2940213459a183fc06a2226f1cd1a48b',1,'RegisterMap']]],
   ['updateoled_11',['updateOLED',['../class_indicator_interface.html#a5f9eaa4ad4d2da76bf9536a4dfad8723',1,'IndicatorInterface']]],
   ['updatepointinconfig_12',['updatePointInConfig',['../class_config_manager.html#a0daf50bbd376beb24a5400a86e893338',1,'ConfigManager']]],
-  ['updateregistermap_13',['updateRegisterMap',['../class_temperature_controller.html#a62b93899a3b8b55e2e0bd933520c2892',1,'TemperatureController']]]
+  ['updateregistermap_13',['updateRegisterMap',['../class_temperature_controller.html#a62b93899a3b8b55e2e0bd933520c2892',1,'TemperatureController']]],
+  ['updaterelaystatusregister_14',['updateRelayStatusRegister',['../class_register_map.html#ac55a22f08440b36292791ab22ba8ad2a',1,'RegisterMap']]]
 ];

@@ -1,10 +1,17 @@
 <map id="TemperatureController::getAlarmCount" name="TemperatureController::getAlarmCount">
-<area shape="rect" id="Node000001" title="Get total number of configured alarms." alt="" coords="597,5,747,46"/>
-<area shape="rect" id="Node000002" href="$class_temperature_controller.html#a82e4c37ff4121eaf5e00e9c52381e840" title="Handle alarm output signals." alt="" coords="400,5,549,46"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="582,28,550,28,550,23,582,23"/>
-<area shape="rect" id="Node000003" href="$class_temperature_controller.html#aca5deddbf703001373424d876f87b5f2" title="Main update function &#45; must be called in loop()" alt="" coords="203,5,352,46"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="385,28,352,28,352,23,385,23"/>
-<area shape="rect" id="Node000004" href="$class_temperature_controller.html#a11948a87fe7df37543b86ecdd488b341" title="Read temperature from all configured measurement points." alt="" coords="5,5,155,46"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="187,37,155,37,155,32,187,32"/>
-<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="170,14,202,14,202,20,170,19"/>
+<area shape="rect" id="Node000001" title="Get total number of configured alarms." alt="" coords="838,39,987,79"/>
+<area shape="rect" id="Node000002" href="$class_temperature_controller.html#a20a14014a639f3390dba82a6cd39d067" title="Get relay commanded state." alt="" coords="603,5,790,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="822,48,790,43,790,37,823,42"/>
+<area shape="rect" id="Node000006" href="$class_temperature_controller.html#a82e4c37ff4121eaf5e00e9c52381e840" title="Handle alarm output signals." alt="" coords="622,71,771,111"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="822,75,772,83,771,77,822,70"/>
+<area shape="rect" id="Node000003" href="$class_temperature_controller.html#a62b93899a3b8b55e2e0bd933520c2892" title="Update register map with current values from measurement points." alt="" coords="403,5,552,46"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="588,28,553,28,553,23,588,23"/>
+<area shape="rect" id="Node000004" href="$class_temperature_controller.html#aca5deddbf703001373424d876f87b5f2" title="Main update function &#45; must be called in loop()" alt="" coords="203,35,352,75"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="388,41,353,47,352,41,387,36"/>
+<area shape="rect" id="Node000005" href="$class_temperature_controller.html#a11948a87fe7df37543b86ecdd488b341" title="Read temperature from all configured measurement points." alt="" coords="5,35,155,75"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="187,67,155,66,155,61,187,61"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="170,43,202,44,202,49,170,49"/>
+<area shape="poly" id="edge8_Node000006_Node000004" title=" " alt="" coords="606,86,352,64,353,59,606,81"/>
+<area shape="rect" id="Node000007" href="$class_temperature_controller.html#a8b0a764517c60705322f033be420c628" title="Set relay control mode." alt="" coords="400,120,555,161"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="607,114,556,125,555,120,606,109"/>
 </map>

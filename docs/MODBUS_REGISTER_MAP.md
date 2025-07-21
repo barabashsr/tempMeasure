@@ -29,7 +29,10 @@ This document describes the complete Modbus RTU register map for the Temperature
 | 8 | Medium Priority Alarm Count | UINT16 | 0-65535 | Active medium alarms |
 | 9 | Low Priority Alarm Count | UINT16 | 0-65535 | Active low alarms |
 | 10 | System Uptime (Hours) | UINT16 | 0-65535 | Hours since boot |
-| 11-99 | Reserved | - | - | Future use |
+| 11 | Relay 1 Status | UINT16 | Bitmap | bit0: commanded, bit1: actual |
+| 12 | Relay 2 Status | UINT16 | Bitmap | bit0: commanded, bit1: actual |
+| 13 | Relay 3 Status | UINT16 | Bitmap | bit0: commanded, bit1: actual |
+| 14-99 | Reserved | - | - | Future use |
 
 #### System Status Bits (Register 4)
 - Bit 0: WiFi Connected (1=connected)
@@ -140,11 +143,8 @@ Priority Values:
 |----------|-------------|--------|-------|
 | 860 | Relay 1 (Siren) Control | 0=Auto, 1=Force Off, 2=Force On | Auto follows alarm logic |
 | 861 | Relay 2 (Beacon) Control | 0=Auto, 1=Force Off, 2=Force On | Auto follows alarm logic |
-| 862 | Relay 3 (Spare) Control | 0=Auto, 1=Force Off, 2=Force On | Auto follows alarm logic |
-| 863 | Relay 1 Current State | 0=Off, 1=On | Read only |
-| 864 | Relay 2 Current State | 0=Off, 1=On | Read only |
-| 865 | Relay 3 Current State | 0=Off, 1=On | Read only |
-| 866-869 | Reserved | - | - |
+| 862 | Relay 3 (Spare) Control | 0=Auto, 1=Force Off, 2=Force On | Modbus-only control |
+| 863-869 | Reserved | - | Status in registers 11-13 |
 
 ### Hysteresis Configuration (Registers 870-889) - Read/Write
 

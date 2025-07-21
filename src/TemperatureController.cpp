@@ -567,21 +567,69 @@ void TemperatureController::handleAlarmOutputs() {
         lastSummaryLog = now;
     }
     
-    // Update relay states (only if not blinking)
-    if (!indicator.isBlinking("Relay1") && relay1State != _relay1State) {
+    // Apply relay control modes
+    bool finalRelay1State = relay1State;
+    bool finalRelay2State = relay2State;
+    bool finalRelay3State = _relay3State; // Default to current state
+    
+    // Handle Relay 1 control mode
+    if (_relay1Mode == RelayControlMode::FORCE_OFF) {
+        finalRelay1State = false;
+    } else if (_relay1Mode == RelayControlMode::FORCE_ON) {
+        finalRelay1State = true;
+    }
+    // else AUTO mode - use alarm-based state
+    
+    // Handle Relay 2 control mode (stop blinking if forced)
+    if (_relay2Mode == RelayControlMode::FORCE_OFF) {
+        indicator.stopBlinking("Relay2");
+        finalRelay2State = false;
+    } else if (_relay2Mode == RelayControlMode::FORCE_ON) {
+        indicator.stopBlinking("Relay2");
+        finalRelay2State = true;
+    }
+    // else AUTO mode - use alarm-based state (including blinking)
+    
+    // Handle Relay 3 control mode (Modbus-only, no alarm control)
+    if (_relay3Mode == RelayControlMode::FORCE_OFF) {
+        finalRelay3State = false;
+    } else if (_relay3Mode == RelayControlMode::FORCE_ON) {
+        finalRelay3State = true;
+    }
+    // Note: Relay3 has no AUTO behavior - it's Modbus-only
+    
+    // Update relay states
+    if (!indicator.isBlinking("Relay1") && finalRelay1State != _relay1State) {
         LoggerManager::info("INDICATION", 
             "Relay1 (Siren) state change: " + String(_relay1State ? "ON" : "OFF") + 
-            " -> " + String(relay1State ? "ON" : "OFF"));
-        indicator.writePort("Relay1", relay1State);
-        _relay1State = relay1State;
+            " -> " + String(finalRelay1State ? "ON" : "OFF") + 
+            " (Mode: " + String(static_cast<int>(_relay1Mode)) + ")");
+        indicator.writePort("Relay1", finalRelay1State);
+        _relay1State = finalRelay1State;
     }
     
-    if (!indicator.isBlinking("Relay2") && relay2State != _relay2State) {
+    if (_relay2Mode != RelayControlMode::AUTO || !indicator.isBlinking("Relay2")) {
+        if (finalRelay2State != _relay2State) {
+            LoggerManager::info("INDICATION", 
+                "Relay2 (Beacon) state change: " + String(_relay2State ? "ON" : "OFF") + 
+                " -> " + String(finalRelay2State ? "ON" : "OFF") + 
+                " (Mode: " + String(static_cast<int>(_relay2Mode)) + ")");
+            indicator.writePort("Relay2", finalRelay2State);
+            _relay2State = finalRelay2State;
+        }
+    }
+    
+    // Relay3 update
+    // TODO: Configure Relay3 hardware port in IndicatorInterface
+    // NEEDS CLARIFICATION: Which PCF8575 port should Relay3 use?
+    if (finalRelay3State != _relay3State) {
         LoggerManager::info("INDICATION", 
-            "Relay2 (Beacon) state change: " + String(_relay2State ? "ON" : "OFF") + 
-            " -> " + String(relay2State ? "ON" : "OFF"));
-        indicator.writePort("Relay2", relay2State);
-        _relay2State = relay2State;
+            "Relay3 (Spare) state change: " + String(_relay3State ? "ON" : "OFF") + 
+            " -> " + String(finalRelay3State ? "ON" : "OFF") + 
+            " (Mode: " + String(static_cast<int>(_relay3Mode)) + ")");
+        // TODO: Uncomment when Relay3 port is configured
+        // indicator.writePort("Relay3", finalRelay3State);
+        _relay3State = finalRelay3State;
     }
     
     // Update LED states (only if not blinking)
@@ -936,6 +984,13 @@ void TemperatureController::updateRegisterMap() {
         registerMap.updateFromMeasurementPoint(dsPoints[i]);
     for (uint8_t i = 0; i < 10; ++i)
         registerMap.updateFromMeasurementPoint(ptPoints[i]);
+    
+    // Update relay status registers with commanded and actual states
+    for (uint8_t i = 1; i <= 3; ++i) {
+        bool commanded = getRelayCommandedState(i);
+        bool actual = getRelayActualState(i);
+        registerMap.updateRelayStatusRegister(i - 1, commanded, actual);
+    }
 }
 
 void TemperatureController::applyConfigFromRegisterMap() {
@@ -1916,3 +1971,135 @@ void TemperatureController::_checkButtonPress() {
             default: return "UNKNOWN";
         }
     }
+
+// Relay control methods implementation
+bool TemperatureController::setRelayControlMode(uint8_t relayNumber, RelayControlMode mode) {
+    if (relayNumber < 1 || relayNumber > 3) {
+        LoggerManager::error("RELAY_CONTROL", "Invalid relay number: " + String(relayNumber));
+        return false;
+    }
+    
+    switch (relayNumber) {
+        case 1:
+            _relay1Mode = mode;
+            LoggerManager::info("RELAY_CONTROL", "Relay1 mode set to " + String(static_cast<int>(mode)));
+            break;
+        case 2:
+            _relay2Mode = mode;
+            // Stop blinking if switching away from AUTO
+            if (mode != RelayControlMode::AUTO) {
+                indicator.stopBlinking("Relay2");
+            }
+            LoggerManager::info("RELAY_CONTROL", "Relay2 mode set to " + String(static_cast<int>(mode)));
+            break;
+        case 3:
+            _relay3Mode = mode;
+            LoggerManager::info("RELAY_CONTROL", "Relay3 mode set to " + String(static_cast<int>(mode)));
+            break;
+    }
+    
+    // Force immediate update of relay states
+    handleAlarmOutputs();
+    
+    return true;
+}
+
+RelayControlMode TemperatureController::getRelayControlMode(uint8_t relayNumber) const {
+    switch (relayNumber) {
+        case 1: return _relay1Mode;
+        case 2: return _relay2Mode;
+        case 3: return _relay3Mode;
+        default:
+            LoggerManager::error("RELAY_CONTROL", "Invalid relay number: " + String(relayNumber));
+            return RelayControlMode::AUTO;
+    }
+}
+
+bool TemperatureController::getRelayCommandedState(uint8_t relayNumber) const {
+    // Commanded state is what the system wants the relay to be
+    // This considers both alarm states and control modes
+    
+    if (relayNumber < 1 || relayNumber > 3) {
+        return false;
+    }
+    
+    // For forced modes, return the forced state
+    RelayControlMode mode = getRelayControlMode(relayNumber);
+    if (mode == RelayControlMode::FORCE_OFF) {
+        return false;
+    } else if (mode == RelayControlMode::FORCE_ON) {
+        return true;
+    }
+    
+    // For AUTO mode, return alarm-based state
+    switch (relayNumber) {
+        case 1: {
+            // Relay1 (Siren) - only on for active critical alarms
+            int criticalActive = getAlarmCount(AlarmPriority::PRIORITY_CRITICAL, AlarmStage::ACTIVE);
+            return criticalActive > 0;
+        }
+        case 2: {
+            // Relay2 (Beacon) - complex logic based on priority and state
+            int criticalActive = getAlarmCount(AlarmPriority::PRIORITY_CRITICAL, AlarmStage::ACTIVE);
+            int criticalAcknowledged = getAlarmCount(AlarmPriority::PRIORITY_CRITICAL, AlarmStage::ACKNOWLEDGED);
+            int highActive = getAlarmCount(AlarmPriority::PRIORITY_HIGH, AlarmStage::ACTIVE);
+            int mediumActive = getAlarmCount(AlarmPriority::PRIORITY_MEDIUM, AlarmStage::ACTIVE);
+            
+            return (criticalActive + criticalAcknowledged + highActive + mediumActive) > 0;
+        }
+        case 3:
+            // Relay3 has no AUTO behavior - Modbus only
+            return false;
+        default:
+            return false;
+    }
+}
+
+bool TemperatureController::getRelayActualState(uint8_t relayNumber) const {
+    switch (relayNumber) {
+        case 1: return _relay1State;
+        case 2: return _relay2State;
+        case 3: return _relay3State;
+        default:
+            LoggerManager::error("RELAY_CONTROL", "Invalid relay number: " + String(relayNumber));
+            return false;
+    }
+}
+
+void TemperatureController::forceRelayState(uint8_t relayNumber, bool state) {
+    if (relayNumber < 1 || relayNumber > 3) {
+        LoggerManager::error("RELAY_CONTROL", "Invalid relay number: " + String(relayNumber));
+        return;
+    }
+    
+    // This method is primarily for Relay3 which is Modbus-only
+    // but can be used for any relay when in forced mode
+    
+    RelayControlMode mode = getRelayControlMode(relayNumber);
+    if (mode == RelayControlMode::AUTO) {
+        LoggerManager::warning("RELAY_CONTROL", 
+            "Cannot force relay " + String(relayNumber) + " state in AUTO mode");
+        return;
+    }
+    
+    // Update the internal state and trigger hardware update
+    switch (relayNumber) {
+        case 1:
+            _relay1State = state;
+            indicator.writePort("Relay1", state);
+            break;
+        case 2:
+            _relay2State = state;
+            indicator.stopBlinking("Relay2"); // Stop any blinking
+            indicator.writePort("Relay2", state);
+            break;
+        case 3:
+            _relay3State = state;
+            // TODO: Uncomment when Relay3 port is configured
+            // indicator.writePort("Relay3", state);
+            break;
+    }
+    
+    LoggerManager::info("RELAY_CONTROL", 
+        "Relay" + String(relayNumber) + " forced to " + String(state ? "ON" : "OFF"));
+}

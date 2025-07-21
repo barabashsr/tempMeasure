@@ -41,5 +41,6 @@ var searchData=
   ['applyconfigfrommeasurementpoint_38',['applyConfigFromMeasurementPoint',['../class_register_map.html#a1f102e7d0dd51d4750c916fb6e32c37a',1,'RegisterMap']]],
   ['applyconfigfromregistermap_39',['applyConfigFromRegisterMap',['../class_temperature_controller.html#aabd7eb98840e80fc7d07eb04a926a7b1',1,'TemperatureController']]],
   ['applyconfigtomeasurementpoint_40',['applyConfigToMeasurementPoint',['../class_register_map.html#aa2f819b22096b8c14c421b415f7e83b7',1,'RegisterMap']]],
-  ['applyconfigtoregistermap_41',['applyConfigToRegisterMap',['../class_temperature_controller.html#a43b97d23bcdea11dc4073bcd412a5334',1,'TemperatureController']]]
+  ['applyconfigtoregistermap_41',['applyConfigToRegisterMap',['../class_temperature_controller.html#a43b97d23bcdea11dc4073bcd412a5334',1,'TemperatureController']]],
+  ['auto_42',['AUTO',['../_register_map_8h.html#a23d2c66363244223543ad6ffc35c2072ae1f2d5134ed2543d38a0de9751cf75d9',1,'RegisterMap.h']]]
 ];

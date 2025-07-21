@@ -47,7 +47,10 @@ This industrial-grade ESP32-based device is designed for precision temperature m
 | 2 | Number of Active DS18B20 Sensors | UINT16 | R |
 | 3 | Number of Active PT1000/PT100 Sensors | UINT16 | R |
 | 4-10 | Device Status and Diagnostics | UINT16 | R |
-| 11-99 | Reserved for Future Use | - | - |
+| 11 | Relay 1 Status (bit0: commanded, bit1: actual) | UINT16 | R |
+| 12 | Relay 2 Status (bit0: commanded, bit1: actual) | UINT16 | R |
+| 13 | Relay 3 Status (bit0: commanded, bit1: actual) | UINT16 | R |
+| 14-99 | Reserved for Future Use | - | - |
 
 ### Temperature Data Registers (100-299)
 | Register Range | Description | Data Type | Access |

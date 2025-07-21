@@ -16,8 +16,10 @@ In general, follow the steps from the CLAUDE.md to initiate a new task:
 10. Test the code
 11. Ack to commit the changes.
 12. Update but the docs/plans/GLOBAL_ROADMAP.md file with new item statuses as follow the steps. Do not change the entire file, just the item you are working on.
-12. Create a descriptive commit message
-13. Commit the changes
+13. Update project documentation: README.md, docs/MODBUS_REGISTER_MAP.md, 
+  docs/USER_MANUAL_RU.md
+14. Create a descriptive commit message
+15. Commit the changes
 
 Remember to use the GitHub CLI (`gh`) for all GitHub-related tasks.
 USE MCP toolkit proactively.

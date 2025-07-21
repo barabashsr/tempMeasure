@@ -262,79 +262,80 @@ $(function(){initNavTree('main_8cpp_source.html','',''); });
 <div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>        </div>
 <div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>        <a class="code hl_variable" href="main_8cpp.html#a4d17575d4300b383a3726118c7dba5ef">modbusServer</a> = <span class="keyword">new</span> <a class="code hl_class" href="class_temp_modbus_server.html">TempModbusServer</a>(</div>
 <div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>            <a class="code hl_variable" href="main_8cpp.html#aecbe6ad38ed7d220ace280ea33d8ab45">controller</a>.getRegisterMap(),</div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>            <a class="code hl_variable" href="main_8cpp.html#a064a914bb7eaaf470d545cab5f0c0066">configManager</a>-&gt;getModbusAddress(),</div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>            Serial2,</div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>            <a class="code hl_define" href="main_8cpp.html#aa7089c01538b339ae745173c117f95b9">RX_PIN</a>,</div>
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>            <a class="code hl_define" href="main_8cpp.html#a3bb17f5daa2b1eaef58c8aa2d989e27e">TX_PIN</a>,</div>
-<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>            <a class="code hl_define" href="main_8cpp.html#adbd2ea2266042c0b767e0fdac0c55d64">DE_PIN</a>,</div>
-<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>            <a class="code hl_variable" href="main_8cpp.html#a064a914bb7eaaf470d545cab5f0c0066">configManager</a>-&gt;getModbusBaudRate()</div>
-<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>        );</div>
-<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>        </div>
-<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="main_8cpp.html#a4d17575d4300b383a3726118c7dba5ef">modbusServer</a>-&gt;begin()) {</div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>            Serial.println(<span class="stringliteral">&quot;Modbus RTU server started successfully&quot;</span>);</div>
-<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>        } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>            Serial.println(<span class="stringliteral">&quot;Failed to start Modbus RTU server&quot;</span>);</div>
-<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>        }</div>
-<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>        Serial.println(<span class="stringliteral">&quot;Modbus RTU server disabled in configuration&quot;</span>);</div>
-<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    }</div>
-<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span> </div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>            <a class="code hl_variable" href="main_8cpp.html#aecbe6ad38ed7d220ace280ea33d8ab45">controller</a>,</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>            <a class="code hl_variable" href="main_8cpp.html#a064a914bb7eaaf470d545cab5f0c0066">configManager</a>-&gt;getModbusAddress(),</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>            Serial2,</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>            <a class="code hl_define" href="main_8cpp.html#aa7089c01538b339ae745173c117f95b9">RX_PIN</a>,</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>            <a class="code hl_define" href="main_8cpp.html#a3bb17f5daa2b1eaef58c8aa2d989e27e">TX_PIN</a>,</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>            <a class="code hl_define" href="main_8cpp.html#adbd2ea2266042c0b767e0fdac0c55d64">DE_PIN</a>,</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>            <a class="code hl_variable" href="main_8cpp.html#a064a914bb7eaaf470d545cab5f0c0066">configManager</a>-&gt;getModbusBaudRate()</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>        );</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>        </div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="main_8cpp.html#a4d17575d4300b383a3726118c7dba5ef">modbusServer</a>-&gt;begin()) {</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>            Serial.println(<span class="stringliteral">&quot;Modbus RTU server started successfully&quot;</span>);</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>            Serial.println(<span class="stringliteral">&quot;Failed to start Modbus RTU server&quot;</span>);</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>        }</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>        Serial.println(<span class="stringliteral">&quot;Modbus RTU server disabled in configuration&quot;</span>);</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    }</div>
 <div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span> </div>
-<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    <span class="comment">// Start time manager services</span></div>
-<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="main_8cpp.html#ad27a531589f8fed0687abe50e4ab32dc">timeManager</a>.begin()) {</div>
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>        Serial.println(<span class="stringliteral">&quot;Time manager services started&quot;</span>);</div>
-<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>        </div>
-<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>        <span class="comment">// Sync with NTP if WiFi is already connected</span></div>
-<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>        <span class="keywordflow">if</span> (WiFi.status() == WL_CONNECTED) {</div>
-<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>            Serial.println(<span class="stringliteral">&quot;Syncing time with NTP server...&quot;</span>);</div>
-<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>            <a class="code hl_variable" href="main_8cpp.html#ad27a531589f8fed0687abe50e4ab32dc">timeManager</a>.setTimeFromNTP();</div>
-<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>        }</div>
-<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    }</div>
-<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    </div>
-<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    <span class="comment">// Start logging services</span></div>
-<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    <a class="code hl_variable" href="main_8cpp.html#a543ccc95fbe6dd49b01bdc937630a4ac">logger</a>.begin();</div>
-<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    </div>
-<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    Serial.println(<span class="stringliteral">&quot;\n*** SYSTEM INITIALIZATION COMPLETE ***&quot;</span>);</div>
-<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    Serial.println(<span class="stringliteral">&quot;System is now running...&quot;</span>);</div>
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    Serial.println(<span class="stringliteral">&quot;Access web interface for configuration\n&quot;</span>);</div>
-<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>}</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span> </div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    <span class="comment">// Start time manager services</span></div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="main_8cpp.html#ad27a531589f8fed0687abe50e4ab32dc">timeManager</a>.begin()) {</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>        Serial.println(<span class="stringliteral">&quot;Time manager services started&quot;</span>);</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>        </div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>        <span class="comment">// Sync with NTP if WiFi is already connected</span></div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>        <span class="keywordflow">if</span> (WiFi.status() == WL_CONNECTED) {</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>            Serial.println(<span class="stringliteral">&quot;Syncing time with NTP server...&quot;</span>);</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>            <a class="code hl_variable" href="main_8cpp.html#ad27a531589f8fed0687abe50e4ab32dc">timeManager</a>.setTimeFromNTP();</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>        }</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    }</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    </div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    <span class="comment">// Start logging services</span></div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    <a class="code hl_variable" href="main_8cpp.html#a543ccc95fbe6dd49b01bdc937630a4ac">logger</a>.begin();</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    </div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    Serial.println(<span class="stringliteral">&quot;\n*** SYSTEM INITIALIZATION COMPLETE ***&quot;</span>);</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    Serial.println(<span class="stringliteral">&quot;System is now running...&quot;</span>);</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>    Serial.println(<span class="stringliteral">&quot;Access web interface for configuration\n&quot;</span>);</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>}</div>
 </div>
-<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span></div>
-<div class="foldopen" id="foldopen00250" data-start="{" data-end="}">
-<div class="line"><a id="l00250" name="l00250"></a><span class="lineno"><a class="line" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f">  250</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f">loop</a>() {</div>
-<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>    <span class="comment">// Update time manager (handles RTC sync and NTP updates)</span></div>
-<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    <a class="code hl_variable" href="main_8cpp.html#ad27a531589f8fed0687abe50e4ab32dc">timeManager</a>.update();</div>
-<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    </div>
-<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>    <span class="comment">// Update configuration manager (handles web server and WiFi portal)</span></div>
-<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    <a class="code hl_variable" href="main_8cpp.html#a064a914bb7eaaf470d545cab5f0c0066">configManager</a>-&gt;update();</div>
-<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>    </div>
-<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>    <span class="comment">// Update temperature controller (reads sensors and updates measurement points)</span></div>
-<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>    <a class="code hl_variable" href="main_8cpp.html#aecbe6ad38ed7d220ace280ea33d8ab45">controller</a>.update();</div>
-<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    </div>
-<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    <span class="comment">// Process any pending Modbus commands</span></div>
-<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="main_8cpp.html#a4d17575d4300b383a3726118c7dba5ef">modbusServer</a>) {</div>
-<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>        <a class="code hl_variable" href="main_8cpp.html#a4d17575d4300b383a3726118c7dba5ef">modbusServer</a>-&gt;processCommands();</div>
-<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>    }</div>
-<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    </div>
-<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>    <span class="comment">// Periodic status output (when not in configuration portal mode)</span></div>
-<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>    <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> lastPrintTime = 0;</div>
-<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    <span class="keywordflow">if</span> (!<a class="code hl_variable" href="main_8cpp.html#a064a914bb7eaaf470d545cab5f0c0066">configManager</a>-&gt;isPortalActive() &amp;&amp; </div>
-<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>        millis() - lastPrintTime &gt; <a class="code hl_variable" href="main_8cpp.html#aecbe6ad38ed7d220ace280ea33d8ab45">controller</a>.getMeasurementPeriod()) {</div>
-<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>        </div>
-<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>        <span class="comment">// Uncomment for detailed status output:</span></div>
-<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>        <span class="comment">// Serial.println(&quot;\nSystem Status:&quot;);</span></div>
-<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>        <span class="comment">// Serial.println(controller.getSystemStatusJson());</span></div>
-<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>        <span class="comment">// Serial.println(controller.getPointsJson());</span></div>
-<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>        </div>
-<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>        lastPrintTime = millis();</div>
-<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>    }</div>
-<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>    </div>
-<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>    <span class="comment">// Update logger (handles periodic data logging and file management)</span></div>
-<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>    <a class="code hl_variable" href="main_8cpp.html#a543ccc95fbe6dd49b01bdc937630a4ac">logger</a>.update();</div>
-<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>    </div>
-<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>    <span class="comment">// Brief delay to prevent excessive CPU usage</span></div>
-<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>    delay(100);</div>
-<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>}</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span></div>
+<div class="foldopen" id="foldopen00251" data-start="{" data-end="}">
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno"><a class="line" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f">  251</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f">loop</a>() {</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    <span class="comment">// Update time manager (handles RTC sync and NTP updates)</span></div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    <a class="code hl_variable" href="main_8cpp.html#ad27a531589f8fed0687abe50e4ab32dc">timeManager</a>.update();</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>    </div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    <span class="comment">// Update configuration manager (handles web server and WiFi portal)</span></div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>    <a class="code hl_variable" href="main_8cpp.html#a064a914bb7eaaf470d545cab5f0c0066">configManager</a>-&gt;update();</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>    </div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>    <span class="comment">// Update temperature controller (reads sensors and updates measurement points)</span></div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    <a class="code hl_variable" href="main_8cpp.html#aecbe6ad38ed7d220ace280ea33d8ab45">controller</a>.update();</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    </div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>    <span class="comment">// Process any pending Modbus commands</span></div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="main_8cpp.html#a4d17575d4300b383a3726118c7dba5ef">modbusServer</a>) {</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>        <a class="code hl_variable" href="main_8cpp.html#a4d17575d4300b383a3726118c7dba5ef">modbusServer</a>-&gt;processCommands();</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    }</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>    </div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>    <span class="comment">// Periodic status output (when not in configuration portal mode)</span></div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> lastPrintTime = 0;</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>    <span class="keywordflow">if</span> (!<a class="code hl_variable" href="main_8cpp.html#a064a914bb7eaaf470d545cab5f0c0066">configManager</a>-&gt;isPortalActive() &amp;&amp; </div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>        millis() - lastPrintTime &gt; <a class="code hl_variable" href="main_8cpp.html#aecbe6ad38ed7d220ace280ea33d8ab45">controller</a>.getMeasurementPeriod()) {</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>        </div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>        <span class="comment">// Uncomment for detailed status output:</span></div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>        <span class="comment">// Serial.println(&quot;\nSystem Status:&quot;);</span></div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>        <span class="comment">// Serial.println(controller.getSystemStatusJson());</span></div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>        <span class="comment">// Serial.println(controller.getPointsJson());</span></div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>        </div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>        lastPrintTime = millis();</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>    }</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>    </div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>    <span class="comment">// Update logger (handles periodic data logging and file management)</span></div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>    <a class="code hl_variable" href="main_8cpp.html#a543ccc95fbe6dd49b01bdc937630a4ac">logger</a>.update();</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>    </div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>    <span class="comment">// Brief delay to prevent excessive CPU usage</span></div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>    delay(100);</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>}</div>
 </div>
 <div class="ttc" id="a_config_manager_8h_html"><div class="ttname"><a href="_config_manager_8h.html">ConfigManager.h</a></div><div class="ttdoc">Configuration management system for temperature monitoring device.</div></div>
 <div class="ttc" id="a_indicator_interface_8h_html"><div class="ttname"><a href="_indicator_interface_8h.html">IndicatorInterface.h</a></div><div class="ttdoc">Hardware interface for PCF8575 I/O expander and SH1106 OLED display.</div></div>
@@ -345,7 +346,7 @@ $(function(){initNavTree('main_8cpp_source.html','',''); });
 <div class="ttc" id="aclass_config_manager_html"><div class="ttname"><a href="class_config_manager.html">ConfigManager</a></div><div class="ttdoc">Main configuration management class.</div><div class="ttdef"><b>Definition</b> <a href="_config_manager_8h_source.html#l00041">ConfigManager.h:41</a></div></div>
 <div class="ttc" id="aclass_indicator_interface_html"><div class="ttname"><a href="class_indicator_interface.html">IndicatorInterface</a></div><div class="ttdoc">Interface class for PCF8575 I/O expander and OLED display.</div><div class="ttdef"><b>Definition</b> <a href="_indicator_interface_8h_source.html#l00037">IndicatorInterface.h:37</a></div></div>
 <div class="ttc" id="aclass_logger_manager_html"><div class="ttname"><a href="class_logger_manager.html">LoggerManager</a></div><div class="ttdoc">Forward declaration for measurement point class.</div><div class="ttdef"><b>Definition</b> <a href="_logger_manager_8h_source.html#l00037">LoggerManager.h:37</a></div></div>
-<div class="ttc" id="aclass_temp_modbus_server_html"><div class="ttname"><a href="class_temp_modbus_server.html">TempModbusServer</a></div><div class="ttdoc">Modbus RTU server implementation for temperature monitoring.</div><div class="ttdef"><b>Definition</b> <a href="_temp_modbus_server_8h_source.html#l00036">TempModbusServer.h:36</a></div></div>
+<div class="ttc" id="aclass_temp_modbus_server_html"><div class="ttname"><a href="class_temp_modbus_server.html">TempModbusServer</a></div><div class="ttdoc">Modbus RTU server implementation for temperature monitoring.</div><div class="ttdef"><b>Definition</b> <a href="_temp_modbus_server_8h_source.html#l00039">TempModbusServer.h:39</a></div></div>
 <div class="ttc" id="aclass_temperature_controller_html"><div class="ttname"><a href="class_temperature_controller.html">TemperatureController</a></div><div class="ttdoc">Main controller for temperature monitoring system.</div><div class="ttdef"><b>Definition</b> <a href="_temperature_controller_8h_source.html#l00046">TemperatureController.h:46</a></div></div>
 <div class="ttc" id="aclass_time_manager_html"><div class="ttname"><a href="class_time_manager.html">TimeManager</a></div><div class="ttdoc">Manages system time with RTC and NTP synchronization.</div><div class="ttdef"><b>Definition</b> <a href="_time_manager_8h_source.html#l00037">TimeManager.h:37</a></div></div>
 <div class="ttc" id="amain_8cpp_html_a009a384f716fb318dbb3ca6c01f82cf6"><div class="ttname"><a href="main_8cpp.html#a009a384f716fb318dbb3ca6c01f82cf6">indicator</a></div><div class="ttdeci">IndicatorInterface indicator(Wire, 0x20, PCF_INT)</div><div class="ttdoc">Indicator interface for OLED display and I/O control (I2C address 0x20)</div></div>
@@ -375,7 +376,7 @@ $(function(){initNavTree('main_8cpp_source.html','',''); });
 <div class="ttc" id="amain_8cpp_html_ae6cc20a4c5a6166265bf43e48202617e"><div class="ttname"><a href="main_8cpp.html#ae6cc20a4c5a6166265bf43e48202617e">CS5_PIN_TF_CARD</a></div><div class="ttdeci">#define CS5_PIN_TF_CARD</div><div class="ttdoc">Chip select for SD card.</div><div class="ttdef"><b>Definition</b> <a href="#l00058">main.cpp:58</a></div></div>
 <div class="ttc" id="amain_8cpp_html_aecb75580e6d96b71a64123aee5bd3929"><div class="ttname"><a href="main_8cpp.html#aecb75580e6d96b71a64123aee5bd3929">MISO_PIN</a></div><div class="ttdeci">#define MISO_PIN</div><div class="ttdoc">SPI MISO pin.</div><div class="ttdef"><b>Definition</b> <a href="#l00049">main.cpp:49</a></div></div>
 <div class="ttc" id="amain_8cpp_html_aecbe6ad38ed7d220ace280ea33d8ab45"><div class="ttname"><a href="main_8cpp.html#aecbe6ad38ed7d220ace280ea33d8ab45">controller</a></div><div class="ttdeci">TemperatureController controller(onwWirePins, csPins, indicator)</div><div class="ttdoc">Main temperature controller managing all sensors and measurement points.</div></div>
-<div class="ttc" id="amain_8cpp_html_afe461d27b9c48d5921c00d521181f12f"><div class="ttname"><a href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f">loop</a></div><div class="ttdeci">void loop()</div><div class="ttdoc">Main system loop.</div><div class="ttdef"><b>Definition</b> <a href="#l00250">main.cpp:250</a></div></div>
+<div class="ttc" id="amain_8cpp_html_afe461d27b9c48d5921c00d521181f12f"><div class="ttname"><a href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f">loop</a></div><div class="ttdeci">void loop()</div><div class="ttdoc">Main system loop.</div><div class="ttdef"><b>Definition</b> <a href="#l00251">main.cpp:251</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->

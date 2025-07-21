@@ -85,7 +85,7 @@
         <link refid="_alarm_8h"/>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="11" relation="include">
+        <childnode refid="12" relation="include">
         </childnode>
       </node>
       <node id="4">
@@ -104,12 +104,12 @@
         <childnode refid="7" relation="include">
         </childnode>
       </node>
-      <node id="12">
+      <node id="13">
         <label>include/IndicatorInterface.h</label>
         <link refid="_indicator_interface_8h"/>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="13" relation="include">
+        <childnode refid="14" relation="include">
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
@@ -121,25 +121,25 @@
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
         <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="16" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
       </node>
-      <node id="14">
+      <node id="15">
         <label>include/MeasurementPoint.h</label>
         <link refid="_measurement_point_8h"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="15" relation="include">
+        <childnode refid="16" relation="include">
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
@@ -148,20 +148,20 @@
         <childnode refid="19" relation="include">
         </childnode>
       </node>
-      <node id="15">
+      <node id="16">
         <label>include/RegisterMap.h</label>
         <link refid="_register_map_8h"/>
-        <childnode refid="16" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
         <childnode refid="18" relation="include">
         </childnode>
       </node>
-      <node id="16">
+      <node id="17">
         <label>include/TempModbusServer.h</label>
         <link refid="_temp_modbus_server_8h"/>
-        <childnode refid="17" relation="include">
+        <childnode refid="10" relation="include">
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
@@ -177,10 +177,12 @@
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
         <childnode refid="7" relation="include">
         </childnode>
       </node>
-      <node id="11">
+      <node id="12">
         <label>src/Alarm.cpp</label>
         <link refid="_alarm_8cpp"/>
       </node>
@@ -192,7 +194,7 @@
         <label>src/ConfigManager.cpp</label>
         <link refid="_config_manager_8cpp"/>
       </node>
-      <node id="13">
+      <node id="14">
         <label>src/IndicatorInterface.cpp</label>
         <link refid="_indicator_interface_8cpp"/>
       </node>
@@ -208,11 +210,11 @@
         <label>src/RegisterMap.cpp</label>
         <link refid="_register_map_8cpp"/>
       </node>
-      <node id="17">
+      <node id="10">
         <label>src/TempModbusServer.cpp</label>
         <link refid="_temp_modbus_server_8cpp"/>
       </node>
-      <node id="10">
+      <node id="11">
         <label>src/TemperatureController.cpp</label>
         <link refid="_temperature_controller_8cpp"/>
       </node>

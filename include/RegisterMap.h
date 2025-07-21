@@ -50,6 +50,7 @@ private:
     uint16_t numActiveDS18B20;            ///< Number of active DS18B20 sensors (register 2)
     uint16_t numActivePT1000;             ///< Number of active PT1000 sensors (register 3)
     uint16_t deviceStatus[7];             ///< Device status flags (registers 4-10)
+    uint16_t relayStatus[3];              ///< Relay status (registers 11-13) bit0: commanded, bit1: actual
 
     // Temperature Data Registers (100-599)
     int16_t currentTemps[60];             ///< Current temperature values (registers 100-159)
@@ -227,6 +228,14 @@ public:
      * @return bool Relay state
      */
     bool getRelayStatus(uint8_t relayIndex) const;
+    
+    /**
+     * @brief Update relay status register with commanded and actual states
+     * @param[in] relayIndex Relay index (0-2)
+     * @param[in] commandedState What the system wants the relay to be
+     * @param[in] actualState Current hardware state of the relay
+     */
+    void updateRelayStatusRegister(uint8_t relayIndex, bool commandedState, bool actualState);
 
     /**
      * @name Register Address Constants
@@ -241,6 +250,8 @@ public:
     static const uint16_t NUM_PT1000_REG = 3;            ///< Active PT1000 count register
     static const uint16_t DEVICE_STATUS_START_REG = 4;   ///< Device status start register
     static const uint16_t DEVICE_STATUS_END_REG = 10;    ///< Device status end register
+    static const uint16_t RELAY_STATUS_REG_START = 11;   ///< Relay status registers start
+    static const uint16_t RELAY_STATUS_REG_END = 13;     ///< Relay status registers end
     
     // Current Temperature Registers (100-199)
     static const uint16_t CURRENT_TEMP_DS18B20_START_REG = 100;  ///< DS18B20 current temp start
@@ -317,6 +328,18 @@ public:
     static const uint16_t CMD_APPLY_ALARM_CONFIG = 0x0001;        ///< Apply alarm configuration
     
     /** @} */ // end of Register Address Constants
+};
+
+/**
+ * @enum RelayControlMode
+ * @brief Defines control modes for relay operation
+ * @details Used to specify whether a relay should be controlled automatically
+ *          based on alarm states or forced to a specific state via Modbus
+ */
+enum class RelayControlMode : uint16_t {
+    AUTO = 0,        ///< Automatic control based on alarm states
+    FORCE_OFF = 1,   ///< Force relay off regardless of alarms
+    FORCE_ON = 2     ///< Force relay on regardless of alarms
 };
 
 #endif // REGISTER_MAP_H

@@ -105,7 +105,7 @@ Include dependency graph for RegisterMap.h:</div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="_register_map_8h__dep__incl.svg" width="963" height="331"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="_register_map_8h__dep__incl.svg" width="938" height="331"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="_register_map_8h_source.html">Go to the source code of this file.</a></p>
@@ -114,6 +114,14 @@ This graph shows which files directly or indirectly include this file:</div>
 Data Structures</h2></td></tr>
 <tr class="memitem:RegisterMap" id="r_RegisterMap"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_register_map.html">RegisterMap</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Manages Modbus register mapping for temperature monitoring.  <a href="class_register_map.html#details">More...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a23d2c66363244223543ad6ffc35c2072" id="r_a23d2c66363244223543ad6ffc35c2072"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a23d2c66363244223543ad6ffc35c2072">RelayControlMode</a> : uint16_t { <a class="el" href="#a23d2c66363244223543ad6ffc35c2072ae1f2d5134ed2543d38a0de9751cf75d9">AUTO</a> = 0
+, <a class="el" href="#a23d2c66363244223543ad6ffc35c2072ac8225807a03b18f4128cf970a3c1d90b">FORCE_OFF</a> = 1
+, <a class="el" href="#a23d2c66363244223543ad6ffc35c2072a98229e484e8eaf35fafe232b46339924">FORCE_ON</a> = 2
+ }</td></tr>
+<tr class="memdesc:a23d2c66363244223543ad6ffc35c2072"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines control modes for relay operation.  <a href="#a23d2c66363244223543ad6ffc35c2072">More...</a><br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Modbus register mapping for temperature monitoring system. </p>
@@ -149,7 +157,43 @@ Register Layout</h1>
 </ul>
 
 <p class="definition">Definition in file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
-</div></div><!-- contents -->
+</div><a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Enumeration Type Documentation</h2>
+<a id="a23d2c66363244223543ad6ffc35c2072" name="a23d2c66363244223543ad6ffc35c2072"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23d2c66363244223543ad6ffc35c2072">&#9670;&#160;</a></span>RelayControlMode</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="#a23d2c66363244223543ad6ffc35c2072">RelayControlMode</a> : uint16_t</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel strong">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Defines control modes for relay operation. </p>
+<p>Used to specify whether a relay should be controlled automatically based on alarm states or forced to a specific state via Modbus </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a23d2c66363244223543ad6ffc35c2072ae1f2d5134ed2543d38a0de9751cf75d9" name="a23d2c66363244223543ad6ffc35c2072ae1f2d5134ed2543d38a0de9751cf75d9"></a>AUTO&#160;</td><td class="fielddoc"><p>Automatic control based on alarm states. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a23d2c66363244223543ad6ffc35c2072ac8225807a03b18f4128cf970a3c1d90b" name="a23d2c66363244223543ad6ffc35c2072ac8225807a03b18f4128cf970a3c1d90b"></a>FORCE_OFF&#160;</td><td class="fielddoc"><p>Force relay off regardless of alarms. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a23d2c66363244223543ad6ffc35c2072a98229e484e8eaf35fafe232b46339924" name="a23d2c66363244223543ad6ffc35c2072a98229e484e8eaf35fafe232b46339924"></a>FORCE_ON&#160;</td><td class="fielddoc"><p>Force relay on regardless of alarms. </p>
+</td></tr>
+</table>
+
+<p class="definition">Definition at line <a class="el" href="_register_map_8h_source.html#l00339">339</a> of file <a class="el" href="_register_map_8h_source.html">RegisterMap.h</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">
 <div id="page-nav-resize-handle"></div>

@@ -176,14 +176,16 @@ EOF < /dev/null
 
 ### Implementation Steps:
 - [x] Step 1: Review existing relay control implementation in handleAlarmOutputs()
-- [ ] Step 2: Add Relay3 support to IndicatorInterface port configuration
+- [ ] Step 2: Add Relay3 support to IndicatorInterface port configuration (NEEDS CLARIFICATION: hardware port assignment)
 - [ ] Step 3: Extend handleAlarmOutputs() to include Relay3 control logic
 - [ ] Step 4: Implement Modbus relay control override functionality
 - [ ] Step 5: Create RelayControlMode enum (AUTO, FORCE_OFF, FORCE_ON)
 - [ ] Step 6: Modify handleAlarmOutputs() to respect Modbus control modes
-- [ ] Step 7: Test relay control with different alarm priorities
-- [ ] Step 8: Add comprehensive Doxygen documentation
-- [ ] Step 9: Update RegisterMap to properly handle relay control registers
+- [ ] Step 7: Implement relay status feedback in registers 11-13 (commanded + actual states)
+- [ ] Step 8: Update documentation files (README.md, MODBUS_REGISTER_MAP.md, USER_MANUAL_RU.md)
+- [ ] Step 9: Test relay control with different alarm priorities
+- [ ] Step 10: Add comprehensive Doxygen documentation
+- [ ] Step 11: Update RegisterMap to properly handle relay control registers
 
 ### Technical Design:
 
@@ -211,6 +213,14 @@ enum class RelayControlMode : uint16_t {
 - **LOW**: No relay action
 
 #### 4. Modbus Integration
-- Registers 860-862: Relay control modes
-- Registers 863-865: Relay status feedback
+- Registers 860-862: Relay control modes (AUTO=0, FORCE_OFF=1, FORCE_ON=2)
+- Registers 11-13: Relay status feedback (bit 0: commanded state, bit 1: actual state)
 - Command register 899: Apply configuration changes
+
+#### 5. Implementation Notes (from Q&A):
+- **Relay 3 Hardware Port**: NEEDS CLARIFICATION - leave placeholder comment in code
+- **Modbus Override**: When in FORCE_ON/FORCE_OFF, completely ignore alarm states
+- **Persistence**: Control modes NOT saved, default to OFF on startup
+- **Relay 3 Purpose**: Spare output, Modbus-only control, no alarm connection
+- **Blinking Override**: Modbus commands stop blinking until AUTO mode restored
+- **Status Feedback**: Report both commanded and actual states in registers 11-13

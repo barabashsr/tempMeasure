@@ -1,60 +1,69 @@
 <map id="TemperatureController::update" name="TemperatureController::update">
-<area shape="rect" id="Node000001" title="Main update function &#45; must be called in loop()" alt="" coords="5,341,155,382"/>
-<area shape="rect" id="Node000002" href="$class_temperature_controller.html#a1228b63e95f26c21a8d9c2a27928bc75" title="Check for button press and handle acknowledgment." alt="" coords="426,73,575,114"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="88,340,104,306,129,264,161,221,201,184,251,153,305,131,359,114,410,103,411,108,361,119,307,136,253,158,204,188,165,224,133,267,109,308,92,342"/>
-<area shape="rect" id="Node000003" href="$class_temperature_controller.html#a5637103784725fb1a73f6463d7cbfde6" title="Handle alarm display on OLED/LEDs." alt="" coords="203,197,352,238"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="104,339,201,262,227,244,230,249,204,266,107,343"/>
-<area shape="rect" id="Node000012" href="$class_temperature_controller.html#a82e4c37ff4121eaf5e00e9c52381e840" title="Handle alarm output signals." alt="" coords="203,276,352,317"/>
-<area shape="poly" id="edge12_Node000001_Node000012" title=" " alt="" coords="143,338,198,320,200,325,144,343"/>
-<area shape="rect" id="Node000015" href="$class_temperature_controller.html#a11948a87fe7df37543b86ecdd488b341" title="Read temperature from all configured measurement points." alt="" coords="203,341,352,382"/>
-<area shape="poly" id="edge15_Node000001_Node000015" title=" " alt="" coords="155,368,187,368,187,373,155,373"/>
-<area shape="rect" id="Node000016" href="$class_temperature_controller.html#a5ac8af90de5dfd79a9a2e4c7270a98a3" title="Update alarm states for all measurement points." alt="" coords="203,407,352,447"/>
-<area shape="poly" id="edge17_Node000001_Node000016" title=" " alt="" coords="144,380,200,399,198,404,143,385"/>
-<area shape="rect" id="Node000022" href="$class_temperature_controller.html#a23dca296a268baa9b8234c8bf9cf0c3e" title="Update temperature readings for all sensors." alt="" coords="203,483,352,523"/>
-<area shape="poly" id="edge24_Node000001_Node000022" title=" " alt="" coords="107,380,204,457,227,472,224,476,201,461,104,385"/>
-<area shape="rect" id="Node000028" href="$class_temperature_controller.html#a62b93899a3b8b55e2e0bd933520c2892" title="Update register map with current values from measurement points." alt="" coords="203,548,352,589"/>
-<area shape="poly" id="edge30_Node000001_Node000028" title=" " alt="" coords="94,381,136,454,167,496,204,533,210,537,207,542,201,537,163,499,131,457,89,384"/>
-<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="300,195,344,159,399,125,412,118,415,123,401,129,347,164,303,199"/>
-<area shape="rect" id="Node000004" href="$class_temperature_controller.html#a1d2745c323f7094beac8f406825499b7" title="Handle alarm display rotation timing." alt="" coords="400,139,601,179"/>
-<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="351,196,406,181,407,186,353,201"/>
-<area shape="rect" id="Node000009" href="$class_temperature_controller.html#a477597992aa9362076843f37b648741a" title="Update alarm display queues." alt="" coords="424,204,578,245"/>
-<area shape="poly" id="edge9_Node000003_Node000009" title=" " alt="" coords="352,217,408,219,408,224,352,223"/>
-<area shape="rect" id="Node000005" href="$class_temperature_controller.html#ac44de0834e13cec755e247ce1df21f09" title="Display next acknowledged alarm." alt="" coords="649,5,874,46"/>
-<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="579,136,600,124,615,108,623,91,631,74,648,57,656,51,659,56,651,61,636,77,628,93,619,111,603,128,582,140"/>
-<area shape="rect" id="Node000006" href="$class_temperature_controller.html#a7ca5124357f98bcd52316cf017341b09" title="Display next active alarm in rotation." alt="" coords="673,71,850,111"/>
-<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="581,135,665,113,667,118,582,141"/>
-<area shape="rect" id="Node000007" href="$class_temperature_controller.html#a28e81945f5235e161e6c532b428d36d2" title="Show OK status and turn off OLED after delay." alt="" coords="667,136,856,177"/>
-<area shape="poly" id="edge7_Node000004_Node000007" title=" " alt="" coords="602,155,652,155,652,160,602,161"/>
-<area shape="rect" id="Node000008" href="$class_temperature_controller.html#a4d36576f7d6ab8f5222a082878314912" title="Update normal temperature display." alt="" coords="681,201,842,242"/>
-<area shape="poly" id="edge8_Node000004_Node000008" title=" " alt="" coords="589,177,666,196,665,201,588,183"/>
+<area shape="rect" id="Node000001" title="Main update function &#45; must be called in loop()" alt="" coords="5,483,155,523"/>
+<area shape="rect" id="Node000002" href="$class_temperature_controller.html#a1228b63e95f26c21a8d9c2a27928bc75" title="Check for button press and handle acknowledgment." alt="" coords="426,132,575,173"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="82,482,93,431,114,363,130,327,150,291,173,259,201,230,249,198,303,176,358,162,410,154,411,159,359,167,305,181,252,203,204,234,177,262,154,294,135,329,119,365,98,432,87,483"/>
+<area shape="rect" id="Node000003" href="$class_temperature_controller.html#a5637103784725fb1a73f6463d7cbfde6" title="Handle alarm display on OLED/LEDs." alt="" coords="203,244,352,285"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="96,481,247,295,252,299,100,484"/>
+<area shape="rect" id="Node000012" href="$class_temperature_controller.html#a82e4c37ff4121eaf5e00e9c52381e840" title="Handle alarm output signals." alt="" coords="203,683,352,723"/>
+<area shape="poly" id="edge12_Node000001_Node000012" title=" " alt="" coords="103,522,247,669,243,673,100,526"/>
+<area shape="rect" id="Node000015" href="$class_temperature_controller.html#a11948a87fe7df37543b86ecdd488b341" title="Read temperature from all configured measurement points." alt="" coords="203,483,352,523"/>
+<area shape="poly" id="edge15_Node000001_Node000015" title=" " alt="" coords="155,509,187,509,187,515,155,514"/>
+<area shape="rect" id="Node000016" href="$class_temperature_controller.html#a5ac8af90de5dfd79a9a2e4c7270a98a3" title="Update alarm states for all measurement points." alt="" coords="203,408,352,449"/>
+<area shape="poly" id="edge17_Node000001_Node000016" title=" " alt="" coords="135,480,206,452,208,457,137,484"/>
+<area shape="rect" id="Node000022" href="$class_temperature_controller.html#a23dca296a268baa9b8234c8bf9cf0c3e" title="Update temperature readings for all sensors." alt="" coords="203,553,352,594"/>
+<area shape="poly" id="edge24_Node000001_Node000022" title=" " alt="" coords="140,521,205,545,204,550,138,526"/>
+<area shape="rect" id="Node000028" href="$class_temperature_controller.html#a62b93899a3b8b55e2e0bd933520c2892" title="Update register map with current values from measurement points." alt="" coords="203,791,352,831"/>
+<area shape="poly" id="edge30_Node000001_Node000028" title=" " alt="" coords="92,523,136,617,168,676,205,733,244,778,240,782,201,737,163,679,131,620,87,525"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="305,241,348,212,399,183,414,176,416,181,401,188,351,217,308,246"/>
+<area shape="rect" id="Node000004" href="$class_temperature_controller.html#a1d2745c323f7094beac8f406825499b7" title="Handle alarm display rotation timing." alt="" coords="400,197,601,238"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="352,246,385,239,386,244,353,251"/>
+<area shape="rect" id="Node000009" href="$class_temperature_controller.html#a477597992aa9362076843f37b648741a" title="Update alarm display queues." alt="" coords="424,263,578,303"/>
+<area shape="poly" id="edge9_Node000003_Node000009" title=" " alt="" coords="352,268,409,273,408,278,352,273"/>
+<area shape="rect" id="Node000005" href="$class_temperature_controller.html#ac44de0834e13cec755e247ce1df21f09" title="Display next acknowledged alarm." alt="" coords="649,136,874,177"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="590,194,657,178,658,183,591,199"/>
+<area shape="rect" id="Node000006" href="$class_temperature_controller.html#a7ca5124357f98bcd52316cf017341b09" title="Display next active alarm in rotation." alt="" coords="673,201,850,242"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="602,217,658,217,658,223,602,222"/>
+<area shape="rect" id="Node000007" href="$class_temperature_controller.html#a28e81945f5235e161e6c532b428d36d2" title="Show OK status and turn off OLED after delay." alt="" coords="667,5,856,46"/>
+<area shape="poly" id="edge7_Node000004_Node000007" title=" " alt="" coords="583,195,599,182,612,167,618,152,622,121,627,89,634,73,647,57,652,53,656,57,651,61,639,76,632,91,628,122,623,154,616,170,603,186,586,199"/>
+<area shape="rect" id="Node000008" href="$class_temperature_controller.html#a4d36576f7d6ab8f5222a082878314912" title="Update normal temperature display." alt="" coords="681,71,842,111"/>
+<area shape="poly" id="edge8_Node000004_Node000008" title=" " alt="" coords="578,195,600,182,615,168,623,153,632,137,648,122,666,112,668,117,651,126,636,141,628,155,619,171,603,186,580,199"/>
 <area shape="rect" id="Node000010" href="$class_temperature_controller.html#af58201023d15de003d4f1b9a9771a9e3" title="Get list of active alarms." alt="" coords="687,316,836,357"/>
-<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="578,243,603,255,618,268,627,280,636,291,651,302,673,313,671,318,648,307,633,295,623,283,614,271,600,260,575,248"/>
+<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="579,296,672,315,671,321,578,301"/>
 <area shape="rect" id="Node000011" href="$class_alarm.html#a7a4a3290a6a659542f82fe08a96736a8" title="Get the alarm creation timestamp." alt="" coords="688,266,835,292"/>
-<area shape="poly" id="edge11_Node000009_Node000011" title=" " alt="" coords="579,238,682,260,681,265,578,243"/>
-<area shape="rect" id="Node000013" href="$class_temperature_controller.html#a3022c7a72adb45a7800d5189eecdac4e" title="Get total number of configured alarms." alt="" coords="426,269,575,310"/>
-<area shape="poly" id="edge13_Node000012_Node000013" title=" " alt="" coords="352,291,410,290,410,295,352,297"/>
-<area shape="rect" id="Node000014" href="$class_logger_manager.html#a5c1373ccc47f4112b596fe6f84fbbc21" title="Log informational message (static convenience method)" alt="" coords="431,334,570,360"/>
-<area shape="poly" id="edge14_Node000012_Node000014" title=" " alt="" coords="353,311,427,328,425,333,352,316"/>
-<area shape="poly" id="edge16_Node000015_Node000001" title=" " alt="" coords="202,356,170,355,170,350,202,350"/>
-<area shape="poly" id="edge18_Node000016_Node000010" title=" " alt="" coords="352,413,601,370,671,355,672,360,602,375,353,418"/>
-<area shape="rect" id="Node000017" href="$class_temperature_controller.html#a9b4fe09d4c87dcf86e78b890012e1e72" title="Get sensor bound to measurement point." alt="" coords="426,435,575,475"/>
-<area shape="poly" id="edge19_Node000016_Node000017" title=" " alt="" coords="352,434,411,441,410,446,352,439"/>
-<area shape="rect" id="Node000018" href="$class_measurement_point.html#a81c7ae93a9314344967d0f31c6fefe2f" title="Get pointer to bound sensor." alt="" coords="665,381,858,422"/>
-<area shape="poly" id="edge20_Node000017_Node000018" title=" " alt="" coords="575,437,649,422,650,427,577,442"/>
-<area shape="rect" id="Node000019" href="$class_temperature_controller.html#a494f057c234b4ff7526bde271aec9267" title="Get measurement point by address." alt="" coords="683,447,840,487"/>
-<area shape="poly" id="edge21_Node000017_Node000019" title=" " alt="" coords="576,456,668,460,668,465,576,461"/>
+<area shape="poly" id="edge11_Node000009_Node000011" title=" " alt="" coords="578,279,673,278,673,283,578,284"/>
+<area shape="rect" id="Node000013" href="$class_temperature_controller.html#a3022c7a72adb45a7800d5189eecdac4e" title="Get total number of configured alarms." alt="" coords="687,733,836,774"/>
+<area shape="poly" id="edge13_Node000012_Node000013" title=" " alt="" coords="353,717,400,726,543,740,671,748,671,753,543,746,400,731,352,723"/>
+<area shape="rect" id="Node000014" href="$class_logger_manager.html#a5c1373ccc47f4112b596fe6f84fbbc21" title="Log informational message (static convenience method)" alt="" coords="431,690,570,716"/>
+<area shape="poly" id="edge14_Node000012_Node000014" title=" " alt="" coords="352,700,416,700,416,706,352,706"/>
+<area shape="poly" id="edge16_Node000015_Node000001" title=" " alt="" coords="202,497,170,497,170,491,202,492"/>
+<area shape="poly" id="edge18_Node000016_Node000010" title=" " alt="" coords="352,405,399,394,542,367,671,346,672,351,543,372,401,399,353,410"/>
+<area shape="rect" id="Node000017" href="$class_temperature_controller.html#a9b4fe09d4c87dcf86e78b890012e1e72" title="Get sensor bound to measurement point." alt="" coords="426,408,575,449"/>
+<area shape="poly" id="edge19_Node000016_Node000017" title=" " alt="" coords="352,426,410,426,410,431,352,431"/>
+<area shape="rect" id="Node000018" href="$class_measurement_point.html#a81c7ae93a9314344967d0f31c6fefe2f" title="Get pointer to bound sensor." alt="" coords="665,447,858,487"/>
+<area shape="poly" id="edge20_Node000017_Node000018" title=" " alt="" coords="576,437,650,448,649,453,576,442"/>
+<area shape="rect" id="Node000019" href="$class_temperature_controller.html#a494f057c234b4ff7526bde271aec9267" title="Get measurement point by address." alt="" coords="683,381,840,422"/>
+<area shape="poly" id="edge21_Node000017_Node000019" title=" " alt="" coords="576,418,668,409,668,414,576,423"/>
 <area shape="rect" id="Node000020" href="$class_temperature_controller.html#ad322a5bab8d5788a586206004248f673" title="Check if address is for DS18B20 sensor." alt="" coords="922,415,1071,455"/>
-<area shape="poly" id="edge22_Node000019_Node000020" title=" " alt="" coords="840,454,906,445,907,450,841,459"/>
-<area shape="rect" id="Node000021" href="$class_temperature_controller.html#a13125ddcf29cb56d27403818543618af" title="Check if address is for PT1000 sensor." alt="" coords="922,480,1071,521"/>
-<area shape="poly" id="edge23_Node000019_Node000021" title=" " alt="" coords="841,475,907,485,906,490,840,481"/>
-<area shape="rect" id="Node000023" href="$class_logger_manager.html#aef24f00186213fa78be3b104a50d58e6" title="Log error message (static convenience method)" alt="" coords="428,500,573,525"/>
-<area shape="poly" id="edge25_Node000022_Node000023" title=" " alt="" coords="352,503,413,506,413,511,352,509"/>
-<area shape="rect" id="Node000024" href="$class_temperature_controller.html#a01e04714a1712aa10c34276850971a12" title="Get bus number for a sensor." alt="" coords="426,551,575,591"/>
-<area shape="poly" id="edge26_Node000022_Node000024" title=" " alt="" coords="347,521,418,543,417,548,346,527"/>
+<area shape="poly" id="edge22_Node000019_Node000020" title=" " alt="" coords="841,410,907,420,906,425,840,415"/>
+<area shape="rect" id="Node000021" href="$class_temperature_controller.html#a13125ddcf29cb56d27403818543618af" title="Check if address is for PT1000 sensor." alt="" coords="922,349,1071,390"/>
+<area shape="poly" id="edge23_Node000019_Node000021" title=" " alt="" coords="840,388,906,379,907,385,841,394"/>
+<area shape="rect" id="Node000023" href="$class_logger_manager.html#aef24f00186213fa78be3b104a50d58e6" title="Log error message (static convenience method)" alt="" coords="924,806,1068,832"/>
+<area shape="poly" id="edge25_Node000022_Node000023" title=" " alt="" coords="353,591,401,603,473,619,536,630,643,645,694,654,748,668,807,689,875,719,930,755,974,793,970,797,927,759,872,724,805,694,746,673,693,660,642,650,535,635,472,625,399,608,352,596"/>
+<area shape="rect" id="Node000024" href="$class_temperature_controller.html#a01e04714a1712aa10c34276850971a12" title="Get bus number for a sensor." alt="" coords="426,553,575,594"/>
+<area shape="poly" id="edge26_Node000022_Node000024" title=" " alt="" coords="352,571,410,571,410,576,352,576"/>
 <area shape="rect" id="Node000025" href="$class_sensor.html#ac42da3a37b0d6a9622344fe83f4c9047" title="Get OneWire bus pin." alt="" coords="682,512,841,537"/>
-<area shape="poly" id="edge27_Node000024_Node000025" title=" " alt="" coords="576,555,670,538,671,543,576,560"/>
+<area shape="poly" id="edge27_Node000024_Node000025" title=" " alt="" coords="575,557,674,538,675,543,576,562"/>
 <area shape="rect" id="Node000026" href="$class_sensor.html#a6f57825e90b759ccdb9fe07b3a36953d" title="Get PT1000 chip select pin." alt="" coords="653,561,870,586"/>
-<area shape="poly" id="edge28_Node000024_Node000026" title=" " alt="" coords="576,569,638,570,638,575,576,574"/>
+<area shape="poly" id="edge28_Node000024_Node000026" title=" " alt="" coords="576,571,638,571,638,576,576,576"/>
 <area shape="rect" id="Node000027" href="$class_sensor.html#a0f6f095e7cfdfffb2a395dfdae7cfa53" title="Get sensor type." alt="" coords="703,610,820,636"/>
-<area shape="poly" id="edge29_Node000024_Node000027" title=" " alt="" coords="577,583,689,606,687,611,575,589"/>
+<area shape="poly" id="edge29_Node000024_Node000027" title=" " alt="" coords="576,585,688,607,687,612,575,590"/>
+<area shape="rect" id="Node000029" href="$class_temperature_controller.html#aac890ae08b5eddcf272771ecdba61453" title="Get relay actual state." alt="" coords="426,856,575,897"/>
+<area shape="poly" id="edge31_Node000028_Node000029" title=" " alt="" coords="350,829,415,848,413,854,348,834"/>
+<area shape="rect" id="Node000030" href="$class_temperature_controller.html#a20a14014a639f3390dba82a6cd39d067" title="Get relay commanded state." alt="" coords="408,791,594,831"/>
+<area shape="poly" id="edge33_Node000028_Node000030" title=" " alt="" coords="352,808,392,808,392,814,352,814"/>
+<area shape="poly" id="edge32_Node000029_Node000023" title=" " alt="" coords="576,873,714,866,794,859,873,848,937,834,938,839,874,854,795,864,715,871,576,878"/>
+<area shape="poly" id="edge34_Node000030_Node000013" title=" " alt="" coords="594,788,671,771,672,776,595,793"/>
+<area shape="rect" id="Node000031" href="$class_temperature_controller.html#a61ff288cbeaa86dc21c610c778dba64e" title="Get relay control mode." alt="" coords="684,799,839,839"/>
+<area shape="poly" id="edge35_Node000030_Node000031" title=" " alt="" coords="595,811,668,813,668,819,594,817"/>
+<area shape="poly" id="edge36_Node000031_Node000023" title=" " alt="" coords="839,816,908,816,908,822,839,822"/>
 </map>

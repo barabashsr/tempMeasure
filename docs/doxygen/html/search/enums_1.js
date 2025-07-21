@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['sensortype_0',['SensorType',['../_sensor_8h.html#a213c434cb928c4ca22513e2302632435',1,'Sensor.h']]]
+  ['relaycontrolmode_0',['RelayControlMode',['../_register_map_8h.html#a23d2c66363244223543ad6ffc35c2072',1,'RegisterMap.h']]]
 ];

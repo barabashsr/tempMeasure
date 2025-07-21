@@ -19,15 +19,17 @@
  */
 
 #include "TempModbusServer.h"
+#include "TemperatureController.h"
 
 TempModbusServer::TempModbusServer(RegisterMap& regMap, 
+    TemperatureController& ctrl,
     uint8_t id, 
     HardwareSerial& serialPort, 
     int rx, 
     int tx, 
     int de,
     int baud) 
-: registerMap(regMap), serverID(id), serial(serialPort), 
+: registerMap(regMap), controller(&ctrl), serverID(id), serial(serialPort), 
 rxPin(rx), txPin(tx), baudRate(baud), dePin(de) {
 
 // Create ModbusRTU server with 2000ms timeout
@@ -35,6 +37,7 @@ mbServer = new ModbusServerRTU(1000, dePin);
 
 // Set static pointer to register map for worker functions
 registerMapPtr = &regMap;
+controllerPtr = &ctrl;
 
 // LOG: Modbus server creation
 LoggerManager::info("MODBUS", 
@@ -47,6 +50,7 @@ LoggerManager::info("MODBUS",
 
 
 RegisterMap* TempModbusServer::registerMapPtr = nullptr;
+TemperatureController* TempModbusServer::controllerPtr = nullptr;
 
 TempModbusServer::~TempModbusServer() {
     if (mbServer) {
@@ -278,6 +282,27 @@ ModbusMessage TempModbusServer::writeHoldingRegisterWorker(ModbusMessage request
         // Success - echo the request as response
         LoggerManager::info("MODBUS_WRITE", 
             "Write successful - Register " + String(address) + " = " + String(value));
+        
+        // Handle special registers that require action after writing
+        if (address >= 860 && address <= 862) {
+            // Relay control registers - apply the control mode
+            uint8_t relayNum = address - 859; // Convert to relay number 1-3
+            RelayControlMode mode = static_cast<RelayControlMode>(value);
+            
+            if (controllerPtr) {
+                controllerPtr->setRelayControlMode(relayNum, mode);
+                LoggerManager::info("MODBUS_RELAY", 
+                    "Relay " + String(relayNum) + " mode set to " + String(value));
+            }
+        } else if (address == 899) {
+            // Command register
+            if (value == 0x0001 && controllerPtr) {
+                // Apply alarm configuration command
+                controllerPtr->applyConfigFromRegisterMap();
+                LoggerManager::info("MODBUS_CMD", "Applied alarm configuration from Modbus");
+            }
+        }
+        
         return request;
     } else {
         // Failed - return error response

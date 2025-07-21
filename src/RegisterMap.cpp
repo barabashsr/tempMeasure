@@ -45,6 +45,11 @@ RegisterMap::RegisterMap() {
         relayControl[i] = 0;
     }
     
+    // Initialize relay status registers
+    for (int i = 0; i < 3; i++) {
+        relayStatus[i] = 0;
+    }
+    
     // Initialize hysteresis to 5 degrees
     for (int i = 0; i < 20; i++) {
         hysteresis[i] = 50; // 5.0 degrees in 0.1 degree units
@@ -53,6 +58,7 @@ RegisterMap::RegisterMap() {
 
 bool RegisterMap::isValidAddress(uint16_t address) {
     if (address <= DEVICE_STATUS_END_REG) return true;
+    if (address >= RELAY_STATUS_REG_START && address <= RELAY_STATUS_REG_END) return true;
     if (address >= CURRENT_TEMP_DS18B20_START_REG && address <= CURRENT_TEMP_PT1000_END_REG) return true;
     if (address >= MIN_TEMP_DS18B20_START_REG && address <= MIN_TEMP_PT1000_END_REG) return true;
     if (address >= MAX_TEMP_DS18B20_START_REG && address <= MAX_TEMP_PT1000_END_REG) return true;
@@ -87,6 +93,8 @@ uint16_t RegisterMap::readHoldingRegister(uint16_t address) {
     if (address == NUM_PT1000_REG) return numActivePT1000;
     if (address >= DEVICE_STATUS_START_REG && address <= DEVICE_STATUS_END_REG)
         return deviceStatus[address - DEVICE_STATUS_START_REG];
+    if (address >= RELAY_STATUS_REG_START && address <= RELAY_STATUS_REG_END)
+        return relayStatus[address - RELAY_STATUS_REG_START];
 
     // DS18B20 and PT1000 share the same arrays, just different index offsets
     if (address >= CURRENT_TEMP_DS18B20_START_REG && address <= CURRENT_TEMP_PT1000_END_REG)
@@ -227,4 +235,17 @@ bool RegisterMap::getRelayStatus(uint8_t relayIndex) const {
         return relayControl[3 + relayIndex] != 0;
     }
     return false;
+}
+
+void RegisterMap::updateRelayStatusRegister(uint8_t relayIndex, bool commandedState, bool actualState) {
+    if (relayIndex >= 3) return;
+    
+    // Relay status register format:
+    // Bit 0: Commanded state (what system wants relay to be)
+    // Bit 1: Actual state (current hardware state)
+    uint16_t statusValue = 0;
+    if (commandedState) statusValue |= 0x0001;
+    if (actualState) statusValue |= 0x0002;
+    
+    relayStatus[relayIndex] = statusValue;
 }

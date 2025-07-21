@@ -409,6 +409,8 @@
     <member refid="class_register_map_1a3229332b90e91982d730b5f3b29cd095" kind="variable"><name>NUM_PT1000_REG</name></member>
     <member refid="class_register_map_1ab20fe2486766932166ae63413b06c632" kind="variable"><name>DEVICE_STATUS_START_REG</name></member>
     <member refid="class_register_map_1a0c65d76fa4f8659e20148173aabb0042" kind="variable"><name>DEVICE_STATUS_END_REG</name></member>
+    <member refid="class_register_map_1a04ab92b12fc37e43418e89290b5c3949" kind="variable"><name>RELAY_STATUS_REG_START</name></member>
+    <member refid="class_register_map_1a909bc6f8138e55d5830cd444f264e120" kind="variable"><name>RELAY_STATUS_REG_END</name></member>
     <member refid="class_register_map_1a39e9da3852adc25710c836c4019e44ae" kind="variable"><name>CURRENT_TEMP_DS18B20_START_REG</name></member>
     <member refid="class_register_map_1ab126164971f671096d5545ad7ce37e44" kind="variable"><name>CURRENT_TEMP_DS18B20_END_REG</name></member>
     <member refid="class_register_map_1ac88eb82c847956c9834ae0951cc6ce08" kind="variable"><name>CURRENT_TEMP_PT1000_START_REG</name></member>
@@ -462,6 +464,7 @@
     <member refid="class_register_map_1a216b9abf3c7b9f7d6721ea2e96cb9ff7" kind="variable"><name>numActiveDS18B20</name></member>
     <member refid="class_register_map_1abc9a62bb029202c3d50baaa985f17737" kind="variable"><name>numActivePT1000</name></member>
     <member refid="class_register_map_1a19e014a5afbfe86297b7dd8e3e4d1327" kind="variable"><name>deviceStatus</name></member>
+    <member refid="class_register_map_1a9a7dbc503df6a072c760fbcc5c5e3009" kind="variable"><name>relayStatus</name></member>
     <member refid="class_register_map_1aa875c2d7332c718c82d230549f566c10" kind="variable"><name>currentTemps</name></member>
     <member refid="class_register_map_1acae64e6c9f48a79cda39ac45367a9a97" kind="variable"><name>minTemps</name></member>
     <member refid="class_register_map_1a883e25ca7b65319483aa56e8ea8f1362" kind="variable"><name>maxTemps</name></member>
@@ -498,6 +501,7 @@
     <member refid="class_register_map_1ab4fea462af4380229ea2443dfee22535" kind="function"><name>getRelayControl</name></member>
     <member refid="class_register_map_1aca50699b0bad842f5e9c4967dbd6316c" kind="function"><name>setRelayStatus</name></member>
     <member refid="class_register_map_1ae7a529c57a947f21ea19f761785ffffc" kind="function"><name>getRelayStatus</name></member>
+    <member refid="class_register_map_1ac55a22f08440b36292791ab22ba8ad2a" kind="function"><name>updateRelayStatusRegister</name></member>
   </compound>
   <compound refid="class_sensor" kind="class"><name>Sensor</name>
     <member refid="class_sensor_1a75b4ea06bdcd22f6591f24ae3a46983a" kind="variable"><name>address</name></member>
@@ -592,9 +596,13 @@
     <member refid="class_temperature_controller_1a40a6d2b670b8934247478a03bbdeebe0" kind="variable"><name>_acknowledgedDelayLow</name></member>
     <member refid="class_temperature_controller_1ac2b7ce0afccac7602505ab0bd3916562" kind="variable"><name>_relay1State</name></member>
     <member refid="class_temperature_controller_1a3af25b4c386c13c4e1c49f50d67c705b" kind="variable"><name>_relay2State</name></member>
+    <member refid="class_temperature_controller_1a3ff6a77480a1aec366fe324216d72569" kind="variable"><name>_relay3State</name></member>
     <member refid="class_temperature_controller_1a01c4086be4fa74e89b108428ac3756ea" kind="variable"><name>_redLedState</name></member>
     <member refid="class_temperature_controller_1ada44ea25043f4cc35dd01cad67979acf" kind="variable"><name>_yellowLedState</name></member>
     <member refid="class_temperature_controller_1aec910974cd40cafef22d5e5c5e730512" kind="variable"><name>_blueLedState</name></member>
+    <member refid="class_temperature_controller_1a9d6a16e479c94d264e8a81f14d5a9060" kind="variable"><name>_relay1Mode</name></member>
+    <member refid="class_temperature_controller_1a78f0ed5eedef4b434318a60e627b6fc2" kind="variable"><name>_relay2Mode</name></member>
+    <member refid="class_temperature_controller_1ae11440bbc235e3a8bb35c14c09ab42e6" kind="variable"><name>_relay3Mode</name></member>
     <member refid="class_temperature_controller_1af5585a9f09291fc31296ac04c5de98ae" kind="variable"><name>_lowPriorityBlinkState</name></member>
     <member refid="class_temperature_controller_1a75d981931fe5a8e5e8cc112ec0b1e08a" kind="variable"><name>_lastLowPriorityBlinkTime</name></member>
     <member refid="class_temperature_controller_1a61fc398934c455ec97bc25d6f3c59868" kind="variable"><name>_blinkOnTime</name></member>
@@ -671,6 +679,11 @@
     <member refid="class_temperature_controller_1a1f106cc848aa45ecd8d9ab4808aef6d1" kind="function"><name>handleHighPriorityAlarms</name></member>
     <member refid="class_temperature_controller_1a7da957a2899fb3b47d94d279c2099ca2" kind="function"><name>handleMediumPriorityAlarms</name></member>
     <member refid="class_temperature_controller_1a16cb79caee63ec4acdd539adbb74ba40" kind="function"><name>handleLowPriorityAlarms</name></member>
+    <member refid="class_temperature_controller_1a8b0a764517c60705322f033be420c628" kind="function"><name>setRelayControlMode</name></member>
+    <member refid="class_temperature_controller_1a61ff288cbeaa86dc21c610c778dba64e" kind="function"><name>getRelayControlMode</name></member>
+    <member refid="class_temperature_controller_1a20a14014a639f3390dba82a6cd39d067" kind="function"><name>getRelayCommandedState</name></member>
+    <member refid="class_temperature_controller_1aac890ae08b5eddcf272771ecdba61453" kind="function"><name>getRelayActualState</name></member>
+    <member refid="class_temperature_controller_1a760bb05985e2ea9950c7f5cdc7f6669b" kind="function"><name>forceRelayState</name></member>
     <member refid="class_temperature_controller_1af4ab2c7b7a3934ab7837603a420b1ae2" kind="function"><name>bindSensorToPointByBusNumber</name></member>
     <member refid="class_temperature_controller_1a1cf2a33257d4f089a304859b975663c3" kind="function"><name>setAcknowledgedDelayCritical</name></member>
     <member refid="class_temperature_controller_1a365ac98348ce12de8938a687744c9f6c" kind="function"><name>setAcknowledgedDelayHigh</name></member>
@@ -710,11 +723,13 @@
     <member refid="class_temp_modbus_server_1ab07ddf78bd3b4f6fde1f0e86e6eb4449" kind="variable"><name>txPin</name></member>
     <member refid="class_temp_modbus_server_1a91abdc37c36d4d2a8b070bd3031a2373" kind="variable"><name>dePin</name></member>
     <member refid="class_temp_modbus_server_1acd386ba587dcfd86230f2f4156ee7303" kind="variable"><name>baudRate</name></member>
+    <member refid="class_temp_modbus_server_1a1b87630d285f12a2b180b21f2acb5584" kind="variable"><name>controller</name></member>
     <member refid="class_temp_modbus_server_1a512f10fc6c18f19302b042bfc97bac80" kind="variable"><name>registerMapPtr</name></member>
+    <member refid="class_temp_modbus_server_1adefc0e4358d5ac9626c4186f6925bf03" kind="variable"><name>controllerPtr</name></member>
     <member refid="class_temp_modbus_server_1a7d4a0ced2cfd174a4697a85492e12a58" kind="function"><name>readHoldingRegistersWorker</name></member>
     <member refid="class_temp_modbus_server_1a88b7288d622b52f9e28b7c6075b75fe0" kind="function"><name>writeHoldingRegisterWorker</name></member>
     <member refid="class_temp_modbus_server_1a52236f3c77c42d126dcaee7515fa37d3" kind="function"><name>writeMultipleRegistersWorker</name></member>
-    <member refid="class_temp_modbus_server_1a32478c395aa45fcdcafcd8790de50691" kind="function"><name>TempModbusServer</name></member>
+    <member refid="class_temp_modbus_server_1a483537c88cf38543835cf6d9c1a81d9d" kind="function"><name>TempModbusServer</name></member>
     <member refid="class_temp_modbus_server_1ac703f8733fd8afdec9b315b266f5204a" kind="function"><name>~TempModbusServer</name></member>
     <member refid="class_temp_modbus_server_1aac671b84770f4139745d08d05b5c1d92" kind="function"><name>begin</name></member>
     <member refid="class_temp_modbus_server_1a8bbfa71756ccff5f4b80509c41078c6c" kind="function"><name>stop</name></member>
@@ -814,6 +829,10 @@
   <compound refid="_measurement_point_8h" kind="file"><name>MeasurementPoint.h</name>
   </compound>
   <compound refid="_register_map_8h" kind="file"><name>RegisterMap.h</name>
+    <member refid="_register_map_8h_1a23d2c66363244223543ad6ffc35c2072" kind="enum"><name>RelayControlMode</name></member>
+    <member refid="_register_map_8h_1a23d2c66363244223543ad6ffc35c2072ae1f2d5134ed2543d38a0de9751cf75d9" kind="enumvalue"><name>AUTO</name></member>
+    <member refid="_register_map_8h_1a23d2c66363244223543ad6ffc35c2072ac8225807a03b18f4128cf970a3c1d90b" kind="enumvalue"><name>FORCE_OFF</name></member>
+    <member refid="_register_map_8h_1a23d2c66363244223543ad6ffc35c2072a98229e484e8eaf35fafe232b46339924" kind="enumvalue"><name>FORCE_ON</name></member>
   </compound>
   <compound refid="_sensor_8h" kind="file"><name>Sensor.h</name>
     <member refid="_sensor_8h_1a2414e990a5472bc239f99ae14c9ed66f" kind="variable"><name>ERROR_COMMUNICATION</name></member>

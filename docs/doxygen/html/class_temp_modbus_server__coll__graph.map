@@ -1,5 +1,18 @@
 <map id="TempModbusServer" name="TempModbusServer">
-<area shape="rect" id="Node000001" title="Modbus RTU server implementation for temperature monitoring." alt="" coords="14,1208,216,1538"/>
-<area shape="rect" id="Node000002" href="$class_register_map.html" title="Manages Modbus register mapping for temperature monitoring." alt="" coords="5,5,225,1116"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="118,1116,118,1191,113,1191,113,1116"/>
+<area shape="rect" id="Node000001" title="Modbus RTU server implementation for temperature monitoring." alt="" coords="36,3166,238,3497"/>
+<area shape="rect" id="Node000002" href="$class_register_map.html" title="Manages Modbus register mapping for temperature monitoring." alt="" coords="5,1256,225,2307"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="120,2307,130,3075,132,3149,127,3149,125,3075,115,2307"/>
+<area shape="rect" id="Node000003" href="$class_temperature_controller.html" title="Main controller for temperature monitoring system." alt="" coords="237,2378,429,3075"/>
+<area shape="poly" id="edge7_Node000003_Node000002" title=" " alt="" coords="228,2259,251,2361,246,2362,223,2260"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="239,3023,198,3150,193,3149,234,3022"/>
+<area shape="rect" id="Node000004" href="$class_indicator_interface.html" title="Interface class for PCF8575 I/O expander and OLED display." alt="" coords="249,1413,413,2150"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="335,2150,335,2361,329,2361,329,2150"/>
+<area shape="poly" id="edge4_Node000004_Node000004" title=" " alt="" coords="415,1681,425,1695,433,1717,438,1745,440,1782,436,1832,426,1867,421,1865,431,1831,435,1781,433,1746,428,1718,421,1698,411,1684"/>
+<area shape="rect" id="Node000005" href="$class_measurement_point.html" title="Logical measurement point for temperature monitoring." alt="" coords="491,732,659,1185"/>
+<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="571,1185,546,1864,532,2161,521,2307,505,2366,485,2424,438,2534,433,2532,480,2422,500,2364,515,2307,527,2161,540,1864,565,1185"/>
+<area shape="rect" id="Node000007" href="$class_alarm.html" title="Main alarm class for temperature monitoring system." alt="" coords="641,1494,805,2069"/>
+<area shape="poly" id="edge9_Node000007_Node000005" title=" " alt="" coords="618,1184,671,1477,666,1478,613,1185"/>
+<area shape="rect" id="Node000006" href="$class_sensor.html" title="Abstract temperature sensor interface." alt="" coords="506,5,645,661"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="578,661,578,715,573,715,573,661"/>
+<area shape="poly" id="edge8_Node000003_Node000007" title=" " alt="" coords="693,2069,665,2190,646,2250,624,2308,586,2388,539,2466,490,2538,441,2602,437,2599,486,2535,535,2463,581,2386,620,2306,641,2249,660,2189,688,2068"/>
 </map>
