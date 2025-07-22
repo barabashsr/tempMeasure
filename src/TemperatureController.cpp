@@ -1897,17 +1897,41 @@ void TemperatureController::_displayNextActiveAlarm() {
     
     // Ensure OLED is turned on whenever an alarm is displayed
     indicator.setOLEDOn();
-    indicator.setOledMode(2);
+    indicator.setOledMode(3);  // Use 3-line mode for alarms
     String displayText = _currentDisplayedAlarm->getDisplayText();
     
     int newlineIndex = displayText.indexOf('\n');
     String line1 = displayText.substring(0, newlineIndex);
     String line2 = displayText.substring(newlineIndex + 1);
     
-    String displayLines[2] = {line1, line2};
-    indicator.printText(displayLines, 2);
+    // Create bottom line with alarm counter and alarm activation timestamp
+    String line3 = String(_currentActiveAlarmIndex + 1) + "/" + String(_activeAlarmsQueue.size());
+    line3 += "  ";
     
-    Serial.printf("Displaying active alarm: %s\n", displayText.c_str());
+    // Get alarm activation timestamp
+    unsigned long alarmTimestamp = _currentDisplayedAlarm->getTimestamp();
+    // Convert milliseconds timestamp to HH:MM format
+    // The timestamp is milliseconds since boot, so we need to convert to actual time
+    extern TimeManager timeManager;
+    DateTime currentTime = timeManager.getCurrentTime();
+    unsigned long currentMillis = millis();
+    
+    // Calculate when the alarm was activated
+    unsigned long elapsedSinceAlarm = currentMillis - alarmTimestamp;
+    DateTime alarmTime = DateTime(currentTime.unixtime() - (elapsedSinceAlarm / 1000));
+    
+    // Format as HH:MM
+    char timeStr[6];
+    snprintf(timeStr, sizeof(timeStr), "%02d:%02d", alarmTime.hour(), alarmTime.minute());
+    line3 += timeStr;
+    
+    String displayLines[3] = {line1, line2, line3};
+    indicator.printText(displayLines, 3);
+    
+    Serial.printf("Displaying active alarm %d/%d: %s\n", 
+                  _currentActiveAlarmIndex + 1,
+                  _activeAlarmsQueue.size(),
+                  displayText.c_str());
 }
 
 void TemperatureController::_displayNextAcknowledgedAlarm() {
@@ -1921,15 +1945,39 @@ void TemperatureController::_displayNextAcknowledgedAlarm() {
     
     // Ensure OLED is turned on whenever an alarm is displayed
     indicator.setOLEDOn();
-    indicator.setOledMode(2);
+    indicator.setOledMode(3);  // Use 3-line mode for alarms
     String displayText = _currentDisplayedAlarm->getDisplayText();
     
     int newlineIndex = displayText.indexOf('\n');
     String line1 = displayText.substring(0, newlineIndex);
     String line2 = displayText.substring(newlineIndex + 1);
     
-    String displayLines[2] = {line1, line2};
-    indicator.printText(displayLines, 2);
+    // Add ACK indicator to line1
+    line1 = line1 + " ACK";
+    
+    // Create bottom line with alarm counter and alarm activation timestamp
+    String line3 = String(_currentAcknowledgedAlarmIndex + 1) + "/" + String(_acknowledgedAlarmsQueue.size());
+    line3 += "  ";
+    
+    // Get alarm activation timestamp
+    unsigned long alarmTimestamp = _currentDisplayedAlarm->getTimestamp();
+    // Convert milliseconds timestamp to HH:MM format
+    // The timestamp is milliseconds since boot, so we need to convert to actual time
+    extern TimeManager timeManager;
+    DateTime currentTime = timeManager.getCurrentTime();
+    unsigned long currentMillis = millis();
+    
+    // Calculate when the alarm was activated
+    unsigned long elapsedSinceAlarm = currentMillis - alarmTimestamp;
+    DateTime alarmTime = DateTime(currentTime.unixtime() - (elapsedSinceAlarm / 1000));
+    
+    // Format as HH:MM
+    char timeStr[6];
+    snprintf(timeStr, sizeof(timeStr), "%02d:%02d", alarmTime.hour(), alarmTime.minute());
+    line3 += timeStr;
+    
+    String displayLines[3] = {line1, line2, line3};
+    indicator.printText(displayLines, 3);
     
     Serial.printf("Displaying acknowledged alarm: %s (%d/%d)\n",
                   displayText.c_str(),

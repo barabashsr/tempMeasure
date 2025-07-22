@@ -649,6 +649,13 @@ void IndicatorInterface::_updateOLEDDisplay() {
 }
 
 
+/**
+ * @brief Draw a single text line with circular scrolling support
+ * @param[in] lineIndex Index of the line to draw (0-4)
+ * @param[in] yPos Y position on the display
+ * @details Implements circular scrolling for text longer than display width.
+ *          Text continuously loops with a 3-space separator between end and beginning.
+ */
 void IndicatorInterface::_drawTextLine(int lineIndex, int yPos) {
     if (lineIndex >= _textBufferSize) return;
     
@@ -659,24 +666,18 @@ void IndicatorInterface::_drawTextLine(int lineIndex, int yPos) {
         // Short text - display normally
         u8g2.drawStr(0, yPos, text.c_str());
     } else {
-        // Long text - apply scrolling
+        // Long text - apply circular scrolling
         int offset = _scrollOffset[lineIndex];
-        String displayText;
+        String displayText = "";
         
-        if (offset < 0) {
-            // Smooth entry from left with spaces
-            int spaceCount = -offset;
-            displayText = String(' ', spaceCount) + text;
-            displayText = displayText.substring(0, _maxCharsPerLine);
-        } else if (offset <= textLength - _maxCharsPerLine) {
-            // Normal scrolling within text
-            displayText = text.substring(offset, offset + _maxCharsPerLine);
-        } else {
-            // Smooth exit with trailing spaces
-            int spaceCount = offset - (textLength - _maxCharsPerLine);
-            displayText = text.substring(textLength - _maxCharsPerLine);
-            displayText += String(' ', min(spaceCount, _maxCharsPerLine));
-            displayText = displayText.substring(0, _maxCharsPerLine);
+        // Add separator between end and beginning of text for readability
+        String circularText = text + "   ";  // 3 spaces as separator
+        int circularLength = circularText.length();
+        
+        // Build the display text character by character
+        for (int i = 0; i < _maxCharsPerLine; i++) {
+            int charIndex = (offset + i) % circularLength;
+            displayText += circularText[charIndex];
         }
         
         u8g2.drawStr(0, yPos, displayText.c_str());
@@ -716,6 +717,11 @@ void IndicatorInterface::_handleOLEDBlink() {
     }
 }
 
+/**
+ * @brief Handle circular scrolling animation for all text lines
+ * @details Updates scroll offsets for lines longer than display width.
+ *          Implements seamless circular scrolling where text wraps around continuously.
+ */
 void IndicatorInterface::_handleScrolling() {
     if (millis() - _lastScrollTime < _scrollDelay) return;
     
@@ -727,11 +733,11 @@ void IndicatorInterface::_handleScrolling() {
         if (textLength > _maxCharsPerLine) {
             _scrollOffset[i]++;
             
-            // Add pause at the end before wrapping - this prevents immediate reset
-            int maxScroll = textLength - _maxCharsPerLine + 5; // +5 for pause at end
+            // For circular scrolling, wrap around based on text length + separator
+            int circularLength = textLength + 3;  // +3 for the separator spaces
             
-            if (_scrollOffset[i] > maxScroll) {
-                _scrollOffset[i] = 0; // Start from negative for smooth entry
+            if (_scrollOffset[i] >= circularLength) {
+                _scrollOffset[i] = 0;  // Wrap back to beginning
             }
             needsUpdate = true;
         } else {

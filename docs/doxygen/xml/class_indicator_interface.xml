@@ -19,10 +19,10 @@
         <inbodydescription>
         </inbodydescription>
         <location file="include/IndicatorInterface.h" line="379" column="17" bodyfile="include/IndicatorInterface.h" bodystart="379" bodyend="-1"/>
-        <referencedby refid="class_indicator_interface_1a84a7f5f2394abde177b41becd340b678" compoundref="_indicator_interface_8cpp" startline="1050" endline="1057">isBlinking</referencedby>
-        <referencedby refid="class_indicator_interface_1aafa418167df7eb74fc90fca14818a5eb" compoundref="_indicator_interface_8cpp" startline="987" endline="1014">startBlinking</referencedby>
-        <referencedby refid="class_indicator_interface_1a4458930151b73e21364fada5ba6fe129" compoundref="_indicator_interface_8cpp" startline="1016" endline="1028">stopBlinking</referencedby>
-        <referencedby refid="class_indicator_interface_1a891f8dd7ca0b76e7d89c0ab5567303da" compoundref="_indicator_interface_8cpp" startline="1030" endline="1048">updateBlinking</referencedby>
+        <referencedby refid="class_indicator_interface_1a84a7f5f2394abde177b41becd340b678" compoundref="_indicator_interface_8cpp" startline="1056" endline="1063">isBlinking</referencedby>
+        <referencedby refid="class_indicator_interface_1aafa418167df7eb74fc90fca14818a5eb" compoundref="_indicator_interface_8cpp" startline="993" endline="1020">startBlinking</referencedby>
+        <referencedby refid="class_indicator_interface_1a4458930151b73e21364fada5ba6fe129" compoundref="_indicator_interface_8cpp" startline="1022" endline="1034">stopBlinking</referencedby>
+        <referencedby refid="class_indicator_interface_1a891f8dd7ca0b76e7d89c0ab5567303da" compoundref="_indicator_interface_8cpp" startline="1036" endline="1054">updateBlinking</referencedby>
       </memberdef>
       <memberdef kind="variable" id="class_indicator_interface_1a2d448f416c41a0faa436e951764133ae" prot="private" static="no" mutable="no">
         <type>TwoWire *</type>
@@ -283,7 +283,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="include/IndicatorInterface.h" line="401" column="19" bodyfile="include/IndicatorInterface.h" bodystart="401" bodyend="-1"/>
-        <referencedby refid="class_indicator_interface_1a4586496158d0d102742463c908d9b2c3" compoundref="_indicator_interface_8cpp" startline="760" endline="766">handleInterrupt</referencedby>
+        <referencedby refid="class_indicator_interface_1a4586496158d0d102742463c908d9b2c3" compoundref="_indicator_interface_8cpp" startline="766" endline="772">handleInterrupt</referencedby>
         <referencedby refid="class_indicator_interface_1addc325e3c4d6bdc53257fbd9075aaecf" compoundref="_indicator_interface_8cpp" startline="28" endline="52">IndicatorInterface</referencedby>
       </memberdef>
       <memberdef kind="variable" id="class_indicator_interface_1a93e019715a500012887e2bfc589c44b4" prot="private" static="no" mutable="no">
@@ -338,7 +338,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="include/IndicatorInterface.h" line="464" column="10" bodyfile="include/IndicatorInterface.h" bodystart="464" bodyend="-1"/>
-        <referencedby refid="class_indicator_interface_1a01fa37471cccc2655c0a817b1cab0826" compoundref="_indicator_interface_8cpp" startline="690" endline="697">_handleOLEDSleep</referencedby>
+        <referencedby refid="class_indicator_interface_1a01fa37471cccc2655c0a817b1cab0826" compoundref="_indicator_interface_8cpp" startline="691" endline="698">_handleOLEDSleep</referencedby>
         <referencedby refid="class_indicator_interface_1addc325e3c4d6bdc53257fbd9075aaecf" compoundref="_indicator_interface_8cpp" startline="28" endline="52">IndicatorInterface</referencedby>
         <referencedby refid="class_indicator_interface_1a0f23c8a09f237eca7d71a9ff4e560e96" compoundref="_indicator_interface_8cpp" startline="433" endline="436">setOledSleepDelay</referencedby>
       </memberdef>
@@ -357,11 +357,11 @@
         </inbodydescription>
         <location file="include/IndicatorInterface.h" line="465" column="9" bodyfile="include/IndicatorInterface.h" bodystart="465" bodyend="-1"/>
         <referencedby refid="class_indicator_interface_1a2f021f6fa16dec590a8b9cf41a82349d" compoundref="_indicator_interface_8cpp" startline="531" endline="582">_calculateDisplayParams</referencedby>
-        <referencedby refid="class_indicator_interface_1aa24a016a7358ca6f0c955794d5774512" compoundref="_indicator_interface_8cpp" startline="952" endline="961">_restoreCurrentText</referencedby>
-        <referencedby refid="class_indicator_interface_1a30f46d2a644df56a3e0864dbee8cf7d1" compoundref="_indicator_interface_8cpp" startline="943" endline="950">_saveCurrentText</referencedby>
+        <referencedby refid="class_indicator_interface_1aa24a016a7358ca6f0c955794d5774512" compoundref="_indicator_interface_8cpp" startline="958" endline="967">_restoreCurrentText</referencedby>
+        <referencedby refid="class_indicator_interface_1a30f46d2a644df56a3e0864dbee8cf7d1" compoundref="_indicator_interface_8cpp" startline="949" endline="956">_saveCurrentText</referencedby>
         <referencedby refid="class_indicator_interface_1a38acc1a5120e275253fc4e458aea91f0" compoundref="_indicator_interface_8cpp" startline="622" endline="649">_updateOLEDDisplay</referencedby>
         <referencedby refid="class_indicator_interface_1addc325e3c4d6bdc53257fbd9075aaecf" compoundref="_indicator_interface_8cpp" startline="28" endline="52">IndicatorInterface</referencedby>
-        <referencedby refid="class_indicator_interface_1a3d7f75c8c69808ecc98d1e1fb272984d" compoundref="_indicator_interface_8cpp" startline="774" endline="797">pushLine</referencedby>
+        <referencedby refid="class_indicator_interface_1a3d7f75c8c69808ecc98d1e1fb272984d" compoundref="_indicator_interface_8cpp" startline="780" endline="803">pushLine</referencedby>
         <referencedby refid="class_indicator_interface_1acf545ec2921c786020f7826a846b364d" compoundref="_indicator_interface_8cpp" startline="438" endline="445">setOledMode</referencedby>
       </memberdef>
       <memberdef kind="variable" id="class_indicator_interface_1ae69883abed1813161f5e451245136fb3" prot="private" static="no" mutable="no">
@@ -378,12 +378,12 @@
         <inbodydescription>
         </inbodydescription>
         <location file="include/IndicatorInterface.h" line="466" column="12" bodyfile="include/IndicatorInterface.h" bodystart="466" bodyend="-1"/>
-        <referencedby refid="class_indicator_interface_1a56c23034a963e2099e36cf55ec70055e" compoundref="_indicator_interface_8cpp" startline="652" endline="684">_drawTextLine</referencedby>
-        <referencedby refid="class_indicator_interface_1a520ad5df9ff7c3f3b716b2b179e50a7e" compoundref="_indicator_interface_8cpp" startline="719" endline="747">_handleScrolling</referencedby>
-        <referencedby refid="class_indicator_interface_1aa24a016a7358ca6f0c955794d5774512" compoundref="_indicator_interface_8cpp" startline="952" endline="961">_restoreCurrentText</referencedby>
-        <referencedby refid="class_indicator_interface_1a30f46d2a644df56a3e0864dbee8cf7d1" compoundref="_indicator_interface_8cpp" startline="943" endline="950">_saveCurrentText</referencedby>
+        <referencedby refid="class_indicator_interface_1a56c23034a963e2099e36cf55ec70055e" compoundref="_indicator_interface_8cpp" startline="659" endline="685">_drawTextLine</referencedby>
+        <referencedby refid="class_indicator_interface_1a520ad5df9ff7c3f3b716b2b179e50a7e" compoundref="_indicator_interface_8cpp" startline="725" endline="753">_handleScrolling</referencedby>
+        <referencedby refid="class_indicator_interface_1aa24a016a7358ca6f0c955794d5774512" compoundref="_indicator_interface_8cpp" startline="958" endline="967">_restoreCurrentText</referencedby>
+        <referencedby refid="class_indicator_interface_1a30f46d2a644df56a3e0864dbee8cf7d1" compoundref="_indicator_interface_8cpp" startline="949" endline="956">_saveCurrentText</referencedby>
         <referencedby refid="class_indicator_interface_1ac3d970f4cfa8af402fa2538cf05e8cd6" compoundref="_indicator_interface_8cpp" startline="447" endline="467">printText</referencedby>
-        <referencedby refid="class_indicator_interface_1a3d7f75c8c69808ecc98d1e1fb272984d" compoundref="_indicator_interface_8cpp" startline="774" endline="797">pushLine</referencedby>
+        <referencedby refid="class_indicator_interface_1a3d7f75c8c69808ecc98d1e1fb272984d" compoundref="_indicator_interface_8cpp" startline="780" endline="803">pushLine</referencedby>
       </memberdef>
       <memberdef kind="variable" id="class_indicator_interface_1afc6b2600d29f5d85758fd75cae83b0b9" prot="private" static="no" mutable="no">
         <type>int</type>
@@ -399,14 +399,14 @@
         <inbodydescription>
         </inbodydescription>
         <location file="include/IndicatorInterface.h" line="467" column="9" bodyfile="include/IndicatorInterface.h" bodystart="467" bodyend="-1"/>
-        <referencedby refid="class_indicator_interface_1a56c23034a963e2099e36cf55ec70055e" compoundref="_indicator_interface_8cpp" startline="652" endline="684">_drawTextLine</referencedby>
-        <referencedby refid="class_indicator_interface_1a520ad5df9ff7c3f3b716b2b179e50a7e" compoundref="_indicator_interface_8cpp" startline="719" endline="747">_handleScrolling</referencedby>
-        <referencedby refid="class_indicator_interface_1aa24a016a7358ca6f0c955794d5774512" compoundref="_indicator_interface_8cpp" startline="952" endline="961">_restoreCurrentText</referencedby>
-        <referencedby refid="class_indicator_interface_1a30f46d2a644df56a3e0864dbee8cf7d1" compoundref="_indicator_interface_8cpp" startline="943" endline="950">_saveCurrentText</referencedby>
+        <referencedby refid="class_indicator_interface_1a56c23034a963e2099e36cf55ec70055e" compoundref="_indicator_interface_8cpp" startline="659" endline="685">_drawTextLine</referencedby>
+        <referencedby refid="class_indicator_interface_1a520ad5df9ff7c3f3b716b2b179e50a7e" compoundref="_indicator_interface_8cpp" startline="725" endline="753">_handleScrolling</referencedby>
+        <referencedby refid="class_indicator_interface_1aa24a016a7358ca6f0c955794d5774512" compoundref="_indicator_interface_8cpp" startline="958" endline="967">_restoreCurrentText</referencedby>
+        <referencedby refid="class_indicator_interface_1a30f46d2a644df56a3e0864dbee8cf7d1" compoundref="_indicator_interface_8cpp" startline="949" endline="956">_saveCurrentText</referencedby>
         <referencedby refid="class_indicator_interface_1a38acc1a5120e275253fc4e458aea91f0" compoundref="_indicator_interface_8cpp" startline="622" endline="649">_updateOLEDDisplay</referencedby>
         <referencedby refid="class_indicator_interface_1addc325e3c4d6bdc53257fbd9075aaecf" compoundref="_indicator_interface_8cpp" startline="28" endline="52">IndicatorInterface</referencedby>
         <referencedby refid="class_indicator_interface_1ac3d970f4cfa8af402fa2538cf05e8cd6" compoundref="_indicator_interface_8cpp" startline="447" endline="467">printText</referencedby>
-        <referencedby refid="class_indicator_interface_1a3d7f75c8c69808ecc98d1e1fb272984d" compoundref="_indicator_interface_8cpp" startline="774" endline="797">pushLine</referencedby>
+        <referencedby refid="class_indicator_interface_1a3d7f75c8c69808ecc98d1e1fb272984d" compoundref="_indicator_interface_8cpp" startline="780" endline="803">pushLine</referencedby>
       </memberdef>
       <memberdef kind="variable" id="class_indicator_interface_1a942bea540c40919390bc25816cc5b064" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -423,7 +423,7 @@
         </inbodydescription>
         <location file="include/IndicatorInterface.h" line="468" column="10" bodyfile="include/IndicatorInterface.h" bodystart="468" bodyend="-1"/>
         <referencedby refid="class_indicator_interface_1a38acc1a5120e275253fc4e458aea91f0" compoundref="_indicator_interface_8cpp" startline="622" endline="649">_updateOLEDDisplay</referencedby>
-        <referencedby refid="class_indicator_interface_1af64dc2a4b4256050b070991dfaf05f1a" compoundref="_indicator_interface_8cpp" startline="751" endline="757">_wakeOLED</referencedby>
+        <referencedby refid="class_indicator_interface_1af64dc2a4b4256050b070991dfaf05f1a" compoundref="_indicator_interface_8cpp" startline="757" endline="763">_wakeOLED</referencedby>
         <referencedby refid="class_indicator_interface_1addc325e3c4d6bdc53257fbd9075aaecf" compoundref="_indicator_interface_8cpp" startline="28" endline="52">IndicatorInterface</referencedby>
         <referencedby refid="class_indicator_interface_1a62ad23d6e52cf3abe43f6dad6000ebbd" compoundref="_indicator_interface_8cpp" startline="482" endline="486">setOLEDOff</referencedby>
         <referencedby refid="class_indicator_interface_1a7d807749bff6ef06c128617b35f4dcce" compoundref="_indicator_interface_8cpp" startline="488" endline="494">setOLEDOn</referencedby>
@@ -443,9 +443,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="include/IndicatorInterface.h" line="469" column="10" bodyfile="include/IndicatorInterface.h" bodystart="469" bodyend="-1"/>
-        <referencedby refid="class_indicator_interface_1afc1bacc73d487f912d7a71f559e193ef" compoundref="_indicator_interface_8cpp" startline="699" endline="717">_handleOLEDBlink</referencedby>
-        <referencedby refid="class_indicator_interface_1ac5ef0d744798dc4643c4fa0074e9b503" compoundref="_indicator_interface_8cpp" startline="922" endline="934">blinkCross</referencedby>
-        <referencedby refid="class_indicator_interface_1aa7c6bd010177acde7097bd4b186fa96d" compoundref="_indicator_interface_8cpp" startline="908" endline="920">blinkOK</referencedby>
+        <referencedby refid="class_indicator_interface_1afc1bacc73d487f912d7a71f559e193ef" compoundref="_indicator_interface_8cpp" startline="700" endline="718">_handleOLEDBlink</referencedby>
+        <referencedby refid="class_indicator_interface_1ac5ef0d744798dc4643c4fa0074e9b503" compoundref="_indicator_interface_8cpp" startline="928" endline="940">blinkCross</referencedby>
+        <referencedby refid="class_indicator_interface_1aa7c6bd010177acde7097bd4b186fa96d" compoundref="_indicator_interface_8cpp" startline="914" endline="926">blinkOK</referencedby>
         <referencedby refid="class_indicator_interface_1addc325e3c4d6bdc53257fbd9075aaecf" compoundref="_indicator_interface_8cpp" startline="28" endline="52">IndicatorInterface</referencedby>
         <referencedby refid="class_indicator_interface_1ab8a4f7cc08c2fb112aa893f0aeca044a" compoundref="_indicator_interface_8cpp" startline="470" endline="480">setOLEDblink</referencedby>
         <referencedby refid="class_indicator_interface_1a62ad23d6e52cf3abe43f6dad6000ebbd" compoundref="_indicator_interface_8cpp" startline="482" endline="486">setOLEDOff</referencedby>
@@ -464,7 +464,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="include/IndicatorInterface.h" line="470" column="9" bodyfile="include/IndicatorInterface.h" bodystart="470" bodyend="-1"/>
-        <referencedby refid="class_indicator_interface_1afc1bacc73d487f912d7a71f559e193ef" compoundref="_indicator_interface_8cpp" startline="699" endline="717">_handleOLEDBlink</referencedby>
+        <referencedby refid="class_indicator_interface_1afc1bacc73d487f912d7a71f559e193ef" compoundref="_indicator_interface_8cpp" startline="700" endline="718">_handleOLEDBlink</referencedby>
         <referencedby refid="class_indicator_interface_1addc325e3c4d6bdc53257fbd9075aaecf" compoundref="_indicator_interface_8cpp" startline="28" endline="52">IndicatorInterface</referencedby>
         <referencedby refid="class_indicator_interface_1ab8a4f7cc08c2fb112aa893f0aeca044a" compoundref="_indicator_interface_8cpp" startline="470" endline="480">setOLEDblink</referencedby>
       </memberdef>
@@ -482,7 +482,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="include/IndicatorInterface.h" line="471" column="9" bodyfile="include/IndicatorInterface.h" bodystart="471" bodyend="-1"/>
-        <referencedby refid="class_indicator_interface_1afc1bacc73d487f912d7a71f559e193ef" compoundref="_indicator_interface_8cpp" startline="699" endline="717">_handleOLEDBlink</referencedby>
+        <referencedby refid="class_indicator_interface_1afc1bacc73d487f912d7a71f559e193ef" compoundref="_indicator_interface_8cpp" startline="700" endline="718">_handleOLEDBlink</referencedby>
         <referencedby refid="class_indicator_interface_1addc325e3c4d6bdc53257fbd9075aaecf" compoundref="_indicator_interface_8cpp" startline="28" endline="52">IndicatorInterface</referencedby>
         <referencedby refid="class_indicator_interface_1ab8a4f7cc08c2fb112aa893f0aeca044a" compoundref="_indicator_interface_8cpp" startline="470" endline="480">setOLEDblink</referencedby>
       </memberdef>
@@ -500,7 +500,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="include/IndicatorInterface.h" line="472" column="19" bodyfile="include/IndicatorInterface.h" bodystart="472" bodyend="-1"/>
-        <referencedby refid="class_indicator_interface_1afc1bacc73d487f912d7a71f559e193ef" compoundref="_indicator_interface_8cpp" startline="699" endline="717">_handleOLEDBlink</referencedby>
+        <referencedby refid="class_indicator_interface_1afc1bacc73d487f912d7a71f559e193ef" compoundref="_indicator_interface_8cpp" startline="700" endline="718">_handleOLEDBlink</referencedby>
         <referencedby refid="class_indicator_interface_1addc325e3c4d6bdc53257fbd9075aaecf" compoundref="_indicator_interface_8cpp" startline="28" endline="52">IndicatorInterface</referencedby>
         <referencedby refid="class_indicator_interface_1ab8a4f7cc08c2fb112aa893f0aeca044a" compoundref="_indicator_interface_8cpp" startline="470" endline="480">setOLEDblink</referencedby>
       </memberdef>
@@ -518,7 +518,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="include/IndicatorInterface.h" line="473" column="10" bodyfile="include/IndicatorInterface.h" bodystart="473" bodyend="-1"/>
-        <referencedby refid="class_indicator_interface_1afc1bacc73d487f912d7a71f559e193ef" compoundref="_indicator_interface_8cpp" startline="699" endline="717">_handleOLEDBlink</referencedby>
+        <referencedby refid="class_indicator_interface_1afc1bacc73d487f912d7a71f559e193ef" compoundref="_indicator_interface_8cpp" startline="700" endline="718">_handleOLEDBlink</referencedby>
         <referencedby refid="class_indicator_interface_1addc325e3c4d6bdc53257fbd9075aaecf" compoundref="_indicator_interface_8cpp" startline="28" endline="52">IndicatorInterface</referencedby>
         <referencedby refid="class_indicator_interface_1ab8a4f7cc08c2fb112aa893f0aeca044a" compoundref="_indicator_interface_8cpp" startline="470" endline="480">setOLEDblink</referencedby>
       </memberdef>
@@ -536,9 +536,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="include/IndicatorInterface.h" line="474" column="19" bodyfile="include/IndicatorInterface.h" bodystart="474" bodyend="-1"/>
-        <referencedby refid="class_indicator_interface_1a01fa37471cccc2655c0a817b1cab0826" compoundref="_indicator_interface_8cpp" startline="690" endline="697">_handleOLEDSleep</referencedby>
+        <referencedby refid="class_indicator_interface_1a01fa37471cccc2655c0a817b1cab0826" compoundref="_indicator_interface_8cpp" startline="691" endline="698">_handleOLEDSleep</referencedby>
         <referencedby refid="class_indicator_interface_1a57958896691800d0526ad7941e305136" compoundref="_indicator_interface_8cpp" startline="425" endline="431">_initOLED</referencedby>
-        <referencedby refid="class_indicator_interface_1af64dc2a4b4256050b070991dfaf05f1a" compoundref="_indicator_interface_8cpp" startline="751" endline="757">_wakeOLED</referencedby>
+        <referencedby refid="class_indicator_interface_1af64dc2a4b4256050b070991dfaf05f1a" compoundref="_indicator_interface_8cpp" startline="757" endline="763">_wakeOLED</referencedby>
         <referencedby refid="class_indicator_interface_1addc325e3c4d6bdc53257fbd9075aaecf" compoundref="_indicator_interface_8cpp" startline="28" endline="52">IndicatorInterface</referencedby>
         <referencedby refid="class_indicator_interface_1ac3d970f4cfa8af402fa2538cf05e8cd6" compoundref="_indicator_interface_8cpp" startline="447" endline="467">printText</referencedby>
       </memberdef>
@@ -556,10 +556,10 @@
         <inbodydescription>
         </inbodydescription>
         <location file="include/IndicatorInterface.h" line="475" column="10" bodyfile="include/IndicatorInterface.h" bodystart="475" bodyend="-1"/>
-        <referencedby refid="class_indicator_interface_1afc1bacc73d487f912d7a71f559e193ef" compoundref="_indicator_interface_8cpp" startline="699" endline="717">_handleOLEDBlink</referencedby>
-        <referencedby refid="class_indicator_interface_1a01fa37471cccc2655c0a817b1cab0826" compoundref="_indicator_interface_8cpp" startline="690" endline="697">_handleOLEDSleep</referencedby>
+        <referencedby refid="class_indicator_interface_1afc1bacc73d487f912d7a71f559e193ef" compoundref="_indicator_interface_8cpp" startline="700" endline="718">_handleOLEDBlink</referencedby>
+        <referencedby refid="class_indicator_interface_1a01fa37471cccc2655c0a817b1cab0826" compoundref="_indicator_interface_8cpp" startline="691" endline="698">_handleOLEDSleep</referencedby>
         <referencedby refid="class_indicator_interface_1a38acc1a5120e275253fc4e458aea91f0" compoundref="_indicator_interface_8cpp" startline="622" endline="649">_updateOLEDDisplay</referencedby>
-        <referencedby refid="class_indicator_interface_1af64dc2a4b4256050b070991dfaf05f1a" compoundref="_indicator_interface_8cpp" startline="751" endline="757">_wakeOLED</referencedby>
+        <referencedby refid="class_indicator_interface_1af64dc2a4b4256050b070991dfaf05f1a" compoundref="_indicator_interface_8cpp" startline="757" endline="763">_wakeOLED</referencedby>
         <referencedby refid="class_indicator_interface_1addc325e3c4d6bdc53257fbd9075aaecf" compoundref="_indicator_interface_8cpp" startline="28" endline="52">IndicatorInterface</referencedby>
         <referencedby refid="class_indicator_interface_1a7d807749bff6ef06c128617b35f4dcce" compoundref="_indicator_interface_8cpp" startline="488" endline="494">setOLEDOn</referencedby>
         <referencedby refid="class_indicator_interface_1a5f9eaa4ad4d2da76bf9536a4dfad8723" compoundref="_indicator_interface_8cpp" startline="496" endline="510">updateOLED</referencedby>
@@ -578,11 +578,11 @@
         <inbodydescription>
         </inbodydescription>
         <location file="include/IndicatorInterface.h" line="478" column="9" bodyfile="include/IndicatorInterface.h" bodystart="478" bodyend="-1"/>
-        <referencedby refid="class_indicator_interface_1a56c23034a963e2099e36cf55ec70055e" compoundref="_indicator_interface_8cpp" startline="652" endline="684">_drawTextLine</referencedby>
-        <referencedby refid="class_indicator_interface_1a520ad5df9ff7c3f3b716b2b179e50a7e" compoundref="_indicator_interface_8cpp" startline="719" endline="747">_handleScrolling</referencedby>
+        <referencedby refid="class_indicator_interface_1a56c23034a963e2099e36cf55ec70055e" compoundref="_indicator_interface_8cpp" startline="659" endline="685">_drawTextLine</referencedby>
+        <referencedby refid="class_indicator_interface_1a520ad5df9ff7c3f3b716b2b179e50a7e" compoundref="_indicator_interface_8cpp" startline="725" endline="753">_handleScrolling</referencedby>
         <referencedby refid="class_indicator_interface_1addc325e3c4d6bdc53257fbd9075aaecf" compoundref="_indicator_interface_8cpp" startline="28" endline="52">IndicatorInterface</referencedby>
         <referencedby refid="class_indicator_interface_1ac3d970f4cfa8af402fa2538cf05e8cd6" compoundref="_indicator_interface_8cpp" startline="447" endline="467">printText</referencedby>
-        <referencedby refid="class_indicator_interface_1a3d7f75c8c69808ecc98d1e1fb272984d" compoundref="_indicator_interface_8cpp" startline="774" endline="797">pushLine</referencedby>
+        <referencedby refid="class_indicator_interface_1a3d7f75c8c69808ecc98d1e1fb272984d" compoundref="_indicator_interface_8cpp" startline="780" endline="803">pushLine</referencedby>
       </memberdef>
       <memberdef kind="variable" id="class_indicator_interface_1a4a32b171da54c67284aebede765d976d" prot="private" static="no" mutable="no">
         <type>unsigned long</type>
@@ -598,7 +598,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="include/IndicatorInterface.h" line="479" column="19" bodyfile="include/IndicatorInterface.h" bodystart="479" bodyend="-1"/>
-        <referencedby refid="class_indicator_interface_1a520ad5df9ff7c3f3b716b2b179e50a7e" compoundref="_indicator_interface_8cpp" startline="719" endline="747">_handleScrolling</referencedby>
+        <referencedby refid="class_indicator_interface_1a520ad5df9ff7c3f3b716b2b179e50a7e" compoundref="_indicator_interface_8cpp" startline="725" endline="753">_handleScrolling</referencedby>
         <referencedby refid="class_indicator_interface_1addc325e3c4d6bdc53257fbd9075aaecf" compoundref="_indicator_interface_8cpp" startline="28" endline="52">IndicatorInterface</referencedby>
       </memberdef>
       <memberdef kind="variable" id="class_indicator_interface_1a247d77090e8e2bb0db34c401c89cb002" prot="private" static="no" mutable="no">
@@ -615,7 +615,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="include/IndicatorInterface.h" line="480" column="9" bodyfile="include/IndicatorInterface.h" bodystart="480" bodyend="-1"/>
-        <referencedby refid="class_indicator_interface_1a520ad5df9ff7c3f3b716b2b179e50a7e" compoundref="_indicator_interface_8cpp" startline="719" endline="747">_handleScrolling</referencedby>
+        <referencedby refid="class_indicator_interface_1a520ad5df9ff7c3f3b716b2b179e50a7e" compoundref="_indicator_interface_8cpp" startline="725" endline="753">_handleScrolling</referencedby>
         <referencedby refid="class_indicator_interface_1addc325e3c4d6bdc53257fbd9075aaecf" compoundref="_indicator_interface_8cpp" startline="28" endline="52">IndicatorInterface</referencedby>
       </memberdef>
       <memberdef kind="variable" id="class_indicator_interface_1a12aa1363cd7159475c7ca7b145b688cd" prot="private" static="no" mutable="no">
@@ -667,8 +667,8 @@
         </inbodydescription>
         <location file="include/IndicatorInterface.h" line="483" column="9" bodyfile="include/IndicatorInterface.h" bodystart="483" bodyend="-1"/>
         <referencedby refid="class_indicator_interface_1a2f021f6fa16dec590a8b9cf41a82349d" compoundref="_indicator_interface_8cpp" startline="531" endline="582">_calculateDisplayParams</referencedby>
-        <referencedby refid="class_indicator_interface_1a56c23034a963e2099e36cf55ec70055e" compoundref="_indicator_interface_8cpp" startline="652" endline="684">_drawTextLine</referencedby>
-        <referencedby refid="class_indicator_interface_1a520ad5df9ff7c3f3b716b2b179e50a7e" compoundref="_indicator_interface_8cpp" startline="719" endline="747">_handleScrolling</referencedby>
+        <referencedby refid="class_indicator_interface_1a56c23034a963e2099e36cf55ec70055e" compoundref="_indicator_interface_8cpp" startline="659" endline="685">_drawTextLine</referencedby>
+        <referencedby refid="class_indicator_interface_1a520ad5df9ff7c3f3b716b2b179e50a7e" compoundref="_indicator_interface_8cpp" startline="725" endline="753">_handleScrolling</referencedby>
         <referencedby refid="class_indicator_interface_1addc325e3c4d6bdc53257fbd9075aaecf" compoundref="_indicator_interface_8cpp" startline="28" endline="52">IndicatorInterface</referencedby>
       </memberdef>
       <memberdef kind="variable" id="class_indicator_interface_1acc98489f9f8aad76f42bb4178626b631" prot="private" static="no" mutable="no">
@@ -685,8 +685,8 @@
         <inbodydescription>
         </inbodydescription>
         <location file="include/IndicatorInterface.h" line="536" column="12" bodyfile="include/IndicatorInterface.h" bodystart="536" bodyend="-1"/>
-        <referencedby refid="class_indicator_interface_1aa24a016a7358ca6f0c955794d5774512" compoundref="_indicator_interface_8cpp" startline="952" endline="961">_restoreCurrentText</referencedby>
-        <referencedby refid="class_indicator_interface_1a30f46d2a644df56a3e0864dbee8cf7d1" compoundref="_indicator_interface_8cpp" startline="943" endline="950">_saveCurrentText</referencedby>
+        <referencedby refid="class_indicator_interface_1aa24a016a7358ca6f0c955794d5774512" compoundref="_indicator_interface_8cpp" startline="958" endline="967">_restoreCurrentText</referencedby>
+        <referencedby refid="class_indicator_interface_1a30f46d2a644df56a3e0864dbee8cf7d1" compoundref="_indicator_interface_8cpp" startline="949" endline="956">_saveCurrentText</referencedby>
       </memberdef>
       <memberdef kind="variable" id="class_indicator_interface_1aca206ae7f20a60f0fd4661cebc9c113f" prot="private" static="no" mutable="no">
         <type>int</type>
@@ -702,8 +702,8 @@
         <inbodydescription>
         </inbodydescription>
         <location file="include/IndicatorInterface.h" line="537" column="9" bodyfile="include/IndicatorInterface.h" bodystart="537" bodyend="-1"/>
-        <referencedby refid="class_indicator_interface_1aa24a016a7358ca6f0c955794d5774512" compoundref="_indicator_interface_8cpp" startline="952" endline="961">_restoreCurrentText</referencedby>
-        <referencedby refid="class_indicator_interface_1a30f46d2a644df56a3e0864dbee8cf7d1" compoundref="_indicator_interface_8cpp" startline="943" endline="950">_saveCurrentText</referencedby>
+        <referencedby refid="class_indicator_interface_1aa24a016a7358ca6f0c955794d5774512" compoundref="_indicator_interface_8cpp" startline="958" endline="967">_restoreCurrentText</referencedby>
+        <referencedby refid="class_indicator_interface_1a30f46d2a644df56a3e0864dbee8cf7d1" compoundref="_indicator_interface_8cpp" startline="949" endline="956">_saveCurrentText</referencedby>
         <referencedby refid="class_indicator_interface_1addc325e3c4d6bdc53257fbd9075aaecf" compoundref="_indicator_interface_8cpp" startline="28" endline="52">IndicatorInterface</referencedby>
       </memberdef>
       <memberdef kind="variable" id="class_indicator_interface_1a4017512513ab2ada6ec2791d481708fb" prot="private" static="no" mutable="no">
@@ -720,8 +720,8 @@
         <inbodydescription>
         </inbodydescription>
         <location file="include/IndicatorInterface.h" line="538" column="9" bodyfile="include/IndicatorInterface.h" bodystart="538" bodyend="-1"/>
-        <referencedby refid="class_indicator_interface_1aa24a016a7358ca6f0c955794d5774512" compoundref="_indicator_interface_8cpp" startline="952" endline="961">_restoreCurrentText</referencedby>
-        <referencedby refid="class_indicator_interface_1a30f46d2a644df56a3e0864dbee8cf7d1" compoundref="_indicator_interface_8cpp" startline="943" endline="950">_saveCurrentText</referencedby>
+        <referencedby refid="class_indicator_interface_1aa24a016a7358ca6f0c955794d5774512" compoundref="_indicator_interface_8cpp" startline="958" endline="967">_restoreCurrentText</referencedby>
+        <referencedby refid="class_indicator_interface_1a30f46d2a644df56a3e0864dbee8cf7d1" compoundref="_indicator_interface_8cpp" startline="949" endline="956">_saveCurrentText</referencedby>
         <referencedby refid="class_indicator_interface_1addc325e3c4d6bdc53257fbd9075aaecf" compoundref="_indicator_interface_8cpp" startline="28" endline="52">IndicatorInterface</referencedby>
       </memberdef>
       <memberdef kind="variable" id="class_indicator_interface_1a3e32b13b3477abe772192591a20a907e" prot="private" static="no" mutable="no">
@@ -738,11 +738,11 @@
         <inbodydescription>
         </inbodydescription>
         <location file="include/IndicatorInterface.h" line="539" column="10" bodyfile="include/IndicatorInterface.h" bodystart="539" bodyend="-1"/>
-        <referencedby refid="class_indicator_interface_1ad70f8a9e7f527bc4faeb576b47483385" compoundref="_indicator_interface_8cpp" startline="963" endline="983">_handleSpecialBlink</referencedby>
-        <referencedby refid="class_indicator_interface_1ac5ef0d744798dc4643c4fa0074e9b503" compoundref="_indicator_interface_8cpp" startline="922" endline="934">blinkCross</referencedby>
-        <referencedby refid="class_indicator_interface_1aa7c6bd010177acde7097bd4b186fa96d" compoundref="_indicator_interface_8cpp" startline="908" endline="920">blinkOK</referencedby>
+        <referencedby refid="class_indicator_interface_1ad70f8a9e7f527bc4faeb576b47483385" compoundref="_indicator_interface_8cpp" startline="969" endline="989">_handleSpecialBlink</referencedby>
+        <referencedby refid="class_indicator_interface_1ac5ef0d744798dc4643c4fa0074e9b503" compoundref="_indicator_interface_8cpp" startline="928" endline="940">blinkCross</referencedby>
+        <referencedby refid="class_indicator_interface_1aa7c6bd010177acde7097bd4b186fa96d" compoundref="_indicator_interface_8cpp" startline="914" endline="926">blinkOK</referencedby>
         <referencedby refid="class_indicator_interface_1addc325e3c4d6bdc53257fbd9075aaecf" compoundref="_indicator_interface_8cpp" startline="28" endline="52">IndicatorInterface</referencedby>
-        <referencedby refid="class_indicator_interface_1a1573397b085b78ea7f714665d55cece0" compoundref="_indicator_interface_8cpp" startline="937" endline="941">stopBlinking</referencedby>
+        <referencedby refid="class_indicator_interface_1a1573397b085b78ea7f714665d55cece0" compoundref="_indicator_interface_8cpp" startline="943" endline="947">stopBlinking</referencedby>
         <referencedby refid="class_indicator_interface_1a5f9eaa4ad4d2da76bf9536a4dfad8723" compoundref="_indicator_interface_8cpp" startline="496" endline="510">updateOLED</referencedby>
       </memberdef>
       <memberdef kind="variable" id="class_indicator_interface_1a603d635417e1a1c3ed705296051ac32c" prot="private" static="no" mutable="no">
@@ -759,11 +759,11 @@
         <inbodydescription>
         </inbodydescription>
         <location file="include/IndicatorInterface.h" line="540" column="10" bodyfile="include/IndicatorInterface.h" bodystart="540" bodyend="-1"/>
-        <referencedby refid="class_indicator_interface_1ad70f8a9e7f527bc4faeb576b47483385" compoundref="_indicator_interface_8cpp" startline="963" endline="983">_handleSpecialBlink</referencedby>
-        <referencedby refid="class_indicator_interface_1ac5ef0d744798dc4643c4fa0074e9b503" compoundref="_indicator_interface_8cpp" startline="922" endline="934">blinkCross</referencedby>
-        <referencedby refid="class_indicator_interface_1aa7c6bd010177acde7097bd4b186fa96d" compoundref="_indicator_interface_8cpp" startline="908" endline="920">blinkOK</referencedby>
+        <referencedby refid="class_indicator_interface_1ad70f8a9e7f527bc4faeb576b47483385" compoundref="_indicator_interface_8cpp" startline="969" endline="989">_handleSpecialBlink</referencedby>
+        <referencedby refid="class_indicator_interface_1ac5ef0d744798dc4643c4fa0074e9b503" compoundref="_indicator_interface_8cpp" startline="928" endline="940">blinkCross</referencedby>
+        <referencedby refid="class_indicator_interface_1aa7c6bd010177acde7097bd4b186fa96d" compoundref="_indicator_interface_8cpp" startline="914" endline="926">blinkOK</referencedby>
         <referencedby refid="class_indicator_interface_1addc325e3c4d6bdc53257fbd9075aaecf" compoundref="_indicator_interface_8cpp" startline="28" endline="52">IndicatorInterface</referencedby>
-        <referencedby refid="class_indicator_interface_1a1573397b085b78ea7f714665d55cece0" compoundref="_indicator_interface_8cpp" startline="937" endline="941">stopBlinking</referencedby>
+        <referencedby refid="class_indicator_interface_1a1573397b085b78ea7f714665d55cece0" compoundref="_indicator_interface_8cpp" startline="943" endline="947">stopBlinking</referencedby>
         <referencedby refid="class_indicator_interface_1a5f9eaa4ad4d2da76bf9536a4dfad8723" compoundref="_indicator_interface_8cpp" startline="496" endline="510">updateOLED</referencedby>
       </memberdef>
       <memberdef kind="variable" id="class_indicator_interface_1a13c8569b739cf6e99de0bd3ad7c20801" prot="private" static="no" mutable="no">
@@ -780,9 +780,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="include/IndicatorInterface.h" line="541" column="9" bodyfile="include/IndicatorInterface.h" bodystart="541" bodyend="-1"/>
-        <referencedby refid="class_indicator_interface_1ad70f8a9e7f527bc4faeb576b47483385" compoundref="_indicator_interface_8cpp" startline="963" endline="983">_handleSpecialBlink</referencedby>
-        <referencedby refid="class_indicator_interface_1ac5ef0d744798dc4643c4fa0074e9b503" compoundref="_indicator_interface_8cpp" startline="922" endline="934">blinkCross</referencedby>
-        <referencedby refid="class_indicator_interface_1aa7c6bd010177acde7097bd4b186fa96d" compoundref="_indicator_interface_8cpp" startline="908" endline="920">blinkOK</referencedby>
+        <referencedby refid="class_indicator_interface_1ad70f8a9e7f527bc4faeb576b47483385" compoundref="_indicator_interface_8cpp" startline="969" endline="989">_handleSpecialBlink</referencedby>
+        <referencedby refid="class_indicator_interface_1ac5ef0d744798dc4643c4fa0074e9b503" compoundref="_indicator_interface_8cpp" startline="928" endline="940">blinkCross</referencedby>
+        <referencedby refid="class_indicator_interface_1aa7c6bd010177acde7097bd4b186fa96d" compoundref="_indicator_interface_8cpp" startline="914" endline="926">blinkOK</referencedby>
         <referencedby refid="class_indicator_interface_1addc325e3c4d6bdc53257fbd9075aaecf" compoundref="_indicator_interface_8cpp" startline="28" endline="52">IndicatorInterface</referencedby>
       </memberdef>
       <memberdef kind="variable" id="class_indicator_interface_1af2d0c2c932ac0b9ebe7e6266b63a218b" prot="private" static="no" mutable="no">
@@ -799,9 +799,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="include/IndicatorInterface.h" line="542" column="19" bodyfile="include/IndicatorInterface.h" bodystart="542" bodyend="-1"/>
-        <referencedby refid="class_indicator_interface_1ad70f8a9e7f527bc4faeb576b47483385" compoundref="_indicator_interface_8cpp" startline="963" endline="983">_handleSpecialBlink</referencedby>
-        <referencedby refid="class_indicator_interface_1ac5ef0d744798dc4643c4fa0074e9b503" compoundref="_indicator_interface_8cpp" startline="922" endline="934">blinkCross</referencedby>
-        <referencedby refid="class_indicator_interface_1aa7c6bd010177acde7097bd4b186fa96d" compoundref="_indicator_interface_8cpp" startline="908" endline="920">blinkOK</referencedby>
+        <referencedby refid="class_indicator_interface_1ad70f8a9e7f527bc4faeb576b47483385" compoundref="_indicator_interface_8cpp" startline="969" endline="989">_handleSpecialBlink</referencedby>
+        <referencedby refid="class_indicator_interface_1ac5ef0d744798dc4643c4fa0074e9b503" compoundref="_indicator_interface_8cpp" startline="928" endline="940">blinkCross</referencedby>
+        <referencedby refid="class_indicator_interface_1aa7c6bd010177acde7097bd4b186fa96d" compoundref="_indicator_interface_8cpp" startline="914" endline="926">blinkOK</referencedby>
         <referencedby refid="class_indicator_interface_1addc325e3c4d6bdc53257fbd9075aaecf" compoundref="_indicator_interface_8cpp" startline="28" endline="52">IndicatorInterface</referencedby>
       </memberdef>
       <memberdef kind="variable" id="class_indicator_interface_1a5b4a1c66db5909b0eeef1016287f8a75" prot="private" static="no" mutable="no">
@@ -818,9 +818,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="include/IndicatorInterface.h" line="543" column="10" bodyfile="include/IndicatorInterface.h" bodystart="543" bodyend="-1"/>
-        <referencedby refid="class_indicator_interface_1ad70f8a9e7f527bc4faeb576b47483385" compoundref="_indicator_interface_8cpp" startline="963" endline="983">_handleSpecialBlink</referencedby>
-        <referencedby refid="class_indicator_interface_1ac5ef0d744798dc4643c4fa0074e9b503" compoundref="_indicator_interface_8cpp" startline="922" endline="934">blinkCross</referencedby>
-        <referencedby refid="class_indicator_interface_1aa7c6bd010177acde7097bd4b186fa96d" compoundref="_indicator_interface_8cpp" startline="908" endline="920">blinkOK</referencedby>
+        <referencedby refid="class_indicator_interface_1ad70f8a9e7f527bc4faeb576b47483385" compoundref="_indicator_interface_8cpp" startline="969" endline="989">_handleSpecialBlink</referencedby>
+        <referencedby refid="class_indicator_interface_1ac5ef0d744798dc4643c4fa0074e9b503" compoundref="_indicator_interface_8cpp" startline="928" endline="940">blinkCross</referencedby>
+        <referencedby refid="class_indicator_interface_1aa7c6bd010177acde7097bd4b186fa96d" compoundref="_indicator_interface_8cpp" startline="914" endline="926">blinkOK</referencedby>
         <referencedby refid="class_indicator_interface_1addc325e3c4d6bdc53257fbd9075aaecf" compoundref="_indicator_interface_8cpp" startline="28" endline="52">IndicatorInterface</referencedby>
       </memberdef>
     </sectiondef>
@@ -859,15 +859,15 @@
         </inbodydescription>
         <location file="include/IndicatorInterface.h" line="461" column="47" bodyfile="include/IndicatorInterface.h" bodystart="461" bodyend="-1"/>
         <referencedby refid="class_indicator_interface_1a2f021f6fa16dec590a8b9cf41a82349d" compoundref="_indicator_interface_8cpp" startline="531" endline="582">_calculateDisplayParams</referencedby>
-        <referencedby refid="class_indicator_interface_1a56c23034a963e2099e36cf55ec70055e" compoundref="_indicator_interface_8cpp" startline="652" endline="684">_drawTextLine</referencedby>
-        <referencedby refid="class_indicator_interface_1afc1bacc73d487f912d7a71f559e193ef" compoundref="_indicator_interface_8cpp" startline="699" endline="717">_handleOLEDBlink</referencedby>
-        <referencedby refid="class_indicator_interface_1a01fa37471cccc2655c0a817b1cab0826" compoundref="_indicator_interface_8cpp" startline="690" endline="697">_handleOLEDSleep</referencedby>
+        <referencedby refid="class_indicator_interface_1a56c23034a963e2099e36cf55ec70055e" compoundref="_indicator_interface_8cpp" startline="659" endline="685">_drawTextLine</referencedby>
+        <referencedby refid="class_indicator_interface_1afc1bacc73d487f912d7a71f559e193ef" compoundref="_indicator_interface_8cpp" startline="700" endline="718">_handleOLEDBlink</referencedby>
+        <referencedby refid="class_indicator_interface_1a01fa37471cccc2655c0a817b1cab0826" compoundref="_indicator_interface_8cpp" startline="691" endline="698">_handleOLEDSleep</referencedby>
         <referencedby refid="class_indicator_interface_1a57958896691800d0526ad7941e305136" compoundref="_indicator_interface_8cpp" startline="425" endline="431">_initOLED</referencedby>
         <referencedby refid="class_indicator_interface_1a38acc1a5120e275253fc4e458aea91f0" compoundref="_indicator_interface_8cpp" startline="622" endline="649">_updateOLEDDisplay</referencedby>
-        <referencedby refid="class_indicator_interface_1af64dc2a4b4256050b070991dfaf05f1a" compoundref="_indicator_interface_8cpp" startline="751" endline="757">_wakeOLED</referencedby>
+        <referencedby refid="class_indicator_interface_1af64dc2a4b4256050b070991dfaf05f1a" compoundref="_indicator_interface_8cpp" startline="757" endline="763">_wakeOLED</referencedby>
         <referencedby refid="class_indicator_interface_1a6083d92cd6b29de3ceb7a9619b9cb03b" compoundref="_indicator_interface_8cpp" startline="63" endline="94">begin</referencedby>
-        <referencedby refid="class_indicator_interface_1a54fa76657f9ef0c9e19b6e94d682fb65" compoundref="_indicator_interface_8cpp" startline="829" endline="870">displayCross</referencedby>
-        <referencedby refid="class_indicator_interface_1aaa36eb97521df2decb957418acc277a9" compoundref="_indicator_interface_8cpp" startline="799" endline="827">displayOK</referencedby>
+        <referencedby refid="class_indicator_interface_1a54fa76657f9ef0c9e19b6e94d682fb65" compoundref="_indicator_interface_8cpp" startline="835" endline="876">displayCross</referencedby>
+        <referencedby refid="class_indicator_interface_1aaa36eb97521df2decb957418acc277a9" compoundref="_indicator_interface_8cpp" startline="805" endline="833">displayOK</referencedby>
         <referencedby refid="class_indicator_interface_1a62ad23d6e52cf3abe43f6dad6000ebbd" compoundref="_indicator_interface_8cpp" startline="482" endline="486">setOLEDOff</referencedby>
         <referencedby refid="class_indicator_interface_1a7d807749bff6ef06c128617b35f4dcce" compoundref="_indicator_interface_8cpp" startline="488" endline="494">setOLEDOn</referencedby>
       </memberdef>
@@ -1028,7 +1028,7 @@ Sets up PCF8575, OLED display, and interrupt handling </para>
         <inbodydescription>
         </inbodydescription>
         <location file="include/IndicatorInterface.h" line="77" column="10" bodyfile="src/IndicatorInterface.cpp" bodystart="512" bodyend="515"/>
-        <references refid="class_indicator_interface_1a891f8dd7ca0b76e7d89c0ab5567303da" compoundref="_indicator_interface_8cpp" startline="1030" endline="1048">updateBlinking</references>
+        <references refid="class_indicator_interface_1a891f8dd7ca0b76e7d89c0ab5567303da" compoundref="_indicator_interface_8cpp" startline="1036" endline="1054">updateBlinking</references>
         <references refid="class_indicator_interface_1a5f9eaa4ad4d2da76bf9536a4dfad8723" compoundref="_indicator_interface_8cpp" startline="496" endline="510">updateOLED</references>
       </memberdef>
       <memberdef kind="function" id="class_indicator_interface_1aac59d81d86b39af42b24afc4378736f9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -1212,9 +1212,9 @@ Controls output port state using human-readable name </para>
         <location file="include/IndicatorInterface.h" line="117" column="10" bodyfile="src/IndicatorInterface.cpp" bodystart="150" bodyend="156"/>
         <references refid="class_indicator_interface_1a412495eaf75665fa714b37fc36a3b82d" compoundref="_indicator_interface_8h" startline="391">_portNames</references>
         <references refid="class_indicator_interface_1a89a41cb1580141ed65c07ced6692322e" compoundref="_indicator_interface_8cpp" startline="150" endline="156">writePort</references>
-        <referencedby refid="class_indicator_interface_1aafa418167df7eb74fc90fca14818a5eb" compoundref="_indicator_interface_8cpp" startline="987" endline="1014">startBlinking</referencedby>
-        <referencedby refid="class_indicator_interface_1a4458930151b73e21364fada5ba6fe129" compoundref="_indicator_interface_8cpp" startline="1016" endline="1028">stopBlinking</referencedby>
-        <referencedby refid="class_indicator_interface_1a891f8dd7ca0b76e7d89c0ab5567303da" compoundref="_indicator_interface_8cpp" startline="1030" endline="1048">updateBlinking</referencedby>
+        <referencedby refid="class_indicator_interface_1aafa418167df7eb74fc90fca14818a5eb" compoundref="_indicator_interface_8cpp" startline="993" endline="1020">startBlinking</referencedby>
+        <referencedby refid="class_indicator_interface_1a4458930151b73e21364fada5ba6fe129" compoundref="_indicator_interface_8cpp" startline="1022" endline="1034">stopBlinking</referencedby>
+        <referencedby refid="class_indicator_interface_1a891f8dd7ca0b76e7d89c0ab5567303da" compoundref="_indicator_interface_8cpp" startline="1036" endline="1054">updateBlinking</referencedby>
         <referencedby refid="class_indicator_interface_1a89a41cb1580141ed65c07ced6692322e" compoundref="_indicator_interface_8cpp" startline="150" endline="156">writePort</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_indicator_interface_1a6b01cb93befc42d644388756ff986f6e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -1728,10 +1728,10 @@ Reads input port state using port number </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/IndicatorInterface.h" line="236" column="10" bodyfile="src/IndicatorInterface.cpp" bodystart="760" bodyend="766"/>
+        <location file="include/IndicatorInterface.h" line="236" column="10" bodyfile="src/IndicatorInterface.cpp" bodystart="766" bodyend="772"/>
         <references refid="class_indicator_interface_1adac6de445ff7c1d1bc1afa660849c272" compoundref="_indicator_interface_8h" startline="401">_interruptFlag</references>
         <references refid="class_indicator_interface_1aea37934542bbe7b6c50941dff4646fef" compoundref="_indicator_interface_8cpp" startline="359" endline="371">_updateState</references>
-        <references refid="class_indicator_interface_1af64dc2a4b4256050b070991dfaf05f1a" compoundref="_indicator_interface_8cpp" startline="751" endline="757">_wakeOLED</references>
+        <references refid="class_indicator_interface_1af64dc2a4b4256050b070991dfaf05f1a" compoundref="_indicator_interface_8cpp" startline="757" endline="763">_wakeOLED</references>
       </memberdef>
       <memberdef kind="function" id="class_indicator_interface_1a49ab6e47d490a3367acc819bf6116d9b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1835,7 +1835,7 @@ Controls automatic OLED power saving </para>
         </inbodydescription>
         <location file="include/IndicatorInterface.h" line="264" column="10" bodyfile="src/IndicatorInterface.cpp" bodystart="433" bodyend="436"/>
         <references refid="class_indicator_interface_1ad22a15d0f7561db46969879a10aa1de5" compoundref="_indicator_interface_8h" startline="464">_oledSleepDelay</references>
-        <references refid="class_indicator_interface_1af64dc2a4b4256050b070991dfaf05f1a" compoundref="_indicator_interface_8cpp" startline="751" endline="757">_wakeOLED</references>
+        <references refid="class_indicator_interface_1af64dc2a4b4256050b070991dfaf05f1a" compoundref="_indicator_interface_8cpp" startline="757" endline="763">_wakeOLED</references>
       </memberdef>
       <memberdef kind="function" id="class_indicator_interface_1acf545ec2921c786020f7826a846b364d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1867,7 +1867,7 @@ Configures display layout for text output </para>
         <location file="include/IndicatorInterface.h" line="271" column="10" bodyfile="src/IndicatorInterface.cpp" bodystart="438" bodyend="445"/>
         <references refid="class_indicator_interface_1a2f021f6fa16dec590a8b9cf41a82349d" compoundref="_indicator_interface_8cpp" startline="531" endline="582">_calculateDisplayParams</references>
         <references refid="class_indicator_interface_1ab74bae75e78806a6eb4df3ad364321cd" compoundref="_indicator_interface_8h" startline="465">_oledLines</references>
-        <references refid="class_indicator_interface_1af64dc2a4b4256050b070991dfaf05f1a" compoundref="_indicator_interface_8cpp" startline="751" endline="757">_wakeOLED</references>
+        <references refid="class_indicator_interface_1af64dc2a4b4256050b070991dfaf05f1a" compoundref="_indicator_interface_8cpp" startline="757" endline="763">_wakeOLED</references>
       </memberdef>
       <memberdef kind="function" id="class_indicator_interface_1ac3d970f4cfa8af402fa2538cf05e8cd6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1915,7 +1915,7 @@ Updates OLED display with provided text </para>
         <references refid="class_indicator_interface_1ae69883abed1813161f5e451245136fb3" compoundref="_indicator_interface_8h" startline="466">_textBuffer</references>
         <references refid="class_indicator_interface_1afc6b2600d29f5d85758fd75cae83b0b9" compoundref="_indicator_interface_8h" startline="467">_textBufferSize</references>
         <references refid="class_indicator_interface_1a38acc1a5120e275253fc4e458aea91f0" compoundref="_indicator_interface_8cpp" startline="622" endline="649">_updateOLEDDisplay</references>
-        <references refid="class_indicator_interface_1af64dc2a4b4256050b070991dfaf05f1a" compoundref="_indicator_interface_8cpp" startline="751" endline="757">_wakeOLED</references>
+        <references refid="class_indicator_interface_1af64dc2a4b4256050b070991dfaf05f1a" compoundref="_indicator_interface_8cpp" startline="757" endline="763">_wakeOLED</references>
       </memberdef>
       <memberdef kind="function" id="class_indicator_interface_1ab8a4f7cc08c2fb112aa893f0aeca044a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1975,7 +1975,7 @@ Controls OLED blinking for attention-getting displays </para>
         <references refid="class_indicator_interface_1aa85df0334d9959edc154bed17747ae04" compoundref="_indicator_interface_8h" startline="470">_blinkTimeOn</references>
         <references refid="class_indicator_interface_1a5026d82e76d2b3efd1eab90878803e8d" compoundref="_indicator_interface_8h" startline="472">_lastBlinkTime</references>
         <references refid="class_indicator_interface_1ab944524710a5026f7f20d62d44a2dee7" compoundref="_indicator_interface_8h" startline="469">_oledBlink</references>
-        <references refid="class_indicator_interface_1af64dc2a4b4256050b070991dfaf05f1a" compoundref="_indicator_interface_8cpp" startline="751" endline="757">_wakeOLED</references>
+        <references refid="class_indicator_interface_1af64dc2a4b4256050b070991dfaf05f1a" compoundref="_indicator_interface_8cpp" startline="757" endline="763">_wakeOLED</references>
       </memberdef>
       <memberdef kind="function" id="class_indicator_interface_1a62ad23d6e52cf3abe43f6dad6000ebbd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2014,7 +2014,7 @@ Controls OLED blinking for attention-getting displays </para>
         <references refid="class_indicator_interface_1a942bea540c40919390bc25816cc5b064" compoundref="_indicator_interface_8h" startline="468">_oledOn</references>
         <references refid="class_indicator_interface_1a36e848846a6ca0327c1f0d3f0a8e80ed" compoundref="_indicator_interface_8h" startline="475">_oledSleeping</references>
         <references refid="class_indicator_interface_1a38acc1a5120e275253fc4e458aea91f0" compoundref="_indicator_interface_8cpp" startline="622" endline="649">_updateOLEDDisplay</references>
-        <references refid="class_indicator_interface_1af64dc2a4b4256050b070991dfaf05f1a" compoundref="_indicator_interface_8cpp" startline="751" endline="757">_wakeOLED</references>
+        <references refid="class_indicator_interface_1af64dc2a4b4256050b070991dfaf05f1a" compoundref="_indicator_interface_8cpp" startline="757" endline="763">_wakeOLED</references>
         <references refid="class_indicator_interface_1a76ba2dca5a876b151ce79ec1af4da9dd" compoundref="_indicator_interface_8h" startline="461">u8g2</references>
       </memberdef>
       <memberdef kind="function" id="class_indicator_interface_1a5f9eaa4ad4d2da76bf9536a4dfad8723" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -2032,10 +2032,10 @@ Controls OLED blinking for attention-getting displays </para>
         <inbodydescription>
         </inbodydescription>
         <location file="include/IndicatorInterface.h" line="306" column="10" bodyfile="src/IndicatorInterface.cpp" bodystart="496" bodyend="510"/>
-        <references refid="class_indicator_interface_1afc1bacc73d487f912d7a71f559e193ef" compoundref="_indicator_interface_8cpp" startline="699" endline="717">_handleOLEDBlink</references>
-        <references refid="class_indicator_interface_1a01fa37471cccc2655c0a817b1cab0826" compoundref="_indicator_interface_8cpp" startline="690" endline="697">_handleOLEDSleep</references>
-        <references refid="class_indicator_interface_1a520ad5df9ff7c3f3b716b2b179e50a7e" compoundref="_indicator_interface_8cpp" startline="719" endline="747">_handleScrolling</references>
-        <references refid="class_indicator_interface_1ad70f8a9e7f527bc4faeb576b47483385" compoundref="_indicator_interface_8cpp" startline="963" endline="983">_handleSpecialBlink</references>
+        <references refid="class_indicator_interface_1afc1bacc73d487f912d7a71f559e193ef" compoundref="_indicator_interface_8cpp" startline="700" endline="718">_handleOLEDBlink</references>
+        <references refid="class_indicator_interface_1a01fa37471cccc2655c0a817b1cab0826" compoundref="_indicator_interface_8cpp" startline="691" endline="698">_handleOLEDSleep</references>
+        <references refid="class_indicator_interface_1a520ad5df9ff7c3f3b716b2b179e50a7e" compoundref="_indicator_interface_8cpp" startline="725" endline="753">_handleScrolling</references>
+        <references refid="class_indicator_interface_1ad70f8a9e7f527bc4faeb576b47483385" compoundref="_indicator_interface_8cpp" startline="969" endline="989">_handleSpecialBlink</references>
         <references refid="class_indicator_interface_1a603d635417e1a1c3ed705296051ac32c" compoundref="_indicator_interface_8h" startline="540">_isBlinkingCross</references>
         <references refid="class_indicator_interface_1a3e32b13b3477abe772192591a20a907e" compoundref="_indicator_interface_8h" startline="539">_isBlinkingOK</references>
         <references refid="class_indicator_interface_1a942bea540c40919390bc25816cc5b064" compoundref="_indicator_interface_8h" startline="468">_oledOn</references>
@@ -2069,13 +2069,13 @@ Adds new line and scrolls existing lines up </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/IndicatorInterface.h" line="314" column="10" bodyfile="src/IndicatorInterface.cpp" bodystart="774" bodyend="797"/>
+        <location file="include/IndicatorInterface.h" line="314" column="10" bodyfile="src/IndicatorInterface.cpp" bodystart="780" bodyend="803"/>
         <references refid="class_indicator_interface_1ab74bae75e78806a6eb4df3ad364321cd" compoundref="_indicator_interface_8h" startline="465">_oledLines</references>
         <references refid="class_indicator_interface_1ae2a7330b015b9da1a2c151821756a4d6" compoundref="_indicator_interface_8h" startline="478">_scrollOffset</references>
         <references refid="class_indicator_interface_1ae69883abed1813161f5e451245136fb3" compoundref="_indicator_interface_8h" startline="466">_textBuffer</references>
         <references refid="class_indicator_interface_1afc6b2600d29f5d85758fd75cae83b0b9" compoundref="_indicator_interface_8h" startline="467">_textBufferSize</references>
         <references refid="class_indicator_interface_1a38acc1a5120e275253fc4e458aea91f0" compoundref="_indicator_interface_8cpp" startline="622" endline="649">_updateOLEDDisplay</references>
-        <references refid="class_indicator_interface_1af64dc2a4b4256050b070991dfaf05f1a" compoundref="_indicator_interface_8cpp" startline="751" endline="757">_wakeOLED</references>
+        <references refid="class_indicator_interface_1af64dc2a4b4256050b070991dfaf05f1a" compoundref="_indicator_interface_8cpp" startline="757" endline="763">_wakeOLED</references>
       </memberdef>
       <memberdef kind="function" id="class_indicator_interface_1aaa36eb97521df2decb957418acc277a9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2091,11 +2091,11 @@ Adds new line and scrolls existing lines up </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/IndicatorInterface.h" line="320" column="10" bodyfile="src/IndicatorInterface.cpp" bodystart="799" bodyend="827"/>
-        <references refid="class_indicator_interface_1af64dc2a4b4256050b070991dfaf05f1a" compoundref="_indicator_interface_8cpp" startline="751" endline="757">_wakeOLED</references>
+        <location file="include/IndicatorInterface.h" line="320" column="10" bodyfile="src/IndicatorInterface.cpp" bodystart="805" bodyend="833"/>
+        <references refid="class_indicator_interface_1af64dc2a4b4256050b070991dfaf05f1a" compoundref="_indicator_interface_8cpp" startline="757" endline="763">_wakeOLED</references>
         <references refid="class_indicator_interface_1a76ba2dca5a876b151ce79ec1af4da9dd" compoundref="_indicator_interface_8h" startline="461">u8g2</references>
-        <referencedby refid="class_indicator_interface_1ad70f8a9e7f527bc4faeb576b47483385" compoundref="_indicator_interface_8cpp" startline="963" endline="983">_handleSpecialBlink</referencedby>
-        <referencedby refid="class_indicator_interface_1aa7c6bd010177acde7097bd4b186fa96d" compoundref="_indicator_interface_8cpp" startline="908" endline="920">blinkOK</referencedby>
+        <referencedby refid="class_indicator_interface_1ad70f8a9e7f527bc4faeb576b47483385" compoundref="_indicator_interface_8cpp" startline="969" endline="989">_handleSpecialBlink</referencedby>
+        <referencedby refid="class_indicator_interface_1aa7c6bd010177acde7097bd4b186fa96d" compoundref="_indicator_interface_8cpp" startline="914" endline="926">blinkOK</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_indicator_interface_1a54fa76657f9ef0c9e19b6e94d682fb65" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2111,11 +2111,11 @@ Adds new line and scrolls existing lines up </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/IndicatorInterface.h" line="326" column="10" bodyfile="src/IndicatorInterface.cpp" bodystart="829" bodyend="870"/>
-        <references refid="class_indicator_interface_1af64dc2a4b4256050b070991dfaf05f1a" compoundref="_indicator_interface_8cpp" startline="751" endline="757">_wakeOLED</references>
+        <location file="include/IndicatorInterface.h" line="326" column="10" bodyfile="src/IndicatorInterface.cpp" bodystart="835" bodyend="876"/>
+        <references refid="class_indicator_interface_1af64dc2a4b4256050b070991dfaf05f1a" compoundref="_indicator_interface_8cpp" startline="757" endline="763">_wakeOLED</references>
         <references refid="class_indicator_interface_1a76ba2dca5a876b151ce79ec1af4da9dd" compoundref="_indicator_interface_8h" startline="461">u8g2</references>
-        <referencedby refid="class_indicator_interface_1ad70f8a9e7f527bc4faeb576b47483385" compoundref="_indicator_interface_8cpp" startline="963" endline="983">_handleSpecialBlink</referencedby>
-        <referencedby refid="class_indicator_interface_1ac5ef0d744798dc4643c4fa0074e9b503" compoundref="_indicator_interface_8cpp" startline="922" endline="934">blinkCross</referencedby>
+        <referencedby refid="class_indicator_interface_1ad70f8a9e7f527bc4faeb576b47483385" compoundref="_indicator_interface_8cpp" startline="969" endline="989">_handleSpecialBlink</referencedby>
+        <referencedby refid="class_indicator_interface_1ac5ef0d744798dc4643c4fa0074e9b503" compoundref="_indicator_interface_8cpp" startline="928" endline="940">blinkCross</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_indicator_interface_1aa7c6bd010177acde7097bd4b186fa96d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2144,15 +2144,15 @@ Alternates between OK symbol and saved text </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/IndicatorInterface.h" line="333" column="10" bodyfile="src/IndicatorInterface.cpp" bodystart="908" bodyend="920"/>
+        <location file="include/IndicatorInterface.h" line="333" column="10" bodyfile="src/IndicatorInterface.cpp" bodystart="914" bodyend="926"/>
         <references refid="class_indicator_interface_1a13c8569b739cf6e99de0bd3ad7c20801" compoundref="_indicator_interface_8h" startline="541">_blinkDelayTime</references>
         <references refid="class_indicator_interface_1a5b4a1c66db5909b0eeef1016287f8a75" compoundref="_indicator_interface_8h" startline="543">_blinkShowSpecial</references>
         <references refid="class_indicator_interface_1a603d635417e1a1c3ed705296051ac32c" compoundref="_indicator_interface_8h" startline="540">_isBlinkingCross</references>
         <references refid="class_indicator_interface_1a3e32b13b3477abe772192591a20a907e" compoundref="_indicator_interface_8h" startline="539">_isBlinkingOK</references>
         <references refid="class_indicator_interface_1af2d0c2c932ac0b9ebe7e6266b63a218b" compoundref="_indicator_interface_8h" startline="542">_lastBlinkToggle</references>
         <references refid="class_indicator_interface_1ab944524710a5026f7f20d62d44a2dee7" compoundref="_indicator_interface_8h" startline="469">_oledBlink</references>
-        <references refid="class_indicator_interface_1a30f46d2a644df56a3e0864dbee8cf7d1" compoundref="_indicator_interface_8cpp" startline="943" endline="950">_saveCurrentText</references>
-        <references refid="class_indicator_interface_1aaa36eb97521df2decb957418acc277a9" compoundref="_indicator_interface_8cpp" startline="799" endline="827">displayOK</references>
+        <references refid="class_indicator_interface_1a30f46d2a644df56a3e0864dbee8cf7d1" compoundref="_indicator_interface_8cpp" startline="949" endline="956">_saveCurrentText</references>
+        <references refid="class_indicator_interface_1aaa36eb97521df2decb957418acc277a9" compoundref="_indicator_interface_8cpp" startline="805" endline="833">displayOK</references>
       </memberdef>
       <memberdef kind="function" id="class_indicator_interface_1ac5ef0d744798dc4643c4fa0074e9b503" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2181,15 +2181,15 @@ Alternates between cross symbol and saved text </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/IndicatorInterface.h" line="340" column="10" bodyfile="src/IndicatorInterface.cpp" bodystart="922" bodyend="934"/>
+        <location file="include/IndicatorInterface.h" line="340" column="10" bodyfile="src/IndicatorInterface.cpp" bodystart="928" bodyend="940"/>
         <references refid="class_indicator_interface_1a13c8569b739cf6e99de0bd3ad7c20801" compoundref="_indicator_interface_8h" startline="541">_blinkDelayTime</references>
         <references refid="class_indicator_interface_1a5b4a1c66db5909b0eeef1016287f8a75" compoundref="_indicator_interface_8h" startline="543">_blinkShowSpecial</references>
         <references refid="class_indicator_interface_1a603d635417e1a1c3ed705296051ac32c" compoundref="_indicator_interface_8h" startline="540">_isBlinkingCross</references>
         <references refid="class_indicator_interface_1a3e32b13b3477abe772192591a20a907e" compoundref="_indicator_interface_8h" startline="539">_isBlinkingOK</references>
         <references refid="class_indicator_interface_1af2d0c2c932ac0b9ebe7e6266b63a218b" compoundref="_indicator_interface_8h" startline="542">_lastBlinkToggle</references>
         <references refid="class_indicator_interface_1ab944524710a5026f7f20d62d44a2dee7" compoundref="_indicator_interface_8h" startline="469">_oledBlink</references>
-        <references refid="class_indicator_interface_1a30f46d2a644df56a3e0864dbee8cf7d1" compoundref="_indicator_interface_8cpp" startline="943" endline="950">_saveCurrentText</references>
-        <references refid="class_indicator_interface_1a54fa76657f9ef0c9e19b6e94d682fb65" compoundref="_indicator_interface_8cpp" startline="829" endline="870">displayCross</references>
+        <references refid="class_indicator_interface_1a30f46d2a644df56a3e0864dbee8cf7d1" compoundref="_indicator_interface_8cpp" startline="949" endline="956">_saveCurrentText</references>
+        <references refid="class_indicator_interface_1a54fa76657f9ef0c9e19b6e94d682fb65" compoundref="_indicator_interface_8cpp" startline="835" endline="876">displayCross</references>
       </memberdef>
       <memberdef kind="function" id="class_indicator_interface_1a1573397b085b78ea7f714665d55cece0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2205,10 +2205,10 @@ Alternates between cross symbol and saved text </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/IndicatorInterface.h" line="346" column="10" bodyfile="src/IndicatorInterface.cpp" bodystart="937" bodyend="941"/>
+        <location file="include/IndicatorInterface.h" line="346" column="10" bodyfile="src/IndicatorInterface.cpp" bodystart="943" bodyend="947"/>
         <references refid="class_indicator_interface_1a603d635417e1a1c3ed705296051ac32c" compoundref="_indicator_interface_8h" startline="540">_isBlinkingCross</references>
         <references refid="class_indicator_interface_1a3e32b13b3477abe772192591a20a907e" compoundref="_indicator_interface_8h" startline="539">_isBlinkingOK</references>
-        <references refid="class_indicator_interface_1aa24a016a7358ca6f0c955794d5774512" compoundref="_indicator_interface_8cpp" startline="952" endline="961">_restoreCurrentText</references>
+        <references refid="class_indicator_interface_1aa24a016a7358ca6f0c955794d5774512" compoundref="_indicator_interface_8cpp" startline="958" endline="967">_restoreCurrentText</references>
       </memberdef>
       <memberdef kind="function" id="class_indicator_interface_1aafa418167df7eb74fc90fca14818a5eb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2261,7 +2261,7 @@ Begins automatic blinking of specified port </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/IndicatorInterface.h" line="355" column="10" bodyfile="src/IndicatorInterface.cpp" bodystart="987" bodyend="1014"/>
+        <location file="include/IndicatorInterface.h" line="355" column="10" bodyfile="src/IndicatorInterface.cpp" bodystart="993" bodyend="1020"/>
         <references refid="class_indicator_interface_1a7ba08be0780b5c3e1e1a85fcb75a40b4" compoundref="_indicator_interface_8h" startline="379">_blinkingPorts</references>
         <references refid="struct_indicator_interface_1_1_blinking_port_1aa22cf12bfef400089f451e7992ae4c62" compoundref="_indicator_interface_8h" startline="48">IndicatorInterface::BlinkingPort::currentState</references>
         <references refid="class_logger_manager_1a5c1373ccc47f4112b596fe6f84fbbc21" compoundref="_logger_manager_8h" startline="145" endline="147">LoggerManager::info</references>
@@ -2299,7 +2299,7 @@ Ends automatic blinking and leaves port in current state </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/IndicatorInterface.h" line="362" column="10" bodyfile="src/IndicatorInterface.cpp" bodystart="1016" bodyend="1028"/>
+        <location file="include/IndicatorInterface.h" line="362" column="10" bodyfile="src/IndicatorInterface.cpp" bodystart="1022" bodyend="1034"/>
         <references refid="class_indicator_interface_1a7ba08be0780b5c3e1e1a85fcb75a40b4" compoundref="_indicator_interface_8h" startline="379">_blinkingPorts</references>
         <references refid="class_logger_manager_1a5c1373ccc47f4112b596fe6f84fbbc21" compoundref="_logger_manager_8h" startline="145" endline="147">LoggerManager::info</references>
         <references refid="class_indicator_interface_1a89a41cb1580141ed65c07ced6692322e" compoundref="_indicator_interface_8cpp" startline="150" endline="156">writePort</references>
@@ -2318,7 +2318,7 @@ Ends automatic blinking and leaves port in current state </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/IndicatorInterface.h" line="368" column="10" bodyfile="src/IndicatorInterface.cpp" bodystart="1030" bodyend="1048"/>
+        <location file="include/IndicatorInterface.h" line="368" column="10" bodyfile="src/IndicatorInterface.cpp" bodystart="1036" bodyend="1054"/>
         <references refid="class_indicator_interface_1a7ba08be0780b5c3e1e1a85fcb75a40b4" compoundref="_indicator_interface_8h" startline="379">_blinkingPorts</references>
         <references refid="class_indicator_interface_1a89a41cb1580141ed65c07ced6692322e" compoundref="_indicator_interface_8cpp" startline="150" endline="156">writePort</references>
         <referencedby refid="class_indicator_interface_1a01db31cebc14d62f6aa9b1266e6c278d" compoundref="_indicator_interface_8cpp" startline="512" endline="515">update</referencedby>
@@ -2352,7 +2352,7 @@ Ends automatic blinking and leaves port in current state </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/IndicatorInterface.h" line="375" column="10" bodyfile="src/IndicatorInterface.cpp" bodystart="1050" bodyend="1057"/>
+        <location file="include/IndicatorInterface.h" line="375" column="10" bodyfile="src/IndicatorInterface.cpp" bodystart="1056" bodyend="1063"/>
         <references refid="class_indicator_interface_1a7ba08be0780b5c3e1e1a85fcb75a40b4" compoundref="_indicator_interface_8h" startline="379">_blinkingPorts</references>
       </memberdef>
     </sectiondef>
@@ -2378,7 +2378,7 @@ Ends automatic blinking and leaves port in current state </para>
         <references refid="class_indicator_interface_1ab7a2790dc55140d67ca7280ea3625002" compoundref="_indicator_interface_8h" startline="396">_lastState</references>
         <references refid="class_indicator_interface_1aad7f389062d31610e8b0d01e6c75413e" compoundref="_indicator_interface_8cpp" startline="379" endline="381">_readPCF</references>
         <referencedby refid="class_indicator_interface_1a6e69fba966a59153449facfac1e04057" compoundref="_indicator_interface_8cpp" startline="239" endline="250">getCurrentState</referencedby>
-        <referencedby refid="class_indicator_interface_1a4586496158d0d102742463c908d9b2c3" compoundref="_indicator_interface_8cpp" startline="760" endline="766">handleInterrupt</referencedby>
+        <referencedby refid="class_indicator_interface_1a4586496158d0d102742463c908d9b2c3" compoundref="_indicator_interface_8cpp" startline="766" endline="772">handleInterrupt</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_indicator_interface_1a55da41c64cf3538a8bbb5252dd38b885" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2604,17 +2604,17 @@ Ends automatic blinking and leaves port in current state </para>
         </inbodydescription>
         <location file="include/IndicatorInterface.h" line="496" column="10" bodyfile="src/IndicatorInterface.cpp" bodystart="622" bodyend="649"/>
         <references refid="class_indicator_interface_1a2f021f6fa16dec590a8b9cf41a82349d" compoundref="_indicator_interface_8cpp" startline="531" endline="582">_calculateDisplayParams</references>
-        <references refid="class_indicator_interface_1a56c23034a963e2099e36cf55ec70055e" compoundref="_indicator_interface_8cpp" startline="652" endline="684">_drawTextLine</references>
+        <references refid="class_indicator_interface_1a56c23034a963e2099e36cf55ec70055e" compoundref="_indicator_interface_8cpp" startline="659" endline="685">_drawTextLine</references>
         <references refid="class_indicator_interface_1ab74bae75e78806a6eb4df3ad364321cd" compoundref="_indicator_interface_8h" startline="465">_oledLines</references>
         <references refid="class_indicator_interface_1a942bea540c40919390bc25816cc5b064" compoundref="_indicator_interface_8h" startline="468">_oledOn</references>
         <references refid="class_indicator_interface_1a36e848846a6ca0327c1f0d3f0a8e80ed" compoundref="_indicator_interface_8h" startline="475">_oledSleeping</references>
         <references refid="class_indicator_interface_1afc6b2600d29f5d85758fd75cae83b0b9" compoundref="_indicator_interface_8h" startline="467">_textBufferSize</references>
         <references refid="class_indicator_interface_1a76ba2dca5a876b151ce79ec1af4da9dd" compoundref="_indicator_interface_8h" startline="461">u8g2</references>
-        <referencedby refid="class_indicator_interface_1afc1bacc73d487f912d7a71f559e193ef" compoundref="_indicator_interface_8cpp" startline="699" endline="717">_handleOLEDBlink</referencedby>
-        <referencedby refid="class_indicator_interface_1a520ad5df9ff7c3f3b716b2b179e50a7e" compoundref="_indicator_interface_8cpp" startline="719" endline="747">_handleScrolling</referencedby>
-        <referencedby refid="class_indicator_interface_1aa24a016a7358ca6f0c955794d5774512" compoundref="_indicator_interface_8cpp" startline="952" endline="961">_restoreCurrentText</referencedby>
+        <referencedby refid="class_indicator_interface_1afc1bacc73d487f912d7a71f559e193ef" compoundref="_indicator_interface_8cpp" startline="700" endline="718">_handleOLEDBlink</referencedby>
+        <referencedby refid="class_indicator_interface_1a520ad5df9ff7c3f3b716b2b179e50a7e" compoundref="_indicator_interface_8cpp" startline="725" endline="753">_handleScrolling</referencedby>
+        <referencedby refid="class_indicator_interface_1aa24a016a7358ca6f0c955794d5774512" compoundref="_indicator_interface_8cpp" startline="958" endline="967">_restoreCurrentText</referencedby>
         <referencedby refid="class_indicator_interface_1ac3d970f4cfa8af402fa2538cf05e8cd6" compoundref="_indicator_interface_8cpp" startline="447" endline="467">printText</referencedby>
-        <referencedby refid="class_indicator_interface_1a3d7f75c8c69808ecc98d1e1fb272984d" compoundref="_indicator_interface_8cpp" startline="774" endline="797">pushLine</referencedby>
+        <referencedby refid="class_indicator_interface_1a3d7f75c8c69808ecc98d1e1fb272984d" compoundref="_indicator_interface_8cpp" startline="780" endline="803">pushLine</referencedby>
         <referencedby refid="class_indicator_interface_1a7d807749bff6ef06c128617b35f4dcce" compoundref="_indicator_interface_8cpp" startline="488" endline="494">setOLEDOn</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_indicator_interface_1a01fa37471cccc2655c0a817b1cab0826" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -2631,7 +2631,7 @@ Ends automatic blinking and leaves port in current state </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/IndicatorInterface.h" line="502" column="10" bodyfile="src/IndicatorInterface.cpp" bodystart="690" bodyend="697"/>
+        <location file="include/IndicatorInterface.h" line="502" column="10" bodyfile="src/IndicatorInterface.cpp" bodystart="691" bodyend="698"/>
         <references refid="class_indicator_interface_1a608486f8f9a8373d4363b753d61b8968" compoundref="_indicator_interface_8h" startline="474">_lastActivityTime</references>
         <references refid="class_indicator_interface_1ad22a15d0f7561db46969879a10aa1de5" compoundref="_indicator_interface_8h" startline="464">_oledSleepDelay</references>
         <references refid="class_indicator_interface_1a36e848846a6ca0327c1f0d3f0a8e80ed" compoundref="_indicator_interface_8h" startline="475">_oledSleeping</references>
@@ -2652,7 +2652,7 @@ Ends automatic blinking and leaves port in current state </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/IndicatorInterface.h" line="508" column="10" bodyfile="src/IndicatorInterface.cpp" bodystart="699" bodyend="717"/>
+        <location file="include/IndicatorInterface.h" line="508" column="10" bodyfile="src/IndicatorInterface.cpp" bodystart="700" bodyend="718"/>
         <references refid="class_indicator_interface_1a5b059b24e3fa66de2165fb17e9026fd7" compoundref="_indicator_interface_8h" startline="473">_blinkState</references>
         <references refid="class_indicator_interface_1a3080269e210288582ea05cf63afd16d5" compoundref="_indicator_interface_8h" startline="471">_blinkTimeOff</references>
         <references refid="class_indicator_interface_1aa85df0334d9959edc154bed17747ae04" compoundref="_indicator_interface_8h" startline="470">_blinkTimeOn</references>
@@ -2673,11 +2673,13 @@ Ends automatic blinking and leaves port in current state </para>
 <para>Handle text scrolling. </para>
         </briefdescription>
         <detaileddescription>
-<para>Updates horizontal scroll position for long text lines </para>
+<para>Handle circular scrolling animation for all text lines.</para>
+<para>Updates horizontal scroll position for long text lines</para>
+<para>Updates scroll offsets for lines longer than display width. Implements seamless circular scrolling where text wraps around continuously. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/IndicatorInterface.h" line="514" column="10" bodyfile="src/IndicatorInterface.cpp" bodystart="719" bodyend="747"/>
+        <location file="include/IndicatorInterface.h" line="514" column="10" bodyfile="src/IndicatorInterface.cpp" bodystart="725" bodyend="753"/>
         <references refid="class_indicator_interface_1a4a32b171da54c67284aebede765d976d" compoundref="_indicator_interface_8h" startline="479">_lastScrollTime</references>
         <references refid="class_indicator_interface_1a54182aa1c8eb74b781bea42002efb18e" compoundref="_indicator_interface_8h" startline="483">_maxCharsPerLine</references>
         <references refid="class_indicator_interface_1a247d77090e8e2bb0db34c401c89cb002" compoundref="_indicator_interface_8h" startline="480">_scrollDelay</references>
@@ -2705,6 +2707,7 @@ Ends automatic blinking and leaves port in current state </para>
 <para>Draw single text line at specified position. </para>
         </briefdescription>
         <detaileddescription>
+<para>Draw a single text line with circular scrolling support.</para>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">lineIndex</parametername>
@@ -2718,15 +2721,31 @@ Ends automatic blinking and leaves port in current state </para>
 <parametername direction="in">yPos</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>Vertical position in pixels </para>
+<para>Vertical position in pixels</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">lineIndex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Index of the line to draw (0-4) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">yPos</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Y position on the display</para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-</para>
+Implements circular scrolling for text longer than display width. Text continuously loops with a 3-space separator between end and beginning. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/IndicatorInterface.h" line="521" column="10" bodyfile="src/IndicatorInterface.cpp" bodystart="652" bodyend="684"/>
+        <location file="include/IndicatorInterface.h" line="521" column="10" bodyfile="src/IndicatorInterface.cpp" bodystart="659" bodyend="685"/>
         <references refid="class_indicator_interface_1a54182aa1c8eb74b781bea42002efb18e" compoundref="_indicator_interface_8h" startline="483">_maxCharsPerLine</references>
         <references refid="class_indicator_interface_1ae2a7330b015b9da1a2c151821756a4d6" compoundref="_indicator_interface_8h" startline="478">_scrollOffset</references>
         <references refid="class_indicator_interface_1ae69883abed1813161f5e451245136fb3" compoundref="_indicator_interface_8h" startline="466">_textBuffer</references>
@@ -2772,16 +2791,16 @@ Ends automatic blinking and leaves port in current state </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/IndicatorInterface.h" line="533" column="10" bodyfile="src/IndicatorInterface.cpp" bodystart="751" bodyend="757"/>
+        <location file="include/IndicatorInterface.h" line="533" column="10" bodyfile="src/IndicatorInterface.cpp" bodystart="757" bodyend="763"/>
         <references refid="class_indicator_interface_1a608486f8f9a8373d4363b753d61b8968" compoundref="_indicator_interface_8h" startline="474">_lastActivityTime</references>
         <references refid="class_indicator_interface_1a942bea540c40919390bc25816cc5b064" compoundref="_indicator_interface_8h" startline="468">_oledOn</references>
         <references refid="class_indicator_interface_1a36e848846a6ca0327c1f0d3f0a8e80ed" compoundref="_indicator_interface_8h" startline="475">_oledSleeping</references>
         <references refid="class_indicator_interface_1a76ba2dca5a876b151ce79ec1af4da9dd" compoundref="_indicator_interface_8h" startline="461">u8g2</references>
-        <referencedby refid="class_indicator_interface_1a54fa76657f9ef0c9e19b6e94d682fb65" compoundref="_indicator_interface_8cpp" startline="829" endline="870">displayCross</referencedby>
-        <referencedby refid="class_indicator_interface_1aaa36eb97521df2decb957418acc277a9" compoundref="_indicator_interface_8cpp" startline="799" endline="827">displayOK</referencedby>
-        <referencedby refid="class_indicator_interface_1a4586496158d0d102742463c908d9b2c3" compoundref="_indicator_interface_8cpp" startline="760" endline="766">handleInterrupt</referencedby>
+        <referencedby refid="class_indicator_interface_1a54fa76657f9ef0c9e19b6e94d682fb65" compoundref="_indicator_interface_8cpp" startline="835" endline="876">displayCross</referencedby>
+        <referencedby refid="class_indicator_interface_1aaa36eb97521df2decb957418acc277a9" compoundref="_indicator_interface_8cpp" startline="805" endline="833">displayOK</referencedby>
+        <referencedby refid="class_indicator_interface_1a4586496158d0d102742463c908d9b2c3" compoundref="_indicator_interface_8cpp" startline="766" endline="772">handleInterrupt</referencedby>
         <referencedby refid="class_indicator_interface_1ac3d970f4cfa8af402fa2538cf05e8cd6" compoundref="_indicator_interface_8cpp" startline="447" endline="467">printText</referencedby>
-        <referencedby refid="class_indicator_interface_1a3d7f75c8c69808ecc98d1e1fb272984d" compoundref="_indicator_interface_8cpp" startline="774" endline="797">pushLine</referencedby>
+        <referencedby refid="class_indicator_interface_1a3d7f75c8c69808ecc98d1e1fb272984d" compoundref="_indicator_interface_8cpp" startline="780" endline="803">pushLine</referencedby>
         <referencedby refid="class_indicator_interface_1ab8a4f7cc08c2fb112aa893f0aeca044a" compoundref="_indicator_interface_8cpp" startline="470" endline="480">setOLEDblink</referencedby>
         <referencedby refid="class_indicator_interface_1acf545ec2921c786020f7826a846b364d" compoundref="_indicator_interface_8cpp" startline="438" endline="445">setOledMode</referencedby>
         <referencedby refid="class_indicator_interface_1a7d807749bff6ef06c128617b35f4dcce" compoundref="_indicator_interface_8cpp" startline="488" endline="494">setOLEDOn</referencedby>
@@ -2801,15 +2820,15 @@ Ends automatic blinking and leaves port in current state </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/IndicatorInterface.h" line="550" column="10" bodyfile="src/IndicatorInterface.cpp" bodystart="943" bodyend="950"/>
+        <location file="include/IndicatorInterface.h" line="550" column="10" bodyfile="src/IndicatorInterface.cpp" bodystart="949" bodyend="956"/>
         <references refid="class_indicator_interface_1ab74bae75e78806a6eb4df3ad364321cd" compoundref="_indicator_interface_8h" startline="465">_oledLines</references>
         <references refid="class_indicator_interface_1a4017512513ab2ada6ec2791d481708fb" compoundref="_indicator_interface_8h" startline="538">_savedOledLines</references>
         <references refid="class_indicator_interface_1acc98489f9f8aad76f42bb4178626b631" compoundref="_indicator_interface_8h" startline="536">_savedTextBuffer</references>
         <references refid="class_indicator_interface_1aca206ae7f20a60f0fd4661cebc9c113f" compoundref="_indicator_interface_8h" startline="537">_savedTextBufferSize</references>
         <references refid="class_indicator_interface_1ae69883abed1813161f5e451245136fb3" compoundref="_indicator_interface_8h" startline="466">_textBuffer</references>
         <references refid="class_indicator_interface_1afc6b2600d29f5d85758fd75cae83b0b9" compoundref="_indicator_interface_8h" startline="467">_textBufferSize</references>
-        <referencedby refid="class_indicator_interface_1ac5ef0d744798dc4643c4fa0074e9b503" compoundref="_indicator_interface_8cpp" startline="922" endline="934">blinkCross</referencedby>
-        <referencedby refid="class_indicator_interface_1aa7c6bd010177acde7097bd4b186fa96d" compoundref="_indicator_interface_8cpp" startline="908" endline="920">blinkOK</referencedby>
+        <referencedby refid="class_indicator_interface_1ac5ef0d744798dc4643c4fa0074e9b503" compoundref="_indicator_interface_8cpp" startline="928" endline="940">blinkCross</referencedby>
+        <referencedby refid="class_indicator_interface_1aa7c6bd010177acde7097bd4b186fa96d" compoundref="_indicator_interface_8cpp" startline="914" endline="926">blinkOK</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_indicator_interface_1aa24a016a7358ca6f0c955794d5774512" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2825,7 +2844,7 @@ Ends automatic blinking and leaves port in current state </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/IndicatorInterface.h" line="556" column="10" bodyfile="src/IndicatorInterface.cpp" bodystart="952" bodyend="961"/>
+        <location file="include/IndicatorInterface.h" line="556" column="10" bodyfile="src/IndicatorInterface.cpp" bodystart="958" bodyend="967"/>
         <references refid="class_indicator_interface_1ab74bae75e78806a6eb4df3ad364321cd" compoundref="_indicator_interface_8h" startline="465">_oledLines</references>
         <references refid="class_indicator_interface_1a4017512513ab2ada6ec2791d481708fb" compoundref="_indicator_interface_8h" startline="538">_savedOledLines</references>
         <references refid="class_indicator_interface_1acc98489f9f8aad76f42bb4178626b631" compoundref="_indicator_interface_8h" startline="536">_savedTextBuffer</references>
@@ -2833,8 +2852,8 @@ Ends automatic blinking and leaves port in current state </para>
         <references refid="class_indicator_interface_1ae69883abed1813161f5e451245136fb3" compoundref="_indicator_interface_8h" startline="466">_textBuffer</references>
         <references refid="class_indicator_interface_1afc6b2600d29f5d85758fd75cae83b0b9" compoundref="_indicator_interface_8h" startline="467">_textBufferSize</references>
         <references refid="class_indicator_interface_1a38acc1a5120e275253fc4e458aea91f0" compoundref="_indicator_interface_8cpp" startline="622" endline="649">_updateOLEDDisplay</references>
-        <referencedby refid="class_indicator_interface_1ad70f8a9e7f527bc4faeb576b47483385" compoundref="_indicator_interface_8cpp" startline="963" endline="983">_handleSpecialBlink</referencedby>
-        <referencedby refid="class_indicator_interface_1a1573397b085b78ea7f714665d55cece0" compoundref="_indicator_interface_8cpp" startline="937" endline="941">stopBlinking</referencedby>
+        <referencedby refid="class_indicator_interface_1ad70f8a9e7f527bc4faeb576b47483385" compoundref="_indicator_interface_8cpp" startline="969" endline="989">_handleSpecialBlink</referencedby>
+        <referencedby refid="class_indicator_interface_1a1573397b085b78ea7f714665d55cece0" compoundref="_indicator_interface_8cpp" startline="943" endline="947">stopBlinking</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_indicator_interface_1ad70f8a9e7f527bc4faeb576b47483385" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2850,15 +2869,15 @@ Ends automatic blinking and leaves port in current state </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/IndicatorInterface.h" line="562" column="10" bodyfile="src/IndicatorInterface.cpp" bodystart="963" bodyend="983"/>
+        <location file="include/IndicatorInterface.h" line="562" column="10" bodyfile="src/IndicatorInterface.cpp" bodystart="969" bodyend="989"/>
         <references refid="class_indicator_interface_1a13c8569b739cf6e99de0bd3ad7c20801" compoundref="_indicator_interface_8h" startline="541">_blinkDelayTime</references>
         <references refid="class_indicator_interface_1a5b4a1c66db5909b0eeef1016287f8a75" compoundref="_indicator_interface_8h" startline="543">_blinkShowSpecial</references>
         <references refid="class_indicator_interface_1a603d635417e1a1c3ed705296051ac32c" compoundref="_indicator_interface_8h" startline="540">_isBlinkingCross</references>
         <references refid="class_indicator_interface_1a3e32b13b3477abe772192591a20a907e" compoundref="_indicator_interface_8h" startline="539">_isBlinkingOK</references>
         <references refid="class_indicator_interface_1af2d0c2c932ac0b9ebe7e6266b63a218b" compoundref="_indicator_interface_8h" startline="542">_lastBlinkToggle</references>
-        <references refid="class_indicator_interface_1aa24a016a7358ca6f0c955794d5774512" compoundref="_indicator_interface_8cpp" startline="952" endline="961">_restoreCurrentText</references>
-        <references refid="class_indicator_interface_1a54fa76657f9ef0c9e19b6e94d682fb65" compoundref="_indicator_interface_8cpp" startline="829" endline="870">displayCross</references>
-        <references refid="class_indicator_interface_1aaa36eb97521df2decb957418acc277a9" compoundref="_indicator_interface_8cpp" startline="799" endline="827">displayOK</references>
+        <references refid="class_indicator_interface_1aa24a016a7358ca6f0c955794d5774512" compoundref="_indicator_interface_8cpp" startline="958" endline="967">_restoreCurrentText</references>
+        <references refid="class_indicator_interface_1a54fa76657f9ef0c9e19b6e94d682fb65" compoundref="_indicator_interface_8cpp" startline="835" endline="876">displayCross</references>
+        <references refid="class_indicator_interface_1aaa36eb97521df2decb957418acc277a9" compoundref="_indicator_interface_8cpp" startline="805" endline="833">displayOK</references>
         <referencedby refid="class_indicator_interface_1a5f9eaa4ad4d2da76bf9536a4dfad8723" compoundref="_indicator_interface_8cpp" startline="496" endline="510">updateOLED</referencedby>
       </memberdef>
     </sectiondef>

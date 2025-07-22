@@ -90,7 +90,7 @@ Temperature Control System - PlatformIO-based embedded system for monitoring and
 
 4. **LED Indicators**
    - Duplicate alarm priority from display
-   - The leds follw the logic: GREEN - no alarms, solid: RED, YELLOW, BLUE - critical, high, medium alarms active, Binking BLUE - LOW triority alarm is active.
+   - The leds follow the logic: GREEN - no alarms, solid: RED, YELLOW, BLUE - critical, high, medium alarms active, Binking BLUE - LOW triority alarm is active.
 
 ### Priority 3: Core Functionality Completion
 1. **Acknowledged Alarm Re-activation Delays**
