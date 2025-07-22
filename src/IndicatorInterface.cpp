@@ -33,7 +33,7 @@ IndicatorInterface::IndicatorInterface(TwoWire& i2cBus, uint8_t pcf_i2cAddress, 
       _oledSleepDelay(30000), _oledLines(3), _textBufferSize(0), _oledOn(true),
       _oledBlink(false), _blinkTimeOn(500), _blinkTimeOff(500), _lastBlinkTime(0),
       _blinkState(true), _lastActivityTime(0), _oledSleeping(false),
-      _lastScrollTime(0), _scrollDelay(200), _charWidth(6), _lineHeight(12),
+      _lastScrollTime(0), _scrollDelay(SCROLL_UPDATE_DELAY_MS), _charWidth(6), _lineHeight(12),
       _maxCharsPerLine(21),
       _savedTextBufferSize(0), _savedOledLines(3), _isBlinkingOK(false), 
       _isBlinkingCross(false), _blinkDelayTime(500), _lastBlinkToggle(0), _blinkShowSpecial(true)  {
@@ -740,8 +740,8 @@ void IndicatorInterface::_handleScrolling() {
         int displayWidthPixels = u8g2.getDisplayWidth();
         
         if (textWidthPixels > displayWidthPixels) {
-            // Scroll by 2 pixels each time for smooth movement
-            _scrollOffset[i] += 2;
+            // Scroll by configured pixels each time for smooth movement
+            _scrollOffset[i] += SCROLL_SPEED_PIXELS;
             
             // Calculate total width including separator "   " (3 spaces)
             int separatorWidth = u8g2.getUTF8Width("   ");

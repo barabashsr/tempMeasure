@@ -1967,8 +1967,7 @@ void TemperatureController::_displayNextAcknowledgedAlarm() {
     String line1 = displayText.substring(0, newlineIndex);
     String line2 = displayText.substring(newlineIndex + 1);
     
-    // Add ACK indicator to line1
-    line1 = line1 + " ACK";
+    // Remove ACK from line1 - it's already shown in line2
     
     // Create bottom line with alarm counter and alarm activation timestamp
     String line3 = String(_currentAcknowledgedAlarmIndex + 1) + "/" + String(_acknowledgedAlarmsQueue.size());

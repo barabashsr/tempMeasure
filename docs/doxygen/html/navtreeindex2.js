@@ -1,5 +1,7 @@
 var NAVTREEINDEX2 =
 {
+"class_register_map.html#a8418bd7fbd2379830c5b2a2d5a7ceadb":[0,0,7,39],
+"class_register_map.html#a883e25ca7b65319483aa56e8ea8f1362":[0,0,7,82],
 "class_register_map.html#a8a79e873217f9137db65e64c42574da8":[0,0,7,97],
 "class_register_map.html#a8c38fa18dec0fe5a62d07f218169c44a":[0,0,7,7],
 "class_register_map.html#a909bc6f8138e55d5830cd444f264e120":[0,0,7,94],
@@ -247,7 +249,5 @@ var NAVTREEINDEX2 =
 "class_temperature_controller.html#a9ac5f76def1895a8c8f8f92ce8cd2e5c":[0,0,10,52],
 "class_temperature_controller.html#a9b4fe09d4c87dcf86e78b890012e1e72":[0,0,10,49],
 "class_temperature_controller.html#a9d6a16e479c94d264e8a81f14d5a9060":[0,0,10,125],
-"class_temperature_controller.html#a9e1bfe23a47e8323e6fd50e1cf6ceafc":[0,0,10,40],
-"class_temperature_controller.html#aa0d8e0b6828ce6bdfee5b4a9464673e1":[0,0,10,107],
-"class_temperature_controller.html#aa4746563f439c7a0647d7932acd9ab04":[0,0,10,58]
+"class_temperature_controller.html#a9e1bfe23a47e8323e6fd50e1cf6ceafc":[0,0,10,40]
 };

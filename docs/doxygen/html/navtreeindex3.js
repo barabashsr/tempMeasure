@@ -1,5 +1,7 @@
 var NAVTREEINDEX3 =
 {
+"class_temperature_controller.html#aa0d8e0b6828ce6bdfee5b4a9464673e1":[0,0,10,107],
+"class_temperature_controller.html#aa4746563f439c7a0647d7932acd9ab04":[0,0,10,58],
 "class_temperature_controller.html#aa547daf7d44ea3214e0a2977f7f72cc6":[0,0,10,27],
 "class_temperature_controller.html#aa64384fb8503814b46a7d55f53ccb53a":[0,0,10,29],
 "class_temperature_controller.html#aa881d2bbb58b22ac952aa781d997ee01":[0,0,10,115],

@@ -29,6 +29,10 @@
 #include <vector>
 #include "LoggerManager.h"
 
+// Scrolling configuration
+#define SCROLL_SPEED_PIXELS 4        // Pixels to scroll per update (default was 2)
+#define SCROLL_UPDATE_DELAY_MS 50    // Milliseconds between scroll updates
+
 /**
  * @brief Interface class for PCF8575 I/O expander and OLED display
  * @details Provides comprehensive control over 16-bit I/O expander with named ports,
