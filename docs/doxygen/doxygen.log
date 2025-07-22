@@ -51,6 +51,8 @@ warning: source 'lib' is not a readable file or directory... skipping.
 /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp:39: warning: argument type from the argument list of Alarm::Alarm has multiple @param documentation sections
 /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp:39: warning: argument source from the argument list of Alarm::Alarm has multiple @param documentation sections
 /Users/sergeybarabash/robo/tempMeasure/src/Alarm.cpp:39: warning: argument priority from the argument list of Alarm::Alarm has multiple @param documentation sections
+/Users/sergeybarabash/robo/tempMeasure/src/IndicatorInterface.cpp:653: warning: argument lineIndex from the argument list of IndicatorInterface::_drawTextLine has multiple @param documentation sections
+/Users/sergeybarabash/robo/tempMeasure/src/IndicatorInterface.cpp:653: warning: argument yPos from the argument list of IndicatorInterface::_drawTextLine has multiple @param documentation sections
 Doxygen version used: 1.14.0
 Searching for include files...
 Searching for example files...
@@ -1713,6 +1715,6 @@ Patching output file 508/511
 Patching output file 509/511
 Patching output file 510/511
 Patching output file 511/511
-type lookup cache used 932/65536 hits=2965 misses=962
-symbol lookup cache used 2297/65536 hits=37816 misses=2297
+type lookup cache used 935/65536 hits=2968 misses=965
+symbol lookup cache used 2303/65536 hits=37988 misses=2303
 finished...

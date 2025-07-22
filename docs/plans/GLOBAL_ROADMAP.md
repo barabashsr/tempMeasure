@@ -69,15 +69,20 @@ Temperature Control System - PlatformIO-based embedded system for monitoring and
    - Relay 3 controlled via Modbus only
    - Status feedback in registers 11-13
 
-### Priority 2: Display & LED Improvements
-1. **Circular Text Scrolling**
-   - Smooth scrolling without jumping
+### Priority 2: Display & LED Improvements ✓ COMPLETED
+1. **Circular Text Scrolling** ✓
+   - Implemented smooth pixel-based scrolling without jumping
+   - Configurable speed via SCROLL_SPEED_PIXELS and SCROLL_UPDATE_DELAY_MS
+   - Fixed UTF-8 support for Cyrillic characters
 
-2. **Multiple Unacknowledged Alarms**
-   - Cycle through all unacknowledged alarms every 5 seconds
-   - Show alarm details: point name, temp, type, status, timestamp
+2. **Multiple Unacknowledged Alarms** ✓
+   - Implemented 3-line alarm display format
+   - Line 1: Priority (C/H/M/L) + alarm type
+   - Line 2: Point name + temperature/status (with ACK suffix for acknowledged)
+   - Line 3: Alarm counter (e.g., "1/3") + activation time (HH:MM)
+   - Manual advancement through alarms with button press
 
-3. **System Status Mode**
+3. **System Status Mode** (Not implemented yet)
    - Enter/Exit: Long button press (>3s)
    - Navigate pages: Short button press
    - Auto-exit: 30s timeout
@@ -88,9 +93,12 @@ Temperature Control System - PlatformIO-based embedded system for monitoring and
      4. Alarm summary by type
      5. Modbus status
 
-4. **LED Indicators**
-   - Duplicate alarm priority from display
-   - The leds follow the logic: GREEN - no alarms, solid: RED, YELLOW, BLUE - critical, high, medium alarms active, Binking BLUE - LOW triority alarm is active.
+4. **LED Indicators** ✓
+   - Fixed LED logic per requirements
+   - GREEN: ON when no alarms (system OK)
+   - RED: Solid for CRITICAL priority
+   - YELLOW: Solid for HIGH priority
+   - BLUE: Solid for MEDIUM, Blinking for LOW priority
 
 ### Priority 3: Core Functionality Completion
 1. **Acknowledged Alarm Re-activation Delays**
@@ -170,5 +178,5 @@ Temperature Control System - PlatformIO-based embedded system for monitoring and
 
 ---
 
-*Last Updated: 2025-07-21*
-*Version: 1.0*
+*Last Updated: 2025-07-22*
+*Version: 1.1*
