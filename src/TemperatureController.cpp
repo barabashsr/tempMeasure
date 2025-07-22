@@ -2079,14 +2079,19 @@ void TemperatureController::_checkButtonPress() {
     bool currentButtonState = indicator.readPort("BUTTON");
     unsigned long currentTime = millis();
     
+    // BUTTON is LOW when pressed (pull-up resistor), so invert the logic
+    bool buttonPressed = !currentButtonState;
+    bool lastButtonPressed = !_lastButtonState;
+    
     // Button just pressed - start timing
-    if (currentButtonState && !_lastButtonState) {
+    if (buttonPressed && !lastButtonPressed) {
         _buttonPressStartTime = currentTime;
         _buttonPressHandled = false;
+        Serial.println("Button press detected - starting timer");
     }
     
     // Button is being held
-    if (currentButtonState && _lastButtonState) {
+    if (buttonPressed && lastButtonPressed) {
         unsigned long pressDuration = currentTime - _buttonPressStartTime;
         
         // Check for long press (3 seconds)
@@ -2107,7 +2112,7 @@ void TemperatureController::_checkButtonPress() {
     }
     
     // Button just released
-    if (!currentButtonState && _lastButtonState) {
+    if (!buttonPressed && lastButtonPressed) {
         unsigned long pressDuration = currentTime - _buttonPressStartTime;
         
         // Only process if not already handled as long press
@@ -2519,15 +2524,9 @@ void TemperatureController::_displayModbusStatus() {
         lines[2] = "PAR:    ---";
         lines[3] = "BR:     ----";
     } else {
-        // Get Modbus statistics from register map
-        uint16_t modbusErrors = registerMap.readHoldingRegister(6);    // Error count
-        
-        // Determine status based on errors
-        if (modbusErrors > 0) {
-            lines[0] = "STATUS: ERR";
-        } else {
-            lines[0] = "STATUS: CONNECTED";
-        }
+        // For now, just show configuration
+        // TODO: Add proper Modbus statistics when modbusServer is accessible
+        lines[0] = "STATUS: ENABLED";
         
         // Get available configuration
         uint8_t modbusAddr = configManager.getModbusAddress();
@@ -2547,14 +2546,14 @@ void TemperatureController::_handleDisplaySections() {
     _updateAlarmQueues();
     
     // Determine which section we should be in
-    if (\!_activeAlarmsQueue.empty()) {
+    if (!_activeAlarmsQueue.empty()) {
         // Active alarms present - switch to acknowledgment section
-        if (_currentSection \!= SECTION_ALARM_ACK) {
+        if (_currentSection != SECTION_ALARM_ACK) {
             _switchToSection(SECTION_ALARM_ACK);
         }
-    } else if (\!_acknowledgedAlarmsQueue.empty() && _currentSection \!= SECTION_STATUS) {
+    } else if (!_acknowledgedAlarmsQueue.empty() && _currentSection != SECTION_STATUS) {
         // Only acknowledged alarms - show them
-        if (_currentSection \!= SECTION_ACK_ALARMS) {
+        if (_currentSection != SECTION_ACK_ALARMS) {
             _switchToSection(SECTION_ACK_ALARMS);
         }
     } else if (_currentSection == SECTION_ALARM_ACK || _currentSection == SECTION_ACK_ALARMS) {
@@ -2617,4 +2616,3 @@ void TemperatureController::_switchToSection(DisplaySection newSection) {
             break;
     }
 }
-EOF < /dev/null

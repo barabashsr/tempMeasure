@@ -60,4 +60,6 @@ git branch --show-current  # Should be 'claude-branch'
 cat .claude/sessions/current/DOC_SUMMARY.md
 ```
 
-[Rest of the file remains unchanged]
+## Code Management Guidelines
+- **DO NOT append the code files, diff edit them instead.**
+- Do not consider the well compiled code as passed testing. ALWAYS ask me if the code works right
