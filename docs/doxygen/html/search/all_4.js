@@ -20,8 +20,9 @@ var searchData=
   ['discoverptsensors_17',['discoverPTSensors',['../class_temperature_controller.html#a79e98c9a1d42de787a66e02b250b7a74',1,'TemperatureController']]],
   ['displaycross_18',['displayCross',['../class_indicator_interface.html#a54fa76657f9ef0c9e19b6e94d682fb65',1,'IndicatorInterface']]],
   ['displayok_19',['displayOK',['../class_indicator_interface.html#aaa36eb97521df2decb957418acc277a9',1,'IndicatorInterface']]],
-  ['downloadapi_20',['downloadAPI',['../class_config_manager.html#a3b28982c79587a287c8ddf0acf47f71d',1,'ConfigManager']]],
-  ['ds18b20_21',['DS18B20',['../_sensor_8h.html#a213c434cb928c4ca22513e2302632435aac1bc058b939e1c55e1496c8574f3691',1,'Sensor.h']]],
-  ['ds18b20_22',['ds18b20',['../class_sensor.html#a1192f63a34aa19a309d8c9ba2e3f8bd7',1,'Sensor']]],
-  ['dspoints_23',['dsPoints',['../class_temperature_controller.html#a1e844316402b71f262acbccf2eea1c72',1,'TemperatureController']]]
+  ['displaysection_20',['DisplaySection',['../class_temperature_controller.html#af6f8ef1044393a49b8c1121695084118',1,'TemperatureController']]],
+  ['downloadapi_21',['downloadAPI',['../class_config_manager.html#a3b28982c79587a287c8ddf0acf47f71d',1,'ConfigManager']]],
+  ['ds18b20_22',['DS18B20',['../_sensor_8h.html#a213c434cb928c4ca22513e2302632435aac1bc058b939e1c55e1496c8574f3691',1,'Sensor.h']]],
+  ['ds18b20_23',['ds18b20',['../class_sensor.html#a1192f63a34aa19a309d8c9ba2e3f8bd7',1,'Sensor']]],
+  ['dspoints_24',['dsPoints',['../class_temperature_controller.html#a1e844316402b71f262acbccf2eea1c72',1,'TemperatureController']]]
 ];

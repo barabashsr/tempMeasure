@@ -31,7 +31,9 @@ var NAVTREE =
       [ "Data Fields", "functions.html", [
         [ "All", "functions.html", "functions_dup" ],
         [ "Functions", "functions_func.html", "functions_func" ],
-        [ "Variables", "functions_vars.html", "functions_vars" ]
+        [ "Variables", "functions_vars.html", "functions_vars" ],
+        [ "Enumerations", "functions_enum.html", null ],
+        [ "Enumerator", "functions_eval.html", null ]
       ] ]
     ] ],
     [ "Files", "files.html", [
@@ -51,8 +53,8 @@ var NAVTREEINDEX =
 [
 "_alarm_8cpp.html",
 "class_indicator_interface.html#a5d7c083ac206b53e5530709cc6d1df81",
-"class_register_map.html#a8418bd7fbd2379830c5b2a2d5a7ceadb",
-"class_temperature_controller.html#aa0d8e0b6828ce6bdfee5b4a9464673e1"
+"class_register_map.html#a80213794342fd35a7b2da48eaff70394",
+"class_temperature_controller.html#a880028883101197527de57f626e14512"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

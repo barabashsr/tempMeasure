@@ -170,6 +170,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a0f23c8a09f237eca7d71a9ff4e560e96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set OLED sleep delay.  <br /></td></tr>
 <tr class="memitem:acf545ec2921c786020f7826a846b364d" id="r_acf545ec2921c786020f7826a846b364d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acf545ec2921c786020f7826a846b364d">setOledMode</a> (int lines)</td></tr>
 <tr class="memdesc:acf545ec2921c786020f7826a846b364d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set OLED display mode.  <br /></td></tr>
+<tr class="memitem:a68ddd3010b792e5ae00fecad56e7a4f6" id="r_a68ddd3010b792e5ae00fecad56e7a4f6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a68ddd3010b792e5ae00fecad56e7a4f6">setOledModeSmall</a> (int lines, bool useSmallFont=true)</td></tr>
+<tr class="memdesc:a68ddd3010b792e5ae00fecad56e7a4f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set OLED display mode with small font option.  <br /></td></tr>
 <tr class="memitem:ac3d970f4cfa8af402fa2538cf05e8cd6" id="r_ac3d970f4cfa8af402fa2538cf05e8cd6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac3d970f4cfa8af402fa2538cf05e8cd6">printText</a> (String buffer[], int bufferSize)</td></tr>
 <tr class="memdesc:ac3d970f4cfa8af402fa2538cf05e8cd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display text buffer on OLED.  <br /></td></tr>
 <tr class="memitem:ab8a4f7cc08c2fb112aa893f0aeca044a" id="r_ab8a4f7cc08c2fb112aa893f0aeca044a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab8a4f7cc08c2fb112aa893f0aeca044a">setOLEDblink</a> (int timeOn, int timeOff, bool blinkOn=true)</td></tr>
@@ -384,7 +386,7 @@ Static Private Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00028">28</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00545">_blinkDelayTime</a>, <a class="el" href="_indicator_interface_8h_source.html#l00547">_blinkShowSpecial</a>, <a class="el" href="_indicator_interface_8h_source.html#l00477">_blinkState</a>, <a class="el" href="_indicator_interface_8h_source.html#l00475">_blinkTimeOff</a>, <a class="el" href="_indicator_interface_8h_source.html#l00474">_blinkTimeOn</a>, <a class="el" href="_indicator_interface_8h_source.html#l00485">_charWidth</a>, <a class="el" href="_indicator_interface_8h_source.html#l00399">_currentState</a>, <a class="el" href="_indicator_interface_8h_source.html#l00393">_directionMask</a>, <a class="el" href="_indicator_interface_8h_source.html#l00386">_i2cBus</a>, <a class="el" href="_indicator_interface_8h_source.html#l00457">_instance</a>, <a class="el" href="_indicator_interface_8h_source.html#l00407">_interruptCallback</a>, <a class="el" href="_indicator_interface_8h_source.html#l00405">_interruptFlag</a>, <a class="el" href="_indicator_interface_8h_source.html#l00389">_intPin</a>, <a class="el" href="_indicator_interface_8h_source.html#l00544">_isBlinkingCross</a>, <a class="el" href="_indicator_interface_8h_source.html#l00543">_isBlinkingOK</a>, <a class="el" href="_indicator_interface_8h_source.html#l00478">_lastActivityTime</a>, <a class="el" href="_indicator_interface_8h_source.html#l00476">_lastBlinkTime</a>, <a class="el" href="_indicator_interface_8h_source.html#l00546">_lastBlinkToggle</a>, <a class="el" href="_indicator_interface_8h_source.html#l00401">_lastReadTime</a>, <a class="el" href="_indicator_interface_8h_source.html#l00483">_lastScrollTime</a>, <a class="el" href="_indicator_interface_8h_source.html#l00400">_lastState</a>, <a class="el" href="_indicator_interface_8h_source.html#l00486">_lineHeight</a>, <a class="el" href="_indicator_interface_8h_source.html#l00487">_maxCharsPerLine</a>, <a class="el" href="_indicator_interface_8h_source.html#l00394">_modeMask</a>, <a class="el" href="_indicator_interface_8h_source.html#l00473">_oledBlink</a>, <a class="el" href="_indicator_interface_8h_source.html#l00469">_oledLines</a>, <a class="el" href="_indicator_interface_8h_source.html#l00472">_oledOn</a>, <a class="el" href="_indicator_interface_8h_source.html#l00468">_oledSleepDelay</a>, <a class="el" href="_indicator_interface_8h_source.html#l00479">_oledSleeping</a>, <a class="el" href="_indicator_interface_8h_source.html#l00390">_pcf8575</a>, <a class="el" href="_indicator_interface_8h_source.html#l00387">_pcf_i2cAddress</a>, <a class="el" href="_indicator_interface_8h_source.html#l00402">_pollInterval</a>, <a class="el" href="_indicator_interface_8h_source.html#l00542">_savedOledLines</a>, <a class="el" href="_indicator_interface_8h_source.html#l00541">_savedTextBufferSize</a>, <a class="el" href="_indicator_interface_8h_source.html#l00484">_scrollDelay</a>, <a class="el" href="_indicator_interface_8h_source.html#l00482">_scrollOffset</a>, <a class="el" href="_indicator_interface_8h_source.html#l00471">_textBufferSize</a>, <a class="el" href="_indicator_interface_8h_source.html#l00406">_useInterrupts</a>, and <a class="el" href="_indicator_interface_8h_source.html#l00034">SCROLL_UPDATE_DELAY_MS</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00553">_blinkDelayTime</a>, <a class="el" href="_indicator_interface_8h_source.html#l00555">_blinkShowSpecial</a>, <a class="el" href="_indicator_interface_8h_source.html#l00485">_blinkState</a>, <a class="el" href="_indicator_interface_8h_source.html#l00483">_blinkTimeOff</a>, <a class="el" href="_indicator_interface_8h_source.html#l00482">_blinkTimeOn</a>, <a class="el" href="_indicator_interface_8h_source.html#l00493">_charWidth</a>, <a class="el" href="_indicator_interface_8h_source.html#l00407">_currentState</a>, <a class="el" href="_indicator_interface_8h_source.html#l00401">_directionMask</a>, <a class="el" href="_indicator_interface_8h_source.html#l00394">_i2cBus</a>, <a class="el" href="_indicator_interface_8h_source.html#l00465">_instance</a>, <a class="el" href="_indicator_interface_8h_source.html#l00415">_interruptCallback</a>, <a class="el" href="_indicator_interface_8h_source.html#l00413">_interruptFlag</a>, <a class="el" href="_indicator_interface_8h_source.html#l00397">_intPin</a>, <a class="el" href="_indicator_interface_8h_source.html#l00552">_isBlinkingCross</a>, <a class="el" href="_indicator_interface_8h_source.html#l00551">_isBlinkingOK</a>, <a class="el" href="_indicator_interface_8h_source.html#l00486">_lastActivityTime</a>, <a class="el" href="_indicator_interface_8h_source.html#l00484">_lastBlinkTime</a>, <a class="el" href="_indicator_interface_8h_source.html#l00554">_lastBlinkToggle</a>, <a class="el" href="_indicator_interface_8h_source.html#l00409">_lastReadTime</a>, <a class="el" href="_indicator_interface_8h_source.html#l00491">_lastScrollTime</a>, <a class="el" href="_indicator_interface_8h_source.html#l00408">_lastState</a>, <a class="el" href="_indicator_interface_8h_source.html#l00494">_lineHeight</a>, <a class="el" href="_indicator_interface_8h_source.html#l00495">_maxCharsPerLine</a>, <a class="el" href="_indicator_interface_8h_source.html#l00402">_modeMask</a>, <a class="el" href="_indicator_interface_8h_source.html#l00481">_oledBlink</a>, <a class="el" href="_indicator_interface_8h_source.html#l00477">_oledLines</a>, <a class="el" href="_indicator_interface_8h_source.html#l00480">_oledOn</a>, <a class="el" href="_indicator_interface_8h_source.html#l00476">_oledSleepDelay</a>, <a class="el" href="_indicator_interface_8h_source.html#l00487">_oledSleeping</a>, <a class="el" href="_indicator_interface_8h_source.html#l00398">_pcf8575</a>, <a class="el" href="_indicator_interface_8h_source.html#l00395">_pcf_i2cAddress</a>, <a class="el" href="_indicator_interface_8h_source.html#l00410">_pollInterval</a>, <a class="el" href="_indicator_interface_8h_source.html#l00550">_savedOledLines</a>, <a class="el" href="_indicator_interface_8h_source.html#l00549">_savedTextBufferSize</a>, <a class="el" href="_indicator_interface_8h_source.html#l00492">_scrollDelay</a>, <a class="el" href="_indicator_interface_8h_source.html#l00490">_scrollOffset</a>, <a class="el" href="_indicator_interface_8h_source.html#l00479">_textBufferSize</a>, <a class="el" href="_indicator_interface_8h_source.html#l00414">_useInterrupts</a>, and <a class="el" href="_indicator_interface_8h_source.html#l00034">SCROLL_UPDATE_DELAY_MS</a>.</p>
 
 </div>
 </div>
@@ -408,7 +410,7 @@ Static Private Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00056">56</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00457">_instance</a>, <a class="el" href="_indicator_interface_8h_source.html#l00389">_intPin</a>, and <a class="el" href="_indicator_interface_8h_source.html#l00406">_useInterrupts</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00465">_instance</a>, <a class="el" href="_indicator_interface_8h_source.html#l00397">_intPin</a>, and <a class="el" href="_indicator_interface_8h_source.html#l00414">_useInterrupts</a>.</p>
 
 </div>
 </div>
@@ -494,11 +496,11 @@ Here is the caller graph for this function:</div>
 <p>Calculate display parameters. </p>
 <p>Computes character dimensions and layout parameters </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00531">531</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00549">549</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00485">_charWidth</a>, <a class="el" href="_indicator_interface_8h_source.html#l00486">_lineHeight</a>, <a class="el" href="_indicator_interface_8h_source.html#l00487">_maxCharsPerLine</a>, <a class="el" href="_indicator_interface_8h_source.html#l00469">_oledLines</a>, and <a class="el" href="_indicator_interface_8h_source.html#l00465">u8g2</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00493">_charWidth</a>, <a class="el" href="_indicator_interface_8h_source.html#l00494">_lineHeight</a>, <a class="el" href="_indicator_interface_8h_source.html#l00495">_maxCharsPerLine</a>, <a class="el" href="_indicator_interface_8h_source.html#l00477">_oledLines</a>, and <a class="el" href="_indicator_interface_8h_source.html#l00473">u8g2</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00425">_initOLED()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00622">_updateOLEDDisplay()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00438">setOledMode()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00425">_initOLED()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00640">_updateOLEDDisplay()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00438">setOledMode()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00447">setOledModeSmall()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -535,7 +537,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00373">373</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00390">_pcf8575</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00398">_pcf8575</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00383">_writePCF()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00063">begin()</a>.</p>
 <div class="dynheader">
@@ -574,7 +576,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00096">96</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00389">_intPin</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00400">_staticInterruptHandler()</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00397">_intPin</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00400">_staticInterruptHandler()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00063">begin()</a>.</p>
 <div class="dynheader">
@@ -630,11 +632,11 @@ Here is the caller graph for this function:</div>
 </dl>
 <p>Implements circular scrolling for text longer than display width. Text continuously loops with a 3-space separator between end and beginning. </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00659">659</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00677">677</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00482">_scrollOffset</a>, <a class="el" href="_indicator_interface_8h_source.html#l00470">_textBuffer</a>, <a class="el" href="_indicator_interface_8h_source.html#l00471">_textBufferSize</a>, and <a class="el" href="_indicator_interface_8h_source.html#l00465">u8g2</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00490">_scrollOffset</a>, <a class="el" href="_indicator_interface_8h_source.html#l00478">_textBuffer</a>, <a class="el" href="_indicator_interface_8h_source.html#l00479">_textBufferSize</a>, and <a class="el" href="_indicator_interface_8h_source.html#l00473">u8g2</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00622">_updateOLEDDisplay()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00640">_updateOLEDDisplay()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -669,11 +671,11 @@ Here is the caller graph for this function:</div>
 <p>Handle OLED blinking. </p>
 <p>Manages display on/off timing for blink mode </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00705">705</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00723">723</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00477">_blinkState</a>, <a class="el" href="_indicator_interface_8h_source.html#l00475">_blinkTimeOff</a>, <a class="el" href="_indicator_interface_8h_source.html#l00474">_blinkTimeOn</a>, <a class="el" href="_indicator_interface_8h_source.html#l00476">_lastBlinkTime</a>, <a class="el" href="_indicator_interface_8h_source.html#l00473">_oledBlink</a>, <a class="el" href="_indicator_interface_8h_source.html#l00479">_oledSleeping</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00622">_updateOLEDDisplay()</a>, and <a class="el" href="_indicator_interface_8h_source.html#l00465">u8g2</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00485">_blinkState</a>, <a class="el" href="_indicator_interface_8h_source.html#l00483">_blinkTimeOff</a>, <a class="el" href="_indicator_interface_8h_source.html#l00482">_blinkTimeOn</a>, <a class="el" href="_indicator_interface_8h_source.html#l00484">_lastBlinkTime</a>, <a class="el" href="_indicator_interface_8h_source.html#l00481">_oledBlink</a>, <a class="el" href="_indicator_interface_8h_source.html#l00487">_oledSleeping</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00640">_updateOLEDDisplay()</a>, and <a class="el" href="_indicator_interface_8h_source.html#l00473">u8g2</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00496">updateOLED()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00514">updateOLED()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -713,11 +715,11 @@ Here is the caller graph for this function:</div>
 <p>Handle OLED sleep management. </p>
 <p>Manages automatic sleep based on activity timeout </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00696">696</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00714">714</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00478">_lastActivityTime</a>, <a class="el" href="_indicator_interface_8h_source.html#l00468">_oledSleepDelay</a>, <a class="el" href="_indicator_interface_8h_source.html#l00479">_oledSleeping</a>, and <a class="el" href="_indicator_interface_8h_source.html#l00465">u8g2</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00486">_lastActivityTime</a>, <a class="el" href="_indicator_interface_8h_source.html#l00476">_oledSleepDelay</a>, <a class="el" href="_indicator_interface_8h_source.html#l00487">_oledSleeping</a>, and <a class="el" href="_indicator_interface_8h_source.html#l00473">u8g2</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00496">updateOLED()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00514">updateOLED()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -754,11 +756,11 @@ Here is the caller graph for this function:</div>
 <p>Updates horizontal scroll position for long text lines</p>
 <p>Updates scroll offsets for lines longer than display width. Implements seamless circular scrolling where text wraps around continuously. </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00730">730</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00748">748</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00483">_lastScrollTime</a>, <a class="el" href="_indicator_interface_8h_source.html#l00484">_scrollDelay</a>, <a class="el" href="_indicator_interface_8h_source.html#l00482">_scrollOffset</a>, <a class="el" href="_indicator_interface_8h_source.html#l00470">_textBuffer</a>, <a class="el" href="_indicator_interface_8h_source.html#l00471">_textBufferSize</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00622">_updateOLEDDisplay()</a>, <a class="el" href="_indicator_interface_8h_source.html#l00033">SCROLL_SPEED_PIXELS</a>, and <a class="el" href="_indicator_interface_8h_source.html#l00465">u8g2</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00491">_lastScrollTime</a>, <a class="el" href="_indicator_interface_8h_source.html#l00492">_scrollDelay</a>, <a class="el" href="_indicator_interface_8h_source.html#l00490">_scrollOffset</a>, <a class="el" href="_indicator_interface_8h_source.html#l00478">_textBuffer</a>, <a class="el" href="_indicator_interface_8h_source.html#l00479">_textBufferSize</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00640">_updateOLEDDisplay()</a>, <a class="el" href="_indicator_interface_8h_source.html#l00033">SCROLL_SPEED_PIXELS</a>, and <a class="el" href="_indicator_interface_8h_source.html#l00473">u8g2</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00496">updateOLED()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00514">updateOLED()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -798,11 +800,11 @@ Here is the caller graph for this function:</div>
 <p>Handle special symbol blinking. </p>
 <p>Manages alternation between special symbols and saved text </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00981">981</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00999">999</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00545">_blinkDelayTime</a>, <a class="el" href="_indicator_interface_8h_source.html#l00547">_blinkShowSpecial</a>, <a class="el" href="_indicator_interface_8h_source.html#l00544">_isBlinkingCross</a>, <a class="el" href="_indicator_interface_8h_source.html#l00543">_isBlinkingOK</a>, <a class="el" href="_indicator_interface_8h_source.html#l00546">_lastBlinkToggle</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00970">_restoreCurrentText()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00847">displayCross()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00817">displayOK()</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00553">_blinkDelayTime</a>, <a class="el" href="_indicator_interface_8h_source.html#l00555">_blinkShowSpecial</a>, <a class="el" href="_indicator_interface_8h_source.html#l00552">_isBlinkingCross</a>, <a class="el" href="_indicator_interface_8h_source.html#l00551">_isBlinkingOK</a>, <a class="el" href="_indicator_interface_8h_source.html#l00554">_lastBlinkToggle</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00988">_restoreCurrentText()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00865">displayCross()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00835">displayOK()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00496">updateOLED()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00514">updateOLED()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -844,7 +846,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00425">425</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8cpp_source.html#l00531">_calculateDisplayParams()</a>, <a class="el" href="_indicator_interface_8h_source.html#l00478">_lastActivityTime</a>, and <a class="el" href="_indicator_interface_8h_source.html#l00465">u8g2</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8cpp_source.html#l00549">_calculateDisplayParams()</a>, <a class="el" href="_indicator_interface_8h_source.html#l00486">_lastActivityTime</a>, and <a class="el" href="_indicator_interface_8h_source.html#l00473">u8g2</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00063">begin()</a>.</p>
 <div class="dynheader">
@@ -888,7 +890,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00379">379</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00390">_pcf8575</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00398">_pcf8575</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00359">_updateState()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00063">begin()</a>.</p>
 <div class="dynheader">
@@ -925,11 +927,11 @@ Here is the caller graph for this function:</div>
 <p>Restore previously saved text. </p>
 <p>Restores display state from before special symbol display </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00970">970</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00988">988</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00469">_oledLines</a>, <a class="el" href="_indicator_interface_8h_source.html#l00542">_savedOledLines</a>, <a class="el" href="_indicator_interface_8h_source.html#l00540">_savedTextBuffer</a>, <a class="el" href="_indicator_interface_8h_source.html#l00541">_savedTextBufferSize</a>, <a class="el" href="_indicator_interface_8h_source.html#l00470">_textBuffer</a>, <a class="el" href="_indicator_interface_8h_source.html#l00471">_textBufferSize</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00622">_updateOLEDDisplay()</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00477">_oledLines</a>, <a class="el" href="_indicator_interface_8h_source.html#l00550">_savedOledLines</a>, <a class="el" href="_indicator_interface_8h_source.html#l00548">_savedTextBuffer</a>, <a class="el" href="_indicator_interface_8h_source.html#l00549">_savedTextBufferSize</a>, <a class="el" href="_indicator_interface_8h_source.html#l00478">_textBuffer</a>, <a class="el" href="_indicator_interface_8h_source.html#l00479">_textBufferSize</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00640">_updateOLEDDisplay()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00981">_handleSpecialBlink()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00955">stopBlinking()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00999">_handleSpecialBlink()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00973">stopBlinking()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1024,11 +1026,11 @@ Here is the caller graph for this function:</div>
 <p>Save current text before displaying special symbols. </p>
 <p>Backs up current display state for later restoration </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00961">961</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00979">979</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00469">_oledLines</a>, <a class="el" href="_indicator_interface_8h_source.html#l00542">_savedOledLines</a>, <a class="el" href="_indicator_interface_8h_source.html#l00540">_savedTextBuffer</a>, <a class="el" href="_indicator_interface_8h_source.html#l00541">_savedTextBufferSize</a>, <a class="el" href="_indicator_interface_8h_source.html#l00470">_textBuffer</a>, and <a class="el" href="_indicator_interface_8h_source.html#l00471">_textBufferSize</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00477">_oledLines</a>, <a class="el" href="_indicator_interface_8h_source.html#l00550">_savedOledLines</a>, <a class="el" href="_indicator_interface_8h_source.html#l00548">_savedTextBuffer</a>, <a class="el" href="_indicator_interface_8h_source.html#l00549">_savedTextBufferSize</a>, <a class="el" href="_indicator_interface_8h_source.html#l00478">_textBuffer</a>, and <a class="el" href="_indicator_interface_8h_source.html#l00479">_textBufferSize</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00940">blinkCross()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00926">blinkOK()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00958">blinkCross()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00944">blinkOK()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1065,7 +1067,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00400">400</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00457">_instance</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00465">_instance</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00096">_configureInterruptPin()</a>.</p>
 <div class="dynheader">
@@ -1102,11 +1104,11 @@ Here is the caller graph for this function:</div>
 <p>Update OLED display content. </p>
 <p>Redraws display with current text buffer </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00622">622</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00640">640</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8cpp_source.html#l00531">_calculateDisplayParams()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00659">_drawTextLine()</a>, <a class="el" href="_indicator_interface_8h_source.html#l00469">_oledLines</a>, <a class="el" href="_indicator_interface_8h_source.html#l00472">_oledOn</a>, <a class="el" href="_indicator_interface_8h_source.html#l00479">_oledSleeping</a>, <a class="el" href="_indicator_interface_8h_source.html#l00471">_textBufferSize</a>, and <a class="el" href="_indicator_interface_8h_source.html#l00465">u8g2</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8cpp_source.html#l00549">_calculateDisplayParams()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00677">_drawTextLine()</a>, <a class="el" href="_indicator_interface_8h_source.html#l00477">_oledLines</a>, <a class="el" href="_indicator_interface_8h_source.html#l00480">_oledOn</a>, <a class="el" href="_indicator_interface_8h_source.html#l00487">_oledSleeping</a>, <a class="el" href="_indicator_interface_8h_source.html#l00479">_textBufferSize</a>, and <a class="el" href="_indicator_interface_8h_source.html#l00473">u8g2</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00705">_handleOLEDBlink()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00730">_handleScrolling()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00970">_restoreCurrentText()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00447">printText()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00792">pushLine()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00488">setOLEDOn()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00723">_handleOLEDBlink()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00748">_handleScrolling()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00988">_restoreCurrentText()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00465">printText()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00810">pushLine()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00506">setOLEDOn()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1148,9 +1150,9 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00359">359</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00399">_currentState</a>, <a class="el" href="_indicator_interface_8h_source.html#l00407">_interruptCallback</a>, <a class="el" href="_indicator_interface_8h_source.html#l00401">_lastReadTime</a>, <a class="el" href="_indicator_interface_8h_source.html#l00400">_lastState</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00379">_readPCF()</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00407">_currentState</a>, <a class="el" href="_indicator_interface_8h_source.html#l00415">_interruptCallback</a>, <a class="el" href="_indicator_interface_8h_source.html#l00409">_lastReadTime</a>, <a class="el" href="_indicator_interface_8h_source.html#l00408">_lastState</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00379">_readPCF()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00239">getCurrentState()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00778">handleInterrupt()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00239">getCurrentState()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00796">handleInterrupt()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1190,15 +1192,15 @@ Here is the caller graph for this function:</div>
 <p>Wake OLED from sleep. </p>
 <p>Powers up display and resets activity timer </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00769">769</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00787">787</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00478">_lastActivityTime</a>, <a class="el" href="_indicator_interface_8h_source.html#l00472">_oledOn</a>, <a class="el" href="_indicator_interface_8h_source.html#l00479">_oledSleeping</a>, and <a class="el" href="_indicator_interface_8h_source.html#l00465">u8g2</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00486">_lastActivityTime</a>, <a class="el" href="_indicator_interface_8h_source.html#l00480">_oledOn</a>, <a class="el" href="_indicator_interface_8h_source.html#l00487">_oledSleeping</a>, and <a class="el" href="_indicator_interface_8h_source.html#l00473">u8g2</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00847">displayCross()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00817">displayOK()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00778">handleInterrupt()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00447">printText()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00792">pushLine()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00470">setOLEDblink()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00438">setOledMode()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00488">setOLEDOn()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00433">setOledSleepDelay()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00865">displayCross()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00835">displayOK()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00796">handleInterrupt()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00465">printText()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00810">pushLine()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00488">setOLEDblink()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00438">setOledMode()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00447">setOledModeSmall()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00506">setOLEDOn()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00433">setOledSleepDelay()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_indicator_interface_af64dc2a4b4256050b070991dfaf05f1a_icgraph.svg" width="858" height="607"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_indicator_interface_af64dc2a4b4256050b070991dfaf05f1a_icgraph.svg" width="858" height="672"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1236,7 +1238,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00383">383</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8cpp_source.html#l00373">_clearInterrupt()</a>, <a class="el" href="_indicator_interface_8h_source.html#l00399">_currentState</a>, and <a class="el" href="_indicator_interface_8h_source.html#l00390">_pcf8575</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8cpp_source.html#l00373">_clearInterrupt()</a>, <a class="el" href="_indicator_interface_8h_source.html#l00407">_currentState</a>, and <a class="el" href="_indicator_interface_8h_source.html#l00398">_pcf8575</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00210">setAllOutputs()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00113">setDirection()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00158">writePort()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00187">writePorts()</a>.</p>
 <div class="dynheader">
@@ -1273,7 +1275,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00063">63</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8cpp_source.html#l00373">_clearInterrupt()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00096">_configureInterruptPin()</a>, <a class="el" href="_indicator_interface_8h_source.html#l00399">_currentState</a>, <a class="el" href="_indicator_interface_8h_source.html#l00386">_i2cBus</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00425">_initOLED()</a>, <a class="el" href="_indicator_interface_8h_source.html#l00401">_lastReadTime</a>, <a class="el" href="_indicator_interface_8h_source.html#l00400">_lastState</a>, <a class="el" href="_indicator_interface_8h_source.html#l00390">_pcf8575</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00379">_readPCF()</a>, <a class="el" href="_indicator_interface_8h_source.html#l00406">_useInterrupts</a>, and <a class="el" href="_indicator_interface_8h_source.html#l00465">u8g2</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8cpp_source.html#l00373">_clearInterrupt()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00096">_configureInterruptPin()</a>, <a class="el" href="_indicator_interface_8h_source.html#l00407">_currentState</a>, <a class="el" href="_indicator_interface_8h_source.html#l00394">_i2cBus</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00425">_initOLED()</a>, <a class="el" href="_indicator_interface_8h_source.html#l00409">_lastReadTime</a>, <a class="el" href="_indicator_interface_8h_source.html#l00408">_lastState</a>, <a class="el" href="_indicator_interface_8h_source.html#l00398">_pcf8575</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00379">_readPCF()</a>, <a class="el" href="_indicator_interface_8h_source.html#l00414">_useInterrupts</a>, and <a class="el" href="_indicator_interface_8h_source.html#l00473">u8g2</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1306,9 +1308,9 @@ Here is the call graph for this function:</div>
 </dl>
 <p>Alternates between cross symbol and saved text </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00940">940</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00958">958</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00545">_blinkDelayTime</a>, <a class="el" href="_indicator_interface_8h_source.html#l00547">_blinkShowSpecial</a>, <a class="el" href="_indicator_interface_8h_source.html#l00544">_isBlinkingCross</a>, <a class="el" href="_indicator_interface_8h_source.html#l00543">_isBlinkingOK</a>, <a class="el" href="_indicator_interface_8h_source.html#l00546">_lastBlinkToggle</a>, <a class="el" href="_indicator_interface_8h_source.html#l00473">_oledBlink</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00961">_saveCurrentText()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00847">displayCross()</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00553">_blinkDelayTime</a>, <a class="el" href="_indicator_interface_8h_source.html#l00555">_blinkShowSpecial</a>, <a class="el" href="_indicator_interface_8h_source.html#l00552">_isBlinkingCross</a>, <a class="el" href="_indicator_interface_8h_source.html#l00551">_isBlinkingOK</a>, <a class="el" href="_indicator_interface_8h_source.html#l00554">_lastBlinkToggle</a>, <a class="el" href="_indicator_interface_8h_source.html#l00481">_oledBlink</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00979">_saveCurrentText()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00865">displayCross()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1341,9 +1343,9 @@ Here is the call graph for this function:</div>
 </dl>
 <p>Alternates between OK symbol and saved text </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00926">926</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00944">944</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00545">_blinkDelayTime</a>, <a class="el" href="_indicator_interface_8h_source.html#l00547">_blinkShowSpecial</a>, <a class="el" href="_indicator_interface_8h_source.html#l00544">_isBlinkingCross</a>, <a class="el" href="_indicator_interface_8h_source.html#l00543">_isBlinkingOK</a>, <a class="el" href="_indicator_interface_8h_source.html#l00546">_lastBlinkToggle</a>, <a class="el" href="_indicator_interface_8h_source.html#l00473">_oledBlink</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00961">_saveCurrentText()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00817">displayOK()</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00553">_blinkDelayTime</a>, <a class="el" href="_indicator_interface_8h_source.html#l00555">_blinkShowSpecial</a>, <a class="el" href="_indicator_interface_8h_source.html#l00552">_isBlinkingCross</a>, <a class="el" href="_indicator_interface_8h_source.html#l00551">_isBlinkingOK</a>, <a class="el" href="_indicator_interface_8h_source.html#l00554">_lastBlinkToggle</a>, <a class="el" href="_indicator_interface_8h_source.html#l00481">_oledBlink</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00979">_saveCurrentText()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00835">displayOK()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1370,11 +1372,11 @@ Here is the call graph for this function:</div>
 <p>Display large cross/error symbol. </p>
 <p>Shows error symbol in circle filling the display </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00847">847</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00865">865</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8cpp_source.html#l00769">_wakeOLED()</a>, and <a class="el" href="_indicator_interface_8h_source.html#l00465">u8g2</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8cpp_source.html#l00787">_wakeOLED()</a>, and <a class="el" href="_indicator_interface_8h_source.html#l00473">u8g2</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00981">_handleSpecialBlink()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00940">blinkCross()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00999">_handleSpecialBlink()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00958">blinkCross()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1406,11 +1408,11 @@ Here is the caller graph for this function:</div>
 <p>Display large "OK" symbol. </p>
 <p>Shows confirmation symbol filling the display </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00817">817</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00835">835</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8cpp_source.html#l00769">_wakeOLED()</a>, and <a class="el" href="_indicator_interface_8h_source.html#l00465">u8g2</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8cpp_source.html#l00787">_wakeOLED()</a>, and <a class="el" href="_indicator_interface_8h_source.html#l00473">u8g2</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00981">_handleSpecialBlink()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00926">blinkOK()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00999">_handleSpecialBlink()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00944">blinkOK()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1445,7 +1447,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00239">239</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00399">_currentState</a>, <a class="el" href="_indicator_interface_8h_source.html#l00401">_lastReadTime</a>, <a class="el" href="_indicator_interface_8h_source.html#l00402">_pollInterval</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00359">_updateState()</a>, and <a class="el" href="_indicator_interface_8h_source.html#l00406">_useInterrupts</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00407">_currentState</a>, <a class="el" href="_indicator_interface_8h_source.html#l00409">_lastReadTime</a>, <a class="el" href="_indicator_interface_8h_source.html#l00410">_pollInterval</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00359">_updateState()</a>, and <a class="el" href="_indicator_interface_8h_source.html#l00414">_useInterrupts</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00305">printPortStates()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00260">readPort()</a>.</p>
 <div class="dynheader">
@@ -1487,7 +1489,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00289">289</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00396">_portNumbers</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00404">_portNumbers</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00305">printPortStates()</a>.</p>
 <div class="dynheader">
@@ -1524,7 +1526,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00284">284</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00395">_portNames</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00403">_portNames</a>.</p>
 
 </div>
 </div>
@@ -1546,9 +1548,9 @@ Here is the caller graph for this function:</div>
 <p>Handle interrupt from PCF8575. </p>
 <p>Called when interrupt pin is triggered, reads and processes port changes </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00778">778</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00796">796</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00405">_interruptFlag</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00359">_updateState()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00769">_wakeOLED()</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00413">_interruptFlag</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00359">_updateState()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00787">_wakeOLED()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1581,9 +1583,9 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>bool True if port is actively blinking </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l01068">1068</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l01086">1086</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00383">_blinkingPorts</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00391">_blinkingPorts</a>.</p>
 
 </div>
 </div>
@@ -1648,7 +1650,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00280">280</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00394">_modeMask</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00402">_modeMask</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00390">_applyModeLogic()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00395">_reverseModeLogic()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00305">printPortStates()</a>.</p>
 <div class="dynheader">
@@ -1685,7 +1687,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00272">272</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00393">_directionMask</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00401">_directionMask</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00276">isInput()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00305">printPortStates()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00210">setAllOutputs()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00113">setDirection()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00158">writePort()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00187">writePorts()</a>.</p>
 <div class="dynheader">
@@ -1716,7 +1718,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00336">336</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00393">_directionMask</a>, <a class="el" href="_indicator_interface_8h_source.html#l00389">_intPin</a>, <a class="el" href="_indicator_interface_8h_source.html#l00394">_modeMask</a>, <a class="el" href="_indicator_interface_8h_source.html#l00387">_pcf_i2cAddress</a>, <a class="el" href="_indicator_interface_8h_source.html#l00395">_portNames</a>, and <a class="el" href="_indicator_interface_8h_source.html#l00406">_useInterrupts</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00401">_directionMask</a>, <a class="el" href="_indicator_interface_8h_source.html#l00397">_intPin</a>, <a class="el" href="_indicator_interface_8h_source.html#l00402">_modeMask</a>, <a class="el" href="_indicator_interface_8h_source.html#l00395">_pcf_i2cAddress</a>, <a class="el" href="_indicator_interface_8h_source.html#l00403">_portNames</a>, and <a class="el" href="_indicator_interface_8h_source.html#l00414">_useInterrupts</a>.</p>
 
 </div>
 </div>
@@ -1778,9 +1780,9 @@ Here is the call graph for this function:</div>
 </dl>
 <p>Updates OLED display with provided text </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00447">447</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00465">465</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00478">_lastActivityTime</a>, <a class="el" href="_indicator_interface_8h_source.html#l00482">_scrollOffset</a>, <a class="el" href="_indicator_interface_8h_source.html#l00470">_textBuffer</a>, <a class="el" href="_indicator_interface_8h_source.html#l00471">_textBufferSize</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00622">_updateOLEDDisplay()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00769">_wakeOLED()</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00486">_lastActivityTime</a>, <a class="el" href="_indicator_interface_8h_source.html#l00490">_scrollOffset</a>, <a class="el" href="_indicator_interface_8h_source.html#l00478">_textBuffer</a>, <a class="el" href="_indicator_interface_8h_source.html#l00479">_textBufferSize</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00640">_updateOLEDDisplay()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00787">_wakeOLED()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1813,9 +1815,9 @@ Here is the call graph for this function:</div>
 </dl>
 <p>Adds new line and scrolls existing lines up </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00792">792</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00810">810</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00469">_oledLines</a>, <a class="el" href="_indicator_interface_8h_source.html#l00482">_scrollOffset</a>, <a class="el" href="_indicator_interface_8h_source.html#l00470">_textBuffer</a>, <a class="el" href="_indicator_interface_8h_source.html#l00471">_textBufferSize</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00622">_updateOLEDDisplay()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00769">_wakeOLED()</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00477">_oledLines</a>, <a class="el" href="_indicator_interface_8h_source.html#l00490">_scrollOffset</a>, <a class="el" href="_indicator_interface_8h_source.html#l00478">_textBuffer</a>, <a class="el" href="_indicator_interface_8h_source.html#l00479">_textBufferSize</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00640">_updateOLEDDisplay()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00787">_wakeOLED()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1851,7 +1853,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00252">252</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00395">_portNames</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00252">readPort()</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00403">_portNames</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00252">readPort()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00252">readPort()</a>.</p>
 <div class="dynheader">
@@ -1929,7 +1931,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00210">210</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8cpp_source.html#l00390">_applyModeLogic()</a>, <a class="el" href="_indicator_interface_8h_source.html#l00399">_currentState</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00383">_writePCF()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00272">isOutput()</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8cpp_source.html#l00390">_applyModeLogic()</a>, <a class="el" href="_indicator_interface_8h_source.html#l00407">_currentState</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00383">_writePCF()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00272">isOutput()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00231">setAllOutputsHigh()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00235">setAllOutputsLow()</a>.</p>
 <div class="dynheader">
@@ -2029,7 +2031,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00113">113</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00399">_currentState</a>, <a class="el" href="_indicator_interface_8h_source.html#l00393">_directionMask</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00383">_writePCF()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00272">isOutput()</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00407">_currentState</a>, <a class="el" href="_indicator_interface_8h_source.html#l00401">_directionMask</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00383">_writePCF()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00272">isOutput()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2064,7 +2066,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00301">301</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00407">_interruptCallback</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00415">_interruptCallback</a>.</p>
 
 </div>
 </div>
@@ -2094,7 +2096,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00129">129</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00394">_modeMask</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00402">_modeMask</a>.</p>
 
 </div>
 </div>
@@ -2133,9 +2135,9 @@ Here is the call graph for this function:</div>
 </dl>
 <p>Controls OLED blinking for attention-getting displays </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00470">470</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00488">488</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00477">_blinkState</a>, <a class="el" href="_indicator_interface_8h_source.html#l00475">_blinkTimeOff</a>, <a class="el" href="_indicator_interface_8h_source.html#l00474">_blinkTimeOn</a>, <a class="el" href="_indicator_interface_8h_source.html#l00476">_lastBlinkTime</a>, <a class="el" href="_indicator_interface_8h_source.html#l00473">_oledBlink</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00769">_wakeOLED()</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00485">_blinkState</a>, <a class="el" href="_indicator_interface_8h_source.html#l00483">_blinkTimeOff</a>, <a class="el" href="_indicator_interface_8h_source.html#l00482">_blinkTimeOn</a>, <a class="el" href="_indicator_interface_8h_source.html#l00484">_lastBlinkTime</a>, <a class="el" href="_indicator_interface_8h_source.html#l00481">_oledBlink</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00787">_wakeOLED()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2170,11 +2172,51 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00438">438</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8cpp_source.html#l00531">_calculateDisplayParams()</a>, <a class="el" href="_indicator_interface_8h_source.html#l00469">_oledLines</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00769">_wakeOLED()</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8cpp_source.html#l00549">_calculateDisplayParams()</a>, <a class="el" href="_indicator_interface_8h_source.html#l00477">_oledLines</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00787">_wakeOLED()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_indicator_interface_acf545ec2921c786020f7826a846b364d_cgraph.svg" width="359" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a68ddd3010b792e5ae00fecad56e7a4f6" name="a68ddd3010b792e5ae00fecad56e7a4f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a68ddd3010b792e5ae00fecad56e7a4f6">&#9670;&#160;</a></span>setOledModeSmall()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void IndicatorInterface::setOledModeSmall </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>lines</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>useSmallFont</em></span><span class="paramdefsep"> = </span><span class="paramdefval">true</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set OLED display mode with small font option. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">lines</td><td>Number of text lines to display (1-5) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">useSmallFont</td><td>Use smallest available font</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Configures display layout with optional small font </p>
+
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00447">447</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_indicator_interface_8cpp_source.html#l00549">_calculateDisplayParams()</a>, <a class="el" href="_indicator_interface_8h_source.html#l00493">_charWidth</a>, <a class="el" href="_indicator_interface_8h_source.html#l00494">_lineHeight</a>, <a class="el" href="_indicator_interface_8h_source.html#l00495">_maxCharsPerLine</a>, <a class="el" href="_indicator_interface_8h_source.html#l00477">_oledLines</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00787">_wakeOLED()</a>, and <a class="el" href="_indicator_interface_8h_source.html#l00473">u8g2</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_indicator_interface_a68ddd3010b792e5ae00fecad56e7a4f6_cgraph.svg" width="376" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -2197,9 +2239,9 @@ Here is the call graph for this function:</div>
 <p>Turn OLED display off. </p>
 <p>Powers down OLED display </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00482">482</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00500">500</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00473">_oledBlink</a>, <a class="el" href="_indicator_interface_8h_source.html#l00472">_oledOn</a>, and <a class="el" href="_indicator_interface_8h_source.html#l00465">u8g2</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00481">_oledBlink</a>, <a class="el" href="_indicator_interface_8h_source.html#l00480">_oledOn</a>, and <a class="el" href="_indicator_interface_8h_source.html#l00473">u8g2</a>.</p>
 
 </div>
 </div>
@@ -2221,9 +2263,9 @@ Here is the call graph for this function:</div>
 <p>Turn OLED display on. </p>
 <p>Powers up OLED display </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00488">488</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00506">506</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00472">_oledOn</a>, <a class="el" href="_indicator_interface_8h_source.html#l00479">_oledSleeping</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00622">_updateOLEDDisplay()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00769">_wakeOLED()</a>, and <a class="el" href="_indicator_interface_8h_source.html#l00465">u8g2</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00480">_oledOn</a>, <a class="el" href="_indicator_interface_8h_source.html#l00487">_oledSleeping</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00640">_updateOLEDDisplay()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00787">_wakeOLED()</a>, and <a class="el" href="_indicator_interface_8h_source.html#l00473">u8g2</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2258,7 +2300,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00433">433</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00468">_oledSleepDelay</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00769">_wakeOLED()</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00476">_oledSleepDelay</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00787">_wakeOLED()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2298,7 +2340,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00407">407</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00395">_portNames</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00407">setPortInverted()</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00403">_portNames</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00407">setPortInverted()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00407">setPortInverted()</a>.</p>
 <div class="dynheader">
@@ -2345,7 +2387,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00414">414</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00394">_modeMask</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00402">_modeMask</a>.</p>
 
 </div>
 </div>
@@ -2380,7 +2422,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00143">143</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00395">_portNames</a>, and <a class="el" href="_indicator_interface_8h_source.html#l00396">_portNumbers</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00403">_portNames</a>, and <a class="el" href="_indicator_interface_8h_source.html#l00404">_portNumbers</a>.</p>
 
 </div>
 </div>
@@ -2410,7 +2452,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00133">133</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00395">_portNames</a>, and <a class="el" href="_indicator_interface_8h_source.html#l00396">_portNumbers</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00403">_portNames</a>, and <a class="el" href="_indicator_interface_8h_source.html#l00404">_portNumbers</a>.</p>
 
 </div>
 </div>
@@ -2449,9 +2491,9 @@ Here is the caller graph for this function:</div>
 </dl>
 <p>Begins automatic blinking of specified port </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l01005">1005</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l01023">1023</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00383">_blinkingPorts</a>, <a class="el" href="_indicator_interface_8h_source.html#l00052">IndicatorInterface::BlinkingPort::currentState</a>, <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>, <a class="el" href="_indicator_interface_8h_source.html#l00053">IndicatorInterface::BlinkingPort::isActive</a>, <a class="el" href="_indicator_interface_8h_source.html#l00051">IndicatorInterface::BlinkingPort::lastToggleTime</a>, <a class="el" href="_indicator_interface_8h_source.html#l00050">IndicatorInterface::BlinkingPort::offTime</a>, <a class="el" href="_indicator_interface_8h_source.html#l00049">IndicatorInterface::BlinkingPort::onTime</a>, <a class="el" href="_indicator_interface_8h_source.html#l00048">IndicatorInterface::BlinkingPort::portName</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00150">writePort()</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00391">_blinkingPorts</a>, <a class="el" href="_indicator_interface_8h_source.html#l00052">IndicatorInterface::BlinkingPort::currentState</a>, <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>, <a class="el" href="_indicator_interface_8h_source.html#l00053">IndicatorInterface::BlinkingPort::isActive</a>, <a class="el" href="_indicator_interface_8h_source.html#l00051">IndicatorInterface::BlinkingPort::lastToggleTime</a>, <a class="el" href="_indicator_interface_8h_source.html#l00050">IndicatorInterface::BlinkingPort::offTime</a>, <a class="el" href="_indicator_interface_8h_source.html#l00049">IndicatorInterface::BlinkingPort::onTime</a>, <a class="el" href="_indicator_interface_8h_source.html#l00048">IndicatorInterface::BlinkingPort::portName</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00150">writePort()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2478,9 +2520,9 @@ Here is the call graph for this function:</div>
 <p>Stop all blinking and restore normal text. </p>
 <p>Ends blinking mode and returns to previous display </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00955">955</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00973">973</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00544">_isBlinkingCross</a>, <a class="el" href="_indicator_interface_8h_source.html#l00543">_isBlinkingOK</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00970">_restoreCurrentText()</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00552">_isBlinkingCross</a>, <a class="el" href="_indicator_interface_8h_source.html#l00551">_isBlinkingOK</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00988">_restoreCurrentText()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2513,9 +2555,9 @@ Here is the call graph for this function:</div>
 </dl>
 <p>Ends automatic blinking and leaves port in current state </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l01034">1034</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l01052">1052</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00383">_blinkingPorts</a>, <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00150">writePort()</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00391">_blinkingPorts</a>, <a class="el" href="_logger_manager_8h_source.html#l00145">LoggerManager::info()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00150">writePort()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2542,9 +2584,9 @@ Here is the call graph for this function:</div>
 <p>Update interface state (call in main loop) </p>
 <p>Handles port state updates, blinking, OLED updates, and sleep management </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00512">512</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00530">530</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8cpp_source.html#l01048">updateBlinking()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00496">updateOLED()</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8cpp_source.html#l01066">updateBlinking()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00514">updateOLED()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2571,11 +2613,11 @@ Here is the call graph for this function:</div>
 <p>Update all blinking ports (call in main loop) </p>
 <p>Handles timing and state changes for all blinking ports </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l01048">1048</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l01066">1066</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00383">_blinkingPorts</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00150">writePort()</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00391">_blinkingPorts</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00150">writePort()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00512">update()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00530">update()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2607,11 +2649,11 @@ Here is the caller graph for this function:</div>
 <p>Update OLED display (call in main loop) </p>
 <p>Handles scrolling, blinking, and sleep management </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00496">496</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00514">514</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8cpp_source.html#l00705">_handleOLEDBlink()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00696">_handleOLEDSleep()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00730">_handleScrolling()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00981">_handleSpecialBlink()</a>, <a class="el" href="_indicator_interface_8h_source.html#l00544">_isBlinkingCross</a>, <a class="el" href="_indicator_interface_8h_source.html#l00543">_isBlinkingOK</a>, <a class="el" href="_indicator_interface_8h_source.html#l00472">_oledOn</a>, and <a class="el" href="_indicator_interface_8h_source.html#l00479">_oledSleeping</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8cpp_source.html#l00723">_handleOLEDBlink()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00714">_handleOLEDSleep()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00748">_handleScrolling()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00999">_handleSpecialBlink()</a>, <a class="el" href="_indicator_interface_8h_source.html#l00552">_isBlinkingCross</a>, <a class="el" href="_indicator_interface_8h_source.html#l00551">_isBlinkingOK</a>, <a class="el" href="_indicator_interface_8h_source.html#l00480">_oledOn</a>, and <a class="el" href="_indicator_interface_8h_source.html#l00487">_oledSleeping</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00512">update()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00530">update()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2657,9 +2699,9 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00150">150</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00395">_portNames</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00150">writePort()</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8h_source.html#l00403">_portNames</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00150">writePort()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l01005">startBlinking()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l01034">stopBlinking()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l01048">updateBlinking()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00150">writePort()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l01023">startBlinking()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l01052">stopBlinking()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l01066">updateBlinking()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00150">writePort()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2705,7 +2747,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00158">158</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8cpp_source.html#l00390">_applyModeLogic()</a>, <a class="el" href="_indicator_interface_8h_source.html#l00399">_currentState</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00383">_writePCF()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00272">isOutput()</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8cpp_source.html#l00390">_applyModeLogic()</a>, <a class="el" href="_indicator_interface_8h_source.html#l00407">_currentState</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00383">_writePCF()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00272">isOutput()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2740,7 +2782,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="_indicator_interface_8cpp_source.html#l00187">187</a> of file <a class="el" href="_indicator_interface_8cpp_source.html">IndicatorInterface.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_indicator_interface_8cpp_source.html#l00390">_applyModeLogic()</a>, <a class="el" href="_indicator_interface_8h_source.html#l00399">_currentState</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00383">_writePCF()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00272">isOutput()</a>.</p>
+<p class="reference">References <a class="el" href="_indicator_interface_8cpp_source.html#l00390">_applyModeLogic()</a>, <a class="el" href="_indicator_interface_8h_source.html#l00407">_currentState</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00383">_writePCF()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00272">isOutput()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2772,9 +2814,9 @@ Here is the call graph for this function:</div>
 
 <p>Delay time for special symbol blinking. </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00545">545</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00553">553</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00981">_handleSpecialBlink()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00940">blinkCross()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00926">blinkOK()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00999">_handleSpecialBlink()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00958">blinkCross()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00944">blinkOK()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>.</p>
 
 </div>
 </div>
@@ -2800,9 +2842,9 @@ Here is the call graph for this function:</div>
 
 <p>Vector of ports configured for blinking. </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00383">383</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00391">391</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l01068">isBlinking()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l01005">startBlinking()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l01034">stopBlinking()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l01048">updateBlinking()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l01086">isBlinking()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l01023">startBlinking()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l01052">stopBlinking()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l01066">updateBlinking()</a>.</p>
 
 </div>
 </div>
@@ -2828,9 +2870,9 @@ Here is the call graph for this function:</div>
 
 <p>Current blink state (true=symbol, false=text) </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00547">547</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00555">555</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00981">_handleSpecialBlink()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00940">blinkCross()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00926">blinkOK()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00999">_handleSpecialBlink()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00958">blinkCross()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00944">blinkOK()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>.</p>
 
 </div>
 </div>
@@ -2856,9 +2898,9 @@ Here is the call graph for this function:</div>
 
 <p>Current blink state (on/off) </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00477">477</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00485">485</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00705">_handleOLEDBlink()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00470">setOLEDblink()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00723">_handleOLEDBlink()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00488">setOLEDblink()</a>.</p>
 
 </div>
 </div>
@@ -2884,9 +2926,9 @@ Here is the call graph for this function:</div>
 
 <p>Milliseconds OLED stays off during blink. </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00475">475</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00483">483</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00705">_handleOLEDBlink()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00470">setOLEDblink()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00723">_handleOLEDBlink()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00488">setOLEDblink()</a>.</p>
 
 </div>
 </div>
@@ -2912,9 +2954,9 @@ Here is the call graph for this function:</div>
 
 <p>Milliseconds OLED stays on during blink. </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00474">474</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00482">482</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00705">_handleOLEDBlink()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00470">setOLEDblink()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00723">_handleOLEDBlink()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00488">setOLEDblink()</a>.</p>
 
 </div>
 </div>
@@ -2940,9 +2982,9 @@ Here is the call graph for this function:</div>
 
 <p>Width of characters in pixels. </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00485">485</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00493">493</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00531">_calculateDisplayParams()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00549">_calculateDisplayParams()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00447">setOledModeSmall()</a>.</p>
 
 </div>
 </div>
@@ -2968,7 +3010,7 @@ Here is the call graph for this function:</div>
 
 <p>Current state of all 16 ports. </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00399">399</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00407">407</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00359">_updateState()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00383">_writePCF()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00063">begin()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00239">getCurrentState()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00210">setAllOutputs()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00113">setDirection()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00158">writePort()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00187">writePorts()</a>.</p>
 
@@ -2996,7 +3038,7 @@ Here is the call graph for this function:</div>
 
 <p>Port direction mask (0=input, 1=output) </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00393">393</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00401">401</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00272">isOutput()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00336">printConfiguration()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00113">setDirection()</a>.</p>
 
@@ -3024,7 +3066,7 @@ Here is the call graph for this function:</div>
 
 <p>Pointer to I2C bus interface. </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00386">386</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00394">394</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00063">begin()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>.</p>
 
@@ -3052,7 +3094,7 @@ Here is the call graph for this function:</div>
 
 <p>Static instance for interrupt callback. </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00457">457</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00465">465</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00400">_staticInterruptHandler()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00056">~IndicatorInterface()</a>.</p>
 
@@ -3080,7 +3122,7 @@ Here is the call graph for this function:</div>
 
 <p>User callback function. </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00407">407</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00415">415</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00359">_updateState()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00301">setInterruptCallback()</a>.</p>
 
@@ -3108,9 +3150,9 @@ Here is the call graph for this function:</div>
 
 <p>Flag set by interrupt handler. </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00405">405</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00413">413</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00778">handleInterrupt()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00796">handleInterrupt()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>.</p>
 
 </div>
 </div>
@@ -3136,7 +3178,7 @@ Here is the call graph for this function:</div>
 
 <p>GPIO pin for interrupt handling. </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00389">389</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00397">397</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00096">_configureInterruptPin()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00336">printConfiguration()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00056">~IndicatorInterface()</a>.</p>
 
@@ -3164,9 +3206,9 @@ Here is the call graph for this function:</div>
 
 <p>Whether currently blinking cross symbol. </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00544">544</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00552">552</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00981">_handleSpecialBlink()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00940">blinkCross()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00926">blinkOK()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00955">stopBlinking()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00496">updateOLED()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00999">_handleSpecialBlink()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00958">blinkCross()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00944">blinkOK()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00973">stopBlinking()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00514">updateOLED()</a>.</p>
 
 </div>
 </div>
@@ -3192,9 +3234,9 @@ Here is the call graph for this function:</div>
 
 <p>Whether currently blinking OK symbol. </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00543">543</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00551">551</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00981">_handleSpecialBlink()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00940">blinkCross()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00926">blinkOK()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00955">stopBlinking()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00496">updateOLED()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00999">_handleSpecialBlink()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00958">blinkCross()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00944">blinkOK()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00973">stopBlinking()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00514">updateOLED()</a>.</p>
 
 </div>
 </div>
@@ -3220,9 +3262,9 @@ Here is the call graph for this function:</div>
 
 <p>Last user activity time. </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00478">478</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00486">486</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00696">_handleOLEDSleep()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00425">_initOLED()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00769">_wakeOLED()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00447">printText()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00714">_handleOLEDSleep()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00425">_initOLED()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00787">_wakeOLED()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00465">printText()</a>.</p>
 
 </div>
 </div>
@@ -3248,9 +3290,9 @@ Here is the call graph for this function:</div>
 
 <p>Last blink toggle time. </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00476">476</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00484">484</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00705">_handleOLEDBlink()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00470">setOLEDblink()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00723">_handleOLEDBlink()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00488">setOLEDblink()</a>.</p>
 
 </div>
 </div>
@@ -3276,9 +3318,9 @@ Here is the call graph for this function:</div>
 
 <p>Last toggle time for special blinking. </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00546">546</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00554">554</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00981">_handleSpecialBlink()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00940">blinkCross()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00926">blinkOK()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00999">_handleSpecialBlink()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00958">blinkCross()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00944">blinkOK()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>.</p>
 
 </div>
 </div>
@@ -3304,7 +3346,7 @@ Here is the call graph for this function:</div>
 
 <p>Last time ports were read. </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00401">401</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00409">409</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00359">_updateState()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00063">begin()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00239">getCurrentState()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>.</p>
 
@@ -3332,9 +3374,9 @@ Here is the call graph for this function:</div>
 
 <p>Last scroll update time. </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00483">483</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00491">491</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00730">_handleScrolling()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00748">_handleScrolling()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>.</p>
 
 </div>
 </div>
@@ -3360,7 +3402,7 @@ Here is the call graph for this function:</div>
 
 <p>Previous state for change detection. </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00400">400</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00408">408</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00359">_updateState()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00063">begin()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>.</p>
 
@@ -3388,9 +3430,9 @@ Here is the call graph for this function:</div>
 
 <p>Height of lines in pixels. </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00486">486</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00494">494</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00531">_calculateDisplayParams()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00549">_calculateDisplayParams()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00447">setOledModeSmall()</a>.</p>
 
 </div>
 </div>
@@ -3416,9 +3458,9 @@ Here is the call graph for this function:</div>
 
 <p>Maximum characters per display line. </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00487">487</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00495">495</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00531">_calculateDisplayParams()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00549">_calculateDisplayParams()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00447">setOledModeSmall()</a>.</p>
 
 </div>
 </div>
@@ -3444,7 +3486,7 @@ Here is the call graph for this function:</div>
 
 <p>Port inversion mask (0=normal, 1=inverted) </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00394">394</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00402">402</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00280">isInverted()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00336">printConfiguration()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00129">setMode()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00414">setPortInverted()</a>.</p>
 
@@ -3472,9 +3514,9 @@ Here is the call graph for this function:</div>
 
 <p>Whether OLED is blinking. </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00473">473</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00481">481</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00705">_handleOLEDBlink()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00940">blinkCross()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00926">blinkOK()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00470">setOLEDblink()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00482">setOLEDOff()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00723">_handleOLEDBlink()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00958">blinkCross()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00944">blinkOK()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00488">setOLEDblink()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00500">setOLEDOff()</a>.</p>
 
 </div>
 </div>
@@ -3500,9 +3542,9 @@ Here is the call graph for this function:</div>
 
 <p>Number of display lines (1-5) </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00469">469</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00477">477</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00531">_calculateDisplayParams()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00970">_restoreCurrentText()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00961">_saveCurrentText()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00622">_updateOLEDDisplay()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00792">pushLine()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00438">setOledMode()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00549">_calculateDisplayParams()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00988">_restoreCurrentText()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00979">_saveCurrentText()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00640">_updateOLEDDisplay()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00810">pushLine()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00438">setOledMode()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00447">setOledModeSmall()</a>.</p>
 
 </div>
 </div>
@@ -3528,9 +3570,9 @@ Here is the call graph for this function:</div>
 
 <p>OLED power state. </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00472">472</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00480">480</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00622">_updateOLEDDisplay()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00769">_wakeOLED()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00482">setOLEDOff()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00488">setOLEDOn()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00496">updateOLED()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00640">_updateOLEDDisplay()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00787">_wakeOLED()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00500">setOLEDOff()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00506">setOLEDOn()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00514">updateOLED()</a>.</p>
 
 </div>
 </div>
@@ -3556,9 +3598,9 @@ Here is the call graph for this function:</div>
 
 <p>Sleep delay in milliseconds (-1 = never sleep) </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00468">468</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00476">476</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00696">_handleOLEDSleep()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00433">setOledSleepDelay()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00714">_handleOLEDSleep()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00433">setOledSleepDelay()</a>.</p>
 
 </div>
 </div>
@@ -3584,9 +3626,9 @@ Here is the call graph for this function:</div>
 
 <p>Whether OLED is currently sleeping. </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00479">479</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00487">487</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00705">_handleOLEDBlink()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00696">_handleOLEDSleep()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00622">_updateOLEDDisplay()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00769">_wakeOLED()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00488">setOLEDOn()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00496">updateOLED()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00723">_handleOLEDBlink()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00714">_handleOLEDSleep()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00640">_updateOLEDDisplay()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00787">_wakeOLED()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00506">setOLEDOn()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00514">updateOLED()</a>.</p>
 
 </div>
 </div>
@@ -3612,7 +3654,7 @@ Here is the call graph for this function:</div>
 
 <p>PCF8575 expander instance. </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00390">390</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00398">398</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00373">_clearInterrupt()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00379">_readPCF()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00383">_writePCF()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00063">begin()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>.</p>
 
@@ -3640,7 +3682,7 @@ Here is the call graph for this function:</div>
 
 <p>I2C address of PCF8575 expander. </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00387">387</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00395">395</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00336">printConfiguration()</a>.</p>
 
@@ -3668,7 +3710,7 @@ Here is the call graph for this function:</div>
 
 <p>Polling interval for port updates. </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00402">402</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00410">410</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00239">getCurrentState()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>.</p>
 
@@ -3696,7 +3738,7 @@ Here is the call graph for this function:</div>
 
 <p>Map of port names to numbers. </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00395">395</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00403">403</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00284">getPortNumber()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00336">printConfiguration()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00252">readPort()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00407">setPortInverted()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00143">setPortName()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00133">setPortNames()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00150">writePort()</a>.</p>
 
@@ -3724,7 +3766,7 @@ Here is the call graph for this function:</div>
 
 <p>Map of port numbers to names. </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00396">396</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00404">404</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00289">getPortName()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00143">setPortName()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00133">setPortNames()</a>.</p>
 
@@ -3752,9 +3794,9 @@ Here is the call graph for this function:</div>
 
 <p>Saved number of display lines. </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00542">542</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00550">550</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00970">_restoreCurrentText()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00961">_saveCurrentText()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00988">_restoreCurrentText()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00979">_saveCurrentText()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>.</p>
 
 </div>
 </div>
@@ -3780,9 +3822,9 @@ Here is the call graph for this function:</div>
 
 <p>Backup of text before OK/Cross display. </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00540">540</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00548">548</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00970">_restoreCurrentText()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00961">_saveCurrentText()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00988">_restoreCurrentText()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00979">_saveCurrentText()</a>.</p>
 
 </div>
 </div>
@@ -3808,9 +3850,9 @@ Here is the call graph for this function:</div>
 
 <p>Size of saved text buffer. </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00541">541</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00549">549</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00970">_restoreCurrentText()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00961">_saveCurrentText()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00988">_restoreCurrentText()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00979">_saveCurrentText()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>.</p>
 
 </div>
 </div>
@@ -3836,9 +3878,9 @@ Here is the call graph for this function:</div>
 
 <p>Delay between scroll steps. </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00484">484</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00492">492</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00730">_handleScrolling()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00748">_handleScrolling()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>.</p>
 
 </div>
 </div>
@@ -3864,9 +3906,9 @@ Here is the call graph for this function:</div>
 
 <p>Horizontal scroll offset for each line. </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00482">482</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00490">490</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00659">_drawTextLine()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00730">_handleScrolling()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00447">printText()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00792">pushLine()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00677">_drawTextLine()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00748">_handleScrolling()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00465">printText()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00810">pushLine()</a>.</p>
 
 </div>
 </div>
@@ -3892,9 +3934,9 @@ Here is the call graph for this function:</div>
 
 <p>Text buffer for display (max 5 lines) </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00470">470</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00478">478</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00659">_drawTextLine()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00730">_handleScrolling()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00970">_restoreCurrentText()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00961">_saveCurrentText()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00447">printText()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00792">pushLine()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00677">_drawTextLine()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00748">_handleScrolling()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00988">_restoreCurrentText()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00979">_saveCurrentText()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00465">printText()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00810">pushLine()</a>.</p>
 
 </div>
 </div>
@@ -3920,9 +3962,9 @@ Here is the call graph for this function:</div>
 
 <p>Current number of lines in buffer. </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00471">471</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00479">479</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00659">_drawTextLine()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00730">_handleScrolling()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00970">_restoreCurrentText()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00961">_saveCurrentText()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00622">_updateOLEDDisplay()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00447">printText()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00792">pushLine()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00677">_drawTextLine()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00748">_handleScrolling()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00988">_restoreCurrentText()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00979">_saveCurrentText()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00640">_updateOLEDDisplay()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00465">printText()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00810">pushLine()</a>.</p>
 
 </div>
 </div>
@@ -3948,7 +3990,7 @@ Here is the call graph for this function:</div>
 
 <p>Whether interrupts are enabled. </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00406">406</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00414">414</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00063">begin()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00239">getCurrentState()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00028">IndicatorInterface()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00336">printConfiguration()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00056">~IndicatorInterface()</a>.</p>
 
@@ -3976,7 +4018,7 @@ Here is the call graph for this function:</div>
 
 <p>I2C address of OLED display. </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00388">388</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00396">396</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
 
 </div>
 </div>
@@ -4002,9 +4044,9 @@ Here is the call graph for this function:</div>
 
 <p>Static OLED display instance. </p>
 
-<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00465">465</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_indicator_interface_8h_source.html#l00473">473</a> of file <a class="el" href="_indicator_interface_8h_source.html">IndicatorInterface.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00531">_calculateDisplayParams()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00659">_drawTextLine()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00705">_handleOLEDBlink()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00696">_handleOLEDSleep()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00730">_handleScrolling()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00425">_initOLED()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00622">_updateOLEDDisplay()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00769">_wakeOLED()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00063">begin()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00847">displayCross()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00817">displayOK()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00482">setOLEDOff()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00488">setOLEDOn()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_indicator_interface_8cpp_source.html#l00549">_calculateDisplayParams()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00677">_drawTextLine()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00723">_handleOLEDBlink()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00714">_handleOLEDSleep()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00748">_handleScrolling()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00425">_initOLED()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00640">_updateOLEDDisplay()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00787">_wakeOLED()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00063">begin()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00865">displayCross()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00835">displayOK()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00447">setOledModeSmall()</a>, <a class="el" href="_indicator_interface_8cpp_source.html#l00500">setOLEDOff()</a>, and <a class="el" href="_indicator_interface_8cpp_source.html#l00506">setOLEDOn()</a>.</p>
 
 </div>
 </div>

@@ -444,6 +444,24 @@ void IndicatorInterface::setOledMode(int lines) {
     _wakeOLED();
 }
 
+void IndicatorInterface::setOledModeSmall(int lines, bool useSmallFont) {
+    if (lines < 1) lines = 1;
+    if (lines > 5) lines = 5;
+    
+    _oledLines = lines;
+    
+    if (useSmallFont) {
+        // Force smallest font regardless of line count
+        u8g2.setFont(u8g2_font_4x6_t_cyrillic);
+        _lineHeight = 10;
+        _charWidth = 4;
+        _maxCharsPerLine = 32;
+    } else {
+        _calculateDisplayParams();
+    }
+    _wakeOLED();
+}
+
 void IndicatorInterface::printText(String buffer[], int bufferSize) {
     _textBufferSize = min(bufferSize, 5);
     

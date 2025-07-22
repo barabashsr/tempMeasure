@@ -12,6 +12,7 @@
     <includes refid="_settings_c_s_v_manager_8h" local="yes">SettingsCSVManager.h</includes>
     <includes refid="_logger_manager_8h" local="yes">LoggerManager.h</includes>
     <includedby refid="_config_manager_8cpp" local="yes">src/ConfigManager.cpp</includedby>
+    <includedby refid="_temperature_controller_8cpp" local="yes">src/TemperatureController.cpp</includedby>
     <includedby refid="main_8cpp" local="yes">src/main.cpp</includedby>
     <incdepgraph>
       <node id="31">
@@ -255,12 +256,18 @@
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
       </node>
       <node id="2">
         <label>src/ConfigManager.cpp</label>
         <link refid="_config_manager_8cpp"/>
       </node>
       <node id="3">
+        <label>src/TemperatureController.cpp</label>
+        <link refid="_temperature_controller_8cpp"/>
+      </node>
+      <node id="4">
         <label>src/main.cpp</label>
         <link refid="main_8cpp"/>
       </node>

@@ -217,6 +217,7 @@
     <member refid="class_indicator_interface_1a6133988d818d830ad9bc5c902c63ec29" kind="function"><name>printConfiguration</name></member>
     <member refid="class_indicator_interface_1a0f23c8a09f237eca7d71a9ff4e560e96" kind="function"><name>setOledSleepDelay</name></member>
     <member refid="class_indicator_interface_1acf545ec2921c786020f7826a846b364d" kind="function"><name>setOledMode</name></member>
+    <member refid="class_indicator_interface_1a68ddd3010b792e5ae00fecad56e7a4f6" kind="function"><name>setOledModeSmall</name></member>
     <member refid="class_indicator_interface_1ac3d970f4cfa8af402fa2538cf05e8cd6" kind="function"><name>printText</name></member>
     <member refid="class_indicator_interface_1ab8a4f7cc08c2fb112aa893f0aeca044a" kind="function"><name>setOLEDblink</name></member>
     <member refid="class_indicator_interface_1a62ad23d6e52cf3abe43f6dad6000ebbd" kind="function"><name>setOLEDOff</name></member>
@@ -567,6 +568,11 @@
     <member refid="class_settings_c_s_v_manager_1aed4c7a1488843f2bebfefbfe8f95e24b" kind="function"><name>_importAcknowledgedDelays</name></member>
   </compound>
   <compound refid="class_temperature_controller" kind="class"><name>TemperatureController</name>
+    <member refid="class_temperature_controller_1af6f8ef1044393a49b8c1121695084118" kind="enum"><name>DisplaySection</name></member>
+    <member refid="class_temperature_controller_1af6f8ef1044393a49b8c1121695084118a1e4830ad7053433e137343a6e2f36c68" kind="enumvalue"><name>SECTION_ALARM_ACK</name></member>
+    <member refid="class_temperature_controller_1af6f8ef1044393a49b8c1121695084118ae1b5477ddfbc8b4bbcb90f855fcf8ac0" kind="enumvalue"><name>SECTION_ACK_ALARMS</name></member>
+    <member refid="class_temperature_controller_1af6f8ef1044393a49b8c1121695084118a44868a6c1db31821d611a9ec85d75ba0" kind="enumvalue"><name>SECTION_STATUS</name></member>
+    <member refid="class_temperature_controller_1af6f8ef1044393a49b8c1121695084118a27d72ca153cf7df2c14698ecf4683c7f" kind="enumvalue"><name>SECTION_NORMAL</name></member>
     <member refid="class_temperature_controller_1afa8ea33dcae793f871130c8ba52ba4e9" kind="variable"><name>indicator</name></member>
     <member refid="class_temperature_controller_1a294885ee4b12079b9135f2eb884b5284" kind="variable"><name>oneWireBuses</name></member>
     <member refid="class_temperature_controller_1acb15c2739c955d5c51e5b1a04fbb40fa" kind="variable"><name>dallasSensors</name></member>
@@ -615,6 +621,15 @@
     <member refid="class_temperature_controller_1af5090245265f1d7bacc7e9e545fc240d" kind="variable"><name>_lastAlarmDisplayTime</name></member>
     <member refid="class_temperature_controller_1ada41526711cb0489adb0714b9ebe5072" kind="variable"><name>_acknowledgedAlarmDisplayDelay</name></member>
     <member refid="class_temperature_controller_1aa881d2bbb58b22ac952aa781d997ee01" kind="variable"><name>_displayingActiveAlarm</name></member>
+    <member refid="class_temperature_controller_1a37c1a856e53cd75c9c3fd5fc84ea7e1c" kind="variable"><name>_currentSection</name></member>
+    <member refid="class_temperature_controller_1a432e26b78d43722c8ede9f0da97d16bb" kind="variable"><name>_previousSection</name></member>
+    <member refid="class_temperature_controller_1adee4839496436759367fc5afc923eb68" kind="variable"><name>_inSystemStatusMode</name></member>
+    <member refid="class_temperature_controller_1a7b9965c1732aa75cc841023ed37c2c06" kind="variable"><name>_systemStatusPage</name></member>
+    <member refid="class_temperature_controller_1a34b214f8d321c35ba73cfb437c0ac569" kind="variable"><name>_buttonPressStartTime</name></member>
+    <member refid="class_temperature_controller_1a7f2adc49f6736e673d3b85d8cc46be8e" kind="variable"><name>_systemStatusModeStartTime</name></member>
+    <member refid="class_temperature_controller_1a814c44e85ab732a0eae84c5f86fbdb78" kind="variable"><name>_longPressThreshold</name></member>
+    <member refid="class_temperature_controller_1a36a8926fc2ba0aa4223331f9e78d0787" kind="variable"><name>_systemStatusTimeout</name></member>
+    <member refid="class_temperature_controller_1ac8e088bc75c1bc148806d47f44c2599b" kind="variable"><name>_buttonPressHandled</name></member>
     <member refid="class_temperature_controller_1a8ef0e85f95cba61adc37f6d85ff7fb3f" kind="function"><name>TemperatureController</name></member>
     <member refid="class_temperature_controller_1aef5bd09c962b81966e67329afcff193d" kind="function"><name>~TemperatureController</name></member>
     <member refid="class_temperature_controller_1af59d6d6d48ed8ddfb968a1fa2dce6768" kind="function"><name>begin</name></member>
@@ -714,6 +729,14 @@
     <member refid="class_temperature_controller_1a1d2745c323f7094beac8f406825499b7" kind="function"><name>_handleAlarmDisplayRotation</name></member>
     <member refid="class_temperature_controller_1aa97ba23c998b2cfc732786e2307e60fa" kind="function"><name>_getPriorityString</name></member>
     <member refid="class_temperature_controller_1a38e9fe7d49bc58f1c6b5f1021ed1c045" kind="function"><name>_getAlarmTypeString</name></member>
+    <member refid="class_temperature_controller_1a45f7994a3a052a527981dbfdad27606b" kind="function"><name>_handleSystemStatusMode</name></member>
+    <member refid="class_temperature_controller_1a2436c7043d97ca75c717db2b87326d90" kind="function"><name>_displayNetworkInfo</name></member>
+    <member refid="class_temperature_controller_1a45d13ed72fd36b46820af631e4db958b" kind="function"><name>_displaySystemStats</name></member>
+    <member refid="class_temperature_controller_1a3948ceaf046b5f06afcc9083433f532c" kind="function"><name>_displayAlarmSummaryByPriority</name></member>
+    <member refid="class_temperature_controller_1ab5e076b045677678390603e9a805e4db" kind="function"><name>_displayAlarmSummaryByType</name></member>
+    <member refid="class_temperature_controller_1a5fc773a967cea261f21bbe86d90d2586" kind="function"><name>_displayModbusStatus</name></member>
+    <member refid="class_temperature_controller_1a6b2f92b5c2af867240200cff2e61e806" kind="function"><name>_handleDisplaySections</name></member>
+    <member refid="class_temperature_controller_1a3955f205bc33dda762cbe5c572cd4f21" kind="function"><name>_switchToSection</name></member>
   </compound>
   <compound refid="class_temp_modbus_server" kind="class"><name>TempModbusServer</name>
     <member refid="class_temp_modbus_server_1a84bf329562ebb8bb9b9b55c120a4ddae" kind="variable"><name>mbServer</name></member>

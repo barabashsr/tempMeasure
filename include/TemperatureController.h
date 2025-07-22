@@ -804,4 +804,65 @@ private:
      * @return String Alarm type as string
      */
     String _getAlarmTypeString(AlarmType type) const;
+    
+    // Display Section Management
+    enum DisplaySection {
+        SECTION_ALARM_ACK,      ///< Active alarm acknowledgment section
+        SECTION_ACK_ALARMS,     ///< Acknowledged alarms display section
+        SECTION_STATUS,         ///< System status display section
+        SECTION_NORMAL          ///< Normal operation (no alarms)
+    };
+    
+    DisplaySection _currentSection;                ///< Current display section
+    DisplaySection _previousSection;               ///< Previous section (for returning)
+    
+    // System Status Mode
+    bool _inSystemStatusMode;                      ///< Flag indicating if in system status mode
+    int _systemStatusPage;                         ///< Current page in system status mode (0-4)
+    unsigned long _buttonPressStartTime;           ///< Timestamp when button press started
+    unsigned long _systemStatusModeStartTime;      ///< Timestamp when entered system status mode
+    const unsigned long _longPressThreshold = 3000; ///< Long press threshold (3 seconds)
+    const unsigned long _systemStatusTimeout = 30000; ///< Auto-exit timeout (30 seconds)
+    bool _buttonPressHandled;                      ///< Flag to prevent multiple triggers
+    
+    /**
+     * @brief Handle system status mode display
+     */
+    void _handleSystemStatusMode();
+    
+    /**
+     * @brief Display network info page
+     */
+    void _displayNetworkInfo();
+    
+    /**
+     * @brief Display system stats page
+     */
+    void _displaySystemStats();
+    
+    /**
+     * @brief Display alarm summary by priority
+     */
+    void _displayAlarmSummaryByPriority();
+    
+    /**
+     * @brief Display alarm summary by type
+     */
+    void _displayAlarmSummaryByType();
+    
+    /**
+     * @brief Display Modbus status page
+     */
+    void _displayModbusStatus();
+    
+    /**
+     * @brief Handle display section switching
+     */
+    void _handleDisplaySections();
+    
+    /**
+     * @brief Switch to a new display section
+     * @param[in] newSection Section to switch to
+     */
+    void _switchToSection(DisplaySection newSection);
 };

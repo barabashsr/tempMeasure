@@ -20,6 +20,8 @@
  */
 
 #include "TemperatureController.h"
+#include <WiFi.h>
+#include "ConfigManager.h"
 
 TemperatureController::TemperatureController(uint8_t oneWirePin[4], uint8_t csPin[4], IndicatorInterface& indicator)
 : indicator(indicator), 
@@ -37,7 +39,18 @@ _showingOK(false),
 
 _currentActiveAlarmIndex(0), _currentAcknowledgedAlarmIndex(0),
 _lastAlarmDisplayTime(0), _acknowledgedAlarmDisplayDelay(5000), // 5 seconds
-_displayingActiveAlarm(false)
+_displayingActiveAlarm(false),
+
+// Display Section initialization
+_currentSection(SECTION_NORMAL),
+_previousSection(SECTION_NORMAL),
+
+// System Status Mode initialization
+_inSystemStatusMode(false),
+_systemStatusPage(0),
+_buttonPressStartTime(0),
+_systemStatusModeStartTime(0),
+_buttonPressHandled(false)
 {
     // Initialize measurement points
     for (uint8_t i = 0; i < 50; ++i)
@@ -1836,14 +1849,11 @@ void TemperatureController::_handleLowPriorityBlinking() {
 
 
 void TemperatureController::handleAlarmDisplay() {
-    // Update alarm queues
-    _updateAlarmQueues();
-    
-    // Handle button press for acknowledgment
+    // Handle button press for acknowledgment and system status mode
     _checkButtonPress();
     
-    // Handle alarm display rotation
-    _handleAlarmDisplayRotation();
+    // Handle display sections
+    _handleDisplaySections();
     
     // Update indicator blinking
     indicator.updateBlinking();
@@ -2067,26 +2077,76 @@ void TemperatureController::_handleAlarmDisplayRotation() {
 void TemperatureController::_checkButtonPress() {
     // Use the existing indicator interface button reading with built-in debouncing
     bool currentButtonState = indicator.readPort("BUTTON");
+    unsigned long currentTime = millis();
     
-    // Detect button press (button pressed = true based on your configuration)
+    // Button just pressed - start timing
     if (currentButtonState && !_lastButtonState) {
-        // Button was just pressed
-        if (_displayingActiveAlarm && _currentDisplayedAlarm && 
-            _currentDisplayedAlarm->getStage() == AlarmStage::ACTIVE) {
+        _buttonPressStartTime = currentTime;
+        _buttonPressHandled = false;
+    }
+    
+    // Button is being held
+    if (currentButtonState && _lastButtonState) {
+        unsigned long pressDuration = currentTime - _buttonPressStartTime;
+        
+        // Check for long press (3 seconds)
+        if (pressDuration >= _longPressThreshold && !_buttonPressHandled) {
+            _buttonPressHandled = true;
             
-            _currentDisplayedAlarm->acknowledge();
-            
-            Serial.printf("Button pressed - Acknowledged alarm: %s\n",
-                          _currentDisplayedAlarm->getDisplayText().c_str());
-            
-            // Move to next active alarm or switch to acknowledged display
-            _currentActiveAlarmIndex++;
-            if (_currentActiveAlarmIndex >= _activeAlarmsQueue.size()) {
-                _currentActiveAlarmIndex = 0;
+            // Long press switches to/from status section
+            if (_currentSection == SECTION_STATUS) {
+                // Exit status section
+                Serial.println("Long press - exiting Status section");
+                _switchToSection(_previousSection);
+            } else {
+                // Enter status section
+                Serial.println("Long press - entering Status section");
+                _switchToSection(SECTION_STATUS);
             }
-            
-            // Force immediate update of display
-            _lastAlarmDisplayTime = 0;
+        }
+    }
+    
+    // Button just released
+    if (!currentButtonState && _lastButtonState) {
+        unsigned long pressDuration = currentTime - _buttonPressStartTime;
+        
+        // Only process if not already handled as long press
+        if (pressDuration < _longPressThreshold && !_buttonPressHandled) {
+            // Short press behavior depends on section
+            switch (_currentSection) {
+                case SECTION_ALARM_ACK:
+                    // Acknowledge current alarm
+                    if (_currentDisplayedAlarm && _currentDisplayedAlarm->getStage() == AlarmStage::ACTIVE) {
+                        _currentDisplayedAlarm->acknowledge();
+                        Serial.printf("Short press - Acknowledged alarm: %s\n",
+                                    _currentDisplayedAlarm->getDisplayText().c_str());
+                        
+                        // Move to next active alarm
+                        _currentActiveAlarmIndex++;
+                        if (_currentActiveAlarmIndex >= _activeAlarmsQueue.size()) {
+                            _currentActiveAlarmIndex = 0;
+                        }
+                        
+                        _lastAlarmDisplayTime = 0;
+                    }
+                    break;
+                    
+                case SECTION_STATUS:
+                    // Navigate to next status page
+                    _systemStatusPage = (_systemStatusPage + 1) % 5;
+                    Serial.printf("Short press - Status page %d\n", _systemStatusPage);
+                    break;
+                    
+                case SECTION_ACK_ALARMS:
+                    // Could cycle through acknowledged alarms
+                    _currentAcknowledgedAlarmIndex = (_currentAcknowledgedAlarmIndex + 1) % _acknowledgedAlarmsQueue.size();
+                    _lastAlarmDisplayTime = 0;
+                    break;
+                    
+                case SECTION_NORMAL:
+                    // No action in normal mode
+                    break;
+            }
         }
     }
     
@@ -2254,3 +2314,307 @@ void TemperatureController::forceRelayState(uint8_t relayNumber, bool state) {
     LoggerManager::info("RELAY_CONTROL", 
         "Relay" + String(relayNumber) + " forced to " + String(state ? "ON" : "OFF"));
 }
+
+
+// System Status Mode implementation
+void TemperatureController::_handleSystemStatusMode() {
+    // Check if a new active alarm appeared - exit immediately
+    if (!_activeAlarmsQueue.empty()) {
+        Serial.println("Active alarm detected - exiting Status section");
+        _switchToSection(SECTION_ALARM_ACK);
+        return;
+    }
+    
+    switch (_systemStatusPage) {
+        case 0:
+            _displayNetworkInfo();
+            break;
+        case 1:
+            _displaySystemStats();
+            break;
+        case 2:
+            _displayAlarmSummaryByPriority();
+            break;
+        case 3:
+            _displayAlarmSummaryByType();
+            break;
+        case 4:
+            _displayModbusStatus();
+            break;
+    }
+}
+
+void TemperatureController::_displayNetworkInfo() {
+    indicator.setOledModeSmall(4, true); // 4-line mode with small font
+    String lines[4];
+    
+    // Check WiFi status
+    if (WiFi.status() == WL_CONNECTED) {
+        lines[0] = "STATUS: CONNECTED";
+        lines[1] = "IP: " + WiFi.localIP().toString();
+        lines[2] = "SSID: " + WiFi.SSID();
+        lines[3] = WiFi.localIP().toString() + "/dashboard.html";
+    } else if (WiFi.getMode() == WIFI_AP || WiFi.getMode() == WIFI_AP_STA) {
+        // Access Point mode
+        lines[0] = "STATUS: AP MODE";
+        lines[1] = "IP: " + WiFi.softAPIP().toString();
+        
+        // Get AP SSID from ConfigManager if available
+        extern ConfigManager configManager;
+        String apSSID = configManager.getHostname(); // Use hostname as AP name
+        if (apSSID.length() == 0) {
+            apSSID = "ESP32_AP"; // Default AP name
+        }
+        lines[2] = "AP SSID: " + apSSID;
+        
+        // AP typically has no password in this implementation
+        String apPass = ""; // No AP password method available
+        if (apPass.length() > 0) {
+            lines[3] = "PASS: " + apPass;
+        } else {
+            lines[3] = WiFi.softAPIP().toString() + "/cfg";
+        }
+    } else {
+        // Disconnected
+        lines[0] = "STATUS: DISC.";
+        lines[1] = "IP: --.--.--.--";
+        lines[2] = "SSID: ---------";
+        lines[3] = "---------------";
+    }
+    
+    indicator.printText(lines, 4);
+}
+
+void TemperatureController::_displaySystemStats() {
+    indicator.setOledModeSmall(3, true); // 3-line mode with small font
+    String lines[3];
+    
+    // Count points with bound sensors
+    int boundPoints = 0;
+    for (int i = 0; i < 60; i++) {
+        if (getBoundSensor(i) != nullptr) {
+            boundPoints++;
+        }
+    }
+    
+    // Count bound DS18B20 sensors
+    int boundDS18B20 = 0;
+    int totalDS18B20 = getDS18B20Count();
+    for (int i = 0; i < 50; i++) { // DS18B20 points are 0-49
+        if (getBoundSensor(i) != nullptr) {
+            boundDS18B20++;
+        }
+    }
+    
+    // Count bound PT1000 sensors
+    int boundPT1000 = 0;
+    int totalPT1000 = getPT1000Count();
+    for (int i = 50; i < 60; i++) { // PT1000 points are 50-59
+        if (getBoundSensor(i) != nullptr) {
+            boundPT1000++;
+        }
+    }
+    
+    // Use Cyrillic text as specified
+    lines[0] = "Точки:     " + String(boundPoints);
+    lines[1] = "DS18B20:   " + String(boundDS18B20) + "/" + String(totalDS18B20);
+    lines[2] = "Pt1000:    " + String(boundPT1000) + "/" + String(totalPT1000);
+    
+    indicator.printText(lines, 3);
+}
+
+void TemperatureController::_displayAlarmSummaryByPriority() {
+    indicator.setOledModeSmall(4, true); // 4-line mode with small font
+    String lines[4];
+    
+    // Count total alarms in active or acknowledged state
+    int totalAlarms = 0;
+    for (Alarm* alarm : _configuredAlarms) {
+        if (alarm->getStage() == AlarmStage::ACTIVE || alarm->getStage() == AlarmStage::ACKNOWLEDGED) {
+            totalAlarms++;
+        }
+    }
+    
+    // Count alarms by priority
+    int criticalCount = getAlarmCount(AlarmPriority::PRIORITY_CRITICAL, AlarmStage::ACTIVE, "==", "==") +
+                       getAlarmCount(AlarmPriority::PRIORITY_CRITICAL, AlarmStage::ACKNOWLEDGED, "==", "==");
+    int highCount = getAlarmCount(AlarmPriority::PRIORITY_HIGH, AlarmStage::ACTIVE, "==", "==") +
+                    getAlarmCount(AlarmPriority::PRIORITY_HIGH, AlarmStage::ACKNOWLEDGED, "==", "==");
+    int mediumCount = getAlarmCount(AlarmPriority::PRIORITY_MEDIUM, AlarmStage::ACTIVE, "==", "==") +
+                      getAlarmCount(AlarmPriority::PRIORITY_MEDIUM, AlarmStage::ACKNOWLEDGED, "==", "==");
+    int lowCount = getAlarmCount(AlarmPriority::PRIORITY_LOW, AlarmStage::ACTIVE, "==", "==") +
+                   getAlarmCount(AlarmPriority::PRIORITY_LOW, AlarmStage::ACKNOWLEDGED, "==", "==");
+    
+    // Format with Cyrillic text
+    if (totalAlarms == 0) {
+        lines[0] = "КРИТ.:     --/--";
+        lines[1] = "ВЫС. :     --/--";
+        lines[2] = "СРЕД.:     --/--";
+        lines[3] = "НИЗ. :     --/--";
+    } else {
+        lines[0] = "КРИТ.:     " + (criticalCount > 0 ? String(criticalCount) : "--") + "/" + String(totalAlarms);
+        lines[1] = "ВЫС. :     " + (highCount > 0 ? String(highCount) : "--") + "/" + String(totalAlarms);
+        lines[2] = "СРЕД.:     " + (mediumCount > 0 ? String(mediumCount) : "--") + "/" + String(totalAlarms);
+        lines[3] = "НИЗ. :     " + (lowCount > 0 ? String(lowCount) : "--") + "/" + String(totalAlarms);
+    }
+    
+    indicator.printText(lines, 4);
+}
+
+void TemperatureController::_displayAlarmSummaryByType() {
+    indicator.setOledModeSmall(3, true); // 3-line mode with small font
+    String lines[3];
+    
+    // Count total alarms in active or acknowledged state
+    int totalAlarms = 0;
+    int highTempCount = 0;
+    int lowTempCount = 0;
+    int sensorErrorCount = 0;
+    
+    for (Alarm* alarm : _configuredAlarms) {
+        if (alarm->getStage() == AlarmStage::ACTIVE || alarm->getStage() == AlarmStage::ACKNOWLEDGED) {
+            totalAlarms++;
+            switch (alarm->getType()) {
+                case AlarmType::HIGH_TEMPERATURE:
+                    highTempCount++;
+                    break;
+                case AlarmType::LOW_TEMPERATURE:
+                    lowTempCount++;
+                    break;
+                case AlarmType::SENSOR_ERROR:
+                case AlarmType::SENSOR_DISCONNECTED:
+                    sensorErrorCount++;
+                    break;
+            }
+        }
+    }
+    
+    // Format with Cyrillic text
+    if (totalAlarms == 0) {
+        lines[0] = "ВЫС.T:     --/--";
+        lines[1] = "НИЗ.T:     --/--";
+        lines[2] = "ОШИБ.:     --/--";
+    } else {
+        lines[0] = "ВЫС.T:     " + (highTempCount > 0 ? String(highTempCount) : "--") + "/" + String(totalAlarms);
+        lines[1] = "НИЗ.T:     " + (lowTempCount > 0 ? String(lowTempCount) : "--") + "/" + String(totalAlarms);
+        lines[2] = "ОШИБ.:     " + (sensorErrorCount > 0 ? String(sensorErrorCount) : "--") + "/" + String(totalAlarms);
+    }
+    
+    indicator.printText(lines, 3);
+}
+
+void TemperatureController::_displayModbusStatus() {
+    indicator.setOledModeSmall(4, true); // 4-line mode with small font
+    String lines[4];
+    
+    // Get Modbus configuration from ConfigManager
+    extern ConfigManager configManager;
+    
+    // Check if Modbus is enabled
+    bool modbusEnabled = configManager.isModbusEnabled();
+    
+    if (!modbusEnabled) {
+        lines[0] = "STATUS: DISABLED";
+        lines[1] = "ADDR:   --";
+        lines[2] = "PAR:    ---";
+        lines[3] = "BR:     ----";
+    } else {
+        // Get Modbus statistics from register map
+        uint16_t modbusErrors = registerMap.readHoldingRegister(6);    // Error count
+        
+        // Determine status based on errors
+        if (modbusErrors > 0) {
+            lines[0] = "STATUS: ERR";
+        } else {
+            lines[0] = "STATUS: CONNECTED";
+        }
+        
+        // Get available configuration
+        uint8_t modbusAddr = configManager.getModbusAddress();
+        uint32_t baudRate = configManager.getModbusBaudRate();
+        
+        lines[1] = "ADDR:   " + String(modbusAddr);
+        lines[2] = "PAR:    8N1";  // Standard default for this system
+        lines[3] = "BR:     " + String(baudRate);
+    }
+    
+    indicator.printText(lines, 4);
+}
+
+// Display Section Management
+void TemperatureController::_handleDisplaySections() {
+    // Update alarm queues first
+    _updateAlarmQueues();
+    
+    // Determine which section we should be in
+    if (\!_activeAlarmsQueue.empty()) {
+        // Active alarms present - switch to acknowledgment section
+        if (_currentSection \!= SECTION_ALARM_ACK) {
+            _switchToSection(SECTION_ALARM_ACK);
+        }
+    } else if (\!_acknowledgedAlarmsQueue.empty() && _currentSection \!= SECTION_STATUS) {
+        // Only acknowledged alarms - show them
+        if (_currentSection \!= SECTION_ACK_ALARMS) {
+            _switchToSection(SECTION_ACK_ALARMS);
+        }
+    } else if (_currentSection == SECTION_ALARM_ACK || _currentSection == SECTION_ACK_ALARMS) {
+        // No alarms but we're in alarm section - go to normal
+        _switchToSection(SECTION_NORMAL);
+    }
+    
+    // Handle timeout for status section
+    if (_currentSection == SECTION_STATUS) {
+        if (millis() - _systemStatusModeStartTime >= _systemStatusTimeout) {
+            Serial.println("Status section timeout - returning to previous");
+            _switchToSection(_previousSection);
+        }
+    }
+    
+    // Display based on current section
+    switch (_currentSection) {
+        case SECTION_ALARM_ACK:
+            _handleAlarmDisplayRotation();
+            break;
+            
+        case SECTION_ACK_ALARMS:
+            _displayNextAcknowledgedAlarm();
+            break;
+            
+        case SECTION_STATUS:
+            _handleSystemStatusMode();
+            break;
+            
+        case SECTION_NORMAL:
+            _updateNormalDisplay();
+            break;
+    }
+}
+
+void TemperatureController::_switchToSection(DisplaySection newSection) {
+    if (_currentSection == newSection) return;
+    
+    Serial.printf("Switching from section %d to %d\n", _currentSection, newSection);
+    
+    _previousSection = _currentSection;
+    _currentSection = newSection;
+    
+    // Reset section-specific variables
+    switch (newSection) {
+        case SECTION_STATUS:
+            _systemStatusPage = 0;
+            _systemStatusModeStartTime = millis();
+            indicator.setOLEDOn();
+            break;
+            
+        case SECTION_ALARM_ACK:
+        case SECTION_ACK_ALARMS:
+            _lastAlarmDisplayTime = 0;
+            indicator.setOLEDOn();
+            break;
+            
+        case SECTION_NORMAL:
+            _showingOK = false;
+            break;
+    }
+}
+EOF < /dev/null

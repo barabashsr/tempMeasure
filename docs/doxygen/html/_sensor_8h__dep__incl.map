@@ -1,45 +1,46 @@
 <map id="include/Sensor.h" name="include/Sensor.h">
-<area shape="rect" id="Node000001" title="Temperature sensor abstraction layer." alt="" coords="515,5,632,31"/>
-<area shape="rect" id="Node000002" href="$_measurement_point_8h.html" title="Measurement point abstraction for temperature monitoring system." alt="" coords="481,79,667,105"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="576,46,576,79,571,79,571,46"/>
-<area shape="rect" id="Node000004" href="$_temperature_controller_8h.html" title="Central temperature monitoring and control system." alt="" coords="440,226,644,252"/>
-<area shape="poly" id="edge24_Node000001_Node000004" title=" " alt="" coords="532,40,498,59,463,84,432,116,411,154,409,166,411,177,427,197,454,212,485,223,483,228,451,217,424,201,406,180,403,166,406,152,428,112,459,80,495,54,529,36"/>
-<area shape="rect" id="Node000018" href="$_sensor_8cpp.html" title="Implementation of temperature sensor abstraction layer." alt="" coords="692,79,800,105"/>
-<area shape="poly" id="edge25_Node000001_Node000018" title=" " alt="" coords="618,35,718,76,715,81,616,40"/>
-<area shape="rect" id="Node000003" href="$_alarm_8h.html" title="Alarm management system for temperature monitoring." alt="" coords="673,153,784,178"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="615,109,703,150,701,154,613,114"/>
-<area shape="poly" id="edge21_Node000002_Node000004" title=" " alt="" coords="597,115,613,145,616,162,612,179,591,208,565,228,562,224,587,204,607,177,611,162,608,147,592,118"/>
-<area shape="rect" id="Node000010" href="$_logger_manager_8cpp.html" title="Implementation of data logging and event management system." alt="" coords="921,300,1077,326"/>
-<area shape="poly" id="edge22_Node000002_Node000010" title=" " alt="" coords="663,106,731,124,798,150,858,186,913,228,989,298,986,302,910,232,855,191,795,155,729,129,662,111"/>
-<area shape="rect" id="Node000014" href="$_register_map_8h.html" title="Modbus register mapping for temperature monitoring system." alt="" coords="193,153,344,178"/>
-<area shape="poly" id="edge15_Node000002_Node000014" title=" " alt="" coords="507,111,321,155,320,149,506,106"/>
-<area shape="rect" id="Node000017" href="$_measurement_point_8cpp.html" title="Implementation of temperature measurement point management." alt="" coords="420,153,597,178"/>
-<area shape="poly" id="edge23_Node000002_Node000017" title=" " alt="" coords="555,118,521,154,518,150,551,114"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="684,187,575,228,573,223,682,182"/>
-<area shape="rect" id="Node000013" href="$_alarm_8cpp.html" title="Implementation of alarm management system for temperature monitoring." alt="" coords="677,226,780,252"/>
-<area shape="poly" id="edge14_Node000003_Node000013" title=" " alt="" coords="731,194,731,226,726,226,726,194"/>
-<area shape="rect" id="Node000005" href="$_c_s_v_config_manager_8h.html" title="CSV configuration import/export manager for measurement points and alarms." alt="" coords="654,300,846,326"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="592,255,715,297,714,302,591,260"/>
-<area shape="rect" id="Node000006" href="$_config_manager_8h.html" title="Configuration management system for temperature monitoring device." alt="" coords="734,374,899,399"/>
-<area shape="poly" id="edge9_Node000004_Node000006" title=" " alt="" coords="655,252,784,273,833,285,860,298,867,319,860,340,847,359,832,375,828,371,843,356,856,337,861,319,856,302,832,290,783,278,655,257"/>
-<area shape="rect" id="Node000008" href="$main_8cpp.html" title="Main application entry point for Industrial Temperature Monitoring System." alt="" coords="350,447,446,473"/>
-<area shape="poly" id="edge13_Node000004_Node000008" title=" " alt="" coords="482,260,451,277,425,302,407,339,399,380,397,418,399,447,394,447,392,418,393,379,402,337,421,298,448,273,480,256"/>
-<area shape="poly" id="edge10_Node000004_Node000010" title=" " alt="" coords="635,252,921,297,921,302,634,258"/>
-<area shape="rect" id="Node000011" href="$_temp_modbus_server_8cpp.html" title="Implementation of Modbus RTU server for temperature monitoring." alt="" coords="177,300,360,326"/>
-<area shape="poly" id="edge11_Node000004_Node000011" title=" " alt="" coords="482,259,316,302,314,297,481,254"/>
-<area shape="rect" id="Node000012" href="$_temperature_controller_8cpp.html" title="Implementation of the central temperature monitoring and control system." alt="" coords="435,300,630,326"/>
-<area shape="poly" id="edge12_Node000004_Node000012" title=" " alt="" coords="541,267,537,300,531,299,536,267"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="773,335,807,371,803,375,769,339"/>
-<area shape="rect" id="Node000009" href="$_c_s_v_config_manager_8cpp.html" title="Implementation of CSV configuration management for measurement points." alt="" coords="528,374,711,399"/>
-<area shape="poly" id="edge8_Node000005_Node000009" title=" " alt="" coords="716,336,643,375,640,371,714,331"/>
-<area shape="rect" id="Node000007" href="$_config_manager_8cpp.html" title="Implementation of web&#45;based configuration management system." alt="" coords="739,447,894,473"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="819,415,819,447,814,447,814,415"/>
-<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="730,405,447,453,446,448,730,400"/>
-<area shape="poly" id="edge19_Node000014_Node000004" title=" " alt="" coords="330,180,496,223,495,228,328,185"/>
-<area shape="rect" id="Node000015" href="$_temp_modbus_server_8h.html" title="Modbus RTU server for temperature monitoring system." alt="" coords="172,226,365,252"/>
-<area shape="poly" id="edge16_Node000014_Node000015" title=" " alt="" coords="271,194,271,226,266,226,266,194"/>
-<area shape="rect" id="Node000016" href="$_register_map_8cpp.html" title="Implementation of Modbus register mapping for temperature monitoring." alt="" coords="5,226,148,252"/>
-<area shape="poly" id="edge20_Node000014_Node000016" title=" " alt="" coords="223,187,110,228,108,223,221,182"/>
-<area shape="poly" id="edge18_Node000015_Node000008" title=" " alt="" coords="218,261,193,273,174,288,163,306,163,315,167,324,184,348,204,369,252,403,303,428,350,444,348,449,301,433,249,408,200,373,179,351,162,327,158,315,158,304,170,285,191,269,216,256"/>
-<area shape="poly" id="edge17_Node000015_Node000011" title=" " alt="" coords="271,267,271,300,266,300,266,267"/>
+<area shape="rect" id="Node000001" title="Temperature sensor abstraction layer." alt="" coords="519,5,636,31"/>
+<area shape="rect" id="Node000002" href="$_measurement_point_8h.html" title="Measurement point abstraction for temperature monitoring system." alt="" coords="484,79,671,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="580,46,580,79,575,79,575,46"/>
+<area shape="rect" id="Node000004" href="$_temperature_controller_8h.html" title="Central temperature monitoring and control system." alt="" coords="389,226,593,252"/>
+<area shape="poly" id="edge25_Node000001_Node000004" title=" " alt="" coords="523,40,496,57,474,80,467,99,463,119,466,160,476,197,487,225,482,227,471,199,460,161,458,118,462,97,470,78,492,53,520,35"/>
+<area shape="rect" id="Node000018" href="$_sensor_8cpp.html" title="Implementation of temperature sensor abstraction layer." alt="" coords="695,79,804,105"/>
+<area shape="poly" id="edge26_Node000001_Node000018" title=" " alt="" coords="622,35,721,76,719,81,620,40"/>
+<area shape="rect" id="Node000003" href="$_alarm_8h.html" title="Alarm management system for temperature monitoring." alt="" coords="528,153,640,178"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="583,120,586,152,580,152,577,120"/>
+<area shape="poly" id="edge22_Node000002_Node000004" title=" " alt="" coords="551,117,534,134,518,154,502,193,495,227,490,225,497,191,514,151,530,130,548,113"/>
+<area shape="rect" id="Node000011" href="$_logger_manager_8cpp.html" title="Implementation of data logging and event management system." alt="" coords="801,300,957,326"/>
+<area shape="poly" id="edge23_Node000002_Node000011" title=" " alt="" coords="670,105,786,127,831,139,855,151,868,168,877,188,886,230,887,270,884,300,878,299,881,270,881,231,872,190,864,171,852,155,829,144,784,132,669,110"/>
+<area shape="rect" id="Node000014" href="$_register_map_8h.html" title="Modbus register mapping for temperature monitoring system." alt="" coords="235,153,386,178"/>
+<area shape="poly" id="edge16_Node000002_Node000014" title=" " alt="" coords="518,112,357,155,356,149,517,106"/>
+<area shape="rect" id="Node000017" href="$_measurement_point_8cpp.html" title="Implementation of temperature measurement point management." alt="" coords="664,153,841,178"/>
+<area shape="poly" id="edge24_Node000002_Node000017" title=" " alt="" coords="622,108,723,150,721,155,620,113"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="558,190,508,228,505,224,555,186"/>
+<area shape="rect" id="Node000013" href="$_alarm_8cpp.html" title="Implementation of alarm management system for temperature monitoring." alt="" coords="617,226,719,252"/>
+<area shape="poly" id="edge15_Node000003_Node000013" title=" " alt="" coords="611,186,656,224,652,228,608,190"/>
+<area shape="rect" id="Node000005" href="$_c_s_v_config_manager_8h.html" title="CSV configuration import/export manager for measurement points and alarms." alt="" coords="473,300,666,326"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="517,261,558,298,555,302,513,264"/>
+<area shape="rect" id="Node000006" href="$_config_manager_8h.html" title="Configuration management system for temperature monitoring device." alt="" coords="354,374,518,399"/>
+<area shape="poly" id="edge10_Node000004_Node000006" title=" " alt="" coords="479,267,464,301,442,374,436,373,459,299,475,265"/>
+<area shape="rect" id="Node000008" href="$_temperature_controller_8cpp.html" title="Implementation of the central temperature monitoring and control system." alt="" coords="616,447,811,473"/>
+<area shape="poly" id="edge13_Node000004_Node000008" title=" " alt="" coords="576,254,629,271,679,298,717,329,729,347,740,373,743,394,739,415,724,448,719,446,734,413,738,394,735,374,725,350,713,333,676,302,626,276,574,259"/>
+<area shape="rect" id="Node000009" href="$main_8cpp.html" title="Main application entry point for Industrial Temperature Monitoring System." alt="" coords="253,447,350,473"/>
+<area shape="poly" id="edge14_Node000004_Node000009" title=" " alt="" coords="462,264,404,311,372,342,344,375,321,414,308,448,303,446,317,412,339,372,368,338,400,307,459,259"/>
+<area shape="poly" id="edge11_Node000004_Node000011" title=" " alt="" coords="572,253,813,297,812,302,571,258"/>
+<area shape="rect" id="Node000012" href="$_temp_modbus_server_8cpp.html" title="Implementation of Modbus RTU server for temperature monitoring." alt="" coords="95,300,278,326"/>
+<area shape="poly" id="edge12_Node000004_Node000012" title=" " alt="" coords="425,259,239,302,238,297,424,253"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="535,336,460,375,458,371,532,331"/>
+<area shape="rect" id="Node000010" href="$_c_s_v_config_manager_8cpp.html" title="Implementation of CSV configuration management for measurement points." alt="" coords="542,374,725,399"/>
+<area shape="poly" id="edge9_Node000005_Node000010" title=" " alt="" coords="592,335,625,371,621,375,588,339"/>
+<area shape="rect" id="Node000007" href="$_config_manager_8cpp.html" title="Implementation of web&#45;based configuration management system." alt="" coords="373,447,528,473"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="444,414,451,446,446,447,439,415"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="498,401,667,444,666,449,497,406"/>
+<area shape="poly" id="edge8_Node000006_Node000009" title=" " alt="" coords="401,409,326,449,323,444,399,405"/>
+<area shape="poly" id="edge20_Node000014_Node000004" title=" " alt="" coords="356,182,461,223,459,228,355,187"/>
+<area shape="rect" id="Node000015" href="$_temp_modbus_server_8h.html" title="Modbus RTU server for temperature monitoring system." alt="" coords="5,226,198,252"/>
+<area shape="poly" id="edge17_Node000014_Node000015" title=" " alt="" coords="262,186,138,228,136,223,260,181"/>
+<area shape="rect" id="Node000016" href="$_register_map_8cpp.html" title="Implementation of Modbus register mapping for temperature monitoring." alt="" coords="222,226,365,252"/>
+<area shape="poly" id="edge21_Node000014_Node000016" title=" " alt="" coords="307,194,299,226,294,225,302,193"/>
+<area shape="poly" id="edge19_Node000015_Node000009" title=" " alt="" coords="90,266,81,296,81,311,85,324,101,348,120,368,166,402,215,428,259,444,257,449,213,432,164,407,117,372,97,351,80,327,75,311,75,295,85,265"/>
+<area shape="poly" id="edge18_Node000015_Node000012" title=" " alt="" coords="129,260,174,298,171,302,126,264"/>
 </map>

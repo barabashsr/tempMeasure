@@ -119,7 +119,7 @@
         <link refid="_c_s_v_config_manager_8h"/>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="8" relation="include">
+        <childnode refid="9" relation="include">
         </childnode>
       </node>
       <node id="5">
@@ -128,6 +128,8 @@
         <childnode refid="6" relation="include">
         </childnode>
         <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
         </childnode>
       </node>
       <node id="1">
@@ -139,7 +141,7 @@
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="9" relation="include">
+        <childnode refid="10" relation="include">
         </childnode>
         <childnode refid="16" relation="include">
         </childnode>
@@ -157,9 +159,9 @@
       <node id="14">
         <label>include/TempModbusServer.h</label>
         <link refid="_temp_modbus_server_8h"/>
-        <childnode refid="10" relation="include">
+        <childnode refid="11" relation="include">
         </childnode>
-        <childnode refid="7" relation="include">
+        <childnode refid="8" relation="include">
         </childnode>
       </node>
       <node id="3">
@@ -169,20 +171,20 @@
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
         <childnode refid="10" relation="include">
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
       </node>
       <node id="12">
         <label>src/Alarm.cpp</label>
         <link refid="_alarm_8cpp"/>
       </node>
-      <node id="8">
+      <node id="9">
         <label>src/CSVConfigManager.cpp</label>
         <link refid="_c_s_v_config_manager_8cpp"/>
       </node>
@@ -190,7 +192,7 @@
         <label>src/ConfigManager.cpp</label>
         <link refid="_config_manager_8cpp"/>
       </node>
-      <node id="9">
+      <node id="10">
         <label>src/LoggerManager.cpp</label>
         <link refid="_logger_manager_8cpp"/>
       </node>
@@ -202,15 +204,15 @@
         <label>src/RegisterMap.cpp</label>
         <link refid="_register_map_8cpp"/>
       </node>
-      <node id="10">
+      <node id="11">
         <label>src/TempModbusServer.cpp</label>
         <link refid="_temp_modbus_server_8cpp"/>
       </node>
-      <node id="11">
+      <node id="7">
         <label>src/TemperatureController.cpp</label>
         <link refid="_temperature_controller_8cpp"/>
       </node>
-      <node id="7">
+      <node id="8">
         <label>src/main.cpp</label>
         <link refid="main_8cpp"/>
       </node>

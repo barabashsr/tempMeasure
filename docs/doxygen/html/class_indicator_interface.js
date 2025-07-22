@@ -49,6 +49,7 @@ var class_indicator_interface =
     [ "setMode", "class_indicator_interface.html#a427021193bee0fcb775b4975ddd5fa54", null ],
     [ "setOLEDblink", "class_indicator_interface.html#ab8a4f7cc08c2fb112aa893f0aeca044a", null ],
     [ "setOledMode", "class_indicator_interface.html#acf545ec2921c786020f7826a846b364d", null ],
+    [ "setOledModeSmall", "class_indicator_interface.html#a68ddd3010b792e5ae00fecad56e7a4f6", null ],
     [ "setOLEDOff", "class_indicator_interface.html#a62ad23d6e52cf3abe43f6dad6000ebbd", null ],
     [ "setOLEDOn", "class_indicator_interface.html#a7d807749bff6ef06c128617b35f4dcce", null ],
     [ "setOledSleepDelay", "class_indicator_interface.html#a0f23c8a09f237eca7d71a9ff4e560e96", null ],

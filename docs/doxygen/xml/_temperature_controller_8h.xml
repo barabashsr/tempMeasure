@@ -204,7 +204,7 @@
         <link refid="_c_s_v_config_manager_8h"/>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="6" relation="include">
+        <childnode refid="7" relation="include">
         </childnode>
       </node>
       <node id="3">
@@ -214,6 +214,8 @@
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
       </node>
       <node id="1">
         <label>include/TemperatureController.h</label>
@@ -222,16 +224,16 @@
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
         <childnode refid="8" relation="include">
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
       </node>
-      <node id="6">
+      <node id="7">
         <label>src/CSVConfigManager.cpp</label>
         <link refid="_c_s_v_config_manager_8cpp"/>
       </node>
@@ -239,19 +241,19 @@
         <label>src/ConfigManager.cpp</label>
         <link refid="_config_manager_8cpp"/>
       </node>
-      <node id="7">
+      <node id="8">
         <label>src/LoggerManager.cpp</label>
         <link refid="_logger_manager_8cpp"/>
       </node>
-      <node id="8">
+      <node id="9">
         <label>src/TempModbusServer.cpp</label>
         <link refid="_temp_modbus_server_8cpp"/>
       </node>
-      <node id="9">
+      <node id="5">
         <label>src/TemperatureController.cpp</label>
         <link refid="_temperature_controller_8cpp"/>
       </node>
-      <node id="5">
+      <node id="6">
         <label>src/main.cpp</label>
         <link refid="main_8cpp"/>
       </node>
@@ -592,7 +594,43 @@ This class manages all temperature sensors, measurement points, alarms, and syst
 <codeline lineno="799"><highlight class="normal"><sp/><sp/><sp/><sp/>String<sp/><ref refid="class_temperature_controller_1aa97ba23c998b2cfc732786e2307e60fa" kindref="member">_getPriorityString</ref>(<ref refid="_alarm_8h_1a5a708c1a1540361a33a030066a7c321b" kindref="member">AlarmPriority</ref><sp/>priority)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="800"><highlight class="normal"></highlight></codeline>
 <codeline lineno="806"><highlight class="normal"><sp/><sp/><sp/><sp/>String<sp/><ref refid="class_temperature_controller_1a38e9fe7d49bc58f1c6b5f1021ed1c045" kindref="member">_getAlarmTypeString</ref>(<ref refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2" kindref="member">AlarmType</ref><sp/>type)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="807"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="807"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="808"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Display<sp/>Section<sp/>Management</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="809" refid="class_temperature_controller_1af6f8ef1044393a49b8c1121695084118" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="class_temperature_controller_1af6f8ef1044393a49b8c1121695084118" kindref="member">DisplaySection</ref><sp/>{</highlight></codeline>
+<codeline lineno="810" refid="class_temperature_controller_1af6f8ef1044393a49b8c1121695084118a1e4830ad7053433e137343a6e2f36c68" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_temperature_controller_1af6f8ef1044393a49b8c1121695084118a1e4830ad7053433e137343a6e2f36c68" kindref="member">SECTION_ALARM_ACK</ref>,<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="811" refid="class_temperature_controller_1af6f8ef1044393a49b8c1121695084118ae1b5477ddfbc8b4bbcb90f855fcf8ac0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_temperature_controller_1af6f8ef1044393a49b8c1121695084118ae1b5477ddfbc8b4bbcb90f855fcf8ac0" kindref="member">SECTION_ACK_ALARMS</ref>,<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="812" refid="class_temperature_controller_1af6f8ef1044393a49b8c1121695084118a44868a6c1db31821d611a9ec85d75ba0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_temperature_controller_1af6f8ef1044393a49b8c1121695084118a44868a6c1db31821d611a9ec85d75ba0" kindref="member">SECTION_STATUS</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="813" refid="class_temperature_controller_1af6f8ef1044393a49b8c1121695084118a27d72ca153cf7df2c14698ecf4683c7f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_temperature_controller_1af6f8ef1044393a49b8c1121695084118a27d72ca153cf7df2c14698ecf4683c7f" kindref="member">SECTION_NORMAL</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="814"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="815"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="816" refid="class_temperature_controller_1a37c1a856e53cd75c9c3fd5fc84ea7e1c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_temperature_controller_1af6f8ef1044393a49b8c1121695084118" kindref="member">DisplaySection</ref><sp/><ref refid="class_temperature_controller_1a37c1a856e53cd75c9c3fd5fc84ea7e1c" kindref="member">_currentSection</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="817" refid="class_temperature_controller_1a432e26b78d43722c8ede9f0da97d16bb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_temperature_controller_1af6f8ef1044393a49b8c1121695084118" kindref="member">DisplaySection</ref><sp/><ref refid="class_temperature_controller_1a432e26b78d43722c8ede9f0da97d16bb" kindref="member">_previousSection</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="818"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="819"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>System<sp/>Status<sp/>Mode</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="820" refid="class_temperature_controller_1adee4839496436759367fc5afc923eb68" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_temperature_controller_1adee4839496436759367fc5afc923eb68" kindref="member">_inSystemStatusMode</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="821" refid="class_temperature_controller_1a7b9965c1732aa75cc841023ed37c2c06" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_temperature_controller_1a7b9965c1732aa75cc841023ed37c2c06" kindref="member">_systemStatusPage</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="822" refid="class_temperature_controller_1a34b214f8d321c35ba73cfb437c0ac569" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><ref refid="class_temperature_controller_1a34b214f8d321c35ba73cfb437c0ac569" kindref="member">_buttonPressStartTime</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="823" refid="class_temperature_controller_1a7f2adc49f6736e673d3b85d8cc46be8e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><ref refid="class_temperature_controller_1a7f2adc49f6736e673d3b85d8cc46be8e" kindref="member">_systemStatusModeStartTime</ref>;<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="824" refid="class_temperature_controller_1a814c44e85ab732a0eae84c5f86fbdb78" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><ref refid="class_temperature_controller_1a814c44e85ab732a0eae84c5f86fbdb78" kindref="member">_longPressThreshold</ref><sp/>=<sp/>3000;<sp/></highlight></codeline>
+<codeline lineno="825" refid="class_temperature_controller_1a36a8926fc2ba0aa4223331f9e78d0787" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><ref refid="class_temperature_controller_1a36a8926fc2ba0aa4223331f9e78d0787" kindref="member">_systemStatusTimeout</ref><sp/>=<sp/>30000;<sp/></highlight></codeline>
+<codeline lineno="826" refid="class_temperature_controller_1ac8e088bc75c1bc148806d47f44c2599b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_temperature_controller_1ac8e088bc75c1bc148806d47f44c2599b" kindref="member">_buttonPressHandled</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="827"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="831"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_temperature_controller_1a45f7994a3a052a527981dbfdad27606b" kindref="member">_handleSystemStatusMode</ref>();</highlight></codeline>
+<codeline lineno="832"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="836"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_temperature_controller_1a2436c7043d97ca75c717db2b87326d90" kindref="member">_displayNetworkInfo</ref>();</highlight></codeline>
+<codeline lineno="837"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="841"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_temperature_controller_1a45d13ed72fd36b46820af631e4db958b" kindref="member">_displaySystemStats</ref>();</highlight></codeline>
+<codeline lineno="842"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="846"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_temperature_controller_1a3948ceaf046b5f06afcc9083433f532c" kindref="member">_displayAlarmSummaryByPriority</ref>();</highlight></codeline>
+<codeline lineno="847"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="851"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_temperature_controller_1ab5e076b045677678390603e9a805e4db" kindref="member">_displayAlarmSummaryByType</ref>();</highlight></codeline>
+<codeline lineno="852"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="856"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_temperature_controller_1a5fc773a967cea261f21bbe86d90d2586" kindref="member">_displayModbusStatus</ref>();</highlight></codeline>
+<codeline lineno="857"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="861"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_temperature_controller_1a6b2f92b5c2af867240200cff2e61e806" kindref="member">_handleDisplaySections</ref>();</highlight></codeline>
+<codeline lineno="862"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="867"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_temperature_controller_1a3955f205bc33dda762cbe5c572cd4f21" kindref="member">_switchToSection</ref>(<ref refid="class_temperature_controller_1af6f8ef1044393a49b8c1121695084118" kindref="member">DisplaySection</ref><sp/>newSection);</highlight></codeline>
+<codeline lineno="868"><highlight class="normal">};</highlight></codeline>
     </programlisting>
     <location file="include/TemperatureController.h"/>
   </compounddef>

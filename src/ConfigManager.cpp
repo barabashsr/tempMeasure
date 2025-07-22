@@ -52,10 +52,10 @@ const char* VARIABLES_DEF_YAML PROGMEM = R"~(
     Wifi settings:
       - st_ssid:
           label: WiFi SSID
-          default: Polza
+          default: Tenda_B3E6F0_EXT
       - st_pass:
           label: WiFi Password
-          default: 1122334455667788
+          default: a111222333
       - host_name:
           label: Device Hostname
           default: 'temp-monitor-{mac}'

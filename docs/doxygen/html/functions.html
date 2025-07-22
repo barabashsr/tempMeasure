@@ -117,6 +117,8 @@ $(function(){initNavTree('functions.html','',''); });
 <li>_blinkTimeOn&#160;:&#160;<a class="el" href="class_indicator_interface.html#aa85df0334d9959edc154bed17747ae04">IndicatorInterface</a></li>
 <li>_blueLedState&#160;:&#160;<a class="el" href="class_temperature_controller.html#aec910974cd40cafef22d5e5c5e730512">TemperatureController</a></li>
 <li>_buttonDebounceDelay&#160;:&#160;<a class="el" href="class_temperature_controller.html#a3a9321a93beb0b9e3769ae303097103c">TemperatureController</a></li>
+<li>_buttonPressHandled&#160;:&#160;<a class="el" href="class_temperature_controller.html#ac8e088bc75c1bc148806d47f44c2599b">TemperatureController</a></li>
+<li>_buttonPressStartTime&#160;:&#160;<a class="el" href="class_temperature_controller.html#a34b214f8d321c35ba73cfb437c0ac569">TemperatureController</a></li>
 <li>_calculateDisplayParams()&#160;:&#160;<a class="el" href="class_indicator_interface.html#a2f021f6fa16dec590a8b9cf41a82349d">IndicatorInterface</a></li>
 <li>_charWidth&#160;:&#160;<a class="el" href="class_indicator_interface.html#a12aa1363cd7159475c7ca7b145b688cd">IndicatorInterface</a></li>
 <li>_checkButtonPress()&#160;:&#160;<a class="el" href="class_temperature_controller.html#a1228b63e95f26c21a8d9c2a27928bc75">TemperatureController</a></li>
@@ -137,13 +139,19 @@ $(function(){initNavTree('functions.html','',''); });
 <li>_currentDisplayedAlarm&#160;:&#160;<a class="el" href="class_temperature_controller.html#a98355f65a59f91b4e5d5c8e70e5e7695">TemperatureController</a></li>
 <li>_currentEventLogFile&#160;:&#160;<a class="el" href="class_logger_manager.html#a01add21d20302650f59d7edb1bd556af">LoggerManager</a></li>
 <li>_currentLogFile&#160;:&#160;<a class="el" href="class_logger_manager.html#abd02a9be4279f066d2a7d0ac17a1d392">LoggerManager</a></li>
+<li>_currentSection&#160;:&#160;<a class="el" href="class_temperature_controller.html#a37c1a856e53cd75c9c3fd5fc84ea7e1c">TemperatureController</a></li>
 <li>_currentState&#160;:&#160;<a class="el" href="class_indicator_interface.html#a9cebce08d61558a1c8f60bfd558ea656">IndicatorInterface</a></li>
 <li>_dailyFiles&#160;:&#160;<a class="el" href="class_logger_manager.html#a998996a09ab35ff5a07ac18bccb7a9b8">LoggerManager</a></li>
 <li>_delayTime&#160;:&#160;<a class="el" href="class_alarm.html#a483c0308c4c2e27047ae10f194f4f414">Alarm</a></li>
 <li>_directionMask&#160;:&#160;<a class="el" href="class_indicator_interface.html#aa86f0bf7ac0aa21e3dd58e9f22a9d006">IndicatorInterface</a></li>
+<li>_displayAlarmSummaryByPriority()&#160;:&#160;<a class="el" href="class_temperature_controller.html#a3948ceaf046b5f06afcc9083433f532c">TemperatureController</a></li>
+<li>_displayAlarmSummaryByType()&#160;:&#160;<a class="el" href="class_temperature_controller.html#ab5e076b045677678390603e9a805e4db">TemperatureController</a></li>
 <li>_displayingActiveAlarm&#160;:&#160;<a class="el" href="class_temperature_controller.html#aa881d2bbb58b22ac952aa781d997ee01">TemperatureController</a></li>
+<li>_displayModbusStatus()&#160;:&#160;<a class="el" href="class_temperature_controller.html#a5fc773a967cea261f21bbe86d90d2586">TemperatureController</a></li>
+<li>_displayNetworkInfo()&#160;:&#160;<a class="el" href="class_temperature_controller.html#a2436c7043d97ca75c717db2b87326d90">TemperatureController</a></li>
 <li>_displayNextAcknowledgedAlarm()&#160;:&#160;<a class="el" href="class_temperature_controller.html#ac44de0834e13cec755e247ce1df21f09">TemperatureController</a></li>
 <li>_displayNextActiveAlarm()&#160;:&#160;<a class="el" href="class_temperature_controller.html#a7ca5124357f98bcd52316cf017341b09">TemperatureController</a></li>
+<li>_displaySystemStats()&#160;:&#160;<a class="el" href="class_temperature_controller.html#a45d13ed72fd36b46820af631e4db958b">TemperatureController</a></li>
 <li>_drawTextLine()&#160;:&#160;<a class="el" href="class_indicator_interface.html#a56c23034a963e2099e36cf55ec70055e">IndicatorInterface</a></li>
 <li>_enabled&#160;:&#160;<a class="el" href="class_alarm.html#af532c7945d25b47adf55d60cb91c86ae">Alarm</a>, <a class="el" href="class_logger_manager.html#af1b758d10f352dc29e116a087a182531">LoggerManager</a></li>
 <li>_ensureAlarmStateLogExists()&#160;:&#160;<a class="el" href="class_logger_manager.html#a0bb3b084e2a16c2d089e8761a093bef5">LoggerManager</a></li>
@@ -175,11 +183,13 @@ $(function(){initNavTree('functions.html','',''); });
 <li>_getPriorityString()&#160;:&#160;<a class="el" href="class_alarm.html#a052a73879f5cd039f6f7cb7ce02e6a9d">Alarm</a>, <a class="el" href="class_c_s_v_config_manager.html#a42f3d6d3fe90a50339e53c550cbdcc4a">CSVConfigManager</a>, <a class="el" href="class_temperature_controller.html#aa97ba23c998b2cfc732786e2307e60fa">TemperatureController</a></li>
 <li>_greenLedState&#160;:&#160;<a class="el" href="class_temperature_controller.html#a999459f5c7d5320ad12c90bf0948a551">TemperatureController</a></li>
 <li>_handleAlarmDisplayRotation()&#160;:&#160;<a class="el" href="class_temperature_controller.html#a1d2745c323f7094beac8f406825499b7">TemperatureController</a></li>
+<li>_handleDisplaySections()&#160;:&#160;<a class="el" href="class_temperature_controller.html#a6b2f92b5c2af867240200cff2e61e806">TemperatureController</a></li>
 <li>_handleLowPriorityBlinking()&#160;:&#160;<a class="el" href="class_temperature_controller.html#accf8eda6bd6ed08b84ee839fbb13cc31">TemperatureController</a></li>
 <li>_handleOLEDBlink()&#160;:&#160;<a class="el" href="class_indicator_interface.html#afc1bacc73d487f912d7a71f559e193ef">IndicatorInterface</a></li>
 <li>_handleOLEDSleep()&#160;:&#160;<a class="el" href="class_indicator_interface.html#a01fa37471cccc2655c0a817b1cab0826">IndicatorInterface</a></li>
 <li>_handleScrolling()&#160;:&#160;<a class="el" href="class_indicator_interface.html#a520ad5df9ff7c3f3b716b2b179e50a7e">IndicatorInterface</a></li>
 <li>_handleSpecialBlink()&#160;:&#160;<a class="el" href="class_indicator_interface.html#ad70f8a9e7f527bc4faeb576b47483385">IndicatorInterface</a></li>
+<li>_handleSystemStatusMode()&#160;:&#160;<a class="el" href="class_temperature_controller.html#a45f7994a3a052a527981dbfdad27606b">TemperatureController</a></li>
 <li>_hasAlarmForPoint()&#160;:&#160;<a class="el" href="class_temperature_controller.html#a4e75dbef3c1ce99afd4ec8e71102e836">TemperatureController</a></li>
 <li>_hasHeaderChanged()&#160;:&#160;<a class="el" href="class_logger_manager.html#a829c2f8dcde77d6506f1d664a291969a">LoggerManager</a></li>
 <li>_headerChanged&#160;:&#160;<a class="el" href="class_logger_manager.html#aae032051a9478b9221328cc0027d3503">LoggerManager</a></li>
@@ -191,6 +201,7 @@ $(function(){initNavTree('functions.html','',''); });
 <li>_initializeNTP()&#160;:&#160;<a class="el" href="class_time_manager.html#a2160202e65568b360b4bdfbe7ff7ff96">TimeManager</a></li>
 <li>_initOLED()&#160;:&#160;<a class="el" href="class_indicator_interface.html#a57958896691800d0526ad7941e305136">IndicatorInterface</a></li>
 <li>_instance&#160;:&#160;<a class="el" href="class_indicator_interface.html#adefd227476c9f85bc7fb1302c99fb60b">IndicatorInterface</a>, <a class="el" href="class_logger_manager.html#a3f4c0cc78425ddd99d489740be325f4d">LoggerManager</a></li>
+<li>_inSystemStatusMode&#160;:&#160;<a class="el" href="class_temperature_controller.html#adee4839496436759367fc5afc923eb68">TemperatureController</a></li>
 <li>_interruptCallback&#160;:&#160;<a class="el" href="class_indicator_interface.html#a7a520f568f2ce58dd2692b9e7a217d21">IndicatorInterface</a></li>
 <li>_interruptFlag&#160;:&#160;<a class="el" href="class_indicator_interface.html#adac6de445ff7c1d1bc1afa660849c272">IndicatorInterface</a></li>
 <li>_intPin&#160;:&#160;<a class="el" href="class_indicator_interface.html#ac99448e370702160d9a0d164fcaa6fc9">IndicatorInterface</a></li>
@@ -220,6 +231,7 @@ $(function(){initNavTree('functions.html','',''); });
 <li>_lineHeight&#160;:&#160;<a class="el" href="class_indicator_interface.html#aa0218f414dcc1be0b62c29e7d39b985d">IndicatorInterface</a></li>
 <li>_logDirectory&#160;:&#160;<a class="el" href="class_logger_manager.html#a554f37e268c3aed53fba8c1af1f63ef4">LoggerManager</a></li>
 <li>_logFrequency&#160;:&#160;<a class="el" href="class_logger_manager.html#aef22c2918f9cf454cb5264145d507719">LoggerManager</a></li>
+<li>_longPressThreshold&#160;:&#160;<a class="el" href="class_temperature_controller.html#a814c44e85ab732a0eae84c5f86fbdb78">TemperatureController</a></li>
 <li>_lowPriorityBlinkState&#160;:&#160;<a class="el" href="class_temperature_controller.html#af5585a9f09291fc31296ac04c5de98ae">TemperatureController</a></li>
 <li>_maxCharsPerLine&#160;:&#160;<a class="el" href="class_indicator_interface.html#a54182aa1c8eb74b781bea42002efb18e">IndicatorInterface</a></li>
 <li>_message&#160;:&#160;<a class="el" href="class_alarm.html#af47cc719207c7988954c082b0b80896d">Alarm</a></li>
@@ -246,6 +258,7 @@ $(function(){initNavTree('functions.html','',''); });
 <li>_pollInterval&#160;:&#160;<a class="el" href="class_indicator_interface.html#a7f534e3c6ff085592acf3cc2b047b859">IndicatorInterface</a></li>
 <li>_portNames&#160;:&#160;<a class="el" href="class_indicator_interface.html#a412495eaf75665fa714b37fc36a3b82d">IndicatorInterface</a></li>
 <li>_portNumbers&#160;:&#160;<a class="el" href="class_indicator_interface.html#a14a57c25bda0a46008b2184fa04517ac">IndicatorInterface</a></li>
+<li>_previousSection&#160;:&#160;<a class="el" href="class_temperature_controller.html#a432e26b78d43722c8ede9f0da97d16bb">TemperatureController</a></li>
 <li>_priority&#160;:&#160;<a class="el" href="class_alarm.html#a4b4fbc531464f77b58da6954dd146d65">Alarm</a></li>
 <li>_readHeaderFromFile()&#160;:&#160;<a class="el" href="class_logger_manager.html#ac50bc65494e34dca73f6ee0745a8b6e6">LoggerManager</a></li>
 <li>_readPCF()&#160;:&#160;<a class="el" href="class_indicator_interface.html#aad7f389062d31610e8b0d01e6c75413e">IndicatorInterface</a></li>
@@ -275,6 +288,10 @@ $(function(){initNavTree('functions.html','',''); });
 <li>_source&#160;:&#160;<a class="el" href="class_alarm.html#a1f87216f47e3421c09b6a2531963b24d">Alarm</a></li>
 <li>_stage&#160;:&#160;<a class="el" href="class_alarm.html#a57c98ffd9577dc379176e3402d03913c">Alarm</a></li>
 <li>_staticInterruptHandler()&#160;:&#160;<a class="el" href="class_indicator_interface.html#ad4fddb918d5f80046ab61a70fbc9eed2">IndicatorInterface</a></li>
+<li>_switchToSection()&#160;:&#160;<a class="el" href="class_temperature_controller.html#a3955f205bc33dda762cbe5c572cd4f21">TemperatureController</a></li>
+<li>_systemStatusModeStartTime&#160;:&#160;<a class="el" href="class_temperature_controller.html#a7f2adc49f6736e673d3b85d8cc46be8e">TemperatureController</a></li>
+<li>_systemStatusPage&#160;:&#160;<a class="el" href="class_temperature_controller.html#a7b9965c1732aa75cc841023ed37c2c06">TemperatureController</a></li>
+<li>_systemStatusTimeout&#160;:&#160;<a class="el" href="class_temperature_controller.html#a36a8926fc2ba0aa4223331f9e78d0787">TemperatureController</a></li>
 <li>_textBuffer&#160;:&#160;<a class="el" href="class_indicator_interface.html#ae69883abed1813161f5e451245136fb3">IndicatorInterface</a></li>
 <li>_textBufferSize&#160;:&#160;<a class="el" href="class_indicator_interface.html#afc6b2600d29f5d85758fd75cae83b0b9">IndicatorInterface</a></li>
 <li>_timeClient&#160;:&#160;<a class="el" href="class_time_manager.html#a739105709a6e8e786a685ea67a917bbf">TimeManager</a></li>

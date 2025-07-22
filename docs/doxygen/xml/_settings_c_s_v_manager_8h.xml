@@ -30,24 +30,30 @@
         </childnode>
         <childnode refid="4" relation="include">
         </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
       </node>
       <node id="1">
         <label>include/SettingsCSVManager.h</label>
         <link refid="_settings_c_s_v_manager_8h"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="5" relation="include">
+        <childnode refid="6" relation="include">
         </childnode>
       </node>
       <node id="3">
         <label>src/ConfigManager.cpp</label>
         <link refid="_config_manager_8cpp"/>
       </node>
-      <node id="5">
+      <node id="6">
         <label>src/SettingsCSVManager.cpp</label>
         <link refid="_settings_c_s_v_manager_8cpp"/>
       </node>
       <node id="4">
+        <label>src/TemperatureController.cpp</label>
+        <link refid="_temperature_controller_8cpp"/>
+      </node>
+      <node id="5">
         <label>src/main.cpp</label>
         <link refid="main_8cpp"/>
       </node>

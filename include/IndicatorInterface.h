@@ -275,6 +275,14 @@ public:
     void setOledMode(int lines);
     
     /**
+     * @brief Set OLED display mode with small font option
+     * @param[in] lines Number of text lines to display (1-5)
+     * @param[in] useSmallFont Use smallest available font
+     * @details Configures display layout with optional small font
+     */
+    void setOledModeSmall(int lines, bool useSmallFont = true);
+    
+    /**
      * @brief Display text buffer on OLED
      * @param[in] buffer Array of strings to display
      * @param[in] bufferSize Number of strings in buffer
