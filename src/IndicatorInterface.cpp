@@ -660,27 +660,29 @@ void IndicatorInterface::_drawTextLine(int lineIndex, int yPos) {
     if (lineIndex >= _textBufferSize) return;
     
     String text = _textBuffer[lineIndex];
-    int textLength = text.length();
     
-    if (textLength <= _maxCharsPerLine) {
+    // Get text width in pixels (works correctly with UTF-8)
+    int textWidthPixels = u8g2.getUTF8Width(text.c_str());
+    int displayWidthPixels = u8g2.getDisplayWidth();
+    
+    if (textWidthPixels <= displayWidthPixels) {
         // Short text - display normally
-        u8g2.drawStr(0, yPos, text.c_str());
+        u8g2.drawUTF8(0, yPos, text.c_str());
     } else {
-        // Long text - apply circular scrolling
+        // Long text - apply pixel-based circular scrolling
         int offset = _scrollOffset[lineIndex];
-        String displayText = "";
         
-        // Add separator between end and beginning of text for readability
-        String circularText = text + "   ";  // 3 spaces as separator
-        int circularLength = circularText.length();
+        // Add separator for circular effect
+        String circularText = text + "   " + text;  // Double the text with separator
         
-        // Build the display text character by character
-        for (int i = 0; i < _maxCharsPerLine; i++) {
-            int charIndex = (offset + i) % circularLength;
-            displayText += circularText[charIndex];
-        }
+        // Enable clipping to display boundaries
+        u8g2.setClipWindow(0, yPos - u8g2.getFontAscent(), displayWidthPixels, yPos + u8g2.getFontDescent());
         
-        u8g2.drawStr(0, yPos, displayText.c_str());
+        // Draw the circular text at offset position
+        u8g2.drawUTF8(-offset, yPos, circularText.c_str());
+        
+        // Disable clipping
+        u8g2.setMaxClipWindow();
     }
 }
 
@@ -728,15 +730,22 @@ void IndicatorInterface::_handleScrolling() {
     bool needsUpdate = false;
     
     for (int i = 0; i < _textBufferSize; i++) {
-        int textLength = _textBuffer[i].length();
+        String text = _textBuffer[i];
         
-        if (textLength > _maxCharsPerLine) {
-            _scrollOffset[i]++;
+        // Get text width in pixels
+        int textWidthPixels = u8g2.getUTF8Width(text.c_str());
+        int displayWidthPixels = u8g2.getDisplayWidth();
+        
+        if (textWidthPixels > displayWidthPixels) {
+            // Scroll by 2 pixels each time for smooth movement
+            _scrollOffset[i] += 2;
             
-            // For circular scrolling, wrap around based on text length + separator
-            int circularLength = textLength + 3;  // +3 for the separator spaces
+            // Calculate total width including separator "   " (3 spaces)
+            int separatorWidth = u8g2.getUTF8Width("   ");
+            int totalWidth = textWidthPixels + separatorWidth;
             
-            if (_scrollOffset[i] >= circularLength) {
+            // Wrap around when we've scrolled the full text + separator
+            if (_scrollOffset[i] >= totalWidth) {
                 _scrollOffset[i] = 0;  // Wrap back to beginning
             }
             needsUpdate = true;
