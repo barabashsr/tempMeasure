@@ -2421,9 +2421,9 @@ void TemperatureController::_displaySystemStats() {
     }
     
     // Use Cyrillic text as specified
-    lines[0] = "Точки:     " + String(boundPoints);
-    lines[1] = "DS18B20:   " + String(boundDS18B20) + "/" + String(totalDS18B20);
-    lines[2] = "Pt1000:    " + String(boundPT1000) + "/" + String(totalPT1000);
+    lines[0] = "Точки:   " + String(boundPoints);
+    lines[1] = "DS18B20: " + String(boundDS18B20) + "/" + String(totalDS18B20);
+    lines[2] = "Pt1000:  " + String(boundPT1000) + "/" + String(totalPT1000);
     
     indicator.printText(lines, 3);
 }
@@ -2452,15 +2452,15 @@ void TemperatureController::_displayAlarmSummaryByPriority() {
     
     // Format with Cyrillic text
     if (totalAlarms == 0) {
-        lines[0] = "КРИТ.:     --/--";
-        lines[1] = "ВЫС. :     --/--";
-        lines[2] = "СРЕД.:     --/--";
-        lines[3] = "НИЗ. :     --/--";
+        lines[0] = "КРИТ.: --/--";
+        lines[1] = "ВЫС. : --/--";
+        lines[2] = "СРЕД.: --/--";
+        lines[3] = "НИЗ. : --/--";
     } else {
-        lines[0] = "КРИТ.:     " + (criticalCount > 0 ? String(criticalCount) : "--") + "/" + String(totalAlarms);
-        lines[1] = "ВЫС. :     " + (highCount > 0 ? String(highCount) : "--") + "/" + String(totalAlarms);
-        lines[2] = "СРЕД.:     " + (mediumCount > 0 ? String(mediumCount) : "--") + "/" + String(totalAlarms);
-        lines[3] = "НИЗ. :     " + (lowCount > 0 ? String(lowCount) : "--") + "/" + String(totalAlarms);
+        lines[0] = "КРИТ.: " + (criticalCount > 0 ? String(criticalCount) : "--") + "/" + String(totalAlarms);
+        lines[1] = "ВЫС. : " + (highCount > 0 ? String(highCount) : "--") + "/" + String(totalAlarms);
+        lines[2] = "СРЕД.: " + (mediumCount > 0 ? String(mediumCount) : "--") + "/" + String(totalAlarms);
+        lines[3] = "НИЗ. : " + (lowCount > 0 ? String(lowCount) : "--") + "/" + String(totalAlarms);
     }
     
     indicator.printText(lines, 4);
@@ -2496,13 +2496,13 @@ void TemperatureController::_displayAlarmSummaryByType() {
     
     // Format with Cyrillic text
     if (totalAlarms == 0) {
-        lines[0] = "ВЫС.T:     --/--";
-        lines[1] = "НИЗ.T:     --/--";
-        lines[2] = "ОШИБ.:     --/--";
+        lines[0] = "ВЫС.T: --/--";
+        lines[1] = "НИЗ.T: --/--";
+        lines[2] = "ОШИБ.: --/--";
     } else {
-        lines[0] = "ВЫС.T:     " + (highTempCount > 0 ? String(highTempCount) : "--") + "/" + String(totalAlarms);
-        lines[1] = "НИЗ.T:     " + (lowTempCount > 0 ? String(lowTempCount) : "--") + "/" + String(totalAlarms);
-        lines[2] = "ОШИБ.:     " + (sensorErrorCount > 0 ? String(sensorErrorCount) : "--") + "/" + String(totalAlarms);
+        lines[0] = "ВЫС.T: " + (highTempCount > 0 ? String(highTempCount) : "--") + "/" + String(totalAlarms);
+        lines[1] = "НИЗ.T: " + (lowTempCount > 0 ? String(lowTempCount) : "--") + "/" + String(totalAlarms);
+        lines[2] = "ОШИБ.: " + (sensorErrorCount > 0 ? String(sensorErrorCount) : "--") + "/" + String(totalAlarms);
     }
     
     indicator.printText(lines, 3);
@@ -2512,29 +2512,27 @@ void TemperatureController::_displayModbusStatus() {
     indicator.setOledModeSmall(4, true); // 4-line mode with small font
     String lines[4];
     
-    // Get Modbus configuration from ConfigManager
-    extern ConfigManager configManager;
+    // Get Modbus configuration from ConfigManager pointer
+    extern ConfigManager* configManager;
     
-    // Check if Modbus is enabled
-    bool modbusEnabled = configManager.isModbusEnabled();
-    
-    if (!modbusEnabled) {
+    // Check if ConfigManager exists and Modbus is enabled
+    if (!configManager || !configManager->isModbusEnabled()) {
         lines[0] = "STATUS: DISABLED";
-        lines[1] = "ADDR:   --";
-        lines[2] = "PAR:    ---";
-        lines[3] = "BR:     ----";
+        lines[1] = "ADDR: --";
+        lines[2] = "PAR:  ---";
+        lines[3] = "BR:   ----";
     } else {
         // For now, just show configuration
         // TODO: Add proper Modbus statistics when modbusServer is accessible
         lines[0] = "STATUS: ENABLED";
         
         // Get available configuration
-        uint8_t modbusAddr = configManager.getModbusAddress();
-        uint32_t baudRate = configManager.getModbusBaudRate();
+        uint8_t modbusAddr = configManager->getModbusAddress();
+        uint32_t baudRate = configManager->getModbusBaudRate();
         
-        lines[1] = "ADDR:   " + String(modbusAddr);
-        lines[2] = "PAR:    8N1";  // Standard default for this system
-        lines[3] = "BR:     " + String(baudRate);
+        lines[1] = "ADDR: " + String(modbusAddr);
+        lines[2] = "PAR:  8N1";  // Standard default for this system
+        lines[3] = "BR:   " + String(baudRate);
     }
     
     indicator.printText(lines, 4);
