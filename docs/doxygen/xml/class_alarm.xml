@@ -426,7 +426,7 @@ Initializes alarm with NEW stage, current timestamp, and default timeouts. Gener
         <location file="include/Alarm.h" line="92" column="15" bodyfile="include/Alarm.h" bodystart="92" bodyend="92"/>
         <references refid="class_alarm_1af86f7649c30db0d2cd6d4498032bb20d" compoundref="_alarm_8h" startline="328">_type</references>
         <referencedby refid="class_c_s_v_config_manager_1aa43c8405582f387b0330cc1e965f5117" compoundref="_c_s_v_config_manager_8cpp" startline="389" endline="398">CSVConfigManager::_getAlarmPriorityForPoint</referencedby>
-        <referencedby refid="class_config_manager_1aa15fcaf6330fd73a87e8c6f63e8ab9d5" compoundref="_config_manager_8cpp" startline="684" endline="718">ConfigManager::saveAlarmsConfig</referencedby>
+        <referencedby refid="class_config_manager_1aa15fcaf6330fd73a87e8c6f63e8ab9d5" compoundref="_config_manager_8cpp" startline="691" endline="725">ConfigManager::saveAlarmsConfig</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_alarm_1af01cabf2a19aa3b74848f0a5483ba3fb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eb" kindref="member">AlarmStage</ref></type>
@@ -467,7 +467,7 @@ Initializes alarm with NEW stage, current timestamp, and default timeouts. Gener
         <references refid="class_alarm_1a4b4fbc531464f77b58da6954dd146d65" compoundref="_alarm_8h" startline="330">_priority</references>
         <referencedby refid="class_c_s_v_config_manager_1aa43c8405582f387b0330cc1e965f5117" compoundref="_c_s_v_config_manager_8cpp" startline="389" endline="398">CSVConfigManager::_getAlarmPriorityForPoint</referencedby>
         <referencedby refid="struct_alarm_comparator_1a9e59c2531a3bd641d0b3d0cc10bffe54" compoundref="_alarm_8h" startline="389" endline="394">AlarmComparator::operator()</referencedby>
-        <referencedby refid="class_config_manager_1aa15fcaf6330fd73a87e8c6f63e8ab9d5" compoundref="_config_manager_8cpp" startline="684" endline="718">ConfigManager::saveAlarmsConfig</referencedby>
+        <referencedby refid="class_config_manager_1aa15fcaf6330fd73a87e8c6f63e8ab9d5" compoundref="_config_manager_8cpp" startline="691" endline="725">ConfigManager::saveAlarmsConfig</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_alarm_1aa86c4f3280ad82c9679af1c765a6bc92" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_measurement_point" kindref="compound">MeasurementPoint</ref> *</type>
@@ -1102,7 +1102,7 @@ Checks current measurement point values against alarm thresholds </para>
         </inbodydescription>
         <location file="include/Alarm.h" line="262" column="10" bodyfile="include/Alarm.h" bodystart="262" bodyend="262"/>
         <references refid="class_alarm_1af532c7945d25b47adf55d60cb91c86ae" compoundref="_alarm_8h" startline="344">_enabled</references>
-        <referencedby refid="class_config_manager_1aa15fcaf6330fd73a87e8c6f63e8ab9d5" compoundref="_config_manager_8cpp" startline="684" endline="718">ConfigManager::saveAlarmsConfig</referencedby>
+        <referencedby refid="class_config_manager_1aa15fcaf6330fd73a87e8c6f63e8ab9d5" compoundref="_config_manager_8cpp" startline="691" endline="725">ConfigManager::saveAlarmsConfig</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_alarm_1acb8f203b2e2317c1f835bb4b19123f3f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1159,7 +1159,7 @@ Checks current measurement point values against alarm thresholds </para>
         <location file="include/Alarm.h" line="274" column="13" bodyfile="include/Alarm.h" bodystart="274" bodyend="274"/>
         <references refid="class_alarm_1a1f87216f47e3421c09b6a2531963b24d" compoundref="_alarm_8h" startline="331">_source</references>
         <referencedby refid="class_c_s_v_config_manager_1aa43c8405582f387b0330cc1e965f5117" compoundref="_c_s_v_config_manager_8cpp" startline="389" endline="398">CSVConfigManager::_getAlarmPriorityForPoint</referencedby>
-        <referencedby refid="class_config_manager_1aa15fcaf6330fd73a87e8c6f63e8ab9d5" compoundref="_config_manager_8cpp" startline="684" endline="718">ConfigManager::saveAlarmsConfig</referencedby>
+        <referencedby refid="class_config_manager_1aa15fcaf6330fd73a87e8c6f63e8ab9d5" compoundref="_config_manager_8cpp" startline="691" endline="725">ConfigManager::saveAlarmsConfig</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_alarm_1a5095c54c304a52ebbaca5a2ea74059cd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1279,7 +1279,7 @@ Checks current measurement point values against alarm thresholds </para>
         </inbodydescription>
         <location file="include/Alarm.h" line="298" column="13" bodyfile="include/Alarm.h" bodystart="298" bodyend="298"/>
         <references refid="class_alarm_1a720fb269ec5c87744fedfecf8d060a95" compoundref="_alarm_8h" startline="338">_hysteresis</references>
-        <referencedby refid="class_config_manager_1aa15fcaf6330fd73a87e8c6f63e8ab9d5" compoundref="_config_manager_8cpp" startline="684" endline="718">ConfigManager::saveAlarmsConfig</referencedby>
+        <referencedby refid="class_config_manager_1aa15fcaf6330fd73a87e8c6f63e8ab9d5" compoundref="_config_manager_8cpp" startline="691" endline="725">ConfigManager::saveAlarmsConfig</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_alarm_1a3f5329f9c026bad4f5171423fcaf51b0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>

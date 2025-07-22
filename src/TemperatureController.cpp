@@ -1912,18 +1912,33 @@ void TemperatureController::_displayNextActiveAlarm() {
     unsigned long alarmTimestamp = _currentDisplayedAlarm->getTimestamp();
     // Convert milliseconds timestamp to HH:MM format
     // The timestamp is milliseconds since boot, so we need to convert to actual time
-    extern TimeManager timeManager;
-    DateTime currentTime = timeManager.getCurrentTime();
-    unsigned long currentMillis = millis();
     
-    // Calculate when the alarm was activated
-    unsigned long elapsedSinceAlarm = currentMillis - alarmTimestamp;
-    DateTime alarmTime = DateTime(currentTime.unixtime() - (elapsedSinceAlarm / 1000));
-    
-    // Format as HH:MM
-    char timeStr[6];
-    snprintf(timeStr, sizeof(timeStr), "%02d:%02d", alarmTime.hour(), alarmTime.minute());
-    line3 += timeStr;
+    // Add timestamp if TimeManager is available
+    try {
+        extern TimeManager timeManager;
+        if (timeManager.isTimeSet()) {
+            DateTime currentTime = timeManager.getCurrentTime();
+            unsigned long currentMillis = millis();
+            
+            // Calculate when the alarm was activated
+            unsigned long elapsedSinceAlarm = currentMillis - alarmTimestamp;
+            if (elapsedSinceAlarm < currentMillis) { // Prevent underflow
+                DateTime alarmTime = DateTime(currentTime.unixtime() - (elapsedSinceAlarm / 1000));
+                
+                // Format as HH:MM
+                char timeStr[6];
+                snprintf(timeStr, sizeof(timeStr), "%02d:%02d", alarmTime.hour(), alarmTime.minute());
+                line3 += timeStr;
+            } else {
+                line3 += "--:--";
+            }
+        } else {
+            line3 += "--:--";
+        }
+    } catch (...) {
+        // If TimeManager not available, show placeholder
+        line3 += "--:--";
+    }
     
     String displayLines[3] = {line1, line2, line3};
     indicator.printText(displayLines, 3);
@@ -1963,18 +1978,33 @@ void TemperatureController::_displayNextAcknowledgedAlarm() {
     unsigned long alarmTimestamp = _currentDisplayedAlarm->getTimestamp();
     // Convert milliseconds timestamp to HH:MM format
     // The timestamp is milliseconds since boot, so we need to convert to actual time
-    extern TimeManager timeManager;
-    DateTime currentTime = timeManager.getCurrentTime();
-    unsigned long currentMillis = millis();
     
-    // Calculate when the alarm was activated
-    unsigned long elapsedSinceAlarm = currentMillis - alarmTimestamp;
-    DateTime alarmTime = DateTime(currentTime.unixtime() - (elapsedSinceAlarm / 1000));
-    
-    // Format as HH:MM
-    char timeStr[6];
-    snprintf(timeStr, sizeof(timeStr), "%02d:%02d", alarmTime.hour(), alarmTime.minute());
-    line3 += timeStr;
+    // Add timestamp if TimeManager is available
+    try {
+        extern TimeManager timeManager;
+        if (timeManager.isTimeSet()) {
+            DateTime currentTime = timeManager.getCurrentTime();
+            unsigned long currentMillis = millis();
+            
+            // Calculate when the alarm was activated
+            unsigned long elapsedSinceAlarm = currentMillis - alarmTimestamp;
+            if (elapsedSinceAlarm < currentMillis) { // Prevent underflow
+                DateTime alarmTime = DateTime(currentTime.unixtime() - (elapsedSinceAlarm / 1000));
+                
+                // Format as HH:MM
+                char timeStr[6];
+                snprintf(timeStr, sizeof(timeStr), "%02d:%02d", alarmTime.hour(), alarmTime.minute());
+                line3 += timeStr;
+            } else {
+                line3 += "--:--";
+            }
+        } else {
+            line3 += "--:--";
+        }
+    } catch (...) {
+        // If TimeManager not available, show placeholder
+        line3 += "--:--";
+    }
     
     String displayLines[3] = {line1, line2, line3};
     indicator.printText(displayLines, 3);

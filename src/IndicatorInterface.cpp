@@ -669,20 +669,23 @@ void IndicatorInterface::_drawTextLine(int lineIndex, int yPos) {
         // Short text - display normally
         u8g2.drawUTF8(0, yPos, text.c_str());
     } else {
-        // Long text - apply pixel-based circular scrolling
+        // Long text - simple scrolling without clipping
         int offset = _scrollOffset[lineIndex];
         
-        // Add separator for circular effect
-        String circularText = text + "   " + text;  // Double the text with separator
+        // Calculate position for smooth scrolling
+        int xPos = -offset;
         
-        // Enable clipping to display boundaries
-        u8g2.setClipWindow(0, yPos - u8g2.getFontAscent(), displayWidthPixels, yPos + u8g2.getFontDescent());
+        // Draw the main text
+        u8g2.drawUTF8(xPos, yPos, text.c_str());
         
-        // Draw the circular text at offset position
-        u8g2.drawUTF8(-offset, yPos, circularText.c_str());
-        
-        // Disable clipping
-        u8g2.setMaxClipWindow();
+        // Draw the text again to create circular effect
+        // Only if the first instance has started scrolling off screen
+        if (offset > 0) {
+            int secondXPos = xPos + textWidthPixels + u8g2.getUTF8Width("   ");
+            if (secondXPos < displayWidthPixels) {
+                u8g2.drawUTF8(secondXPos, yPos, text.c_str());
+            }
+        }
     }
 }
 
