@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['tx_5fpin_0',['TX_PIN',['../main_8cpp.html#a3bb17f5daa2b1eaef58c8aa2d989e27e',1,'main.cpp']]]
+  ['sck_5fpin_0',['SCK_PIN',['../main_8cpp.html#a01153037fca70cfac03c8d67f17d766a',1,'main.cpp']]],
+  ['screen_5ftimeout_5fms_1',['SCREEN_TIMEOUT_MS',['../_temperature_controller_8h.html#a1274489ede447c40fb5b93de3b837279',1,'TemperatureController.h']]],
+  ['scroll_5fspeed_5fpixels_2',['SCROLL_SPEED_PIXELS',['../_indicator_interface_8h.html#a72e53d2a3f88a546bb4940a259849c53',1,'IndicatorInterface.h']]],
+  ['scroll_5fupdate_5fdelay_5fms_3',['SCROLL_UPDATE_DELAY_MS',['../_indicator_interface_8h.html#af13d886faa5b30b0a6398535a0b19d43',1,'IndicatorInterface.h']]]
 ];

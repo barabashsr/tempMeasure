@@ -38,8 +38,10 @@ _okDisplayStartTime(0),
 _showingOK(false),
 
 _currentActiveAlarmIndex(0), _currentAcknowledgedAlarmIndex(0),
-_lastAlarmDisplayTime(0), _acknowledgedAlarmDisplayDelay(5000), // 5 seconds
+_lastAlarmDisplayTime(0), _acknowledgedAlarmDisplayDelay(ALARM_DISPLAY_TIME_MS),
 _displayingActiveAlarm(false),
+_lastActivityTime(0),
+_screenOff(false),
 
 // Display Section initialization
 _currentSection(SECTION_NORMAL),
@@ -158,6 +160,9 @@ bool TemperatureController::begin() {
     // Initialize button state to match actual hardware state at startup
     _lastButtonState = indicator.readPort("BUTTON");
     Serial.printf("Initial button state: %s\n", _lastButtonState ? "HIGH" : "LOW");
+    
+    // Initialize last activity time to prevent immediate timeout
+    _lastActivityTime = millis();
     
     systemInitialized = true;
     Serial.println("Setup complete!");
@@ -2098,7 +2103,17 @@ void TemperatureController::_checkButtonPress() {
     if (buttonPressed && !lastButtonPressed) {
         _buttonPressStartTime = currentTime;
         _buttonPressHandled = false;
+        _lastActivityTime = currentTime;  // Update activity time
         Serial.println("Button press detected - starting timer");
+        
+        // If screen was off, turn it on and refresh display
+        if (_screenOff) {
+            _screenOff = false;
+            indicator.setOLEDOn();
+            _buttonPressHandled = true; // Don't process this press further, just wake screen
+            Serial.println("Screen wake-up from button press");
+            return;
+        }
     }
     
     // Button is being held
@@ -2154,9 +2169,14 @@ void TemperatureController::_checkButtonPress() {
                     break;
                     
                 case SECTION_ACK_ALARMS:
-                    // Could cycle through acknowledged alarms
-                    _currentAcknowledgedAlarmIndex = (_currentAcknowledgedAlarmIndex + 1) % _acknowledgedAlarmsQueue.size();
-                    _lastAlarmDisplayTime = 0;
+                    // Cycle through acknowledged alarms
+                    if (!_acknowledgedAlarmsQueue.empty()) {
+                        _currentAcknowledgedAlarmIndex = (_currentAcknowledgedAlarmIndex + 1) % _acknowledgedAlarmsQueue.size();
+                        _lastAlarmDisplayTime = currentTime; // Reset timer to show new alarm for full duration
+                        _displayNextAcknowledgedAlarm();
+                        Serial.printf("Short press - Cycling to acknowledged alarm %d/%d\n", 
+                                    _currentAcknowledgedAlarmIndex + 1, _acknowledgedAlarmsQueue.size());
+                    }
                     break;
                     
                 case SECTION_NORMAL:
@@ -2553,11 +2573,13 @@ void TemperatureController::_handleDisplaySections() {
         if (_currentSection != SECTION_ALARM_ACK) {
             _switchToSection(SECTION_ALARM_ACK);
         }
+        _screenOff = false; // Always keep screen on with active alarms
     } else if (!_acknowledgedAlarmsQueue.empty() && _currentSection != SECTION_STATUS) {
         // Only acknowledged alarms - show them
         if (_currentSection != SECTION_ACK_ALARMS) {
             _switchToSection(SECTION_ACK_ALARMS);
         }
+        _screenOff = false; // Always keep screen on with acknowledged alarms
     } else if (_currentSection == SECTION_ALARM_ACK || _currentSection == SECTION_ACK_ALARMS) {
         // No alarms but we're in alarm section - go to normal
         _switchToSection(SECTION_NORMAL);
@@ -2571,23 +2593,37 @@ void TemperatureController::_handleDisplaySections() {
         }
     }
     
-    // Display based on current section
-    switch (_currentSection) {
-        case SECTION_ALARM_ACK:
-            _handleAlarmDisplayRotation();
-            break;
-            
-        case SECTION_ACK_ALARMS:
-            _displayNextAcknowledgedAlarm();
-            break;
-            
-        case SECTION_STATUS:
-            _handleSystemStatusMode();
-            break;
-            
-        case SECTION_NORMAL:
-            _updateNormalDisplay();
-            break;
+    // Handle screen timeout for normal and status sections (no timeout when alarms present)
+    if ((_currentSection == SECTION_NORMAL || _currentSection == SECTION_STATUS) && 
+        _activeAlarmsQueue.empty() && _acknowledgedAlarmsQueue.empty()) {
+        unsigned long currentTime = millis();
+        if (!_screenOff && _lastActivityTime > 0 && 
+            (currentTime - _lastActivityTime >= SCREEN_TIMEOUT_MS)) {
+            _screenOff = true;
+            indicator.setOLEDOff();
+            Serial.println("Screen timeout - turning off display");
+        }
+    }
+    
+    // Display based on current section (only if screen is on)
+    if (!_screenOff) {
+        switch (_currentSection) {
+            case SECTION_ALARM_ACK:
+                _handleAlarmDisplayRotation();
+                break;
+                
+            case SECTION_ACK_ALARMS:
+                _handleAlarmDisplayRotation();
+                break;
+                
+            case SECTION_STATUS:
+                _handleSystemStatusMode();
+                break;
+                
+            case SECTION_NORMAL:
+                _updateNormalDisplay();
+                break;
+        }
     }
 }
 
@@ -2604,6 +2640,7 @@ void TemperatureController::_switchToSection(DisplaySection newSection) {
         case SECTION_STATUS:
             _systemStatusPage = 0;
             _systemStatusModeStartTime = millis();
+            _lastActivityTime = millis();  // Update activity time
             indicator.setOLEDOn();
             break;
             
@@ -2615,6 +2652,11 @@ void TemperatureController::_switchToSection(DisplaySection newSection) {
             
         case SECTION_NORMAL:
             _showingOK = false;
+            _lastActivityTime = millis();  // Update activity time
+            if (_screenOff) {
+                _screenOff = false;
+                indicator.setOLEDOn();
+            }
             break;
     }
 }

@@ -664,6 +664,13 @@ private:
     unsigned long _lastButtonPressTime;            ///< Timestamp of last button press
     const unsigned long _buttonDebounceDelay = 200; ///< Button debounce delay in milliseconds
     
+    // Screen timeout configuration
+    #define SCREEN_TIMEOUT_MS 10000                ///< Screen timeout in milliseconds (10 seconds)
+    #define ALARM_DISPLAY_TIME_MS 5000             ///< Time to display each acknowledged alarm (5 seconds)
+    
+    unsigned long _lastActivityTime;               ///< Last time there was user activity or important event
+    bool _screenOff;                               ///< Flag indicating if screen is currently off due to timeout
+    
     // Display management
     Alarm* _currentDisplayedAlarm;                 ///< Currently displayed alarm on OLED
     unsigned long _okDisplayStartTime;             ///< Timestamp when OK display started
