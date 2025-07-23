@@ -91,6 +91,13 @@ TemperatureController::~TemperatureController() {
     _configuredAlarms.clear();
 }
 
+/**
+ * @brief Initialize the temperature controller system
+ * @details Initializes register map, indicator interface, OneWire buses, and sensors.
+ *          Also reads the initial button state to ensure proper button press detection
+ *          from the first press after startup.
+ * @return true if initialization successful, false otherwise
+ */
 bool TemperatureController::begin() {
     // Initialize register map
     registerMap.writeHoldingRegister(0, deviceId);
@@ -147,6 +154,10 @@ bool TemperatureController::begin() {
     // Set normal operation display
     indicator.setOledMode(3);
     indicator.writePort("GreenLED", true); // Normal operation LED
+    
+    // Initialize button state to match actual hardware state at startup
+    _lastButtonState = indicator.readPort("BUTTON");
+    Serial.printf("Initial button state: %s\n", _lastButtonState ? "HIGH" : "LOW");
     
     systemInitialized = true;
     Serial.println("Setup complete!");
