@@ -2366,14 +2366,14 @@ void TemperatureController::_displayNetworkInfo() {
     
     // Check WiFi status
     if (WiFi.status() == WL_CONNECTED) {
-        lines[0] = "STATUS: CONNECTED";
-        lines[1] = "IP: " + WiFi.localIP().toString();
-        lines[2] = "SSID: " + WiFi.SSID();
+        lines[0] = "CONNECTED";
+        lines[1] = WiFi.localIP().toString();
+        lines[2] = WiFi.SSID();
         lines[3] = WiFi.localIP().toString() + "/dashboard.html";
     } else if (WiFi.getMode() == WIFI_AP || WiFi.getMode() == WIFI_AP_STA) {
         // Access Point mode
-        lines[0] = "STATUS: AP MODE";
-        lines[1] = "IP: " + WiFi.softAPIP().toString();
+        lines[0] = "AP MODE";
+        lines[1] = WiFi.softAPIP().toString();
         
         // Get AP SSID from ConfigManager if available
         extern ConfigManager configManager;
@@ -2381,21 +2381,14 @@ void TemperatureController::_displayNetworkInfo() {
         if (apSSID.length() == 0) {
             apSSID = "ESP32_AP"; // Default AP name
         }
-        lines[2] = "AP SSID: " + apSSID;
-        
-        // AP typically has no password in this implementation
-        String apPass = ""; // No AP password method available
-        if (apPass.length() > 0) {
-            lines[3] = "PASS: " + apPass;
-        } else {
-            lines[3] = WiFi.softAPIP().toString() + "/cfg";
-        }
+        lines[2] = apSSID;
+        lines[3] = WiFi.softAPIP().toString() + "/cfg";
     } else {
         // Disconnected
-        lines[0] = "STATUS: DISC.";
-        lines[1] = "IP: --.--.--.--";
-        lines[2] = "SSID: ---------";
-        lines[3] = "---------------";
+        lines[0] = "DISCONNECTED";
+        lines[1] = "No IP";
+        lines[2] = "No WiFi";
+        lines[3] = "";
     }
     
     indicator.printText(lines, 4);
