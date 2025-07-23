@@ -31,7 +31,9 @@ This industrial-grade ESP32-based device is designed for precision temperature m
 - Multi-priority alarm system (Low/Medium/High/Critical)
 - LED indication for alarm states
 - OLED display with 3-line alarm format showing counter and timestamp
+- Automatic screen timeout (10s) with wake-on-button-press
 - Circular text scrolling for long alarm descriptions
+- Automatic alarm cycling (5s) for acknowledged alarms
 - Relay outputs for external signaling (siren/beacon)
 - Error detection and reporting
 - Temperature range: -40°C to +200°C (integer Celsius values)
