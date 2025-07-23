@@ -21,6 +21,7 @@
 
 #include "TemperatureController.h"
 #include <WiFi.h>
+#include <algorithm>
 #include "ConfigManager.h"
 
 TemperatureController::TemperatureController(uint8_t oneWirePin[4], uint8_t csPin[4], IndicatorInterface& indicator)
@@ -237,10 +238,34 @@ void TemperatureController::updateAlarms() {
     
     // Update existing configured alarms (do NOT remove resolved alarms)
     Serial.println("=== Updating existing alarms ===");
+    
+    // First, check for active sensor errors
+    std::vector<MeasurementPoint*> pointsWithSensorError;
+    for (auto alarm : _configuredAlarms) {
+        if (alarm->isEnabled() && 
+            (alarm->getType() == AlarmType::SENSOR_ERROR || alarm->getType() == AlarmType::SENSOR_DISCONNECTED) &&
+            alarm->isActive()) {
+            pointsWithSensorError.push_back(alarm->getSource());
+        }
+    }
+    
+    // Update all alarms
     for (auto alarm : _configuredAlarms) {
         if (alarm->isEnabled()) {
-            alarm->updateCondition();
-            // Do NOT check for resolved state or remove alarms here
+            // Check if this is a temperature alarm for a point with sensor error
+            if ((alarm->getType() == AlarmType::HIGH_TEMPERATURE || alarm->getType() == AlarmType::LOW_TEMPERATURE) &&
+                std::find(pointsWithSensorError.begin(), pointsWithSensorError.end(), alarm->getSource()) != pointsWithSensorError.end()) {
+                // Force temperature alarms to resolved state when sensor error is active
+                if (!alarm->isResolved()) {
+                    alarm->resolve();
+                    Serial.printf("Forced %s alarm to RESOLVED for point %d due to sensor error\n",
+                                 alarm->getTypeString().c_str(),
+                                 alarm->getSource() ? alarm->getSource()->getAddress() : -1);
+                }
+            } else {
+                // Normal alarm update
+                alarm->updateCondition();
+            }
         }
     }
     

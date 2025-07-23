@@ -82,7 +82,7 @@ Temperature Control System - PlatformIO-based embedded system for monitoring and
    - Line 3: Alarm counter (e.g., "1/3") + activation time (HH:MM)
    - Manual advancement through alarms with button press
 
-3. **System Status Mode** (Not implemented yet)
+3. **System Status Mode** ✓
    - Enter/Exit: Long button press (>3s)
    - Navigate pages: Short button press
    - Auto-exit: 30s timeout
@@ -106,10 +106,11 @@ Temperature Control System - PlatformIO-based embedded system for monitoring and
    - Timer starts on acknowledgment
    - Re-activate if condition persists after delay
 
-2. **Sensor Disconnection Behavior**
-   - Auto-clear all temperature alarms for that point (disable the alarms)
+2. **Sensor Disconnection Behavior** ✓ COMPLETED
+   [X] DO NOT implement direct disabling, just force put them in RESOLVED state while sensor error alarm is active. Auto-clear all temperature alarms for that point (TEMPORARY disable the alarms)
    - Keep sensor error alarm active
-   - Prevent false temperature alarms
+   - Prevent false temperature alarms (TEMPORARY)
+   - Implemented: Temperature alarms auto-resolve when sensor error is active
 
 3. **Alarm State Transitions**
    - Extend current working transitions (don't rewrite)

@@ -47,15 +47,22 @@ ConfigManager* ConfigManager::instance = nullptr;
     //       label: WiFi Password
     //       default: QpPuggeV
 
+    //       - st_ssid:
+    //       label: WiFi SSID
+    //       default: Beeline_5G_F13F37
+    //   - st_pass:
+    //       label: WiFi Password
+    //       default: 1122334455667788
+
 // YAML configuration definition
 const char* VARIABLES_DEF_YAML PROGMEM = R"~(
     Wifi settings:
       - st_ssid:
           label: WiFi SSID
-          default: Tenda_B3E6F0_EXT
+          default: Beeline_2G_F13F37
       - st_pass:
           label: WiFi Password
-          default: a111222333
+          default: 1122334455667788
       - host_name:
           label: Device Hostname
           default: 'temp-monitor-{mac}'
