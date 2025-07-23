@@ -2171,8 +2171,7 @@ void TemperatureController::_checkButtonPress() {
                 case SECTION_ACK_ALARMS:
                     // Cycle through acknowledged alarms
                     if (!_acknowledgedAlarmsQueue.empty()) {
-                        _currentAcknowledgedAlarmIndex = (_currentAcknowledgedAlarmIndex + 1) % _acknowledgedAlarmsQueue.size();
-                        _lastAlarmDisplayTime = currentTime; // Reset timer to show new alarm for full duration
+                        // Just call _displayNextAcknowledgedAlarm() which handles incrementing the index
                         _displayNextAcknowledgedAlarm();
                         Serial.printf("Short press - Cycling to acknowledged alarm %d/%d\n", 
                                     _currentAcknowledgedAlarmIndex + 1, _acknowledgedAlarmsQueue.size());
