@@ -983,7 +983,24 @@ void ConfigManager::basicAPI(){
         }
     });
 
-    
+    // Serve common CSS file
+    server->on("/common.css", HTTP_GET, [this]() {
+        server->sendHeader("Access-Control-Allow-Origin", "*");
+        server->sendHeader("Cache-Control", "max-age=86400"); // Cache for 24 hours
+        
+        if (LittleFS.exists("/common.css")) {
+            // Use LittleFS if file exists there
+            server->sendHeader("Content-Type", "text/css");
+            server->sendHeader("Connection", "close");
+            File file = LittleFS.open("/common.css", "r");
+            server->streamFile(file, "text/css");
+            file.close();
+        } else {
+            server->sendHeader("Content-Type", "text/plain");
+            server->sendHeader("Connection", "close");
+            server->send(404, "text/plain", "common.css not found");
+        }
+    });
 
     // Add CORS support for OPTIONS requests
     server->on("/api/sensors", HTTP_OPTIONS, [this]() {

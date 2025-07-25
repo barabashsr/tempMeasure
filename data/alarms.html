@@ -4,52 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Temperature Monitoring System - Active Alarms</title>
+    <link rel="stylesheet" href="/common.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f7f7f7;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background: #3f51b5;
-            color: #fff;
-            padding: 1em 2em;
-            text-align: center;
-            font-size: 1.5em;
-            letter-spacing: 2px;
-        }
-        nav {
-            background: #263238;
-            padding: 0.5em 2em;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            margin-right: 1.5em;
-            font-weight: bold;
-            transition: all 0.2s;
-            padding: 0.5em 0.8em;
-            border-radius: 4px;
-        }
-        nav a:hover {
-            color: #ffeb3b;
-            background: rgba(255, 255, 255, 0.1);
-        }
-        nav a.active {
-            background: #3f51b5;
-            color: #fff;
-        }
-        main {
+        /* Page-specific styles */
+        main.wide {
             max-width: 1400px;
-            margin: 2em auto;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-            padding: 2em;
         }
         .controls {
             margin-bottom: 20px;
@@ -60,29 +19,6 @@
             gap: 15px;
             align-items: center;
             flex-wrap: wrap;
-        }
-        h1, h2 {
-            color: #3f51b5;
-        }
-        h2 {
-            font-size: 1.2em;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 0.25em;
-            margin-top: 1em;
-        }
-        button, .controls button {
-            background: #3f51b5;
-            color: #fff;
-            border: none;
-            padding: 0.5em 1.2em;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1em;
-            margin-right: 0.5em;
-            transition: background 0.2s;
-        }
-        button:hover {
-            background: #283593;
         }
         .btn-primary {
             background-color: #3f51b5;
@@ -126,26 +62,10 @@
             border: 1px solid #ccc;
             border-radius: 3px;
         }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 2em;
-        }
-        th, td {
-            padding: 0.6em 0.8em;
-            border-bottom: 1px solid #eee;
-            text-align: left;
-        }
         th {
-            background: #f0f4ff;
-            color: #3f51b5;
-            font-weight: bold;
             cursor: pointer;
             user-select: none;
             position: relative;
-        }
-        tr:last-child td {
-            border-bottom: none;
         }
         th:hover {
             background-color: #e9ecef;
@@ -278,7 +198,7 @@
         <a href="/download-logs.html">Download Logs</a>
         <a href="/config">System Config</a>
     </nav>
-    <main>
+    <main class="wide">
         <h1>Alarm Management</h1>
 
         <!-- Statistics -->

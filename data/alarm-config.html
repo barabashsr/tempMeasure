@@ -4,55 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Temperature Monitoring System - Alarm Configuration</title>
+    <link rel="stylesheet" href="/common.css">
     <style>
-        * {
-            box-sizing: border-box;
+        /* Page-specific styles */
+        main.wide {
+            max-width: 1600px;
         }
         
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f8f9fa;
-            color: #343a40;
-        }
-        
-        header {
-            background: #3f51b5;
-            color: #fff;
-            padding: 1em 2em;
-            text-align: center;
-            font-size: 1.5em;
-            letter-spacing: 2px;
-        }
-        nav {
-            background: #263238;
-            padding: 0.5em 2em;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            margin-right: 1.5em;
-            font-weight: bold;
-            transition: all 0.2s;
-            padding: 0.5em 0.8em;
-            border-radius: 4px;
-        }
-        nav a:hover {
-            color: #ffeb3b;
-            background: rgba(255, 255, 255, 0.1);
-        }
-        nav a.active {
-            background: #3f51b5;
-            color: #fff;
-        }
-        
-        h1, h2 {
-            color: #3f51b5;
-        }
         h1 {
             margin-bottom: 10px;
         }
@@ -77,12 +35,8 @@
         
         .btn {
             padding: 10px 20px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
             font-weight: 500;
             font-size: 14px;
-            transition: all 0.3s;
             display: inline-flex;
             align-items: center;
             gap: 8px;
@@ -325,7 +279,7 @@
             <a href="/download-logs.html">Download Logs</a>
             <a href="/config">System Config</a>
     </nav>
-    <main>
+    <main class="wide">
         <h1>Alarm Configuration</h1>
         <p class="subtitle">Configure alarm thresholds, priorities, and hysteresis for all measurement points</p>
 

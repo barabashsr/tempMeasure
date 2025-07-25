@@ -4,92 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Temperature Monitoring System - Points</title>
+    <link rel="stylesheet" href="/common.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f7f7f7;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background: #3f51b5;
-            color: #fff;
-            padding: 1em 2em;
-            text-align: center;
-            font-size: 1.5em;
-            letter-spacing: 2px;
-        }
-        nav {
-            background: #263238;
-            padding: 0.5em 2em;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            margin-right: 1.5em;
-            font-weight: bold;
-            transition: all 0.2s;
-            padding: 0.5em 0.8em;
-            border-radius: 4px;
-        }
-        nav a:hover {
-            color: #ffeb3b;
-            background: rgba(255, 255, 255, 0.1);
-        }
-        nav a.active {
-            background: #3f51b5;
-            color: #fff;
-        }
-        main {
+        /* Page-specific styles */
+        main.wide {
             max-width: 1400px;
-            margin: 2em auto;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-            padding: 2em;
-        }
-        h1, h2 {
-            color: #3f51b5;
-        }
-        h2 {
-            font-size: 1.2em;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 0.25em;
-            margin-top: 1em;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 2em;
-        }
-        th, td {
-            padding: 0.6em 0.8em;
-            border-bottom: 1px solid #eee;
-            text-align: left;
-        }
-        th {
-            background: #f0f4ff;
-            color: #3f51b5;
-        }
-        tr:last-child td {
-            border-bottom: none;
-        }
-        button, .btn {
-            background: #3f51b5;
-            color: #fff;
-            border: none;
-            padding: 0.5em 1.2em;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1em;
-            margin-right: 0.5em;
-            transition: background 0.2s;
-        }
-        button:hover, .btn:hover {
-            background: #283593;
         }
         .btn-primary {
             background-color: #3f51b5;
@@ -112,36 +31,13 @@
         .btn-danger:hover {
             background-color: #c82333;
         }
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-        }
         .modal-content {
-            background-color: #fefefe;
-            margin: 5% auto;
-            padding: 20px;
             border: 1px solid #888;
             border-radius: 8px;
             width: 80%;
             max-width: 600px;
             max-height: 80vh;
             overflow-y: auto;
-        }
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        .close:hover {
-            color: black;
         }
         .form-group {
             margin-bottom: 15px;
@@ -153,10 +49,6 @@
         }
         .form-group input, .form-group select {
             width: 100%;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-sizing: border-box;
         }
         .alarm-list {
             margin-top: 20px;
@@ -202,7 +94,7 @@
         <a href="/download-logs.html">Download Logs</a>
         <a href="/config">System Config</a>
     </nav>
-    <main>
+    <main class="wide">
         <h1>Temperature Measurement Points</h1>
 
         <h2>DS18B20 Points</h2>
