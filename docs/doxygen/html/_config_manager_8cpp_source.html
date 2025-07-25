@@ -2471,143 +2471,174 @@ $(function(){initNavTree('_config_manager_8cpp_source.html','',''); });
 <div class="line"><a id="l02361" name="l02361"></a><span class="lineno"> 2361</span>        <span class="keywordtype">int</span> filesProcessed = 0;</div>
 <div class="line"><a id="l02362" name="l02362"></a><span class="lineno"> 2362</span>        </div>
 <div class="line"><a id="l02363" name="l02363"></a><span class="lineno"> 2363</span>        <span class="comment">// Process files in reverse order (most recent first)</span></div>
-<div class="line"><a id="l02364" name="l02364"></a><span class="lineno"> 2364</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> fileIdx = files.size() - 1; fileIdx &gt;= 0 &amp;&amp; filesProcessed &lt; filesToProcess &amp;&amp; totalPointsProcessed &lt; MAX_POINTS; fileIdx--) {</div>
-<div class="line"><a id="l02365" name="l02365"></a><span class="lineno"> 2365</span>            <span class="keyword">const</span> String&amp; filename = files[fileIdx];</div>
-<div class="line"><a id="l02366" name="l02366"></a><span class="lineno"> 2366</span>            Serial.printf(<span class="stringliteral">&quot;Processing file: %s\n&quot;</span>, filename.c_str());</div>
-<div class="line"><a id="l02367" name="l02367"></a><span class="lineno"> 2367</span>            </div>
-<div class="line"><a id="l02368" name="l02368"></a><span class="lineno"> 2368</span>            filesProcessed++;</div>
-<div class="line"><a id="l02369" name="l02369"></a><span class="lineno"> 2369</span>            </div>
-<div class="line"><a id="l02370" name="l02370"></a><span class="lineno"> 2370</span>            <span class="comment">// Open file for reading</span></div>
-<div class="line"><a id="l02371" name="l02371"></a><span class="lineno"> 2371</span>            File file = <a class="code hl_function" href="class_logger_manager.html#a92719154d919a9bd45a8ea192e70dfcc">LoggerManager::openLogFile</a>(filename, <span class="stringliteral">&quot;data&quot;</span>);</div>
-<div class="line"><a id="l02372" name="l02372"></a><span class="lineno"> 2372</span>            <span class="keywordflow">if</span> (!file) {</div>
-<div class="line"><a id="l02373" name="l02373"></a><span class="lineno"> 2373</span>                Serial.println(<span class="stringliteral">&quot;Failed to open file&quot;</span>);</div>
-<div class="line"><a id="l02374" name="l02374"></a><span class="lineno"> 2374</span>                <span class="keywordflow">continue</span>;</div>
-<div class="line"><a id="l02375" name="l02375"></a><span class="lineno"> 2375</span>            }</div>
-<div class="line"><a id="l02376" name="l02376"></a><span class="lineno"> 2376</span>            </div>
-<div class="line"><a id="l02377" name="l02377"></a><span class="lineno"> 2377</span>            <span class="comment">// Skip header line</span></div>
-<div class="line"><a id="l02378" name="l02378"></a><span class="lineno"> 2378</span>            <span class="keywordflow">if</span> (file.available()) {</div>
-<div class="line"><a id="l02379" name="l02379"></a><span class="lineno"> 2379</span>                file.readStringUntil(<span class="charliteral">&#39;\n&#39;</span>);</div>
-<div class="line"><a id="l02380" name="l02380"></a><span class="lineno"> 2380</span>            }</div>
-<div class="line"><a id="l02381" name="l02381"></a><span class="lineno"> 2381</span>            </div>
-<div class="line"><a id="l02382" name="l02382"></a><span class="lineno"> 2382</span>            <span class="comment">// Read data lines</span></div>
-<div class="line"><a id="l02383" name="l02383"></a><span class="lineno"> 2383</span>            <span class="keywordtype">int</span> emptyLinesInRow = 0;</div>
-<div class="line"><a id="l02384" name="l02384"></a><span class="lineno"> 2384</span>            <span class="keywordflow">while</span> (file.available() &amp;&amp; totalPointsProcessed &lt; MAX_POINTS) {</div>
-<div class="line"><a id="l02385" name="l02385"></a><span class="lineno"> 2385</span>                String line = file.readStringUntil(<span class="charliteral">&#39;\n&#39;</span>);</div>
-<div class="line"><a id="l02386" name="l02386"></a><span class="lineno"> 2386</span>                <span class="keywordflow">if</span> (line.isEmpty()) <span class="keywordflow">continue</span>;</div>
-<div class="line"><a id="l02387" name="l02387"></a><span class="lineno"> 2387</span>                </div>
-<div class="line"><a id="l02388" name="l02388"></a><span class="lineno"> 2388</span>                <span class="comment">// Only process every Nth line based on decimation</span></div>
-<div class="line"><a id="l02389" name="l02389"></a><span class="lineno"> 2389</span>                <span class="keywordflow">if</span> (pointCounter++ % decimationFactor != 0) <span class="keywordflow">continue</span>;</div>
+<div class="line"><a id="l02364" name="l02364"></a><span class="lineno"> 2364</span>        <span class="keywordtype">int</span> validDataPoints = 0; <span class="comment">// Count of non-null data points</span></div>
+<div class="line"><a id="l02365" name="l02365"></a><span class="lineno"> 2365</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> fileIdx = files.size() - 1; fileIdx &gt;= 0 &amp;&amp; filesProcessed &lt; filesToProcess &amp;&amp; totalPointsProcessed &lt; MAX_POINTS; fileIdx--) {</div>
+<div class="line"><a id="l02366" name="l02366"></a><span class="lineno"> 2366</span>            <span class="keyword">const</span> String&amp; filename = files[fileIdx];</div>
+<div class="line"><a id="l02367" name="l02367"></a><span class="lineno"> 2367</span>            Serial.printf(<span class="stringliteral">&quot;Processing file: %s\n&quot;</span>, filename.c_str());</div>
+<div class="line"><a id="l02368" name="l02368"></a><span class="lineno"> 2368</span>            </div>
+<div class="line"><a id="l02369" name="l02369"></a><span class="lineno"> 2369</span>            filesProcessed++;</div>
+<div class="line"><a id="l02370" name="l02370"></a><span class="lineno"> 2370</span>            </div>
+<div class="line"><a id="l02371" name="l02371"></a><span class="lineno"> 2371</span>            <span class="comment">// Open file for reading</span></div>
+<div class="line"><a id="l02372" name="l02372"></a><span class="lineno"> 2372</span>            File file = <a class="code hl_function" href="class_logger_manager.html#a92719154d919a9bd45a8ea192e70dfcc">LoggerManager::openLogFile</a>(filename, <span class="stringliteral">&quot;data&quot;</span>);</div>
+<div class="line"><a id="l02373" name="l02373"></a><span class="lineno"> 2373</span>            <span class="keywordflow">if</span> (!file) {</div>
+<div class="line"><a id="l02374" name="l02374"></a><span class="lineno"> 2374</span>                Serial.println(<span class="stringliteral">&quot;Failed to open file&quot;</span>);</div>
+<div class="line"><a id="l02375" name="l02375"></a><span class="lineno"> 2375</span>                <span class="keywordflow">continue</span>;</div>
+<div class="line"><a id="l02376" name="l02376"></a><span class="lineno"> 2376</span>            }</div>
+<div class="line"><a id="l02377" name="l02377"></a><span class="lineno"> 2377</span>            </div>
+<div class="line"><a id="l02378" name="l02378"></a><span class="lineno"> 2378</span>            <span class="comment">// Skip header line</span></div>
+<div class="line"><a id="l02379" name="l02379"></a><span class="lineno"> 2379</span>            <span class="keywordflow">if</span> (file.available()) {</div>
+<div class="line"><a id="l02380" name="l02380"></a><span class="lineno"> 2380</span>                file.readStringUntil(<span class="charliteral">&#39;\n&#39;</span>);</div>
+<div class="line"><a id="l02381" name="l02381"></a><span class="lineno"> 2381</span>            }</div>
+<div class="line"><a id="l02382" name="l02382"></a><span class="lineno"> 2382</span>            </div>
+<div class="line"><a id="l02383" name="l02383"></a><span class="lineno"> 2383</span>            <span class="comment">// Read data lines</span></div>
+<div class="line"><a id="l02384" name="l02384"></a><span class="lineno"> 2384</span>            <span class="keywordtype">int</span> emptyLinesInRow = 0;</div>
+<div class="line"><a id="l02385" name="l02385"></a><span class="lineno"> 2385</span>            <span class="keywordtype">int</span> linesRead = 0;</div>
+<div class="line"><a id="l02386" name="l02386"></a><span class="lineno"> 2386</span>            <span class="keywordflow">while</span> (file.available() &amp;&amp; totalPointsProcessed &lt; MAX_POINTS) {</div>
+<div class="line"><a id="l02387" name="l02387"></a><span class="lineno"> 2387</span>                String line = file.readStringUntil(<span class="charliteral">&#39;\n&#39;</span>);</div>
+<div class="line"><a id="l02388" name="l02388"></a><span class="lineno"> 2388</span>                <span class="keywordflow">if</span> (line.isEmpty()) <span class="keywordflow">continue</span>;</div>
+<div class="line"><a id="l02389" name="l02389"></a><span class="lineno"> 2389</span>                linesRead++;</div>
 <div class="line"><a id="l02390" name="l02390"></a><span class="lineno"> 2390</span>                </div>
-<div class="line"><a id="l02391" name="l02391"></a><span class="lineno"> 2391</span>                <span class="comment">// Debug first line parsing</span></div>
-<div class="line"><a id="l02392" name="l02392"></a><span class="lineno"> 2392</span>                <span class="keywordflow">if</span> (totalPointsProcessed == 0 &amp;&amp; filesProcessed == 1) {</div>
-<div class="line"><a id="l02393" name="l02393"></a><span class="lineno"> 2393</span>                    Serial.printf(<span class="stringliteral">&quot;First data line: %s\n&quot;</span>, line.substring(0, 50).c_str());</div>
-<div class="line"><a id="l02394" name="l02394"></a><span class="lineno"> 2394</span>                }</div>
-<div class="line"><a id="l02395" name="l02395"></a><span class="lineno"> 2395</span>                </div>
-<div class="line"><a id="l02396" name="l02396"></a><span class="lineno"> 2396</span>                <span class="comment">// Parse only the required fields</span></div>
-<div class="line"><a id="l02397" name="l02397"></a><span class="lineno"> 2397</span>                <span class="keywordtype">int</span> commaCount = 0;</div>
-<div class="line"><a id="l02398" name="l02398"></a><span class="lineno"> 2398</span>                <span class="keywordtype">int</span> lastComma = -1;</div>
-<div class="line"><a id="l02399" name="l02399"></a><span class="lineno"> 2399</span>                String timeStr = <span class="stringliteral">&quot;&quot;</span>;</div>
-<div class="line"><a id="l02400" name="l02400"></a><span class="lineno"> 2400</span>                String tempStr = <span class="stringliteral">&quot;&quot;</span>;</div>
-<div class="line"><a id="l02401" name="l02401"></a><span class="lineno"> 2401</span>                </div>
-<div class="line"><a id="l02402" name="l02402"></a><span class="lineno"> 2402</span>                <span class="comment">// Target column for this point</span></div>
-<div class="line"><a id="l02403" name="l02403"></a><span class="lineno"> 2403</span>                <span class="keywordtype">int</span> targetColumn = pointAddress + 2;</div>
-<div class="line"><a id="l02404" name="l02404"></a><span class="lineno"> 2404</span>                </div>
-<div class="line"><a id="l02405" name="l02405"></a><span class="lineno"> 2405</span>                <span class="keywordflow">if</span> (totalPointsProcessed == 0) {</div>
-<div class="line"><a id="l02406" name="l02406"></a><span class="lineno"> 2406</span>                    Serial.printf(<span class="stringliteral">&quot;Looking for point %d in column %d\n&quot;</span>, pointAddress, targetColumn);</div>
-<div class="line"><a id="l02407" name="l02407"></a><span class="lineno"> 2407</span>                }</div>
-<div class="line"><a id="l02408" name="l02408"></a><span class="lineno"> 2408</span>                </div>
-<div class="line"><a id="l02409" name="l02409"></a><span class="lineno"> 2409</span>                <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt;= line.length(); i++) {</div>
-<div class="line"><a id="l02410" name="l02410"></a><span class="lineno"> 2410</span>                    <span class="keywordflow">if</span> (i == line.length() || line.charAt(i) == <span class="charliteral">&#39;,&#39;</span>) {</div>
-<div class="line"><a id="l02411" name="l02411"></a><span class="lineno"> 2411</span>                        <span class="keywordflow">if</span> (commaCount == 1) {</div>
-<div class="line"><a id="l02412" name="l02412"></a><span class="lineno"> 2412</span>                            timeStr = line.substring(lastComma + 1, i);</div>
-<div class="line"><a id="l02413" name="l02413"></a><span class="lineno"> 2413</span>                        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (commaCount == targetColumn) {</div>
-<div class="line"><a id="l02414" name="l02414"></a><span class="lineno"> 2414</span>                            tempStr = line.substring(lastComma + 1, i);</div>
-<div class="line"><a id="l02415" name="l02415"></a><span class="lineno"> 2415</span>                            <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l02416" name="l02416"></a><span class="lineno"> 2416</span>                        }</div>
-<div class="line"><a id="l02417" name="l02417"></a><span class="lineno"> 2417</span>                        lastComma = i;</div>
-<div class="line"><a id="l02418" name="l02418"></a><span class="lineno"> 2418</span>                        commaCount++;</div>
-<div class="line"><a id="l02419" name="l02419"></a><span class="lineno"> 2419</span>                    }</div>
-<div class="line"><a id="l02420" name="l02420"></a><span class="lineno"> 2420</span>                }</div>
-<div class="line"><a id="l02421" name="l02421"></a><span class="lineno"> 2421</span>                </div>
-<div class="line"><a id="l02422" name="l02422"></a><span class="lineno"> 2422</span>                <span class="comment">// Handle missing temperature data</span></div>
-<div class="line"><a id="l02423" name="l02423"></a><span class="lineno"> 2423</span>                <span class="keywordtype">bool</span> hasData = !tempStr.isEmpty() &amp;&amp; tempStr != <span class="stringliteral">&quot; &quot;</span>;</div>
-<div class="line"><a id="l02424" name="l02424"></a><span class="lineno"> 2424</span>                </div>
-<div class="line"><a id="l02425" name="l02425"></a><span class="lineno"> 2425</span>                <span class="keywordflow">if</span> (!hasData) {</div>
-<div class="line"><a id="l02426" name="l02426"></a><span class="lineno"> 2426</span>                    emptyLinesInRow++;</div>
-<div class="line"><a id="l02427" name="l02427"></a><span class="lineno"> 2427</span>                    <span class="comment">// If we have too many empty lines and haven&#39;t found any data yet,</span></div>
-<div class="line"><a id="l02428" name="l02428"></a><span class="lineno"> 2428</span>                    <span class="comment">// skip ahead to find actual data</span></div>
-<div class="line"><a id="l02429" name="l02429"></a><span class="lineno"> 2429</span>                    <span class="keywordflow">if</span> (emptyLinesInRow &gt; 50 &amp;&amp; totalPointsProcessed &lt; 10) {</div>
-<div class="line"><a id="l02430" name="l02430"></a><span class="lineno"> 2430</span>                        <span class="comment">// Jump to near the end of the file where data likely exists</span></div>
-<div class="line"><a id="l02431" name="l02431"></a><span class="lineno"> 2431</span>                        <span class="keywordtype">long</span> currentPos = file.position();</div>
-<div class="line"><a id="l02432" name="l02432"></a><span class="lineno"> 2432</span>                        <span class="keywordtype">long</span> fileSize = file.size();</div>
-<div class="line"><a id="l02433" name="l02433"></a><span class="lineno"> 2433</span>                        <span class="keywordflow">if</span> (fileSize - currentPos &gt; 20000) {</div>
-<div class="line"><a id="l02434" name="l02434"></a><span class="lineno"> 2434</span>                            <span class="comment">// Jump to last 20KB of file</span></div>
-<div class="line"><a id="l02435" name="l02435"></a><span class="lineno"> 2435</span>                            file.seek(fileSize - 20000);</div>
-<div class="line"><a id="l02436" name="l02436"></a><span class="lineno"> 2436</span>                            file.readStringUntil(<span class="charliteral">&#39;\n&#39;</span>); <span class="comment">// Skip partial line</span></div>
-<div class="line"><a id="l02437" name="l02437"></a><span class="lineno"> 2437</span>                            emptyLinesInRow = 0;</div>
-<div class="line"><a id="l02438" name="l02438"></a><span class="lineno"> 2438</span>                            Serial.println(<span class="stringliteral">&quot;Skipping to end of file to find data&quot;</span>);</div>
-<div class="line"><a id="l02439" name="l02439"></a><span class="lineno"> 2439</span>                        }</div>
-<div class="line"><a id="l02440" name="l02440"></a><span class="lineno"> 2440</span>                    }</div>
-<div class="line"><a id="l02441" name="l02441"></a><span class="lineno"> 2441</span>                } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l02442" name="l02442"></a><span class="lineno"> 2442</span>                    emptyLinesInRow = 0; <span class="comment">// Reset counter when we find data</span></div>
-<div class="line"><a id="l02443" name="l02443"></a><span class="lineno"> 2443</span>                }</div>
-<div class="line"><a id="l02444" name="l02444"></a><span class="lineno"> 2444</span>                </div>
-<div class="line"><a id="l02445" name="l02445"></a><span class="lineno"> 2445</span>                <span class="comment">// Add data point to JSON (with null for missing data)</span></div>
-<div class="line"><a id="l02446" name="l02446"></a><span class="lineno"> 2446</span>                <span class="keywordflow">if</span> (!firstDataPoint) {</div>
-<div class="line"><a id="l02447" name="l02447"></a><span class="lineno"> 2447</span>                    jsonResponse += <span class="stringliteral">&quot;,&quot;</span>;</div>
+<div class="line"><a id="l02391" name="l02391"></a><span class="lineno"> 2391</span>                <span class="comment">// Quick check for empty data BEFORE decimation</span></div>
+<div class="line"><a id="l02392" name="l02392"></a><span class="lineno"> 2392</span>                <span class="keywordflow">if</span> (linesRead &lt; 200) { <span class="comment">// Check first 200 lines</span></div>
+<div class="line"><a id="l02393" name="l02393"></a><span class="lineno"> 2393</span>                    <span class="comment">// Parse to check if point has data</span></div>
+<div class="line"><a id="l02394" name="l02394"></a><span class="lineno"> 2394</span>                    <span class="keywordtype">int</span> quickCommaCount = 0;</div>
+<div class="line"><a id="l02395" name="l02395"></a><span class="lineno"> 2395</span>                    <span class="keywordtype">int</span> quickLastComma = -1;</div>
+<div class="line"><a id="l02396" name="l02396"></a><span class="lineno"> 2396</span>                    String quickTempStr = <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a id="l02397" name="l02397"></a><span class="lineno"> 2397</span>                    <span class="keywordtype">int</span> quickTargetColumn = pointAddress + 2;</div>
+<div class="line"><a id="l02398" name="l02398"></a><span class="lineno"> 2398</span>                    </div>
+<div class="line"><a id="l02399" name="l02399"></a><span class="lineno"> 2399</span>                    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt;= line.length() &amp;&amp; quickCommaCount &lt;= quickTargetColumn; i++) {</div>
+<div class="line"><a id="l02400" name="l02400"></a><span class="lineno"> 2400</span>                        <span class="keywordflow">if</span> (i == line.length() || line.charAt(i) == <span class="charliteral">&#39;,&#39;</span>) {</div>
+<div class="line"><a id="l02401" name="l02401"></a><span class="lineno"> 2401</span>                            <span class="keywordflow">if</span> (quickCommaCount == quickTargetColumn) {</div>
+<div class="line"><a id="l02402" name="l02402"></a><span class="lineno"> 2402</span>                                quickTempStr = line.substring(quickLastComma + 1, i);</div>
+<div class="line"><a id="l02403" name="l02403"></a><span class="lineno"> 2403</span>                                <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l02404" name="l02404"></a><span class="lineno"> 2404</span>                            }</div>
+<div class="line"><a id="l02405" name="l02405"></a><span class="lineno"> 2405</span>                            quickLastComma = i;</div>
+<div class="line"><a id="l02406" name="l02406"></a><span class="lineno"> 2406</span>                            quickCommaCount++;</div>
+<div class="line"><a id="l02407" name="l02407"></a><span class="lineno"> 2407</span>                        }</div>
+<div class="line"><a id="l02408" name="l02408"></a><span class="lineno"> 2408</span>                    }</div>
+<div class="line"><a id="l02409" name="l02409"></a><span class="lineno"> 2409</span>                    </div>
+<div class="line"><a id="l02410" name="l02410"></a><span class="lineno"> 2410</span>                    <span class="keywordflow">if</span> (quickTempStr.isEmpty() || quickTempStr == <span class="stringliteral">&quot; &quot;</span>) {</div>
+<div class="line"><a id="l02411" name="l02411"></a><span class="lineno"> 2411</span>                        emptyLinesInRow++;</div>
+<div class="line"><a id="l02412" name="l02412"></a><span class="lineno"> 2412</span>                        <span class="keywordflow">if</span> (emptyLinesInRow &gt; 50 &amp;&amp; validDataPoints == 0) {</div>
+<div class="line"><a id="l02413" name="l02413"></a><span class="lineno"> 2413</span>                            <span class="comment">// Skip to end of file</span></div>
+<div class="line"><a id="l02414" name="l02414"></a><span class="lineno"> 2414</span>                            <span class="keywordtype">long</span> fileSize = file.size();</div>
+<div class="line"><a id="l02415" name="l02415"></a><span class="lineno"> 2415</span>                            Serial.printf(<span class="stringliteral">&quot;No data in first %d lines, jumping to end (file size: %ld)\n&quot;</span>, </div>
+<div class="line"><a id="l02416" name="l02416"></a><span class="lineno"> 2416</span>                                        emptyLinesInRow, fileSize);</div>
+<div class="line"><a id="l02417" name="l02417"></a><span class="lineno"> 2417</span>                            file.seek(fileSize - 50000); <span class="comment">// Jump to last 50KB</span></div>
+<div class="line"><a id="l02418" name="l02418"></a><span class="lineno"> 2418</span>                            file.readStringUntil(<span class="charliteral">&#39;\n&#39;</span>); <span class="comment">// Skip partial line</span></div>
+<div class="line"><a id="l02419" name="l02419"></a><span class="lineno"> 2419</span>                            emptyLinesInRow = 0;</div>
+<div class="line"><a id="l02420" name="l02420"></a><span class="lineno"> 2420</span>                            linesRead = 0;</div>
+<div class="line"><a id="l02421" name="l02421"></a><span class="lineno"> 2421</span>                            pointCounter = 0; <span class="comment">// Reset decimation counter</span></div>
+<div class="line"><a id="l02422" name="l02422"></a><span class="lineno"> 2422</span>                            <span class="keywordflow">continue</span>;</div>
+<div class="line"><a id="l02423" name="l02423"></a><span class="lineno"> 2423</span>                        }</div>
+<div class="line"><a id="l02424" name="l02424"></a><span class="lineno"> 2424</span>                    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l02425" name="l02425"></a><span class="lineno"> 2425</span>                        emptyLinesInRow = 0;</div>
+<div class="line"><a id="l02426" name="l02426"></a><span class="lineno"> 2426</span>                    }</div>
+<div class="line"><a id="l02427" name="l02427"></a><span class="lineno"> 2427</span>                }</div>
+<div class="line"><a id="l02428" name="l02428"></a><span class="lineno"> 2428</span>                </div>
+<div class="line"><a id="l02429" name="l02429"></a><span class="lineno"> 2429</span>                <span class="comment">// Only process every Nth line based on decimation</span></div>
+<div class="line"><a id="l02430" name="l02430"></a><span class="lineno"> 2430</span>                <span class="keywordflow">if</span> (pointCounter++ % decimationFactor != 0) <span class="keywordflow">continue</span>;</div>
+<div class="line"><a id="l02431" name="l02431"></a><span class="lineno"> 2431</span>                </div>
+<div class="line"><a id="l02432" name="l02432"></a><span class="lineno"> 2432</span>                <span class="comment">// Debug first line parsing</span></div>
+<div class="line"><a id="l02433" name="l02433"></a><span class="lineno"> 2433</span>                <span class="keywordflow">if</span> (totalPointsProcessed == 0 &amp;&amp; filesProcessed == 1) {</div>
+<div class="line"><a id="l02434" name="l02434"></a><span class="lineno"> 2434</span>                    Serial.printf(<span class="stringliteral">&quot;First data line: %s\n&quot;</span>, line.substring(0, 50).c_str());</div>
+<div class="line"><a id="l02435" name="l02435"></a><span class="lineno"> 2435</span>                }</div>
+<div class="line"><a id="l02436" name="l02436"></a><span class="lineno"> 2436</span>                </div>
+<div class="line"><a id="l02437" name="l02437"></a><span class="lineno"> 2437</span>                <span class="comment">// Parse only the required fields</span></div>
+<div class="line"><a id="l02438" name="l02438"></a><span class="lineno"> 2438</span>                <span class="keywordtype">int</span> commaCount = 0;</div>
+<div class="line"><a id="l02439" name="l02439"></a><span class="lineno"> 2439</span>                <span class="keywordtype">int</span> lastComma = -1;</div>
+<div class="line"><a id="l02440" name="l02440"></a><span class="lineno"> 2440</span>                String timeStr = <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a id="l02441" name="l02441"></a><span class="lineno"> 2441</span>                String tempStr = <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a id="l02442" name="l02442"></a><span class="lineno"> 2442</span>                </div>
+<div class="line"><a id="l02443" name="l02443"></a><span class="lineno"> 2443</span>                <span class="comment">// Target column for this point</span></div>
+<div class="line"><a id="l02444" name="l02444"></a><span class="lineno"> 2444</span>                <span class="keywordtype">int</span> targetColumn = pointAddress + 2;</div>
+<div class="line"><a id="l02445" name="l02445"></a><span class="lineno"> 2445</span>                </div>
+<div class="line"><a id="l02446" name="l02446"></a><span class="lineno"> 2446</span>                <span class="keywordflow">if</span> (totalPointsProcessed == 0) {</div>
+<div class="line"><a id="l02447" name="l02447"></a><span class="lineno"> 2447</span>                    Serial.printf(<span class="stringliteral">&quot;Looking for point %d in column %d\n&quot;</span>, pointAddress, targetColumn);</div>
 <div class="line"><a id="l02448" name="l02448"></a><span class="lineno"> 2448</span>                }</div>
-<div class="line"><a id="l02449" name="l02449"></a><span class="lineno"> 2449</span>                firstDataPoint = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l02450" name="l02450"></a><span class="lineno"> 2450</span>                </div>
-<div class="line"><a id="l02451" name="l02451"></a><span class="lineno"> 2451</span>                jsonResponse += <span class="stringliteral">&quot;{\&quot;timestamp\&quot;:\&quot;&quot;</span> + timeStr.substring(0, 5) + <span class="stringliteral">&quot;\&quot;,&quot;</span>;</div>
-<div class="line"><a id="l02452" name="l02452"></a><span class="lineno"> 2452</span>                </div>
-<div class="line"><a id="l02453" name="l02453"></a><span class="lineno"> 2453</span>                <span class="keywordflow">if</span> (hasData) {</div>
-<div class="line"><a id="l02454" name="l02454"></a><span class="lineno"> 2454</span>                    <span class="comment">// Parse temperature value</span></div>
-<div class="line"><a id="l02455" name="l02455"></a><span class="lineno"> 2455</span>                    <span class="keywordtype">float</span> temp = tempStr.toFloat();</div>
-<div class="line"><a id="l02456" name="l02456"></a><span class="lineno"> 2456</span>                    </div>
-<div class="line"><a id="l02457" name="l02457"></a><span class="lineno"> 2457</span>                    <span class="comment">// Check if it&#39;s a valid temperature</span></div>
-<div class="line"><a id="l02458" name="l02458"></a><span class="lineno"> 2458</span>                    <span class="keywordflow">if</span> (temp == 0.0 &amp;&amp; tempStr != <span class="stringliteral">&quot;0&quot;</span>) {</div>
-<div class="line"><a id="l02459" name="l02459"></a><span class="lineno"> 2459</span>                        <span class="comment">// Invalid temperature, treat as null</span></div>
-<div class="line"><a id="l02460" name="l02460"></a><span class="lineno"> 2460</span>                        jsonResponse += <span class="stringliteral">&quot;\&quot;temperature\&quot;:null}&quot;</span>;</div>
-<div class="line"><a id="l02461" name="l02461"></a><span class="lineno"> 2461</span>                    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l02462" name="l02462"></a><span class="lineno"> 2462</span>                        <span class="comment">// Debug logging</span></div>
-<div class="line"><a id="l02463" name="l02463"></a><span class="lineno"> 2463</span>                        <span class="keywordflow">if</span> (totalPointsProcessed &lt; 5) {</div>
-<div class="line"><a id="l02464" name="l02464"></a><span class="lineno"> 2464</span>                            Serial.printf(<span class="stringliteral">&quot;Debug: timeStr=&#39;%s&#39;, tempStr=&#39;%s&#39;, parsed temp=%.1f\n&quot;</span>, </div>
-<div class="line"><a id="l02465" name="l02465"></a><span class="lineno"> 2465</span>                                          timeStr.c_str(), tempStr.c_str(), temp);</div>
-<div class="line"><a id="l02466" name="l02466"></a><span class="lineno"> 2466</span>                        }</div>
-<div class="line"><a id="l02467" name="l02467"></a><span class="lineno"> 2467</span>                        jsonResponse += <span class="stringliteral">&quot;\&quot;temperature\&quot;:&quot;</span> + String(temp, 1) + <span class="stringliteral">&quot;}&quot;</span>;</div>
-<div class="line"><a id="l02468" name="l02468"></a><span class="lineno"> 2468</span>                    }</div>
-<div class="line"><a id="l02469" name="l02469"></a><span class="lineno"> 2469</span>                } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l02470" name="l02470"></a><span class="lineno"> 2470</span>                    <span class="comment">// No data, use null</span></div>
-<div class="line"><a id="l02471" name="l02471"></a><span class="lineno"> 2471</span>                    jsonResponse += <span class="stringliteral">&quot;\&quot;temperature\&quot;:null}&quot;</span>;</div>
+<div class="line"><a id="l02449" name="l02449"></a><span class="lineno"> 2449</span>                </div>
+<div class="line"><a id="l02450" name="l02450"></a><span class="lineno"> 2450</span>                <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt;= line.length(); i++) {</div>
+<div class="line"><a id="l02451" name="l02451"></a><span class="lineno"> 2451</span>                    <span class="keywordflow">if</span> (i == line.length() || line.charAt(i) == <span class="charliteral">&#39;,&#39;</span>) {</div>
+<div class="line"><a id="l02452" name="l02452"></a><span class="lineno"> 2452</span>                        <span class="keywordflow">if</span> (commaCount == 1) {</div>
+<div class="line"><a id="l02453" name="l02453"></a><span class="lineno"> 2453</span>                            timeStr = line.substring(lastComma + 1, i);</div>
+<div class="line"><a id="l02454" name="l02454"></a><span class="lineno"> 2454</span>                        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (commaCount == targetColumn) {</div>
+<div class="line"><a id="l02455" name="l02455"></a><span class="lineno"> 2455</span>                            tempStr = line.substring(lastComma + 1, i);</div>
+<div class="line"><a id="l02456" name="l02456"></a><span class="lineno"> 2456</span>                            <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l02457" name="l02457"></a><span class="lineno"> 2457</span>                        }</div>
+<div class="line"><a id="l02458" name="l02458"></a><span class="lineno"> 2458</span>                        lastComma = i;</div>
+<div class="line"><a id="l02459" name="l02459"></a><span class="lineno"> 2459</span>                        commaCount++;</div>
+<div class="line"><a id="l02460" name="l02460"></a><span class="lineno"> 2460</span>                    }</div>
+<div class="line"><a id="l02461" name="l02461"></a><span class="lineno"> 2461</span>                }</div>
+<div class="line"><a id="l02462" name="l02462"></a><span class="lineno"> 2462</span>                </div>
+<div class="line"><a id="l02463" name="l02463"></a><span class="lineno"> 2463</span>                <span class="comment">// Handle missing temperature data</span></div>
+<div class="line"><a id="l02464" name="l02464"></a><span class="lineno"> 2464</span>                <span class="keywordtype">bool</span> hasData = !tempStr.isEmpty() &amp;&amp; tempStr != <span class="stringliteral">&quot; &quot;</span>;</div>
+<div class="line"><a id="l02465" name="l02465"></a><span class="lineno"> 2465</span>                </div>
+<div class="line"><a id="l02466" name="l02466"></a><span class="lineno"> 2466</span>                <span class="keywordflow">if</span> (hasData) {</div>
+<div class="line"><a id="l02467" name="l02467"></a><span class="lineno"> 2467</span>                    <span class="comment">// Log when we find actual data</span></div>
+<div class="line"><a id="l02468" name="l02468"></a><span class="lineno"> 2468</span>                    <span class="keywordflow">if</span> (validDataPoints &lt; 5) {</div>
+<div class="line"><a id="l02469" name="l02469"></a><span class="lineno"> 2469</span>                        Serial.printf(<span class="stringliteral">&quot;Found data at point %d: temp=&#39;%s&#39;\n&quot;</span>, </div>
+<div class="line"><a id="l02470" name="l02470"></a><span class="lineno"> 2470</span>                                    totalPointsProcessed, tempStr.c_str());</div>
+<div class="line"><a id="l02471" name="l02471"></a><span class="lineno"> 2471</span>                    }</div>
 <div class="line"><a id="l02472" name="l02472"></a><span class="lineno"> 2472</span>                }</div>
 <div class="line"><a id="l02473" name="l02473"></a><span class="lineno"> 2473</span>                </div>
-<div class="line"><a id="l02474" name="l02474"></a><span class="lineno"> 2474</span>                totalPointsProcessed++;</div>
-<div class="line"><a id="l02475" name="l02475"></a><span class="lineno"> 2475</span>                </div>
-<div class="line"><a id="l02476" name="l02476"></a><span class="lineno"> 2476</span>                <span class="comment">// Check memory usage periodically</span></div>
-<div class="line"><a id="l02477" name="l02477"></a><span class="lineno"> 2477</span>                <span class="keywordflow">if</span> (jsonResponse.length() &gt; 20000) {</div>
-<div class="line"><a id="l02478" name="l02478"></a><span class="lineno"> 2478</span>                    Serial.println(<span class="stringliteral">&quot;Response too large, stopping&quot;</span>);</div>
-<div class="line"><a id="l02479" name="l02479"></a><span class="lineno"> 2479</span>                    <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l02480" name="l02480"></a><span class="lineno"> 2480</span>                }</div>
+<div class="line"><a id="l02474" name="l02474"></a><span class="lineno"> 2474</span>                <span class="comment">// Add data point to JSON (with null for missing data)</span></div>
+<div class="line"><a id="l02475" name="l02475"></a><span class="lineno"> 2475</span>                <span class="keywordflow">if</span> (!firstDataPoint) {</div>
+<div class="line"><a id="l02476" name="l02476"></a><span class="lineno"> 2476</span>                    jsonResponse += <span class="stringliteral">&quot;,&quot;</span>;</div>
+<div class="line"><a id="l02477" name="l02477"></a><span class="lineno"> 2477</span>                }</div>
+<div class="line"><a id="l02478" name="l02478"></a><span class="lineno"> 2478</span>                firstDataPoint = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l02479" name="l02479"></a><span class="lineno"> 2479</span>                </div>
+<div class="line"><a id="l02480" name="l02480"></a><span class="lineno"> 2480</span>                jsonResponse += <span class="stringliteral">&quot;{\&quot;timestamp\&quot;:\&quot;&quot;</span> + timeStr.substring(0, 5) + <span class="stringliteral">&quot;\&quot;,&quot;</span>;</div>
 <div class="line"><a id="l02481" name="l02481"></a><span class="lineno"> 2481</span>                </div>
-<div class="line"><a id="l02482" name="l02482"></a><span class="lineno"> 2482</span>                <span class="comment">// Yield to prevent watchdog</span></div>
-<div class="line"><a id="l02483" name="l02483"></a><span class="lineno"> 2483</span>                <span class="keywordflow">if</span> (totalPointsProcessed % 10 == 0) {</div>
-<div class="line"><a id="l02484" name="l02484"></a><span class="lineno"> 2484</span>                    yield();</div>
-<div class="line"><a id="l02485" name="l02485"></a><span class="lineno"> 2485</span>                }</div>
-<div class="line"><a id="l02486" name="l02486"></a><span class="lineno"> 2486</span>            }</div>
-<div class="line"><a id="l02487" name="l02487"></a><span class="lineno"> 2487</span>            file.close();</div>
-<div class="line"><a id="l02488" name="l02488"></a><span class="lineno"> 2488</span>        }</div>
-<div class="line"><a id="l02489" name="l02489"></a><span class="lineno"> 2489</span>        </div>
-<div class="line"><a id="l02490" name="l02490"></a><span class="lineno"> 2490</span>        jsonResponse += <span class="stringliteral">&quot;],\&quot;alarmEvents\&quot;:[]}&quot;</span>;</div>
-<div class="line"><a id="l02491" name="l02491"></a><span class="lineno"> 2491</span>        </div>
-<div class="line"><a id="l02492" name="l02492"></a><span class="lineno"> 2492</span>        Serial.printf(<span class="stringliteral">&quot;Total points: %d, Response size: %d bytes\n&quot;</span>, totalPointsProcessed, jsonResponse.length());</div>
-<div class="line"><a id="l02493" name="l02493"></a><span class="lineno"> 2493</span>        </div>
-<div class="line"><a id="l02494" name="l02494"></a><span class="lineno"> 2494</span>        <span class="comment">// Send complete response</span></div>
-<div class="line"><a id="l02495" name="l02495"></a><span class="lineno"> 2495</span>        <a class="code hl_variable" href="class_config_manager.html#a773fb5f7cd89fa594bd05184e8af14a0">server</a>-&gt;sendHeader(<span class="stringliteral">&quot;Content-Type&quot;</span>, <span class="stringliteral">&quot;application/json&quot;</span>);</div>
-<div class="line"><a id="l02496" name="l02496"></a><span class="lineno"> 2496</span>        <a class="code hl_variable" href="class_config_manager.html#a773fb5f7cd89fa594bd05184e8af14a0">server</a>-&gt;sendHeader(<span class="stringliteral">&quot;Access-Control-Allow-Origin&quot;</span>, <span class="stringliteral">&quot;*&quot;</span>);</div>
-<div class="line"><a id="l02497" name="l02497"></a><span class="lineno"> 2497</span>        <a class="code hl_variable" href="class_config_manager.html#a773fb5f7cd89fa594bd05184e8af14a0">server</a>-&gt;sendHeader(<span class="stringliteral">&quot;Cache-Control&quot;</span>, <span class="stringliteral">&quot;no-store&quot;</span>);</div>
-<div class="line"><a id="l02498" name="l02498"></a><span class="lineno"> 2498</span>        <a class="code hl_variable" href="class_config_manager.html#a773fb5f7cd89fa594bd05184e8af14a0">server</a>-&gt;send(200, <span class="stringliteral">&quot;application/json&quot;</span>, jsonResponse);</div>
-<div class="line"><a id="l02499" name="l02499"></a><span class="lineno"> 2499</span>    });</div>
-<div class="line"><a id="l02500" name="l02500"></a><span class="lineno"> 2500</span>}</div>
+<div class="line"><a id="l02482" name="l02482"></a><span class="lineno"> 2482</span>                <span class="keywordflow">if</span> (hasData) {</div>
+<div class="line"><a id="l02483" name="l02483"></a><span class="lineno"> 2483</span>                    <span class="comment">// Parse temperature value</span></div>
+<div class="line"><a id="l02484" name="l02484"></a><span class="lineno"> 2484</span>                    <span class="keywordtype">float</span> temp = tempStr.toFloat();</div>
+<div class="line"><a id="l02485" name="l02485"></a><span class="lineno"> 2485</span>                    </div>
+<div class="line"><a id="l02486" name="l02486"></a><span class="lineno"> 2486</span>                    <span class="comment">// Check if it&#39;s a valid temperature</span></div>
+<div class="line"><a id="l02487" name="l02487"></a><span class="lineno"> 2487</span>                    <span class="keywordflow">if</span> (temp == 0.0 &amp;&amp; tempStr != <span class="stringliteral">&quot;0&quot;</span>) {</div>
+<div class="line"><a id="l02488" name="l02488"></a><span class="lineno"> 2488</span>                        <span class="comment">// Invalid temperature, treat as null</span></div>
+<div class="line"><a id="l02489" name="l02489"></a><span class="lineno"> 2489</span>                        jsonResponse += <span class="stringliteral">&quot;\&quot;temperature\&quot;:null}&quot;</span>;</div>
+<div class="line"><a id="l02490" name="l02490"></a><span class="lineno"> 2490</span>                    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l02491" name="l02491"></a><span class="lineno"> 2491</span>                        <span class="comment">// Debug logging</span></div>
+<div class="line"><a id="l02492" name="l02492"></a><span class="lineno"> 2492</span>                        <span class="keywordflow">if</span> (totalPointsProcessed &lt; 5) {</div>
+<div class="line"><a id="l02493" name="l02493"></a><span class="lineno"> 2493</span>                            Serial.printf(<span class="stringliteral">&quot;Debug: timeStr=&#39;%s&#39;, tempStr=&#39;%s&#39;, parsed temp=%.1f\n&quot;</span>, </div>
+<div class="line"><a id="l02494" name="l02494"></a><span class="lineno"> 2494</span>                                          timeStr.c_str(), tempStr.c_str(), temp);</div>
+<div class="line"><a id="l02495" name="l02495"></a><span class="lineno"> 2495</span>                        }</div>
+<div class="line"><a id="l02496" name="l02496"></a><span class="lineno"> 2496</span>                        jsonResponse += <span class="stringliteral">&quot;\&quot;temperature\&quot;:&quot;</span> + String(temp, 1) + <span class="stringliteral">&quot;}&quot;</span>;</div>
+<div class="line"><a id="l02497" name="l02497"></a><span class="lineno"> 2497</span>                        validDataPoints++; <span class="comment">// Count valid data points</span></div>
+<div class="line"><a id="l02498" name="l02498"></a><span class="lineno"> 2498</span>                    }</div>
+<div class="line"><a id="l02499" name="l02499"></a><span class="lineno"> 2499</span>                } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l02500" name="l02500"></a><span class="lineno"> 2500</span>                    <span class="comment">// No data, use null</span></div>
+<div class="line"><a id="l02501" name="l02501"></a><span class="lineno"> 2501</span>                    jsonResponse += <span class="stringliteral">&quot;\&quot;temperature\&quot;:null}&quot;</span>;</div>
+<div class="line"><a id="l02502" name="l02502"></a><span class="lineno"> 2502</span>                }</div>
+<div class="line"><a id="l02503" name="l02503"></a><span class="lineno"> 2503</span>                </div>
+<div class="line"><a id="l02504" name="l02504"></a><span class="lineno"> 2504</span>                totalPointsProcessed++;</div>
+<div class="line"><a id="l02505" name="l02505"></a><span class="lineno"> 2505</span>                </div>
+<div class="line"><a id="l02506" name="l02506"></a><span class="lineno"> 2506</span>                <span class="comment">// Check memory usage periodically</span></div>
+<div class="line"><a id="l02507" name="l02507"></a><span class="lineno"> 2507</span>                <span class="keywordflow">if</span> (jsonResponse.length() &gt; 20000) {</div>
+<div class="line"><a id="l02508" name="l02508"></a><span class="lineno"> 2508</span>                    Serial.println(<span class="stringliteral">&quot;Response too large, stopping&quot;</span>);</div>
+<div class="line"><a id="l02509" name="l02509"></a><span class="lineno"> 2509</span>                    <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l02510" name="l02510"></a><span class="lineno"> 2510</span>                }</div>
+<div class="line"><a id="l02511" name="l02511"></a><span class="lineno"> 2511</span>                </div>
+<div class="line"><a id="l02512" name="l02512"></a><span class="lineno"> 2512</span>                <span class="comment">// Yield to prevent watchdog</span></div>
+<div class="line"><a id="l02513" name="l02513"></a><span class="lineno"> 2513</span>                <span class="keywordflow">if</span> (totalPointsProcessed % 10 == 0) {</div>
+<div class="line"><a id="l02514" name="l02514"></a><span class="lineno"> 2514</span>                    yield();</div>
+<div class="line"><a id="l02515" name="l02515"></a><span class="lineno"> 2515</span>                }</div>
+<div class="line"><a id="l02516" name="l02516"></a><span class="lineno"> 2516</span>            }</div>
+<div class="line"><a id="l02517" name="l02517"></a><span class="lineno"> 2517</span>            file.close();</div>
+<div class="line"><a id="l02518" name="l02518"></a><span class="lineno"> 2518</span>        }</div>
+<div class="line"><a id="l02519" name="l02519"></a><span class="lineno"> 2519</span>        </div>
+<div class="line"><a id="l02520" name="l02520"></a><span class="lineno"> 2520</span>        jsonResponse += <span class="stringliteral">&quot;],\&quot;alarmEvents\&quot;:[]}&quot;</span>;</div>
+<div class="line"><a id="l02521" name="l02521"></a><span class="lineno"> 2521</span>        </div>
+<div class="line"><a id="l02522" name="l02522"></a><span class="lineno"> 2522</span>        Serial.printf(<span class="stringliteral">&quot;Total points: %d, Valid data points: %d, Response size: %d bytes\n&quot;</span>, </div>
+<div class="line"><a id="l02523" name="l02523"></a><span class="lineno"> 2523</span>                     totalPointsProcessed, validDataPoints, jsonResponse.length());</div>
+<div class="line"><a id="l02524" name="l02524"></a><span class="lineno"> 2524</span>        </div>
+<div class="line"><a id="l02525" name="l02525"></a><span class="lineno"> 2525</span>        <span class="comment">// Send complete response</span></div>
+<div class="line"><a id="l02526" name="l02526"></a><span class="lineno"> 2526</span>        <a class="code hl_variable" href="class_config_manager.html#a773fb5f7cd89fa594bd05184e8af14a0">server</a>-&gt;sendHeader(<span class="stringliteral">&quot;Content-Type&quot;</span>, <span class="stringliteral">&quot;application/json&quot;</span>);</div>
+<div class="line"><a id="l02527" name="l02527"></a><span class="lineno"> 2527</span>        <a class="code hl_variable" href="class_config_manager.html#a773fb5f7cd89fa594bd05184e8af14a0">server</a>-&gt;sendHeader(<span class="stringliteral">&quot;Access-Control-Allow-Origin&quot;</span>, <span class="stringliteral">&quot;*&quot;</span>);</div>
+<div class="line"><a id="l02528" name="l02528"></a><span class="lineno"> 2528</span>        <a class="code hl_variable" href="class_config_manager.html#a773fb5f7cd89fa594bd05184e8af14a0">server</a>-&gt;sendHeader(<span class="stringliteral">&quot;Cache-Control&quot;</span>, <span class="stringliteral">&quot;no-store&quot;</span>);</div>
+<div class="line"><a id="l02529" name="l02529"></a><span class="lineno"> 2529</span>        <a class="code hl_variable" href="class_config_manager.html#a773fb5f7cd89fa594bd05184e8af14a0">server</a>-&gt;send(200, <span class="stringliteral">&quot;application/json&quot;</span>, jsonResponse);</div>
+<div class="line"><a id="l02530" name="l02530"></a><span class="lineno"> 2530</span>    });</div>
+<div class="line"><a id="l02531" name="l02531"></a><span class="lineno"> 2531</span>}</div>
 </div>
 <div class="ttc" id="a_alarm_8h_html_a4999bf667fcedb69e70ee058d86785eba18ff74f43da410c5529f7d6fca84f115"><div class="ttname"><a href="_alarm_8h.html#a4999bf667fcedb69e70ee058d86785eba18ff74f43da410c5529f7d6fca84f115">AlarmStage::ACTIVE</a></div><div class="ttdeci">@ ACTIVE</div><div class="ttdoc">Alarm confirmed and actively requiring attention.</div><div class="ttdef"><b>Definition</b> <a href="_alarm_8h_source.html#l00050">Alarm.h:50</a></div></div>
 <div class="ttc" id="a_alarm_8h_html_a4999bf667fcedb69e70ee058d86785eba24d459a81449d7210c8f9a86c2913034"><div class="ttname"><a href="_alarm_8h.html#a4999bf667fcedb69e70ee058d86785eba24d459a81449d7210c8f9a86c2913034">AlarmStage::NEW</a></div><div class="ttdeci">@ NEW</div><div class="ttdoc">Alarm just triggered, awaiting confirmation.</div><div class="ttdef"><b>Definition</b> <a href="_alarm_8h_source.html#l00046">Alarm.h:46</a></div></div>

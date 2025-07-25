@@ -2361,6 +2361,7 @@ void ConfigManager::downloadAPI() {
         int filesProcessed = 0;
         
         // Process files in reverse order (most recent first)
+        int validDataPoints = 0; // Count of non-null data points
         for (int fileIdx = files.size() - 1; fileIdx >= 0 && filesProcessed < filesToProcess && totalPointsProcessed < MAX_POINTS; fileIdx--) {
             const String& filename = files[fileIdx];
             Serial.printf("Processing file: %s\n", filename.c_str());
@@ -2381,9 +2382,49 @@ void ConfigManager::downloadAPI() {
             
             // Read data lines
             int emptyLinesInRow = 0;
+            int linesRead = 0;
             while (file.available() && totalPointsProcessed < MAX_POINTS) {
                 String line = file.readStringUntil('\n');
                 if (line.isEmpty()) continue;
+                linesRead++;
+                
+                // Quick check for empty data BEFORE decimation
+                if (linesRead < 200) { // Check first 200 lines
+                    // Parse to check if point has data
+                    int quickCommaCount = 0;
+                    int quickLastComma = -1;
+                    String quickTempStr = "";
+                    int quickTargetColumn = pointAddress + 2;
+                    
+                    for (int i = 0; i <= line.length() && quickCommaCount <= quickTargetColumn; i++) {
+                        if (i == line.length() || line.charAt(i) == ',') {
+                            if (quickCommaCount == quickTargetColumn) {
+                                quickTempStr = line.substring(quickLastComma + 1, i);
+                                break;
+                            }
+                            quickLastComma = i;
+                            quickCommaCount++;
+                        }
+                    }
+                    
+                    if (quickTempStr.isEmpty() || quickTempStr == " ") {
+                        emptyLinesInRow++;
+                        if (emptyLinesInRow > 50 && validDataPoints == 0) {
+                            // Skip to end of file
+                            long fileSize = file.size();
+                            Serial.printf("No data in first %d lines, jumping to end (file size: %ld)\n", 
+                                        emptyLinesInRow, fileSize);
+                            file.seek(fileSize - 50000); // Jump to last 50KB
+                            file.readStringUntil('\n'); // Skip partial line
+                            emptyLinesInRow = 0;
+                            linesRead = 0;
+                            pointCounter = 0; // Reset decimation counter
+                            continue;
+                        }
+                    } else {
+                        emptyLinesInRow = 0;
+                    }
+                }
                 
                 // Only process every Nth line based on decimation
                 if (pointCounter++ % decimationFactor != 0) continue;
@@ -2422,24 +2463,12 @@ void ConfigManager::downloadAPI() {
                 // Handle missing temperature data
                 bool hasData = !tempStr.isEmpty() && tempStr != " ";
                 
-                if (!hasData) {
-                    emptyLinesInRow++;
-                    // If we have too many empty lines and haven't found any data yet,
-                    // skip ahead to find actual data
-                    if (emptyLinesInRow > 50 && totalPointsProcessed < 10) {
-                        // Jump to near the end of the file where data likely exists
-                        long currentPos = file.position();
-                        long fileSize = file.size();
-                        if (fileSize - currentPos > 20000) {
-                            // Jump to last 20KB of file
-                            file.seek(fileSize - 20000);
-                            file.readStringUntil('\n'); // Skip partial line
-                            emptyLinesInRow = 0;
-                            Serial.println("Skipping to end of file to find data");
-                        }
+                if (hasData) {
+                    // Log when we find actual data
+                    if (validDataPoints < 5) {
+                        Serial.printf("Found data at point %d: temp='%s'\n", 
+                                    totalPointsProcessed, tempStr.c_str());
                     }
-                } else {
-                    emptyLinesInRow = 0; // Reset counter when we find data
                 }
                 
                 // Add data point to JSON (with null for missing data)
@@ -2465,6 +2494,7 @@ void ConfigManager::downloadAPI() {
                                           timeStr.c_str(), tempStr.c_str(), temp);
                         }
                         jsonResponse += "\"temperature\":" + String(temp, 1) + "}";
+                        validDataPoints++; // Count valid data points
                     }
                 } else {
                     // No data, use null
@@ -2489,7 +2519,8 @@ void ConfigManager::downloadAPI() {
         
         jsonResponse += "],\"alarmEvents\":[]}";
         
-        Serial.printf("Total points: %d, Response size: %d bytes\n", totalPointsProcessed, jsonResponse.length());
+        Serial.printf("Total points: %d, Valid data points: %d, Response size: %d bytes\n", 
+                     totalPointsProcessed, validDataPoints, jsonResponse.length());
         
         // Send complete response
         server->sendHeader("Content-Type", "application/json");
