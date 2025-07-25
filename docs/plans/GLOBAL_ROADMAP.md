@@ -117,10 +117,14 @@ Temperature Control System - PlatformIO-based embedded system for monitoring and
    - Ensure proper state persistence
 
 ### Priority 4: Web Interface Features (Specific from Briefs)
-0. **Common HTML style**
-   - fix navigation across all the html pages (include all the pages in navigation)
-   - make all the html pages look the same style
-   - do not change any JS logic or section layout, just appearence.
+0. **Common HTML style** ✓ COMPLETED
+   - fix navigation across all the html pages (include all the pages in navigation) ✓
+   - make all the html pages look the same style ✓
+   - do not change any JS logic or section layout, just appearence. ✓
+   - Implemented: Created common.css with all shared styles
+   - Added CSS file handler to ConfigManager.cpp to serve common.css
+   - Updated all 8 HTML files to use common.css
+   - Removed duplicate inline styles from HTML files
 
 1. **Temperature Trend Charts**
    - Modal implementation (click trend icon in dashboard)
@@ -184,5 +188,5 @@ Temperature Control System - PlatformIO-based embedded system for monitoring and
 
 ---
 
-*Last Updated: 2025-07-22*
-*Version: 1.1*
+*Last Updated: 2025-07-25*
+*Version: 1.2*
