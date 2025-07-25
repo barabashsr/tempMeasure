@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Temperature Controller - Alarm Configuration</title>
+    <title>Temperature Monitoring System - Alarm Configuration</title>
     <style>
         * {
             box-sizing: border-box;
@@ -17,43 +17,44 @@
             color: #343a40;
         }
         
-        .container {
-            max-width: 1600px;
-            margin: 0 auto;
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        header {
+            background: #3f51b5;
+            color: #fff;
+            padding: 1em 2em;
+            text-align: center;
+            font-size: 1.5em;
+            letter-spacing: 2px;
         }
-        
         nav {
-            margin-bottom: 30px;
-            padding: 15px;
-            background: linear-gradient(135deg, #2196F3, #1976D2);
-            border-radius: 8px;
+            background: #263238;
+            padding: 0.5em 2em;
             display: flex;
-            gap: 10px;
             flex-wrap: wrap;
+            align-items: center;
         }
-        
         nav a {
-            color: white;
+            color: #fff;
             text-decoration: none;
-            padding: 10px 15px;
-            border-radius: 6px;
-            font-weight: 500;
-            transition: background-color 0.3s;
+            margin-right: 1.5em;
+            font-weight: bold;
+            transition: all 0.2s;
+            padding: 0.5em 0.8em;
+            border-radius: 4px;
+        }
+        nav a:hover {
+            color: #ffeb3b;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        nav a.active {
+            background: #3f51b5;
+            color: #fff;
         }
         
-        nav a:hover, nav a.active {
-            background: rgba(255,255,255,0.2);
+        h1, h2 {
+            color: #3f51b5;
         }
-        
         h1 {
-            color: #2196F3;
             margin-bottom: 10px;
-            font-size: 2.2em;
-            font-weight: 300;
         }
         
         .subtitle {
@@ -71,7 +72,7 @@
             gap: 15px;
             align-items: center;
             flex-wrap: wrap;
-            border-left: 4px solid #2196F3;
+            border-left: 4px solid #3f51b5;
         }
         
         .btn {
@@ -88,7 +89,7 @@
         }
         
         .btn-primary {
-            background: #2196F3;
+            background: #3f51b5;
             color: white;
         }
         
@@ -132,20 +133,20 @@
         }
         
         thead th {
-            background: linear-gradient(135deg, #343a40, #495057);
-            color: white;
-            padding: 15px 10px;
+            background: #f0f4ff;
+            color: #3f51b5;
+            padding: 0.6em 0.8em;
             text-align: center;
-            font-weight: 600;
+            font-weight: bold;
             position: sticky;
             top: 0;
             z-index: 10;
         }
         
         tbody td {
-            padding: 12px 10px;
+            padding: 0.6em 0.8em;
             text-align: center;
-            border-bottom: 1px solid #dee2e6;
+            border-bottom: 1px solid #eee;
             vertical-align: middle;
         }
         
@@ -153,9 +154,13 @@
             background-color: #f8f9fa;
         }
         
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
         .point-name {
             font-weight: 600;
-            color: #2196F3;
+            color: #3f51b5;
         }
         
         .temp-display {
@@ -198,7 +203,7 @@
         }
         
         .threshold-input:focus {
-            border-color: #2196F3;
+            border-color: #3f51b5;
             outline: none;
             box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
         }
@@ -212,7 +217,7 @@
         }
         
         .priority-select:focus {
-            border-color: #2196F3;
+            border-color: #3f51b5;
             outline: none;
         }
         
@@ -250,7 +255,7 @@
         
         .spinner {
             border: 3px solid #f3f3f3;
-            border-top: 3px solid #2196F3;
+            border-top: 3px solid #3f51b5;
             border-radius: 50%;
             width: 30px;
             height: 30px;
@@ -285,11 +290,11 @@
         .status-info {
             background: #e3f2fd;
             color: #1976d2;
-            border-left: 4px solid #2196F3;
+            border-left: 4px solid #3f51b5;
         }
         
         @media (max-width: 768px) {
-            .container {
+            main {
                 padding: 15px;
             }
             
@@ -308,18 +313,19 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <nav>
-            <a href="/dashboard.html">🏠 Dashboard</a>
-            <a href="/points.html">📍 Points</a>
-            <a href="/sensors.html">🌡️ Sensors</a>
-            <a href="/alarms.html">🚨 Active Alarms</a>
-            <a href="/alarm-config.html" class="active">⚙️ Alarm Config</a>
-            <a href="/alarm-history.html">📊 History</a>
-            <a href="/event-logs.html">📝 Event Logs</a>
-            <a href="/config">🔧 System Config</a>
-        </nav>
-
+    <header>Temperature Monitoring System</header>
+    <nav>
+            <a href="/dashboard.html">Dashboard</a>
+            <a href="/sensors.html">Sensors</a>
+            <a href="/points.html">Points</a>
+            <a href="/alarms.html">Active Alarms</a>
+            <a href="/alarm-config.html" class="active">Alarm Config</a>
+            <a href="/alarm-history.html">Alarm History</a>
+            <a href="/event-logs.html">Event Logs</a>
+            <a href="/download-logs.html">Download Logs</a>
+            <a href="/config">System Config</a>
+    </nav>
+    <main>
         <h1>Alarm Configuration</h1>
         <p class="subtitle">Configure alarm thresholds, priorities, and hysteresis for all measurement points</p>
 
@@ -444,7 +450,7 @@
                 <td><strong>${point.address}</strong></td>
                 <td class="point-name">
                     <input type="text" value="${point.name || 'Point ' + point.address}" 
-                           style="border: none; background: transparent; font-weight: 600; color: #2196F3; width: 100%;"
+                           style="border: none; background: transparent; font-weight: 600; color: #3f51b5; width: 100%;"
                            onchange="updatePointConfig(${point.address}, 'name', this.value)">
                 </td>
                 <td>
@@ -666,5 +672,6 @@
             }
         });
     </script>
+    </main>
 </body>
 </html>

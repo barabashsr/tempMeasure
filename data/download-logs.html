@@ -3,73 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Download Logs - Temperature Controller</title>
+    <title>Temperature Monitoring System - Download Logs</title>
     <style>
-        * {
+        body {
+            font-family: Arial, sans-serif;
+            background: #f7f7f7;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
+        header {
+            background: #3f51b5;
+            color: #fff;
+            padding: 1em 2em;
+            text-align: center;
+            font-size: 1.5em;
+            letter-spacing: 2px;
         }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .header {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .header h1 {
-            color: #333;
-            margin-bottom: 10px;
-        }
-
-        .nav-links {
+        nav {
+            background: #263238;
+            padding: 0.5em 2em;
             display: flex;
-            gap: 15px;
             flex-wrap: wrap;
+            align-items: center;
         }
-
-        .nav-links a {
-            color: #667eea;
+        nav a {
+            color: #fff;
             text-decoration: none;
-            padding: 8px 16px;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+            margin-right: 1.5em;
+            font-weight: bold;
+            transition: all 0.2s;
+            padding: 0.5em 0.8em;
+            border-radius: 4px;
         }
-
-        .nav-links a:hover {
-            background-color: #f0f0f0;
+        nav a:hover {
+            color: #ffeb3b;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        nav a.active {
+            background: #3f51b5;
+            color: #fff;
+        }
+        main {
+            max-width: 1200px;
+            margin: 2em auto;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            padding: 2em;
+        }
+        h1, h2 {
+            color: #3f51b5;
+        }
+        h2 {
+            font-size: 1.2em;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.25em;
+            margin-top: 1em;
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
             padding: 20px;
             margin-bottom: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .card-header {
-            border-bottom: 2px solid #667eea;
+            border-bottom: 1px solid #eee;
             padding-bottom: 10px;
             margin-bottom: 20px;
         }
 
         .card-header h3 {
-            color: #333;
+            color: #3f51b5;
             font-size: 1.2em;
         }
 
@@ -102,54 +108,50 @@
             font-size: 14px;
         }
 
-        .btn {
-            background: #667eea;
-            color: white;
+        button, .btn {
+            background: #3f51b5;
+            color: #fff;
             border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
+            padding: 0.5em 1.2em;
+            border-radius: 4px;
             cursor: pointer;
-            font-size: 14px;
-            transition: background-color 0.3s;
+            font-size: 1em;
+            margin-right: 0.5em;
+            transition: background 0.2s;
         }
-
-        .btn:hover {
-            background: #5a6fd8;
+        button:hover, .btn:hover {
+            background: #283593;
         }
-
         .btn-success {
             background: #28a745;
         }
-
         .btn-success:hover {
             background: #218838;
         }
-
         .btn-sm {
-            padding: 5px 10px;
-            font-size: 12px;
+            padding: 0.3em 0.8em;
+            font-size: 0.9em;
         }
 
-        .table {
+        table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 15px;
+            margin-bottom: 2em;
         }
-
-        .table th,
-        .table td {
-            padding: 12px;
+        th, td {
+            padding: 0.6em 0.8em;
+            border-bottom: 1px solid #eee;
             text-align: left;
-            border-bottom: 1px solid #ddd;
         }
-
-        .table th {
-            background: #f8f9fa;
-            font-weight: 600;
-            color: #555;
+        th {
+            background: #f0f4ff;
+            color: #3f51b5;
+            font-weight: bold;
         }
-
-        .table tr:hover {
+        tr:last-child td {
+            border-bottom: none;
+        }
+        tr:hover {
             background: #f8f9fa;
         }
 
@@ -215,7 +217,7 @@
         .stat-number {
             font-size: 24px;
             font-weight: bold;
-            color: #667eea;
+            color: #3f51b5;
         }
 
         .stat-label {
@@ -236,24 +238,25 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>📥 Download Log Files</h1>
-            <div class="nav-links">
-                <a href="/">🏠 Home</a>
-                <a href="/sensors.html">🌡️ Sensors</a>
-                <a href="/points.html">📍 Points</a>
-                <a href="/alarms.html">🚨 Alarms</a>
-                <a href="/alarm-history.html">📊 Alarm History</a>
-                <a href="/event-logs.html">📋 Event Logs</a>
-                <a href="/configuration.html">⚙️ Configuration</a>
-            </div>
-        </div>
+    <header>Temperature Monitoring System</header>
+    <nav>
+        <a href="/dashboard.html">Dashboard</a>
+        <a href="/sensors.html">Sensors</a>
+        <a href="/points.html">Points</a>
+        <a href="/alarms.html">Active Alarms</a>
+        <a href="/alarm-config.html">Alarm Config</a>
+        <a href="/alarm-history.html">Alarm History</a>
+        <a href="/event-logs.html">Event Logs</a>
+        <a href="/download-logs.html" class="active">Download Logs</a>
+        <a href="/config">System Config</a>
+    </nav>
+    <main>
+        <h1>Download Log Files</h1>
 
         <!-- Statistics -->
         <div class="card">
             <div class="card-header">
-                <h3>📊 File Statistics</h3>
+                <h3>File Statistics</h3>
             </div>
             <div class="stats" id="fileStats">
                 <div class="stat-card">
@@ -282,7 +285,7 @@
         <!-- Filters -->
         <div class="card">
             <div class="card-header">
-                <h3>🔍 Filter Files</h3>
+                <h3>Filter Files</h3>
             </div>
             <div class="filters">
                 <div class="filter-group">
@@ -308,11 +311,11 @@
                 </div>
                 <div class="filter-group">
                     <label>&nbsp;</label>
-                    <button class="btn" onclick="applyFilters()">🔍 Apply Filters</button>
+                    <button class="btn" onclick="applyFilters()">Apply Filters</button>
                 </div>
                 <div class="filter-group">
                     <label>&nbsp;</label>
-                    <button class="btn" onclick="clearFilters()">🔄 Clear Filters</button>
+                    <button class="btn" onclick="clearFilters()">Clear Filters</button>
                 </div>
             </div>
         </div>
@@ -320,8 +323,8 @@
         <!-- File List -->
         <div class="card">
             <div class="card-header">
-                <h3>📁 Available Files</h3>
-                <button class="btn" onclick="refreshFileList()" style="float: right;">🔄 Refresh</button>
+                <h3>Available Files</h3>
+                <button class="btn" onclick="refreshFileList()" style="float: right;">Refresh</button>
             </div>
             
             <div id="statusMessage"></div>
@@ -358,7 +361,7 @@
         }
 
         async function refreshFileList() {
-            showStatus('🔄 Loading file list...', 'loading');
+            showStatus('Loading file list...', 'loading');
             
             try {
                 // Load all file types
@@ -409,7 +412,7 @@
 
             } catch (error) {
                 console.error('Error loading file list:', error);
-                showStatus('❌ Error loading file list', 'error');
+                showStatus('Error loading file list', 'error');
             }
         }
 
@@ -484,7 +487,7 @@
                 return b.filename.localeCompare(a.filename);
             });
 
-            let html = '<table class="table">';
+            let html = '<table>';
             html += '<thead><tr><th>Type</th><th>Date</th><th>Filename</th><th>Size</th><th>Action</th></tr></thead>';
             html += '<tbody>';
 
@@ -499,7 +502,7 @@
                     <td>${sizeKB} KB</td>
                     <td>
                         <button onclick="downloadFile('${file.filename}', '${file.type}')" 
-                                class="btn btn-sm btn-success">📥 Download</button>
+                                class="btn btn-sm btn-success">Download</button>
                     </td>
                 </tr>`;
             });
@@ -535,11 +538,12 @@
             document.body.removeChild(link);
 
             console.log(`Downloading ${type} file: ${filename}`);
-            showStatus(`📥 Downloading ${filename}...`, 'success');
+            showStatus(`Downloading ${filename}...`, 'success');
             
             // Hide status after 3 seconds
             setTimeout(hideStatus, 3000);
         }
     </script>
+    </main>
 </body>
 </html>

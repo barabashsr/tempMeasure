@@ -3,36 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Temperature Controller - Event Logs</title>
+    <title>Temperature Monitoring System - Event Logs</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f5f5f5;
+            background: #f7f7f7;
+            margin: 0;
+            padding: 0;
         }
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        header {
+            background: #3f51b5;
+            color: #fff;
+            padding: 1em 2em;
+            text-align: center;
+            font-size: 1.5em;
+            letter-spacing: 2px;
         }
         nav {
-            margin-bottom: 20px;
-            padding: 10px;
-            background: #007bff;
-            border-radius: 5px;
+            background: #263238;
+            padding: 0.5em 2em;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
         }
         nav a {
-            color: white;
+            color: #fff;
             text-decoration: none;
-            margin-right: 15px;
-            padding: 5px 10px;
-            border-radius: 3px;
+            margin-right: 1.5em;
+            font-weight: bold;
+            transition: all 0.2s;
+            padding: 0.5em 0.8em;
+            border-radius: 4px;
         }
         nav a:hover {
-            background: rgba(255,255,255,0.2);
+            color: #ffeb3b;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        nav a.active {
+            background: #3f51b5;
+            color: #fff;
+        }
+        main {
+            max-width: 1400px;
+            margin: 2em auto;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            padding: 2em;
         }
         .controls {
             margin-bottom: 20px;
@@ -44,27 +61,49 @@
             align-items: center;
             flex-wrap: wrap;
         }
-        .controls button {
-            padding: 8px 16px;
+        h1, h2 {
+            color: #3f51b5;
+        }
+        h2 {
+            font-size: 1.2em;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.25em;
+            margin-top: 1em;
+        }
+        button, .controls button {
+            background: #3f51b5;
+            color: #fff;
             border: none;
+            padding: 0.5em 1.2em;
             border-radius: 4px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 1em;
+            margin-right: 0.5em;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background: #283593;
         }
         .btn-primary {
-            background-color: #007bff;
+            background-color: #3f51b5;
             color: white;
+        }
+        .btn-primary:hover {
+            background-color: #283593;
         }
         .btn-success {
             background-color: #28a745;
             color: white;
         }
+        .btn-success:hover {
+            background-color: #218838;
+        }
         .btn-info {
             background-color: #17a2b8;
             color: white;
         }
-        .btn:hover {
-            opacity: 0.8;
+        .btn-info:hover {
+            background-color: #138496;
         }
         .filter-group {
             display: flex;
@@ -91,19 +130,23 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 20px;
+            margin-bottom: 2em;
         }
         th, td {
-            border: 1px solid #ddd;
-            padding: 12px 8px;
+            padding: 0.6em 0.8em;
+            border-bottom: 1px solid #eee;
             text-align: left;
         }
         th {
-            background-color: #f2f2f2;
+            background: #f0f4ff;
+            color: #3f51b5;
             font-weight: bold;
             cursor: pointer;
             user-select: none;
             position: relative;
+        }
+        tr:last-child td {
+            border-bottom: none;
         }
         th:hover {
             background-color: #e9ecef;
@@ -235,17 +278,19 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <nav>
-            <a href="/dashboard.html">Home</a>
-            <a href="/sensors.html">Sensors</a>
-            <a href="/points.html">Points</a>
-            <a href="/alarms.html">Alarms</a>
-            <a href="/alarm-history.html">Alarm History</a>
-            <a href="/event-logs.html">Event Logs</a>
-            <a href="/config">Configuration</a>
-        </nav>
-
+    <header>Temperature Monitoring System</header>
+    <nav>
+        <a href="/dashboard.html">Dashboard</a>
+        <a href="/sensors.html">Sensors</a>
+        <a href="/points.html">Points</a>
+        <a href="/alarms.html">Active Alarms</a>
+        <a href="/alarm-config.html">Alarm Config</a>
+        <a href="/alarm-history.html">Alarm History</a>
+        <a href="/event-logs.html" class="active">Event Logs</a>
+        <a href="/download-logs.html">Download Logs</a>
+        <a href="/config">System Config</a>
+    </nav>
+    <main>
         <h1>System Event Logs</h1>
 
         <!-- Statistics -->
@@ -665,5 +710,6 @@
             filterTable();
         }
     </script>
+    </main>
 </body>
 </html>

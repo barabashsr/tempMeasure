@@ -112,11 +112,16 @@ Temperature Control System - PlatformIO-based embedded system for monitoring and
    - Prevent false temperature alarms (TEMPORARY)
    - Implemented: Temperature alarms auto-resolve when sensor error is active
 
-3. **Alarm State Transitions**
+3. **Alarm State Transitions** ✓ COMPLETED
    - Extend current working transitions (don't rewrite)
    - Ensure proper state persistence
 
 ### Priority 4: Web Interface Features (Specific from Briefs)
+0. **Common HTML style**
+   - fix navigation across all the html pages (include all the pages in navigation)
+   - make all the html pages look the same style
+   - do not change any JS logic or section layout, just appearence.
+
 1. **Temperature Trend Charts**
    - Modal implementation (click trend icon in dashboard)
    - 24-hour data from log files

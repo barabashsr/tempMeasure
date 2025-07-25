@@ -1,14 +1,6 @@
 {
     "mcpServers": {
-      "filesystem": {
-        "command": "npx",
-        "args": [
-          "mcp-server-filesystem",
-          "/Users/sergeybarabash/robo",
-          "/Users/sergeybarabash/robo/Claude_desktop",
-          "/Users/sergeybarabash/.platformio"
-        ]
-      },
+      
       "MCP_DOCKER": {
         "command": "docker",
         "args": ["run", "-i", "--rm", "alpine/socat", "STDIO", "TCP:host.docker.internal:8811"]
