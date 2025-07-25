@@ -2306,7 +2306,7 @@ void ConfigManager::downloadAPI() {
         Serial.printf("Downloaded alarm state log file: %s\n", filename.c_str());
     });
     
-    // API endpoint for temperature history (for charts)
+    // API endpoint for temperature history (for charts) - Memory optimized version
     server->on("/api/temperature-history", HTTP_GET, [this]() {
         uint8_t pointAddress = server->arg("point").toInt();
         String hours = server->arg("hours");
@@ -2321,35 +2321,67 @@ void ConfigManager::downloadAPI() {
         if (hoursToFetch < 1) hoursToFetch = 1;
         if (hoursToFetch > 168) hoursToFetch = 168; // Max 7 days
         
-        JsonDocument doc;
-        doc["success"] = true;
-        doc["pointAddress"] = pointAddress;
-        doc["hours"] = hoursToFetch;
+        // Start streaming response immediately to avoid building large JSON in memory
+        server->setContentLength(CONTENT_LENGTH_UNKNOWN);
+        server->sendHeader("Content-Type", "application/json");
+        server->sendHeader("Access-Control-Allow-Origin", "*");
+        server->sendHeader("Cache-Control", "no-store");
+        server->send(200, "application/json", "");
         
-        JsonArray dataArray = doc["data"].to<JsonArray>();
-        JsonArray alarmEventsArray = doc["alarmEvents"].to<JsonArray>();
-        
-        // Get current time (simplified - we'll use all available data)
-        // In a full implementation, you would filter by time range
+        // Send JSON response in chunks
+        server->sendContent("{\"success\":true,\"pointAddress\":");
+        server->sendContent(String(pointAddress));
+        server->sendContent(",\"hours\":");
+        server->sendContent(String(hoursToFetch));
         
         // Get point info for thresholds
         MeasurementPoint* point = controller.getMeasurementPoint(pointAddress);
         if (point) {
-            doc["pointName"] = point->getName();
-            doc["lowThreshold"] = point->getLowAlarmThreshold();
-            doc["highThreshold"] = point->getHighAlarmThreshold();
+            server->sendContent(",\"pointName\":\"");
+            server->sendContent(point->getName());
+            server->sendContent("\",\"lowThreshold\":");
+            server->sendContent(String(point->getLowAlarmThreshold()));
+            server->sendContent(",\"highThreshold\":");
+            server->sendContent(String(point->getHighAlarmThreshold()));
         }
+        
+        server->sendContent(",\"data\":[");
+        
+        // Calculate decimation factor based on time range
+        // For 1 hour: every point (assuming 1 per minute = 60 points)
+        // For 6 hours: every 3rd point (~120 points)
+        // For 12 hours: every 6th point (~120 points)
+        // For 24 hours: every 12th point (~120 points)
+        // For 48 hours: every 24th point (~120 points)
+        // For 7 days: every 84th point (~120 points)
+        int decimationFactor = 1;
+        if (hoursToFetch > 1) decimationFactor = 3;
+        if (hoursToFetch > 6) decimationFactor = 6;
+        if (hoursToFetch > 12) decimationFactor = 12;
+        if (hoursToFetch > 48) decimationFactor = 24;
+        if (hoursToFetch > 96) decimationFactor = 84;
         
         // Get list of log files
         std::vector<String> files = LoggerManager::getLogFiles();
         
-        // Process files to extract temperature data
-        for (const String& filename : files) {
+        bool firstDataPoint = true;
+        int pointCounter = 0;
+        int totalPointsProcessed = 0;
+        const int MAX_POINTS = 200; // Limit total points to send
+        
+        // Process only the most recent files based on hours requested
+        int filesToProcess = (hoursToFetch / 24) + 2; // Extra files for safety
+        int filesProcessed = 0;
+        
+        // Process files in reverse order (most recent first)
+        for (int fileIdx = files.size() - 1; fileIdx >= 0 && filesProcessed < filesToProcess && totalPointsProcessed < MAX_POINTS; fileIdx--) {
+            const String& filename = files[fileIdx];
+            
             // Extract date from filename (format: temp_log_YYYY-MM-DD_N.csv)
             int dateStart = filename.indexOf("temp_log_") + 9;
             if (dateStart < 9) continue;
             
-            String fileDate = filename.substring(dateStart, dateStart + 10);
+            filesProcessed++;
             
             // Open file for reading
             File file = LoggerManager::openLogFile(filename, "data");
@@ -2361,25 +2393,25 @@ void ConfigManager::downloadAPI() {
             }
             
             // Read data lines
-            while (file.available()) {
+            while (file.available() && totalPointsProcessed < MAX_POINTS) {
                 String line = file.readStringUntil('\n');
                 if (line.isEmpty()) continue;
                 
-                // Parse CSV line - format: Date,Time,Point0,Point1,...,Point59
+                // Only process every Nth line based on decimation
+                if (pointCounter++ % decimationFactor != 0) continue;
+                
+                // Parse only the required fields to save memory
                 int commaCount = 0;
                 int lastComma = -1;
-                String dateStr = "";
                 String timeStr = "";
                 String tempStr = "";
                 
                 // We need to find the column for pointAddress + 2 (Date=0, Time=1, Point0=2, etc.)
                 int targetColumn = pointAddress + 2;
                 
-                for (int i = 0; i <= line.length(); i++) {
-                    if (i == line.length() || line.charAt(i) == ',') {
-                        if (commaCount == 0) {
-                            dateStr = line.substring(0, i);
-                        } else if (commaCount == 1) {
+                for (int i = 0; i < line.length() && commaCount <= targetColumn; i++) {
+                    if (line.charAt(i) == ',') {
+                        if (commaCount == 1) {
                             timeStr = line.substring(lastComma + 1, i);
                         } else if (commaCount == targetColumn) {
                             tempStr = line.substring(lastComma + 1, i);
@@ -2390,6 +2422,11 @@ void ConfigManager::downloadAPI() {
                     }
                 }
                 
+                // Handle last field if it's our target
+                if (commaCount == targetColumn && tempStr.isEmpty()) {
+                    tempStr = line.substring(lastComma + 1);
+                }
+                
                 // Skip if no temperature data
                 if (tempStr.isEmpty() || tempStr == " ") continue;
                 
@@ -2397,77 +2434,33 @@ void ConfigManager::downloadAPI() {
                 float temp = tempStr.toFloat();
                 if (temp == 0.0 && tempStr != "0" && tempStr != "0.0") continue; // Invalid temperature
                 
-                // Convert date/time to timestamp format for display
-                // Format: "HH:MM" for display (we'll format full timestamp if needed)
-                String displayTime = timeStr.substring(0, 5); // Get HH:MM part
+                // Send data point
+                if (!firstDataPoint) {
+                    server->sendContent(",");
+                }
+                firstDataPoint = false;
                 
-                // Check if this data point is within our time range
-                // For now, we'll include all data from the files (you could add time filtering here)
+                server->sendContent("{\"timestamp\":\"");
+                server->sendContent(timeStr.substring(0, 5)); // HH:MM
+                server->sendContent("\",\"temperature\":");
+                server->sendContent(String(temp, 1)); // 1 decimal place
+                server->sendContent("}");
                 
-                // Add to data array
-                JsonObject dataPoint = dataArray.add<JsonObject>();
-                dataPoint["timestamp"] = displayTime;
-                dataPoint["temperature"] = temp;
+                totalPointsProcessed++;
+                
+                // Yield to prevent watchdog reset
+                if (totalPointsProcessed % 10 == 0) {
+                    yield();
+                }
             }
             file.close();
         }
         
-        // Get alarm events for this point from alarm state log files
-        std::vector<String> alarmFiles = LoggerManager::getAlarmStateLogFiles();
-        for (const String& alarmFile : alarmFiles) {
-            File aFile = LoggerManager::openLogFile(alarmFile, "alarm_state");
-            if (!aFile) continue;
-            
-            // Skip header
-            if (aFile.available()) {
-                aFile.readStringUntil('\n');
-            }
-            
-            // Read alarm events
-            while (aFile.available()) {
-                String line = aFile.readStringUntil('\n');
-                if (line.isEmpty()) continue;
-                
-                // Parse alarm CSV: Timestamp,PointNumber,PointName,AlarmType,Priority,PreviousState,NewState,CurrentTemp,Threshold
-                int commaCount = 0;
-                int lastComma = -1;
-                String timestamp = "";
-                String pointNumStr = "";
-                String alarmType = "";
-                String newState = "";
-                
-                for (int i = 0; i <= line.length(); i++) {
-                    if (i == line.length() || line.charAt(i) == ',') {
-                        String field = line.substring(lastComma + 1, i);
-                        
-                        if (commaCount == 0) timestamp = field;
-                        else if (commaCount == 1) pointNumStr = field;
-                        else if (commaCount == 3) alarmType = field;
-                        else if (commaCount == 6) newState = field;
-                        
-                        lastComma = i;
-                        commaCount++;
-                        
-                        if (commaCount > 6) break;
-                    }
-                }
-                
-                // Check if this alarm is for our point and is an activation
-                if (pointNumStr.toInt() == pointAddress && newState == "Active") {
-                    JsonObject alarmEvent = alarmEventsArray.createNestedObject();
-                    alarmEvent["timestamp"] = timestamp.substring(11, 16); // Extract HH:MM
-                    alarmEvent["type"] = alarmType;
-                }
-            }
-            aFile.close();
-        }
+        server->sendContent("],\"alarmEvents\":[");
         
-        String output;
-        serializeJson(doc, output);
+        // Skip alarm events for now to save memory - can be added later if needed
         
-        server->sendHeader("Content-Type", "application/json");
-        server->sendHeader("Access-Control-Allow-Origin", "*");
-        server->sendHeader("Cache-Control", "no-store");
-        server->send(200, "application/json", output);
+        server->sendContent("]}");
+        server->sendContent(""); // End chunk stream
     });
 }

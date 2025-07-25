@@ -1,32 +1,35 @@
 <map id="MeasurementPoint::getHighAlarmThreshold" name="MeasurementPoint::getHighAlarmThreshold">
-<area shape="rect" id="Node000001" title="Get high alarm threshold." alt="" coords="666,241,850,282"/>
-<area shape="rect" id="Node000002" href="$class_temperature_controller.html#a27da8ccc3effea555f440ce3e6f89b08" title="Check measurement point for alarm conditions." alt="" coords="446,53,608,94"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="732,230,683,169,652,137,617,109,595,97,597,92,620,105,655,133,687,165,737,227"/>
-<area shape="rect" id="Node000003" href="$class_c_s_v_config_manager.html#a2c2673398051c26184c9197aa751a6b3" title="Export single measurement point to CSV format." alt="" coords="454,119,600,159"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="715,234,669,204,617,175,589,162,591,157,620,170,672,199,718,230"/>
-<area shape="rect" id="Node000005" href="$class_config_manager.html#ae605c999fabc6344511f455618655326" title="Setup alarms API endpoints." alt="" coords="206,250,384,276"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="650,265,385,265,385,260,650,259"/>
-<area shape="rect" id="Node000007" href="$class_register_map.html#a1f102e7d0dd51d4750c916fb6e32c37a" title="Apply configuration from measurement point to registers." alt="" coords="441,349,613,390"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="704,292,619,333,580,351,578,346,617,329,702,287"/>
-<area shape="rect" id="Node000008" href="$class_temperature_controller.html#add39ba7dad38449bbf1787a5c9c51ef9" title="Get JSON representation of all measurement points." alt="" coords="452,415,602,455"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="733,296,684,351,653,379,620,404,596,417,594,412,617,399,650,375,680,347,729,293"/>
-<area shape="rect" id="Node000009" href="$class_config_manager.html#a471a844085c27f3a8a8f9394d9c14677" title="Setup measurement points API endpoints." alt="" coords="208,300,382,325"/>
-<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="651,276,383,306,382,300,651,271"/>
-<area shape="rect" id="Node000010" href="$class_config_manager.html#a55b79da91c57039c483ddf5fceabbd64" title="Save measurement points configuration to file." alt="" coords="436,184,618,225"/>
-<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="658,240,611,228,612,223,659,234"/>
-<area shape="rect" id="Node000004" href="$class_c_s_v_config_manager.html#a1c6cbc4c8a132762bf16a8ce9f7d0bfc" title="Export measurement points with alarm configuration to CSV." alt="" coords="204,5,386,46"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="445,114,434,108,420,96,410,84,401,73,387,61,363,49,365,44,389,57,404,69,414,81,423,92,438,103,447,109"/>
-<area shape="rect" id="Node000006" href="$class_config_manager.html#a0497343220fc493f5cf9574922508908" title="Initialize the configuration system." alt="" coords="5,193,154,218"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="228,248,130,222,131,217,230,243"/>
-<area shape="poly" id="edge9_Node000009_Node000006" title=" " alt="" coords="215,297,200,291,141,256,95,221,98,217,144,251,203,286,217,292"/>
-<area shape="poly" id="edge11_Node000010_Node000005" title=" " alt="" coords="430,232,350,252,348,247,429,226"/>
-<area shape="poly" id="edge14_Node000010_Node000009" title=" " alt="" coords="486,236,440,265,389,291,359,301,357,296,387,286,438,260,483,232"/>
-<area shape="rect" id="Node000011" href="$class_config_manager.html#a9b7af07b85bf9cc3ac05603db6e89fd2" title="Setup CSV import/export API endpoints." alt="" coords="207,71,382,111"/>
-<area shape="poly" id="edge12_Node000010_Node000011" title=" " alt="" coords="445,179,434,173,419,161,410,149,401,137,387,125,366,114,368,110,389,121,405,133,414,145,423,157,438,169,447,175"/>
-<area shape="rect" id="Node000012" href="$class_config_manager.html#a45b1ce1f09401af0b6f700cf4388b233" title="Setup sensor&#45;related API endpoints." alt="" coords="206,136,384,161"/>
-<area shape="poly" id="edge15_Node000010_Node000012" title=" " alt="" coords="425,182,351,164,352,159,426,177"/>
-<area shape="rect" id="Node000013" href="$class_config_manager.html#a0daf50bbd376beb24a5400a86e893338" title="Update a measurement point in configuration." alt="" coords="202,185,388,226"/>
-<area shape="poly" id="edge17_Node000010_Node000013" title=" " alt="" coords="421,208,389,208,389,202,421,202"/>
-<area shape="poly" id="edge13_Node000011_Node000006" title=" " alt="" coords="214,120,203,125,144,161,99,195,96,190,141,156,200,121,212,115"/>
-<area shape="poly" id="edge16_Node000012_Node000006" title=" " alt="" coords="230,168,131,195,130,190,228,163"/>
+<area shape="rect" id="Node000001" title="Get high alarm threshold." alt="" coords="678,208,862,249"/>
+<area shape="rect" id="Node000002" href="$class_temperature_controller.html#a27da8ccc3effea555f440ce3e6f89b08" title="Check measurement point for alarm conditions." alt="" coords="452,5,614,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="747,196,698,128,666,92,629,61,607,49,610,44,632,57,669,88,702,125,751,193"/>
+<area shape="rect" id="Node000003" href="$class_c_s_v_config_manager.html#a2c2673398051c26184c9197aa751a6b3" title="Export single measurement point to CSV format." alt="" coords="460,71,606,111"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="733,200,686,161,629,125,605,114,607,109,632,121,689,157,737,195"/>
+<area shape="rect" id="Node000005" href="$class_config_manager.html#ae605c999fabc6344511f455618655326" title="Setup alarms API endpoints." alt="" coords="206,186,384,212"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="663,224,384,207,385,202,663,219"/>
+<area shape="rect" id="Node000007" href="$class_register_map.html#a1f102e7d0dd51d4750c916fb6e32c37a" title="Apply configuration from measurement point to registers." alt="" coords="447,351,619,391"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="735,261,687,298,632,335,595,352,592,348,629,330,684,294,732,257"/>
+<area shape="rect" id="Node000008" href="$class_config_manager.html#a3b28982c79587a287c8ddf0acf47f71d" title="Setup file download API endpoints." alt="" coords="436,136,630,161"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="694,205,629,183,574,164,576,159,631,178,696,200"/>
+<area shape="rect" id="Node000009" href="$class_temperature_controller.html#add39ba7dad38449bbf1787a5c9c51ef9" title="Get JSON representation of all measurement points." alt="" coords="458,416,608,457"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="752,264,703,335,670,373,632,405,610,418,607,413,629,401,666,369,699,332,748,261"/>
+<area shape="rect" id="Node000010" href="$class_config_manager.html#a471a844085c27f3a8a8f9394d9c14677" title="Setup measurement points API endpoints." alt="" coords="208,416,382,441"/>
+<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="712,258,631,291,575,304,530,308,486,317,463,326,438,341,422,356,414,373,406,390,390,406,369,417,366,413,386,402,402,387,410,371,418,353,434,337,461,321,485,311,529,303,574,299,630,286,710,253"/>
+<area shape="rect" id="Node000011" href="$class_config_manager.html#a55b79da91c57039c483ddf5fceabbd64" title="Save measurement points configuration to file." alt="" coords="442,236,624,277"/>
+<area shape="poly" id="edge12_Node000001_Node000011" title=" " alt="" coords="663,244,625,248,625,243,662,238"/>
+<area shape="rect" id="Node000004" href="$class_c_s_v_config_manager.html#a1c6cbc4c8a132762bf16a8ce9f7d0bfc" title="Export measurement points with alarm configuration to CSV." alt="" coords="204,71,386,111"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="445,94,386,94,386,88,445,88"/>
+<area shape="rect" id="Node000006" href="$class_config_manager.html#a0497343220fc493f5cf9574922508908" title="Initialize the configuration system." alt="" coords="5,309,154,334"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="218,220,203,227,171,246,141,269,95,310,92,306,137,265,168,242,200,222,216,215"/>
+<area shape="poly" id="edge8_Node000008_Node000006" title=" " alt="" coords="420,138,367,138,311,143,255,155,203,176,163,205,130,243,105,280,89,310,85,307,101,278,126,240,159,202,200,171,254,150,311,138,367,133,420,133"/>
+<area shape="poly" id="edge11_Node000010_Node000006" title=" " alt="" coords="215,413,200,407,141,372,95,337,98,333,144,367,203,402,217,408"/>
+<area shape="poly" id="edge13_Node000011_Node000005" title=" " alt="" coords="431,234,351,215,352,210,432,229"/>
+<area shape="poly" id="edge16_Node000011_Node000010" title=" " alt="" coords="450,287,438,297,427,310,421,324,415,351,410,379,402,393,390,406,373,417,370,413,386,402,398,390,405,377,410,350,416,322,422,307,434,293,447,283"/>
+<area shape="rect" id="Node000012" href="$class_config_manager.html#a9b7af07b85bf9cc3ac05603db6e89fd2" title="Setup CSV import/export API endpoints." alt="" coords="207,301,382,342"/>
+<area shape="poly" id="edge14_Node000011_Node000012" title=" " alt="" coords="443,284,373,303,371,298,442,279"/>
+<area shape="rect" id="Node000013" href="$class_config_manager.html#a45b1ce1f09401af0b6f700cf4388b233" title="Setup sensor&#45;related API endpoints." alt="" coords="206,366,384,392"/>
+<area shape="poly" id="edge17_Node000011_Node000013" title=" " alt="" coords="455,286,438,297,423,312,415,326,406,341,389,356,365,368,362,363,387,351,402,338,410,324,419,308,434,293,452,282"/>
+<area shape="rect" id="Node000014" href="$class_config_manager.html#a0daf50bbd376beb24a5400a86e893338" title="Update a measurement point in configuration." alt="" coords="202,236,388,277"/>
+<area shape="poly" id="edge19_Node000011_Node000014" title=" " alt="" coords="426,259,388,259,388,254,426,254"/>
+<area shape="poly" id="edge15_Node000012_Node000006" title=" " alt="" coords="192,324,154,324,154,319,192,319"/>
+<area shape="poly" id="edge18_Node000013_Node000006" title=" " alt="" coords="228,364,130,338,131,333,230,359"/>
 </map>
