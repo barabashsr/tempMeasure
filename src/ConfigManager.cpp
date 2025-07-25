@@ -2419,10 +2419,12 @@ void ConfigManager::downloadAPI() {
                     }
                 }
                 
-                // Skip if no temperature data
-                if (tempStr.isEmpty() || tempStr == " ") {
+                // Handle missing temperature data
+                bool hasData = !tempStr.isEmpty() && tempStr != " ";
+                
+                if (!hasData) {
                     emptyLinesInRow++;
-                    // Skip ahead if we've seen too many empty lines
+                    // Skip ahead if we've seen too many empty lines in a row
                     if (emptyLinesInRow > 100) {
                         // Jump to near the end of the file
                         long currentPos = file.position();
@@ -2434,31 +2436,38 @@ void ConfigManager::downloadAPI() {
                             Serial.println("Skipping to end of file due to empty data");
                         }
                     }
-                    continue;
+                } else {
+                    emptyLinesInRow = 0; // Reset counter when we find data
                 }
                 
-                emptyLinesInRow = 0; // Reset counter when we find data
-                
-                // Parse temperature value
-                float temp = tempStr.toFloat();
-                
-                // Skip invalid temperatures
-                if (temp == 0.0 && tempStr != "0") continue;
-                
-                // Debug logging
-                if (totalPointsProcessed < 5) {
-                    Serial.printf("Debug: timeStr='%s', tempStr='%s', parsed temp=%.1f\n", 
-                                  timeStr.c_str(), tempStr.c_str(), temp);
-                }
-                
-                // Add data point to JSON
+                // Add data point to JSON (with null for missing data)
                 if (!firstDataPoint) {
                     jsonResponse += ",";
                 }
                 firstDataPoint = false;
                 
                 jsonResponse += "{\"timestamp\":\"" + timeStr.substring(0, 5) + "\",";
-                jsonResponse += "\"temperature\":" + String(temp, 1) + "}";
+                
+                if (hasData) {
+                    // Parse temperature value
+                    float temp = tempStr.toFloat();
+                    
+                    // Check if it's a valid temperature
+                    if (temp == 0.0 && tempStr != "0") {
+                        // Invalid temperature, treat as null
+                        jsonResponse += "\"temperature\":null}";
+                    } else {
+                        // Debug logging
+                        if (totalPointsProcessed < 5) {
+                            Serial.printf("Debug: timeStr='%s', tempStr='%s', parsed temp=%.1f\n", 
+                                          timeStr.c_str(), tempStr.c_str(), temp);
+                        }
+                        jsonResponse += "\"temperature\":" + String(temp, 1) + "}";
+                    }
+                } else {
+                    // No data, use null
+                    jsonResponse += "\"temperature\":null}";
+                }
                 
                 totalPointsProcessed++;
                 
