@@ -2408,16 +2408,31 @@ void TemperatureController::_displayNetworkInfo() {
     indicator.setOledModeSmall(4, true); // 4-line mode with small font
     String lines[4];
     
-    // Check WiFi status
+    // Check WiFi status safely
     if (WiFi.status() == WL_CONNECTED) {
         lines[0] = "CONNECTED";
-        lines[1] = WiFi.localIP().toString();
-        lines[2] = WiFi.SSID();
-        lines[3] = WiFi.localIP().toString() + "/dashboard.html";
+        // Safely get IP address
+        IPAddress ip = WiFi.localIP();
+        if (ip) {
+            lines[1] = ip.toString();
+            lines[3] = ip.toString() + "/dashboard.html";
+        } else {
+            lines[1] = "Getting IP...";
+            lines[3] = "";
+        }
+        String ssid = WiFi.SSID();
+        lines[2] = ssid.length() > 0 ? ssid : "Unknown SSID";
     } else if (WiFi.getMode() == WIFI_AP || WiFi.getMode() == WIFI_AP_STA) {
         // Access Point mode
         lines[0] = "AP MODE";
-        lines[1] = WiFi.softAPIP().toString();
+        IPAddress apIP = WiFi.softAPIP();
+        if (apIP) {
+            lines[1] = apIP.toString();
+            lines[3] = apIP.toString() + "/cfg";
+        } else {
+            lines[1] = "192.168.4.1"; // Default AP IP
+            lines[3] = "192.168.4.1/cfg";
+        }
         
         // Get AP SSID from ConfigManager if available
         extern ConfigManager configManager;
@@ -2426,7 +2441,6 @@ void TemperatureController::_displayNetworkInfo() {
             apSSID = "ESP32_AP"; // Default AP name
         }
         lines[2] = apSSID;
-        lines[3] = WiFi.softAPIP().toString() + "/cfg";
     } else {
         // Disconnected
         lines[0] = "DISCONNECTED";

@@ -5,6 +5,7 @@
     <title>Temperature Monitoring System</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/common.css">
+    <script src="/chart.min.js"></script>
     <style>
         /* Page-specific styles */
         .form-group {
@@ -64,6 +65,75 @@
         }
         .status-label {
             font-weight: bold;
+        }
+        
+        /* Chart modal styles */
+        #chartModal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+        
+        #chartModal .modal-content {
+            background-color: #fefefe;
+            margin: 2% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 90%;
+            max-width: 1200px;
+            border-radius: 8px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        #chartModal .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        #chartModal .close:hover,
+        #chartModal .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 400px;
+            margin-top: 20px;
+        }
+        
+        .trend-icon {
+            cursor: pointer;
+            color: #3f51b5;
+            font-size: 1.2em;
+            margin-left: 8px;
+            transition: color 0.2s;
+        }
+        
+        .trend-icon:hover {
+            color: #283593;
+        }
+        
+        .chart-controls {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .chart-controls select, .chart-controls button {
+            padding: 6px 12px;
         }
     </style>
 </head>
@@ -138,23 +208,19 @@
                 </div>
             </div>
         </div>
-    </div>
-
-
-    <main>
-    <h2>DS18B20 Points</h2>
-    
+        
+        <h2>DS18B20 Points</h2>
         <table>
             <thead>
                 <tr>
                     <th>Address</th>
                     <th>Name</th>
                     <th>Current Temp</th>
+                    <th>Trend</th>
                     <th>Min Temp</th>
                     <th>Max Temp</th>
                     <th>Alarm Status</th>
                     <th>Error Status</th>
-
                 </tr>
             </thead>
             <tbody id="dsPointsTbody">
@@ -169,6 +235,7 @@
                     <th>Address</th>
                     <th>Name</th>
                     <th>Current Temp</th>
+                    <th>Trend</th>
                     <th>Min Temp</th>
                     <th>Max Temp</th>
                     <th>Alarm Status</th>
@@ -180,6 +247,31 @@
             </tbody>
         </table>
     </main>
+    
+    <!-- Chart Modal -->
+    <div id="chartModal">
+        <div class="modal-content">
+            <span class="close" id="chartCloseBtn">&times;</span>
+            <h2>Temperature Trend Chart - <span id="chartPointName"></span></h2>
+            
+            <div class="chart-controls">
+                <label>Time Range:</label>
+                <select id="chartTimeRange">
+                    <option value="1">Last 1 Hour</option>
+                    <option value="6">Last 6 Hours</option>
+                    <option value="12">Last 12 Hours</option>
+                    <option value="24" selected>Last 24 Hours</option>
+                    <option value="48">Last 48 Hours</option>
+                    <option value="168">Last 7 Days</option>
+                </select>
+                <button onclick="updateChart()">Update</button>
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="temperatureChart"></canvas>
+            </div>
+        </div>
+    </div>
 
     <!-- Modal -->
     <div id="pointConfigModal" class="modal">
@@ -393,11 +485,11 @@
                         <td>${point.address}</td>
                         <td>${point.name || ''}</td>
                         <td>${point.currentTemp !== undefined ? point.currentTemp : ''}</td>
+                        <td><span class="trend-icon" onclick="showChart(${point.address}, '${point.name || 'Point ' + point.address}')">📈</span></td>
                         <td>${point.minTemp !== undefined ? point.minTemp : ''}</td>
                         <td>${point.maxTemp !== undefined ? point.maxTemp : ''}</td>
                         <td>${getAlarmText(point.alarmStatus)}</td>
                         <td>${getErrorText(point.errorStatus)}</td>
-                       
                     `;
                     dsTbody.appendChild(row);
                 });
@@ -412,11 +504,11 @@
                         <td>${point.address}</td>
                         <td>${point.name || ''}</td>
                         <td>${point.currentTemp !== undefined ? point.currentTemp : ''}</td>
+                        <td><span class="trend-icon" onclick="showChart(${point.address}, '${point.name || 'Point ' + point.address}')">📈</span></td>
                         <td>${point.minTemp !== undefined ? point.minTemp : ''}</td>
                         <td>${point.maxTemp !== undefined ? point.maxTemp : ''}</td>
                         <td>${getAlarmText(point.alarmStatus)}</td>
                         <td>${getErrorText(point.errorStatus)}</td>
-                      
                     `;
                     ptTbody.appendChild(row);
                 });
@@ -605,6 +697,201 @@
             // Reset file input
             event.target.value = '';
         });
+
+        // Chart functionality
+        let temperatureChart = null;
+        let currentPointAddress = null;
+        const chartModal = document.getElementById('chartModal');
+        const chartCloseBtn = document.getElementById('chartCloseBtn');
+        
+        // Show chart function
+        function showChart(pointAddress, pointName) {
+            currentPointAddress = pointAddress;
+            document.getElementById('chartPointName').textContent = pointName;
+            
+            // Get selected time range
+            const hours = document.getElementById('chartTimeRange').value;
+            
+            // Fetch temperature history
+            fetch(`/api/temperature-history?point=${pointAddress}&hours=${hours}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        renderChart(data);
+                        chartModal.style.display = 'block';
+                    } else {
+                        alert('Failed to load temperature history');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching temperature history:', error);
+                    alert('Error loading temperature history');
+                });
+        }
+        
+        // Update chart function
+        function updateChart() {
+            if (currentPointAddress !== null) {
+                const pointName = document.getElementById('chartPointName').textContent;
+                showChart(currentPointAddress, pointName);
+            }
+        }
+        
+        // Render chart using Chart.js
+        function renderChart(data) {
+            const ctx = document.getElementById('temperatureChart').getContext('2d');
+            
+            // Prepare data for Chart.js
+            const chartData = {
+                labels: data.data.map(point => point.timestamp),
+                datasets: [{
+                    label: 'Temperature (°C)',
+                    data: data.data.map(point => point.temperature),
+                    borderColor: 'rgb(75, 192, 192)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.1)',
+                    tension: 0.1,
+                    pointRadius: 0,
+                    pointHoverRadius: 5
+                }]
+            };
+            
+            // Add threshold lines if available
+            const annotations = {};
+            let annotationCount = 0;
+            
+            if (data.lowThreshold !== undefined && data.lowThreshold !== null) {
+                annotations[`lowThreshold${annotationCount++}`] = {
+                    type: 'line',
+                    yMin: data.lowThreshold,
+                    yMax: data.lowThreshold,
+                    borderColor: 'rgb(54, 162, 235)',
+                    borderWidth: 2,
+                    borderDash: [5, 5],
+                    label: {
+                        display: true,
+                        content: `Low: ${data.lowThreshold}°C`,
+                        position: 'start'
+                    }
+                };
+            }
+            
+            if (data.highThreshold !== undefined && data.highThreshold !== null) {
+                annotations[`highThreshold${annotationCount++}`] = {
+                    type: 'line',
+                    yMin: data.highThreshold,
+                    yMax: data.highThreshold,
+                    borderColor: 'rgb(255, 99, 132)',
+                    borderWidth: 2,
+                    borderDash: [5, 5],
+                    label: {
+                        display: true,
+                        content: `High: ${data.highThreshold}°C`,
+                        position: 'start'
+                    }
+                };
+            }
+            
+            // Add alarm event markers
+            if (data.alarmEvents && data.alarmEvents.length > 0) {
+                data.alarmEvents.forEach((event, index) => {
+                    annotations[`alarmEvent${index}`] = {
+                        type: 'line',
+                        xMin: event.timestamp,
+                        xMax: event.timestamp,
+                        borderColor: event.type.includes('High') ? 'rgba(255, 99, 132, 0.7)' : 'rgba(54, 162, 235, 0.7)',
+                        borderWidth: 2,
+                        label: {
+                            display: true,
+                            content: event.type,
+                            position: 'start',
+                            rotation: 270
+                        }
+                    };
+                });
+            }
+            
+            // Chart configuration
+            const config = {
+                type: 'line',
+                data: chartData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: {
+                        mode: 'index',
+                        intersect: false
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: `Temperature History - ${data.pointName}`
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false
+                        },
+                        annotation: {
+                            annotations: annotations
+                        }
+                    },
+                    scales: {
+                        x: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'Time'
+                            },
+                            ticks: {
+                                maxRotation: 45,
+                                minRotation: 45,
+                                autoSkip: true,
+                                maxTicksLimit: 20
+                            }
+                        },
+                        y: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'Temperature (°C)'
+                            }
+                        }
+                    }
+                }
+            };
+            
+            // Destroy existing chart if it exists
+            if (temperatureChart) {
+                temperatureChart.destroy();
+            }
+            
+            // Create new chart
+            temperatureChart = new Chart(ctx, config);
+        }
+        
+        // Close modal handlers
+        chartCloseBtn.onclick = function() {
+            chartModal.style.display = 'none';
+            if (temperatureChart) {
+                temperatureChart.destroy();
+                temperatureChart = null;
+            }
+            currentPointAddress = null;
+        };
+        
+        window.onclick = function(event) {
+            if (event.target === chartModal) {
+                chartModal.style.display = 'none';
+                if (temperatureChart) {
+                    temperatureChart.destroy();
+                    temperatureChart = null;
+                }
+                currentPointAddress = null;
+            }
+        };
+        
+        // Make functions available globally
+        window.showChart = showChart;
+        window.updateChart = updateChart;
     </script>
     </main>
 </body>

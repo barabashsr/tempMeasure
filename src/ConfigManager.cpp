@@ -222,7 +222,8 @@ bool ConfigManager::begin() {
      LoggerManager::info("CONFIG", "Attempting WiFi connection to: " + String(conf("st_ssid")));
      if (connectWiFi(10000)) {
          startAP = false;
-         LoggerManager::info("CONFIG", "WiFi connected successfully - IP: " + WiFi.localIP().toString());
+         IPAddress ip = WiFi.localIP();
+         LoggerManager::info("CONFIG", "WiFi connected successfully - IP: " + (ip ? ip.toString() : "0.0.0.0"));
      } else {
          LoggerManager::warning("CONFIG", "WiFi connection failed, starting AP mode");
      }
@@ -999,6 +1000,24 @@ void ConfigManager::basicAPI(){
             server->sendHeader("Content-Type", "text/plain");
             server->sendHeader("Connection", "close");
             server->send(404, "text/plain", "common.css not found");
+        }
+    });
+    
+    // Serve Chart.js library
+    server->on("/chart.min.js", HTTP_GET, [this]() {
+        server->sendHeader("Access-Control-Allow-Origin", "*");
+        server->sendHeader("Cache-Control", "max-age=86400"); // Cache for 24 hours
+        
+        if (LittleFS.exists("/chart.min.js")) {
+            server->sendHeader("Content-Type", "application/javascript");
+            server->sendHeader("Connection", "close");
+            File file = LittleFS.open("/chart.min.js", "r");
+            server->streamFile(file, "application/javascript");
+            file.close();
+        } else {
+            server->sendHeader("Content-Type", "text/plain");
+            server->sendHeader("Connection", "close");
+            server->send(404, "text/plain", "chart.min.js not found");
         }
     });
 
@@ -2285,5 +2304,170 @@ void ConfigManager::downloadAPI() {
         file.close();
         
         Serial.printf("Downloaded alarm state log file: %s\n", filename.c_str());
+    });
+    
+    // API endpoint for temperature history (for charts)
+    server->on("/api/temperature-history", HTTP_GET, [this]() {
+        uint8_t pointAddress = server->arg("point").toInt();
+        String hours = server->arg("hours");
+        
+        if (pointAddress >= 60) {
+            server->send(400, "text/plain", "Invalid point address");
+            return;
+        }
+        
+        // Default to 24 hours if not specified
+        int hoursToFetch = hours.isEmpty() ? 24 : hours.toInt();
+        if (hoursToFetch < 1) hoursToFetch = 1;
+        if (hoursToFetch > 168) hoursToFetch = 168; // Max 7 days
+        
+        JsonDocument doc;
+        doc["success"] = true;
+        doc["pointAddress"] = pointAddress;
+        doc["hours"] = hoursToFetch;
+        
+        JsonArray dataArray = doc["data"].to<JsonArray>();
+        JsonArray alarmEventsArray = doc["alarmEvents"].to<JsonArray>();
+        
+        // Get current time (simplified - we'll use all available data)
+        // In a full implementation, you would filter by time range
+        
+        // Get point info for thresholds
+        MeasurementPoint* point = controller.getMeasurementPoint(pointAddress);
+        if (point) {
+            doc["pointName"] = point->getName();
+            doc["lowThreshold"] = point->getLowAlarmThreshold();
+            doc["highThreshold"] = point->getHighAlarmThreshold();
+        }
+        
+        // Get list of log files
+        std::vector<String> files = LoggerManager::getLogFiles();
+        
+        // Process files to extract temperature data
+        for (const String& filename : files) {
+            // Extract date from filename (format: temp_log_YYYY-MM-DD_N.csv)
+            int dateStart = filename.indexOf("temp_log_") + 9;
+            if (dateStart < 9) continue;
+            
+            String fileDate = filename.substring(dateStart, dateStart + 10);
+            
+            // Open file for reading
+            File file = LoggerManager::openLogFile(filename, "data");
+            if (!file) continue;
+            
+            // Skip header line
+            if (file.available()) {
+                file.readStringUntil('\n');
+            }
+            
+            // Read data lines
+            while (file.available()) {
+                String line = file.readStringUntil('\n');
+                if (line.isEmpty()) continue;
+                
+                // Parse CSV line - format: Date,Time,Point0,Point1,...,Point59
+                int commaCount = 0;
+                int lastComma = -1;
+                String dateStr = "";
+                String timeStr = "";
+                String tempStr = "";
+                
+                // We need to find the column for pointAddress + 2 (Date=0, Time=1, Point0=2, etc.)
+                int targetColumn = pointAddress + 2;
+                
+                for (int i = 0; i <= line.length(); i++) {
+                    if (i == line.length() || line.charAt(i) == ',') {
+                        if (commaCount == 0) {
+                            dateStr = line.substring(0, i);
+                        } else if (commaCount == 1) {
+                            timeStr = line.substring(lastComma + 1, i);
+                        } else if (commaCount == targetColumn) {
+                            tempStr = line.substring(lastComma + 1, i);
+                            break;
+                        }
+                        lastComma = i;
+                        commaCount++;
+                    }
+                }
+                
+                // Skip if no temperature data
+                if (tempStr.isEmpty() || tempStr == " ") continue;
+                
+                // Parse temperature value
+                float temp = tempStr.toFloat();
+                if (temp == 0.0 && tempStr != "0" && tempStr != "0.0") continue; // Invalid temperature
+                
+                // Convert date/time to timestamp format for display
+                // Format: "HH:MM" for display (we'll format full timestamp if needed)
+                String displayTime = timeStr.substring(0, 5); // Get HH:MM part
+                
+                // Check if this data point is within our time range
+                // For now, we'll include all data from the files (you could add time filtering here)
+                
+                // Add to data array
+                JsonObject dataPoint = dataArray.add<JsonObject>();
+                dataPoint["timestamp"] = displayTime;
+                dataPoint["temperature"] = temp;
+            }
+            file.close();
+        }
+        
+        // Get alarm events for this point from alarm state log files
+        std::vector<String> alarmFiles = LoggerManager::getAlarmStateLogFiles();
+        for (const String& alarmFile : alarmFiles) {
+            File aFile = LoggerManager::openLogFile(alarmFile, "alarm_state");
+            if (!aFile) continue;
+            
+            // Skip header
+            if (aFile.available()) {
+                aFile.readStringUntil('\n');
+            }
+            
+            // Read alarm events
+            while (aFile.available()) {
+                String line = aFile.readStringUntil('\n');
+                if (line.isEmpty()) continue;
+                
+                // Parse alarm CSV: Timestamp,PointNumber,PointName,AlarmType,Priority,PreviousState,NewState,CurrentTemp,Threshold
+                int commaCount = 0;
+                int lastComma = -1;
+                String timestamp = "";
+                String pointNumStr = "";
+                String alarmType = "";
+                String newState = "";
+                
+                for (int i = 0; i <= line.length(); i++) {
+                    if (i == line.length() || line.charAt(i) == ',') {
+                        String field = line.substring(lastComma + 1, i);
+                        
+                        if (commaCount == 0) timestamp = field;
+                        else if (commaCount == 1) pointNumStr = field;
+                        else if (commaCount == 3) alarmType = field;
+                        else if (commaCount == 6) newState = field;
+                        
+                        lastComma = i;
+                        commaCount++;
+                        
+                        if (commaCount > 6) break;
+                    }
+                }
+                
+                // Check if this alarm is for our point and is an activation
+                if (pointNumStr.toInt() == pointAddress && newState == "Active") {
+                    JsonObject alarmEvent = alarmEventsArray.createNestedObject();
+                    alarmEvent["timestamp"] = timestamp.substring(11, 16); // Extract HH:MM
+                    alarmEvent["type"] = alarmType;
+                }
+            }
+            aFile.close();
+        }
+        
+        String output;
+        serializeJson(doc, output);
+        
+        server->sendHeader("Content-Type", "application/json");
+        server->sendHeader("Access-Control-Allow-Origin", "*");
+        server->sendHeader("Cache-Control", "no-store");
+        server->send(200, "application/json", output);
     });
 }
