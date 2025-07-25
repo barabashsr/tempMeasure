@@ -2308,8 +2308,10 @@ void ConfigManager::downloadAPI() {
     
     // API endpoint for temperature history (for charts) - Memory optimized version
     server->on("/api/temperature-history", HTTP_GET, [this]() {
+        Serial.println("SERVER: /api/temperature-history called");
         uint8_t pointAddress = server->arg("point").toInt();
         String hours = server->arg("hours");
+        Serial.printf("Point: %d, Hours: %s\n", pointAddress, hours.c_str());
         
         if (pointAddress >= 60) {
             server->send(400, "text/plain", "Invalid point address");
