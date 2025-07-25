@@ -1,5 +1,6 @@
 var NAVTREEINDEX2 =
 {
+"class_register_map.html#a6b267ae2d46f49a63e2215fb573a1beb":[0,0,7,27],
 "class_register_map.html#a6eef9ee14553949e023ac58d79a1ccc5":[0,0,7,32],
 "class_register_map.html#a744b3b98a6aaa92d1ffdba77b95c1ff3":[0,0,7,4],
 "class_register_map.html#a80213794342fd35a7b2da48eaff70394":[0,0,7,29],
@@ -248,6 +249,5 @@ var NAVTREEINDEX2 =
 "class_temperature_controller.html#a7f2adc49f6736e673d3b85d8cc46be8e":[0,0,10,149],
 "class_temperature_controller.html#a80552172d64d7536490e5f6320c10941":[0,0,10,71],
 "class_temperature_controller.html#a814c44e85ab732a0eae84c5f86fbdb78":[0,0,10,136],
-"class_temperature_controller.html#a81aeb69dc3a9e3bda9f06dcdcc567626":[0,0,10,48],
-"class_temperature_controller.html#a823f6289a0da9921e2c121eefa41bdd2":[0,0,10,165]
+"class_temperature_controller.html#a81aeb69dc3a9e3bda9f06dcdcc567626":[0,0,10,48]
 };

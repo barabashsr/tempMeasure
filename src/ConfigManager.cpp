@@ -23,6 +23,7 @@
 
 #include "ConfigManager.h"
 #include <ArduinoJson.h>
+#include <time.h>
 
 
 ConfigManager* ConfigManager::instance = nullptr;
@@ -2104,6 +2105,72 @@ void ConfigManager::logsAPI() {
     });
 }
 
+// Implementation of alarm event retrieval for charts
+std::vector<ConfigManager::AlarmEvent> ConfigManager::getAlarmEventsForPoint(
+    uint8_t pointAddress, const String& startDate, const String& endDate) {
+    
+    std::vector<AlarmEvent> events;
+    
+    // Get alarm log files in date range
+    std::vector<String> files = LoggerManager::getAlarmStateLogFiles();
+    
+    for (const String& filename : files) {
+        // Check if file is in date range
+        if (filename.startsWith("alarm_state_log_")) {
+            String fileDate = filename.substring(16, 26); // Extract YYYY-MM-DD
+            
+            // Simple date comparison (works for YYYY-MM-DD format)
+            if (fileDate >= startDate && fileDate <= endDate) {
+                // Open and parse the file
+                File file = LoggerManager::openLogFile(filename, "alarms");
+                if (!file) continue;
+                
+                // Skip header line
+                if (file.available()) {
+                    file.readStringUntil('\n');
+                }
+                
+                // Read each line
+                while (file.available()) {
+                    String line = file.readStringUntil('\n');
+                    if (line.isEmpty()) continue;
+                    
+                    // Parse CSV line: Date,Time,PointNumber,PointName,AlarmType,Priority,PreviousState,NewState,Temperature,Threshold
+                    int commaCount = 0;
+                    int lastComma = -1;
+                    String fields[10];
+                    
+                    for (int i = 0; i <= line.length() && commaCount < 10; i++) {
+                        if (i == line.length() || line.charAt(i) == ',') {
+                            fields[commaCount] = line.substring(lastComma + 1, i);
+                            lastComma = i;
+                            commaCount++;
+                        }
+                    }
+                    
+                    // Check if this is for our point
+                    if (commaCount >= 10 && fields[2].toInt() == pointAddress) {
+                        AlarmEvent event;
+                        event.timestamp = fields[1]; // Time field
+                        event.type = fields[4];      // AlarmType
+                        event.newState = fields[7];  // NewState
+                        
+                        // Parse temperature and threshold (they're in x10 format in logs)
+                        event.temperature = fields[8].toInt();
+                        event.threshold = fields[9].toInt();
+                        
+                        events.push_back(event);
+                    }
+                }
+                
+                file.close();
+            }
+        }
+    }
+    
+    return events;
+}
+
 void ConfigManager::downloadAPI() {
     // API endpoint to list all data log files
     server->on("/api/data-log-files", HTTP_GET, [this]() {
@@ -2517,10 +2584,65 @@ void ConfigManager::downloadAPI() {
             file.close();
         }
         
-        jsonResponse += "],\"alarmEvents\":[]}";
+        jsonResponse += "],\"alarmEvents\":[";
         
-        Serial.printf("Total points: %d, Valid data points: %d, Response size: %d bytes\n", 
-                     totalPointsProcessed, validDataPoints, jsonResponse.length());
+        // Get alarm events for this point and time range
+        // Calculate date range based on hours requested
+        time_t now;
+        time(&now);
+        struct tm* timeinfo = localtime(&now);
+        char dateBuffer[11];
+        strftime(dateBuffer, sizeof(dateBuffer), "%Y-%m-%d", timeinfo);
+        String endDate = String(dateBuffer);
+        String startDate = endDate; // Default to same day
+        
+        if (hoursToFetch > 24) {
+            // For multi-day ranges, calculate start date
+            int daysBack = (hoursToFetch + 23) / 24; // Round up
+            
+            // Simple date calculation (assumes no month/year boundaries for now)
+            int year = endDate.substring(0, 4).toInt();
+            int month = endDate.substring(5, 7).toInt();
+            int day = endDate.substring(8, 10).toInt();
+            
+            day -= daysBack;
+            if (day < 1) {
+                // Simple month rollback (not handling all edge cases)
+                month--;
+                if (month < 1) {
+                    month = 12;
+                    year--;
+                }
+                day = 28; // Simple approximation
+            }
+            
+            char dateBuffer[11];
+            snprintf(dateBuffer, sizeof(dateBuffer), "%04d-%02d-%02d", year, month, day);
+            startDate = String(dateBuffer);
+        }
+        
+        // Get alarm events
+        std::vector<AlarmEvent> events = getAlarmEventsForPoint(pointAddress, startDate, endDate);
+        
+        bool firstEvent = true;
+        for (const auto& event : events) {
+            // Filter events to match the requested time range
+            // For now, include all events from the date range
+            
+            if (!firstEvent) jsonResponse += ",";
+            firstEvent = false;
+            
+            jsonResponse += "{\"timestamp\":\"" + event.timestamp + "\"";
+            jsonResponse += ",\"type\":\"" + event.type + "\"";  
+            jsonResponse += ",\"state\":\"" + event.newState + "\"";
+            jsonResponse += ",\"temperature\":" + String(event.temperature / 10.0, 1);
+            jsonResponse += ",\"threshold\":" + String(event.threshold / 10.0, 1) + "}";
+        }
+        
+        jsonResponse += "]}";
+        
+        Serial.printf("Total points: %d, Valid data points: %d, Alarm events: %d, Response size: %d bytes\n", 
+                     totalPointsProcessed, validDataPoints, events.size(), jsonResponse.length());
         
         // Send complete response
         server->sendHeader("Content-Type", "application/json");

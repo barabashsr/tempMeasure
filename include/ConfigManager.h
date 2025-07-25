@@ -28,7 +28,8 @@
 #include "TemperatureController.h"
 #include "CSVConfigManager.h"
 #include "SettingsCSVManager.h"
-#include "LoggerManager.h" 
+#include "LoggerManager.h"
+#include <vector> 
 
 /// YAML configuration definition for ConfigAssist
 extern const char* VARIABLES_DEF_YAML;
@@ -47,6 +48,28 @@ private:
     TemperatureController& controller;      ///< Reference to temperature controller
     WebServer* server;                      ///< HTTP web server instance
     bool portalActive;                      ///< Flag indicating if configuration portal is active
+    
+    /**
+     * @brief Structure to hold alarm event data for charts
+     */
+    struct AlarmEvent {
+        String timestamp;
+        String type;
+        String newState;
+        int16_t temperature;
+        int16_t threshold;
+    };
+    
+    /**
+     * @brief Get alarm events for a specific point within date range
+     * @param[in] pointAddress Address of the measurement point
+     * @param[in] startDate Start date in YYYY-MM-DD format
+     * @param[in] endDate End date in YYYY-MM-DD format  
+     * @return Vector of alarm events
+     */
+    std::vector<AlarmEvent> getAlarmEventsForPoint(uint8_t pointAddress, 
+                                                   const String& startDate, 
+                                                   const String& endDate);
     
     /**
      * @brief Static callback function for configuration changes

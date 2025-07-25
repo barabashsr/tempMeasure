@@ -1,5 +1,6 @@
 var class_config_manager =
 [
+    [ "AlarmEvent", "struct_config_manager_1_1_alarm_event.html", "struct_config_manager_1_1_alarm_event" ],
     [ "ConfigManager", "class_config_manager.html#abb5e68671c5a8087abb50b289d3522b4", null ],
     [ "~ConfigManager", "class_config_manager.html#a7fa65fdff98bdd5bbbf72196bd9ccf17", null ],
     [ "_applySettingsWithoutRestart", "class_config_manager.html#adaa7d1493461e3f2684b92ffe5db62d4", null ],
@@ -13,6 +14,7 @@ var class_config_manager =
     [ "getAcknowledgedDelayHigh", "class_config_manager.html#a92531033b9698550c95e70408d3ca928", null ],
     [ "getAcknowledgedDelayLow", "class_config_manager.html#a8211fcec922c77f0245ea1eb95be5e4d", null ],
     [ "getAcknowledgedDelayMedium", "class_config_manager.html#ae5e8f849e85d0a2779a650136b7011f9", null ],
+    [ "getAlarmEventsForPoint", "class_config_manager.html#aa425fe77d9c00f404f1c02327263f516", null ],
     [ "getAutoDiscover", "class_config_manager.html#a70df78bf8e301f46cbc14bf6f36c0a0e", null ],
     [ "getCSVManager", "class_config_manager.html#ab09d27551f2f71ad0c19452dabbd9061", null ],
     [ "getDeviceId", "class_config_manager.html#a355c8fe8e7b63d90f2ab1e3957006d7b", null ],

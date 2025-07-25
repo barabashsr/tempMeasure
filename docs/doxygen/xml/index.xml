@@ -62,6 +62,13 @@
   <compound refid="struct_alarm_comparator" kind="struct"><name>AlarmComparator</name>
     <member refid="struct_alarm_comparator_1a9e59c2531a3bd641d0b3d0cc10bffe54" kind="function"><name>operator()</name></member>
   </compound>
+  <compound refid="struct_config_manager_1_1_alarm_event" kind="struct"><name>ConfigManager::AlarmEvent</name>
+    <member refid="struct_config_manager_1_1_alarm_event_1a7fb1359e608c9de088e8fd8548fea2ad" kind="variable"><name>timestamp</name></member>
+    <member refid="struct_config_manager_1_1_alarm_event_1aa809c5d03c6dd77b84803add47f1186a" kind="variable"><name>type</name></member>
+    <member refid="struct_config_manager_1_1_alarm_event_1a52c14e8a31de1bce9b68d889ca7c5644" kind="variable"><name>newState</name></member>
+    <member refid="struct_config_manager_1_1_alarm_event_1a680aa3904c59e6ce48c8dba074d8973a" kind="variable"><name>temperature</name></member>
+    <member refid="struct_config_manager_1_1_alarm_event_1a9bdec172798f2d734b9376aa54cd3d11" kind="variable"><name>threshold</name></member>
+  </compound>
   <compound refid="struct_indicator_interface_1_1_blinking_port" kind="struct"><name>IndicatorInterface::BlinkingPort</name>
     <member refid="struct_indicator_interface_1_1_blinking_port_1ad80dbdb5d0bb386953a5def17d2da542" kind="variable"><name>portName</name></member>
     <member refid="struct_indicator_interface_1_1_blinking_port_1add4bee394ff2b7239780a4a7b2640954" kind="variable"><name>onTime</name></member>
@@ -79,7 +86,7 @@
     <member refid="class_config_manager_1a773fb5f7cd89fa594bd05184e8af14a0" kind="variable"><name>server</name></member>
     <member refid="class_config_manager_1a9569d8754bbcd81768dfb351b73bcea0" kind="variable"><name>portalActive</name></member>
     <member refid="class_config_manager_1a890a76b6aebb1246ca45248967447b34" kind="variable"><name>instance</name></member>
-    <member refid="class_config_manager_1a93a63ddc3f7efd83e80345826493a45d" kind="function"><name>onConfigChanged</name></member>
+    <member refid="class_config_manager_1aa425fe77d9c00f404f1c02327263f516" kind="function"><name>getAlarmEventsForPoint</name></member>
     <member refid="class_config_manager_1adaa7d1493461e3f2684b92ffe5db62d4" kind="function"><name>_applySettingsWithoutRestart</name></member>
     <member refid="class_config_manager_1a6416afa7d86c20400ee661cdad9bdab1" kind="function"><name>basicAPI</name></member>
     <member refid="class_config_manager_1a45b1ce1f09401af0b6f700cf4388b233" kind="function"><name>sensorAPI</name></member>
@@ -88,6 +95,7 @@
     <member refid="class_config_manager_1ae605c999fabc6344511f455618655326" kind="function"><name>alarmsAPI</name></member>
     <member refid="class_config_manager_1a9e977107b4795fcbce0482711ff1ce7a" kind="function"><name>logsAPI</name></member>
     <member refid="class_config_manager_1a3b28982c79587a287c8ddf0acf47f71d" kind="function"><name>downloadAPI</name></member>
+    <member refid="class_config_manager_1a93a63ddc3f7efd83e80345826493a45d" kind="function"><name>onConfigChanged</name></member>
     <member refid="class_config_manager_1abb5e68671c5a8087abb50b289d3522b4" kind="function"><name>ConfigManager</name></member>
     <member refid="class_config_manager_1a7fa65fdff98bdd5bbbf72196bd9ccf17" kind="function"><name>~ConfigManager</name></member>
     <member refid="class_config_manager_1a0497343220fc493f5cf9574922508908" kind="function"><name>begin</name></member>

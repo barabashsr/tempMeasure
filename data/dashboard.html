@@ -802,19 +802,69 @@
             
             // Add alarm event markers
             if (data.alarmEvents && data.alarmEvents.length > 0) {
+                console.log('Alarm events:', data.alarmEvents);
+                
                 data.alarmEvents.forEach((event, index) => {
+                    // Determine color based on alarm type and state
+                    let borderColor = 'rgba(128, 128, 128, 0.7)'; // Default gray
+                    let backgroundColor = 'rgba(128, 128, 128, 0.1)';
+                    
+                    if (event.type.includes('HIGH_TEMPERATURE')) {
+                        if (event.state === 'ACTIVE') {
+                            borderColor = 'rgba(255, 99, 132, 0.9)'; // Red for high temp active
+                            backgroundColor = 'rgba(255, 99, 132, 0.2)';
+                        } else if (event.state === 'ACKNOWLEDGED') {
+                            borderColor = 'rgba(255, 193, 7, 0.9)'; // Orange for acknowledged
+                            backgroundColor = 'rgba(255, 193, 7, 0.2)';
+                        } else if (event.state === 'CLEARED' || event.state === 'RESOLVED') {
+                            borderColor = 'rgba(76, 175, 80, 0.9)'; // Green for cleared/resolved
+                            backgroundColor = 'rgba(76, 175, 80, 0.2)';
+                        }
+                    } else if (event.type.includes('LOW_TEMPERATURE')) {
+                        if (event.state === 'ACTIVE') {
+                            borderColor = 'rgba(54, 162, 235, 0.9)'; // Blue for low temp active
+                            backgroundColor = 'rgba(54, 162, 235, 0.2)';
+                        } else if (event.state === 'ACKNOWLEDGED') {
+                            borderColor = 'rgba(255, 193, 7, 0.9)'; // Orange for acknowledged
+                            backgroundColor = 'rgba(255, 193, 7, 0.2)';
+                        } else if (event.state === 'CLEARED' || event.state === 'RESOLVED') {
+                            borderColor = 'rgba(76, 175, 80, 0.9)'; // Green for cleared/resolved
+                            backgroundColor = 'rgba(76, 175, 80, 0.2)';
+                        }
+                    }
+                    
+                    // Create vertical line annotation for each alarm event
                     annotations[`alarmEvent${index}`] = {
                         type: 'line',
                         xMin: event.timestamp,
                         xMax: event.timestamp,
-                        borderColor: event.type.includes('High') ? 'rgba(255, 99, 132, 0.7)' : 'rgba(54, 162, 235, 0.7)',
+                        borderColor: borderColor,
                         borderWidth: 2,
+                        borderDash: [5, 5],
                         label: {
                             display: true,
-                            content: event.type,
+                            content: `${event.type.replace('_TEMPERATURE', '')} ${event.state}`,
                             position: 'start',
-                            rotation: 270
+                            rotation: 270,
+                            backgroundColor: backgroundColor,
+                            borderColor: borderColor,
+                            borderWidth: 1,
+                            font: {
+                                size: 10
+                            }
                         }
+                    };
+                    
+                    // Add a point annotation to mark the exact temperature at alarm
+                    annotations[`alarmPoint${index}`] = {
+                        type: 'point',
+                        xValue: event.timestamp,
+                        yValue: event.temperature,
+                        backgroundColor: borderColor,
+                        borderColor: borderColor,
+                        borderWidth: 2,
+                        radius: 5,
+                        pointStyle: 'circle'
                     };
                 });
             }
@@ -837,7 +887,26 @@
                         },
                         tooltip: {
                             mode: 'index',
-                            intersect: false
+                            intersect: false,
+                            callbacks: {
+                                afterLabel: function(context) {
+                                    // Check if there's an alarm event at this timestamp
+                                    const timestamp = context.label;
+                                    const alarmEvent = data.alarmEvents.find(event => event.timestamp === timestamp);
+                                    
+                                    if (alarmEvent) {
+                                        return [
+                                            '',
+                                            '🚨 ALARM EVENT:',
+                                            `Type: ${alarmEvent.type.replace('_TEMPERATURE', '')}`,
+                                            `State: ${alarmEvent.state}`,
+                                            `Threshold: ${alarmEvent.threshold}°C`
+                                        ];
+                                    }
+                                    
+                                    return [];
+                                }
+                            }
                         },
                         annotation: {
                             annotations: annotations
