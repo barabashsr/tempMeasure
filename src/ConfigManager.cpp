@@ -2306,7 +2306,7 @@ void ConfigManager::downloadAPI() {
         Serial.printf("Downloaded alarm state log file: %s\n", filename.c_str());
     });
     
-    // API endpoint for temperature history (for charts) - Memory optimized version
+    // API endpoint for temperature history (for charts) - Simplified version
     server->on("/api/temperature-history", HTTP_GET, [this]() {
         Serial.println("SERVER: /api/temperature-history called");
         uint8_t pointAddress = server->arg("point").toInt();
@@ -2323,39 +2323,21 @@ void ConfigManager::downloadAPI() {
         if (hoursToFetch < 1) hoursToFetch = 1;
         if (hoursToFetch > 168) hoursToFetch = 168; // Max 7 days
         
-        // Start streaming response immediately to avoid building large JSON in memory
-        server->setContentLength(CONTENT_LENGTH_UNKNOWN);
-        server->sendHeader("Content-Type", "application/json");
-        server->sendHeader("Access-Control-Allow-Origin", "*");
-        server->sendHeader("Cache-Control", "no-store");
-        server->send(200, "application/json", "");
-        
-        // Send JSON response in chunks
-        server->sendContent("{\"success\":true,\"pointAddress\":");
-        server->sendContent(String(pointAddress));
-        server->sendContent(",\"hours\":");
-        server->sendContent(String(hoursToFetch));
+        // Build JSON response with limited data
+        String jsonResponse = "{\"success\":true,\"pointAddress\":" + String(pointAddress) + 
+                             ",\"hours\":" + String(hoursToFetch);
         
         // Get point info for thresholds
         MeasurementPoint* point = controller.getMeasurementPoint(pointAddress);
         if (point) {
-            server->sendContent(",\"pointName\":\"");
-            server->sendContent(point->getName());
-            server->sendContent("\",\"lowThreshold\":");
-            server->sendContent(String(point->getLowAlarmThreshold()));
-            server->sendContent(",\"highThreshold\":");
-            server->sendContent(String(point->getHighAlarmThreshold()));
+            jsonResponse += ",\"pointName\":\"" + point->getName() + "\"";
+            jsonResponse += ",\"lowThreshold\":" + String(point->getLowAlarmThreshold());
+            jsonResponse += ",\"highThreshold\":" + String(point->getHighAlarmThreshold());
         }
         
-        server->sendContent(",\"data\":[");
+        jsonResponse += ",\"data\":[";
         
         // Calculate decimation factor based on time range
-        // For 1 hour: every point (assuming 1 per minute = 60 points)
-        // For 6 hours: every 3rd point (~120 points)
-        // For 12 hours: every 6th point (~120 points)
-        // For 24 hours: every 12th point (~120 points)
-        // For 48 hours: every 24th point (~120 points)
-        // For 7 days: every 84th point (~120 points)
         int decimationFactor = 1;
         if (hoursToFetch > 1) decimationFactor = 3;
         if (hoursToFetch > 6) decimationFactor = 6;
@@ -2363,31 +2345,34 @@ void ConfigManager::downloadAPI() {
         if (hoursToFetch > 48) decimationFactor = 24;
         if (hoursToFetch > 96) decimationFactor = 84;
         
+        Serial.printf("Decimation factor: %d\n", decimationFactor);
+        
         // Get list of log files
         std::vector<String> files = LoggerManager::getLogFiles();
+        Serial.printf("Found %d log files\n", files.size());
         
         bool firstDataPoint = true;
         int pointCounter = 0;
         int totalPointsProcessed = 0;
-        const int MAX_POINTS = 200; // Limit total points to send
+        const int MAX_POINTS = 100; // Reduced to 100 points to ensure memory safety
         
-        // Process only the most recent files based on hours requested
-        int filesToProcess = (hoursToFetch / 24) + 2; // Extra files for safety
+        // Process only the most recent files
+        int filesToProcess = min(3, (int)files.size()); // Process max 3 files
         int filesProcessed = 0;
         
         // Process files in reverse order (most recent first)
         for (int fileIdx = files.size() - 1; fileIdx >= 0 && filesProcessed < filesToProcess && totalPointsProcessed < MAX_POINTS; fileIdx--) {
             const String& filename = files[fileIdx];
-            
-            // Extract date from filename (format: temp_log_YYYY-MM-DD_N.csv)
-            int dateStart = filename.indexOf("temp_log_") + 9;
-            if (dateStart < 9) continue;
+            Serial.printf("Processing file: %s\n", filename.c_str());
             
             filesProcessed++;
             
             // Open file for reading
             File file = LoggerManager::openLogFile(filename, "data");
-            if (!file) continue;
+            if (!file) {
+                Serial.println("Failed to open file");
+                continue;
+            }
             
             // Skip header line
             if (file.available()) {
@@ -2402,13 +2387,13 @@ void ConfigManager::downloadAPI() {
                 // Only process every Nth line based on decimation
                 if (pointCounter++ % decimationFactor != 0) continue;
                 
-                // Parse only the required fields to save memory
+                // Parse only the required fields
                 int commaCount = 0;
                 int lastComma = -1;
                 String timeStr = "";
                 String tempStr = "";
                 
-                // We need to find the column for pointAddress + 2 (Date=0, Time=1, Point0=2, etc.)
+                // Target column for this point
                 int targetColumn = pointAddress + 2;
                 
                 for (int i = 0; i < line.length() && commaCount <= targetColumn; i++) {
@@ -2434,23 +2419,26 @@ void ConfigManager::downloadAPI() {
                 
                 // Parse temperature value
                 float temp = tempStr.toFloat();
-                if (temp == 0.0 && tempStr != "0" && tempStr != "0.0") continue; // Invalid temperature
+                if (temp == 0.0 && tempStr != "0" && tempStr != "0.0") continue;
                 
-                // Send data point
+                // Add data point to JSON
                 if (!firstDataPoint) {
-                    server->sendContent(",");
+                    jsonResponse += ",";
                 }
                 firstDataPoint = false;
                 
-                server->sendContent("{\"timestamp\":\"");
-                server->sendContent(timeStr.substring(0, 5)); // HH:MM
-                server->sendContent("\",\"temperature\":");
-                server->sendContent(String(temp, 1)); // 1 decimal place
-                server->sendContent("}");
+                jsonResponse += "{\"timestamp\":\"" + timeStr.substring(0, 5) + "\",";
+                jsonResponse += "\"temperature\":" + String(temp, 1) + "}";
                 
                 totalPointsProcessed++;
                 
-                // Yield to prevent watchdog reset
+                // Check memory usage periodically
+                if (jsonResponse.length() > 20000) {
+                    Serial.println("Response too large, stopping");
+                    break;
+                }
+                
+                // Yield to prevent watchdog
                 if (totalPointsProcessed % 10 == 0) {
                     yield();
                 }
@@ -2458,11 +2446,14 @@ void ConfigManager::downloadAPI() {
             file.close();
         }
         
-        server->sendContent("],\"alarmEvents\":[");
+        jsonResponse += "],\"alarmEvents\":[]}";
         
-        // Skip alarm events for now to save memory - can be added later if needed
+        Serial.printf("Total points: %d, Response size: %d bytes\n", totalPointsProcessed, jsonResponse.length());
         
-        server->sendContent("]}");
-        server->sendContent(""); // End chunk stream
+        // Send complete response
+        server->sendHeader("Content-Type", "application/json");
+        server->sendHeader("Access-Control-Allow-Origin", "*");
+        server->sendHeader("Cache-Control", "no-store");
+        server->send(200, "application/json", jsonResponse);
     });
 }
