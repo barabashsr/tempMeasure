@@ -2116,11 +2116,14 @@ std::vector<ConfigManager::AlarmEvent> ConfigManager::getAlarmEventsForPoint(
     
     for (const String& filename : files) {
         // Check if file is in date range
-        if (filename.startsWith("alarm_state_log_")) {
-            String fileDate = filename.substring(16, 26); // Extract YYYY-MM-DD
+        // Format is "alarm_states_YYYY-MM-DD.csv"
+        if (filename.startsWith("alarm_states_") && filename.endsWith(".csv")) {
+            // Extract date: remove "alarm_states_" (13 chars) and ".csv" (4 chars)
+            String fileDate = filename.substring(13, filename.length() - 4);
             
             // Simple date comparison (works for YYYY-MM-DD format)
             if (fileDate >= startDate && fileDate <= endDate) {
+                Serial.printf("Processing alarm file: %s (date: %s)\n", filename.c_str(), fileDate.c_str());
                 // Open and parse the file
                 File file = LoggerManager::openLogFile(filename, "alarms");
                 if (!file) continue;
@@ -2135,12 +2138,12 @@ std::vector<ConfigManager::AlarmEvent> ConfigManager::getAlarmEventsForPoint(
                     String line = file.readStringUntil('\n');
                     if (line.isEmpty()) continue;
                     
-                    // Parse CSV line: Date,Time,PointNumber,PointName,AlarmType,Priority,PreviousState,NewState,Temperature,Threshold
+                    // Parse CSV line: Timestamp,PointNumber,PointName,AlarmType,AlarmPriority,PreviousState,NewState,CurrentTemperature,Threshold
                     int commaCount = 0;
                     int lastComma = -1;
-                    String fields[10];
+                    String fields[9];
                     
-                    for (int i = 0; i <= line.length() && commaCount < 10; i++) {
+                    for (int i = 0; i <= line.length() && commaCount < 9; i++) {
                         if (i == line.length() || line.charAt(i) == ',') {
                             fields[commaCount] = line.substring(lastComma + 1, i);
                             lastComma = i;
@@ -2148,16 +2151,28 @@ std::vector<ConfigManager::AlarmEvent> ConfigManager::getAlarmEventsForPoint(
                         }
                     }
                     
-                    // Check if this is for our point
-                    if (commaCount >= 10 && fields[2].toInt() == pointAddress) {
+                    // Check if this is for our point (field 1 is PointNumber)
+                    if (commaCount >= 9 && fields[1].toInt() == pointAddress) {
                         AlarmEvent event;
-                        event.timestamp = fields[1]; // Time field
-                        event.type = fields[4];      // AlarmType
-                        event.newState = fields[7];  // NewState
                         
-                        // Parse temperature and threshold (they're in x10 format in logs)
-                        event.temperature = fields[8].toInt();
-                        event.threshold = fields[9].toInt();
+                        // Extract time from timestamp (format: "2025-07-25 23:51:37")
+                        String timestamp = fields[0];
+                        int spaceIndex = timestamp.indexOf(' ');
+                        if (spaceIndex > 0) {
+                            event.timestamp = timestamp.substring(spaceIndex + 1, spaceIndex + 6); // Get HH:MM
+                        } else {
+                            event.timestamp = timestamp; // Fallback
+                        }
+                        
+                        event.type = fields[3];      // AlarmType
+                        event.newState = fields[6];  // NewState
+                        
+                        // Parse temperature and threshold (not in x10 format in this log)
+                        event.temperature = fields[7].toInt();
+                        event.threshold = fields[8].toInt();
+                        
+                        Serial.printf("Found alarm event: Point %d, Type: %s, State: %s, Time: %s\n", 
+                                     pointAddress, event.type.c_str(), event.newState.c_str(), event.timestamp.c_str());
                         
                         events.push_back(event);
                     }
