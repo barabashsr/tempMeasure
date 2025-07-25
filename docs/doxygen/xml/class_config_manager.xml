@@ -110,7 +110,7 @@
         <referencedby refid="class_config_manager_1a0497343220fc493f5cf9574922508908" compoundref="_config_manager_8cpp" startline="161" endline="274">begin</referencedby>
         <referencedby refid="class_config_manager_1abb5e68671c5a8087abb50b289d3522b4" compoundref="_config_manager_8cpp" startline="139" endline="149">ConfigManager</referencedby>
         <referencedby refid="class_config_manager_1a9b7af07b85bf9cc3ac05603db6e89fd2" compoundref="_config_manager_8cpp" startline="1159" endline="1287">csvImportExportAPI</referencedby>
-        <referencedby refid="class_config_manager_1a3b28982c79587a287c8ddf0acf47f71d" compoundref="_config_manager_8cpp" startline="2174" endline="2653">downloadAPI</referencedby>
+        <referencedby refid="class_config_manager_1a3b28982c79587a287c8ddf0acf47f71d" compoundref="_config_manager_8cpp" startline="2174" endline="2689">downloadAPI</referencedby>
         <referencedby refid="class_config_manager_1a04edc14e642ecadb9ccb87be05d1d878" compoundref="_config_manager_8cpp" startline="472" endline="685">loadPointsConfig</referencedby>
         <referencedby refid="class_config_manager_1a471a844085c27f3a8a8f9394d9c14677" compoundref="_config_manager_8cpp" startline="1288" endline="1331">pointsAPI</referencedby>
         <referencedby refid="class_config_manager_1a798727e00c1f0ff18044bc4ae097be2e" compoundref="_config_manager_8cpp" startline="331" endline="333">resetMinMaxValues</referencedby>
@@ -138,7 +138,7 @@
         <referencedby refid="class_config_manager_1a0497343220fc493f5cf9574922508908" compoundref="_config_manager_8cpp" startline="161" endline="274">begin</referencedby>
         <referencedby refid="class_config_manager_1abb5e68671c5a8087abb50b289d3522b4" compoundref="_config_manager_8cpp" startline="139" endline="149">ConfigManager</referencedby>
         <referencedby refid="class_config_manager_1a9b7af07b85bf9cc3ac05603db6e89fd2" compoundref="_config_manager_8cpp" startline="1159" endline="1287">csvImportExportAPI</referencedby>
-        <referencedby refid="class_config_manager_1a3b28982c79587a287c8ddf0acf47f71d" compoundref="_config_manager_8cpp" startline="2174" endline="2653">downloadAPI</referencedby>
+        <referencedby refid="class_config_manager_1a3b28982c79587a287c8ddf0acf47f71d" compoundref="_config_manager_8cpp" startline="2174" endline="2689">downloadAPI</referencedby>
         <referencedby refid="class_config_manager_1ac880f2edae50caef8bcc750f7260a896" compoundref="_config_manager_8h" startline="189" endline="189">getWebServer</referencedby>
         <referencedby refid="class_config_manager_1a9e977107b4795fcbce0482711ff1ce7a" compoundref="_config_manager_8cpp" startline="1976" endline="2106">logsAPI</referencedby>
         <referencedby refid="class_config_manager_1a471a844085c27f3a8a8f9394d9c14677" compoundref="_config_manager_8cpp" startline="1288" endline="1331">pointsAPI</referencedby>
@@ -243,7 +243,7 @@
         <references refid="class_logger_manager_1a19e6a7d2c3ad2b1d3fa5acb578fb1619" compoundref="_logger_manager_8cpp" startline="1888" endline="1912">LoggerManager::getAlarmStateLogFiles</references>
         <references refid="class_logger_manager_1a92719154d919a9bd45a8ea192e70dfcc" compoundref="_logger_manager_8cpp" startline="1950" endline="1961">LoggerManager::openLogFile</references>
         <references refid="struct_config_manager_1_1_alarm_event_1a7fb1359e608c9de088e8fd8548fea2ad" compoundref="_config_manager_8h" startline="56">ConfigManager::AlarmEvent::timestamp</references>
-        <referencedby refid="class_config_manager_1a3b28982c79587a287c8ddf0acf47f71d" compoundref="_config_manager_8cpp" startline="2174" endline="2653">downloadAPI</referencedby>
+        <referencedby refid="class_config_manager_1a3b28982c79587a287c8ddf0acf47f71d" compoundref="_config_manager_8cpp" startline="2174" endline="2689">downloadAPI</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_config_manager_1adaa7d1493461e3f2684b92ffe5db62d4" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -437,7 +437,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/ConfigManager.h" line="129" column="10" bodyfile="src/ConfigManager.cpp" bodystart="2174" bodyend="2653"/>
+        <location file="include/ConfigManager.h" line="129" column="10" bodyfile="src/ConfigManager.cpp" bodystart="2174" bodyend="2689"/>
         <references refid="class_config_manager_1a68eeba761f112013757ddf298454407d" compoundref="_config_manager_8h" startline="48">controller</references>
         <references refid="class_config_manager_1aa425fe77d9c00f404f1c02327263f516" compoundref="_config_manager_8cpp" startline="2109" endline="2172">getAlarmEventsForPoint</references>
         <references refid="class_logger_manager_1a19e6a7d2c3ad2b1d3fa5acb578fb1619" compoundref="_logger_manager_8cpp" startline="1888" endline="1912">LoggerManager::getAlarmStateLogFiles</references>
@@ -565,7 +565,7 @@ Sets up file system, configuration, web server and all API endpoints </para>
         <references refid="class_config_manager_1a83b4217012bf8eda57fbfd8deca09dd2" compoundref="_config_manager_8cpp" startline="281" endline="293">connectWiFi</references>
         <references refid="class_config_manager_1a68eeba761f112013757ddf298454407d" compoundref="_config_manager_8h" startline="48">controller</references>
         <references refid="class_config_manager_1a9b7af07b85bf9cc3ac05603db6e89fd2" compoundref="_config_manager_8cpp" startline="1159" endline="1287">csvImportExportAPI</references>
-        <references refid="class_config_manager_1a3b28982c79587a287c8ddf0acf47f71d" compoundref="_config_manager_8cpp" startline="2174" endline="2653">downloadAPI</references>
+        <references refid="class_config_manager_1a3b28982c79587a287c8ddf0acf47f71d" compoundref="_config_manager_8cpp" startline="2174" endline="2689">downloadAPI</references>
         <references refid="class_config_manager_1a1d2c3a4f6b321f3e55394f0427781f71" compoundref="_config_manager_8h" startline="325" endline="325">getAcknowledgedDelayCritical</references>
         <references refid="class_config_manager_1a92531033b9698550c95e70408d3ca928" compoundref="_config_manager_8h" startline="331" endline="331">getAcknowledgedDelayHigh</references>
         <references refid="class_config_manager_1a8211fcec922c77f0245ea1eb95be5e4d" compoundref="_config_manager_8h" startline="343" endline="343">getAcknowledgedDelayLow</references>

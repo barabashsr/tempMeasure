@@ -2429,9 +2429,18 @@ void ConfigManager::downloadAPI() {
         
         // Process files in reverse order (most recent first)
         int validDataPoints = 0; // Count of non-null data points
+        unsigned long processingStartTime = millis(); // Add timeout tracking
+        const unsigned long MAX_PROCESSING_TIME = 5000; // 5 second timeout
+        
         for (int fileIdx = files.size() - 1; fileIdx >= 0 && filesProcessed < filesToProcess && totalPointsProcessed < MAX_POINTS; fileIdx--) {
             const String& filename = files[fileIdx];
             Serial.printf("Processing file: %s\n", filename.c_str());
+            
+            // Check for timeout
+            if (millis() - processingStartTime > MAX_PROCESSING_TIME) {
+                Serial.println("Temperature history processing timeout - sending partial data");
+                break;
+            }
             
             filesProcessed++;
             
@@ -2450,7 +2459,21 @@ void ConfigManager::downloadAPI() {
             // Read data lines
             int emptyLinesInRow = 0;
             int linesRead = 0;
+            int linesInThisFile = 0;
+            
             while (file.available() && totalPointsProcessed < MAX_POINTS) {
+                // Yield periodically to prevent watchdog
+                if (linesInThisFile++ % 100 == 0) {
+                    yield();
+                    
+                    // Also check timeout here
+                    if (millis() - processingStartTime > MAX_PROCESSING_TIME) {
+                        Serial.println("Timeout during file processing");
+                        file.close();
+                        break;
+                    }
+                }
+                
                 String line = file.readStringUntil('\n');
                 if (line.isEmpty()) continue;
                 linesRead++;
@@ -2481,8 +2504,21 @@ void ConfigManager::downloadAPI() {
                             long fileSize = file.size();
                             Serial.printf("No data in first %d lines, jumping to end (file size: %ld)\n", 
                                         emptyLinesInRow, fileSize);
-                            file.seek(fileSize - 50000); // Jump to last 50KB
-                            file.readStringUntil('\n'); // Skip partial line
+                            
+                            // Check if file is too small to jump
+                            if (fileSize > 50000) {
+                                file.seek(fileSize - 50000); // Jump to last 50KB
+                                file.readStringUntil('\n'); // Skip partial line
+                            } else if (fileSize > 1000) {
+                                // For smaller files, just skip to near the end
+                                file.seek(fileSize - 1000);
+                                file.readStringUntil('\n'); // Skip partial line
+                            } else {
+                                // File is too small, probably a new file - skip it entirely
+                                Serial.println("File too small, skipping to next file");
+                                break;
+                            }
+                            
                             emptyLinesInRow = 0;
                             linesRead = 0;
                             pointCounter = 0; // Reset decimation counter
