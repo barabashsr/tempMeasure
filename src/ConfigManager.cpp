@@ -2354,7 +2354,7 @@ void ConfigManager::downloadAPI() {
         bool firstDataPoint = true;
         int pointCounter = 0;
         int totalPointsProcessed = 0;
-        const int MAX_POINTS = 100; // Reduced to 100 points to ensure memory safety
+        const int MAX_POINTS = 200; // Increased to handle null values and ensure we get some real data
         
         // Process only the most recent files
         int filesToProcess = min(3, (int)files.size()); // Process max 3 files
@@ -2424,16 +2424,18 @@ void ConfigManager::downloadAPI() {
                 
                 if (!hasData) {
                     emptyLinesInRow++;
-                    // Skip ahead if we've seen too many empty lines in a row
-                    if (emptyLinesInRow > 100) {
-                        // Jump to near the end of the file
+                    // If we have too many empty lines and haven't found any data yet,
+                    // skip ahead to find actual data
+                    if (emptyLinesInRow > 50 && totalPointsProcessed < 10) {
+                        // Jump to near the end of the file where data likely exists
                         long currentPos = file.position();
                         long fileSize = file.size();
-                        if (fileSize - currentPos > 10000) {
-                            file.seek(fileSize - 10000);
+                        if (fileSize - currentPos > 20000) {
+                            // Jump to last 20KB of file
+                            file.seek(fileSize - 20000);
                             file.readStringUntil('\n'); // Skip partial line
                             emptyLinesInRow = 0;
-                            Serial.println("Skipping to end of file due to empty data");
+                            Serial.println("Skipping to end of file to find data");
                         }
                     }
                 } else {

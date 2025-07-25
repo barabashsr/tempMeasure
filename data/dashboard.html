@@ -716,7 +716,12 @@
             fetch(`/api/temperature-history?point=${pointAddress}&hours=${hours}`)
                 .then(response => response.json())
                 .then(data => {
+                    console.log('Received data:', data);
                     if (data.success) {
+                        // Check if we have any non-null data points
+                        const validData = data.data.filter(point => point.temperature !== null);
+                        console.log(`Total points: ${data.data.length}, Valid points: ${validData.length}`);
+                        
                         renderChart(data);
                         chartModal.style.display = 'block';
                     } else {
@@ -740,6 +745,9 @@
         // Render chart using Chart.js
         function renderChart(data) {
             const ctx = document.getElementById('temperatureChart').getContext('2d');
+            
+            // Debug: Log the first few data points
+            console.log('First 5 data points:', data.data.slice(0, 5));
             
             // Prepare data for Chart.js
             const chartData = {

@@ -506,7 +506,7 @@ Initializes alarm with NEW stage, current timestamp, and default timeouts. Gener
         </inbodydescription>
         <location file="include/Alarm.h" line="116" column="19" bodyfile="include/Alarm.h" bodystart="116" bodyend="116"/>
         <references refid="class_alarm_1a605637fd697184aa6c1a003e80703a47" compoundref="_alarm_8h" startline="334">_timestamp</references>
-        <referencedby refid="class_temperature_controller_1a477597992aa9362076843f37b648741a" compoundref="_temperature_controller_8cpp" startline="1903" endline="1938">TemperatureController::_updateAlarmQueues</referencedby>
+        <referencedby refid="class_temperature_controller_1a477597992aa9362076843f37b648741a" compoundref="_temperature_controller_8cpp" startline="1904" endline="1939">TemperatureController::_updateAlarmQueues</referencedby>
         <referencedby refid="struct_alarm_comparator_1a9e59c2531a3bd641d0b3d0cc10bffe54" compoundref="_alarm_8h" startline="389" endline="394">AlarmComparator::operator()</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_alarm_1afaa86db89313d8b1c211c3c8faf5b898" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
@@ -658,7 +658,7 @@ Initializes alarm with NEW stage, current timestamp, and default timeouts. Gener
         <references refid="class_logger_manager_1a5c1373ccc47f4112b596fe6f84fbbc21" compoundref="_logger_manager_8h" startline="145" endline="147">LoggerManager::info</references>
         <references refid="class_logger_manager_1aa74d58708cf5cdf8ddafad648edadcf7" compoundref="_logger_manager_8cpp" startline="893" endline="900">LoggerManager::logAlarmStateChange</references>
         <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba24d459a81449d7210c8f9a86c2913034" compoundref="_alarm_8h" startline="46">NEW</references>
-        <referencedby refid="class_temperature_controller_1a5f1c8fce1e5efb637bfe86bdb609a3b7" compoundref="_temperature_controller_8cpp" startline="364" endline="370">TemperatureController::acknowledgeHighestPriorityAlarm</referencedby>
+        <referencedby refid="class_temperature_controller_1a5f1c8fce1e5efb637bfe86bdb609a3b7" compoundref="_temperature_controller_8cpp" startline="365" endline="371">TemperatureController::acknowledgeHighestPriorityAlarm</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_alarm_1adc66e3d22e173b00c59b040369030a17" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -827,7 +827,7 @@ Checks current measurement point values against alarm thresholds </para>
         <references refid="class_alarm_1a1f87216f47e3421c09b6a2531963b24d" compoundref="_alarm_8h" startline="331">_source</references>
         <references refid="class_alarm_1a5f0ead4dbd06aa64bd316d99dc587302" compoundref="_alarm_8cpp" startline="386" endline="395">getStageString</references>
         <references refid="class_alarm_1abd578ec75a5ac9bce00b7ce7207c5d8c" compoundref="_alarm_8cpp" startline="376" endline="384">getTypeString</references>
-        <referencedby refid="class_temperature_controller_1a5f1c8fce1e5efb637bfe86bdb609a3b7" compoundref="_temperature_controller_8cpp" startline="364" endline="370">TemperatureController::acknowledgeHighestPriorityAlarm</referencedby>
+        <referencedby refid="class_temperature_controller_1a5f1c8fce1e5efb637bfe86bdb609a3b7" compoundref="_temperature_controller_8cpp" startline="365" endline="371">TemperatureController::acknowledgeHighestPriorityAlarm</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_alarm_1a34e3136dd5e8a5ca9fd2ac3a0c442ca3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -992,7 +992,7 @@ Checks current measurement point values against alarm thresholds </para>
         <references refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2ab4fed37e8cab6ef5684a361be786d8de" compoundref="_alarm_8h" startline="37">SENSOR_DISCONNECTED</references>
         <references refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2a3993b9fcdbf9ec59e873519a4d02fe2f" compoundref="_alarm_8h" startline="36">SENSOR_ERROR</references>
         <referencedby refid="class_alarm_1aa14f5a764303b269f04573867e2e4fc8" compoundref="_alarm_8cpp" startline="107" endline="136">acknowledge</referencedby>
-        <referencedby refid="class_temperature_controller_1ac5c3403746d7c850bf7929bf5ee3448a" compoundref="_temperature_controller_8cpp" startline="1543" endline="1599">TemperatureController::addAlarm</referencedby>
+        <referencedby refid="class_temperature_controller_1ac5c3403746d7c850bf7929bf5ee3448a" compoundref="_temperature_controller_8cpp" startline="1544" endline="1600">TemperatureController::addAlarm</referencedby>
         <referencedby refid="class_alarm_1abf159b68e429d66de4ab2d10c2ccd44b" compoundref="_alarm_8cpp" startline="46" endline="73">Alarm</referencedby>
         <referencedby refid="class_alarm_1adc66e3d22e173b00c59b040369030a17" compoundref="_alarm_8cpp" startline="140" endline="157">clear</referencedby>
         <referencedby refid="class_alarm_1adaf4b74537e11d5643ba5a8ae07fe10e" compoundref="_alarm_8cpp" startline="364" endline="370">getStatusText</referencedby>
@@ -1080,9 +1080,9 @@ Checks current measurement point values against alarm thresholds </para>
         </inbodydescription>
         <location file="include/Alarm.h" line="256" column="10" bodyfile="src/Alarm.cpp" bodystart="427" bodyend="429"/>
         <references refid="class_alarm_1a784bac1bc016f0facc76176d893e3a90" compoundref="_alarm_8h" startline="343">_configKey</references>
-        <referencedby refid="class_temperature_controller_1ac5c3403746d7c850bf7929bf5ee3448a" compoundref="_temperature_controller_8cpp" startline="1543" endline="1599">TemperatureController::addAlarm</referencedby>
-        <referencedby refid="class_temperature_controller_1aa64384fb8503814b46a7d55f53ccb53a" compoundref="_temperature_controller_8cpp" startline="329" endline="351">TemperatureController::createAlarm</referencedby>
-        <referencedby refid="class_temperature_controller_1ad174e0411bd48422d8e3812fd28a7a0b" compoundref="_temperature_controller_8cpp" startline="417" endline="454">TemperatureController::ensureAlarmsForPoint</referencedby>
+        <referencedby refid="class_temperature_controller_1ac5c3403746d7c850bf7929bf5ee3448a" compoundref="_temperature_controller_8cpp" startline="1544" endline="1600">TemperatureController::addAlarm</referencedby>
+        <referencedby refid="class_temperature_controller_1aa64384fb8503814b46a7d55f53ccb53a" compoundref="_temperature_controller_8cpp" startline="330" endline="352">TemperatureController::createAlarm</referencedby>
+        <referencedby refid="class_temperature_controller_1ad174e0411bd48422d8e3812fd28a7a0b" compoundref="_temperature_controller_8cpp" startline="418" endline="455">TemperatureController::ensureAlarmsForPoint</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_alarm_1ab1d04e5776db50454c72fd0937acdc37" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -1137,8 +1137,8 @@ Checks current measurement point values against alarm thresholds </para>
         <references refid="class_alarm_1abd578ec75a5ac9bce00b7ce7207c5d8c" compoundref="_alarm_8cpp" startline="376" endline="384">getTypeString</references>
         <references refid="class_logger_manager_1a5c1373ccc47f4112b596fe6f84fbbc21" compoundref="_logger_manager_8h" startline="145" endline="147">LoggerManager::info</references>
         <referencedby refid="class_c_s_v_config_manager_1a7ecf23e1c03fa194bcf3afe52408d378" compoundref="_c_s_v_config_manager_8cpp" startline="140" endline="161">CSVConfigManager::_parseAlarmFromCSV</referencedby>
-        <referencedby refid="class_temperature_controller_1ad174e0411bd48422d8e3812fd28a7a0b" compoundref="_temperature_controller_8cpp" startline="417" endline="454">TemperatureController::ensureAlarmsForPoint</referencedby>
-        <referencedby refid="class_temperature_controller_1a93bd31914a054a4e1df9be7e3966b82e" compoundref="_temperature_controller_8cpp" startline="1616" endline="1624">TemperatureController::updateAlarm</referencedby>
+        <referencedby refid="class_temperature_controller_1ad174e0411bd48422d8e3812fd28a7a0b" compoundref="_temperature_controller_8cpp" startline="418" endline="455">TemperatureController::ensureAlarmsForPoint</referencedby>
+        <referencedby refid="class_temperature_controller_1a93bd31914a054a4e1df9be7e3966b82e" compoundref="_temperature_controller_8cpp" startline="1617" endline="1625">TemperatureController::updateAlarm</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_alarm_1ab12dd2af567dd87228d9404dcce5b0c0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>uint8_t</type>
@@ -1194,8 +1194,8 @@ Checks current measurement point values against alarm thresholds </para>
         <references refid="class_alarm_1a1f87216f47e3421c09b6a2531963b24d" compoundref="_alarm_8h" startline="331">_source</references>
         <references refid="class_alarm_1abd578ec75a5ac9bce00b7ce7207c5d8c" compoundref="_alarm_8cpp" startline="376" endline="384">getTypeString</references>
         <references refid="class_logger_manager_1a5c1373ccc47f4112b596fe6f84fbbc21" compoundref="_logger_manager_8h" startline="145" endline="147">LoggerManager::info</references>
-        <referencedby refid="class_temperature_controller_1ad174e0411bd48422d8e3812fd28a7a0b" compoundref="_temperature_controller_8cpp" startline="417" endline="454">TemperatureController::ensureAlarmsForPoint</referencedby>
-        <referencedby refid="class_temperature_controller_1a93bd31914a054a4e1df9be7e3966b82e" compoundref="_temperature_controller_8cpp" startline="1616" endline="1624">TemperatureController::updateAlarm</referencedby>
+        <referencedby refid="class_temperature_controller_1ad174e0411bd48422d8e3812fd28a7a0b" compoundref="_temperature_controller_8cpp" startline="418" endline="455">TemperatureController::ensureAlarmsForPoint</referencedby>
+        <referencedby refid="class_temperature_controller_1a93bd31914a054a4e1df9be7e3966b82e" compoundref="_temperature_controller_8cpp" startline="1617" endline="1625">TemperatureController::updateAlarm</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_alarm_1a79ff8006ed51c565db4395350a25ad4e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1310,7 +1310,7 @@ Checks current measurement point values against alarm thresholds </para>
         </inbodydescription>
         <location file="include/Alarm.h" line="304" column="10" bodyfile="src/Alarm.cpp" bodystart="628" bodyend="630"/>
         <references refid="class_alarm_1a4ab562dd3179820f3694cbbd23b9dad5" compoundref="_alarm_8h" startline="342">_acknowledgedDelay</references>
-        <referencedby refid="class_temperature_controller_1ac5c3403746d7c850bf7929bf5ee3448a" compoundref="_temperature_controller_8cpp" startline="1543" endline="1599">TemperatureController::addAlarm</referencedby>
+        <referencedby refid="class_temperature_controller_1ac5c3403746d7c850bf7929bf5ee3448a" compoundref="_temperature_controller_8cpp" startline="1544" endline="1600">TemperatureController::addAlarm</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_alarm_1a585cf91e94a0e74d0ce1f6ce46c06614" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>unsigned long</type>

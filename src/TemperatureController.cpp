@@ -212,32 +212,33 @@ void TemperatureController::updateAlarms() {
         return;
     }
     _lastAlarmCheck = currentTime;
-    
-    Serial.println("=== Checking alarms with fresh sensor data ===");
+    // TODO: implement debug output levels
+    // Serial.println("=== Checking alarms with fresh sensor data ===");
     
     // Check all measurement points for NEW alarm conditions
-    for (uint8_t i = 0; i < 50; ++i) {
-        if (dsPoints[i].getBoundSensor() != nullptr) {
-            Serial.printf("DS Point %d: Temp=%d, High=%d, Low=%d\n",
-                         i, dsPoints[i].getCurrentTemp(),
-                         dsPoints[i].getHighAlarmThreshold(),
-                         dsPoints[i].getLowAlarmThreshold());
-            //_checkPointForAlarms(&dsPoints[i]);
-        }
-    }
+    // for (uint8_t i = 0; i < 50; ++i) {
+    //     if (dsPoints[i].getBoundSensor() != nullptr) {
+    //         Serial.printf("DS Point %d: Temp=%d, High=%d, Low=%d\n",
+    //                      i, dsPoints[i].getCurrentTemp(),
+    //                      dsPoints[i].getHighAlarmThreshold(),
+    //                      dsPoints[i].getLowAlarmThreshold());
+    //         //_checkPointForAlarms(&dsPoints[i]);
+    //     }
+    // }
     
-    for (uint8_t i = 0; i < 10; ++i) {
-        if (ptPoints[i].getBoundSensor() != nullptr) {
-            Serial.printf("PT Point %d: Temp=%d, High=%d, Low=%d\n",
-                         i, ptPoints[i].getCurrentTemp(),
-                         ptPoints[i].getHighAlarmThreshold(),
-                         ptPoints[i].getLowAlarmThreshold());
-            //_checkPointForAlarms(&ptPoints[i]);
-        }
-    }
+    // for (uint8_t i = 0; i < 10; ++i) {
+    //     if (ptPoints[i].getBoundSensor() != nullptr) {
+    //         Serial.printf("PT Point %d: Temp=%d, High=%d, Low=%d\n",
+    //                      i, ptPoints[i].getCurrentTemp(),
+    //                      ptPoints[i].getHighAlarmThreshold(),
+    //                      ptPoints[i].getLowAlarmThreshold());
+    //         //_checkPointForAlarms(&ptPoints[i]);
+    //     }
+    // }
     
     // Update existing configured alarms (do NOT remove resolved alarms)
-    Serial.println("=== Updating existing alarms ===");
+    // TODO: implement debug output levels
+    //Serial.println("=== Updating existing alarms ===");
     
     // First, check for active sensor errors
     std::vector<MeasurementPoint*> pointsWithSensorError;
@@ -271,8 +272,8 @@ void TemperatureController::updateAlarms() {
     
     // Sort alarms by priority
     std::sort(_configuredAlarms.begin(), _configuredAlarms.end(), AlarmComparator());
-    
-    Serial.printf("Active alarms count: %d\n", getActiveAlarms().size());
+    // TODO: implement debug output levels
+    //Serial.printf("Active alarms count: %d\n", getActiveAlarms().size());
     
     // Debug: Print all current alarms
     for (auto alarm : _configuredAlarms) {
