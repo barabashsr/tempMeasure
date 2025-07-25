@@ -2380,12 +2380,18 @@ void ConfigManager::downloadAPI() {
             }
             
             // Read data lines
+            int emptyLinesInRow = 0;
             while (file.available() && totalPointsProcessed < MAX_POINTS) {
                 String line = file.readStringUntil('\n');
                 if (line.isEmpty()) continue;
                 
                 // Only process every Nth line based on decimation
                 if (pointCounter++ % decimationFactor != 0) continue;
+                
+                // Debug first line parsing
+                if (totalPointsProcessed == 0 && filesProcessed == 1) {
+                    Serial.printf("First data line: %s\n", line.substring(0, 50).c_str());
+                }
                 
                 // Parse only the required fields
                 int commaCount = 0;
@@ -2396,8 +2402,12 @@ void ConfigManager::downloadAPI() {
                 // Target column for this point
                 int targetColumn = pointAddress + 2;
                 
-                for (int i = 0; i < line.length() && commaCount <= targetColumn; i++) {
-                    if (line.charAt(i) == ',') {
+                if (totalPointsProcessed == 0) {
+                    Serial.printf("Looking for point %d in column %d\n", pointAddress, targetColumn);
+                }
+                
+                for (int i = 0; i <= line.length(); i++) {
+                    if (i == line.length() || line.charAt(i) == ',') {
                         if (commaCount == 1) {
                             timeStr = line.substring(lastComma + 1, i);
                         } else if (commaCount == targetColumn) {
@@ -2409,17 +2419,37 @@ void ConfigManager::downloadAPI() {
                     }
                 }
                 
-                // Handle last field if it's our target
-                if (commaCount == targetColumn && tempStr.isEmpty()) {
-                    tempStr = line.substring(lastComma + 1);
+                // Skip if no temperature data
+                if (tempStr.isEmpty() || tempStr == " ") {
+                    emptyLinesInRow++;
+                    // Skip ahead if we've seen too many empty lines
+                    if (emptyLinesInRow > 100) {
+                        // Jump to near the end of the file
+                        long currentPos = file.position();
+                        long fileSize = file.size();
+                        if (fileSize - currentPos > 10000) {
+                            file.seek(fileSize - 10000);
+                            file.readStringUntil('\n'); // Skip partial line
+                            emptyLinesInRow = 0;
+                            Serial.println("Skipping to end of file due to empty data");
+                        }
+                    }
+                    continue;
                 }
                 
-                // Skip if no temperature data
-                if (tempStr.isEmpty() || tempStr == " ") continue;
+                emptyLinesInRow = 0; // Reset counter when we find data
                 
                 // Parse temperature value
                 float temp = tempStr.toFloat();
-                if (temp == 0.0 && tempStr != "0" && tempStr != "0.0") continue;
+                
+                // Skip invalid temperatures
+                if (temp == 0.0 && tempStr != "0") continue;
+                
+                // Debug logging
+                if (totalPointsProcessed < 5) {
+                    Serial.printf("Debug: timeStr='%s', tempStr='%s', parsed temp=%.1f\n", 
+                                  timeStr.c_str(), tempStr.c_str(), temp);
+                }
                 
                 // Add data point to JSON
                 if (!firstDataPoint) {
