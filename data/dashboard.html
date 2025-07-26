@@ -1550,6 +1550,11 @@
                 return;
             }
             
+            // Check if date adapter is loaded
+            if (!Chart._adapters || !Chart._adapters._date) {
+                console.warn('Date adapter not loaded properly, using basic date handling');
+            }
+            
             const ctx = document.getElementById('temperatureChart').getContext('2d');
             
             // Destroy existing chart if it exists
@@ -1962,11 +1967,6 @@
                                             day: 'numeric' 
                                         });
                                     }
-                                }
-                            },
-                            adapters: {
-                                date: {
-                                    zone: 'utc'
                                 }
                             }
                         },
