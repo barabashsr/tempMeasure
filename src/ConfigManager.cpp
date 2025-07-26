@@ -68,7 +68,7 @@ const char* VARIABLES_DEF_YAML PROGMEM = R"~(
     Wifi settings:
       - st_ssid:
           label: WiFi SSID
-          default: Tenda_B3E6F0_EXT
+          default: Tenda_B3E6F0
       - st_pass:
           label: WiFi Password
           default: a111222333
