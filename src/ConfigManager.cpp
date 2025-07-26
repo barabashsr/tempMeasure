@@ -2486,18 +2486,36 @@ void ConfigManager::downloadAPI() {
         int totalPointsProcessed = 0;
         const int MAX_POINTS = 500; // Increased for better data density and smooth charts
         
-        // Process only the most recent files
-        int filesToProcess = min(3, (int)files.size()); // Process max 3 files
+        // Calculate how many files to process based on time range
+        int daysToProcess = (hoursToFetch + 23) / 24; // Round up
+        int filesToProcess = min(daysToProcess + 1, (int)files.size()); // +1 for partial days
         int filesProcessed = 0;
+        
+        Serial.printf("Time range: %d hours = %d days, will process %d files\n", 
+                     hoursToFetch, daysToProcess, filesToProcess);
         
         // Process files in reverse order (most recent first)
         int validDataPoints = 0; // Count of non-null data points
         unsigned long processingStartTime = millis(); // Add timeout tracking
         const unsigned long MAX_PROCESSING_TIME = 5000; // 5 second timeout
         
+        // Calculate target file index range based on date
+        time_t now;
+        time(&now);
+        struct tm* currentTime = localtime(&now);
+        
         for (int fileIdx = files.size() - 1; fileIdx >= 0 && filesProcessed < filesToProcess && totalPointsProcessed < MAX_POINTS; fileIdx--) {
             const String& filename = files[fileIdx];
-            Serial.printf("Processing file: %s\n", filename.c_str());
+            
+            // Extract date from filename (temp_log_YYYY-MM-DD.csv)
+            if (filename.startsWith("temp_log_") && filename.endsWith(".csv")) {
+                String fileDateStr = filename.substring(9, 19); // Extract YYYY-MM-DD
+                
+                // TODO: Add proper date comparison to skip files outside the requested range
+                // For now, process files based on count
+            }
+            
+            Serial.printf("Processing file %d/%d: %s\n", filesProcessed + 1, filesToProcess, filename.c_str());
             
             // Check for timeout
             if (millis() - processingStartTime > MAX_PROCESSING_TIME) {
@@ -2837,26 +2855,52 @@ void ConfigManager::downloadAPI() {
         // Get alarm events
         std::vector<AlarmEvent> events = getAlarmEventsForPoint(pointAddress, startDate, endDate);
         
+        // Filter alarm events to match the exact time range requested
+        time_t currentTimestamp;
+        time(&currentTimestamp);
+        time_t startTime = currentTimestamp - (hoursToFetch * 3600); // Convert hours to seconds
+        
+        jsonResponse += ",\"alarmEvents\":[";
         bool firstEvent = true;
+        int includedEvents = 0;
+        
         for (const auto& event : events) {
-            // Filter events to match the requested time range
-            // For now, include all events from the date range
+            // Parse event timestamp to check if it's within the time range
+            // Format: "YYYY-MM-DDTHH:MM:SS"
+            struct tm eventTm = {0};
+            int year, month, day, hour, min, sec;
+            if (sscanf(event.timestamp.c_str(), "%d-%d-%dT%d:%d:%d", 
+                      &year, &month, &day, &hour, &min, &sec) == 6) {
+                eventTm.tm_year = year - 1900;
+                eventTm.tm_mon = month - 1;
+                eventTm.tm_mday = day;
+                eventTm.tm_hour = hour;
+                eventTm.tm_min = min;
+                eventTm.tm_sec = sec;
+                time_t eventTime = mktime(&eventTm);
+                
+                // Only include events within the requested time range
+                if (eventTime >= startTime && eventTime <= currentTimestamp) {
+                    if (!firstEvent) jsonResponse += ",";
+                    firstEvent = false;
+                    includedEvents++;
             
-            if (!firstEvent) jsonResponse += ",";
-            firstEvent = false;
-            
-            jsonResponse += "{\"timestamp\":\"" + event.timestamp + "\"";
-            jsonResponse += ",\"type\":\"" + event.type + "\"";  
-            jsonResponse += ",\"state\":\"" + event.newState + "\"";
-            // Alarm state logs store actual temperature values, not x10 format
-            jsonResponse += ",\"temperature\":" + String(event.temperature);
-            jsonResponse += ",\"threshold\":" + String(event.threshold) + "}";
+                    jsonResponse += "{\"timestamp\":\"" + event.timestamp + "\"";
+                    jsonResponse += ",\"type\":\"" + event.type + "\"";  
+                    jsonResponse += ",\"state\":\"" + event.newState + "\"";
+                    // Alarm state logs store actual temperature values, not x10 format
+                    jsonResponse += ",\"temperature\":" + String(event.temperature);
+                    jsonResponse += ",\"threshold\":" + String(event.threshold) + "}";
+                } else {
+                    Serial.printf("Skipping alarm event outside time range: %s\n", event.timestamp.c_str());
+                }
+            }
         }
         
         jsonResponse += "]}";
         
-        Serial.printf("Total points: %d, Valid data points: %d, Alarm events: %d, Response size: %d bytes\n", 
-                     totalPointsProcessed, validDataPoints, events.size(), jsonResponse.length());
+        Serial.printf("Total points: %d, Valid data points: %d, Alarm events: %d included, %d total, Response size: %d bytes\n", 
+                     totalPointsProcessed, validDataPoints, includedEvents, events.size(), jsonResponse.length());
         
         // Send complete response
         server->sendHeader("Content-Type", "application/json");

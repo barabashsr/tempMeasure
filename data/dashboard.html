@@ -760,9 +760,17 @@
             
             // Request denser data for better visualization
             const densityParam = hours <= 6 ? '&density=high' : '';
+            // Add timestamp to prevent caching
+            const timestamp = new Date().getTime();
             
             // Fetch temperature history
-            fetch(`/api/temperature-history?point=${pointAddress}&hours=${hours}${densityParam}`)
+            fetch(`/api/temperature-history?point=${pointAddress}&hours=${hours}${densityParam}&t=${timestamp}`, {
+                cache: 'no-cache',
+                headers: {
+                    'Cache-Control': 'no-cache',
+                    'Pragma': 'no-cache'
+                }
+            })
                 .then(response => response.json())
                 .then(data => {
                     console.log('Received data:', data);
@@ -778,8 +786,10 @@
                         const filtersDiv = document.getElementById('alarmFilters');
                         if (data.alarmEvents && data.alarmEvents.length > 0) {
                             filtersDiv.style.display = 'block';
+                            console.log(`Showing alarm filters for ${data.alarmEvents.length} events`);
                         } else {
                             filtersDiv.style.display = 'none';
+                            console.log('No alarm events found, hiding filters');
                         }
                         
                         renderChart(data);
@@ -798,6 +808,8 @@
         function updateChart() {
             if (currentPointAddress !== null) {
                 const pointName = document.getElementById('chartPointName').textContent;
+                // Clear existing chart data to force refresh
+                currentChartData = null;
                 showChart(currentPointAddress, pointName);
             }
         }
@@ -929,10 +941,15 @@
                         }
                     };
                     
-                    // Store event data for tooltips
-                    if (!data.alarmEventMap) data.alarmEventMap = {};
+                });
+                
+                // Store filtered events in data for tooltips
+                if (!data.alarmEventMap) data.alarmEventMap = {};
+                filteredEvents.forEach(event => {
                     data.alarmEventMap[event.timestamp] = event;
                 });
+                
+                console.log('Alarm event map created with', Object.keys(data.alarmEventMap).length, 'events');
             }
             
             // Chart configuration
@@ -960,19 +977,23 @@
                             callbacks: {
                                 afterLabel: function(context) {
                                     // Check if there's an alarm event at or near this timestamp
-                                    const timestamp = context.label;
+                                    const timestamp = context.parsed.x; // Use parsed timestamp
                                     const tooltipItems = [];
                                     
-                                    // Check for exact match or nearby events (within 1 minute)
+                                    // Debug logging
+                                    if (context.dataIndex === 0) {
+                                        console.log('Tooltip timestamp:', timestamp, 'type:', typeof timestamp);
+                                        console.log('Available alarm events:', Object.keys(data.alarmEventMap || {}));
+                                    }
+                                    
+                                    // Check for exact match or nearby events (within 5 minutes)
                                     if (data.alarmEventMap) {
-                                        const currentTime = new Date(timestamp).getTime();
-                                        
                                         Object.entries(data.alarmEventMap).forEach(([eventTime, event]) => {
                                             const eventTimeMs = new Date(eventTime).getTime();
-                                            const timeDiff = Math.abs(currentTime - eventTimeMs);
+                                            const timeDiff = Math.abs(timestamp - eventTimeMs);
                                             
-                                            // Show event if within 1 minute
-                                            if (timeDiff <= 60000) {
+                                            // Show event if within 5 minutes (300000ms)
+                                            if (timeDiff <= 300000) {
                                                 if (tooltipItems.length === 0) {
                                                     tooltipItems.push('');
                                                     tooltipItems.push('🚨 ALARM EVENTS:');
@@ -983,6 +1004,7 @@
                                                 tooltipItems.push(`  State: ${event.state}`);
                                                 tooltipItems.push(`  Threshold: ${event.threshold}°C`);
                                                 tooltipItems.push(`  Temperature: ${event.temperature}°C`);
+                                                tooltipItems.push(`  Time: ${new Date(eventTime).toLocaleTimeString()}`);
                                             }
                                         });
                                     }
