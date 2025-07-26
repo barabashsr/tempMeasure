@@ -810,6 +810,7 @@
                 // Process files and collect data
                 let allData = [];
                 let totalProcessed = 0;
+                let lastFileEndTime = null;
                 
                 for (let fileIndex = 0; fileIndex < relevantFiles.length; fileIndex++) {
                     const file = relevantFiles[fileIndex];
@@ -827,6 +828,10 @@
                     // Parse CSV
                     const lines = csvText.split('\n');
                     const columnIndex = pointAddress + 2; // Date, Time, then sensor columns
+                    
+                    let fileData = [];
+                    let firstTimestamp = null;
+                    let lastTimestamp = null;
                     
                     // Skip header
                     for (let i = 1; i < lines.length; i++) {
@@ -846,10 +851,13 @@
                             // Check if this data point is within our time range
                             if (dataTime >= startTime && dataTime <= now) {
                                 const temperature = tempStr && tempStr !== ' ' ? parseFloat(tempStr) : null;
-                                allData.push({
+                                fileData.push({
                                     timestamp: timestamp,
                                     temperature: temperature
                                 });
+                                
+                                if (!firstTimestamp) firstTimestamp = dataTime;
+                                lastTimestamp = dataTime;
                             }
                         }
                         
@@ -859,8 +867,71 @@
                         }
                     }
                     
+                    // If we have data from this file
+                    if (fileData.length > 0) {
+                        // Check if there's a gap between files
+                        if (lastFileEndTime && firstTimestamp) {
+                            const gap = firstTimestamp.getTime() - lastFileEndTime.getTime();
+                            const measurementInterval = 2000; // 2 seconds for testing (will be 60000 for production)
+                            
+                            // If gap is more than 2 measurement intervals, add a null point to create visual gap
+                            if (gap > measurementInterval * 2) {
+                                // Add a null point slightly after the last data point of previous file
+                                const gapStartTime = new Date(lastFileEndTime.getTime() + measurementInterval);
+                                allData.push({
+                                    timestamp: gapStartTime.toISOString().substring(0, 19),
+                                    temperature: null
+                                });
+                                
+                                // Add a null point slightly before the first data point of current file
+                                const gapEndTime = new Date(firstTimestamp.getTime() - measurementInterval);
+                                allData.push({
+                                    timestamp: gapEndTime.toISOString().substring(0, 19),
+                                    temperature: null
+                                });
+                            }
+                        }
+                        
+                        // Process file data to add gaps within the file where data is missing
+                        const processedFileData = [];
+                        const measurementInterval = 2000; // 2 seconds for testing
+                        const maxGapWithoutBreak = measurementInterval * 3; // If gap is more than 3 intervals, add break
+                        
+                        for (let i = 0; i < fileData.length; i++) {
+                            processedFileData.push(fileData[i]);
+                            
+                            // Check for gaps within file (except for last point)
+                            if (i < fileData.length - 1) {
+                                const currentTime = new Date(fileData[i].timestamp).getTime();
+                                const nextTime = new Date(fileData[i + 1].timestamp).getTime();
+                                const gap = nextTime - currentTime;
+                                
+                                // If there's a significant gap, add null points
+                                if (gap > maxGapWithoutBreak) {
+                                    // Add null point after current to break the line
+                                    const breakStart = new Date(currentTime + measurementInterval);
+                                    processedFileData.push({
+                                        timestamp: breakStart.toISOString().substring(0, 19),
+                                        temperature: null
+                                    });
+                                    
+                                    // Add null point before next to resume the line
+                                    const breakEnd = new Date(nextTime - measurementInterval);
+                                    processedFileData.push({
+                                        timestamp: breakEnd.toISOString().substring(0, 19),
+                                        temperature: null
+                                    });
+                                }
+                            }
+                        }
+                        
+                        // Add all processed data from this file
+                        allData.push(...processedFileData);
+                        lastFileEndTime = lastTimestamp;
+                    }
+                    
                     totalProcessed++;
-                    console.log(`Processed ${file.filename}: ${allData.length} points so far`);
+                    console.log(`Processed ${file.filename}: ${fileData.length} points from this file, ${allData.length} total points`);
                 }
                 
                 console.log(`Finished loading all data: ${allData.length} total points`);
