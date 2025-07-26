@@ -1971,11 +1971,24 @@
                 window.tempDownloadData = null;
             }
             
-            // Reset date inputs to current day only
+            // Reset date inputs to current day only when closing modal
+            // This ensures fresh date range for each new chart
             const today = new Date();
             const todayStr = today.toISOString().split('T')[0];
-            document.getElementById('startDate').value = todayStr;
-            document.getElementById('endDate').value = todayStr;
+            
+            // Check if the date inputs exist in the DOM
+            try {
+                const dateFromInput = document.getElementById('chartDateFrom');
+                const dateToInput = document.getElementById('chartDateTo');
+                
+                if (dateFromInput && dateToInput) {
+                    dateFromInput.value = todayStr;
+                    dateToInput.value = todayStr;
+                }
+            } catch (e) {
+                // Silently ignore if elements don't exist
+                console.debug('Date inputs not found, skipping reset');
+            }
             
             // Clear canvas element to ensure no references remain
             const canvas = document.getElementById('temperatureChart');
