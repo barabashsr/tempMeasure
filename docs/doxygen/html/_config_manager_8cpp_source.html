@@ -2353,7 +2353,7 @@ $(function(){initNavTree('_config_manager_8cpp_source.html','',''); });
 <div class="line"><a id="l02241" name="l02241"></a><span class="lineno"> 2241</span>        <span class="comment">// Get list of temperature data log files</span></div>
 <div class="line"><a id="l02242" name="l02242"></a><span class="lineno"> 2242</span>        std::vector&lt;String&gt; files = <a class="code hl_function" href="class_logger_manager.html#a2b670504d6ebd0c2c2f833caed6842d5">LoggerManager::getLogFiles</a>();</div>
 <div class="line"><a id="l02243" name="l02243"></a><span class="lineno"> 2243</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> String&amp; filename : files) {</div>
-<div class="line"><a id="l02244" name="l02244"></a><span class="lineno"> 2244</span>            JsonObject fileObj = filesArray.createNestedObject();</div>
+<div class="line"><a id="l02244" name="l02244"></a><span class="lineno"> 2244</span>            JsonObject fileObj = filesArray.add&lt;JsonObject&gt;();</div>
 <div class="line"><a id="l02245" name="l02245"></a><span class="lineno"> 2245</span>            fileObj[<span class="stringliteral">&quot;filename&quot;</span>] = filename;</div>
 <div class="line"><a id="l02246" name="l02246"></a><span class="lineno"> 2246</span>            </div>
 <div class="line"><a id="l02247" name="l02247"></a><span class="lineno"> 2247</span>            <span class="comment">// Get file info using static method</span></div>
@@ -2386,7 +2386,7 @@ $(function(){initNavTree('_config_manager_8cpp_source.html','',''); });
 <div class="line"><a id="l02274" name="l02274"></a><span class="lineno"> 2274</span>        <span class="comment">// Get list of event log files</span></div>
 <div class="line"><a id="l02275" name="l02275"></a><span class="lineno"> 2275</span>        std::vector&lt;String&gt; files = <a class="code hl_function" href="class_logger_manager.html#a782a868803b4e2861169796aad7b8b60">LoggerManager::getEventLogFilesStatic</a>();</div>
 <div class="line"><a id="l02276" name="l02276"></a><span class="lineno"> 2276</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> String&amp; filename : files) {</div>
-<div class="line"><a id="l02277" name="l02277"></a><span class="lineno"> 2277</span>            JsonObject fileObj = filesArray.createNestedObject();</div>
+<div class="line"><a id="l02277" name="l02277"></a><span class="lineno"> 2277</span>            JsonObject fileObj = filesArray.add&lt;JsonObject&gt;();</div>
 <div class="line"><a id="l02278" name="l02278"></a><span class="lineno"> 2278</span>            fileObj[<span class="stringliteral">&quot;filename&quot;</span>] = filename;</div>
 <div class="line"><a id="l02279" name="l02279"></a><span class="lineno"> 2279</span>            </div>
 <div class="line"><a id="l02280" name="l02280"></a><span class="lineno"> 2280</span>            <span class="comment">// Get file info using static method</span></div>
@@ -2419,7 +2419,7 @@ $(function(){initNavTree('_config_manager_8cpp_source.html','',''); });
 <div class="line"><a id="l02307" name="l02307"></a><span class="lineno"> 2307</span>        <span class="comment">// Get list of alarm state log files</span></div>
 <div class="line"><a id="l02308" name="l02308"></a><span class="lineno"> 2308</span>        std::vector&lt;String&gt; files = <a class="code hl_function" href="class_logger_manager.html#a19e6a7d2c3ad2b1d3fa5acb578fb1619">LoggerManager::getAlarmStateLogFiles</a>();</div>
 <div class="line"><a id="l02309" name="l02309"></a><span class="lineno"> 2309</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> String&amp; filename : files) {</div>
-<div class="line"><a id="l02310" name="l02310"></a><span class="lineno"> 2310</span>            JsonObject fileObj = filesArray.createNestedObject();</div>
+<div class="line"><a id="l02310" name="l02310"></a><span class="lineno"> 2310</span>            JsonObject fileObj = filesArray.add&lt;JsonObject&gt;();</div>
 <div class="line"><a id="l02311" name="l02311"></a><span class="lineno"> 2311</span>            fileObj[<span class="stringliteral">&quot;filename&quot;</span>] = filename;</div>
 <div class="line"><a id="l02312" name="l02312"></a><span class="lineno"> 2312</span>            </div>
 <div class="line"><a id="l02313" name="l02313"></a><span class="lineno"> 2313</span>            <span class="comment">// Get file info using static method</span></div>
@@ -2972,7 +2972,7 @@ $(function(){initNavTree('_config_manager_8cpp_source.html','',''); });
 <div class="line"><a id="l02860" name="l02860"></a><span class="lineno"> 2860</span>        </div>
 <div class="line"><a id="l02861" name="l02861"></a><span class="lineno"> 2861</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> String&amp; filename : files) {</div>
 <div class="line"><a id="l02862" name="l02862"></a><span class="lineno"> 2862</span>            <span class="keywordflow">if</span> (filename.startsWith(<span class="stringliteral">&quot;temp_log_&quot;</span>) &amp;&amp; filename.endsWith(<span class="stringliteral">&quot;.csv&quot;</span>)) {</div>
-<div class="line"><a id="l02863" name="l02863"></a><span class="lineno"> 2863</span>                JsonObject fileObj = filesArray.createNestedObject();</div>
+<div class="line"><a id="l02863" name="l02863"></a><span class="lineno"> 2863</span>                JsonObject fileObj = filesArray.add&lt;JsonObject&gt;();</div>
 <div class="line"><a id="l02864" name="l02864"></a><span class="lineno"> 2864</span>                fileObj[<span class="stringliteral">&quot;filename&quot;</span>] = filename;</div>
 <div class="line"><a id="l02865" name="l02865"></a><span class="lineno"> 2865</span>                </div>
 <div class="line"><a id="l02866" name="l02866"></a><span class="lineno"> 2866</span>                <span class="comment">// Extract date from filename</span></div>

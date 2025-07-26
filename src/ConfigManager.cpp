@@ -2241,7 +2241,7 @@ void ConfigManager::downloadAPI() {
         // Get list of temperature data log files
         std::vector<String> files = LoggerManager::getLogFiles();
         for (const String& filename : files) {
-            JsonObject fileObj = filesArray.createNestedObject();
+            JsonObject fileObj = filesArray.add<JsonObject>();
             fileObj["filename"] = filename;
             
             // Get file info using static method
@@ -2274,7 +2274,7 @@ void ConfigManager::downloadAPI() {
         // Get list of event log files
         std::vector<String> files = LoggerManager::getEventLogFilesStatic();
         for (const String& filename : files) {
-            JsonObject fileObj = filesArray.createNestedObject();
+            JsonObject fileObj = filesArray.add<JsonObject>();
             fileObj["filename"] = filename;
             
             // Get file info using static method
@@ -2307,7 +2307,7 @@ void ConfigManager::downloadAPI() {
         // Get list of alarm state log files
         std::vector<String> files = LoggerManager::getAlarmStateLogFiles();
         for (const String& filename : files) {
-            JsonObject fileObj = filesArray.createNestedObject();
+            JsonObject fileObj = filesArray.add<JsonObject>();
             fileObj["filename"] = filename;
             
             // Get file info using static method
@@ -2860,7 +2860,7 @@ void ConfigManager::downloadAPI() {
         
         for (const String& filename : files) {
             if (filename.startsWith("temp_log_") && filename.endsWith(".csv")) {
-                JsonObject fileObj = filesArray.createNestedObject();
+                JsonObject fileObj = filesArray.add<JsonObject>();
                 fileObj["filename"] = filename;
                 
                 // Extract date from filename

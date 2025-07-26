@@ -147,6 +147,108 @@
             background: #e0e0e0;
         }
         
+        .chart-controls button.btn-primary {
+            background: #3f51b5;
+            color: white;
+            border-color: #3f51b5;
+        }
+        
+        .chart-controls button.btn-primary:hover {
+            background: #283593;
+            border-color: #283593;
+        }
+        
+        /* Alarm filter pills */
+        .alarm-filter-container {
+            margin: 15px 0;
+            padding: 10px;
+            background: #f5f5f5;
+            border-radius: 4px;
+        }
+        
+        .filter-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+        
+        .filter-pill {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 12px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 16px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .filter-pill:hover {
+            background: #f0f0f0;
+        }
+        
+        .filter-pill.active {
+            color: white;
+            border-width: 2px;
+        }
+        
+        /* Transition-specific colors */
+        .filter-pill.transition-to-active {
+            background: #f44336;
+            border-color: #f44336;
+        }
+        
+        .filter-pill.transition-to-acknowledged {
+            background: #ff9800;
+            border-color: #ff9800;
+        }
+        
+        .filter-pill.transition-to-resolved {
+            background: #4caf50;
+            border-color: #4caf50;
+        }
+        
+        .filter-pill .remove {
+            margin-left: 6px;
+            font-weight: bold;
+            opacity: 0.7;
+        }
+        
+        .filter-pill.active .remove:hover {
+            opacity: 1;
+        }
+        
+        .alarm-legend {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #ddd;
+            font-size: 14px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .legend-color {
+            width: 20px;
+            height: 4px;
+            border-radius: 2px;
+        }
+        
+        .legend-color.active {
+            background-color: #f44336;
+        }
+        
+        .legend-color.resolved {
+            background-color: #4caf50;
+        }
+        
         /* Alarm filters */
         .alarm-filters {
             margin: 15px 0;
@@ -292,19 +394,49 @@
             <h2>Temperature Trend Chart - <span id="chartPointName"></span></h2>
             
             <!-- Alarm Event Filters -->
-            <div class="alarm-filters" id="alarmFilters" style="display: none;">
-                <div class="filter-group">
-                    <div class="filter-group-title">Alarm Types:</div>
-                    <label><input type="checkbox" class="alarm-type-filter" value="HIGH_TEMPERATURE" checked> High Temperature</label>
-                    <label><input type="checkbox" class="alarm-type-filter" value="LOW_TEMPERATURE" checked> Low Temperature</label>
-                    <label><input type="checkbox" class="alarm-type-filter" value="SENSOR_ERROR" checked> Sensor Error</label>
+            <div class="alarm-filter-container" id="alarmFilters">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <strong>Alarm Events</strong>
+                    <label style="display: flex; align-items: center; gap: 5px; font-weight: normal;">
+                        <input type="checkbox" id="showAlarms" checked>
+                        Show Alarms
+                    </label>
                 </div>
-                <div class="filter-group">
-                    <div class="filter-group-title">Alarm States:</div>
-                    <label><input type="checkbox" class="alarm-state-filter" value="ACTIVE" checked> Active</label>
-                    <label><input type="checkbox" class="alarm-state-filter" value="ACKNOWLEDGED" checked> Acknowledged</label>
-                    <label><input type="checkbox" class="alarm-state-filter" value="CLEARED" checked> Cleared</label>
-                    <label><input type="checkbox" class="alarm-state-filter" value="RESOLVED" checked> Resolved</label>
+                <div class="filter-pills" id="alarmFilterPills">
+                    <!-- Default filters will be added here by JavaScript -->
+                </div>
+                
+                <!-- Add filter dropdowns -->
+                <div style="display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap;">
+                    <select id="addTransitionFilter" style="padding: 5px; font-size: 14px;">
+                        <option value="">+ Add Transition</option>
+                        <option value="NEW-ACTIVE">NEW → ACTIVE</option>
+                        <option value="NEW-RESOLVED">NEW → RESOLVED</option>
+                        <option value="ACTIVE-ACKNOWLEDGED">ACTIVE → ACKNOWLEDGED</option>
+                        <option value="ACTIVE-CLEARED">ACTIVE → CLEARED</option>
+                        <option value="ACTIVE-RESOLVED">ACTIVE → RESOLVED</option>
+                        <option value="ACKNOWLEDGED-ACTIVE">ACKNOWLEDGED → ACTIVE</option>
+                        <option value="ACKNOWLEDGED-CLEARED">ACKNOWLEDGED → CLEARED</option>
+                        <option value="ACKNOWLEDGED-RESOLVED">ACKNOWLEDGED → RESOLVED</option>
+                        <option value="CLEARED-ACTIVE">CLEARED → ACTIVE</option>
+                        <option value="CLEARED-RESOLVED">CLEARED → RESOLVED</option>
+                        <option value="RESOLVED-ACTIVE">RESOLVED → ACTIVE</option>
+                    </select>
+                    
+                    <select id="addTypeFilter" style="padding: 5px; font-size: 14px;">
+                        <option value="">+ Add Type</option>
+                        <option value="HIGH_TEMP">HIGH_TEMP</option>
+                        <option value="LOW_TEMP">LOW_TEMP</option>
+                        <option value="SENSOR_ERROR">SENSOR_ERROR</option>
+                    </select>
+                    
+                    <select id="addPriorityFilter" style="padding: 5px; font-size: 14px;">
+                        <option value="">+ Add Priority</option>
+                        <option value="LOW">LOW</option>
+                        <option value="MEDIUM">MEDIUM</option>
+                        <option value="HIGH">HIGH</option>
+                        <option value="URGENT">URGENT</option>
+                    </select>
                 </div>
             </div>
             
@@ -313,13 +445,13 @@
                     <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
                         <div>
                             <label>From:</label>
-                            <input type="datetime-local" id="chartDateFrom" style="padding: 4px 8px;">
+                            <input type="date" id="chartDateFrom" style="padding: 4px 8px;">
                         </div>
                         <div>
                             <label>To:</label>
-                            <input type="datetime-local" id="chartDateTo" style="padding: 4px 8px;">
+                            <input type="date" id="chartDateTo" style="padding: 4px 8px;">
                         </div>
-                        <button onclick="updateChart()">Update</button>
+                        <button onclick="updateChart()" class="btn-primary">Update</button>
                     </div>
                     <div style="display: flex; gap: 5px;">
                         <button onclick="zoomChart('in')" title="Zoom In" style="padding: 6px 10px; font-weight: bold;">🔍➕</button>
@@ -764,26 +896,150 @@
         let temperatureChart = null;
         let currentPointAddress = null;
         let currentChartData = null; // Store current data for filtering
+        let currentAlarms = []; // Store current alarms for tooltip access
+        let currentStartTime = null; // Store current start time for date range
+        let currentEndTime = null; // Store current end time for date range
         const chartModal = document.getElementById('chartModal');
         const chartCloseBtn = document.getElementById('chartCloseBtn');
+        const showAlarmsCheckbox = document.getElementById('showAlarms');
+        
+        // Alarm filter state
+        const alarmFilters = {
+            transitions: [
+                { from: 'RESOLVED', to: 'ACTIVE', color: '#f44336', label: 'RESOLVED → ACTIVE' },
+                { from: 'ACKNOWLEDGED', to: 'RESOLVED', color: '#4caf50', label: 'ACKNOWLEDGED → RESOLVED' },
+                { from: 'ACTIVE', to: 'RESOLVED', color: '#4caf50', label: 'ACTIVE → RESOLVED' }
+            ],
+            types: ['HIGH_TEMP', 'LOW_TEMP', 'SENSOR_ERROR'],
+            priorities: ['LOW', 'MEDIUM', 'HIGH', 'URGENT']
+        };
+        
+        let activeFilters = {
+            transitions: ['RESOLVED→ACTIVE', 'ACKNOWLEDGED→RESOLVED', 'ACTIVE→RESOLVED'],
+            types: ['HIGH_TEMP', 'LOW_TEMP', 'SENSOR_ERROR'],
+            priorities: ['LOW', 'MEDIUM', 'HIGH', 'URGENT']
+        };
+        
+        // Initialize alarm filter pills
+        function initializeAlarmFilters() {
+            const container = document.getElementById('alarmFilterPills');
+            container.innerHTML = '';
+            
+            // Add default transition filters
+            activeFilters.transitions.forEach(transition => {
+                const pill = createFilterPill(transition, 'transition');
+                container.appendChild(pill);
+            });
+        }
+        
+        // Create a filter pill element
+        function createFilterPill(value, type) {
+            const pill = document.createElement('div');
+            pill.className = 'filter-pill active';
+            pill.dataset.value = value;
+            pill.dataset.type = type;
+            
+            // Apply color based on transition type
+            if (type === 'transition') {
+                const [from, to] = value.split('-');
+                if (to === 'ACTIVE') {
+                    pill.classList.add('transition-to-active');
+                } else if (to === 'ACKNOWLEDGED') {
+                    pill.classList.add('transition-to-acknowledged');
+                } else if (to === 'RESOLVED' || to === 'CLEARED') {
+                    pill.classList.add('transition-to-resolved');
+                }
+            }
+            
+            const label = document.createElement('span');
+            label.textContent = value.replace('→', ' → ');
+            pill.appendChild(label);
+            
+            const remove = document.createElement('span');
+            remove.className = 'remove';
+            remove.textContent = '×';
+            remove.onclick = (e) => {
+                e.stopPropagation();
+                removeFilter(value, type);
+            };
+            pill.appendChild(remove);
+            
+            pill.onclick = () => toggleFilter(value, type);
+            
+            return pill;
+        }
+        
+        // Toggle filter active state
+        function toggleFilter(value, type) {
+            const pill = document.querySelector(`.filter-pill[data-value="${value}"][data-type="${type}"]`);
+            if (pill) {
+                pill.classList.toggle('active');
+                updateActiveFilters();
+                if (currentChartData) {
+                    updateChartWithAlarms();
+                }
+            }
+        }
+        
+        // Remove filter
+        function removeFilter(value, type) {
+            const pill = document.querySelector(`.filter-pill[data-value="${value}"][data-type="${type}"]`);
+            if (pill) {
+                pill.remove();
+                updateActiveFilters();
+                if (currentChartData) {
+                    updateChartWithAlarms();
+                }
+            }
+        }
+        
+        // Update active filters from UI
+        function updateActiveFilters() {
+            // Reset active states in filter objects
+            alarmFilters.transitions.forEach(t => t.active = false);
+            alarmFilters.types.forEach(t => t.active = false);
+            alarmFilters.priorities.forEach(p => p.active = false);
+            
+            // Update based on active pills
+            document.querySelectorAll('.filter-pill.active').forEach(pill => {
+                const value = pill.dataset.value;
+                const type = pill.dataset.type;
+                
+                if (type === 'transition') {
+                    const transition = alarmFilters.transitions.find(t => `${t.from}-${t.to}` === value);
+                    if (transition) transition.active = true;
+                } else if (type === 'type') {
+                    const typeFilter = alarmFilters.types.find(t => t.type === value);
+                    if (typeFilter) typeFilter.active = true;
+                } else if (type === 'priority') {
+                    const priorityFilter = alarmFilters.priorities.find(p => p.priority === value);
+                    if (priorityFilter) priorityFilter.active = true;
+                }
+            });
+        }
+        
+        // Update chart with new alarm filters
+        function updateChartWithAlarms() {
+            if (currentChartData && temperatureChart) {
+                renderChart(currentChartData, currentStartTime, currentEndTime);
+            }
+        }
         
         // Initialize date inputs with default values
         function initializeDateInputs() {
             const now = new Date();
             const yesterday = new Date(now.getTime() - 24 * 60 * 60 * 1000);
             
-            // Format for datetime-local input (YYYY-MM-DDTHH:MM)
-            const formatDateTime = (date) => {
+            // Format for date input (YYYY-MM-DD)
+            const formatDate = (date) => {
                 const year = date.getFullYear();
                 const month = String(date.getMonth() + 1).padStart(2, '0');
                 const day = String(date.getDate()).padStart(2, '0');
-                const hours = String(date.getHours()).padStart(2, '0');
-                const minutes = String(date.getMinutes()).padStart(2, '0');
-                return `${year}-${month}-${day}T${hours}:${minutes}`;
+                return `${year}-${month}-${day}`;
             };
             
-            document.getElementById('chartDateFrom').value = formatDateTime(yesterday);
-            document.getElementById('chartDateTo').value = formatDateTime(now);
+            document.getElementById('chartDateFrom').value = formatDate(yesterday);
+            document.getElementById('chartDateTo').value = formatDate(now);
         }
         
         // CSV parser function
@@ -811,6 +1067,7 @@
         // Show chart function - Using direct file access
         async function showChart(pointAddress, pointName) {
             currentPointAddress = pointAddress;
+            currentSensorIndex = pointAddress; // Set current sensor index for alarm filtering
             document.getElementById('chartPointName').textContent = pointName;
             
             // Initialize date inputs if they're empty
@@ -818,9 +1075,17 @@
                 initializeDateInputs();
             }
             
-            // Get selected time range from date inputs
-            const startTime = new Date(document.getElementById('chartDateFrom').value);
-            const endTime = new Date(document.getElementById('chartDateTo').value);
+            // Get selected date range from date inputs
+            const startDate = document.getElementById('chartDateFrom').value;
+            const endDate = document.getElementById('chartDateTo').value;
+            
+            // Create Date objects at start and end of day
+            const startTime = new Date(startDate + 'T00:00:00');
+            const endTime = new Date(endDate + 'T23:59:59');
+            
+            // Store in global variables
+            currentStartTime = startTime;
+            currentEndTime = endTime;
             
             // Validate dates
             if (startTime >= endTime) {
@@ -1040,11 +1305,11 @@
                 // Store current data
                 currentChartData = completeData;
                 
-                // Hide alarm filters since we're not showing alarm events
+                // Show alarm filters container
                 const filtersDiv = document.getElementById('alarmFilters');
-                filtersDiv.style.display = 'none';
+                filtersDiv.style.display = 'block';
                 
-                renderChart(completeData);
+                renderChart(completeData, currentStartTime, currentEndTime);
                 chartModal.style.display = 'block';
                 
             } catch (error) {
@@ -1070,8 +1335,219 @@
             return { types: typeFilters, states: stateFilters };
         }
         
+        // Load alarm data for current sensor
+        async function loadAlarmData(startTime, endTime) {
+            if (!showAlarmsCheckbox.checked || currentSensorIndex === null) {
+                return [];
+            }
+
+            try {
+                // Get list of alarm files
+                const response = await fetch('/api/alarm-log-files');
+                const data = await response.json();
+                
+                if (!data.files || data.files.length === 0) {
+                    console.log('No alarm files available');
+                    return [];
+                }
+
+                // Get active transition filters
+                const activeTransitions = alarmFilters.transitions.filter(t => t.active);
+                const activeTypes = alarmFilters.types.filter(t => t.active);
+                const activePriorities = alarmFilters.priorities.filter(p => p.active);
+
+                // Load alarm data from files
+                let allAlarms = [];
+                
+                // Filter files based on date range
+                const filesToProcess = data.files.filter(file => {
+                    // Extract date from filename (e.g., "alarm_states_2025-07-25.csv")
+                    const match = file.filename.match(/alarm_states_(\d{4}-\d{2}-\d{2})\.csv/);
+                    if (!match) return false;
+                    
+                    const fileDate = new Date(match[1] + 'T00:00:00');
+                    const endDatePlusOne = new Date(endTime);
+                    endDatePlusOne.setDate(endDatePlusOne.getDate() + 1); // Include the end date
+                    
+                    return fileDate >= new Date(startTime.toDateString()) && fileDate < endDatePlusOne;
+                });
+                
+                console.log(`Loading alarm files for date range ${startTime.toLocaleDateString()} to ${endTime.toLocaleDateString()}`);
+                console.log(`Found ${filesToProcess.length} relevant alarm files:`, filesToProcess.map(f => f.filename));
+                
+                let totalLinesProcessed = 0;
+                let alarmsBeforeFilters = 0;
+                
+                for (const file of filesToProcess) {
+                    try {
+                        const fileResponse = await fetch(`/api/alarm-log-download?file=${encodeURIComponent(file.filename)}`);
+                        const csvText = await fileResponse.text();
+                        
+                        // Parse CSV
+                        const lines = csvText.trim().split('\n');
+                        if (lines.length <= 1) continue; // Skip if no data
+                        
+                        // Skip header
+                        for (let i = 1; i < lines.length; i++) {
+                            const line = lines[i].trim();
+                            if (!line) continue;
+                            
+                            totalLinesProcessed++;
+                            
+                            const parts = line.split(',');
+                            if (parts.length < 9) continue;
+                            
+                            const [timestamp, pointNumber, pointName, alarmType, alarmPriority, 
+                                   previousState, newState, currentTemp, threshold] = parts;
+                            
+                            alarmsBeforeFilters++;
+                            
+                            // Filter by current sensor
+                            if (parseInt(pointNumber) !== currentSensorIndex) continue;
+                            
+                            // Filter by type
+                            if (activeTypes.length > 0 && !activeTypes.some(t => t.type === alarmType)) continue;
+                            
+                            // Filter by priority
+                            if (activePriorities.length > 0 && !activePriorities.some(p => p.priority === alarmPriority)) continue;
+                            
+                            // Filter by transition
+                            const transition = activeTransitions.find(t => 
+                                t.from === previousState && t.to === newState
+                            );
+                            
+                            if (!transition) continue;
+                            
+                            // Parse timestamp (format: "2025-07-25 23:51:37")
+                            // Simply pass the string to Date constructor - it will parse as local time
+                            const alarmTime = new Date(timestamp);
+                            if (isNaN(alarmTime.getTime())) {
+                                console.warn('Invalid alarm timestamp:', timestamp);
+                                continue;
+                            }
+                            
+                            
+                            allAlarms.push({
+                                timestamp: alarmTime,
+                                type: alarmType,
+                                priority: alarmPriority,
+                                transition: `${previousState} → ${newState}`,
+                                color: transition.color,
+                                temperature: parseFloat(currentTemp),
+                                threshold: parseFloat(threshold),
+                                rawTimestamp: timestamp // Keep raw for debugging
+                            });
+                        }
+                    } catch (err) {
+                        console.error('Error processing alarm file:', file.filename, err);
+                    }
+                }
+                
+                // Sort by timestamp
+                allAlarms.sort((a, b) => a.timestamp - b.timestamp);
+                
+                console.log(`Alarm loading statistics:`, {
+                    totalLinesProcessed,
+                    alarmsBeforeFilters,
+                    alarmsAfterFilters: allAlarms.length,
+                    currentSensorIndex,
+                    activeTransitions: activeTransitions.map(t => `${t.from}→${t.to}`)
+                });
+                
+                if (allAlarms.length > 0) {
+                    console.log('First alarm:', {
+                        timestamp: allAlarms[0].timestamp,
+                        isoString: allAlarms[0].timestamp.toISOString(),
+                        localString: allAlarms[0].timestamp.toLocaleString(),
+                        rawTimestamp: allAlarms[0].rawTimestamp
+                    });
+                    console.log('All alarms:', allAlarms);
+                }
+                return allAlarms;
+                
+            } catch (error) {
+                console.error('Error loading alarm data:', error);
+                return [];
+            }
+        }
+
+        // Add alarm markers to chart
+        function addAlarmMarkers(chart, alarms) {
+            // Remove existing alarm annotations
+            if (chart.options.plugins.annotation) {
+                const annotations = chart.options.plugins.annotation.annotations;
+                Object.keys(annotations).forEach(key => {
+                    if (key.startsWith('alarm_')) {
+                        delete annotations[key];
+                    }
+                });
+            }
+            
+            if (!alarms || alarms.length === 0) return;
+            
+            // Group alarms by timestamp (for stacking)
+            const alarmGroups = {};
+            alarms.forEach(alarm => {
+                const key = alarm.timestamp.getTime();
+                if (!alarmGroups[key]) {
+                    alarmGroups[key] = [];
+                }
+                alarmGroups[key].push(alarm);
+            });
+            
+            // Add annotations for each alarm group
+            Object.entries(alarmGroups).forEach(([timestamp, alarmGroup], index) => {
+                const alarmTime = new Date(parseInt(timestamp));
+                
+                // Create annotation
+                if (!chart.options.plugins.annotation) {
+                    chart.options.plugins.annotation = { annotations: {} };
+                }
+                
+                // Format timestamp to match temperature data format (YYYY-MM-DDTHH:MM:SS)
+                const year = alarmTime.getFullYear();
+                const month = String(alarmTime.getMonth() + 1).padStart(2, '0');
+                const day = String(alarmTime.getDate()).padStart(2, '0');
+                const hours = String(alarmTime.getHours()).padStart(2, '0');
+                const minutes = String(alarmTime.getMinutes()).padStart(2, '0');
+                const seconds = String(alarmTime.getSeconds()).padStart(2, '0');
+                const alarmTimeStr = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
+                
+                // Debug logging
+                if (index < 3) { // Log first 3 alarms
+                    console.log(`Alarm ${index} timestamp:`, {
+                        original: alarmTime,
+                        formatted: alarmTimeStr,
+                        group: alarmGroup
+                    });
+                }
+                
+                chart.options.plugins.annotation.annotations[`alarm_${index}`] = {
+                    type: 'line',
+                    xMin: alarmTimeStr,
+                    xMax: alarmTimeStr,
+                    borderColor: alarmGroup[0].color,
+                    borderWidth: 3,
+                    label: {
+                        enabled: true,
+                        content: alarmGroup.length > 1 ? `${alarmGroup.length}` : '',
+                        position: 'start',
+                        backgroundColor: alarmGroup[0].color,
+                        color: 'white',
+                        font: {
+                            size: 10,
+                            weight: 'bold'
+                        }
+                    }
+                };
+            });
+            
+            // Update chart
+            chart.update('none');
+        }
+        
         // Render chart using Chart.js
-        function renderChart(data) {
+        async function renderChart(data, startTime, endTime) {
             const ctx = document.getElementById('temperatureChart').getContext('2d');
             
             // Destroy existing chart if it exists
@@ -1083,6 +1559,12 @@
             // Get active filters
             const filters = getActiveFilters();
             
+            // Load alarm data if enabled
+            currentAlarms = [];
+            if (showAlarmsCheckbox.checked) {
+                currentAlarms = await loadAlarmData(startTime, endTime);
+            }
+            
             // Debug: Log the first few data points
             console.log('First 5 data points:', data.data.slice(0, 5));
             console.log('Data density info:', {
@@ -1090,6 +1572,15 @@
                 hoursRequested: data.hours,
                 expectedInterval: (data.hours * 60) / data.data.length + ' minutes per point'
             });
+            
+            // Debug: Check timestamp format
+            if (data.data.length > 0) {
+                console.log('Temperature timestamp format:', {
+                    raw: data.data[0].timestamp,
+                    type: typeof data.data[0].timestamp,
+                    parsed: new Date(data.data[0].timestamp)
+                });
+            }
             
             // Prepare data for Chart.js
             const chartData = {
@@ -1282,26 +1773,26 @@
                                     }
                                     
                                     // Check for exact match or nearby events (within 5 minutes)
-                                    if (data.alarmEventMap) {
-                                        Object.entries(data.alarmEventMap).forEach(([eventTime, event]) => {
-                                            const eventTimeMs = new Date(eventTime).getTime();
-                                            const timeDiff = Math.abs(timestamp - eventTimeMs);
-                                            
-                                            // Show event if within 5 minutes (300000ms)
-                                            if (timeDiff <= 300000) {
-                                                if (tooltipItems.length === 0) {
-                                                    tooltipItems.push('');
-                                                    tooltipItems.push('🚨 ALARM EVENTS:');
-                                                }
-                                                
-                                                const typeDisplay = event.type.replace(/_/g, ' ');
-                                                tooltipItems.push(`• ${typeDisplay}`);
-                                                tooltipItems.push(`  State: ${event.state}`);
-                                                tooltipItems.push(`  Threshold: ${event.threshold}°C`);
-                                                tooltipItems.push(`  Temperature: ${event.temperature}°C`);
-                                                tooltipItems.push(`  Time: ${new Date(eventTime).toLocaleTimeString()}`);
-                                            }
+                                    if (currentAlarms && currentAlarms.length > 0) {
+                                        const nearbyAlarms = currentAlarms.filter(alarm => {
+                                            const timeDiff = Math.abs(timestamp - alarm.timestamp.getTime());
+                                            return timeDiff <= 300000; // Within 5 minutes
                                         });
+                                        
+                                        if (nearbyAlarms.length > 0) {
+                                            tooltipItems.push('');
+                                            tooltipItems.push('🚨 ALARM EVENTS:');
+                                            
+                                            nearbyAlarms.forEach(alarm => {
+                                                const typeDisplay = alarm.type.replace(/_/g, ' ');
+                                                tooltipItems.push(`• ${typeDisplay} (${alarm.priority})`);
+                                                tooltipItems.push(`  ${alarm.transition}`);
+                                                tooltipItems.push(`  Threshold: ${alarm.threshold}°C`);
+                                                tooltipItems.push(`  Temperature: ${alarm.temperature}°C`);
+                                                tooltipItems.push(`  Time: ${alarm.timestamp.toLocaleTimeString()}`);
+                                                tooltipItems.push(''); // Spacer between alarms
+                                            });
+                                        }
                                     }
                                     
                                     return tooltipItems;
@@ -1407,6 +1898,11 @@
             
             // Create new chart (existing chart already destroyed at start of renderChart)
             temperatureChart = new Chart(ctx, config);
+            
+            // Add alarm markers if there are any
+            if (currentAlarms.length > 0) {
+                addAlarmMarkers(temperatureChart, currentAlarms);
+            }
         }
         
         // Close modal handlers
@@ -1436,10 +1932,95 @@
             document.querySelectorAll('.alarm-type-filter, .alarm-state-filter').forEach(checkbox => {
                 checkbox.addEventListener('change', function() {
                     if (currentChartData) {
-                        renderChart(currentChartData);
+                        renderChart(currentChartData, currentStartTime, currentEndTime);
                     }
                 });
             });
+            
+            // Add event listener for show alarms checkbox
+            if (showAlarmsCheckbox) {
+                showAlarmsCheckbox.addEventListener('change', function() {
+                    if (currentChartData) {
+                        renderChart(currentChartData, currentStartTime, currentEndTime);
+                    }
+                });
+            }
+            
+            // Initialize default alarm filter pills
+            const pillsContainer = document.getElementById('alarmFilterPills');
+            if (pillsContainer) {
+                // Add default transition filters
+                const defaultTransitions = [
+                    { from: 'RESOLVED', to: 'ACTIVE' },
+                    { from: 'ACKNOWLEDGED', to: 'RESOLVED' },
+                    { from: 'ACTIVE', to: 'RESOLVED' }
+                ];
+                
+                defaultTransitions.forEach(transition => {
+                    const value = `${transition.from}-${transition.to}`;
+                    const label = `${transition.from} → ${transition.to}`;
+                    const pill = createFilterPill(value, 'transition');
+                    if (pill) {
+                        pill.querySelector('span').textContent = label;
+                        pillsContainer.appendChild(pill);
+                    }
+                });
+                
+                // Update active filters
+                updateActiveFilters();
+            }
+            
+            // Add event listeners for filter dropdowns
+            const transitionSelect = document.getElementById('addTransitionFilter');
+            const typeSelect = document.getElementById('addTypeFilter');
+            const prioritySelect = document.getElementById('addPriorityFilter');
+            
+            if (transitionSelect) {
+                transitionSelect.addEventListener('change', function() {
+                    if (this.value) {
+                        const existing = document.querySelector(`.filter-pill[data-value="${this.value}"][data-type="transition"]`);
+                        if (!existing) {
+                            const pill = createFilterPill(this.value, 'transition');
+                            const [from, to] = this.value.split('-');
+                            pill.querySelector('span').textContent = `${from} → ${to}`;
+                            pillsContainer.appendChild(pill);
+                            updateActiveFilters();
+                            updateChartWithAlarms();
+                        }
+                        this.value = '';
+                    }
+                });
+            }
+            
+            if (typeSelect) {
+                typeSelect.addEventListener('change', function() {
+                    if (this.value) {
+                        const existing = document.querySelector(`.filter-pill[data-value="${this.value}"][data-type="type"]`);
+                        if (!existing) {
+                            const pill = createFilterPill(this.value, 'type');
+                            pillsContainer.appendChild(pill);
+                            updateActiveFilters();
+                            updateChartWithAlarms();
+                        }
+                        this.value = '';
+                    }
+                });
+            }
+            
+            if (prioritySelect) {
+                prioritySelect.addEventListener('change', function() {
+                    if (this.value) {
+                        const existing = document.querySelector(`.filter-pill[data-value="${this.value}"][data-type="priority"]`);
+                        if (!existing) {
+                            const pill = createFilterPill(this.value, 'priority');
+                            pillsContainer.appendChild(pill);
+                            updateActiveFilters();
+                            updateChartWithAlarms();
+                        }
+                        this.value = '';
+                    }
+                });
+            }
         });
         
         // Zoom functions
