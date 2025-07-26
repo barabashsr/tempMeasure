@@ -1203,21 +1203,36 @@
                                     enabled: true
                                 },
                                 mode: 'x',
+                                drag: {
+                                    enabled: true,
+                                    backgroundColor: 'rgba(75, 192, 192, 0.1)'
+                                },
                                 onZoomComplete: function({chart}) {
                                     console.log('Zoom complete');
+                                    // Force time scale update
+                                    chart.update('none');
                                 }
                             },
                             pan: {
                                 enabled: true,
                                 mode: 'x',
+                                rangeMin: {
+                                    x: null
+                                },
+                                rangeMax: {
+                                    x: null
+                                },
                                 onPanComplete: function({chart}) {
                                     console.log('Pan complete');
+                                    // Force time scale update
+                                    chart.update('none');
                                 }
                             },
                             limits: {
                                 x: {
                                     min: 'original',
-                                    max: 'original'
+                                    max: 'original',
+                                    minRange: 60 * 1000 // Minimum 1 minute zoom
                                 }
                             }
                         },
@@ -1270,16 +1285,14 @@
                             time: {
                                 parser: 'yyyy-MM-dd\'T\'HH:mm:ss',
                                 displayFormats: {
+                                    second: 'HH:mm:ss',
                                     minute: 'HH:mm',
                                     hour: 'HH:mm',
                                     day: 'MMM dd',
                                     week: 'MMM dd',
-                                    month: 'MMM dd'
+                                    month: 'MMM yyyy'
                                 },
-                                tooltipFormat: 'yyyy-MM-dd HH:mm:ss',
-                                // Dynamic unit based on time range
-                                unit: data.hours <= 6 ? 'hour' : (data.hours <= 48 ? 'hour' : 'day'),
-                                stepSize: data.hours <= 6 ? 1 : (data.hours <= 24 ? 2 : (data.hours <= 48 ? 4 : 24))
+                                tooltipFormat: 'yyyy-MM-dd HH:mm:ss'
                             },
                             display: true,
                             title: {
@@ -1290,14 +1303,59 @@
                                 maxRotation: 45,
                                 minRotation: 45,
                                 autoSkip: true,
-                                maxTicksLimit: data.hours <= 24 ? 24 : 14,
-                                callback: function(value, index, values) {
-                                    // For multi-day views, show date at midnight
+                                autoSkipPadding: 50,
+                                maxTicksLimit: 20,
+                                source: 'auto',
+                                callback: function(value, index, ticks) {
+                                    // Dynamic formatting based on the time range visible
+                                    if (ticks.length < 2) return this.getLabelForValue(value);
+                                    
+                                    const range = ticks[ticks.length - 1].value - ticks[0].value;
                                     const date = new Date(value);
-                                    if (data.hours > 24 && date.getHours() === 0) {
-                                        return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+                                    
+                                    // Less than 5 minutes - show seconds
+                                    if (range < 5 * 60 * 1000) {
+                                        return date.toLocaleTimeString('en-US', { 
+                                            hour: '2-digit', 
+                                            minute: '2-digit', 
+                                            second: '2-digit',
+                                            hour12: false 
+                                        });
                                     }
-                                    return this.getLabelForValue(value);
+                                    // Less than 3 hours - show time only
+                                    else if (range < 3 * 60 * 60 * 1000) {
+                                        return date.toLocaleTimeString('en-US', { 
+                                            hour: '2-digit', 
+                                            minute: '2-digit',
+                                            hour12: false 
+                                        });
+                                    }
+                                    // Less than 2 days - show time and date at midnight
+                                    else if (range < 2 * 24 * 60 * 60 * 1000) {
+                                        if (date.getHours() === 0 && date.getMinutes() === 0) {
+                                            return date.toLocaleDateString('en-US', { 
+                                                month: 'short', 
+                                                day: 'numeric' 
+                                            });
+                                        }
+                                        return date.toLocaleTimeString('en-US', { 
+                                            hour: '2-digit', 
+                                            minute: '2-digit',
+                                            hour12: false 
+                                        });
+                                    }
+                                    // More than 2 days - show date only
+                                    else {
+                                        return date.toLocaleDateString('en-US', { 
+                                            month: 'short', 
+                                            day: 'numeric' 
+                                        });
+                                    }
+                                }
+                            },
+                            adapters: {
+                                date: {
+                                    zone: 'utc'
                                 }
                             }
                         },
