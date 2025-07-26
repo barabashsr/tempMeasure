@@ -2765,7 +2765,7 @@ void ConfigManager::downloadAPI() {
             file.close();
         }
         
-        jsonResponse += "],\"alarmEvents\":[";
+        jsonResponse += "]";
         
         // Get alarm events for this point and time range
         // Use the date range from the actual log files processed
