@@ -853,12 +853,21 @@
         // Alarm filter state
         const alarmFilters = {
             transitions: [
-                { from: 'RESOLVED', to: 'ACTIVE', color: '#f44336', label: 'RESOLVED → ACTIVE' },
-                { from: 'ACKNOWLEDGED', to: 'RESOLVED', color: '#4caf50', label: 'ACKNOWLEDGED → RESOLVED' },
-                { from: 'ACTIVE', to: 'RESOLVED', color: '#4caf50', label: 'ACTIVE → RESOLVED' }
+                { from: 'RESOLVED', to: 'ACTIVE', color: '#f44336', label: 'RESOLVED → ACTIVE', active: true },
+                { from: 'ACKNOWLEDGED', to: 'RESOLVED', color: '#4caf50', label: 'ACKNOWLEDGED → RESOLVED', active: true },
+                { from: 'ACTIVE', to: 'RESOLVED', color: '#4caf50', label: 'ACTIVE → RESOLVED', active: true }
             ],
-            types: ['HIGH_TEMP', 'LOW_TEMP', 'SENSOR_ERROR'],
-            priorities: ['LOW', 'MEDIUM', 'HIGH', 'URGENT']
+            types: [
+                { type: 'HIGH_TEMP', active: false },
+                { type: 'LOW_TEMP', active: false },
+                { type: 'SENSOR_ERROR', active: false }
+            ],
+            priorities: [
+                { priority: 'LOW', active: false },
+                { priority: 'MEDIUM', active: false },
+                { priority: 'HIGH', active: false },
+                { priority: 'URGENT', active: false }
+            ]
         };
         
         let activeFilters = {
@@ -1924,23 +1933,74 @@
         }
         
         // Close modal handlers
-        chartCloseBtn.onclick = function() {
+        function closeChartModal() {
             chartModal.style.display = 'none';
+            
+            // Destroy chart and clear all references
             if (temperatureChart) {
+                // Clear chart data before destroying
+                if (temperatureChart.data) {
+                    temperatureChart.data.labels = [];
+                    temperatureChart.data.datasets = [];
+                }
+                
+                // Remove all annotations if any
+                if (temperatureChart.options && temperatureChart.options.plugins && 
+                    temperatureChart.options.plugins.annotation && 
+                    temperatureChart.options.plugins.annotation.annotations) {
+                    temperatureChart.options.plugins.annotation.annotations = {};
+                }
+                
                 temperatureChart.destroy();
                 temperatureChart = null;
             }
+            
+            // Clear all data references to free memory
+            if (currentChartData && currentChartData.timestamps) {
+                currentChartData.timestamps.length = 0;
+                currentChartData.temperatures.length = 0;
+            }
             currentPointAddress = null;
-        };
+            currentChartData = null;
+            currentAlarms = [];
+            currentStartTime = null;
+            currentEndTime = null;
+            
+            // Clear any temporary download data
+            if (window.tempDownloadData) {
+                window.tempDownloadData = null;
+            }
+            
+            // Reset date inputs to current day only
+            const today = new Date();
+            const todayStr = today.toISOString().split('T')[0];
+            document.getElementById('startDate').value = todayStr;
+            document.getElementById('endDate').value = todayStr;
+            
+            // Clear canvas element to ensure no references remain
+            const canvas = document.getElementById('temperatureChart');
+            if (canvas) {
+                const ctx = canvas.getContext('2d');
+                if (ctx) {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                }
+            }
+            
+            // Force garbage collection if available
+            if (window.gc) {
+                try {
+                    window.gc();
+                } catch (e) {
+                    // Ignore errors if gc is not available
+                }
+            }
+        }
+        
+        chartCloseBtn.onclick = closeChartModal;
         
         window.onclick = function(event) {
             if (event.target === chartModal) {
-                chartModal.style.display = 'none';
-                if (temperatureChart) {
-                    temperatureChart.destroy();
-                    temperatureChart = null;
-                }
-                currentPointAddress = null;
+                closeChartModal();
             }
         };
         
@@ -1967,19 +2027,16 @@
             // Initialize default alarm filter pills
             const pillsContainer = document.getElementById('alarmFilterPills');
             if (pillsContainer) {
-                // Add default transition filters
-                const defaultTransitions = [
-                    { from: 'RESOLVED', to: 'ACTIVE' },
-                    { from: 'ACKNOWLEDGED', to: 'RESOLVED' },
-                    { from: 'ACTIVE', to: 'RESOLVED' }
-                ];
-                
-                defaultTransitions.forEach(transition => {
+                // Add default transition filters from alarmFilters
+                alarmFilters.transitions.filter(t => t.active).forEach(transition => {
                     const value = `${transition.from}-${transition.to}`;
-                    const label = `${transition.from} → ${transition.to}`;
                     const pill = createFilterPill(value, 'transition');
                     if (pill) {
-                        pill.querySelector('span').textContent = label;
+                        // Update the label text to show the arrow format
+                        const labelSpan = pill.querySelector('span:not(.icon):not(.remove)');
+                        if (labelSpan) {
+                            labelSpan.textContent = `${transition.from} → ${transition.to}`;
+                        }
                         pillsContainer.appendChild(pill);
                     }
                 });
