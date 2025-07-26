@@ -166,59 +166,6 @@
             border-radius: 4px;
         }
         
-        .filter-pills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 10px;
-        }
-        
-        .filter-pill {
-            display: inline-flex;
-            align-items: center;
-            padding: 4px 12px;
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 16px;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        
-        .filter-pill:hover {
-            background: #f0f0f0;
-        }
-        
-        .filter-pill.active {
-            color: white;
-            border-width: 2px;
-        }
-        
-        /* Transition-specific colors */
-        .filter-pill.transition-to-active {
-            background: #f44336;
-            border-color: #f44336;
-        }
-        
-        .filter-pill.transition-to-acknowledged {
-            background: #ff9800;
-            border-color: #ff9800;
-        }
-        
-        .filter-pill.transition-to-resolved {
-            background: #4caf50;
-            border-color: #4caf50;
-        }
-        
-        .filter-pill .remove {
-            margin-left: 6px;
-            font-weight: bold;
-            opacity: 0.7;
-        }
-        
-        .filter-pill.active .remove:hover {
-            opacity: 1;
-        }
         
         .alarm-legend {
             display: flex;
@@ -949,10 +896,33 @@
                 } else if (to === 'RESOLVED' || to === 'CLEARED') {
                     pill.classList.add('transition-to-resolved');
                 }
+            } else if (type === 'type') {
+                // Add type-specific class
+                pill.classList.add(`type-${value.toLowerCase().replace('_', '-')}`);
+                
+                // Add icon
+                const icon = document.createElement('span');
+                icon.className = 'icon';
+                if (value === 'HIGH_TEMP') {
+                    icon.textContent = '■'; // square
+                } else if (value === 'LOW_TEMP') {
+                    icon.textContent = '▲'; // triangle
+                } else if (value === 'SENSOR_ERROR') {
+                    icon.textContent = '✱'; // asterisk
+                }
+                pill.appendChild(icon);
+            } else if (type === 'priority') {
+                // Add priority-specific class
+                pill.classList.add(`priority-${value.toLowerCase()}`);
             }
             
             const label = document.createElement('span');
-            label.textContent = value.replace('→', ' → ');
+            if (type === 'transition') {
+                const [from, to] = value.split('-');
+                label.textContent = `${from} → ${to}`;
+            } else {
+                label.textContent = value.replace('_', ' ');
+            }
             pill.appendChild(label);
             
             const remove = document.createElement('span');
@@ -1522,23 +1492,40 @@
                     });
                 }
                 
-                chart.options.plugins.annotation.annotations[`alarm_${index}`] = {
-                    type: 'line',
-                    xMin: alarmTimeStr,
-                    xMax: alarmTimeStr,
-                    borderColor: alarmGroup[0].color,
-                    borderWidth: 3,
-                    label: {
-                        enabled: true,
-                        content: alarmGroup.length > 1 ? `${alarmGroup.length}` : '',
-                        position: 'start',
-                        backgroundColor: alarmGroup[0].color,
-                        color: 'white',
-                        font: {
-                            size: 10,
-                            weight: 'bold'
-                        }
+                // Get shape based on alarm type
+                const getMarkerShape = (type) => {
+                    switch (type) {
+                        case 'HIGH_TEMP': return 'rectRounded'; // square
+                        case 'LOW_TEMP': return 'triangle'; // triangle
+                        case 'SENSOR_ERROR': return 'star'; // asterisk/star
+                        default: return 'circle';
                     }
+                };
+                
+                // Get border color based on priority
+                const getBorderColor = (priority) => {
+                    switch (priority) {
+                        case 'URGENT': return '#B71C1C'; // Dark red
+                        case 'HIGH': return '#E65100'; // Dark orange
+                        case 'MEDIUM': return '#F57C00'; // Orange
+                        case 'LOW': return '#388E3C'; // Dark green
+                        default: return '#666666';
+                    }
+                };
+                
+                // For multiple alarms at same time, use the first alarm's temperature
+                const yValue = alarmGroup[0].temperature;
+                
+                chart.options.plugins.annotation.annotations[`alarm_${index}`] = {
+                    type: 'point',
+                    xValue: alarmTimeStr,
+                    yValue: yValue,
+                    backgroundColor: alarmGroup[0].color,
+                    borderColor: getBorderColor(alarmGroup[0].priority),
+                    borderWidth: 3,
+                    radius: 10,
+                    pointStyle: getMarkerShape(alarmGroup[0].type),
+                    drawTime: 'afterDatasetsDraw'
                 };
             });
             
@@ -1760,6 +1747,37 @@
                         tooltip: {
                             mode: 'index',
                             intersect: false,
+                            callbacks: {
+                                afterBody: function(context) {
+                                    if (!currentAlarms || currentAlarms.length === 0) return [];
+                                    
+                                    // Get the timestamp of the current data point
+                                    const index = context[0].dataIndex;
+                                    const timestamp = context[0].parsed.x;
+                                    
+                                    // Find alarms at this timestamp
+                                    const alarmsAtTime = currentAlarms.filter(alarm => {
+                                        const alarmTime = alarm.timestamp.getTime();
+                                        // Check if alarm is within 1 minute of this point
+                                        return Math.abs(alarmTime - timestamp) < 60000;
+                                    });
+                                    
+                                    if (alarmsAtTime.length === 0) return [];
+                                    
+                                    const lines = ['', '--- Alarm Events ---'];
+                                    alarmsAtTime.forEach(alarm => {
+                                        lines.push(`${alarm.type}: ${alarm.transition}`);
+                                        lines.push(`Priority: ${alarm.priority}`);
+                                        lines.push(`Temperature: ${alarm.temperature}°C`);
+                                        if (alarm.threshold) {
+                                            lines.push(`Threshold: ${alarm.threshold}°C`);
+                                        }
+                                        lines.push('');
+                                    });
+                                    
+                                    return lines;
+                                }
+                            },
                             callbacks: {
                                 afterLabel: function(context) {
                                     // Check if there's an alarm event at or near this timestamp

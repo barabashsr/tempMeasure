@@ -229,6 +229,137 @@ select:focus {
     margin-bottom: 2em;
 }
 
+/* Filter Pills */
+.filter-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.filter-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    background: #f5f5f5;
+    border: 2px solid #ddd;
+    border-radius: 16px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #333;
+}
+
+.filter-pill:hover {
+    background: #e0e0e0;
+}
+
+.filter-pill.active {
+    border-width: 3px;
+}
+
+.filter-pill .icon {
+    margin-right: 4px;
+    font-size: 16px;
+}
+
+.filter-pill .remove {
+    margin-left: 6px;
+    font-weight: bold;
+    opacity: 0.7;
+}
+
+.filter-pill.active .remove:hover {
+    opacity: 1;
+}
+
+/* Transition-specific colors with better contrast */
+.filter-pill.transition-to-active {
+    background: #ffebee;
+    color: #b71c1c;
+    border-color: #f44336;
+}
+
+.filter-pill.transition-to-active.active {
+    background: #f44336;
+    color: white;
+}
+
+.filter-pill.transition-to-acknowledged {
+    background: #fff3e0;
+    color: #e65100;
+    border-color: #ff9800;
+}
+
+.filter-pill.transition-to-acknowledged.active {
+    background: #ff9800;
+    color: white;
+}
+
+.filter-pill.transition-to-resolved {
+    background: #e8f5e9;
+    color: #1b5e20;
+    border-color: #4caf50;
+}
+
+.filter-pill.transition-to-resolved.active {
+    background: #4caf50;
+    color: white;
+}
+
+/* Type-specific styles */
+.filter-pill.type-high-temp {
+    border-color: #f44336;
+}
+
+.filter-pill.type-low-temp {
+    border-color: #2196f3;
+}
+
+.filter-pill.type-sensor-error {
+    border-color: #ff9800;
+}
+
+/* Priority-specific border styles */
+.filter-pill.priority-urgent {
+    border-color: #b71c1c;
+    border-style: solid;
+}
+
+.filter-pill.priority-high {
+    border-color: #e65100;
+    border-style: solid;
+}
+
+.filter-pill.priority-medium {
+    border-color: #f57c00;
+    border-style: solid;
+}
+
+.filter-pill.priority-low {
+    border-color: #388e3c;
+    border-style: solid;
+}
+
+/* Button variants */
+.btn-primary {
+    background-color: #3f51b5;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #283593;
+}
+
+.btn-success {
+    background-color: #4caf50;
+    color: white;
+}
+
+.btn-success:hover {
+    background-color: #388e3c;
+}
+
 /* Responsive */
 @media (max-width: 800px) {
     main {
