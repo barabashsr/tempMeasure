@@ -868,15 +868,45 @@
                 // Sort data by timestamp
                 allData.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
                 
-                // Get point info (thresholds) - fallback to defaults if not available
-                const pointInfo = {
+                // Get point info (thresholds) from the points API
+                let pointInfo = {
                     pointName: pointName,
                     lowThreshold: -50,  // Default values
-                    highThreshold: 100
+                    highThreshold: 100,
+                    lowEnabled: false,
+                    highEnabled: false
                 };
                 
-                // Try to get actual thresholds from the first valid temperature reading
-                // This is a temporary solution - ideally we'd get this from the point configuration
+                try {
+                    // Fetch actual point configuration
+                    const pointsResponse = await fetch('/api/points');
+                    const pointsData = await pointsResponse.json();
+                    
+                    // Find our specific point
+                    const pointData = pointsData.points.find(p => p.address === pointAddress);
+                    if (pointData) {
+                        pointInfo.lowThreshold = pointData.lowAlarmThreshold;
+                        pointInfo.highThreshold = pointData.highAlarmThreshold;
+                        console.log(`Got actual thresholds for point ${pointAddress}: Low=${pointInfo.lowThreshold}, High=${pointInfo.highThreshold}`);
+                    } else {
+                        console.warn(`Point ${pointAddress} not found in configuration, using default thresholds`);
+                    }
+                    
+                    // Fetch alarm configuration to check if alarms are enabled
+                    const alarmConfigResponse = await fetch('/api/alarm-config');
+                    const alarmConfigData = await alarmConfigResponse.json();
+                    
+                    // Find alarm config for our specific point
+                    const alarmConfig = alarmConfigData.points.find(p => p.address === pointAddress);
+                    if (alarmConfig) {
+                        pointInfo.lowEnabled = alarmConfig.lowEnabled;
+                        pointInfo.highEnabled = alarmConfig.highEnabled;
+                        console.log(`Alarm status for point ${pointAddress}: Low enabled=${pointInfo.lowEnabled}, High enabled=${pointInfo.highEnabled}`);
+                    }
+                } catch (error) {
+                    console.error('Error fetching point configuration:', error);
+                    // Continue with default values
+                }
                 
                 // Prepare complete data object
                 const completeData = {
@@ -957,11 +987,11 @@
                 }]
             };
             
-            // Add threshold lines if available
+            // Add threshold lines only if the corresponding alarms are enabled
             const annotations = {};
             let annotationCount = 0;
             
-            if (data.lowThreshold !== undefined && data.lowThreshold !== null) {
+            if (data.lowEnabled && data.lowThreshold !== undefined && data.lowThreshold !== null) {
                 annotations[`lowThreshold${annotationCount++}`] = {
                     type: 'line',
                     yMin: data.lowThreshold,
@@ -977,7 +1007,7 @@
                 };
             }
             
-            if (data.highThreshold !== undefined && data.highThreshold !== null) {
+            if (data.highEnabled && data.highThreshold !== undefined && data.highThreshold !== null) {
                 annotations[`highThreshold${annotationCount++}`] = {
                     type: 'line',
                     yMin: data.highThreshold,
