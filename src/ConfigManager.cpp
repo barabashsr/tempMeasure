@@ -2464,12 +2464,15 @@ void ConfigManager::downloadAPI() {
         jsonResponse += ",\"data\":[";
         
         // Calculate decimation factor based on time range
+        // Aim for ~300-500 points for smooth visualization
         int decimationFactor = 1;
-        if (hoursToFetch > 1) decimationFactor = 3;
-        if (hoursToFetch > 6) decimationFactor = 6;
-        if (hoursToFetch > 12) decimationFactor = 12;
-        if (hoursToFetch > 48) decimationFactor = 24;
-        if (hoursToFetch > 96) decimationFactor = 84;
+        if (hoursToFetch == 1) decimationFactor = 1;      // ~60 points
+        else if (hoursToFetch <= 6) decimationFactor = 2;  // ~180 points  
+        else if (hoursToFetch <= 12) decimationFactor = 3; // ~240 points
+        else if (hoursToFetch <= 24) decimationFactor = 5; // ~288 points
+        else if (hoursToFetch <= 48) decimationFactor = 10; // ~288 points
+        else if (hoursToFetch <= 96) decimationFactor = 20; // ~288 points
+        else decimationFactor = 30; // 7 days: ~336 points
         
         Serial.printf("Decimation factor: %d\n", decimationFactor);
         
@@ -2481,7 +2484,7 @@ void ConfigManager::downloadAPI() {
         bool firstDataPoint = true;
         int pointCounter = 0;
         int totalPointsProcessed = 0;
-        const int MAX_POINTS = 200; // Increased to handle null values and ensure we get some real data
+        const int MAX_POINTS = 500; // Increased for better data density and smooth charts
         
         // Process only the most recent files
         int filesToProcess = min(3, (int)files.size()); // Process max 3 files

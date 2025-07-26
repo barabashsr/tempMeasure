@@ -137,6 +137,32 @@
         .chart-controls select, .chart-controls button {
             padding: 6px 12px;
         }
+        
+        /* Alarm filters */
+        .alarm-filters {
+            margin: 15px 0;
+            padding: 10px;
+            background: #f5f5f5;
+            border-radius: 4px;
+        }
+        
+        .alarm-filters label {
+            margin-right: 15px;
+            cursor: pointer;
+        }
+        
+        .alarm-filters input[type="checkbox"] {
+            margin-right: 5px;
+        }
+        
+        .filter-group {
+            margin-bottom: 10px;
+        }
+        
+        .filter-group-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
     </style>
 </head>
 <body>
@@ -255,6 +281,23 @@
         <div class="modal-content">
             <span class="close" id="chartCloseBtn">&times;</span>
             <h2>Temperature Trend Chart - <span id="chartPointName"></span></h2>
+            
+            <!-- Alarm Event Filters -->
+            <div class="alarm-filters" id="alarmFilters" style="display: none;">
+                <div class="filter-group">
+                    <div class="filter-group-title">Alarm Types:</div>
+                    <label><input type="checkbox" class="alarm-type-filter" value="HIGH_TEMPERATURE" checked> High Temperature</label>
+                    <label><input type="checkbox" class="alarm-type-filter" value="LOW_TEMPERATURE" checked> Low Temperature</label>
+                    <label><input type="checkbox" class="alarm-type-filter" value="SENSOR_ERROR" checked> Sensor Error</label>
+                </div>
+                <div class="filter-group">
+                    <div class="filter-group-title">Alarm States:</div>
+                    <label><input type="checkbox" class="alarm-state-filter" value="ACTIVE" checked> Active</label>
+                    <label><input type="checkbox" class="alarm-state-filter" value="ACKNOWLEDGED" checked> Acknowledged</label>
+                    <label><input type="checkbox" class="alarm-state-filter" value="CLEARED" checked> Cleared</label>
+                    <label><input type="checkbox" class="alarm-state-filter" value="RESOLVED" checked> Resolved</label>
+                </div>
+            </div>
             
             <div class="chart-controls">
                 <label>Time Range:</label>
@@ -703,6 +746,7 @@
         // Chart functionality
         let temperatureChart = null;
         let currentPointAddress = null;
+        let currentChartData = null; // Store current data for filtering
         const chartModal = document.getElementById('chartModal');
         const chartCloseBtn = document.getElementById('chartCloseBtn');
         
@@ -714,8 +758,11 @@
             // Get selected time range
             const hours = document.getElementById('chartTimeRange').value;
             
+            // Request denser data for better visualization
+            const densityParam = hours <= 6 ? '&density=high' : '';
+            
             // Fetch temperature history
-            fetch(`/api/temperature-history?point=${pointAddress}&hours=${hours}`)
+            fetch(`/api/temperature-history?point=${pointAddress}&hours=${hours}${densityParam}`)
                 .then(response => response.json())
                 .then(data => {
                     console.log('Received data:', data);
@@ -723,6 +770,17 @@
                         // Check if we have any non-null data points
                         const validData = data.data.filter(point => point.temperature !== null);
                         console.log(`Total points: ${data.data.length}, Valid points: ${validData.length}`);
+                        
+                        // Store current data
+                        currentChartData = data;
+                        
+                        // Show filters if we have alarm events
+                        const filtersDiv = document.getElementById('alarmFilters');
+                        if (data.alarmEvents && data.alarmEvents.length > 0) {
+                            filtersDiv.style.display = 'block';
+                        } else {
+                            filtersDiv.style.display = 'none';
+                        }
                         
                         renderChart(data);
                         chartModal.style.display = 'block';
@@ -744,6 +802,13 @@
             }
         }
         
+        // Get active filters
+        function getActiveFilters() {
+            const typeFilters = Array.from(document.querySelectorAll('.alarm-type-filter:checked')).map(cb => cb.value);
+            const stateFilters = Array.from(document.querySelectorAll('.alarm-state-filter:checked')).map(cb => cb.value);
+            return { types: typeFilters, states: stateFilters };
+        }
+        
         // Render chart using Chart.js
         function renderChart(data) {
             const ctx = document.getElementById('temperatureChart').getContext('2d');
@@ -754,8 +819,16 @@
                 temperatureChart = null;
             }
             
+            // Get active filters
+            const filters = getActiveFilters();
+            
             // Debug: Log the first few data points
             console.log('First 5 data points:', data.data.slice(0, 5));
+            console.log('Data density info:', {
+                totalPoints: data.data.length,
+                hoursRequested: data.hours,
+                expectedInterval: (data.hours * 60) / data.data.length + ' minutes per point'
+            });
             
             // Prepare data for Chart.js
             const chartData = {
@@ -808,40 +881,42 @@
                 };
             }
             
-            // Add alarm event markers
+            // Add alarm event markers (filtered)
             if (data.alarmEvents && data.alarmEvents.length > 0) {
                 console.log('Alarm events:', data.alarmEvents);
                 
-                data.alarmEvents.forEach((event, index) => {
+                // Filter events based on active filters
+                const filteredEvents = data.alarmEvents.filter(event => {
+                    const typeMatch = filters.types.some(type => event.type.includes(type));
+                    const stateMatch = filters.states.includes(event.state);
+                    return typeMatch && stateMatch;
+                });
+                
+                console.log(`Showing ${filteredEvents.length} of ${data.alarmEvents.length} alarm events`);
+                
+                filteredEvents.forEach((event, index) => {
                     // Determine color based on alarm type and state
                     let borderColor = 'rgba(128, 128, 128, 0.7)'; // Default gray
-                    let backgroundColor = 'rgba(128, 128, 128, 0.1)';
                     
                     if (event.type.includes('HIGH_TEMP')) {
                         if (event.state === 'ACTIVE') {
-                            borderColor = 'rgba(255, 99, 132, 0.9)'; // Red for high temp active
-                            backgroundColor = 'rgba(255, 99, 132, 0.2)';
+                            borderColor = 'rgba(255, 99, 132, 0.9)'; // Red
                         } else if (event.state === 'ACKNOWLEDGED') {
-                            borderColor = 'rgba(255, 193, 7, 0.9)'; // Orange for acknowledged
-                            backgroundColor = 'rgba(255, 193, 7, 0.2)';
+                            borderColor = 'rgba(255, 193, 7, 0.9)'; // Orange
                         } else if (event.state === 'CLEARED' || event.state === 'RESOLVED') {
-                            borderColor = 'rgba(76, 175, 80, 0.9)'; // Green for cleared/resolved
-                            backgroundColor = 'rgba(76, 175, 80, 0.2)';
+                            borderColor = 'rgba(76, 175, 80, 0.9)'; // Green
                         }
                     } else if (event.type.includes('LOW_TEMP')) {
                         if (event.state === 'ACTIVE') {
-                            borderColor = 'rgba(54, 162, 235, 0.9)'; // Blue for low temp active
-                            backgroundColor = 'rgba(54, 162, 235, 0.2)';
+                            borderColor = 'rgba(54, 162, 235, 0.9)'; // Blue
                         } else if (event.state === 'ACKNOWLEDGED') {
-                            borderColor = 'rgba(255, 193, 7, 0.9)'; // Orange for acknowledged
-                            backgroundColor = 'rgba(255, 193, 7, 0.2)';
+                            borderColor = 'rgba(255, 193, 7, 0.9)'; // Orange
                         } else if (event.state === 'CLEARED' || event.state === 'RESOLVED') {
-                            borderColor = 'rgba(76, 175, 80, 0.9)'; // Green for cleared/resolved
-                            backgroundColor = 'rgba(76, 175, 80, 0.2)';
+                            borderColor = 'rgba(76, 175, 80, 0.9)'; // Green
                         }
                     }
                     
-                    // Create vertical line annotation for each alarm event
+                    // Create simple vertical line without text label
                     annotations[`alarmEvent${index}`] = {
                         type: 'line',
                         xMin: event.timestamp,
@@ -850,30 +925,13 @@
                         borderWidth: 2,
                         borderDash: [5, 5],
                         label: {
-                            display: true,
-                            content: `${event.type.replace('_TEMP', ' TEMP')} ${event.state}`,
-                            position: 'start',
-                            rotation: 270,
-                            backgroundColor: backgroundColor,
-                            borderColor: borderColor,
-                            borderWidth: 1,
-                            font: {
-                                size: 10
-                            }
+                            display: false // No text labels on chart
                         }
                     };
                     
-                    // Add a point annotation to mark the exact temperature at alarm
-                    annotations[`alarmPoint${index}`] = {
-                        type: 'point',
-                        xValue: event.timestamp,
-                        yValue: event.temperature,
-                        backgroundColor: borderColor,
-                        borderColor: borderColor,
-                        borderWidth: 2,
-                        radius: 5,
-                        pointStyle: 'circle'
-                    };
+                    // Store event data for tooltips
+                    if (!data.alarmEventMap) data.alarmEventMap = {};
+                    data.alarmEventMap[event.timestamp] = event;
                 });
             }
             
@@ -901,21 +959,35 @@
                             intersect: false,
                             callbacks: {
                                 afterLabel: function(context) {
-                                    // Check if there's an alarm event at this timestamp
+                                    // Check if there's an alarm event at or near this timestamp
                                     const timestamp = context.label;
-                                    const alarmEvent = data.alarmEvents.find(event => event.timestamp === timestamp);
+                                    const tooltipItems = [];
                                     
-                                    if (alarmEvent) {
-                                        return [
-                                            '',
-                                            '🚨 ALARM EVENT:',
-                                            `Type: ${alarmEvent.type.replace('_TEMPERATURE', '')}`,
-                                            `State: ${alarmEvent.state}`,
-                                            `Threshold: ${alarmEvent.threshold}°C`
-                                        ];
+                                    // Check for exact match or nearby events (within 1 minute)
+                                    if (data.alarmEventMap) {
+                                        const currentTime = new Date(timestamp).getTime();
+                                        
+                                        Object.entries(data.alarmEventMap).forEach(([eventTime, event]) => {
+                                            const eventTimeMs = new Date(eventTime).getTime();
+                                            const timeDiff = Math.abs(currentTime - eventTimeMs);
+                                            
+                                            // Show event if within 1 minute
+                                            if (timeDiff <= 60000) {
+                                                if (tooltipItems.length === 0) {
+                                                    tooltipItems.push('');
+                                                    tooltipItems.push('🚨 ALARM EVENTS:');
+                                                }
+                                                
+                                                const typeDisplay = event.type.replace(/_/g, ' ');
+                                                tooltipItems.push(`• ${typeDisplay}`);
+                                                tooltipItems.push(`  State: ${event.state}`);
+                                                tooltipItems.push(`  Threshold: ${event.threshold}°C`);
+                                                tooltipItems.push(`  Temperature: ${event.temperature}°C`);
+                                            }
+                                        });
                                     }
                                     
-                                    return [];
+                                    return tooltipItems;
                                 }
                             }
                         }
@@ -926,10 +998,16 @@
                             time: {
                                 parser: 'yyyy-MM-dd\'T\'HH:mm:ss',
                                 displayFormats: {
+                                    minute: 'HH:mm',
                                     hour: 'HH:mm',
-                                    day: 'MMM dd'
+                                    day: 'MMM dd',
+                                    week: 'MMM dd',
+                                    month: 'MMM dd'
                                 },
-                                tooltipFormat: 'yyyy-MM-dd HH:mm:ss'
+                                tooltipFormat: 'yyyy-MM-dd HH:mm:ss',
+                                // Dynamic unit based on time range
+                                unit: data.hours <= 6 ? 'hour' : (data.hours <= 48 ? 'hour' : 'day'),
+                                stepSize: data.hours <= 6 ? 1 : (data.hours <= 24 ? 2 : (data.hours <= 48 ? 4 : 24))
                             },
                             display: true,
                             title: {
@@ -940,7 +1018,15 @@
                                 maxRotation: 45,
                                 minRotation: 45,
                                 autoSkip: true,
-                                maxTicksLimit: 20
+                                maxTicksLimit: data.hours <= 24 ? 24 : 14,
+                                callback: function(value, index, values) {
+                                    // For multi-day views, show date at midnight
+                                    const date = new Date(value);
+                                    if (data.hours > 24 && date.getHours() === 0) {
+                                        return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+                                    }
+                                    return this.getLabelForValue(value);
+                                }
                             }
                         },
                         y: {
@@ -978,6 +1064,18 @@
                 currentPointAddress = null;
             }
         };
+        
+        // Add event listeners for alarm filters
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add change event listeners to all filter checkboxes
+            document.querySelectorAll('.alarm-type-filter, .alarm-state-filter').forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    if (currentChartData) {
+                        renderChart(currentChartData);
+                    }
+                });
+            });
+        });
         
         // Make functions available globally
         window.showChart = showChart;
