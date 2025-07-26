@@ -24,6 +24,7 @@
 #include "ConfigManager.h"
 #include <ArduinoJson.h>
 #include <time.h>
+#include <algorithm>
 
 
 ConfigManager* ConfigManager::instance = nullptr;
@@ -2840,5 +2841,144 @@ void ConfigManager::downloadAPI() {
         server->sendHeader("Access-Control-Allow-Origin", "*");
         server->sendHeader("Cache-Control", "no-store");
         server->send(200, "application/json", jsonResponse);
+    });
+    
+    // API endpoint to list available temperature log files
+    server->on("/api/temperature-files", HTTP_GET, [this]() {
+        Serial.println("SERVER: /api/temperature-files called");
+        
+        DynamicJsonDocument doc(2048);
+        JsonArray filesArray = doc.createNestedArray("files");
+        
+        // Get list of log files
+        std::vector<String> files = LoggerManager::getLogFiles();
+        
+        // Sort files by date (newest first)
+        std::sort(files.begin(), files.end(), [](const String& a, const String& b) {
+            return a > b; // Reverse alphabetical order works for YYYY-MM-DD format
+        });
+        
+        for (const String& filename : files) {
+            if (filename.startsWith("temp_log_") && filename.endsWith(".csv")) {
+                JsonObject fileObj = filesArray.createNestedObject();
+                fileObj["filename"] = filename;
+                
+                // Extract date from filename
+                String dateStr = filename.substring(9, 19); // Extract YYYY-MM-DD
+                fileObj["date"] = dateStr;
+                
+                // Get file size
+                File file = LoggerManager::openLogFile(filename, "data");
+                if (file) {
+                    fileObj["size"] = file.size();
+                    file.close();
+                } else {
+                    fileObj["size"] = 0;
+                }
+            }
+        }
+        
+        String output;
+        serializeJson(doc, output);
+        
+        server->sendHeader("Content-Type", "application/json");
+        server->sendHeader("Access-Control-Allow-Origin", "*");
+        server->send(200, "application/json", output);
+    });
+    
+    // API endpoint to serve raw CSV file content
+    server->on("/api/temperature-file", HTTP_GET, [this]() {
+        if (!server->hasArg("filename")) {
+            server->send(400, "application/json", "{\"error\":\"Missing filename parameter\"}");
+            return;
+        }
+        
+        String filename = server->arg("filename");
+        Serial.printf("SERVER: /api/temperature-file called for: %s\n", filename.c_str());
+        
+        // Security check - ensure filename is valid
+        if (!filename.startsWith("temp_log_") || !filename.endsWith(".csv")) {
+            server->send(400, "application/json", "{\"error\":\"Invalid filename format\"}");
+            return;
+        }
+        
+        // Check for path traversal attempts
+        if (filename.indexOf("..") >= 0 || filename.indexOf("/") >= 0 || filename.indexOf("\\") >= 0) {
+            server->send(400, "application/json", "{\"error\":\"Invalid filename\"}");
+            return;
+        }
+        
+        File file = LoggerManager::openLogFile(filename, "data");
+        if (!file) {
+            server->send(404, "application/json", "{\"error\":\"File not found\"}");
+            return;
+        }
+        
+        // Check if partial content is requested (for streaming large files)
+        bool hasRange = server->hasHeader("Range");
+        long rangeStart = 0;
+        long rangeEnd = file.size() - 1;
+        
+        if (hasRange) {
+            String rangeHeader = server->header("Range");
+            // Parse "bytes=start-end" format
+            if (rangeHeader.startsWith("bytes=")) {
+                int dashPos = rangeHeader.indexOf('-', 6);
+                if (dashPos > 6) {
+                    rangeStart = rangeHeader.substring(6, dashPos).toInt();
+                    if (dashPos < rangeHeader.length() - 1) {
+                        rangeEnd = rangeHeader.substring(dashPos + 1).toInt();
+                    }
+                }
+            }
+            
+            // Validate range
+            if (rangeStart < 0) rangeStart = 0;
+            if (rangeEnd >= file.size()) rangeEnd = file.size() - 1;
+            if (rangeStart > rangeEnd) {
+                file.close();
+                server->send(416, "text/plain", "Requested Range Not Satisfiable");
+                return;
+            }
+            
+            // Send partial content response
+            file.seek(rangeStart);
+            long contentLength = rangeEnd - rangeStart + 1;
+            
+            server->sendHeader("Content-Type", "text/csv");
+            server->sendHeader("Content-Range", "bytes " + String(rangeStart) + "-" + String(rangeEnd) + "/" + String(file.size()));
+            server->sendHeader("Accept-Ranges", "bytes");
+            server->sendHeader("Access-Control-Allow-Origin", "*");
+            server->sendHeader("Cache-Control", "no-cache");
+            server->setContentLength(contentLength);
+            server->send(206); // 206 Partial Content
+            
+            // Stream the requested range
+            const size_t bufferSize = 1024;
+            uint8_t buffer[bufferSize];
+            long remaining = contentLength;
+            
+            while (remaining > 0 && file.available()) {
+                size_t toRead = min((long)bufferSize, remaining);
+                size_t bytesRead = file.read(buffer, toRead);
+                if (bytesRead > 0) {
+                    server->client().write(buffer, bytesRead);
+                    remaining -= bytesRead;
+                } else {
+                    break;
+                }
+                yield(); // Allow other tasks to run
+            }
+        } else {
+            // Send full file
+            server->sendHeader("Content-Type", "text/csv");
+            server->sendHeader("Content-Disposition", "inline; filename=\"" + filename + "\"");
+            server->sendHeader("Access-Control-Allow-Origin", "*");
+            server->sendHeader("Accept-Ranges", "bytes");
+            server->sendHeader("Cache-Control", "no-cache");
+            server->streamFile(file, "text/csv");
+        }
+        
+        file.close();
     });
 }

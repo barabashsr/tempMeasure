@@ -750,7 +750,29 @@
         const chartModal = document.getElementById('chartModal');
         const chartCloseBtn = document.getElementById('chartCloseBtn');
         
-        // Show chart function - Updated for chunked loading
+        // CSV parser function
+        function parseCSVLine(line) {
+            const values = [];
+            let current = '';
+            let inQuotes = false;
+            
+            for (let i = 0; i < line.length; i++) {
+                const char = line[i];
+                if (char === '"') {
+                    inQuotes = !inQuotes;
+                } else if (char === ',' && !inQuotes) {
+                    values.push(current.trim());
+                    current = '';
+                } else {
+                    current += char;
+                }
+            }
+            values.push(current.trim());
+            
+            return values;
+        }
+        
+        // Show chart function - Using direct file access
         async function showChart(pointAddress, pointName) {
             currentPointAddress = pointAddress;
             document.getElementById('chartPointName').textContent = pointName;
@@ -758,74 +780,103 @@
             // Get selected time range
             const hours = document.getElementById('chartTimeRange').value;
             
-            // Add timestamp to prevent caching
-            const timestamp = new Date().getTime();
-            
             // Show loading message
             const ctx = document.getElementById('temperatureChart').getContext('2d');
             ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
             ctx.font = '20px Arial';
             ctx.fillText('Loading temperature data...', ctx.canvas.width/2 - 100, ctx.canvas.height/2);
             
-            // Initialize data collection
-            let allData = [];
-            let currentChunk = 0;
-            let totalChunks = 1;
-            let pointInfo = null;
-            
             try {
-                // Fetch chunks until we have all data
-                do {
-                    console.log(`Fetching chunk ${currentChunk}...`);
+                // First get the list of available files
+                const filesResponse = await fetch('/api/temperature-files');
+                const filesData = await filesResponse.json();
+                
+                if (!filesData.files || filesData.files.length === 0) {
+                    throw new Error('No temperature log files found');
+                }
+                
+                // Calculate time range
+                const now = new Date();
+                const startTime = new Date(now.getTime() - (hours * 60 * 60 * 1000));
+                
+                // Filter files to only those within our time range
+                const relevantFiles = filesData.files.filter(file => {
+                    const fileDate = new Date(file.date);
+                    return fileDate >= new Date(startTime.toDateString());
+                });
+                
+                console.log(`Found ${relevantFiles.length} files for the time range`);
+                
+                // Process files and collect data
+                let allData = [];
+                let totalProcessed = 0;
+                
+                for (let fileIndex = 0; fileIndex < relevantFiles.length; fileIndex++) {
+                    const file = relevantFiles[fileIndex];
                     
-                    const response = await fetch(`/api/temperature-history?point=${pointAddress}&hours=${hours}&chunk=${currentChunk}&t=${timestamp}`, {
-                        cache: 'no-cache',
-                        headers: {
-                            'Cache-Control': 'no-cache',
-                            'Pragma': 'no-cache'
-                        }
-                    });
-                    
-                    const chunkData = await response.json();
-                    
-                    if (!chunkData.success) {
-                        throw new Error('Failed to load temperature history');
-                    }
-                    
-                    // Store point info from first chunk
-                    if (currentChunk === 0) {
-                        pointInfo = {
-                            pointName: chunkData.pointName,
-                            lowThreshold: chunkData.lowThreshold,
-                            highThreshold: chunkData.highThreshold
-                        };
-                    }
-                    
-                    // Add data from this chunk
-                    allData = allData.concat(chunkData.data);
-                    
-                    // Update progress
-                    console.log(`Chunk ${currentChunk}: received ${chunkData.chunkInfo.pointsInChunk} points`);
-                    console.log(`Total points so far: ${allData.length} of ${chunkData.chunkInfo.totalPointsInDataset}`);
-                    
-                    // Update loading message with progress
+                    // Update loading progress
                     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-                    const totalPoints = chunkData.chunkInfo.estimatedTotalPoints || chunkData.chunkInfo.totalPointsInDataset;
-                    const progress = Math.round((allData.length / totalPoints) * 100);
-                    ctx.fillText(`Loading temperature data... ${progress}%`, ctx.canvas.width/2 - 120, ctx.canvas.height/2);
-                    ctx.fillText(`(${allData.length} of ~${totalPoints} points)`, ctx.canvas.width/2 - 100, ctx.canvas.height/2 + 30);
+                    const progress = Math.round((fileIndex / relevantFiles.length) * 100);
+                    ctx.fillText(`Loading file ${fileIndex + 1} of ${relevantFiles.length}... ${progress}%`, ctx.canvas.width/2 - 150, ctx.canvas.height/2);
+                    ctx.fillText(file.filename, ctx.canvas.width/2 - 100, ctx.canvas.height/2 + 30);
                     
-                    // Check if there are more chunks
-                    totalChunks = chunkData.chunkInfo.totalChunks;
-                    currentChunk++;
+                    // Fetch the CSV file
+                    const csvResponse = await fetch(`/api/temperature-file?filename=${file.filename}`);
+                    const csvText = await csvResponse.text();
                     
-                } while (currentChunk < totalChunks);
+                    // Parse CSV
+                    const lines = csvText.split('\n');
+                    const columnIndex = pointAddress + 2; // Date, Time, then sensor columns
+                    
+                    // Skip header
+                    for (let i = 1; i < lines.length; i++) {
+                        if (!lines[i].trim()) continue;
+                        
+                        const values = parseCSVLine(lines[i]);
+                        if (values.length <= columnIndex) continue;
+                        
+                        const dateStr = values[0];
+                        const timeStr = values[1];
+                        const tempStr = values[columnIndex];
+                        
+                        if (dateStr && timeStr) {
+                            const timestamp = dateStr + 'T' + timeStr;
+                            const dataTime = new Date(timestamp);
+                            
+                            // Check if this data point is within our time range
+                            if (dataTime >= startTime && dataTime <= now) {
+                                const temperature = tempStr && tempStr !== ' ' ? parseFloat(tempStr) : null;
+                                allData.push({
+                                    timestamp: timestamp,
+                                    temperature: temperature
+                                });
+                            }
+                        }
+                        
+                        // Yield periodically
+                        if (i % 1000 === 0) {
+                            await new Promise(resolve => setTimeout(resolve, 0));
+                        }
+                    }
+                    
+                    totalProcessed++;
+                    console.log(`Processed ${file.filename}: ${allData.length} points so far`);
+                }
                 
                 console.log(`Finished loading all data: ${allData.length} total points`);
                 
-                // Check if we have any non-null data points
-                const validData = allData.filter(point => point.temperature !== null);
-                console.log(`Total points: ${allData.length}, Valid points: ${validData.length}`);
+                // Sort data by timestamp
+                allData.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+                
+                // Get point info (thresholds) - fallback to defaults if not available
+                const pointInfo = {
+                    pointName: pointName,
+                    lowThreshold: -50,  // Default values
+                    highThreshold: 100
+                };
+                
+                // Try to get actual thresholds from the first valid temperature reading
+                // This is a temporary solution - ideally we'd get this from the point configuration
                 
                 // Prepare complete data object
                 const completeData = {
@@ -834,7 +885,6 @@
                     hours: hours,
                     data: allData,
                     ...pointInfo,
-                    // No alarm events - they're disabled for now
                     alarmEvents: []
                 };
                 
@@ -849,7 +899,7 @@
                 chartModal.style.display = 'block';
                 
             } catch (error) {
-                console.error('Error fetching temperature history:', error);
+                console.error('Error loading temperature data:', error);
                 alert('Error loading temperature history: ' + error.message);
             }
         }
