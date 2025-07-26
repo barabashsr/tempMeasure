@@ -310,16 +310,15 @@
             
             <div class="chart-controls">
                 <div style="display: flex; gap: 10px; align-items: center; justify-content: space-between; flex-wrap: wrap;">
-                    <div style="display: flex; gap: 10px; align-items: center;">
-                        <label>Time Range:</label>
-                        <select id="chartTimeRange">
-                            <option value="1">Last 1 Hour</option>
-                            <option value="6">Last 6 Hours</option>
-                            <option value="12">Last 12 Hours</option>
-                            <option value="24" selected>Last 24 Hours</option>
-                            <option value="48">Last 48 Hours</option>
-                            <option value="168">Last 7 Days</option>
-                        </select>
+                    <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                        <div>
+                            <label>From:</label>
+                            <input type="datetime-local" id="chartDateFrom" style="padding: 4px 8px;">
+                        </div>
+                        <div>
+                            <label>To:</label>
+                            <input type="datetime-local" id="chartDateTo" style="padding: 4px 8px;">
+                        </div>
                         <button onclick="updateChart()">Update</button>
                     </div>
                     <div style="display: flex; gap: 5px;">
@@ -768,6 +767,25 @@
         const chartModal = document.getElementById('chartModal');
         const chartCloseBtn = document.getElementById('chartCloseBtn');
         
+        // Initialize date inputs with default values
+        function initializeDateInputs() {
+            const now = new Date();
+            const yesterday = new Date(now.getTime() - 24 * 60 * 60 * 1000);
+            
+            // Format for datetime-local input (YYYY-MM-DDTHH:MM)
+            const formatDateTime = (date) => {
+                const year = date.getFullYear();
+                const month = String(date.getMonth() + 1).padStart(2, '0');
+                const day = String(date.getDate()).padStart(2, '0');
+                const hours = String(date.getHours()).padStart(2, '0');
+                const minutes = String(date.getMinutes()).padStart(2, '0');
+                return `${year}-${month}-${day}T${hours}:${minutes}`;
+            };
+            
+            document.getElementById('chartDateFrom').value = formatDateTime(yesterday);
+            document.getElementById('chartDateTo').value = formatDateTime(now);
+        }
+        
         // CSV parser function
         function parseCSVLine(line) {
             const values = [];
@@ -795,8 +813,20 @@
             currentPointAddress = pointAddress;
             document.getElementById('chartPointName').textContent = pointName;
             
-            // Get selected time range
-            const hours = document.getElementById('chartTimeRange').value;
+            // Initialize date inputs if they're empty
+            if (!document.getElementById('chartDateFrom').value || !document.getElementById('chartDateTo').value) {
+                initializeDateInputs();
+            }
+            
+            // Get selected time range from date inputs
+            const startTime = new Date(document.getElementById('chartDateFrom').value);
+            const endTime = new Date(document.getElementById('chartDateTo').value);
+            
+            // Validate dates
+            if (startTime >= endTime) {
+                alert('End date must be after start date');
+                return;
+            }
             
             // Show loading message
             const ctx = document.getElementById('temperatureChart').getContext('2d');
@@ -813,9 +843,8 @@
                     throw new Error('No temperature log files found');
                 }
                 
-                // Calculate time range
-                const now = new Date();
-                const startTime = new Date(now.getTime() - (hours * 60 * 60 * 1000));
+                // Calculate time range for file filtering
+                const now = endTime;
                 
                 // Filter files to only those within our time range
                 const relevantFiles = filesData.files.filter(file => {
@@ -867,7 +896,7 @@
                             const dataTime = new Date(timestamp);
                             
                             // Check if this data point is within our time range
-                            if (dataTime >= startTime && dataTime <= now) {
+                            if (dataTime >= startTime && dataTime <= endTime) {
                                 const temperature = tempStr && tempStr !== ' ' ? parseFloat(tempStr) : null;
                                 fileData.push({
                                     timestamp: timestamp,
@@ -1001,7 +1030,8 @@
                 const completeData = {
                     success: true,
                     pointAddress: pointAddress,
-                    hours: hours,
+                    startTime: startTime,
+                    endTime: endTime,
                     data: allData,
                     ...pointInfo,
                     alarmEvents: []
