@@ -766,7 +766,6 @@ Checks current measurement point values against alarm thresholds </para>
         <references refid="class_alarm_1adc66e3d22e173b00c59b040369030a17" compoundref="_alarm_8cpp" startline="140" endline="157">clear</references>
         <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba62574ee27e6c5f985a6bc1dc344e7438" compoundref="_alarm_8h" startline="47">CLEARED</references>
         <references refid="class_logger_manager_1aef24f00186213fa78be3b104a50d58e6" compoundref="_logger_manager_8h" startline="165" endline="167">LoggerManager::error</references>
-        <references refid="class_alarm_1a5f0ead4dbd06aa64bd316d99dc587302" compoundref="_alarm_8cpp" startline="386" endline="395">getStageString</references>
         <references refid="class_alarm_1abd578ec75a5ac9bce00b7ce7207c5d8c" compoundref="_alarm_8cpp" startline="376" endline="384">getTypeString</references>
         <references refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2a9ca8335873c44a53b8f7c5fc526ee59b" compoundref="_alarm_8h" startline="34">HIGH_TEMPERATURE</references>
         <references refid="class_logger_manager_1a5c1373ccc47f4112b596fe6f84fbbc21" compoundref="_logger_manager_8h" startline="145" endline="147">LoggerManager::info</references>
@@ -1027,10 +1026,8 @@ Checks current measurement point values against alarm thresholds </para>
         <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba62574ee27e6c5f985a6bc1dc344e7438" compoundref="_alarm_8h" startline="47">CLEARED</references>
         <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba24d459a81449d7210c8f9a86c2913034" compoundref="_alarm_8h" startline="46">NEW</references>
         <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba874584b84df5da74c3964d8efbff7a02" compoundref="_alarm_8h" startline="48">RESOLVED</references>
-        <referencedby refid="class_alarm_1a28229f40ec51928641f04cd1e505bd6c" compoundref="_alarm_8cpp" startline="195" endline="257">_checkCondition</referencedby>
         <referencedby refid="class_alarm_1aa14f5a764303b269f04573867e2e4fc8" compoundref="_alarm_8cpp" startline="107" endline="136">acknowledge</referencedby>
         <referencedby refid="class_alarm_1adaf4b74537e11d5643ba5a8ae07fe10e" compoundref="_alarm_8cpp" startline="364" endline="370">getStatusText</referencedby>
-        <referencedby refid="class_alarm_1abc87fe39e6a9b5beb9f09df780f67621" compoundref="_alarm_8cpp" startline="477" endline="624">updateCondition</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_alarm_1ac096a4dfdf5d2cd201ff0a5a54b5ce42" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>String</type>
@@ -1426,7 +1423,6 @@ Checks current measurement point values against alarm thresholds </para>
         <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba7e83ae21b9e9b168f12ba5a90ee82c94" compoundref="_alarm_8h" startline="49">ACKNOWLEDGED</references>
         <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba18ff74f43da410c5529f7d6fca84f115" compoundref="_alarm_8h" startline="50">ACTIVE</references>
         <references refid="_alarm_8h_1a4999bf667fcedb69e70ee058d86785eba62574ee27e6c5f985a6bc1dc344e7438" compoundref="_alarm_8h" startline="47">CLEARED</references>
-        <references refid="class_alarm_1a5f0ead4dbd06aa64bd316d99dc587302" compoundref="_alarm_8cpp" startline="386" endline="395">getStageString</references>
         <references refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2a9ca8335873c44a53b8f7c5fc526ee59b" compoundref="_alarm_8h" startline="34">HIGH_TEMPERATURE</references>
         <references refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2acf7e66cec00ad7027a2f00fec418ed71" compoundref="_alarm_8h" startline="35">LOW_TEMPERATURE</references>
         <references refid="_alarm_8h_1ab24e7dd602a82a4cf2afea61f26726e2ab4fed37e8cab6ef5684a361be786d8de" compoundref="_alarm_8h" startline="37">SENSOR_DISCONNECTED</references>

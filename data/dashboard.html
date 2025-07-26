@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/common.css">
     <script src="/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
     <style>
         /* Page-specific styles */
         .form-group {
@@ -746,6 +748,12 @@
         function renderChart(data) {
             const ctx = document.getElementById('temperatureChart').getContext('2d');
             
+            // Destroy existing chart if it exists
+            if (temperatureChart) {
+                temperatureChart.destroy();
+                temperatureChart = null;
+            }
+            
             // Debug: Log the first few data points
             console.log('First 5 data points:', data.data.slice(0, 5));
             
@@ -809,7 +817,7 @@
                     let borderColor = 'rgba(128, 128, 128, 0.7)'; // Default gray
                     let backgroundColor = 'rgba(128, 128, 128, 0.1)';
                     
-                    if (event.type.includes('HIGH_TEMPERATURE')) {
+                    if (event.type.includes('HIGH_TEMP')) {
                         if (event.state === 'ACTIVE') {
                             borderColor = 'rgba(255, 99, 132, 0.9)'; // Red for high temp active
                             backgroundColor = 'rgba(255, 99, 132, 0.2)';
@@ -820,7 +828,7 @@
                             borderColor = 'rgba(76, 175, 80, 0.9)'; // Green for cleared/resolved
                             backgroundColor = 'rgba(76, 175, 80, 0.2)';
                         }
-                    } else if (event.type.includes('LOW_TEMPERATURE')) {
+                    } else if (event.type.includes('LOW_TEMP')) {
                         if (event.state === 'ACTIVE') {
                             borderColor = 'rgba(54, 162, 235, 0.9)'; // Blue for low temp active
                             backgroundColor = 'rgba(54, 162, 235, 0.2)';
@@ -843,7 +851,7 @@
                         borderDash: [5, 5],
                         label: {
                             display: true,
-                            content: `${event.type.replace('_TEMPERATURE', '')} ${event.state}`,
+                            content: `${event.type.replace('_TEMP', ' TEMP')} ${event.state}`,
                             position: 'start',
                             rotation: 270,
                             backgroundColor: backgroundColor,
@@ -885,6 +893,9 @@
                             display: true,
                             text: `Temperature History - ${data.pointName}`
                         },
+                        annotation: {
+                            annotations: annotations
+                        },
                         tooltip: {
                             mode: 'index',
                             intersect: false,
@@ -907,13 +918,19 @@
                                     return [];
                                 }
                             }
-                        },
-                        annotation: {
-                            annotations: annotations
                         }
                     },
                     scales: {
                         x: {
+                            type: 'time',
+                            time: {
+                                parser: 'yyyy-MM-dd\'T\'HH:mm:ss',
+                                displayFormats: {
+                                    hour: 'HH:mm',
+                                    day: 'MMM dd'
+                                },
+                                tooltipFormat: 'yyyy-MM-dd HH:mm:ss'
+                            },
                             display: true,
                             title: {
                                 display: true,
@@ -937,12 +954,7 @@
                 }
             };
             
-            // Destroy existing chart if it exists
-            if (temperatureChart) {
-                temperatureChart.destroy();
-            }
-            
-            // Create new chart
+            // Create new chart (existing chart already destroyed at start of renderChart)
             temperatureChart = new Chart(ctx, config);
         }
         

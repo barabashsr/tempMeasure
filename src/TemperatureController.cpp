@@ -278,10 +278,10 @@ void TemperatureController::updateAlarms() {
     // Debug: Print all current alarms
     for (auto alarm : _configuredAlarms) {
         if (alarm->isEnabled()) {
-            Serial.printf("  Alarm: %s, Stage: %s, Point: %d\n",
-                         alarm->getTypeString().c_str(),
-                         alarm->getStageString().c_str(),
-                         alarm->getSource() ? alarm->getSource()->getAddress() : -1);
+            // Serial.printf("  Alarm: %s, Stage: %s, Point: %d\n",
+            //              alarm->getTypeString().c_str(),
+            //              alarm->getStageString().c_str(),
+            //              alarm->getSource() ? alarm->getSource()->getAddress() : -1);
         }
     }
 }

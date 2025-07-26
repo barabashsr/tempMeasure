@@ -212,9 +212,9 @@ bool Alarm::_checkCondition() {
                     // Normal check
                     condition = currentTemp >= threshold;
                 }
-                Serial.printf("HIGH_TEMP check: Point %d, Temp=%d, Threshold=%d, Hysteresis=%d, Stage=%s, Condition=%s\n",
-                             _source->getAddress(), currentTemp, threshold, _hysteresis,
-                             getStageString().c_str(), condition ? "TRUE" : "FALSE");
+                // Serial.printf("HIGH_TEMP check: Point %d, Temp=%d, Threshold=%d, Hysteresis=%d, Stage=%s, Condition=%s\n",
+                //              _source->getAddress(), currentTemp, threshold, _hysteresis,
+                //              getStageString().c_str(), condition ? "TRUE" : "FALSE");
             }
             break;
             
@@ -228,24 +228,24 @@ bool Alarm::_checkCondition() {
                     // Normal check
                     condition = currentTemp <= threshold;
                 }
-                Serial.printf("LOW_TEMP check: Point %d, Temp=%d, Threshold=%d, Hysteresis=%d, Stage=%s, Condition=%s\n",
-                             _source->getAddress(), currentTemp, threshold, _hysteresis,
-                             getStageString().c_str(), condition ? "TRUE" : "FALSE");
+                // Serial.printf("LOW_TEMP check: Point %d, Temp=%d, Threshold=%d, Hysteresis=%d, Stage=%s, Condition=%s\n",
+                //              _source->getAddress(), currentTemp, threshold, _hysteresis,
+                //              getStageString().c_str(), condition ? "TRUE" : "FALSE");
             }
             break;
             
         case AlarmType::SENSOR_ERROR:
             condition = _source->getErrorStatus() != 0;
-            Serial.printf("SENSOR_ERROR check: Point %d, Error=%d, Condition=%s\n",
-                         _source->getAddress(), _source->getErrorStatus(), 
-                         condition ? "TRUE" : "FALSE");
+            // Serial.printf("SENSOR_ERROR check: Point %d, Error=%d, Condition=%s\n",
+            //              _source->getAddress(), _source->getErrorStatus(), 
+            //              condition ? "TRUE" : "FALSE");
             break;
             
         case AlarmType::SENSOR_DISCONNECTED:
             condition = _source->getBoundSensor() == nullptr;
-            Serial.printf("DISCONNECTED check: Point %d, Sensor=%p, Condition=%s\n",
-                         _source->getAddress(), _source->getBoundSensor(), 
-                         condition ? "TRUE" : "FALSE");
+            // Serial.printf("DISCONNECTED check: Point %d, Sensor=%p, Condition=%s\n",
+            //              _source->getAddress(), _source->getBoundSensor(), 
+            //              condition ? "TRUE" : "FALSE");
             break;
             
         default:
@@ -492,9 +492,9 @@ bool Alarm::updateCondition() {
     // Get current temperature and threshold for logging
     int16_t currentTemp = _source->getCurrentTemp();
     bool conditionExists = _checkCondition();
-    Serial.printf("Alarm update: Point %d, Type=%s, Stage=%s, Condition=%s\n",
-                  _source->getAddress(), getTypeString().c_str(), 
-                  getStageString().c_str(), conditionExists ? "EXISTS" : "CLEARED");
+    // Serial.printf("Alarm update: Point %d, Type=%s, Stage=%s, Condition=%s\n",
+    //               _source->getAddress(), getTypeString().c_str(), 
+    //               getStageString().c_str(), conditionExists ? "EXISTS" : "CLEARED");
     int16_t threshold = 0;
     
     switch (_type) {

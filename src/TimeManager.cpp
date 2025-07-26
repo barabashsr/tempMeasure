@@ -20,6 +20,7 @@
 
 #include "TimeManager.h"
 #include <LittleFS.h>
+#include <sys/time.h>
 
 TimeManager::TimeManager(int sdaPin, int sclPin) 
     : _sdaPin(sdaPin), _sclPin(sclPin), _timezoneOffset(0), 
@@ -54,6 +55,9 @@ bool TimeManager::init() {
     } else {
         _timeSet = true;
     }
+    
+    // Sync system time from RTC
+    syncSystemTimeFromRTC();
     
     // // Initialize NTP
     // _initializeNTP();
@@ -134,6 +138,31 @@ bool TimeManager::setTimeFromNTP(const char* ntpServer) {
     
     Serial.println("TimeManager: Failed to get time from NTP");
     return false;
+}
+
+bool TimeManager::syncSystemTimeFromRTC() {
+    if (!_rtcConnected) {
+        Serial.println("TimeManager: Cannot sync system time - RTC not connected");
+        return false;
+    }
+    
+    DateTime rtcTime = _rtc.now();
+    
+    // Convert RTC time to timeval struct for settimeofday
+    struct timeval tv;
+    tv.tv_sec = rtcTime.unixtime();
+    tv.tv_usec = 0;
+    
+    // Set the system time
+    if (settimeofday(&tv, NULL) == 0) {
+        Serial.printf("TimeManager: System time synced from RTC: %04d-%02d-%02d %02d:%02d:%02d\n",
+                     rtcTime.year(), rtcTime.month(), rtcTime.day(),
+                     rtcTime.hour(), rtcTime.minute(), rtcTime.second());
+        return true;
+    } else {
+        Serial.println("TimeManager: Failed to set system time");
+        return false;
+    }
 }
 
 bool TimeManager::setTime(int year, int month, int day, int hour, int minute, int second) {

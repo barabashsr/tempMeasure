@@ -75,6 +75,13 @@ public:
     bool setTimeFromNTP(const char* ntpServer = "pool.ntp.org");
     
     /**
+     * @brief Sync ESP32 system time from RTC
+     * @return true if sync successful
+     * @return false if RTC not connected
+     */
+    bool syncSystemTimeFromRTC();
+    
+    /**
      * @brief Set time manually
      * @param[in] year Year (2000-2099)
      * @param[in] month Month (1-12)

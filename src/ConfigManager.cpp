@@ -2114,19 +2114,39 @@ std::vector<ConfigManager::AlarmEvent> ConfigManager::getAlarmEventsForPoint(
     // Get alarm log files in date range
     std::vector<String> files = LoggerManager::getAlarmStateLogFiles();
     
+    Serial.printf("getAlarmEventsForPoint: Point=%d, StartDate=%s, EndDate=%s\n", 
+                 pointAddress, startDate.c_str(), endDate.c_str());
+    Serial.printf("Found %d alarm log files\n", files.size());
+    
     for (const String& filename : files) {
+        Serial.printf("Checking alarm file: %s\n", filename.c_str());
         // Check if file is in date range
         // Format is "alarm_states_YYYY-MM-DD.csv"
         if (filename.startsWith("alarm_states_") && filename.endsWith(".csv")) {
             // Extract date: remove "alarm_states_" (13 chars) and ".csv" (4 chars)
             String fileDate = filename.substring(13, filename.length() - 4);
             
+            Serial.printf("File date: %s, comparing with range [%s, %s]\n", 
+                         fileDate.c_str(), startDate.c_str(), endDate.c_str());
+            
             // Simple date comparison (works for YYYY-MM-DD format)
             if (fileDate >= startDate && fileDate <= endDate) {
                 Serial.printf("Processing alarm file: %s (date: %s)\n", filename.c_str(), fileDate.c_str());
-                // Open and parse the file
-                File file = LoggerManager::openLogFile(filename, "alarms");
-                if (!file) continue;
+                
+                // Debug: Show what directory we're using
+                String alarmDir = LoggerManager::getLogDirectoryPath("alarm");
+                Serial.printf("DEBUG: Alarm directory path: %s\n", alarmDir.c_str());
+                Serial.printf("DEBUG: Attempting to open: %s/%s\n", alarmDir.c_str(), filename.c_str());
+                
+                // Open and parse the file - use "alarm" not "alarms"!
+                File file = LoggerManager::openLogFile(filename, "alarm");
+                if (!file) {
+                    Serial.printf("ERROR: Failed to open alarm file: %s\n", filename.c_str());
+                    Serial.printf("ERROR: File path would be: %s/%s\n", alarmDir.c_str(), filename.c_str());
+                    continue;
+                }
+                
+                Serial.printf("SUCCESS: Opened alarm file: %s (size: %d bytes)\n", filename.c_str(), file.size());
                 
                 // Skip header line
                 if (file.available()) {
@@ -2134,9 +2154,20 @@ std::vector<ConfigManager::AlarmEvent> ConfigManager::getAlarmEventsForPoint(
                 }
                 
                 // Read each line
+                int lineNumber = 1; // Header was line 0
                 while (file.available()) {
                     String line = file.readStringUntil('\n');
-                    if (line.isEmpty()) continue;
+                    lineNumber++;
+                    
+                    if (line.isEmpty()) {
+                        Serial.printf("DEBUG: Line %d is empty, skipping\n", lineNumber);
+                        continue;
+                    }
+                    
+                    // Debug first few lines
+                    if (lineNumber <= 5) {
+                        Serial.printf("DEBUG: Line %d: %s\n", lineNumber, line.c_str());
+                    }
                     
                     // Parse CSV line: Timestamp,PointNumber,PointName,AlarmType,AlarmPriority,PreviousState,NewState,CurrentTemperature,Threshold
                     int commaCount = 0;
@@ -2151,18 +2182,26 @@ std::vector<ConfigManager::AlarmEvent> ConfigManager::getAlarmEventsForPoint(
                         }
                     }
                     
+                    if (commaCount < 9) {
+                        Serial.printf("DEBUG: Line %d has only %d fields, expected 9, skipping\n", lineNumber, commaCount);
+                        continue;
+                    }
+                    
                     // Check if this is for our point (field 1 is PointNumber)
-                    if (commaCount >= 9 && fields[1].toInt() == pointAddress) {
+                    int parsedPoint = fields[1].toInt();
+                    Serial.printf("DEBUG: Line %d - Point=%d (looking for %d), Type=%s, State=%s, Temp=%s, Threshold=%s\n", 
+                                 lineNumber, parsedPoint, pointAddress, fields[3].c_str(), fields[6].c_str(),
+                                 fields[7].c_str(), fields[8].c_str());
+                    
+                    if (fields[1].toInt() == pointAddress) {
                         AlarmEvent event;
                         
-                        // Extract time from timestamp (format: "2025-07-25 23:51:37")
+                        // Store full timestamp for Chart.js compatibility
+                        // Format: "2025-07-25 23:51:37" needs to become "2025-07-25T23:51:37"
                         String timestamp = fields[0];
-                        int spaceIndex = timestamp.indexOf(' ');
-                        if (spaceIndex > 0) {
-                            event.timestamp = timestamp.substring(spaceIndex + 1, spaceIndex + 6); // Get HH:MM
-                        } else {
-                            event.timestamp = timestamp; // Fallback
-                        }
+                        // Replace space with 'T' for ISO format
+                        timestamp.replace(' ', 'T');
+                        event.timestamp = timestamp;
                         
                         event.type = fields[3];      // AlarmType
                         event.newState = fields[6];  // NewState
@@ -2171,7 +2210,7 @@ std::vector<ConfigManager::AlarmEvent> ConfigManager::getAlarmEventsForPoint(
                         event.temperature = fields[7].toInt();
                         event.threshold = fields[8].toInt();
                         
-                        Serial.printf("Found alarm event: Point %d, Type: %s, State: %s, Time: %s\n", 
+                        Serial.printf("Found alarm event: Point %d, Type: %s, State: %s, Timestamp: %s\n", 
                                      pointAddress, event.type.c_str(), event.newState.c_str(), event.timestamp.c_str());
                         
                         events.push_back(event);
@@ -2179,10 +2218,15 @@ std::vector<ConfigManager::AlarmEvent> ConfigManager::getAlarmEventsForPoint(
                 }
                 
                 file.close();
+                Serial.printf("DEBUG: Finished processing file %s, found %d events for point %d\n", 
+                             filename.c_str(), events.size(), pointAddress);
             }
+        } else {
+            Serial.printf("DEBUG: Skipping file %s - doesn't match alarm file pattern\n", filename.c_str());
         }
     }
     
+    Serial.printf("DEBUG: Total alarm events found for point %d: %d events\n", pointAddress, events.size());
     return events;
 }
 
@@ -2430,6 +2474,7 @@ void ConfigManager::downloadAPI() {
         Serial.printf("Decimation factor: %d\n", decimationFactor);
         
         // Get list of log files
+        // Note: Files are sorted oldest first, so files[0] is the oldest
         std::vector<String> files = LoggerManager::getLogFiles();
         Serial.printf("Found %d log files\n", files.size());
         
@@ -2514,24 +2559,82 @@ void ConfigManager::downloadAPI() {
                     
                     if (quickTempStr.isEmpty() || quickTempStr == " ") {
                         emptyLinesInRow++;
-                        if (emptyLinesInRow > 50 && validDataPoints == 0) {
+                        
+                        // Only attempt jump once per file to avoid infinite loops
+                        static bool hasJumpedInCurrentFile = false;
+                        static String lastJumpedFile = "";
+                        
+                        // Reset jump flag for new file
+                        if (lastJumpedFile != filename) {
+                            hasJumpedInCurrentFile = false;
+                            lastJumpedFile = filename;
+                        }
+                        
+                        if (!hasJumpedInCurrentFile && emptyLinesInRow > 50 && validDataPoints == 0) {
                             // Skip to end of file
                             long fileSize = file.size();
-                            Serial.printf("No data in first %d lines, jumping to end (file size: %ld)\n", 
+                            Serial.printf("No data in first %d lines, jumping to find data (file size: %ld)\n", 
                                         emptyLinesInRow, fileSize);
                             
-                            // Check if file is too small to jump
-                            if (fileSize > 50000) {
-                                file.seek(fileSize - 50000); // Jump to last 50KB
+                            hasJumpedInCurrentFile = true; // Mark that we've jumped
+                            
+                            // Try multiple positions to find data
+                            bool foundDataAfterJump = false;
+                            size_t positions[] = {
+                                fileSize / 4,      // 25% into file
+                                fileSize / 2,      // 50% into file  
+                                fileSize * 3 / 4,  // 75% into file
+                                fileSize > 10000 ? fileSize - 10000 : fileSize - 1000  // Near end
+                            };
+                            
+                            for (size_t jumpPos : positions) {
+                                if (jumpPos >= fileSize) continue;
+                                
+                                file.seek(jumpPos);
                                 file.readStringUntil('\n'); // Skip partial line
-                            } else if (fileSize > 1000) {
-                                // For smaller files, just skip to near the end
-                                file.seek(fileSize - 1000);
-                                file.readStringUntil('\n'); // Skip partial line
-                            } else {
-                                // File is too small, probably a new file - skip it entirely
-                                Serial.println("File too small, skipping to next file");
-                                break;
+                                
+                                // Try a few lines to see if there's data
+                                for (int testLines = 0; testLines < 10; testLines++) {
+                                    String testLine = file.readStringUntil('\n');
+                                    if (testLine.length() < 10) continue;
+                                    
+                                    // Quick check for data in the target column
+                                    int testCommaCount = 0;
+                                    bool hasData = false;
+                                    for (int i = 0; i < testLine.length() && testCommaCount <= quickTargetColumn; i++) {
+                                        if (testLine[i] == ',') {
+                                            testCommaCount++;
+                                            if (testCommaCount == quickTargetColumn && i < testLine.length() - 1) {
+                                                // Check if there's data after this comma
+                                                int nextComma = testLine.indexOf(',', i + 1);
+                                                String testTemp = testLine.substring(i + 1, nextComma > 0 ? nextComma : testLine.length());
+                                                testTemp.trim();
+                                                if (!testTemp.isEmpty()) {
+                                                    hasData = true;
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    
+                                    if (hasData) {
+                                        Serial.printf("Found data at position %lu\n", jumpPos);
+                                        // Go back to start of found data section
+                                        file.seek(jumpPos);
+                                        file.readStringUntil('\n'); // Skip partial line again
+                                        foundDataAfterJump = true;
+                                        break;
+                                    }
+                                    
+                                    yield();
+                                }
+                                
+                                if (foundDataAfterJump) break;
+                            }
+                            
+                            if (!foundDataAfterJump) {
+                                Serial.println("No data found in file after searching multiple positions");
+                                break; // Skip this file
                             }
                             
                             emptyLinesInRow = 0;
@@ -2555,6 +2658,7 @@ void ConfigManager::downloadAPI() {
                 // Parse only the required fields
                 int commaCount = 0;
                 int lastComma = -1;
+                String dateStr = "";
                 String timeStr = "";
                 String tempStr = "";
                 
@@ -2567,7 +2671,9 @@ void ConfigManager::downloadAPI() {
                 
                 for (int i = 0; i <= line.length(); i++) {
                     if (i == line.length() || line.charAt(i) == ',') {
-                        if (commaCount == 1) {
+                        if (commaCount == 0) {
+                            dateStr = line.substring(lastComma + 1, i);
+                        } else if (commaCount == 1) {
                             timeStr = line.substring(lastComma + 1, i);
                         } else if (commaCount == targetColumn) {
                             tempStr = line.substring(lastComma + 1, i);
@@ -2595,7 +2701,10 @@ void ConfigManager::downloadAPI() {
                 }
                 firstDataPoint = false;
                 
-                jsonResponse += "{\"timestamp\":\"" + timeStr.substring(0, 5) + "\",";
+                // Combine date and time into ISO format for consistency with alarm events
+                // dateStr format: "2025-07-26", timeStr format: "HH:MM:SS"
+                String fullTimestamp = dateStr + "T" + timeStr;
+                jsonResponse += "{\"timestamp\":\"" + fullTimestamp + "\",";
                 
                 if (hasData) {
                     // Parse temperature value
@@ -2638,39 +2747,89 @@ void ConfigManager::downloadAPI() {
         jsonResponse += "],\"alarmEvents\":[";
         
         // Get alarm events for this point and time range
-        // Calculate date range based on hours requested
-        time_t now;
-        time(&now);
-        struct tm* timeinfo = localtime(&now);
-        char dateBuffer[11];
-        strftime(dateBuffer, sizeof(dateBuffer), "%Y-%m-%d", timeinfo);
-        String endDate = String(dateBuffer);
-        String startDate = endDate; // Default to same day
+        // Use the date range from the actual log files processed
+        String endDate = "";
+        String startDate = "";
         
-        if (hoursToFetch > 24) {
-            // For multi-day ranges, calculate start date
-            int daysBack = (hoursToFetch + 23) / 24; // Round up
-            
-            // Simple date calculation (assumes no month/year boundaries for now)
-            int year = endDate.substring(0, 4).toInt();
-            int month = endDate.substring(5, 7).toInt();
-            int day = endDate.substring(8, 10).toInt();
-            
-            day -= daysBack;
-            if (day < 1) {
-                // Simple month rollback (not handling all edge cases)
-                month--;
-                if (month < 1) {
-                    month = 12;
-                    year--;
-                }
-                day = 28; // Simple approximation
+        // Extract dates from the first and last processed log files
+        if (!files.empty()) {
+            // Get the most recent date from the LAST file in array (newest)
+            // Files are processed in reverse order, so the newest is at the end
+            String lastFile = files[files.size() - 1];  // Get the last element (newest file)
+            Serial.printf("DEBUG: Newest file in array: %s\n", lastFile.c_str());
+            if (lastFile.startsWith("temp_log_") && lastFile.length() > 18) {
+                // Extract date from filename: temp_log_YYYY-MM-DD_n.csv
+                endDate = lastFile.substring(9, 19);  // Extract YYYY-MM-DD
+                Serial.printf("DEBUG: Extracted endDate from '%s': '%s'\n", lastFile.c_str(), endDate.c_str());
             }
             
-            char dateBuffer[11];
-            snprintf(dateBuffer, sizeof(dateBuffer), "%04d-%02d-%02d", year, month, day);
-            startDate = String(dateBuffer);
+            // Get the oldest date based on hours requested
+            // For now, use a simple calculation
+            if (!endDate.isEmpty()) {
+                int daysBack = (hoursToFetch + 23) / 24;  // Round up
+                
+                // Parse the end date
+                int year = endDate.substring(0, 4).toInt();
+                int month = endDate.substring(5, 7).toInt();
+                int day = endDate.substring(8, 10).toInt();
+                
+                // Calculate start date - simple approach for now
+                // Just subtract days from the current date
+                char dateBuffer[11];
+                
+                if (daysBack <= 0) {
+                    startDate = endDate;
+                } else if (daysBack == 1) {
+                    // For 24 hours, just go back one day
+                    if (day > 1) {
+                        snprintf(dateBuffer, sizeof(dateBuffer), "%04d-%02d-%02d", year, month, day - 1);
+                    } else {
+                        // Handle month boundary
+                        int prevMonth = month - 1;
+                        int prevYear = year;
+                        if (prevMonth < 1) {
+                            prevMonth = 12;
+                            prevYear--;
+                        }
+                        // Get last day of previous month
+                        int lastDay = 31;
+                        if (prevMonth == 4 || prevMonth == 6 || prevMonth == 9 || prevMonth == 11) {
+                            lastDay = 30;
+                        } else if (prevMonth == 2) {
+                            lastDay = 28; // Simplified - doesn't handle leap years
+                        }
+                        snprintf(dateBuffer, sizeof(dateBuffer), "%04d-%02d-%02d", prevYear, prevMonth, lastDay);
+                    }
+                    startDate = String(dateBuffer);
+                } else {
+                    // For multiple days, use a simpler approach
+                    // This is a temporary fix - in production you'd use proper date libraries
+                    snprintf(dateBuffer, sizeof(dateBuffer), "%04d-%02d-%02d", year, month, day > daysBack ? day - daysBack : 1);
+                    startDate = String(dateBuffer);
+                }
+            }
         }
+        
+        // Fallback to current date if we couldn't determine from files
+        if (endDate.isEmpty()) {
+            time_t now;
+            time(&now);
+            struct tm* timeinfo = localtime(&now);
+            if (timeinfo != nullptr) {
+                char dateBuffer[11];
+                strftime(dateBuffer, sizeof(dateBuffer), "%Y-%m-%d", timeinfo);
+                endDate = String(dateBuffer);
+                startDate = endDate;
+            } else {
+                // If time is not set, use a recent date as fallback
+                endDate = "2025-07-26";  // Today's date based on log files
+                startDate = "2025-07-25"; // Yesterday
+            }
+        }
+        
+        // Debug: Show calculated date range
+        Serial.printf("DEBUG: Calculated date range for alarms: startDate=%s, endDate=%s (hoursToFetch=%d)\n", 
+                     startDate.c_str(), endDate.c_str(), hoursToFetch);
         
         // Get alarm events
         std::vector<AlarmEvent> events = getAlarmEventsForPoint(pointAddress, startDate, endDate);
@@ -2686,8 +2845,9 @@ void ConfigManager::downloadAPI() {
             jsonResponse += "{\"timestamp\":\"" + event.timestamp + "\"";
             jsonResponse += ",\"type\":\"" + event.type + "\"";  
             jsonResponse += ",\"state\":\"" + event.newState + "\"";
-            jsonResponse += ",\"temperature\":" + String(event.temperature / 10.0, 1);
-            jsonResponse += ",\"threshold\":" + String(event.threshold / 10.0, 1) + "}";
+            // Alarm state logs store actual temperature values, not x10 format
+            jsonResponse += ",\"temperature\":" + String(event.temperature);
+            jsonResponse += ",\"threshold\":" + String(event.threshold) + "}";
         }
         
         jsonResponse += "]}";

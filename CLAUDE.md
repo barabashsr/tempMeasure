@@ -64,3 +64,5 @@ cat .claude/sessions/current/DOC_SUMMARY.md
 - **DO NOT append the code files, diff edit them instead.**
 - Do not consider the well compiled code as passed testing. ALWAYS ask me if the code works right
 - do not commit after codding before I have tested the code on the real hardware
+- NEVER do not try to upload the firmware. Always ask me to do it.
+- NEVER try to uplaod the firmware, ask me to do this.

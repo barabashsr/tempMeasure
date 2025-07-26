@@ -100,7 +100,7 @@ $(function(){initNavTree('class_time_manager.html','',''); });
 <div class="dynheader">
 Collaboration diagram for TimeManager:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_time_manager__coll__graph.svg" width="198" height="647"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_time_manager__coll__graph.svg" width="203" height="647"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -115,6 +115,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a5c53a7007744c2ab4b6a53ecf5f423c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alternative initialization method.  <br /></td></tr>
 <tr class="memitem:accdbd3c07d63d6ed1f96fddbc4bf2e00" id="r_accdbd3c07d63d6ed1f96fddbc4bf2e00"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#accdbd3c07d63d6ed1f96fddbc4bf2e00">setTimeFromNTP</a> (const char *ntpServer=&quot;pool.ntp.org&quot;)</td></tr>
 <tr class="memdesc:accdbd3c07d63d6ed1f96fddbc4bf2e00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set time from NTP server.  <br /></td></tr>
+<tr class="memitem:aaa8f40eecb13a943afde608e28596ed4" id="r_aaa8f40eecb13a943afde608e28596ed4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaa8f40eecb13a943afde608e28596ed4">syncSystemTimeFromRTC</a> ()</td></tr>
+<tr class="memdesc:aaa8f40eecb13a943afde608e28596ed4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sync ESP32 system time from RTC.  <br /></td></tr>
 <tr class="memitem:af04febfb916666add72562e2d09e5a4f" id="r_af04febfb916666add72562e2d09e5a4f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af04febfb916666add72562e2d09e5a4f">setTime</a> (int year, int month, int day, int hour, int minute, int second)</td></tr>
 <tr class="memdesc:af04febfb916666add72562e2d09e5a4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set time manually.  <br /></td></tr>
 <tr class="memitem:afebf49e57d461818ded70cf5c6cecf2a" id="r_afebf49e57d461818ded70cf5c6cecf2a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afebf49e57d461818ded70cf5c6cecf2a">setTime</a> (DateTime dateTime)</td></tr>
@@ -270,9 +272,9 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00024">24</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00025">25</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00368">_lastNTPAttempt</a>, <a class="el" href="_time_manager_8h_source.html#l00367">_lastNTPSync</a>, <a class="el" href="_time_manager_8h_source.html#l00360">_ntpServer</a>, <a class="el" href="_time_manager_8h_source.html#l00362">_ntpSyncEnabled</a>, <a class="el" href="_time_manager_8h_source.html#l00361">_ntpUpdateInterval</a>, <a class="el" href="_time_manager_8h_source.html#l00365">_rtcConnected</a>, <a class="el" href="_time_manager_8h_source.html#l00358">_sclPin</a>, <a class="el" href="_time_manager_8h_source.html#l00357">_sdaPin</a>, <a class="el" href="_time_manager_8h_source.html#l00354">_timeClient</a>, <a class="el" href="_time_manager_8h_source.html#l00366">_timeSet</a>, and <a class="el" href="_time_manager_8h_source.html#l00359">_timezoneOffset</a>.</p>
+<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00375">_lastNTPAttempt</a>, <a class="el" href="_time_manager_8h_source.html#l00374">_lastNTPSync</a>, <a class="el" href="_time_manager_8h_source.html#l00367">_ntpServer</a>, <a class="el" href="_time_manager_8h_source.html#l00369">_ntpSyncEnabled</a>, <a class="el" href="_time_manager_8h_source.html#l00368">_ntpUpdateInterval</a>, <a class="el" href="_time_manager_8h_source.html#l00372">_rtcConnected</a>, <a class="el" href="_time_manager_8h_source.html#l00365">_sclPin</a>, <a class="el" href="_time_manager_8h_source.html#l00364">_sdaPin</a>, <a class="el" href="_time_manager_8h_source.html#l00361">_timeClient</a>, <a class="el" href="_time_manager_8h_source.html#l00373">_timeSet</a>, and <a class="el" href="_time_manager_8h_source.html#l00366">_timezoneOffset</a>.</p>
 
 </div>
 </div>
@@ -294,9 +296,9 @@ Private Attributes</h2></td></tr>
 <p>Destroy the Time Manager object. </p>
 <p>Cleans up NTP client resources </p>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00031">31</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00032">32</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00354">_timeClient</a>.</p>
+<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00361">_timeClient</a>.</p>
 
 </div>
 </div>
@@ -333,9 +335,9 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>DateTime Local time with timezone applied </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00429">429</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00458">458</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00359">_timezoneOffset</a>.</p>
+<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00366">_timezoneOffset</a>.</p>
 
 </div>
 </div>
@@ -376,9 +378,9 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>String Formatted date/time string </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00437">437</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00466">466</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00189">getDateString()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00179">getFormattedTime()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00184">getTimeString()</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00144">setTime()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00218">getDateString()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00208">getFormattedTime()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00213">getTimeString()</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00173">setTime()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -412,11 +414,11 @@ Here is the caller graph for this function:</div>
 
 <p>Initialize NTP client with current settings. </p>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00099">99</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00103">103</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00360">_ntpServer</a>, <a class="el" href="_time_manager_8h_source.html#l00353">_ntpUDP</a>, <a class="el" href="_time_manager_8h_source.html#l00361">_ntpUpdateInterval</a>, <a class="el" href="_time_manager_8h_source.html#l00354">_timeClient</a>, and <a class="el" href="_time_manager_8h_source.html#l00359">_timezoneOffset</a>.</p>
+<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00367">_ntpServer</a>, <a class="el" href="_time_manager_8h_source.html#l00360">_ntpUDP</a>, <a class="el" href="_time_manager_8h_source.html#l00368">_ntpUpdateInterval</a>, <a class="el" href="_time_manager_8h_source.html#l00361">_timeClient</a>, and <a class="el" href="_time_manager_8h_source.html#l00366">_timezoneOffset</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00068">begin()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00403">loadConfig()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00228">setNTPServer()</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00108">setTimeFromNTP()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00072">begin()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00432">loadConfig()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00257">setNTPServer()</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00112">setTimeFromNTP()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -453,9 +455,9 @@ Here is the caller graph for this function:</div>
 <dd>
 false if WiFi disconnected </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00425">425</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00454">454</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00366">getStatusJSON()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00108">setTimeFromNTP()</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00244">update()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00395">getStatusJSON()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00112">setTimeFromNTP()</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00273">update()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -496,9 +498,9 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>DateTime UTC time </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00433">433</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00462">462</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00359">_timezoneOffset</a>.</p>
+<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00366">_timezoneOffset</a>.</p>
 
 </div>
 </div>
@@ -550,9 +552,9 @@ Here is the caller graph for this function:</div>
 <dd>
 false if RTC not found or initialization failed </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00068">68</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00072">72</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_time_manager_8cpp_source.html#l00099">_initializeNTP()</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00403">loadConfig()</a>.</p>
+<p class="reference">References <a class="el" href="_time_manager_8cpp_source.html#l00103">_initializeNTP()</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00432">loadConfig()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -581,9 +583,9 @@ Here is the call graph for this function:</div>
 <dd>
 false if RTC communication failed </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00306">306</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00335">335</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00352">_rtc</a>, and <a class="el" href="_time_manager_8h_source.html#l00365">_rtcConnected</a>.</p>
+<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00359">_rtc</a>, and <a class="el" href="_time_manager_8h_source.html#l00372">_rtcConnected</a>.</p>
 
 </div>
 </div>
@@ -607,9 +609,9 @@ false if RTC communication failed </dd></dl>
 <dd>
 false if RTC communication failed </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00314">314</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00343">343</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00352">_rtc</a>, and <a class="el" href="_time_manager_8h_source.html#l00365">_rtcConnected</a>.</p>
+<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00359">_rtc</a>, and <a class="el" href="_time_manager_8h_source.html#l00372">_rtcConnected</a>.</p>
 
 </div>
 </div>
@@ -630,9 +632,9 @@ false if RTC communication failed </dd></dl>
 
 <p>Disable square wave output. </p>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00343">343</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00372">372</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00352">_rtc</a>, and <a class="el" href="_time_manager_8h_source.html#l00365">_rtcConnected</a>.</p>
+<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00359">_rtc</a>, and <a class="el" href="_time_manager_8h_source.html#l00372">_rtcConnected</a>.</p>
 
 </div>
 </div>
@@ -659,9 +661,9 @@ false if RTC communication failed </dd></dl>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00265">265</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00294">294</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00362">_ntpSyncEnabled</a>.</p>
+<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00369">_ntpSyncEnabled</a>.</p>
 
 </div>
 </div>
@@ -689,9 +691,9 @@ false if RTC communication failed </dd></dl>
 </dl>
 <dl class="section see"><dt>See also</dt><dd>Ds3231SqwPinMode </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00337">337</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00366">366</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00352">_rtc</a>, and <a class="el" href="_time_manager_8h_source.html#l00365">_rtcConnected</a>.</p>
+<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00359">_rtc</a>, and <a class="el" href="_time_manager_8h_source.html#l00372">_rtcConnected</a>.</p>
 
 </div>
 </div>
@@ -713,11 +715,11 @@ false if RTC communication failed </dd></dl>
 <p>Get current time from RTC. </p>
 <dl class="section return"><dt>Returns</dt><dd>DateTime Current date and time </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00170">170</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00199">199</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00352">_rtc</a>, and <a class="el" href="_time_manager_8h_source.html#l00365">_rtcConnected</a>.</p>
+<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00359">_rtc</a>, and <a class="el" href="_time_manager_8h_source.html#l00372">_rtcConnected</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00189">getDateString()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00179">getFormattedTime()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00349">getTimeJSON()</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00184">getTimeString()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00218">getDateString()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00208">getFormattedTime()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00378">getTimeJSON()</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00213">getTimeString()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -744,11 +746,11 @@ Here is the caller graph for this function:</div>
 <p>Get date as string (YYYY-MM-DD) </p>
 <dl class="section return"><dt>Returns</dt><dd>String Date in YYYY-MM-DD format </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00189">189</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00218">218</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_time_manager_8cpp_source.html#l00437">_formatDateTime()</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00170">getCurrentTime()</a>.</p>
+<p class="reference">References <a class="el" href="_time_manager_8cpp_source.html#l00466">_formatDateTime()</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00199">getCurrentTime()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00349">getTimeJSON()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00378">getTimeJSON()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -787,11 +789,11 @@ Here is the caller graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>String Formatted time string </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>Format: YYYY=year, MM=month, DD=day, hh=hour, mm=minute, ss=second </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00179">179</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00208">208</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_time_manager_8cpp_source.html#l00437">_formatDateTime()</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00170">getCurrentTime()</a>.</p>
+<p class="reference">References <a class="el" href="_time_manager_8cpp_source.html#l00466">_formatDateTime()</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00199">getCurrentTime()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00349">getTimeJSON()</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00108">setTimeFromNTP()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00378">getTimeJSON()</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00112">setTimeFromNTP()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -823,9 +825,9 @@ Here is the caller graph for this function:</div>
 <p>Get timestamp of last NTP sync. </p>
 <dl class="section return"><dt>Returns</dt><dd>unsigned long Milliseconds since last sync </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00281">281</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00310">310</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00367">_lastNTPSync</a>.</p>
+<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00374">_lastNTPSync</a>.</p>
 
 </div>
 </div>
@@ -847,9 +849,9 @@ Here is the caller graph for this function:</div>
 <p>Get current NTP server. </p>
 <dl class="section return"><dt>Returns</dt><dd>String NTP server address </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00240">240</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00269">269</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00360">_ntpServer</a>.</p>
+<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00367">_ntpServer</a>.</p>
 
 </div>
 </div>
@@ -872,9 +874,9 @@ Here is the caller graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>String JSON with RTC status, NTP sync info, temperature </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>Includes RTC connection, time set status, last sync time </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00366">366</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00395">395</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_time_manager_8cpp_source.html#l00425">_isWiFiConnected()</a>, <a class="el" href="_time_manager_8h_source.html#l00367">_lastNTPSync</a>, <a class="el" href="_time_manager_8h_source.html#l00360">_ntpServer</a>, <a class="el" href="_time_manager_8h_source.html#l00362">_ntpSyncEnabled</a>, <a class="el" href="_time_manager_8h_source.html#l00352">_rtc</a>, <a class="el" href="_time_manager_8h_source.html#l00365">_rtcConnected</a>, <a class="el" href="_time_manager_8h_source.html#l00366">_timeSet</a>, <a class="el" href="_time_manager_8cpp_source.html#l00277">hasLostPower()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00323">isAlarm1Triggered()</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00330">isAlarm2Triggered()</a>.</p>
+<p class="reference">References <a class="el" href="_time_manager_8cpp_source.html#l00454">_isWiFiConnected()</a>, <a class="el" href="_time_manager_8h_source.html#l00374">_lastNTPSync</a>, <a class="el" href="_time_manager_8h_source.html#l00367">_ntpServer</a>, <a class="el" href="_time_manager_8h_source.html#l00369">_ntpSyncEnabled</a>, <a class="el" href="_time_manager_8h_source.html#l00359">_rtc</a>, <a class="el" href="_time_manager_8h_source.html#l00372">_rtcConnected</a>, <a class="el" href="_time_manager_8h_source.html#l00373">_timeSet</a>, <a class="el" href="_time_manager_8cpp_source.html#l00306">hasLostPower()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00352">isAlarm1Triggered()</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00359">isAlarm2Triggered()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -902,9 +904,9 @@ Here is the call graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>float Temperature in Celsius </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>DS3231 has built-in temperature sensor </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00285">285</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00314">314</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00352">_rtc</a>, and <a class="el" href="_time_manager_8h_source.html#l00365">_rtcConnected</a>.</p>
+<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00359">_rtc</a>, and <a class="el" href="_time_manager_8h_source.html#l00372">_rtcConnected</a>.</p>
 
 </div>
 </div>
@@ -927,9 +929,9 @@ Here is the call graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>String JSON with time, date, timezone info </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>Format: {"time":"HH:MM:SS","date":"YYYY-MM-DD","unix":timestamp,"timezone":offset} </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00349">349</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00378">378</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00359">_timezoneOffset</a>, <a class="el" href="_time_manager_8cpp_source.html#l00170">getCurrentTime()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00189">getDateString()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00179">getFormattedTime()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00184">getTimeString()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00216">getTimezoneHours()</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00220">getTimezoneMinutes()</a>.</p>
+<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00366">_timezoneOffset</a>, <a class="el" href="_time_manager_8cpp_source.html#l00199">getCurrentTime()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00218">getDateString()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00208">getFormattedTime()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00213">getTimeString()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00245">getTimezoneHours()</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00249">getTimezoneMinutes()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -956,11 +958,11 @@ Here is the call graph for this function:</div>
 <p>Get time as string (HH:MM:SS) </p>
 <dl class="section return"><dt>Returns</dt><dd>String Time in HH:MM:SS format </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00184">184</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00213">213</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_time_manager_8cpp_source.html#l00437">_formatDateTime()</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00170">getCurrentTime()</a>.</p>
+<p class="reference">References <a class="el" href="_time_manager_8cpp_source.html#l00466">_formatDateTime()</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00199">getCurrentTime()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00349">getTimeJSON()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00378">getTimeJSON()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -992,11 +994,11 @@ Here is the caller graph for this function:</div>
 <p>Get timezone hours offset. </p>
 <dl class="section return"><dt>Returns</dt><dd>int Hours offset from UTC </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00216">216</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00245">245</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00359">_timezoneOffset</a>.</p>
+<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00366">_timezoneOffset</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00349">getTimeJSON()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00378">getTimeJSON()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1023,11 +1025,11 @@ Here is the caller graph for this function:</div>
 <p>Get timezone minutes offset. </p>
 <dl class="section return"><dt>Returns</dt><dd>int Minutes offset within hour </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00220">220</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00249">249</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00359">_timezoneOffset</a>.</p>
+<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00366">_timezoneOffset</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00349">getTimeJSON()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00378">getTimeJSON()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1054,9 +1056,9 @@ Here is the caller graph for this function:</div>
 <p>Get total timezone offset in seconds. </p>
 <dl class="section return"><dt>Returns</dt><dd>long Total seconds offset from UTC </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00224">224</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00253">253</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00359">_timezoneOffset</a>.</p>
+<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00366">_timezoneOffset</a>.</p>
 
 </div>
 </div>
@@ -1078,9 +1080,9 @@ Here is the caller graph for this function:</div>
 <p>Get Unix timestamp. </p>
 <dl class="section return"><dt>Returns</dt><dd>uint32_t Seconds since 1970-01-01 00:00:00 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00194">194</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00223">223</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00352">_rtc</a>, and <a class="el" href="_time_manager_8h_source.html#l00365">_rtcConnected</a>.</p>
+<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00359">_rtc</a>, and <a class="el" href="_time_manager_8h_source.html#l00372">_rtcConnected</a>.</p>
 
 </div>
 </div>
@@ -1104,11 +1106,11 @@ Here is the caller graph for this function:</div>
 <dd>
 false if RTC maintained time </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00277">277</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00306">306</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00352">_rtc</a>, and <a class="el" href="_time_manager_8h_source.html#l00365">_rtcConnected</a>.</p>
+<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00359">_rtc</a>, and <a class="el" href="_time_manager_8h_source.html#l00372">_rtcConnected</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00366">getStatusJSON()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00395">getStatusJSON()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1138,13 +1140,13 @@ Here is the caller graph for this function:</div>
 false if initialization failed </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aa535067588a39cafa8ac49f8e342bd08" title="Initialize time manager and RTC.">begin()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00037">37</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00038">38</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00352">_rtc</a>, <a class="el" href="_time_manager_8h_source.html#l00365">_rtcConnected</a>, <a class="el" href="_time_manager_8h_source.html#l00366">_timeSet</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00160">setTimeFromCompileTime()</a>.</p>
+<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00359">_rtc</a>, <a class="el" href="_time_manager_8h_source.html#l00372">_rtcConnected</a>, <a class="el" href="_time_manager_8h_source.html#l00373">_timeSet</a>, <a class="el" href="_time_manager_8cpp_source.html#l00189">setTimeFromCompileTime()</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00143">syncSystemTimeFromRTC()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_time_manager_a5c53a7007744c2ab4b6a53ecf5f423c4_cgraph.svg" width="370" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_time_manager_a5c53a7007744c2ab4b6a53ecf5f423c4_cgraph.svg" width="395" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1169,11 +1171,11 @@ Here is the call graph for this function:</div>
 <dd>
 false if alarm not triggered </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00323">323</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00352">352</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00352">_rtc</a>, and <a class="el" href="_time_manager_8h_source.html#l00365">_rtcConnected</a>.</p>
+<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00359">_rtc</a>, and <a class="el" href="_time_manager_8h_source.html#l00372">_rtcConnected</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00366">getStatusJSON()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00395">getStatusJSON()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1202,11 +1204,11 @@ Here is the caller graph for this function:</div>
 <dd>
 false if alarm not triggered </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00330">330</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00359">359</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00352">_rtc</a>, and <a class="el" href="_time_manager_8h_source.html#l00365">_rtcConnected</a>.</p>
+<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00359">_rtc</a>, and <a class="el" href="_time_manager_8h_source.html#l00372">_rtcConnected</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00366">getStatusJSON()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00395">getStatusJSON()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1235,9 +1237,9 @@ Here is the caller graph for this function:</div>
 <dd>
 false if NTP sync disabled </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00261">261</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00290">290</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00362">_ntpSyncEnabled</a>.</p>
+<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00369">_ntpSyncEnabled</a>.</p>
 
 </div>
 </div>
@@ -1261,9 +1263,9 @@ false if NTP sync disabled </dd></dl>
 <dd>
 false if RTC not responding </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00269">269</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00298">298</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00365">_rtcConnected</a>.</p>
+<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00372">_rtcConnected</a>.</p>
 
 </div>
 </div>
@@ -1287,9 +1289,9 @@ false if RTC not responding </dd></dl>
 <dd>
 false if time not set </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00273">273</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00302">302</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00366">_timeSet</a>.</p>
+<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00373">_timeSet</a>.</p>
 
 </div>
 </div>
@@ -1311,11 +1313,11 @@ false if time not set </dd></dl>
 <p>Load time configuration from persistent storage. </p>
 <p>Restores timezone, NTP server, and sync settings </p>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00403">403</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00432">432</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_time_manager_8cpp_source.html#l00099">_initializeNTP()</a>, <a class="el" href="_time_manager_8h_source.html#l00360">_ntpServer</a>, <a class="el" href="_time_manager_8h_source.html#l00362">_ntpSyncEnabled</a>, <a class="el" href="_time_manager_8h_source.html#l00361">_ntpUpdateInterval</a>, and <a class="el" href="_time_manager_8h_source.html#l00359">_timezoneOffset</a>.</p>
+<p class="reference">References <a class="el" href="_time_manager_8cpp_source.html#l00103">_initializeNTP()</a>, <a class="el" href="_time_manager_8h_source.html#l00367">_ntpServer</a>, <a class="el" href="_time_manager_8h_source.html#l00369">_ntpSyncEnabled</a>, <a class="el" href="_time_manager_8h_source.html#l00368">_ntpUpdateInterval</a>, and <a class="el" href="_time_manager_8h_source.html#l00366">_timezoneOffset</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00068">begin()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00072">begin()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1347,9 +1349,9 @@ Here is the caller graph for this function:</div>
 <p>Save time configuration to persistent storage. </p>
 <p>Saves timezone, NTP server, and sync settings </p>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00388">388</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00417">417</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00360">_ntpServer</a>, <a class="el" href="_time_manager_8h_source.html#l00362">_ntpSyncEnabled</a>, <a class="el" href="_time_manager_8h_source.html#l00361">_ntpUpdateInterval</a>, and <a class="el" href="_time_manager_8h_source.html#l00359">_timezoneOffset</a>.</p>
+<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00367">_ntpServer</a>, <a class="el" href="_time_manager_8h_source.html#l00369">_ntpSyncEnabled</a>, <a class="el" href="_time_manager_8h_source.html#l00368">_ntpUpdateInterval</a>, and <a class="el" href="_time_manager_8h_source.html#l00366">_timezoneOffset</a>.</p>
 
 </div>
 </div>
@@ -1385,9 +1387,9 @@ Here is the caller graph for this function:</div>
 false if RTC communication failed </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>Ds3231Alarm1Mode </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00292">292</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00321">321</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00352">_rtc</a>, and <a class="el" href="_time_manager_8h_source.html#l00365">_rtcConnected</a>.</p>
+<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00359">_rtc</a>, and <a class="el" href="_time_manager_8h_source.html#l00372">_rtcConnected</a>.</p>
 
 </div>
 </div>
@@ -1423,9 +1425,9 @@ false if RTC communication failed </dd></dl>
 false if RTC communication failed </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>Ds3231Alarm2Mode </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00299">299</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00328">328</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00352">_rtc</a>, and <a class="el" href="_time_manager_8h_source.html#l00365">_rtcConnected</a>.</p>
+<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00359">_rtc</a>, and <a class="el" href="_time_manager_8h_source.html#l00372">_rtcConnected</a>.</p>
 
 </div>
 </div>
@@ -1452,9 +1454,9 @@ false if RTC communication failed </dd></dl>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00228">228</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00257">257</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_time_manager_8cpp_source.html#l00099">_initializeNTP()</a>, and <a class="el" href="_time_manager_8h_source.html#l00360">_ntpServer</a>.</p>
+<p class="reference">References <a class="el" href="_time_manager_8cpp_source.html#l00103">_initializeNTP()</a>, and <a class="el" href="_time_manager_8h_source.html#l00367">_ntpServer</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1486,9 +1488,9 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00233">233</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00262">262</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00361">_ntpUpdateInterval</a>, and <a class="el" href="_time_manager_8h_source.html#l00354">_timeClient</a>.</p>
+<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00368">_ntpUpdateInterval</a>, and <a class="el" href="_time_manager_8h_source.html#l00361">_timeClient</a>.</p>
 
 </div>
 </div>
@@ -1518,9 +1520,9 @@ Here is the call graph for this function:</div>
 <dd>
 false if RTC communication failed </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00144">144</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00173">173</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_time_manager_8cpp_source.html#l00437">_formatDateTime()</a>, <a class="el" href="_time_manager_8h_source.html#l00352">_rtc</a>, <a class="el" href="_time_manager_8h_source.html#l00365">_rtcConnected</a>, and <a class="el" href="_time_manager_8h_source.html#l00366">_timeSet</a>.</p>
+<p class="reference">References <a class="el" href="_time_manager_8cpp_source.html#l00466">_formatDateTime()</a>, <a class="el" href="_time_manager_8h_source.html#l00359">_rtc</a>, <a class="el" href="_time_manager_8h_source.html#l00372">_rtcConnected</a>, and <a class="el" href="_time_manager_8h_source.html#l00373">_timeSet</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1584,11 +1586,11 @@ Here is the call graph for this function:</div>
 <dd>
 false if invalid parameters </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00139">139</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00168">168</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_time_manager_8cpp_source.html#l00139">setTime()</a>.</p>
+<p class="reference">References <a class="el" href="_time_manager_8cpp_source.html#l00168">setTime()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00139">setTime()</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00155">setTimeFromUnix()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00168">setTime()</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00184">setTimeFromUnix()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1623,11 +1625,11 @@ Here is the caller graph for this function:</div>
 false if RTC communication failed </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>Uses <b>DATE</b> and <b>TIME</b> macros </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00160">160</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00189">189</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00352">_rtc</a>, <a class="el" href="_time_manager_8h_source.html#l00365">_rtcConnected</a>, and <a class="el" href="_time_manager_8h_source.html#l00366">_timeSet</a>.</p>
+<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00359">_rtc</a>, <a class="el" href="_time_manager_8h_source.html#l00372">_rtcConnected</a>, and <a class="el" href="_time_manager_8h_source.html#l00373">_timeSet</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00037">init()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00038">init()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1662,11 +1664,11 @@ Here is the caller graph for this function:</div>
 <dd>
 false if NTP sync failed </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00108">108</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00112">112</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_time_manager_8cpp_source.html#l00099">_initializeNTP()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00425">_isWiFiConnected()</a>, <a class="el" href="_time_manager_8h_source.html#l00367">_lastNTPSync</a>, <a class="el" href="_time_manager_8h_source.html#l00360">_ntpServer</a>, <a class="el" href="_time_manager_8h_source.html#l00352">_rtc</a>, <a class="el" href="_time_manager_8h_source.html#l00365">_rtcConnected</a>, <a class="el" href="_time_manager_8h_source.html#l00354">_timeClient</a>, <a class="el" href="_time_manager_8h_source.html#l00366">_timeSet</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00179">getFormattedTime()</a>.</p>
+<p class="reference">References <a class="el" href="_time_manager_8cpp_source.html#l00103">_initializeNTP()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00454">_isWiFiConnected()</a>, <a class="el" href="_time_manager_8h_source.html#l00374">_lastNTPSync</a>, <a class="el" href="_time_manager_8h_source.html#l00367">_ntpServer</a>, <a class="el" href="_time_manager_8h_source.html#l00359">_rtc</a>, <a class="el" href="_time_manager_8h_source.html#l00372">_rtcConnected</a>, <a class="el" href="_time_manager_8h_source.html#l00361">_timeClient</a>, <a class="el" href="_time_manager_8h_source.html#l00373">_timeSet</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00208">getFormattedTime()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00257">syncWithNTP()</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00244">update()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00286">syncWithNTP()</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00273">update()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1706,9 +1708,9 @@ Here is the caller graph for this function:</div>
 <dd>
 false if RTC communication failed </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00155">155</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00184">184</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_time_manager_8cpp_source.html#l00139">setTime()</a>.</p>
+<p class="reference">References <a class="el" href="_time_manager_8cpp_source.html#l00168">setTime()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1745,9 +1747,9 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00201">201</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00230">230</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00354">_timeClient</a>, and <a class="el" href="_time_manager_8h_source.html#l00359">_timezoneOffset</a>.</p>
+<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00361">_timeClient</a>, and <a class="el" href="_time_manager_8h_source.html#l00366">_timezoneOffset</a>.</p>
 
 </div>
 </div>
@@ -1774,9 +1776,42 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00209">209</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00238">238</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00354">_timeClient</a>, and <a class="el" href="_time_manager_8h_source.html#l00359">_timezoneOffset</a>.</p>
+<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00361">_timeClient</a>, and <a class="el" href="_time_manager_8h_source.html#l00366">_timezoneOffset</a>.</p>
+
+</div>
+</div>
+<a id="aaa8f40eecb13a943afde608e28596ed4" name="aaa8f40eecb13a943afde608e28596ed4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa8f40eecb13a943afde608e28596ed4">&#9670;&#160;</a></span>syncSystemTimeFromRTC()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool TimeManager::syncSystemTimeFromRTC </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sync ESP32 system time from RTC. </p>
+<dl class="section return"><dt>Returns</dt><dd>true if sync successful </dd>
+<dd>
+false if RTC not connected </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00143">143</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_time_manager_8h_source.html#l00359">_rtc</a>, and <a class="el" href="_time_manager_8h_source.html#l00372">_rtcConnected</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00038">init()</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_time_manager_aaa8f40eecb13a943afde608e28596ed4_icgraph.svg" width="395" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -1800,9 +1835,9 @@ Here is the call graph for this function:</div>
 <dd>
 false if sync failed </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00257">257</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00286">286</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_time_manager_8cpp_source.html#l00108">setTimeFromNTP()</a>.</p>
+<p class="reference">References <a class="el" href="_time_manager_8cpp_source.html#l00112">setTimeFromNTP()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1829,9 +1864,9 @@ Here is the call graph for this function:</div>
 <p>Update time from NTP if needed. </p>
 <p>Call this in <a class="el" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title="Main system loop.">loop()</a> for automatic NTP synchronization </p>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00244">244</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8cpp_source.html#l00273">273</a> of file <a class="el" href="_time_manager_8cpp_source.html">TimeManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_time_manager_8cpp_source.html#l00425">_isWiFiConnected()</a>, <a class="el" href="_time_manager_8h_source.html#l00368">_lastNTPAttempt</a>, <a class="el" href="_time_manager_8h_source.html#l00367">_lastNTPSync</a>, <a class="el" href="_time_manager_8h_source.html#l00362">_ntpSyncEnabled</a>, <a class="el" href="_time_manager_8h_source.html#l00361">_ntpUpdateInterval</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00108">setTimeFromNTP()</a>.</p>
+<p class="reference">References <a class="el" href="_time_manager_8cpp_source.html#l00454">_isWiFiConnected()</a>, <a class="el" href="_time_manager_8h_source.html#l00375">_lastNTPAttempt</a>, <a class="el" href="_time_manager_8h_source.html#l00374">_lastNTPSync</a>, <a class="el" href="_time_manager_8h_source.html#l00369">_ntpSyncEnabled</a>, <a class="el" href="_time_manager_8h_source.html#l00368">_ntpUpdateInterval</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00112">setTimeFromNTP()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1863,9 +1898,9 @@ Here is the call graph for this function:</div>
 
 <p>Timestamp of last NTP sync attempt. </p>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8h_source.html#l00368">368</a> of file <a class="el" href="_time_manager_8h_source.html">TimeManager.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8h_source.html#l00375">375</a> of file <a class="el" href="_time_manager_8h_source.html">TimeManager.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00024">TimeManager()</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00244">update()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00025">TimeManager()</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00273">update()</a>.</p>
 
 </div>
 </div>
@@ -1891,9 +1926,9 @@ Here is the call graph for this function:</div>
 
 <p>Timestamp of last successful NTP sync. </p>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8h_source.html#l00367">367</a> of file <a class="el" href="_time_manager_8h_source.html">TimeManager.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8h_source.html#l00374">374</a> of file <a class="el" href="_time_manager_8h_source.html">TimeManager.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00281">getLastNTPSync()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00366">getStatusJSON()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00108">setTimeFromNTP()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00024">TimeManager()</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00244">update()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00310">getLastNTPSync()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00395">getStatusJSON()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00112">setTimeFromNTP()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00025">TimeManager()</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00273">update()</a>.</p>
 
 </div>
 </div>
@@ -1919,9 +1954,9 @@ Here is the call graph for this function:</div>
 
 <p>NTP server hostname. </p>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8h_source.html#l00360">360</a> of file <a class="el" href="_time_manager_8h_source.html">TimeManager.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8h_source.html#l00367">367</a> of file <a class="el" href="_time_manager_8h_source.html">TimeManager.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00099">_initializeNTP()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00240">getNTPServer()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00366">getStatusJSON()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00403">loadConfig()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00388">saveConfig()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00228">setNTPServer()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00108">setTimeFromNTP()</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00024">TimeManager()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00103">_initializeNTP()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00269">getNTPServer()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00395">getStatusJSON()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00432">loadConfig()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00417">saveConfig()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00257">setNTPServer()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00112">setTimeFromNTP()</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00025">TimeManager()</a>.</p>
 
 </div>
 </div>
@@ -1947,9 +1982,9 @@ Here is the call graph for this function:</div>
 
 <p>Flag for automatic NTP synchronization. </p>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8h_source.html#l00362">362</a> of file <a class="el" href="_time_manager_8h_source.html">TimeManager.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8h_source.html#l00369">369</a> of file <a class="el" href="_time_manager_8h_source.html">TimeManager.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00265">enableNTPSync()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00366">getStatusJSON()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00261">isNTPSyncEnabled()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00403">loadConfig()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00388">saveConfig()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00024">TimeManager()</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00244">update()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00294">enableNTPSync()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00395">getStatusJSON()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00290">isNTPSyncEnabled()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00432">loadConfig()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00417">saveConfig()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00025">TimeManager()</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00273">update()</a>.</p>
 
 </div>
 </div>
@@ -1975,9 +2010,9 @@ Here is the call graph for this function:</div>
 
 <p>UDP client for NTP communication. </p>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8h_source.html#l00353">353</a> of file <a class="el" href="_time_manager_8h_source.html">TimeManager.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8h_source.html#l00360">360</a> of file <a class="el" href="_time_manager_8h_source.html">TimeManager.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00099">_initializeNTP()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00103">_initializeNTP()</a>.</p>
 
 </div>
 </div>
@@ -2003,9 +2038,9 @@ Here is the call graph for this function:</div>
 
 <p>NTP sync interval in milliseconds. </p>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8h_source.html#l00361">361</a> of file <a class="el" href="_time_manager_8h_source.html">TimeManager.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8h_source.html#l00368">368</a> of file <a class="el" href="_time_manager_8h_source.html">TimeManager.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00099">_initializeNTP()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00403">loadConfig()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00388">saveConfig()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00233">setNTPUpdateInterval()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00024">TimeManager()</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00244">update()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00103">_initializeNTP()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00432">loadConfig()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00417">saveConfig()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00262">setNTPUpdateInterval()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00025">TimeManager()</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00273">update()</a>.</p>
 
 </div>
 </div>
@@ -2031,9 +2066,9 @@ Here is the call graph for this function:</div>
 
 <p>DS3231 RTC instance. </p>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8h_source.html#l00352">352</a> of file <a class="el" href="_time_manager_8h_source.html">TimeManager.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8h_source.html#l00359">359</a> of file <a class="el" href="_time_manager_8h_source.html">TimeManager.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00306">clearAlarm1()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00314">clearAlarm2()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00343">disableSquareWave()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00337">enableSquareWave()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00170">getCurrentTime()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00366">getStatusJSON()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00285">getTemperature()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00194">getUnixTime()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00277">hasLostPower()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00037">init()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00323">isAlarm1Triggered()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00330">isAlarm2Triggered()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00292">setAlarm1()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00299">setAlarm2()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00144">setTime()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00160">setTimeFromCompileTime()</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00108">setTimeFromNTP()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00335">clearAlarm1()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00343">clearAlarm2()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00372">disableSquareWave()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00366">enableSquareWave()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00199">getCurrentTime()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00395">getStatusJSON()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00314">getTemperature()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00223">getUnixTime()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00306">hasLostPower()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00038">init()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00352">isAlarm1Triggered()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00359">isAlarm2Triggered()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00321">setAlarm1()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00328">setAlarm2()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00173">setTime()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00189">setTimeFromCompileTime()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00112">setTimeFromNTP()</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00143">syncSystemTimeFromRTC()</a>.</p>
 
 </div>
 </div>
@@ -2059,9 +2094,9 @@ Here is the call graph for this function:</div>
 
 <p>RTC connection status. </p>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8h_source.html#l00365">365</a> of file <a class="el" href="_time_manager_8h_source.html">TimeManager.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8h_source.html#l00372">372</a> of file <a class="el" href="_time_manager_8h_source.html">TimeManager.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00306">clearAlarm1()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00314">clearAlarm2()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00343">disableSquareWave()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00337">enableSquareWave()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00170">getCurrentTime()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00366">getStatusJSON()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00285">getTemperature()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00194">getUnixTime()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00277">hasLostPower()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00037">init()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00323">isAlarm1Triggered()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00330">isAlarm2Triggered()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00269">isRTCConnected()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00292">setAlarm1()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00299">setAlarm2()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00144">setTime()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00160">setTimeFromCompileTime()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00108">setTimeFromNTP()</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00024">TimeManager()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00335">clearAlarm1()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00343">clearAlarm2()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00372">disableSquareWave()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00366">enableSquareWave()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00199">getCurrentTime()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00395">getStatusJSON()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00314">getTemperature()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00223">getUnixTime()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00306">hasLostPower()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00038">init()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00352">isAlarm1Triggered()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00359">isAlarm2Triggered()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00298">isRTCConnected()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00321">setAlarm1()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00328">setAlarm2()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00173">setTime()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00189">setTimeFromCompileTime()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00112">setTimeFromNTP()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00143">syncSystemTimeFromRTC()</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00025">TimeManager()</a>.</p>
 
 </div>
 </div>
@@ -2087,9 +2122,9 @@ Here is the call graph for this function:</div>
 
 <p>I2C SCL pin number. </p>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8h_source.html#l00358">358</a> of file <a class="el" href="_time_manager_8h_source.html">TimeManager.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8h_source.html#l00365">365</a> of file <a class="el" href="_time_manager_8h_source.html">TimeManager.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00024">TimeManager()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00025">TimeManager()</a>.</p>
 
 </div>
 </div>
@@ -2115,9 +2150,9 @@ Here is the call graph for this function:</div>
 
 <p>I2C SDA pin number. </p>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8h_source.html#l00357">357</a> of file <a class="el" href="_time_manager_8h_source.html">TimeManager.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8h_source.html#l00364">364</a> of file <a class="el" href="_time_manager_8h_source.html">TimeManager.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00024">TimeManager()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00025">TimeManager()</a>.</p>
 
 </div>
 </div>
@@ -2143,9 +2178,9 @@ Here is the call graph for this function:</div>
 
 <p>NTP client instance. </p>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8h_source.html#l00354">354</a> of file <a class="el" href="_time_manager_8h_source.html">TimeManager.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8h_source.html#l00361">361</a> of file <a class="el" href="_time_manager_8h_source.html">TimeManager.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00099">_initializeNTP()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00233">setNTPUpdateInterval()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00108">setTimeFromNTP()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00201">setTimezone()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00209">setTimezoneOffset()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00024">TimeManager()</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00031">~TimeManager()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00103">_initializeNTP()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00262">setNTPUpdateInterval()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00112">setTimeFromNTP()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00230">setTimezone()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00238">setTimezoneOffset()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00025">TimeManager()</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00032">~TimeManager()</a>.</p>
 
 </div>
 </div>
@@ -2171,9 +2206,9 @@ Here is the call graph for this function:</div>
 
 <p>Time validity flag. </p>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8h_source.html#l00366">366</a> of file <a class="el" href="_time_manager_8h_source.html">TimeManager.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8h_source.html#l00373">373</a> of file <a class="el" href="_time_manager_8h_source.html">TimeManager.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00366">getStatusJSON()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00037">init()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00273">isTimeSet()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00144">setTime()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00160">setTimeFromCompileTime()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00108">setTimeFromNTP()</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00024">TimeManager()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00395">getStatusJSON()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00038">init()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00302">isTimeSet()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00173">setTime()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00189">setTimeFromCompileTime()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00112">setTimeFromNTP()</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00025">TimeManager()</a>.</p>
 
 </div>
 </div>
@@ -2199,9 +2234,9 @@ Here is the call graph for this function:</div>
 
 <p>Timezone offset in seconds from UTC. </p>
 
-<p class="definition">Definition at line <a class="el" href="_time_manager_8h_source.html#l00359">359</a> of file <a class="el" href="_time_manager_8h_source.html">TimeManager.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_time_manager_8h_source.html#l00366">366</a> of file <a class="el" href="_time_manager_8h_source.html">TimeManager.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00429">_applyTimezone()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00099">_initializeNTP()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00433">_removeTimezone()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00349">getTimeJSON()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00216">getTimezoneHours()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00220">getTimezoneMinutes()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00224">getTimezoneOffset()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00403">loadConfig()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00388">saveConfig()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00201">setTimezone()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00209">setTimezoneOffset()</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00024">TimeManager()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_time_manager_8cpp_source.html#l00458">_applyTimezone()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00103">_initializeNTP()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00462">_removeTimezone()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00378">getTimeJSON()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00245">getTimezoneHours()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00249">getTimezoneMinutes()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00253">getTimezoneOffset()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00432">loadConfig()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00417">saveConfig()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00230">setTimezone()</a>, <a class="el" href="_time_manager_8cpp_source.html#l00238">setTimezoneOffset()</a>, and <a class="el" href="_time_manager_8cpp_source.html#l00025">TimeManager()</a>.</p>
 
 </div>
 </div>

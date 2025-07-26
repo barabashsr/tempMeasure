@@ -87,6 +87,7 @@ var searchData=
   ['startblinking_84',['startBlinking',['../class_indicator_interface.html#aafa418167df7eb74fc90fca14818a5eb',1,'IndicatorInterface']]],
   ['stop_85',['stop',['../class_temp_modbus_server.html#a8bbfa71756ccff5f4b80509c41078c6c',1,'TempModbusServer']]],
   ['stopblinking_86',['stopBlinking',['../class_indicator_interface.html#a1573397b085b78ea7f714665d55cece0',1,'IndicatorInterface::stopBlinking()'],['../class_indicator_interface.html#a4458930151b73e21364fada5ba6fe129',1,'IndicatorInterface::stopBlinking(const std::string &amp;portName)']]],
-  ['syncwithntp_87',['syncWithNTP',['../class_time_manager.html#aa8a8cc016ebb9ceabc4fee347a49cbdb',1,'TimeManager']]],
-  ['systeminitialized_88',['systemInitialized',['../class_temperature_controller.html#a0156a803f4fdaffbe59e3842647a608f',1,'TemperatureController']]]
+  ['syncsystemtimefromrtc_87',['syncSystemTimeFromRTC',['../class_time_manager.html#aaa8f40eecb13a943afde608e28596ed4',1,'TimeManager']]],
+  ['syncwithntp_88',['syncWithNTP',['../class_time_manager.html#aa8a8cc016ebb9ceabc4fee347a49cbdb',1,'TimeManager']]],
+  ['systeminitialized_89',['systemInitialized',['../class_temperature_controller.html#a0156a803f4fdaffbe59e3842647a608f',1,'TemperatureController']]]
 ];

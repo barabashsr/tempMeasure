@@ -47,6 +47,7 @@ var class_time_manager =
     [ "setTimeFromUnix", "class_time_manager.html#a2c0e88f3f6d491aecea922149947be48", null ],
     [ "setTimezone", "class_time_manager.html#a866d39aaf7eaab03c654d15d112097b0", null ],
     [ "setTimezoneOffset", "class_time_manager.html#a26c74aae85b05e3c6fe59fec05f06b6b", null ],
+    [ "syncSystemTimeFromRTC", "class_time_manager.html#aaa8f40eecb13a943afde608e28596ed4", null ],
     [ "syncWithNTP", "class_time_manager.html#aa8a8cc016ebb9ceabc4fee347a49cbdb", null ],
     [ "update", "class_time_manager.html#a97d902b19861efc099141eeb846671a3", null ],
     [ "_lastNTPAttempt", "class_time_manager.html#a3c84248b3f7274facf6297f0ce59253d", null ],
