@@ -750,58 +750,107 @@
         const chartModal = document.getElementById('chartModal');
         const chartCloseBtn = document.getElementById('chartCloseBtn');
         
-        // Show chart function
-        function showChart(pointAddress, pointName) {
+        // Show chart function - Updated for chunked loading
+        async function showChart(pointAddress, pointName) {
             currentPointAddress = pointAddress;
             document.getElementById('chartPointName').textContent = pointName;
             
             // Get selected time range
             const hours = document.getElementById('chartTimeRange').value;
             
-            // Request denser data for better visualization
-            const densityParam = hours <= 6 ? '&density=high' : '';
             // Add timestamp to prevent caching
             const timestamp = new Date().getTime();
             
-            // Fetch temperature history
-            fetch(`/api/temperature-history?point=${pointAddress}&hours=${hours}${densityParam}&t=${timestamp}`, {
-                cache: 'no-cache',
-                headers: {
-                    'Cache-Control': 'no-cache',
-                    'Pragma': 'no-cache'
-                }
-            })
-                .then(response => response.json())
-                .then(data => {
-                    console.log('Received data:', data);
-                    if (data.success) {
-                        // Check if we have any non-null data points
-                        const validData = data.data.filter(point => point.temperature !== null);
-                        console.log(`Total points: ${data.data.length}, Valid points: ${validData.length}`);
-                        
-                        // Store current data
-                        currentChartData = data;
-                        
-                        // Show filters if we have alarm events
-                        const filtersDiv = document.getElementById('alarmFilters');
-                        if (data.alarmEvents && data.alarmEvents.length > 0) {
-                            filtersDiv.style.display = 'block';
-                            console.log(`Showing alarm filters for ${data.alarmEvents.length} events`);
-                        } else {
-                            filtersDiv.style.display = 'none';
-                            console.log('No alarm events found, hiding filters');
+            // Show loading message
+            const ctx = document.getElementById('temperatureChart').getContext('2d');
+            ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+            ctx.font = '20px Arial';
+            ctx.fillText('Loading temperature data...', ctx.canvas.width/2 - 100, ctx.canvas.height/2);
+            
+            // Initialize data collection
+            let allData = [];
+            let currentChunk = 0;
+            let totalChunks = 1;
+            let pointInfo = null;
+            
+            try {
+                // Fetch chunks until we have all data
+                do {
+                    console.log(`Fetching chunk ${currentChunk}...`);
+                    
+                    const response = await fetch(`/api/temperature-history?point=${pointAddress}&hours=${hours}&chunk=${currentChunk}&t=${timestamp}`, {
+                        cache: 'no-cache',
+                        headers: {
+                            'Cache-Control': 'no-cache',
+                            'Pragma': 'no-cache'
                         }
-                        
-                        renderChart(data);
-                        chartModal.style.display = 'block';
-                    } else {
-                        alert('Failed to load temperature history');
+                    });
+                    
+                    const chunkData = await response.json();
+                    
+                    if (!chunkData.success) {
+                        throw new Error('Failed to load temperature history');
                     }
-                })
-                .catch(error => {
-                    console.error('Error fetching temperature history:', error);
-                    alert('Error loading temperature history');
-                });
+                    
+                    // Store point info from first chunk
+                    if (currentChunk === 0) {
+                        pointInfo = {
+                            pointName: chunkData.pointName,
+                            lowThreshold: chunkData.lowThreshold,
+                            highThreshold: chunkData.highThreshold
+                        };
+                    }
+                    
+                    // Add data from this chunk
+                    allData = allData.concat(chunkData.data);
+                    
+                    // Update progress
+                    console.log(`Chunk ${currentChunk}: received ${chunkData.chunkInfo.pointsInChunk} points`);
+                    console.log(`Total points so far: ${allData.length} of ${chunkData.chunkInfo.totalPointsInDataset}`);
+                    
+                    // Update loading message with progress
+                    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+                    const progress = Math.round((allData.length / chunkData.chunkInfo.totalPointsInDataset) * 100);
+                    ctx.fillText(`Loading temperature data... ${progress}%`, ctx.canvas.width/2 - 120, ctx.canvas.height/2);
+                    ctx.fillText(`(${allData.length} of ${chunkData.chunkInfo.totalPointsInDataset} points)`, ctx.canvas.width/2 - 100, ctx.canvas.height/2 + 30);
+                    
+                    // Check if there are more chunks
+                    totalChunks = chunkData.chunkInfo.totalChunks;
+                    currentChunk++;
+                    
+                } while (currentChunk < totalChunks);
+                
+                console.log(`Finished loading all data: ${allData.length} total points`);
+                
+                // Check if we have any non-null data points
+                const validData = allData.filter(point => point.temperature !== null);
+                console.log(`Total points: ${allData.length}, Valid points: ${validData.length}`);
+                
+                // Prepare complete data object
+                const completeData = {
+                    success: true,
+                    pointAddress: pointAddress,
+                    hours: hours,
+                    data: allData,
+                    ...pointInfo,
+                    // No alarm events - they're disabled for now
+                    alarmEvents: []
+                };
+                
+                // Store current data
+                currentChartData = completeData;
+                
+                // Hide alarm filters since we're not showing alarm events
+                const filtersDiv = document.getElementById('alarmFilters');
+                filtersDiv.style.display = 'none';
+                
+                renderChart(completeData);
+                chartModal.style.display = 'block';
+                
+            } catch (error) {
+                console.error('Error fetching temperature history:', error);
+                alert('Error loading temperature history: ' + error.message);
+            }
         }
         
         // Update chart function
@@ -893,6 +942,8 @@
                 };
             }
             
+            // ALARM EVENTS DISABLED - Showing only temperature data
+            /*
             // Add alarm event markers (filtered)
             if (data.alarmEvents && data.alarmEvents.length > 0) {
                 console.log('Alarm events:', data.alarmEvents);
@@ -951,6 +1002,7 @@
                 
                 console.log('Alarm event map created with', Object.keys(data.alarmEventMap).length, 'events');
             }
+            */
             
             // Chart configuration
             const config = {

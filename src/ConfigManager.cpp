@@ -2432,12 +2432,13 @@ void ConfigManager::downloadAPI() {
         Serial.printf("Downloaded alarm state log file: %s\n", filename.c_str());
     });
     
-    // API endpoint for temperature history (for charts) - Simplified version
+    // API endpoint for temperature history (for charts) - Chunked version for ALL data
     server->on("/api/temperature-history", HTTP_GET, [this]() {
         Serial.println("SERVER: /api/temperature-history called");
         uint8_t pointAddress = server->arg("point").toInt();
         String hours = server->arg("hours");
-        Serial.printf("Point: %d, Hours: %s\n", pointAddress, hours.c_str());
+        int chunk = server->hasArg("chunk") ? server->arg("chunk").toInt() : 0;
+        Serial.printf("Point: %d, Hours: %s, Chunk: %d\n", pointAddress, hours.c_str(), chunk);
         
         if (pointAddress >= 60) {
             server->send(400, "text/plain", "Invalid point address");
@@ -2449,9 +2450,14 @@ void ConfigManager::downloadAPI() {
         if (hoursToFetch < 1) hoursToFetch = 1;
         if (hoursToFetch > 168) hoursToFetch = 168; // Max 7 days
         
-        // Build JSON response with limited data
+        // Configuration for chunking
+        const int POINTS_PER_CHUNK = 2000; // Send 2000 points per chunk
+        const int MAX_RESPONSE_SIZE = 50000; // Max JSON response size in bytes
+        
+        // Build JSON response
         String jsonResponse = "{\"success\":true,\"pointAddress\":" + String(pointAddress) + 
-                             ",\"hours\":" + String(hoursToFetch);
+                             ",\"hours\":" + String(hoursToFetch) +
+                             ",\"chunk\":" + String(chunk);
         
         // Get point info for thresholds
         MeasurementPoint* point = controller.getMeasurementPoint(pointAddress);
@@ -2463,18 +2469,8 @@ void ConfigManager::downloadAPI() {
         
         jsonResponse += ",\"data\":[";
         
-        // Calculate decimation factor based on time range
-        // Aim for ~300-500 points for smooth visualization
-        int decimationFactor = 1;
-        if (hoursToFetch == 1) decimationFactor = 1;      // ~60 points
-        else if (hoursToFetch <= 6) decimationFactor = 2;  // ~180 points  
-        else if (hoursToFetch <= 12) decimationFactor = 3; // ~240 points
-        else if (hoursToFetch <= 24) decimationFactor = 5; // ~288 points
-        else if (hoursToFetch <= 48) decimationFactor = 10; // ~288 points
-        else if (hoursToFetch <= 96) decimationFactor = 20; // ~288 points
-        else decimationFactor = 30; // 7 days: ~336 points
-        
-        Serial.printf("Decimation factor: %d\n", decimationFactor);
+        // NO DECIMATION - Show ALL points
+        Serial.println("DEBUG: Showing ALL data points (no decimation)");
         
         // Get list of log files
         // Note: Files are sorted oldest first, so files[0] is the oldest
@@ -2482,9 +2478,10 @@ void ConfigManager::downloadAPI() {
         Serial.printf("Found %d log files\n", files.size());
         
         bool firstDataPoint = true;
-        int pointCounter = 0;
         int totalPointsProcessed = 0;
-        const int MAX_POINTS = 500; // Increased for better data density and smooth charts
+        int totalPointsInDataset = 0; // Total points available
+        int pointsSkippedForChunk = 0; // Points skipped to reach current chunk
+        int pointsInCurrentChunk = 0; // Points added to current chunk
         
         // Calculate how many files to process based on time range
         int daysToProcess = (hoursToFetch + 23) / 24; // Round up
@@ -2493,18 +2490,20 @@ void ConfigManager::downloadAPI() {
         
         Serial.printf("Time range: %d hours = %d days, will process %d files\n", 
                      hoursToFetch, daysToProcess, filesToProcess);
+        Serial.printf("Chunk %d requested, will skip first %d points\n", 
+                     chunk, chunk * POINTS_PER_CHUNK);
         
         // Process files in reverse order (most recent first)
         int validDataPoints = 0; // Count of non-null data points
         unsigned long processingStartTime = millis(); // Add timeout tracking
-        const unsigned long MAX_PROCESSING_TIME = 5000; // 5 second timeout
+        const unsigned long MAX_PROCESSING_TIME = 10000; // 10 second timeout for chunked processing
         
         // Calculate target file index range based on date
         time_t now;
         time(&now);
         struct tm* currentTime = localtime(&now);
         
-        for (int fileIdx = files.size() - 1; fileIdx >= 0 && filesProcessed < filesToProcess && totalPointsProcessed < MAX_POINTS; fileIdx--) {
+        for (int fileIdx = files.size() - 1; fileIdx >= 0 && filesProcessed < filesToProcess && pointsInCurrentChunk < POINTS_PER_CHUNK; fileIdx--) {
             const String& filename = files[fileIdx];
             
             // Extract date from filename (temp_log_YYYY-MM-DD.csv)
@@ -2542,7 +2541,7 @@ void ConfigManager::downloadAPI() {
             int linesRead = 0;
             int linesInThisFile = 0;
             
-            while (file.available() && totalPointsProcessed < MAX_POINTS) {
+            while (file.available() && pointsInCurrentChunk < POINTS_PER_CHUNK) {
                 // Yield periodically to prevent watchdog
                 if (linesInThisFile++ % 100 == 0) {
                     yield();
@@ -2660,7 +2659,7 @@ void ConfigManager::downloadAPI() {
                             
                             emptyLinesInRow = 0;
                             linesRead = 0;
-                            pointCounter = 0; // Reset decimation counter
+                            // Reset counters after jump
                             continue;
                         }
                     } else {
@@ -2668,8 +2667,14 @@ void ConfigManager::downloadAPI() {
                     }
                 }
                 
-                // Only process every Nth line based on decimation
-                if (pointCounter++ % decimationFactor != 0) continue;
+                // NO DECIMATION - Process ALL lines
+                totalPointsInDataset++;
+                
+                // Check if we need to skip this point (for chunking)
+                if (totalPointsInDataset <= chunk * POINTS_PER_CHUNK) {
+                    pointsSkippedForChunk++;
+                    continue;
+                }
                 
                 // Debug first line parsing
                 if (totalPointsProcessed == 0 && filesProcessed == 1) {
@@ -2750,10 +2755,11 @@ void ConfigManager::downloadAPI() {
                 }
                 
                 totalPointsProcessed++;
+                pointsInCurrentChunk++;
                 
                 // Check memory usage periodically
-                if (jsonResponse.length() > 20000) {
-                    Serial.println("Response too large, stopping");
+                if (jsonResponse.length() > MAX_RESPONSE_SIZE) {
+                    Serial.println("Response size limit reached, stopping chunk");
                     break;
                 }
                 
@@ -2767,140 +2773,24 @@ void ConfigManager::downloadAPI() {
         
         jsonResponse += "]";
         
-        // Get alarm events for this point and time range
-        // Use the date range from the actual log files processed
-        String endDate = "";
-        String startDate = "";
+        // Add chunk metadata
+        bool hasMoreChunks = (totalPointsInDataset > (chunk + 1) * POINTS_PER_CHUNK);
+        int totalChunks = (totalPointsInDataset + POINTS_PER_CHUNK - 1) / POINTS_PER_CHUNK;
         
-        // Extract dates from the first and last processed log files
-        if (!files.empty()) {
-            // Get the most recent date from the LAST file in array (newest)
-            // Files are processed in reverse order, so the newest is at the end
-            String lastFile = files[files.size() - 1];  // Get the last element (newest file)
-            Serial.printf("DEBUG: Newest file in array: %s\n", lastFile.c_str());
-            if (lastFile.startsWith("temp_log_") && lastFile.length() > 18) {
-                // Extract date from filename: temp_log_YYYY-MM-DD_n.csv
-                endDate = lastFile.substring(9, 19);  // Extract YYYY-MM-DD
-                Serial.printf("DEBUG: Extracted endDate from '%s': '%s'\n", lastFile.c_str(), endDate.c_str());
-            }
-            
-            // Get the oldest date based on hours requested
-            // For now, use a simple calculation
-            if (!endDate.isEmpty()) {
-                int daysBack = (hoursToFetch + 23) / 24;  // Round up
-                
-                // Parse the end date
-                int year = endDate.substring(0, 4).toInt();
-                int month = endDate.substring(5, 7).toInt();
-                int day = endDate.substring(8, 10).toInt();
-                
-                // Calculate start date - simple approach for now
-                // Just subtract days from the current date
-                char dateBuffer[11];
-                
-                if (daysBack <= 0) {
-                    startDate = endDate;
-                } else if (daysBack == 1) {
-                    // For 24 hours, just go back one day
-                    if (day > 1) {
-                        snprintf(dateBuffer, sizeof(dateBuffer), "%04d-%02d-%02d", year, month, day - 1);
-                    } else {
-                        // Handle month boundary
-                        int prevMonth = month - 1;
-                        int prevYear = year;
-                        if (prevMonth < 1) {
-                            prevMonth = 12;
-                            prevYear--;
-                        }
-                        // Get last day of previous month
-                        int lastDay = 31;
-                        if (prevMonth == 4 || prevMonth == 6 || prevMonth == 9 || prevMonth == 11) {
-                            lastDay = 30;
-                        } else if (prevMonth == 2) {
-                            lastDay = 28; // Simplified - doesn't handle leap years
-                        }
-                        snprintf(dateBuffer, sizeof(dateBuffer), "%04d-%02d-%02d", prevYear, prevMonth, lastDay);
-                    }
-                    startDate = String(dateBuffer);
-                } else {
-                    // For multiple days, use a simpler approach
-                    // This is a temporary fix - in production you'd use proper date libraries
-                    snprintf(dateBuffer, sizeof(dateBuffer), "%04d-%02d-%02d", year, month, day > daysBack ? day - daysBack : 1);
-                    startDate = String(dateBuffer);
-                }
-            }
-        }
+        jsonResponse += ",\"chunkInfo\":{";
+        jsonResponse += "\"currentChunk\":" + String(chunk);
+        jsonResponse += ",\"totalChunks\":" + String(totalChunks);
+        jsonResponse += ",\"pointsInChunk\":" + String(pointsInCurrentChunk);
+        jsonResponse += ",\"totalPointsInDataset\":" + String(totalPointsInDataset);
+        jsonResponse += ",\"hasMoreChunks\":" + String(hasMoreChunks ? "true" : "false");
+        jsonResponse += "}";
         
-        // Fallback to current date if we couldn't determine from files
-        if (endDate.isEmpty()) {
-            time_t now;
-            time(&now);
-            struct tm* timeinfo = localtime(&now);
-            if (timeinfo != nullptr) {
-                char dateBuffer[11];
-                strftime(dateBuffer, sizeof(dateBuffer), "%Y-%m-%d", timeinfo);
-                endDate = String(dateBuffer);
-                startDate = endDate;
-            } else {
-                // If time is not set, use a recent date as fallback
-                endDate = "2025-07-26";  // Today's date based on log files
-                startDate = "2025-07-25"; // Yesterday
-            }
-        }
+        // ALARM EVENTS DISABLED FOR NOW
+        // Close the JSON response without alarm events
+        jsonResponse += "}";
         
-        // Debug: Show calculated date range
-        Serial.printf("DEBUG: Calculated date range for alarms: startDate=%s, endDate=%s (hoursToFetch=%d)\n", 
-                     startDate.c_str(), endDate.c_str(), hoursToFetch);
-        
-        // Get alarm events
-        std::vector<AlarmEvent> events = getAlarmEventsForPoint(pointAddress, startDate, endDate);
-        
-        // Filter alarm events to match the exact time range requested
-        time_t currentTimestamp;
-        time(&currentTimestamp);
-        time_t startTime = currentTimestamp - (hoursToFetch * 3600); // Convert hours to seconds
-        
-        jsonResponse += ",\"alarmEvents\":[";
-        bool firstEvent = true;
-        int includedEvents = 0;
-        
-        for (const auto& event : events) {
-            // Parse event timestamp to check if it's within the time range
-            // Format: "YYYY-MM-DDTHH:MM:SS"
-            struct tm eventTm = {0};
-            int year, month, day, hour, min, sec;
-            if (sscanf(event.timestamp.c_str(), "%d-%d-%dT%d:%d:%d", 
-                      &year, &month, &day, &hour, &min, &sec) == 6) {
-                eventTm.tm_year = year - 1900;
-                eventTm.tm_mon = month - 1;
-                eventTm.tm_mday = day;
-                eventTm.tm_hour = hour;
-                eventTm.tm_min = min;
-                eventTm.tm_sec = sec;
-                time_t eventTime = mktime(&eventTm);
-                
-                // Only include events within the requested time range
-                if (eventTime >= startTime && eventTime <= currentTimestamp) {
-                    if (!firstEvent) jsonResponse += ",";
-                    firstEvent = false;
-                    includedEvents++;
-            
-                    jsonResponse += "{\"timestamp\":\"" + event.timestamp + "\"";
-                    jsonResponse += ",\"type\":\"" + event.type + "\"";  
-                    jsonResponse += ",\"state\":\"" + event.newState + "\"";
-                    // Alarm state logs store actual temperature values, not x10 format
-                    jsonResponse += ",\"temperature\":" + String(event.temperature);
-                    jsonResponse += ",\"threshold\":" + String(event.threshold) + "}";
-                } else {
-                    Serial.printf("Skipping alarm event outside time range: %s\n", event.timestamp.c_str());
-                }
-            }
-        }
-        
-        jsonResponse += "]}";
-        
-        Serial.printf("Total points: %d, Valid data points: %d, Alarm events: %d included, %d total, Response size: %d bytes\n", 
-                     totalPointsProcessed, validDataPoints, includedEvents, events.size(), jsonResponse.length());
+        Serial.printf("Chunk %d: Processed %d points, skipped %d for chunk, %d points in chunk, %d total in dataset, Response size: %d bytes\n", 
+                     chunk, totalPointsProcessed, pointsSkippedForChunk, pointsInCurrentChunk, totalPointsInDataset, jsonResponse.length());
         
         // Send complete response
         server->sendHeader("Content-Type", "application/json");
