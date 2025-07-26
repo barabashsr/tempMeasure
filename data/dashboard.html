@@ -88,8 +88,8 @@
             margin: 2% auto;
             padding: 20px;
             border: 1px solid #888;
-            width: 90%;
-            max-width: 1200px;
+            width: 95%;
+            max-width: 1400px;
             border-radius: 8px;
             max-height: 90vh;
             overflow-y: auto;
@@ -130,9 +130,6 @@
         
         .chart-controls {
             margin-bottom: 20px;
-            display: flex;
-            gap: 10px;
-            align-items: center;
         }
         
         .chart-controls select, .chart-controls button {
@@ -312,21 +309,23 @@
             </div>
             
             <div class="chart-controls">
-                <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
-                    <label>Time Range:</label>
-                    <select id="chartTimeRange">
-                        <option value="1">Last 1 Hour</option>
-                        <option value="6">Last 6 Hours</option>
-                        <option value="12">Last 12 Hours</option>
-                        <option value="24" selected>Last 24 Hours</option>
-                        <option value="48">Last 48 Hours</option>
-                        <option value="168">Last 7 Days</option>
-                    </select>
-                    <button onclick="updateChart()">Update</button>
-                    <div style="margin-left: auto;">
-                        <button onclick="zoomChart('in')" title="Zoom In">🔍+</button>
-                        <button onclick="zoomChart('out')" title="Zoom Out">🔍-</button>
-                        <button onclick="resetChartZoom()" title="Reset Zoom">↺</button>
+                <div style="display: flex; gap: 10px; align-items: center; justify-content: space-between; flex-wrap: wrap;">
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <label>Time Range:</label>
+                        <select id="chartTimeRange">
+                            <option value="1">Last 1 Hour</option>
+                            <option value="6">Last 6 Hours</option>
+                            <option value="12">Last 12 Hours</option>
+                            <option value="24" selected>Last 24 Hours</option>
+                            <option value="48">Last 48 Hours</option>
+                            <option value="168">Last 7 Days</option>
+                        </select>
+                        <button onclick="updateChart()">Update</button>
+                    </div>
+                    <div style="display: flex; gap: 5px;">
+                        <button onclick="zoomChart('in')" title="Zoom In" style="padding: 6px 10px;">🔍+</button>
+                        <button onclick="zoomChart('out')" title="Zoom Out" style="padding: 6px 10px;">🔍-</button>
+                        <button onclick="resetChartZoom()" title="Reset Zoom" style="padding: 6px 10px;">↺</button>
                     </div>
                 </div>
             </div>
