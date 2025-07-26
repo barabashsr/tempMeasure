@@ -2452,7 +2452,8 @@ void ConfigManager::downloadAPI() {
         
         // Configuration for chunking
         const int POINTS_PER_CHUNK = 2000; // Send 2000 points per chunk
-        const int MAX_RESPONSE_SIZE = 50000; // Max JSON response size in bytes
+        const int MAX_RESPONSE_SIZE = 80000; // Max JSON response size in bytes (increased for better data density)
+        const bool INCLUDE_NULL_VALUES = true; // Include null values to show gaps
         
         // Build JSON response
         String jsonResponse = "{\"success\":true,\"pointAddress\":" + String(pointAddress) + 
@@ -2498,10 +2499,18 @@ void ConfigManager::downloadAPI() {
         unsigned long processingStartTime = millis(); // Add timeout tracking
         const unsigned long MAX_PROCESSING_TIME = 10000; // 10 second timeout for chunked processing
         
-        // Calculate target file index range based on date
+        // Calculate target time range
         time_t now;
         time(&now);
         struct tm* currentTime = localtime(&now);
+        time_t endTime = now;
+        time_t startTime = now - (hoursToFetch * 3600); // Convert hours to seconds
+        
+        // Convert times to strings for debug
+        char startTimeStr[20], endTimeStr[20];
+        strftime(startTimeStr, sizeof(startTimeStr), "%Y-%m-%d %H:%M:%S", localtime(&startTime));
+        strftime(endTimeStr, sizeof(endTimeStr), "%Y-%m-%d %H:%M:%S", localtime(&endTime));
+        Serial.printf("Time range requested: %s to %s\n", startTimeStr, endTimeStr);
         
         for (int fileIdx = files.size() - 1; fileIdx >= 0 && filesProcessed < filesToProcess && pointsInCurrentChunk < POINTS_PER_CHUNK; fileIdx--) {
             const String& filename = files[fileIdx];
@@ -2667,21 +2676,7 @@ void ConfigManager::downloadAPI() {
                     }
                 }
                 
-                // NO DECIMATION - Process ALL lines
-                totalPointsInDataset++;
-                
-                // Check if we need to skip this point (for chunking)
-                if (totalPointsInDataset <= chunk * POINTS_PER_CHUNK) {
-                    pointsSkippedForChunk++;
-                    continue;
-                }
-                
-                // Debug first line parsing
-                if (totalPointsProcessed == 0 && filesProcessed == 1) {
-                    Serial.printf("First data line: %s\n", line.substring(0, 50).c_str());
-                }
-                
-                // Parse only the required fields
+                // Parse line to check if it has data for our point
                 int commaCount = 0;
                 int lastComma = -1;
                 String dateStr = "";
@@ -2690,10 +2685,6 @@ void ConfigManager::downloadAPI() {
                 
                 // Target column for this point
                 int targetColumn = pointAddress + 2;
-                
-                if (totalPointsProcessed == 0) {
-                    Serial.printf("Looking for point %d in column %d\n", pointAddress, targetColumn);
-                }
                 
                 for (int i = 0; i <= line.length(); i++) {
                     if (i == line.length() || line.charAt(i) == ',') {
@@ -2708,6 +2699,49 @@ void ConfigManager::downloadAPI() {
                         lastComma = i;
                         commaCount++;
                     }
+                }
+                
+                // Skip completely empty lines (no date/time)
+                if (dateStr.isEmpty() || timeStr.isEmpty()) {
+                    continue;
+                }
+                
+                // Parse timestamp and check if it's within our time range
+                String fullTimestamp = dateStr + "T" + timeStr;
+                struct tm timeTm = {0};
+                int year, month, day, hour, min, sec;
+                if (sscanf(fullTimestamp.c_str(), "%d-%d-%dT%d:%d:%d", 
+                          &year, &month, &day, &hour, &min, &sec) == 6) {
+                    timeTm.tm_year = year - 1900;
+                    timeTm.tm_mon = month - 1;
+                    timeTm.tm_mday = day;
+                    timeTm.tm_hour = hour;
+                    timeTm.tm_min = min;
+                    timeTm.tm_sec = sec;
+                    time_t dataTime = mktime(&timeTm);
+                    
+                    // Skip data outside our time range
+                    if (dataTime < startTime || dataTime > endTime) {
+                        continue;
+                    }
+                } else {
+                    // Skip if we can't parse the timestamp
+                    continue;
+                }
+                
+                // Count this as a data point (even if temperature is null)
+                totalPointsInDataset++;
+                
+                // Check if we need to skip this point (for chunking)
+                if (totalPointsInDataset <= chunk * POINTS_PER_CHUNK) {
+                    pointsSkippedForChunk++;
+                    continue;
+                }
+                
+                // Debug first few valid data points
+                if (validDataPoints < 5 && !tempStr.isEmpty() && tempStr != " ") {
+                    Serial.printf("Valid data point %d: date=%s, time=%s, temp=%s\n", 
+                                validDataPoints, dateStr.c_str(), timeStr.c_str(), tempStr.c_str());
                 }
                 
                 // Handle missing temperature data
@@ -2727,9 +2761,7 @@ void ConfigManager::downloadAPI() {
                 }
                 firstDataPoint = false;
                 
-                // Combine date and time into ISO format for consistency with alarm events
-                // dateStr format: "2025-07-26", timeStr format: "HH:MM:SS"
-                String fullTimestamp = dateStr + "T" + timeStr;
+                // Use the fullTimestamp we already created
                 jsonResponse += "{\"timestamp\":\"" + fullTimestamp + "\",";
                 
                 if (hasData) {
@@ -2773,15 +2805,26 @@ void ConfigManager::downloadAPI() {
         
         jsonResponse += "]";
         
+        // Calculate if we need to scan remaining files to get accurate total count
+        // For now, estimate based on what we've seen
+        int estimatedTotalPoints = totalPointsInDataset;
+        if (filesProcessed < filesToProcess && pointsInCurrentChunk >= POINTS_PER_CHUNK) {
+            // We hit the chunk limit before processing all files
+            // Estimate remaining points based on average points per file
+            float avgPointsPerFile = (float)totalPointsInDataset / filesProcessed;
+            estimatedTotalPoints = totalPointsInDataset + (int)(avgPointsPerFile * (filesToProcess - filesProcessed));
+        }
+        
         // Add chunk metadata
-        bool hasMoreChunks = (totalPointsInDataset > (chunk + 1) * POINTS_PER_CHUNK);
-        int totalChunks = (totalPointsInDataset + POINTS_PER_CHUNK - 1) / POINTS_PER_CHUNK;
+        bool hasMoreChunks = (estimatedTotalPoints > (chunk + 1) * POINTS_PER_CHUNK);
+        int totalChunks = (estimatedTotalPoints + POINTS_PER_CHUNK - 1) / POINTS_PER_CHUNK;
         
         jsonResponse += ",\"chunkInfo\":{";
         jsonResponse += "\"currentChunk\":" + String(chunk);
         jsonResponse += ",\"totalChunks\":" + String(totalChunks);
         jsonResponse += ",\"pointsInChunk\":" + String(pointsInCurrentChunk);
         jsonResponse += ",\"totalPointsInDataset\":" + String(totalPointsInDataset);
+        jsonResponse += ",\"estimatedTotalPoints\":" + String(estimatedTotalPoints);
         jsonResponse += ",\"hasMoreChunks\":" + String(hasMoreChunks ? "true" : "false");
         jsonResponse += "}";
         
