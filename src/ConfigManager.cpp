@@ -1022,6 +1022,60 @@ void ConfigManager::basicAPI(){
             server->send(404, "text/plain", "chart.min.js not found");
         }
     });
+    
+    // Serve Chart.js date adapter
+    server->on("/chartjs-adapter-date-fns.min.js", HTTP_GET, [this]() {
+        server->sendHeader("Access-Control-Allow-Origin", "*");
+        server->sendHeader("Cache-Control", "max-age=86400"); // Cache for 24 hours
+        
+        if (LittleFS.exists("/chartjs-adapter-date-fns.min.js")) {
+            server->sendHeader("Content-Type", "application/javascript");
+            server->sendHeader("Connection", "close");
+            File file = LittleFS.open("/chartjs-adapter-date-fns.min.js", "r");
+            server->streamFile(file, "application/javascript");
+            file.close();
+        } else {
+            server->sendHeader("Content-Type", "text/plain");
+            server->sendHeader("Connection", "close");
+            server->send(404, "text/plain", "chartjs-adapter-date-fns.min.js not found");
+        }
+    });
+    
+    // Serve Chart.js annotation plugin
+    server->on("/chartjs-plugin-annotation.min.js", HTTP_GET, [this]() {
+        server->sendHeader("Access-Control-Allow-Origin", "*");
+        server->sendHeader("Cache-Control", "max-age=86400"); // Cache for 24 hours
+        
+        if (LittleFS.exists("/chartjs-plugin-annotation.min.js")) {
+            server->sendHeader("Content-Type", "application/javascript");
+            server->sendHeader("Connection", "close");
+            File file = LittleFS.open("/chartjs-plugin-annotation.min.js", "r");
+            server->streamFile(file, "application/javascript");
+            file.close();
+        } else {
+            server->sendHeader("Content-Type", "text/plain");
+            server->sendHeader("Connection", "close");
+            server->send(404, "text/plain", "chartjs-plugin-annotation.min.js not found");
+        }
+    });
+    
+    // Serve Chart.js zoom plugin
+    server->on("/chartjs-plugin-zoom.min.js", HTTP_GET, [this]() {
+        server->sendHeader("Access-Control-Allow-Origin", "*");
+        server->sendHeader("Cache-Control", "max-age=86400"); // Cache for 24 hours
+        
+        if (LittleFS.exists("/chartjs-plugin-zoom.min.js")) {
+            server->sendHeader("Content-Type", "application/javascript");
+            server->sendHeader("Connection", "close");
+            File file = LittleFS.open("/chartjs-plugin-zoom.min.js", "r");
+            server->streamFile(file, "application/javascript");
+            file.close();
+        } else {
+            server->sendHeader("Content-Type", "text/plain");
+            server->sendHeader("Connection", "close");
+            server->send(404, "text/plain", "chartjs-plugin-zoom.min.js not found");
+        }
+    });
 
     // Add CORS support for OPTIONS requests
     server->on("/api/sensors", HTTP_OPTIONS, [this]() {
