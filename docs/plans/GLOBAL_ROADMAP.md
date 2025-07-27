@@ -142,9 +142,20 @@ Temperature Control System - PlatformIO-based embedded system for monitoring and
      - Date-only filtering ✓
      - Auto-reset date range on modal close ✓
 
-2. **Real-time Dashboard Updates**
-   - Auto-refresh every 5 seconds
-   - Efficient data fetching
+2. **MQTT client**
+   - configurable via settings.html
+   - basic working implementation @examples/mqtt
+   - `<device_name>/data` - data topic
+   - `<device_name>/command` - command topic
+   - `<device_name>/alarm` - alarm topic
+   - `<device_name>/state` - state topic
+   - `<device_name>/event` - event topic
+   - `<device_name>/notification` - event topic
+   - Recievs commands to command topic
+   - Reply to commands to apropriate topic
+   - Publish to alarm topic when alarm change state
+   - Publish to state topic when device parameters's been changed (IP, settings)
+   - Handle notification recievr via notification topic - control relays, show notification text on the screen (the basic workflow - text is shown on the screen and Relay 1 goes on until the button has pressed)
 
 3. **Russian Translation**
    - Complete translation HTML files
