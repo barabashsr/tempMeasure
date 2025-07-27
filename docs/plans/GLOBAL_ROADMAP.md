@@ -126,12 +126,21 @@ Temperature Control System - PlatformIO-based embedded system for monitoring and
    - Updated all 8 HTML files to use common.css
    - Removed duplicate inline styles from HTML files
 
-1. **Temperature Trend Charts**
-   - Modal implementation (click trend icon in dashboard)
-   - 24-hour data from log files
-   - Chart.js library (try to use if possiable)
-   - Alarm event markers with tooltips
-   - Threshold lines display
+1. **Temperature Trend Charts** ✓ COMPLETED
+   - Modal implementation (click trend icon in dashboard) ✓
+   - 24-hour data from log files ✓
+   - Chart.js library (try to use if possiable) ✓
+   - Alarm event markers with tooltips ✓
+   - Threshold lines display ✓
+   - Additional features implemented:
+     - Day separator lines with date labels ✓
+     - Pill/chip filter UI for alarm events ✓
+     - Shaped markers (square/triangle/star) by alarm type ✓
+     - Priority-based border colors ✓
+     - Offline Chart.js support (all files served locally) ✓
+     - Memory optimization (reduced from 300+ MB to ~118 MB) ✓
+     - Date-only filtering ✓
+     - Auto-reset date range on modal close ✓
 
 2. **Real-time Dashboard Updates**
    - Auto-refresh every 5 seconds

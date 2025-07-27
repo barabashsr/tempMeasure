@@ -27,6 +27,10 @@ This industrial-grade ESP32-based device is designed for precision temperature m
 - Multi-sensor support (DS18B20 and PT1000/PT100)
 - MODBUS-RTU communication over RS485
 - Web interface for configuration and monitoring
+- Temperature trend charts with alarm event visualization
+- Interactive alarm event filtering (by type, priority, state transitions)
+- Day separator lines on multi-day charts
+- Offline operation (all web assets served locally including Chart.js)
 - Configurable alarm thresholds for each sensor
 - Multi-priority alarm system (Low/Medium/High/Critical)
 - LED indication for alarm states
