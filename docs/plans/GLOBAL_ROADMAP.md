@@ -142,20 +142,98 @@ Temperature Control System - PlatformIO-based embedded system for monitoring and
      - Date-only filtering ✓
      - Auto-reset date range on modal close ✓
 
-2. **MQTT client**
-   - configurable via settings.html
-   - basic working implementation @examples/mqtt
-   - `<device_name>/data` - data topic
-   - `<device_name>/command` - command topic
-   - `<device_name>/alarm` - alarm topic
-   - `<device_name>/state` - state topic
-   - `<device_name>/event` - event topic
-   - `<device_name>/notification` - event topic
-   - Recievs commands to command topic
-   - Reply to commands to apropriate topic
-   - Publish to alarm topic when alarm change state
-   - Publish to state topic when device parameters's been changed (IP, settings)
-   - Handle notification recievr via notification topic - control relays, show notification text on the screen (the basic workflow - text is shown on the screen and Relay 1 goes on until the button has pressed)
+2. **MQTT client** 
+   **CRITICAL REQUIREMENTS:**
+   - The MQTT implementation MUST NOT change any existing logic - device must work exactly as before
+   - New functionality wrapped in separate classes using OOP approach for abstraction
+   - Use existing classes and methods as much as possible
+   - Only introduce new methods to existing classes when unavoidable
+   - All code must include Doxygen-style comments as per project documentation
+   
+   **Reference Documentation:**
+   - `/docs/briefs/mqtt_implementation_brief.md` - Comprehensive MQTT specification
+   - `/docs/briefs/mqtt_implementation_plan.md` - Detailed implementation phases
+   - `/docs/briefs/mqtt_command_reference.md` - Command specifications
+   - `/docs/briefs/mqtt_code_examples.md` - Code patterns and examples
+   - `/docs/briefs/mqtt_testing_guide.md` - Testing procedures
+   - `/docs/briefs/mqtt_n8n_integration_guide.md` - n8n integration patterns
+   
+   **Architecture Decision:**
+   - Separate `MQTTManager` class handling all MQTT functionality
+   - Integration through minimal hooks in existing classes
+   - Event-driven architecture using existing callback patterns
+   - Non-intrusive design maintaining current system behavior
+   
+   **Topic Structure (Configurable):**
+   - ISA-95 based hierarchical topics: `<level1>/<level2>/<level3>/<device>/[topic_type]/[subtopic]`
+   - Default: `plant/area1/line2/<device_name>/[telemetry|command|alarm|state|event|notification]/*`
+   - Configurable via web interface with preview
+   
+   **Implementation Phases:**
+   
+   ***Phase 1: Core Infrastructure (Week 1)***
+   - [X] Basic MQTTManager class with PubSubClient
+   - [ ] Configuration structure and ConfigAssist integration
+   - [ ] Connection management with auto-reconnect
+   - [ ] Basic publish/subscribe functionality
+   - [ ] Web configuration page (`/settings-mqtt.html`)
+   
+   ***Phase 2: Telemetry Publishing (Week 1-2)***
+   - [ ] Temperature data publishing (60 points bulk)
+   - [ ] Change-based publishing (configurable threshold)
+   - [ ] System status telemetry
+   - [ ] Configurable intervals (default 60s, min 10s)
+   - [ ] JSON serialization with ArduinoJson
+   
+   ***Phase 3: Command Processing (Week 2)***
+   - [ ] Command parser and router
+   - [ ] Standard commands: help, status, get_point, get_summary
+   - [ ] Alarm commands: acknowledge, get_active, set_threshold
+   - [ ] Configuration commands: get/set alarm config
+   - [ ] Request/response correlation with command IDs
+   
+   ***Phase 4: Alarm Integration (Week 2-3)***
+   - [ ] Hook into existing Alarm::setState()
+   - [ ] Alarm state change notifications
+   - [ ] MQTT-based acknowledgment
+   - [ ] Priority-based QoS mapping
+   - [ ] Alarm history queries
+   
+   ***Phase 5: Advanced Features (Week 3-4)***
+   - [ ] Scheduler for periodic commands
+   - [ ] Notification display system
+   - [ ] Relay control via MQTT (respecting Modbus overrides)
+   - [ ] Bulk data transfers (logs, historical data)
+   - [ ] LWT (Last Will and Testament) implementation
+   
+   ***Phase 6: Security & Production (Week 4)***
+   - [ ] TLS/SSL implementation (WiFiClientSecure)
+   - [ ] Certificate management
+   - [ ] Username/password authentication
+   - [ ] Rate limiting for commands
+   - [ ] Audit logging integration
+   
+   **Integration Points:**
+   - `Alarm::setState()` - Publish alarm state changes
+   - `MeasurementPoint::updateTemperature()` - Collect telemetry data
+   - `RelayManager::setRelay()` - MQTT relay control
+   - `DisplayManager::showNotification()` - Display MQTT notifications
+   - `ConfigManager` - Add MQTT settings endpoints
+   
+   **Testing Requirements:**
+   - Unit tests for all MQTT classes
+   - Integration tests with test broker
+   - 60-point telemetry stress test
+   - Network failure recovery test
+   - Memory leak detection (24h stability)
+   - Command flood protection test
+   
+   **Performance Targets:**
+   - <5% CPU overhead for MQTT operations
+   - <500ms command response time
+   - <100ms telemetry processing
+   - 99.9% message delivery (QoS 1)
+   - <34KB additional RAM usage
 
 3. **Russian Translation**
    - Complete translation HTML files
