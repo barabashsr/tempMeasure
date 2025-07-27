@@ -862,7 +862,8 @@ bool LoggerManager::_writeEventRow(const String& timestamp, const String& source
     }
     
     // Also print to serial for debugging
-    Serial.printf("[%s] %s: %s (%s)\n", timestamp.c_str(), source.c_str(), description.c_str(), priority.c_str());
+    //TODO: Uncomment for debugging in verbose mode
+    //Serial.printf("[%s] %s: %s (%s)\n", timestamp.c_str(), source.c_str(), description.c_str(), priority.c_str());
     
     return true;
 }

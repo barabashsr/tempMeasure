@@ -240,10 +240,10 @@
         <inbodydescription>
         </inbodydescription>
         <location file="include/ConfigManager.h" line="70" column="17" bodyfile="src/ConfigManager.cpp" bodystart="2164" bodyend="2286"/>
-        <references refid="class_logger_manager_1a19e6a7d2c3ad2b1d3fa5acb578fb1619" compoundref="_logger_manager_8cpp" startline="1888" endline="1912">LoggerManager::getAlarmStateLogFiles</references>
-        <references refid="class_logger_manager_1a72c969cc82b969c4899dc4d2c8280f0b" compoundref="_logger_manager_8cpp" startline="1964" endline="1978">LoggerManager::getLogDirectoryPath</references>
+        <references refid="class_logger_manager_1a19e6a7d2c3ad2b1d3fa5acb578fb1619" compoundref="_logger_manager_8cpp" startline="1889" endline="1913">LoggerManager::getAlarmStateLogFiles</references>
+        <references refid="class_logger_manager_1a72c969cc82b969c4899dc4d2c8280f0b" compoundref="_logger_manager_8cpp" startline="1965" endline="1979">LoggerManager::getLogDirectoryPath</references>
         <references refid="struct_config_manager_1_1_alarm_event_1a52c14e8a31de1bce9b68d889ca7c5644" compoundref="_config_manager_8h" startline="58">ConfigManager::AlarmEvent::newState</references>
-        <references refid="class_logger_manager_1a92719154d919a9bd45a8ea192e70dfcc" compoundref="_logger_manager_8cpp" startline="1950" endline="1961">LoggerManager::openLogFile</references>
+        <references refid="class_logger_manager_1a92719154d919a9bd45a8ea192e70dfcc" compoundref="_logger_manager_8cpp" startline="1951" endline="1962">LoggerManager::openLogFile</references>
         <references refid="struct_config_manager_1_1_alarm_event_1a7fb1359e608c9de088e8fd8548fea2ad" compoundref="_config_manager_8h" startline="56">ConfigManager::AlarmEvent::timestamp</references>
         <references refid="struct_config_manager_1_1_alarm_event_1aa809c5d03c6dd77b84803add47f1186a" compoundref="_config_manager_8h" startline="57">ConfigManager::AlarmEvent::type</references>
       </memberdef>
@@ -415,13 +415,13 @@
         <inbodydescription>
         </inbodydescription>
         <location file="include/ConfigManager.h" line="123" column="10" bodyfile="src/ConfigManager.cpp" bodystart="2031" bodyend="2161"/>
-        <references refid="class_logger_manager_1a612d1bdfbfd0d93f9452fd7bac8775ca" compoundref="_logger_manager_8cpp" startline="1153" endline="1196">LoggerManager::getAlarmHistoryCsv</references>
-        <references refid="class_logger_manager_1af04d8d79f7bcb9ff4dace5b490502b50" compoundref="_logger_manager_8cpp" startline="1073" endline="1151">LoggerManager::getAlarmHistoryJson</references>
-        <references refid="class_logger_manager_1a19e6a7d2c3ad2b1d3fa5acb578fb1619" compoundref="_logger_manager_8cpp" startline="1888" endline="1912">LoggerManager::getAlarmStateLogFiles</references>
-        <references refid="class_logger_manager_1a782a868803b4e2861169796aad7b8b60" compoundref="_logger_manager_8cpp" startline="1827" endline="1856">LoggerManager::getEventLogFilesStatic</references>
-        <references refid="class_logger_manager_1a752cebdb1c0344890d265af9daee8313" compoundref="_logger_manager_8cpp" startline="1600" endline="1643">LoggerManager::getEventLogsCsv</references>
-        <references refid="class_logger_manager_1a8e154caf5cdb9dd50722e2f52314e383" compoundref="_logger_manager_8cpp" startline="1534" endline="1597">LoggerManager::getEventLogsJson</references>
-        <references refid="class_logger_manager_1ab16e7ab4b0cc70674b9b87118f72d805" compoundref="_logger_manager_8cpp" startline="1741" endline="1824">LoggerManager::getEventLogStatsJson</references>
+        <references refid="class_logger_manager_1a612d1bdfbfd0d93f9452fd7bac8775ca" compoundref="_logger_manager_8cpp" startline="1154" endline="1197">LoggerManager::getAlarmHistoryCsv</references>
+        <references refid="class_logger_manager_1af04d8d79f7bcb9ff4dace5b490502b50" compoundref="_logger_manager_8cpp" startline="1074" endline="1152">LoggerManager::getAlarmHistoryJson</references>
+        <references refid="class_logger_manager_1a19e6a7d2c3ad2b1d3fa5acb578fb1619" compoundref="_logger_manager_8cpp" startline="1889" endline="1913">LoggerManager::getAlarmStateLogFiles</references>
+        <references refid="class_logger_manager_1a782a868803b4e2861169796aad7b8b60" compoundref="_logger_manager_8cpp" startline="1828" endline="1857">LoggerManager::getEventLogFilesStatic</references>
+        <references refid="class_logger_manager_1a752cebdb1c0344890d265af9daee8313" compoundref="_logger_manager_8cpp" startline="1601" endline="1644">LoggerManager::getEventLogsCsv</references>
+        <references refid="class_logger_manager_1a8e154caf5cdb9dd50722e2f52314e383" compoundref="_logger_manager_8cpp" startline="1535" endline="1598">LoggerManager::getEventLogsJson</references>
+        <references refid="class_logger_manager_1ab16e7ab4b0cc70674b9b87118f72d805" compoundref="_logger_manager_8cpp" startline="1742" endline="1825">LoggerManager::getEventLogStatsJson</references>
         <references refid="class_config_manager_1a773fb5f7cd89fa594bd05184e8af14a0" compoundref="_config_manager_8h" startline="49">server</references>
         <referencedby refid="class_config_manager_1a0497343220fc493f5cf9574922508908" compoundref="_config_manager_8cpp" startline="162" endline="275">begin</referencedby>
       </memberdef>
@@ -441,14 +441,14 @@
         </inbodydescription>
         <location file="include/ConfigManager.h" line="129" column="10" bodyfile="src/ConfigManager.cpp" bodystart="2288" bodyend="3038"/>
         <references refid="class_config_manager_1a68eeba761f112013757ddf298454407d" compoundref="_config_manager_8h" startline="48">controller</references>
-        <references refid="class_logger_manager_1a19e6a7d2c3ad2b1d3fa5acb578fb1619" compoundref="_logger_manager_8cpp" startline="1888" endline="1912">LoggerManager::getAlarmStateLogFiles</references>
-        <references refid="class_logger_manager_1a782a868803b4e2861169796aad7b8b60" compoundref="_logger_manager_8cpp" startline="1827" endline="1856">LoggerManager::getEventLogFilesStatic</references>
-        <references refid="class_logger_manager_1acb4313c65e6a661229f2c3d662f1c059" compoundref="_logger_manager_8cpp" startline="1915" endline="1947">LoggerManager::getFileInfo</references>
+        <references refid="class_logger_manager_1a19e6a7d2c3ad2b1d3fa5acb578fb1619" compoundref="_logger_manager_8cpp" startline="1889" endline="1913">LoggerManager::getAlarmStateLogFiles</references>
+        <references refid="class_logger_manager_1a782a868803b4e2861169796aad7b8b60" compoundref="_logger_manager_8cpp" startline="1828" endline="1857">LoggerManager::getEventLogFilesStatic</references>
+        <references refid="class_logger_manager_1acb4313c65e6a661229f2c3d662f1c059" compoundref="_logger_manager_8cpp" startline="1916" endline="1948">LoggerManager::getFileInfo</references>
         <references refid="class_measurement_point_1a71d6d440240f110cbd80c58bbc47aff6" compoundref="_measurement_point_8cpp" startline="69" endline="71">MeasurementPoint::getHighAlarmThreshold</references>
-        <references refid="class_logger_manager_1a2b670504d6ebd0c2c2f833caed6842d5" compoundref="_logger_manager_8cpp" startline="1861" endline="1885">LoggerManager::getLogFiles</references>
+        <references refid="class_logger_manager_1a2b670504d6ebd0c2c2f833caed6842d5" compoundref="_logger_manager_8cpp" startline="1862" endline="1886">LoggerManager::getLogFiles</references>
         <references refid="class_measurement_point_1a6e538e117d9e22c6998b56519a51d6ba" compoundref="_measurement_point_8cpp" startline="65" endline="67">MeasurementPoint::getLowAlarmThreshold</references>
         <references refid="class_measurement_point_1aa3a80d373c7609c7b178bf7353ffdd7a" compoundref="_measurement_point_8cpp" startline="49" endline="51">MeasurementPoint::getName</references>
-        <references refid="class_logger_manager_1a92719154d919a9bd45a8ea192e70dfcc" compoundref="_logger_manager_8cpp" startline="1950" endline="1961">LoggerManager::openLogFile</references>
+        <references refid="class_logger_manager_1a92719154d919a9bd45a8ea192e70dfcc" compoundref="_logger_manager_8cpp" startline="1951" endline="1962">LoggerManager::openLogFile</references>
         <references refid="class_config_manager_1a773fb5f7cd89fa594bd05184e8af14a0" compoundref="_config_manager_8h" startline="49">server</references>
         <referencedby refid="class_config_manager_1a0497343220fc493f5cf9574922508908" compoundref="_config_manager_8cpp" startline="162" endline="275">begin</referencedby>
       </memberdef>

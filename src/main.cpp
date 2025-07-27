@@ -33,6 +33,7 @@
 #include <SPI.h>
 #include "TimeManager.h"
 #include "LoggerManager.h"
+#include "MQTTManager.h"
 
 
 
@@ -92,6 +93,12 @@ TimeManager timeManager(I2C_SDA, I2C_SCL);
 
 /// Data and event logger with SD card storage
 LoggerManager logger(controller, timeManager, SD);
+/// MQTT manager for cloud connectivity
+MQTTManager mqttManager;
+/// Flag to track MQTT initialization
+bool mqttInitialized = false;
+/// Flag to track first WiFi connection
+bool wifiWasConnected = false;
 
 /**
  * @brief System initialization function
@@ -232,6 +239,9 @@ void setup() {
         if (WiFi.status() == WL_CONNECTED) {
             Serial.println("Syncing time with NTP server...");
             timeManager.setTimeFromNTP();
+            
+            // Don't initialize MQTT here - WiFi might not be fully ready yet
+            // MQTT will be initialized in the loop() after WiFi is stable
         }
     }
     
@@ -257,6 +267,45 @@ void loop() {
     
     // Update temperature controller (reads sensors and updates measurement points)
     controller.update();
+    
+    // Update MQTT manager (handles connection and message processing)
+    if (WiFi.status() == WL_CONNECTED) {
+        // Track first WiFi connection
+        if (!wifiWasConnected) {
+            wifiWasConnected = true;
+            Serial.println("WiFi connection detected, waiting before MQTT init...");
+            delay(2000); // Wait 2 seconds for WiFi to stabilize
+        }
+        
+        // Initialize MQTT if not already done and WiFi has been connected
+        if (!mqttInitialized && wifiWasConnected) {
+            Serial.println("WiFi stable, initializing MQTT...");
+            if (mqttManager.begin()) {
+                Serial.println("MQTT manager initialized successfully");
+                mqttInitialized = true;
+            } else {
+                Serial.println("MQTT initialization failed, will retry later");
+                // Reset flag to retry after some time
+                static unsigned long lastMqttRetry = 0;
+                if (millis() - lastMqttRetry > 30000) { // Retry every 30 seconds
+                    lastMqttRetry = millis();
+                    mqttInitialized = false; // This will trigger another attempt
+                }
+            }
+        }
+        
+        // Process MQTT loop if initialized
+        if (mqttInitialized) {
+            mqttManager.loop();
+        }
+    } else {
+        // WiFi disconnected - reset flags
+        if (wifiWasConnected) {
+            Serial.println("WiFi disconnected, resetting MQTT");
+            wifiWasConnected = false;
+            mqttInitialized = false;
+        }
+    }
     
     // Process any pending Modbus commands
     if (modbusServer) {

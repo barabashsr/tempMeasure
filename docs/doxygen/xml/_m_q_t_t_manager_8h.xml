@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="_m_q_t_t_manager_8h" kind="file" language="C++">
+    <compoundname>MQTTManager.h</compoundname>
+    <includes local="no">Arduino.h</includes>
+    <includes local="no">WiFiClientSecure.h</includes>
+    <includes local="no">PubSubClient.h</includes>
+    <includedby refid="_m_q_t_t_manager_8cpp" local="yes">src/MQTTManager.cpp</includedby>
+    <includedby refid="main_8cpp" local="yes">src/main.cpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>include/MQTTManager.h</label>
+        <link refid="_m_q_t_t_manager_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Arduino.h</label>
+      </node>
+      <node id="4">
+        <label>PubSubClient.h</label>
+      </node>
+      <node id="3">
+        <label>WiFiClientSecure.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>include/MQTTManager.h</label>
+        <link refid="_m_q_t_t_manager_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>src/MQTTManager.cpp</label>
+        <link refid="_m_q_t_t_manager_8cpp"/>
+      </node>
+      <node id="3">
+        <label>src/main.cpp</label>
+        <link refid="main_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="class_m_q_t_t_manager" prot="public">MQTTManager</innerclass>
+    <briefdescription>
+<para>Basic MQTT Manager for temperature controller with HiveMQ Cloud connection. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>Claude Assistant </para>
+</simplesect>
+<simplesect kind="date"><para>2025-01-27</para>
+</simplesect>
+This class provides basic MQTT functionality with hardcoded HiveMQ Cloud credentials and topics. It includes connection management, auto-reconnect, and message subscription capabilities with verbose debug output. </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>MQTT_MANAGER_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MQTT_MANAGER_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Arduino.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;WiFiClientSecure.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;PubSubClient.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30" refid="class_m_q_t_t_manager" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_m_q_t_t_manager_1a84fe61d82134dc33feb2e76ed30ef25d" kindref="member">MQTTManager</ref><sp/>{</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>HiveMQ<sp/>Cloud<sp/>connection<sp/>details<sp/>(hardcoded<sp/>as<sp/>requested)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33" refid="class_m_q_t_t_manager_1a607d3cb42b6984a50e9072a21fbbe675" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/><ref refid="class_m_q_t_t_manager_1a607d3cb42b6984a50e9072a21fbbe675" kindref="member">MQTT_SERVER</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;987bfd99193b4a21a18a665a3812cc90.s1.eu.hivemq.cloud&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="34" refid="class_m_q_t_t_manager_1a43e53d526945bdcbe7195261ceb88115" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_m_q_t_t_manager_1a43e53d526945bdcbe7195261ceb88115" kindref="member">MQTT_PORT</ref><sp/>=<sp/>8883;<sp/><sp/></highlight><highlight class="comment">//<sp/>SSL<sp/>port<sp/>for<sp/>HiveMQ<sp/>Cloud</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35" refid="class_m_q_t_t_manager_1a6ac5857649943a2eb2663ca7fb1efc02" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/><ref refid="class_m_q_t_t_manager_1a6ac5857649943a2eb2663ca7fb1efc02" kindref="member">MQTT_USERNAME</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;ESP32-TempCont&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="36" refid="class_m_q_t_t_manager_1a32def76742264dbc0f411dd64905f1ad" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/><ref refid="class_m_q_t_t_manager_1a32def76742264dbc0f411dd64905f1ad" kindref="member">MQTT_PASSWORD</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;PolzaOil2019&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>MQTT<sp/>Topics<sp/>(hardcoded<sp/>as<sp/>requested)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39" refid="class_m_q_t_t_manager_1a9082b97bf176d06f2787fae66e2bf175" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/><ref refid="class_m_q_t_t_manager_1a9082b97bf176d06f2787fae66e2bf175" kindref="member">PUBLISH_TOPIC</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;temp/pub&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="40" refid="class_m_q_t_t_manager_1a58881b0872fe45c1c5eca20d18817297" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/><ref refid="class_m_q_t_t_manager_1a58881b0872fe45c1c5eca20d18817297" kindref="member">SUBSCRIBE_TOPIC</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;temp/sub&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Device<sp/>ID</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43" refid="class_m_q_t_t_manager_1a4be14db58e5135343ea5cb9da1eaa303" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/><ref refid="class_m_q_t_t_manager_1a4be14db58e5135343ea5cb9da1eaa303" kindref="member">DEVICE_ID</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;esp32_temp_controller&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="45" refid="class_m_q_t_t_manager_1a39ad7e75f56664b1f8c5191798d6835e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>WiFiClientSecure<sp/><ref refid="class_m_q_t_t_manager_1a39ad7e75f56664b1f8c5191798d6835e" kindref="member">wifiClient</ref>;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="46" refid="class_m_q_t_t_manager_1a89a2f7d33295fccd3507f34ac9df0508" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>PubSubClient<sp/><ref refid="class_m_q_t_t_manager_1a89a2f7d33295fccd3507f34ac9df0508" kindref="member">mqttClient</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="48" refid="class_m_q_t_t_manager_1af868832c1d807e4c416a4da46b0808d7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_m_q_t_t_manager_1af868832c1d807e4c416a4da46b0808d7" kindref="member">isConnected</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="49" refid="class_m_q_t_t_manager_1ac33a3f71ab1a3d601c5d4fe93e2b6077" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><ref refid="class_m_q_t_t_manager_1ac33a3f71ab1a3d601c5d4fe93e2b6077" kindref="member">lastReconnectAttempt</ref>;<sp/></highlight></codeline>
+<codeline lineno="50" refid="class_m_q_t_t_manager_1ac8d002476a7bd769e7c36b05298173db" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><ref refid="class_m_q_t_t_manager_1ac8d002476a7bd769e7c36b05298173db" kindref="member">RECONNECT_INTERVAL</ref><sp/>=<sp/>5000;<sp/></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="52" refid="class_m_q_t_t_manager_1ac80e68f1c4ff7a778786c4cf669144c2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><ref refid="class_m_q_t_t_manager_1ac80e68f1c4ff7a778786c4cf669144c2" kindref="member">lastPublishTime</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="53" refid="class_m_q_t_t_manager_1a36f27fe8d5a3e83c9804d2072bc20517" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><ref refid="class_m_q_t_t_manager_1a36f27fe8d5a3e83c9804d2072bc20517" kindref="member">PUBLISH_INTERVAL</ref><sp/>=<sp/>1000;<sp/></highlight></codeline>
+<codeline lineno="54" refid="class_m_q_t_t_manager_1af1032c63a8824102312224a716cc6da6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><ref refid="class_m_q_t_t_manager_1af1032c63a8824102312224a716cc6da6" kindref="member">publishCounter</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_m_q_t_t_manager_1aaac19647fab19e7a0f819691ba06e772" kindref="member">messageCallback</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>topic,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>payload,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>length);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="67" refid="class_m_q_t_t_manager_1a6e768a4f36c87e9f60a3a60ae95c0ef4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="class_m_q_t_t_manager_1a84fe61d82134dc33feb2e76ed30ef25d" kindref="member">MQTTManager</ref>*<sp/><ref refid="class_m_q_t_t_manager_1a6e768a4f36c87e9f60a3a60ae95c0ef4" kindref="member">instance</ref>;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_m_q_t_t_manager_1aa915f47a548fa481517a2450ad1a6970" kindref="member">handleMessage</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>topic,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>payload,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>length);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_m_q_t_t_manager_1a129d111c8b1ae84640849bc206098853" kindref="member">attemptConnection</ref>();</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_m_q_t_t_manager_1a84fe61d82134dc33feb2e76ed30ef25d" kindref="member">MQTTManager</ref>();</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_m_q_t_t_manager_1ac100762bef069504d97a5002577893e8" kindref="member">~MQTTManager</ref>();</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_m_q_t_t_manager_1a0865d8e5c42ab2106d9f2c172ee1cec2" kindref="member">begin</ref>();</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_m_q_t_t_manager_1a9266e647933501851b411b6d2a9a1f95" kindref="member">loop</ref>();</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_m_q_t_t_manager_1aba0fa39910d767f0623291608e83ae81" kindref="member">publish</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>message);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_m_q_t_t_manager_1aba0fa39910d767f0623291608e83ae81" kindref="member">publish</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>String&amp;<sp/>message);</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_m_q_t_t_manager_1aaa6dfaebfbbfb48e3f4de45bab477d2c" kindref="member">connected</ref>();</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_m_q_t_t_manager_1ab8e796839e28f468cb21f9f28b421bed" kindref="member">reconnect</ref>();</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_m_q_t_t_manager_1a7b05e6c97ae6c0d7522b75977e66dba4" kindref="member">getState</ref>();</highlight></codeline>
+<codeline lineno="138"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>MQTT_MANAGER_H</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="include/MQTTManager.h"/>
+  </compounddef>
+</doxygen>

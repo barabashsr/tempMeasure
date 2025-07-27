@@ -14,5 +14,5 @@ var searchData=
   ['loginfo_11',['logInfo',['../class_logger_manager.html#a2503703714729cc95171579fe4ce0d4c',1,'LoggerManager']]],
   ['logsapi_12',['logsAPI',['../class_config_manager.html#a9e977107b4795fcbce0482711ff1ce7a',1,'ConfigManager']]],
   ['logwarning_13',['logWarning',['../class_logger_manager.html#a5768a8a1983298c5b94e23dabe18f3bb',1,'LoggerManager']]],
-  ['loop_14',['loop',['../main_8cpp.html#afe461d27b9c48d5921c00d521181f12f',1,'main.cpp']]]
+  ['loop_14',['loop',['../class_m_q_t_t_manager.html#a9266e647933501851b411b6d2a9a1f95',1,'MQTTManager::loop()'],['../main_8cpp.html#afe461d27b9c48d5921c00d521181f12f',1,'loop():&#160;main.cpp']]]
 ];

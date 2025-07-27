@@ -7,6 +7,7 @@ var annotated_dup =
     [ "IndicatorInterface", "class_indicator_interface.html", "class_indicator_interface" ],
     [ "LoggerManager", "class_logger_manager.html", "class_logger_manager" ],
     [ "MeasurementPoint", "class_measurement_point.html", "class_measurement_point" ],
+    [ "MQTTManager", "class_m_q_t_t_manager.html", "class_m_q_t_t_manager" ],
     [ "RegisterMap", "class_register_map.html", "class_register_map" ],
     [ "Sensor", "class_sensor.html", "class_sensor" ],
     [ "SettingsCSVManager", "class_settings_c_s_v_manager.html", "class_settings_c_s_v_manager" ],

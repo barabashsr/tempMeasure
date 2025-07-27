@@ -7,6 +7,7 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
     [ "LoggerManager.cpp", "_logger_manager_8cpp.html", null ],
     [ "main.cpp", "main_8cpp.html", "main_8cpp" ],
     [ "MeasurementPoint.cpp", "_measurement_point_8cpp.html", null ],
+    [ "MQTTManager.cpp", "_m_q_t_t_manager_8cpp.html", null ],
     [ "RegisterMap.cpp", "_register_map_8cpp.html", null ],
     [ "Sensor.cpp", "_sensor_8cpp.html", null ],
     [ "SettingsCSVManager.cpp", "_settings_c_s_v_manager_8cpp.html", null ],

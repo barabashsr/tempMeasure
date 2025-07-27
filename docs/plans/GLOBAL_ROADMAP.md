@@ -172,7 +172,7 @@ Temperature Control System - PlatformIO-based embedded system for monitoring and
    **Implementation Phases:**
    
    ***Phase 1: Core Infrastructure (Week 1)***
-   - [X] Basic MQTTManager class with PubSubClient
+   - [ ] Basic MQTTManager class with PubSubClient
    - [ ] Configuration structure and ConfigAssist integration
    - [ ] Connection management with auto-reconnect
    - [ ] Basic publish/subscribe functionality

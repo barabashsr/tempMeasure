@@ -103,10 +103,11 @@ $(function(){initNavTree('main_8cpp.html','',''); });
 <code>#include &lt;SPI.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="_time_manager_8h_source.html">TimeManager.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_logger_manager_8h_source.html">LoggerManager.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_m_q_t_t_manager_8h_source.html">MQTTManager.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for main.cpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="main_8cpp__incl.svg" width="2026" height="626"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="main_8cpp__incl.svg" width="2230" height="626"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="main_8cpp_source.html">Go to the source code of this file.</a></p>
@@ -175,6 +176,12 @@ Variables</h2></td></tr>
 <tr class="memdesc:ad27a531589f8fed0687abe50e4ab32dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time manager for RTC and NTP synchronization.  <br /></td></tr>
 <tr class="memitem:a543ccc95fbe6dd49b01bdc937630a4ac" id="r_a543ccc95fbe6dd49b01bdc937630a4ac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_logger_manager.html">LoggerManager</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a543ccc95fbe6dd49b01bdc937630a4ac">logger</a> (<a class="el" href="#aecbe6ad38ed7d220ace280ea33d8ab45">controller</a>, <a class="el" href="#ad27a531589f8fed0687abe50e4ab32dc">timeManager</a>, SD)</td></tr>
 <tr class="memdesc:a543ccc95fbe6dd49b01bdc937630a4ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data and event logger with SD card storage.  <br /></td></tr>
+<tr class="memitem:a6b542f1a2b6fe18cd432d4c17b1afed7" id="r_a6b542f1a2b6fe18cd432d4c17b1afed7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_m_q_t_t_manager.html">MQTTManager</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6b542f1a2b6fe18cd432d4c17b1afed7">mqttManager</a></td></tr>
+<tr class="memdesc:a6b542f1a2b6fe18cd432d4c17b1afed7"><td class="mdescLeft">&#160;</td><td class="mdescRight">MQTT manager for cloud connectivity.  <br /></td></tr>
+<tr class="memitem:a1d9e181c64d8c5dcbbd5fec9b928a86d" id="r_a1d9e181c64d8c5dcbbd5fec9b928a86d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1d9e181c64d8c5dcbbd5fec9b928a86d">mqttInitialized</a> = false</td></tr>
+<tr class="memdesc:a1d9e181c64d8c5dcbbd5fec9b928a86d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag to track MQTT initialization.  <br /></td></tr>
+<tr class="memitem:a975b5148f97bf4e1db273ce754d82ba9" id="r_a975b5148f97bf4e1db273ce754d82ba9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a975b5148f97bf4e1db273ce754d82ba9">wifiWasConnected</a> = false</td></tr>
+<tr class="memdesc:a975b5148f97bf4e1db273ce754d82ba9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag to track first WiFi connection.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Main application entry point for Industrial Temperature Monitoring System. </p>
@@ -220,7 +227,7 @@ Hardware Requirements</h1>
 
 <p>OneWire bus 1 for DS18B20 sensors. </p>
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00042">42</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00043">43</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
 </div>
 </div>
@@ -238,7 +245,7 @@ Hardware Requirements</h1>
 
 <p>OneWire bus 2 for DS18B20 sensors. </p>
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00043">43</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00044">44</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
 </div>
 </div>
@@ -256,7 +263,7 @@ Hardware Requirements</h1>
 
 <p>OneWire bus 3 for DS18B20 sensors. </p>
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00044">44</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00045">45</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
 </div>
 </div>
@@ -274,7 +281,7 @@ Hardware Requirements</h1>
 
 <p>OneWire bus 4 for DS18B20 sensors. </p>
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00045">45</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00046">46</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
 </div>
 </div>
@@ -292,9 +299,9 @@ Hardware Requirements</h1>
 
 <p>Chip select for PT1000 sensor 1. </p>
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00053">53</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00054">54</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00101">setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00108">setup()</a>.</p>
 
 </div>
 </div>
@@ -312,9 +319,9 @@ Hardware Requirements</h1>
 
 <p>Chip select for PT1000 sensor 2. </p>
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00054">54</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00055">55</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00101">setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00108">setup()</a>.</p>
 
 </div>
 </div>
@@ -332,9 +339,9 @@ Hardware Requirements</h1>
 
 <p>Chip select for PT1000 sensor 3. </p>
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00055">55</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00056">56</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00101">setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00108">setup()</a>.</p>
 
 </div>
 </div>
@@ -352,9 +359,9 @@ Hardware Requirements</h1>
 
 <p>Chip select for PT1000 sensor 4. </p>
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00056">56</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00057">57</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00101">setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00108">setup()</a>.</p>
 
 </div>
 </div>
@@ -372,9 +379,9 @@ Hardware Requirements</h1>
 
 <p>Chip select for SD card. </p>
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00058">58</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00059">59</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00101">setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00108">setup()</a>.</p>
 
 </div>
 </div>
@@ -392,9 +399,9 @@ Hardware Requirements</h1>
 
 <p>RS485 driver enable pin (-1 = not used) </p>
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00063">63</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00064">64</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00101">setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00108">setup()</a>.</p>
 
 </div>
 </div>
@@ -412,9 +419,9 @@ Hardware Requirements</h1>
 
 <p>I2C clock pin (alternative, GPIO 22 used by RS485) </p>
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00067">67</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00068">68</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00101">setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00108">setup()</a>.</p>
 
 </div>
 </div>
@@ -432,9 +439,9 @@ Hardware Requirements</h1>
 
 <p>I2C data pin (default, available) </p>
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00066">66</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00067">67</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00101">setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00108">setup()</a>.</p>
 
 </div>
 </div>
@@ -452,9 +459,9 @@ Hardware Requirements</h1>
 
 <p>SPI MISO pin. </p>
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00049">49</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00050">50</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00101">setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00108">setup()</a>.</p>
 
 </div>
 </div>
@@ -472,9 +479,9 @@ Hardware Requirements</h1>
 
 <p>SPI MOSI pin. </p>
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00050">50</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00051">51</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00101">setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00108">setup()</a>.</p>
 
 </div>
 </div>
@@ -492,7 +499,7 @@ Hardware Requirements</h1>
 
 <p>PCF8575 I/O expander interrupt pin. </p>
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00068">68</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00069">69</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
 </div>
 </div>
@@ -510,9 +517,9 @@ Hardware Requirements</h1>
 
 <p>RS485 receive pin. </p>
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00061">61</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00062">62</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00101">setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00108">setup()</a>.</p>
 
 </div>
 </div>
@@ -530,9 +537,9 @@ Hardware Requirements</h1>
 
 <p>SPI clock pin. </p>
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00048">48</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00049">49</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00101">setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00108">setup()</a>.</p>
 
 </div>
 </div>
@@ -550,9 +557,9 @@ Hardware Requirements</h1>
 
 <p>RS485 transmit pin. </p>
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00062">62</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00063">63</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00101">setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00108">setup()</a>.</p>
 
 </div>
 </div>
@@ -575,9 +582,9 @@ Hardware Requirements</h1>
 <p>Main system loop. </p>
 <p>Continuously updates all system components including time management, configuration, temperature monitoring, and data logging </p>
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00251">251</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00261">261</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="main_8cpp_source.html#l00085">configManager</a>, <a class="el" href="#aecbe6ad38ed7d220ace280ea33d8ab45">controller</a>, <a class="el" href="#a543ccc95fbe6dd49b01bdc937630a4ac">logger</a>, <a class="el" href="main_8cpp_source.html#l00088">modbusServer</a>, and <a class="el" href="#ad27a531589f8fed0687abe50e4ab32dc">timeManager</a>.</p>
+<p class="reference">References <a class="el" href="main_8cpp_source.html#l00086">configManager</a>, <a class="el" href="#aecbe6ad38ed7d220ace280ea33d8ab45">controller</a>, <a class="el" href="#a543ccc95fbe6dd49b01bdc937630a4ac">logger</a>, <a class="el" href="main_8cpp_source.html#l00089">modbusServer</a>, <a class="el" href="main_8cpp_source.html#l00099">mqttInitialized</a>, <a class="el" href="main_8cpp_source.html#l00097">mqttManager</a>, <a class="el" href="#ad27a531589f8fed0687abe50e4ab32dc">timeManager</a>, and <a class="el" href="main_8cpp_source.html#l00101">wifiWasConnected</a>.</p>
 
 </div>
 </div>
@@ -599,9 +606,9 @@ Hardware Requirements</h1>
 <p>System initialization function. </p>
 <p>Initializes all hardware components, communication interfaces, and system managers in the correct sequence </p>
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00101">101</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00108">108</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="main_8cpp_source.html#l00085">configManager</a>, <a class="el" href="#aecbe6ad38ed7d220ace280ea33d8ab45">controller</a>, <a class="el" href="main_8cpp_source.html#l00053">CS1_PIN</a>, <a class="el" href="main_8cpp_source.html#l00054">CS2_PIN</a>, <a class="el" href="main_8cpp_source.html#l00055">CS3_PIN</a>, <a class="el" href="main_8cpp_source.html#l00056">CS4_PIN</a>, <a class="el" href="main_8cpp_source.html#l00058">CS5_PIN_TF_CARD</a>, <a class="el" href="main_8cpp_source.html#l00063">DE_PIN</a>, <a class="el" href="main_8cpp_source.html#l00067">I2C_SCL</a>, <a class="el" href="main_8cpp_source.html#l00066">I2C_SDA</a>, <a class="el" href="#a543ccc95fbe6dd49b01bdc937630a4ac">logger</a>, <a class="el" href="main_8cpp_source.html#l00049">MISO_PIN</a>, <a class="el" href="main_8cpp_source.html#l00088">modbusServer</a>, <a class="el" href="main_8cpp_source.html#l00050">MOSI_PIN</a>, <a class="el" href="main_8cpp_source.html#l00061">RX_PIN</a>, <a class="el" href="main_8cpp_source.html#l00048">SCK_PIN</a>, <a class="el" href="#ad27a531589f8fed0687abe50e4ab32dc">timeManager</a>, and <a class="el" href="main_8cpp_source.html#l00062">TX_PIN</a>.</p>
+<p class="reference">References <a class="el" href="main_8cpp_source.html#l00086">configManager</a>, <a class="el" href="#aecbe6ad38ed7d220ace280ea33d8ab45">controller</a>, <a class="el" href="main_8cpp_source.html#l00054">CS1_PIN</a>, <a class="el" href="main_8cpp_source.html#l00055">CS2_PIN</a>, <a class="el" href="main_8cpp_source.html#l00056">CS3_PIN</a>, <a class="el" href="main_8cpp_source.html#l00057">CS4_PIN</a>, <a class="el" href="main_8cpp_source.html#l00059">CS5_PIN_TF_CARD</a>, <a class="el" href="main_8cpp_source.html#l00064">DE_PIN</a>, <a class="el" href="main_8cpp_source.html#l00068">I2C_SCL</a>, <a class="el" href="main_8cpp_source.html#l00067">I2C_SDA</a>, <a class="el" href="#a543ccc95fbe6dd49b01bdc937630a4ac">logger</a>, <a class="el" href="main_8cpp_source.html#l00050">MISO_PIN</a>, <a class="el" href="main_8cpp_source.html#l00089">modbusServer</a>, <a class="el" href="main_8cpp_source.html#l00051">MOSI_PIN</a>, <a class="el" href="main_8cpp_source.html#l00062">RX_PIN</a>, <a class="el" href="main_8cpp_source.html#l00049">SCK_PIN</a>, <a class="el" href="#ad27a531589f8fed0687abe50e4ab32dc">timeManager</a>, and <a class="el" href="main_8cpp_source.html#l00063">TX_PIN</a>.</p>
 
 </div>
 </div>
@@ -620,9 +627,9 @@ Hardware Requirements</h1>
 
 <p>Web-based configuration manager (dynamically allocated) </p>
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00085">85</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00086">86</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l02574">TemperatureController::_displayModbusStatus()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l02408">TemperatureController::_displayNetworkInfo()</a>, <a class="el" href="main_8cpp_source.html#l00251">loop()</a>, and <a class="el" href="main_8cpp_source.html#l00101">setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l02574">TemperatureController::_displayModbusStatus()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l02408">TemperatureController::_displayNetworkInfo()</a>, <a class="el" href="main_8cpp_source.html#l00261">loop()</a>, and <a class="el" href="main_8cpp_source.html#l00108">setup()</a>.</p>
 
 </div>
 </div>
@@ -652,7 +659,7 @@ Hardware Requirements</h1>
 
 <p>Main temperature controller managing all sensors and measurement points. </p>
 
-<p class="reference">Referenced by <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00024">CSVConfigManager::CSVConfigManager()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00031">LoggerManager::LoggerManager()</a>, <a class="el" href="main_8cpp_source.html#l00251">loop()</a>, and <a class="el" href="main_8cpp_source.html#l00101">setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_c_s_v_config_manager_8cpp_source.html#l00024">CSVConfigManager::CSVConfigManager()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00031">LoggerManager::LoggerManager()</a>, <a class="el" href="main_8cpp_source.html#l00261">loop()</a>, and <a class="el" href="main_8cpp_source.html#l00108">setup()</a>.</p>
 
 </div>
 </div>
@@ -670,7 +677,7 @@ Hardware Requirements</h1>
 
 <p>SPI chip select pin array for PT1000 sensors. </p>
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00079">79</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00080">80</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
 </div>
 </div>
@@ -728,7 +735,7 @@ Hardware Requirements</h1>
 
 <p>Data and event logger with SD card storage. </p>
 
-<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00251">loop()</a>, and <a class="el" href="main_8cpp_source.html#l00101">setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00261">loop()</a>, and <a class="el" href="main_8cpp_source.html#l00108">setup()</a>.</p>
 
 </div>
 </div>
@@ -746,9 +753,49 @@ Hardware Requirements</h1>
 
 <p>Modbus RTU server for industrial communication (dynamically allocated) </p>
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00088">88</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00089">89</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00251">loop()</a>, and <a class="el" href="main_8cpp_source.html#l00101">setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00261">loop()</a>, and <a class="el" href="main_8cpp_source.html#l00108">setup()</a>.</p>
+
+</div>
+</div>
+<a id="a1d9e181c64d8c5dcbbd5fec9b928a86d" name="a1d9e181c64d8c5dcbbd5fec9b928a86d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d9e181c64d8c5dcbbd5fec9b928a86d">&#9670;&#160;</a></span>mqttInitialized</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool mqttInitialized = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Flag to track MQTT initialization. </p>
+
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00099">99</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00261">loop()</a>.</p>
+
+</div>
+</div>
+<a id="a6b542f1a2b6fe18cd432d4c17b1afed7" name="a6b542f1a2b6fe18cd432d4c17b1afed7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b542f1a2b6fe18cd432d4c17b1afed7">&#9670;&#160;</a></span>mqttManager</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_m_q_t_t_manager.html">MQTTManager</a> mqttManager</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>MQTT manager for cloud connectivity. </p>
+
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00097">97</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00261">loop()</a>.</p>
 
 </div>
 </div>
@@ -766,7 +813,7 @@ Hardware Requirements</h1>
 
 <p>OneWire bus pin array for DS18B20 sensors. </p>
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00076">76</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00077">77</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
 </div>
 </div>
@@ -791,7 +838,27 @@ Hardware Requirements</h1>
 
 <p>Time manager for RTC and NTP synchronization. </p>
 
-<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l02004">TemperatureController::_displayNextAcknowledgedAlarm()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01940">TemperatureController::_displayNextActiveAlarm()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00031">LoggerManager::LoggerManager()</a>, <a class="el" href="main_8cpp_source.html#l00251">loop()</a>, and <a class="el" href="main_8cpp_source.html#l00101">setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_temperature_controller_8cpp_source.html#l02004">TemperatureController::_displayNextAcknowledgedAlarm()</a>, <a class="el" href="_temperature_controller_8cpp_source.html#l01940">TemperatureController::_displayNextActiveAlarm()</a>, <a class="el" href="_logger_manager_8cpp_source.html#l00031">LoggerManager::LoggerManager()</a>, <a class="el" href="main_8cpp_source.html#l00261">loop()</a>, and <a class="el" href="main_8cpp_source.html#l00108">setup()</a>.</p>
+
+</div>
+</div>
+<a id="a975b5148f97bf4e1db273ce754d82ba9" name="a975b5148f97bf4e1db273ce754d82ba9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a975b5148f97bf4e1db273ce754d82ba9">&#9670;&#160;</a></span>wifiWasConnected</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool wifiWasConnected = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Flag to track first WiFi connection. </p>
+
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00101">101</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00261">loop()</a>.</p>
 
 </div>
 </div>

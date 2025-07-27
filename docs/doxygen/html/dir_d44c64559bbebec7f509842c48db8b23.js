@@ -6,6 +6,7 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     [ "IndicatorInterface.h", "_indicator_interface_8h.html", "_indicator_interface_8h" ],
     [ "LoggerManager.h", "_logger_manager_8h.html", "_logger_manager_8h" ],
     [ "MeasurementPoint.h", "_measurement_point_8h.html", "_measurement_point_8h" ],
+    [ "MQTTManager.h", "_m_q_t_t_manager_8h.html", "_m_q_t_t_manager_8h" ],
     [ "RegisterMap.h", "_register_map_8h.html", "_register_map_8h" ],
     [ "Sensor.h", "_sensor_8h.html", "_sensor_8h" ],
     [ "SettingsCSVManager.h", "_settings_c_s_v_manager_8h.html", "_settings_c_s_v_manager_8h" ],

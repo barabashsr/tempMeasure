@@ -26,6 +26,9 @@ var main_8cpp =
     [ "indicator", "main_8cpp.html#a009a384f716fb318dbb3ca6c01f82cf6", null ],
     [ "logger", "main_8cpp.html#a543ccc95fbe6dd49b01bdc937630a4ac", null ],
     [ "modbusServer", "main_8cpp.html#a4d17575d4300b383a3726118c7dba5ef", null ],
+    [ "mqttInitialized", "main_8cpp.html#a1d9e181c64d8c5dcbbd5fec9b928a86d", null ],
+    [ "mqttManager", "main_8cpp.html#a6b542f1a2b6fe18cd432d4c17b1afed7", null ],
     [ "onwWirePins", "main_8cpp.html#a42643b111a01e68b13ba177173ca18f2", null ],
-    [ "timeManager", "main_8cpp.html#ad27a531589f8fed0687abe50e4ab32dc", null ]
+    [ "timeManager", "main_8cpp.html#ad27a531589f8fed0687abe50e4ab32dc", null ],
+    [ "wifiWasConnected", "main_8cpp.html#a975b5148f97bf4e1db273ce754d82ba9", null ]
 ];

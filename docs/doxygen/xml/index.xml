@@ -411,6 +411,36 @@
     <member refid="class_measurement_point_1a6a78c850d05aa4ae8151e5e9f828fce0" kind="function"><name>resetMinMaxTemp</name></member>
     <member refid="class_measurement_point_1a71995209f2507e6cc15d01607f60767f" kind="function"><name>updateAlarmStatus</name></member>
   </compound>
+  <compound refid="class_m_q_t_t_manager" kind="class"><name>MQTTManager</name>
+    <member refid="class_m_q_t_t_manager_1a607d3cb42b6984a50e9072a21fbbe675" kind="variable"><name>MQTT_SERVER</name></member>
+    <member refid="class_m_q_t_t_manager_1a43e53d526945bdcbe7195261ceb88115" kind="variable"><name>MQTT_PORT</name></member>
+    <member refid="class_m_q_t_t_manager_1a6ac5857649943a2eb2663ca7fb1efc02" kind="variable"><name>MQTT_USERNAME</name></member>
+    <member refid="class_m_q_t_t_manager_1a32def76742264dbc0f411dd64905f1ad" kind="variable"><name>MQTT_PASSWORD</name></member>
+    <member refid="class_m_q_t_t_manager_1a9082b97bf176d06f2787fae66e2bf175" kind="variable"><name>PUBLISH_TOPIC</name></member>
+    <member refid="class_m_q_t_t_manager_1a58881b0872fe45c1c5eca20d18817297" kind="variable"><name>SUBSCRIBE_TOPIC</name></member>
+    <member refid="class_m_q_t_t_manager_1a4be14db58e5135343ea5cb9da1eaa303" kind="variable"><name>DEVICE_ID</name></member>
+    <member refid="class_m_q_t_t_manager_1ac8d002476a7bd769e7c36b05298173db" kind="variable"><name>RECONNECT_INTERVAL</name></member>
+    <member refid="class_m_q_t_t_manager_1a36f27fe8d5a3e83c9804d2072bc20517" kind="variable"><name>PUBLISH_INTERVAL</name></member>
+    <member refid="class_m_q_t_t_manager_1a6e768a4f36c87e9f60a3a60ae95c0ef4" kind="variable"><name>instance</name></member>
+    <member refid="class_m_q_t_t_manager_1a39ad7e75f56664b1f8c5191798d6835e" kind="variable"><name>wifiClient</name></member>
+    <member refid="class_m_q_t_t_manager_1a89a2f7d33295fccd3507f34ac9df0508" kind="variable"><name>mqttClient</name></member>
+    <member refid="class_m_q_t_t_manager_1af868832c1d807e4c416a4da46b0808d7" kind="variable"><name>isConnected</name></member>
+    <member refid="class_m_q_t_t_manager_1ac33a3f71ab1a3d601c5d4fe93e2b6077" kind="variable"><name>lastReconnectAttempt</name></member>
+    <member refid="class_m_q_t_t_manager_1ac80e68f1c4ff7a778786c4cf669144c2" kind="variable"><name>lastPublishTime</name></member>
+    <member refid="class_m_q_t_t_manager_1af1032c63a8824102312224a716cc6da6" kind="variable"><name>publishCounter</name></member>
+    <member refid="class_m_q_t_t_manager_1aaac19647fab19e7a0f819691ba06e772" kind="function"><name>messageCallback</name></member>
+    <member refid="class_m_q_t_t_manager_1aa915f47a548fa481517a2450ad1a6970" kind="function"><name>handleMessage</name></member>
+    <member refid="class_m_q_t_t_manager_1a129d111c8b1ae84640849bc206098853" kind="function"><name>attemptConnection</name></member>
+    <member refid="class_m_q_t_t_manager_1a84fe61d82134dc33feb2e76ed30ef25d" kind="function"><name>MQTTManager</name></member>
+    <member refid="class_m_q_t_t_manager_1ac100762bef069504d97a5002577893e8" kind="function"><name>~MQTTManager</name></member>
+    <member refid="class_m_q_t_t_manager_1a0865d8e5c42ab2106d9f2c172ee1cec2" kind="function"><name>begin</name></member>
+    <member refid="class_m_q_t_t_manager_1a9266e647933501851b411b6d2a9a1f95" kind="function"><name>loop</name></member>
+    <member refid="class_m_q_t_t_manager_1aba0fa39910d767f0623291608e83ae81" kind="function"><name>publish</name></member>
+    <member refid="class_m_q_t_t_manager_1ae68e09972e3ed17d457e1c05117d613b" kind="function"><name>publish</name></member>
+    <member refid="class_m_q_t_t_manager_1aaa6dfaebfbbfb48e3f4de45bab477d2c" kind="function"><name>connected</name></member>
+    <member refid="class_m_q_t_t_manager_1ab8e796839e28f468cb21f9f28b421bed" kind="function"><name>reconnect</name></member>
+    <member refid="class_m_q_t_t_manager_1a7b05e6c97ae6c0d7522b75977e66dba4" kind="function"><name>getState</name></member>
+  </compound>
   <compound refid="class_register_map" kind="class"><name>RegisterMap</name>
     <member refid="class_register_map_1adbc8f6a4a506265d1ce3f51e0f3cc54c" kind="variable"><name>DEVICE_ID_REG</name></member>
     <member refid="class_register_map_1ab26cff5b72c66bd12efde9882586ddd4" kind="variable"><name>FIRMWARE_VERSION_REG</name></member>
@@ -865,6 +895,8 @@
   </compound>
   <compound refid="_measurement_point_8h" kind="file"><name>MeasurementPoint.h</name>
   </compound>
+  <compound refid="_m_q_t_t_manager_8h" kind="file"><name>MQTTManager.h</name>
+  </compound>
   <compound refid="_register_map_8h" kind="file"><name>RegisterMap.h</name>
     <member refid="_register_map_8h_1a23d2c66363244223543ad6ffc35c2072" kind="enum"><name>RelayControlMode</name></member>
     <member refid="_register_map_8h_1a23d2c66363244223543ad6ffc35c2072ae1f2d5134ed2543d38a0de9751cf75d9" kind="enumvalue"><name>AUTO</name></member>
@@ -929,10 +961,15 @@
     <member refid="main_8cpp_1a4d17575d4300b383a3726118c7dba5ef" kind="variable"><name>modbusServer</name></member>
     <member refid="main_8cpp_1ad27a531589f8fed0687abe50e4ab32dc" kind="variable"><name>timeManager</name></member>
     <member refid="main_8cpp_1a543ccc95fbe6dd49b01bdc937630a4ac" kind="variable"><name>logger</name></member>
+    <member refid="main_8cpp_1a6b542f1a2b6fe18cd432d4c17b1afed7" kind="variable"><name>mqttManager</name></member>
+    <member refid="main_8cpp_1a1d9e181c64d8c5dcbbd5fec9b928a86d" kind="variable"><name>mqttInitialized</name></member>
+    <member refid="main_8cpp_1a975b5148f97bf4e1db273ce754d82ba9" kind="variable"><name>wifiWasConnected</name></member>
     <member refid="main_8cpp_1a4fc01d736fe50cf5b977f755b675f11d" kind="function"><name>setup</name></member>
     <member refid="main_8cpp_1afe461d27b9c48d5921c00d521181f12f" kind="function"><name>loop</name></member>
   </compound>
   <compound refid="_measurement_point_8cpp" kind="file"><name>MeasurementPoint.cpp</name>
+  </compound>
+  <compound refid="_m_q_t_t_manager_8cpp" kind="file"><name>MQTTManager.cpp</name>
   </compound>
   <compound refid="_register_map_8cpp" kind="file"><name>RegisterMap.cpp</name>
   </compound>
