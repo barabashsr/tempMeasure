@@ -1,0 +1,41 @@
+{
+  "enabled": true,
+  "broker_host": "987bfd99193b4a21a18a665a3812cc90.s1.eu.hivemq.cloud",
+  "broker_port": 8883,
+  "use_tls": true,
+  "username": "ESP32-TempCont",
+  "password": "PolzaOil2019",
+  "client_id": "esp32_temp_controller",
+  "device_name": "esp32_temp_controller",
+  "topics": {
+    "level1_type": "custom",
+    "level1_value": "plant",
+    "level2_type": "custom",
+    "level2_value": "area1",
+    "level3_type": "custom",
+    "level3_value": "line2",
+    "level4_type": "device",
+    "level4_value": "tempcontroller01"
+  },
+  "publishing": {
+    "retain_telemetry": false,
+    "retain_alarms": true,
+    "retain_state": true
+  },
+  "qos": {
+    "telemetry": 0,
+    "alarms": 1,
+    "commands": 2
+  },
+  "lwt": {
+    "enabled": true,
+    "topic": "plant/area1/line2/esp32_temp_controller/state/connection",
+    "message": "{\"status\":\"offline\"}",
+    "qos": 1,
+    "retain": true
+  },
+  "test": {
+    "publish_topic": "temp/pub",
+    "subscribe_topic": "temp/sub"
+  }
+}

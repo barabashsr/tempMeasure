@@ -1,7 +1,7 @@
 var searchData=
 [
   ['loadalarmsconfig_0',['loadAlarmsConfig',['../class_config_manager.html#a468923ce5f2edecd218b29605d75426f',1,'ConfigManager']]],
-  ['loadconfig_1',['loadConfig',['../class_time_manager.html#a9d5fe35fd4ba97491afde4647421d010',1,'TimeManager']]],
+  ['loadconfig_1',['loadConfig',['../class_m_q_t_t_manager.html#a43dca57da65facd4d341963403dd737b',1,'MQTTManager::loadConfig()'],['../class_time_manager.html#a9d5fe35fd4ba97491afde4647421d010',1,'TimeManager::loadConfig()']]],
   ['loadcsvfromfile_2',['loadCSVFromFile',['../class_c_s_v_config_manager.html#a643e56244bc2075621641e05e754c9af',1,'CSVConfigManager']]],
   ['loadpointsconfig_3',['loadPointsConfig',['../class_config_manager.html#a04edc14e642ecadb9ccb87be05d1d878',1,'ConfigManager']]],
   ['logalarmstate_4',['logAlarmState',['../class_logger_manager.html#af736040bd57412bef8981960e6df3bda',1,'LoggerManager']]],

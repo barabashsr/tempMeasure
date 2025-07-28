@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['temperature_0',['temperature',['../struct_config_manager_1_1_alarm_event.html#a680aa3904c59e6ce48c8dba074d8973a',1,'ConfigManager::AlarmEvent']]],
-  ['threshold_1',['threshold',['../struct_config_manager_1_1_alarm_event.html#a9bdec172798f2d734b9376aa54cd3d11',1,'ConfigManager::AlarmEvent']]],
-  ['timemanager_2',['timeManager',['../main_8cpp.html#ad27a531589f8fed0687abe50e4ab32dc',1,'main.cpp']]],
-  ['timestamp_3',['timestamp',['../struct_config_manager_1_1_alarm_event.html#a7fb1359e608c9de088e8fd8548fea2ad',1,'ConfigManager::AlarmEvent']]],
-  ['txpin_4',['txPin',['../class_temp_modbus_server.html#ab07ddf78bd3b4f6fde1f0e86e6eb4449',1,'TempModbusServer']]],
-  ['type_5',['type',['../struct_config_manager_1_1_alarm_event.html#aa809c5d03c6dd77b84803add47f1186a',1,'ConfigManager::AlarmEvent::type'],['../class_sensor.html#a59be498582043f581a78851506f8e322',1,'Sensor::type']]]
+  ['sensors_0',['sensors',['../class_temperature_controller.html#a823f6289a0da9921e2c121eefa41bdd2',1,'TemperatureController']]],
+  ['serial_1',['serial',['../class_temp_modbus_server.html#afecdc5347ebf2b0a5729b2e8e2cb0642',1,'TempModbusServer']]],
+  ['server_2',['server',['../class_config_manager.html#a773fb5f7cd89fa594bd05184e8af14a0',1,'ConfigManager']]],
+  ['serverid_3',['serverID',['../class_temp_modbus_server.html#a4db19b8c522c7241cc8507b26dae6997',1,'TempModbusServer']]],
+  ['settingscsvmanager_4',['settingsCSVManager',['../class_config_manager.html#afe696eabbbdf537e88b3b5b33c009b31',1,'ConfigManager']]],
+  ['systeminitialized_5',['systemInitialized',['../class_temperature_controller.html#a0156a803f4fdaffbe59e3842647a608f',1,'TemperatureController']]]
 ];

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['wificlient_0',['wifiClient',['../class_m_q_t_t_manager.html#a39ad7e75f56664b1f8c5191798d6835e',1,'MQTTManager']]],
-  ['wifiwasconnected_1',['wifiWasConnected',['../main_8cpp.html#a975b5148f97bf4e1db273ce754d82ba9',1,'main.cpp']]]
+  ['variables_5fdef_5fyaml_0',['VARIABLES_DEF_YAML',['../_config_manager_8h.html#a53744b698cb89b52923ba6024d2e25e0',1,'ConfigManager.h']]]
 ];

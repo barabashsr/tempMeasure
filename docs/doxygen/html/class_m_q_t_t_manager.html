@@ -93,22 +93,22 @@ $(function(){initNavTree('class_m_q_t_t_manager.html','',''); });
 </div><!--header-->
 <div class="contents">
 
-<p>Manages MQTT connection and communication with HiveMQ Cloud broker.  
+<p>Manages MQTT connection and communication with broker.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_m_q_t_t_manager_8h_source.html">MQTTManager.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for MQTTManager:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_m_q_t_t_manager__coll__graph.svg" width="278" height="586"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_m_q_t_t_manager__coll__graph.svg" width="278" height="866"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a84fe61d82134dc33feb2e76ed30ef25d" id="r_a84fe61d82134dc33feb2e76ed30ef25d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a84fe61d82134dc33feb2e76ed30ef25d">MQTTManager</a> ()</td></tr>
-<tr class="memdesc:a84fe61d82134dc33feb2e76ed30ef25d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for <a class="el" href="class_m_q_t_t_manager.html" title="Manages MQTT connection and communication with HiveMQ Cloud broker.">MQTTManager</a>.  <br /></td></tr>
+<tr class="memdesc:a84fe61d82134dc33feb2e76ed30ef25d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for <a class="el" href="class_m_q_t_t_manager.html" title="Manages MQTT connection and communication with broker.">MQTTManager</a>.  <br /></td></tr>
 <tr class="memitem:ac100762bef069504d97a5002577893e8" id="r_ac100762bef069504d97a5002577893e8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac100762bef069504d97a5002577893e8">~MQTTManager</a> ()</td></tr>
-<tr class="memdesc:ac100762bef069504d97a5002577893e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor for <a class="el" href="class_m_q_t_t_manager.html" title="Manages MQTT connection and communication with HiveMQ Cloud broker.">MQTTManager</a>.  <br /></td></tr>
+<tr class="memdesc:ac100762bef069504d97a5002577893e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor for <a class="el" href="class_m_q_t_t_manager.html" title="Manages MQTT connection and communication with broker.">MQTTManager</a>.  <br /></td></tr>
 <tr class="memitem:a0865d8e5c42ab2106d9f2c172ee1cec2" id="r_a0865d8e5c42ab2106d9f2c172ee1cec2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0865d8e5c42ab2106d9f2c172ee1cec2">begin</a> ()</td></tr>
 <tr class="memdesc:a0865d8e5c42ab2106d9f2c172ee1cec2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize MQTT manager and establish connection.  <br /></td></tr>
 <tr class="memitem:a9266e647933501851b411b6d2a9a1f95" id="r_a9266e647933501851b411b6d2a9a1f95"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9266e647933501851b411b6d2a9a1f95">loop</a> ()</td></tr>
@@ -123,6 +123,24 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ab8e796839e28f468cb21f9f28b421bed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Force reconnection to MQTT broker.  <br /></td></tr>
 <tr class="memitem:a7b05e6c97ae6c0d7522b75977e66dba4" id="r_a7b05e6c97ae6c0d7522b75977e66dba4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7b05e6c97ae6c0d7522b75977e66dba4">getState</a> ()</td></tr>
 <tr class="memdesc:a7b05e6c97ae6c0d7522b75977e66dba4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current MQTT client state.  <br /></td></tr>
+<tr class="memitem:a43dca57da65facd4d341963403dd737b" id="r_a43dca57da65facd4d341963403dd737b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a43dca57da65facd4d341963403dd737b">loadConfig</a> ()</td></tr>
+<tr class="memdesc:a43dca57da65facd4d341963403dd737b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load configuration from JSON file on SD card.  <br /></td></tr>
+<tr class="memitem:a6d569cd808a59dba0dcdf2239d54d6ab" id="r_a6d569cd808a59dba0dcdf2239d54d6ab"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6d569cd808a59dba0dcdf2239d54d6ab">saveConfig</a> ()</td></tr>
+<tr class="memdesc:a6d569cd808a59dba0dcdf2239d54d6ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save configuration to JSON file on SD card.  <br /></td></tr>
+<tr class="memitem:a60ee8b1480e6bf4a8125705415501757" id="r_a60ee8b1480e6bf4a8125705415501757"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="struct_m_q_t_t_config.html">MQTTConfig</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a60ee8b1480e6bf4a8125705415501757">getConfig</a> () const</td></tr>
+<tr class="memdesc:a60ee8b1480e6bf4a8125705415501757"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get current configuration.  <br /></td></tr>
+<tr class="memitem:aacbf1b109ac1d6b168309abfd8b3aa72" id="r_aacbf1b109ac1d6b168309abfd8b3aa72"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aacbf1b109ac1d6b168309abfd8b3aa72">setConfig</a> (const <a class="el" href="struct_m_q_t_t_config.html">MQTTConfig</a> &amp;newConfig)</td></tr>
+<tr class="memdesc:aacbf1b109ac1d6b168309abfd8b3aa72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set new configuration.  <br /></td></tr>
+<tr class="memitem:a8b084fb62e23dc3f2895ede2ec011b42" id="r_a8b084fb62e23dc3f2895ede2ec011b42"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8b084fb62e23dc3f2895ede2ec011b42">isEnabled</a> () const</td></tr>
+<tr class="memdesc:a8b084fb62e23dc3f2895ede2ec011b42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if MQTT is enabled.  <br /></td></tr>
+<tr class="memitem:a80eeb5b0b084ede6d789459381acec6d" id="r_a80eeb5b0b084ede6d789459381acec6d"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a80eeb5b0b084ede6d789459381acec6d">buildTopic</a> (const String &amp;topicType, const String &amp;subtopic=&quot;&quot;) const</td></tr>
+<tr class="memdesc:a80eeb5b0b084ede6d789459381acec6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build topic string based on configuration.  <br /></td></tr>
+<tr class="memitem:a6d04009ffe15591e5faf9589e05787e0" id="r_a6d04009ffe15591e5faf9589e05787e0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6d04009ffe15591e5faf9589e05787e0">testPublish</a> (const String &amp;message)</td></tr>
+<tr class="memdesc:a6d04009ffe15591e5faf9589e05787e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test publish to configured test topic.  <br /></td></tr>
+<tr class="memitem:ae85864580886b1f7caa7899fa269a249" id="r_ae85864580886b1f7caa7899fa269a249"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae85864580886b1f7caa7899fa269a249">getConfigJson</a> () const</td></tr>
+<tr class="memdesc:ae85864580886b1f7caa7899fa269a249"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get configuration as JSON string.  <br /></td></tr>
+<tr class="memitem:ac17b9ceb70d483611944d626c8c933a1" id="r_ac17b9ceb70d483611944d626c8c933a1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac17b9ceb70d483611944d626c8c933a1">setConfigJson</a> (const String &amp;jsonStr)</td></tr>
+<tr class="memdesc:ac17b9ceb70d483611944d626c8c933a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set configuration from JSON string.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -138,8 +156,14 @@ Static Private Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
+<tr class="memitem:a3bc5e9366746360ca989a12cbe594338" id="r_a3bc5e9366746360ca989a12cbe594338"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_m_q_t_t_config.html">MQTTConfig</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3bc5e9366746360ca989a12cbe594338">config</a></td></tr>
+<tr class="memdesc:a3bc5e9366746360ca989a12cbe594338"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration loaded from JSON.  <br /></td></tr>
+<tr class="memitem:a40421587ffcaf38da5189de4fd721dcf" id="r_a40421587ffcaf38da5189de4fd721dcf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a40421587ffcaf38da5189de4fd721dcf">configLoaded</a></td></tr>
+<tr class="memdesc:a40421587ffcaf38da5189de4fd721dcf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag indicating if config is loaded.  <br /></td></tr>
 <tr class="memitem:a39ad7e75f56664b1f8c5191798d6835e" id="r_a39ad7e75f56664b1f8c5191798d6835e"><td class="memItemLeft" align="right" valign="top">WiFiClientSecure&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a39ad7e75f56664b1f8c5191798d6835e">wifiClient</a></td></tr>
 <tr class="memdesc:a39ad7e75f56664b1f8c5191798d6835e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Secure WiFi client for SSL connection.  <br /></td></tr>
+<tr class="memitem:a9a2a868ab4ca4856a70d466047310bdf" id="r_a9a2a868ab4ca4856a70d466047310bdf"><td class="memItemLeft" align="right" valign="top">WiFiClient&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9a2a868ab4ca4856a70d466047310bdf">wifiClientInsecure</a></td></tr>
+<tr class="memdesc:a9a2a868ab4ca4856a70d466047310bdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insecure WiFi client for non-SSL.  <br /></td></tr>
 <tr class="memitem:a89a2f7d33295fccd3507f34ac9df0508" id="r_a89a2f7d33295fccd3507f34ac9df0508"><td class="memItemLeft" align="right" valign="top">PubSubClient&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a89a2f7d33295fccd3507f34ac9df0508">mqttClient</a></td></tr>
 <tr class="memdesc:a89a2f7d33295fccd3507f34ac9df0508"><td class="mdescLeft">&#160;</td><td class="mdescRight">MQTT client instance.  <br /></td></tr>
 <tr class="memitem:af868832c1d807e4c416a4da46b0808d7" id="r_af868832c1d807e4c416a4da46b0808d7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af868832c1d807e4c416a4da46b0808d7">isConnected</a></td></tr>
@@ -153,13 +177,6 @@ Private Attributes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-static-attribs" class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
 Static Private Attributes</h2></td></tr>
-<tr class="memitem:a607d3cb42b6984a50e9072a21fbbe675" id="r_a607d3cb42b6984a50e9072a21fbbe675"><td class="memItemLeft" align="right" valign="top">static constexpr const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a607d3cb42b6984a50e9072a21fbbe675">MQTT_SERVER</a> = &quot;987bfd99193b4a21a18a665a3812cc90.s1.eu.hivemq.cloud&quot;</td></tr>
-<tr class="memitem:a43e53d526945bdcbe7195261ceb88115" id="r_a43e53d526945bdcbe7195261ceb88115"><td class="memItemLeft" align="right" valign="top">static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a43e53d526945bdcbe7195261ceb88115">MQTT_PORT</a> = 8883</td></tr>
-<tr class="memitem:a6ac5857649943a2eb2663ca7fb1efc02" id="r_a6ac5857649943a2eb2663ca7fb1efc02"><td class="memItemLeft" align="right" valign="top">static constexpr const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6ac5857649943a2eb2663ca7fb1efc02">MQTT_USERNAME</a> = &quot;ESP32-TempCont&quot;</td></tr>
-<tr class="memitem:a32def76742264dbc0f411dd64905f1ad" id="r_a32def76742264dbc0f411dd64905f1ad"><td class="memItemLeft" align="right" valign="top">static constexpr const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a32def76742264dbc0f411dd64905f1ad">MQTT_PASSWORD</a> = &quot;PolzaOil2019&quot;</td></tr>
-<tr class="memitem:a9082b97bf176d06f2787fae66e2bf175" id="r_a9082b97bf176d06f2787fae66e2bf175"><td class="memItemLeft" align="right" valign="top">static constexpr const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9082b97bf176d06f2787fae66e2bf175">PUBLISH_TOPIC</a> = &quot;temp/pub&quot;</td></tr>
-<tr class="memitem:a58881b0872fe45c1c5eca20d18817297" id="r_a58881b0872fe45c1c5eca20d18817297"><td class="memItemLeft" align="right" valign="top">static constexpr const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a58881b0872fe45c1c5eca20d18817297">SUBSCRIBE_TOPIC</a> = &quot;temp/sub&quot;</td></tr>
-<tr class="memitem:a4be14db58e5135343ea5cb9da1eaa303" id="r_a4be14db58e5135343ea5cb9da1eaa303"><td class="memItemLeft" align="right" valign="top">static constexpr const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4be14db58e5135343ea5cb9da1eaa303">DEVICE_ID</a> = &quot;esp32_temp_controller&quot;</td></tr>
 <tr class="memitem:ac8d002476a7bd769e7c36b05298173db" id="r_ac8d002476a7bd769e7c36b05298173db"><td class="memItemLeft" align="right" valign="top">static constexpr unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac8d002476a7bd769e7c36b05298173db">RECONNECT_INTERVAL</a> = 5000</td></tr>
 <tr class="memdesc:ac8d002476a7bd769e7c36b05298173db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reconnection interval in milliseconds.  <br /></td></tr>
 <tr class="memitem:a36f27fe8d5a3e83c9804d2072bc20517" id="r_a36f27fe8d5a3e83c9804d2072bc20517"><td class="memItemLeft" align="right" valign="top">static constexpr unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a36f27fe8d5a3e83c9804d2072bc20517">PUBLISH_INTERVAL</a> = 1000</td></tr>
@@ -168,16 +185,17 @@ Static Private Attributes</h2></td></tr>
 <tr class="memdesc:a6e768a4f36c87e9f60a3a60ae95c0ef4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static pointer to the current instance for callback routing.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Manages MQTT connection and communication with HiveMQ Cloud broker. </p>
+<div class="textblock"><p>Manages MQTT connection and communication with broker. </p>
 <p>This class handles all MQTT operations including:</p><ul>
-<li>Secure connection to HiveMQ Cloud broker</li>
+<li>Configurable connection to MQTT broker</li>
 <li>Auto-reconnection on connection loss</li>
-<li>Message publishing to hardcoded topic</li>
+<li>Message publishing with configurable topics</li>
 <li>Message subscription with callback handling</li>
+<li>JSON configuration from SD card</li>
 <li>Verbose debug output for troubleshooting </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8h_source.html#l00030">30</a> of file <a class="el" href="_m_q_t_t_manager_8h_source.html">MQTTManager.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8h_source.html#l00084">84</a> of file <a class="el" href="_m_q_t_t_manager_8h_source.html">MQTTManager.h</a>.</p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a84fe61d82134dc33feb2e76ed30ef25d" name="a84fe61d82134dc33feb2e76ed30ef25d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a84fe61d82134dc33feb2e76ed30ef25d">&#9670;&#160;</a></span>MQTTManager()</h2>
@@ -194,12 +212,12 @@ Static Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Constructor for <a class="el" href="class_m_q_t_t_manager.html" title="Manages MQTT connection and communication with HiveMQ Cloud broker.">MQTTManager</a>. </p>
+<p>Constructor for <a class="el" href="class_m_q_t_t_manager.html" title="Manages MQTT connection and communication with broker.">MQTTManager</a>. </p>
 <p>Constructor. </p>
 
 <p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00016">16</a> of file <a class="el" href="_m_q_t_t_manager_8cpp_source.html">MQTTManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_m_q_t_t_manager_8h_source.html#l00067">instance</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00048">isConnected</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00052">lastPublishTime</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00049">lastReconnectAttempt</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00046">mqttClient</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00054">publishCounter</a>, and <a class="el" href="_m_q_t_t_manager_8h_source.html#l00045">wifiClient</a>.</p>
+<p class="reference">References <a class="el" href="_m_q_t_t_manager_8h_source.html#l00087">configLoaded</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00112">instance</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00093">isConnected</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00097">lastPublishTime</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00094">lastReconnectAttempt</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00091">mqttClient</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00099">publishCounter</a>, and <a class="el" href="_m_q_t_t_manager_8h_source.html#l00089">wifiClient</a>.</p>
 
 </div>
 </div>
@@ -218,12 +236,12 @@ Static Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Destructor for <a class="el" href="class_m_q_t_t_manager.html" title="Manages MQTT connection and communication with HiveMQ Cloud broker.">MQTTManager</a>. </p>
+<p>Destructor for <a class="el" href="class_m_q_t_t_manager.html" title="Manages MQTT connection and communication with broker.">MQTTManager</a>. </p>
 <p>Destructor. </p>
 
-<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00025">25</a> of file <a class="el" href="_m_q_t_t_manager_8cpp_source.html">MQTTManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00026">26</a> of file <a class="el" href="_m_q_t_t_manager_8cpp_source.html">MQTTManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_m_q_t_t_manager_8h_source.html#l00067">instance</a>, and <a class="el" href="_m_q_t_t_manager_8h_source.html#l00046">mqttClient</a>.</p>
+<p class="reference">References <a class="el" href="_m_q_t_t_manager_8h_source.html#l00112">instance</a>, and <a class="el" href="_m_q_t_t_manager_8h_source.html#l00091">mqttClient</a>.</p>
 
 </div>
 </div>
@@ -256,20 +274,20 @@ Static Private Attributes</h2></td></tr>
 <dd>
 true if connection successful </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00132">132</a> of file <a class="el" href="_m_q_t_t_manager_8cpp_source.html">MQTTManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00169">169</a> of file <a class="el" href="_m_q_t_t_manager_8cpp_source.html">MQTTManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_m_q_t_t_manager_8h_source.html#l00043">DEVICE_ID</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00048">isConnected</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00036">MQTT_PASSWORD</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00035">MQTT_USERNAME</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00046">mqttClient</a>, <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00225">publish()</a>, and <a class="el" href="_m_q_t_t_manager_8h_source.html#l00040">SUBSCRIBE_TOPIC</a>.</p>
+<p class="reference">References <a class="el" href="_m_q_t_t_manager_8h_source.html#l00086">config</a>, <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00302">connected()</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00093">isConnected</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00091">mqttClient</a>, and <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00505">testPublish()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00038">begin()</a>, <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00081">loop()</a>, and <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00269">reconnect()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00039">begin()</a>, <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00116">loop()</a>, <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00309">reconnect()</a>, and <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00422">setConfig()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_m_q_t_t_manager_a129d111c8b1ae84640849bc206098853_cgraph.svg" width="443" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_m_q_t_t_manager_a129d111c8b1ae84640849bc206098853_cgraph.svg" width="467" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_m_q_t_t_manager_a129d111c8b1ae84640849bc206098853_icgraph.svg" width="459" height="135"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_m_q_t_t_manager_a129d111c8b1ae84640849bc206098853_icgraph.svg" width="459" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -295,13 +313,55 @@ Here is the caller graph for this function:</div>
 <dd>
 true if initialization successful </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00038">38</a> of file <a class="el" href="_m_q_t_t_manager_8cpp_source.html">MQTTManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00039">39</a> of file <a class="el" href="_m_q_t_t_manager_8cpp_source.html">MQTTManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00132">attemptConnection()</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00043">DEVICE_ID</a>, <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00182">messageCallback()</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00034">MQTT_PORT</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00033">MQTT_SERVER</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00035">MQTT_USERNAME</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00046">mqttClient</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00039">PUBLISH_TOPIC</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00040">SUBSCRIBE_TOPIC</a>, and <a class="el" href="_m_q_t_t_manager_8h_source.html#l00045">wifiClient</a>.</p>
+<p class="reference">References <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00169">attemptConnection()</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00086">config</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00087">configLoaded</a>, <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00335">loadConfig()</a>, <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00235">messageCallback()</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00091">mqttClient</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00089">wifiClient</a>, and <a class="el" href="_m_q_t_t_manager_8h_source.html#l00090">wifiClientInsecure</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_m_q_t_t_manager_a0865d8e5c42ab2106d9f2c172ee1cec2_cgraph.svg" width="638" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_m_q_t_t_manager_a0865d8e5c42ab2106d9f2c172ee1cec2_cgraph.svg" width="903" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a80eeb5b0b084ede6d789459381acec6d" name="a80eeb5b0b084ede6d789459381acec6d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80eeb5b0b084ede6d789459381acec6d">&#9670;&#160;</a></span>buildTopic()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String MQTTManager::buildTopic </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>topicType</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>subtopic</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;&quot;</span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Build topic string based on configuration. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">topicType</td><td>Type of topic (telemetry, command, alarm, etc.) </td></tr>
+    <tr><td class="paramname">subtopic</td><td>Specific subtopic </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Complete topic string </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00468">468</a> of file <a class="el" href="_m_q_t_t_manager_8cpp_source.html">MQTTManager.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_m_q_t_t_manager_8h_source.html#l00086">config</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00598">setConfigJson()</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_m_q_t_t_manager_a80eeb5b0b084ede6d789459381acec6d_icgraph.svg" width="855" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -327,9 +387,79 @@ Here is the call graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>true if connected </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>Cannot be const due to PubSubClient library limitations </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00262">262</a> of file <a class="el" href="_m_q_t_t_manager_8cpp_source.html">MQTTManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00302">302</a> of file <a class="el" href="_m_q_t_t_manager_8cpp_source.html">MQTTManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_m_q_t_t_manager_8h_source.html#l00046">mqttClient</a>.</p>
+<p class="reference">References <a class="el" href="_m_q_t_t_manager_8h_source.html#l00091">mqttClient</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00169">attemptConnection()</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_m_q_t_t_manager_aaa6dfaebfbbfb48e3f4de45bab477d2c_icgraph.svg" width="683" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a60ee8b1480e6bf4a8125705415501757" name="a60ee8b1480e6bf4a8125705415501757"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60ee8b1480e6bf4a8125705415501757">&#9670;&#160;</a></span>getConfig()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="struct_m_q_t_t_config.html">MQTTConfig</a> &amp; MQTTManager::getConfig </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get current configuration. </p>
+<dl class="section return"><dt>Returns</dt><dd>Reference to current configuration </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8h_source.html#l00200">200</a> of file <a class="el" href="_m_q_t_t_manager_8h_source.html">MQTTManager.h</a>.</p>
+
+<p class="reference">References <a class="el" href="_m_q_t_t_manager_8h_source.html#l00086">config</a>.</p>
+
+</div>
+</div>
+<a id="ae85864580886b1f7caa7899fa269a249" name="ae85864580886b1f7caa7899fa269a249"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae85864580886b1f7caa7899fa269a249">&#9670;&#160;</a></span>getConfigJson()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String MQTTManager::getConfigJson </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get configuration as JSON string. </p>
+<dl class="section return"><dt>Returns</dt><dd>JSON string representation of configuration </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00536">536</a> of file <a class="el" href="_m_q_t_t_manager_8cpp_source.html">MQTTManager.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_m_q_t_t_manager_8h_source.html#l00086">config</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00377">saveConfig()</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_m_q_t_t_manager_ae85864580886b1f7caa7899fa269a249_icgraph.svg" width="662" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -353,9 +483,9 @@ Here is the call graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>MQTT client state code </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>Cannot be const due to PubSubClient library limitations </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00287">287</a> of file <a class="el" href="_m_q_t_t_manager_8cpp_source.html">MQTTManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00327">327</a> of file <a class="el" href="_m_q_t_t_manager_8cpp_source.html">MQTTManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_m_q_t_t_manager_8h_source.html#l00046">mqttClient</a>.</p>
+<p class="reference">References <a class="el" href="_m_q_t_t_manager_8h_source.html#l00091">mqttClient</a>.</p>
 
 </div>
 </div>
@@ -402,7 +532,75 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00191">191</a> of file <a class="el" href="_m_q_t_t_manager_8cpp_source.html">MQTTManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00244">244</a> of file <a class="el" href="_m_q_t_t_manager_8cpp_source.html">MQTTManager.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a8b084fb62e23dc3f2895ede2ec011b42" name="a8b084fb62e23dc3f2895ede2ec011b42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b084fb62e23dc3f2895ede2ec011b42">&#9670;&#160;</a></span>isEnabled()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MQTTManager::isEnabled </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if MQTT is enabled. </p>
+<dl class="section return"><dt>Returns</dt><dd>true if MQTT is enabled in configuration </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8h_source.html#l00213">213</a> of file <a class="el" href="_m_q_t_t_manager_8h_source.html">MQTTManager.h</a>.</p>
+
+<p class="reference">References <a class="el" href="_m_q_t_t_manager_8h_source.html#l00086">config</a>, and <a class="el" href="_m_q_t_t_manager_8h_source.html#l00087">configLoaded</a>.</p>
+
+</div>
+</div>
+<a id="a43dca57da65facd4d341963403dd737b" name="a43dca57da65facd4d341963403dd737b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43dca57da65facd4d341963403dd737b">&#9670;&#160;</a></span>loadConfig()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MQTTManager::loadConfig </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Load configuration from JSON file on SD card. </p>
+<dl class="section return"><dt>Returns</dt><dd>true if configuration loaded successfully </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00335">335</a> of file <a class="el" href="_m_q_t_t_manager_8cpp_source.html">MQTTManager.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00598">setConfigJson()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00039">begin()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_m_q_t_t_manager_a43dca57da65facd4d341963403dd737b_cgraph.svg" width="660" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_m_q_t_t_manager_a43dca57da65facd4d341963403dd737b_icgraph.svg" width="384" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -425,13 +623,13 @@ Here is the call graph for this function:</div>
 <p>Main loop to handle MQTT operations.</p>
 <p>Must be called regularly to maintain connection and process messages </p>
 
-<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00081">81</a> of file <a class="el" href="_m_q_t_t_manager_8cpp_source.html">MQTTManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00116">116</a> of file <a class="el" href="_m_q_t_t_manager_8cpp_source.html">MQTTManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00132">attemptConnection()</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00048">isConnected</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00052">lastPublishTime</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00049">lastReconnectAttempt</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00046">mqttClient</a>, <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00225">publish()</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00053">PUBLISH_INTERVAL</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00054">publishCounter</a>, and <a class="el" href="_m_q_t_t_manager_8h_source.html#l00050">RECONNECT_INTERVAL</a>.</p>
+<p class="reference">References <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00169">attemptConnection()</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00087">configLoaded</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00093">isConnected</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00097">lastPublishTime</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00094">lastReconnectAttempt</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00091">mqttClient</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00098">PUBLISH_INTERVAL</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00099">publishCounter</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00095">RECONNECT_INTERVAL</a>, and <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00505">testPublish()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_m_q_t_t_manager_a9266e647933501851b411b6d2a9a1f95_cgraph.svg" width="631" height="62"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_m_q_t_t_manager_a9266e647933501851b411b6d2a9a1f95_cgraph.svg" width="655" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -479,11 +677,11 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00182">182</a> of file <a class="el" href="_m_q_t_t_manager_8cpp_source.html">MQTTManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00235">235</a> of file <a class="el" href="_m_q_t_t_manager_8cpp_source.html">MQTTManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_m_q_t_t_manager_8h_source.html#l00067">instance</a>.</p>
+<p class="reference">References <a class="el" href="_m_q_t_t_manager_8h_source.html#l00112">instance</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00038">begin()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00039">begin()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -524,15 +722,20 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if publish successful </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00225">225</a> of file <a class="el" href="_m_q_t_t_manager_8cpp_source.html">MQTTManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00278">278</a> of file <a class="el" href="_m_q_t_t_manager_8cpp_source.html">MQTTManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_m_q_t_t_manager_8h_source.html#l00046">mqttClient</a>, and <a class="el" href="_m_q_t_t_manager_8h_source.html#l00039">PUBLISH_TOPIC</a>.</p>
+<p class="reference">References <a class="el" href="_m_q_t_t_manager_8h_source.html#l00091">mqttClient</a>, and <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00505">testPublish()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00132">attemptConnection()</a>, <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00081">loop()</a>, and <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00253">publish()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00293">publish()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_m_q_t_t_manager_aba0fa39910d767f0623291608e83ae81_cgraph.svg" width="398" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_m_q_t_t_manager_aba0fa39910d767f0623291608e83ae81_icgraph.svg" width="664" height="186"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_m_q_t_t_manager_aba0fa39910d767f0623291608e83ae81_icgraph.svg" width="374" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -569,13 +772,13 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if publish successful </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00253">253</a> of file <a class="el" href="_m_q_t_t_manager_8cpp_source.html">MQTTManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00293">293</a> of file <a class="el" href="_m_q_t_t_manager_8cpp_source.html">MQTTManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00225">publish()</a>.</p>
+<p class="reference">References <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00278">publish()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_m_q_t_t_manager_ae68e09972e3ed17d457e1c05117d613b_cgraph.svg" width="374" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_m_q_t_t_manager_ae68e09972e3ed17d457e1c05117d613b_cgraph.svg" width="603" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -597,20 +800,170 @@ Here is the call graph for this function:</div>
 
 <p>Force reconnection to MQTT broker. </p>
 
-<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00269">269</a> of file <a class="el" href="_m_q_t_t_manager_8cpp_source.html">MQTTManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00309">309</a> of file <a class="el" href="_m_q_t_t_manager_8cpp_source.html">MQTTManager.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00132">attemptConnection()</a>, and <a class="el" href="_m_q_t_t_manager_8h_source.html#l00046">mqttClient</a>.</p>
+<p class="reference">References <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00169">attemptConnection()</a>, and <a class="el" href="_m_q_t_t_manager_8h_source.html#l00091">mqttClient</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_m_q_t_t_manager_ab8e796839e28f468cb21f9f28b421bed_cgraph.svg" width="664" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_m_q_t_t_manager_ab8e796839e28f468cb21f9f28b421bed_cgraph.svg" width="688" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a6d569cd808a59dba0dcdf2239d54d6ab" name="a6d569cd808a59dba0dcdf2239d54d6ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d569cd808a59dba0dcdf2239d54d6ab">&#9670;&#160;</a></span>saveConfig()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MQTTManager::saveConfig </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Save configuration to JSON file on SD card. </p>
+<dl class="section return"><dt>Returns</dt><dd>true if configuration saved successfully </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00377">377</a> of file <a class="el" href="_m_q_t_t_manager_8cpp_source.html">MQTTManager.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00536">getConfigJson()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00422">setConfig()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_m_q_t_t_manager_a6d569cd808a59dba0dcdf2239d54d6ab_cgraph.svg" width="442" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_m_q_t_t_manager_a6d569cd808a59dba0dcdf2239d54d6ab_icgraph.svg" width="414" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="aacbf1b109ac1d6b168309abfd8b3aa72" name="aacbf1b109ac1d6b168309abfd8b3aa72"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aacbf1b109ac1d6b168309abfd8b3aa72">&#9670;&#160;</a></span>setConfig()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MQTTManager::setConfig </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_m_q_t_t_config.html">MQTTConfig</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>newConfig</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set new configuration. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">newConfig</td><td>New configuration to apply </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if configuration applied successfully </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00422">422</a> of file <a class="el" href="_m_q_t_t_manager_8cpp_source.html">MQTTManager.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00169">attemptConnection()</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00086">config</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00087">configLoaded</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00091">mqttClient</a>, <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00377">saveConfig()</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00089">wifiClient</a>, and <a class="el" href="_m_q_t_t_manager_8h_source.html#l00090">wifiClientInsecure</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_m_q_t_t_manager_aacbf1b109ac1d6b168309abfd8b3aa72_cgraph.svg" width="706" height="135"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="ac17b9ceb70d483611944d626c8c933a1" name="ac17b9ceb70d483611944d626c8c933a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac17b9ceb70d483611944d626c8c933a1">&#9670;&#160;</a></span>setConfigJson()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MQTTManager::setConfigJson </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>jsonStr</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set configuration from JSON string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">jsonStr</td><td>JSON string containing configuration </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if configuration parsed and applied successfully </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00598">598</a> of file <a class="el" href="_m_q_t_t_manager_8cpp_source.html">MQTTManager.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00468">buildTopic()</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00086">config</a>, and <a class="el" href="_m_q_t_t_manager_8h_source.html#l00087">configLoaded</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00335">loadConfig()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_m_q_t_t_manager_ac17b9ceb70d483611944d626c8c933a1_cgraph.svg" width="434" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_m_q_t_t_manager_ac17b9ceb70d483611944d626c8c933a1_icgraph.svg" width="634" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a6d04009ffe15591e5faf9589e05787e0" name="a6d04009ffe15591e5faf9589e05787e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d04009ffe15591e5faf9589e05787e0">&#9670;&#160;</a></span>testPublish()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MQTTManager::testPublish </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>message</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Test publish to configured test topic. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">message</td><td>Message to publish </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if publish successful </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00505">505</a> of file <a class="el" href="_m_q_t_t_manager_8cpp_source.html">MQTTManager.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_m_q_t_t_manager_8h_source.html#l00086">config</a>, and <a class="el" href="_m_q_t_t_manager_8h_source.html#l00091">mqttClient</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00169">attemptConnection()</a>, <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00116">loop()</a>, and <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00278">publish()</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_m_q_t_t_manager_a6d04009ffe15591e5faf9589e05787e0_icgraph.svg" width="688" height="234"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
 </div>
 <a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Field Documentation</h2>
-<a id="a4be14db58e5135343ea5cb9da1eaa303" name="a4be14db58e5135343ea5cb9da1eaa303"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4be14db58e5135343ea5cb9da1eaa303">&#9670;&#160;</a></span>DEVICE_ID</h2>
+<a id="a3bc5e9366746360ca989a12cbe594338" name="a3bc5e9366746360ca989a12cbe594338"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3bc5e9366746360ca989a12cbe594338">&#9670;&#160;</a></span>config</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -619,19 +972,49 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const char* MQTTManager::DEVICE_ID = &quot;esp32_temp_controller&quot;</td>
+          <td class="memname"><a class="el" href="struct_m_q_t_t_config.html">MQTTConfig</a> MQTTManager::config</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span><span class="mlabel private">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8h_source.html#l00043">43</a> of file <a class="el" href="_m_q_t_t_manager_8h_source.html">MQTTManager.h</a>.</p>
+<p>Configuration loaded from JSON. </p>
 
-<p class="reference">Referenced by <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00132">attemptConnection()</a>, and <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00038">begin()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8h_source.html#l00086">86</a> of file <a class="el" href="_m_q_t_t_manager_8h_source.html">MQTTManager.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00169">attemptConnection()</a>, <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00039">begin()</a>, <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00468">buildTopic()</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00200">getConfig()</a>, <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00536">getConfigJson()</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00213">isEnabled()</a>, <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00422">setConfig()</a>, <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00598">setConfigJson()</a>, and <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00505">testPublish()</a>.</p>
+
+</div>
+</div>
+<a id="a40421587ffcaf38da5189de4fd721dcf" name="a40421587ffcaf38da5189de4fd721dcf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40421587ffcaf38da5189de4fd721dcf">&#9670;&#160;</a></span>configLoaded</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MQTTManager::configLoaded</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Flag indicating if config is loaded. </p>
+
+<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8h_source.html#l00087">87</a> of file <a class="el" href="_m_q_t_t_manager_8h_source.html">MQTTManager.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00039">begin()</a>, <a class="el" href="_m_q_t_t_manager_8h_source.html#l00213">isEnabled()</a>, <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00116">loop()</a>, <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00016">MQTTManager()</a>, <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00422">setConfig()</a>, and <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00598">setConfigJson()</a>.</p>
 
 </div>
 </div>
@@ -657,9 +1040,9 @@ Here is the call graph for this function:</div>
 
 <p>Static pointer to the current instance for callback routing. </p>
 
-<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8h_source.html#l00067">67</a> of file <a class="el" href="_m_q_t_t_manager_8h_source.html">MQTTManager.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8h_source.html#l00112">112</a> of file <a class="el" href="_m_q_t_t_manager_8h_source.html">MQTTManager.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00182">messageCallback()</a>, <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00016">MQTTManager()</a>, and <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00025">~MQTTManager()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00235">messageCallback()</a>, <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00016">MQTTManager()</a>, and <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00026">~MQTTManager()</a>.</p>
 
 </div>
 </div>
@@ -685,9 +1068,9 @@ Here is the call graph for this function:</div>
 
 <p>Connection status flag. </p>
 
-<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8h_source.html#l00048">48</a> of file <a class="el" href="_m_q_t_t_manager_8h_source.html">MQTTManager.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8h_source.html#l00093">93</a> of file <a class="el" href="_m_q_t_t_manager_8h_source.html">MQTTManager.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00132">attemptConnection()</a>, <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00081">loop()</a>, and <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00016">MQTTManager()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00169">attemptConnection()</a>, <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00116">loop()</a>, and <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00016">MQTTManager()</a>.</p>
 
 </div>
 </div>
@@ -713,9 +1096,9 @@ Here is the call graph for this function:</div>
 
 <p>Timestamp of last publish. </p>
 
-<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8h_source.html#l00052">52</a> of file <a class="el" href="_m_q_t_t_manager_8h_source.html">MQTTManager.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8h_source.html#l00097">97</a> of file <a class="el" href="_m_q_t_t_manager_8h_source.html">MQTTManager.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00081">loop()</a>, and <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00016">MQTTManager()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00116">loop()</a>, and <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00016">MQTTManager()</a>.</p>
 
 </div>
 </div>
@@ -741,113 +1124,9 @@ Here is the call graph for this function:</div>
 
 <p>Timestamp of last reconnection attempt. </p>
 
-<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8h_source.html#l00049">49</a> of file <a class="el" href="_m_q_t_t_manager_8h_source.html">MQTTManager.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8h_source.html#l00094">94</a> of file <a class="el" href="_m_q_t_t_manager_8h_source.html">MQTTManager.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00081">loop()</a>, and <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00016">MQTTManager()</a>.</p>
-
-</div>
-</div>
-<a id="a32def76742264dbc0f411dd64905f1ad" name="a32def76742264dbc0f411dd64905f1ad"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a32def76742264dbc0f411dd64905f1ad">&#9670;&#160;</a></span>MQTT_PASSWORD</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">const char* MQTTManager::MQTT_PASSWORD = &quot;PolzaOil2019&quot;</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span><span class="mlabel private">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8h_source.html#l00036">36</a> of file <a class="el" href="_m_q_t_t_manager_8h_source.html">MQTTManager.h</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00132">attemptConnection()</a>.</p>
-
-</div>
-</div>
-<a id="a43e53d526945bdcbe7195261ceb88115" name="a43e53d526945bdcbe7195261ceb88115"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a43e53d526945bdcbe7195261ceb88115">&#9670;&#160;</a></span>MQTT_PORT</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int MQTTManager::MQTT_PORT = 8883</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span><span class="mlabel private">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8h_source.html#l00034">34</a> of file <a class="el" href="_m_q_t_t_manager_8h_source.html">MQTTManager.h</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00038">begin()</a>.</p>
-
-</div>
-</div>
-<a id="a607d3cb42b6984a50e9072a21fbbe675" name="a607d3cb42b6984a50e9072a21fbbe675"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a607d3cb42b6984a50e9072a21fbbe675">&#9670;&#160;</a></span>MQTT_SERVER</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">const char* MQTTManager::MQTT_SERVER = &quot;987bfd99193b4a21a18a665a3812cc90.s1.eu.hivemq.cloud&quot;</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span><span class="mlabel private">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8h_source.html#l00033">33</a> of file <a class="el" href="_m_q_t_t_manager_8h_source.html">MQTTManager.h</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00038">begin()</a>.</p>
-
-</div>
-</div>
-<a id="a6ac5857649943a2eb2663ca7fb1efc02" name="a6ac5857649943a2eb2663ca7fb1efc02"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6ac5857649943a2eb2663ca7fb1efc02">&#9670;&#160;</a></span>MQTT_USERNAME</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">const char* MQTTManager::MQTT_USERNAME = &quot;ESP32-TempCont&quot;</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span><span class="mlabel private">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8h_source.html#l00035">35</a> of file <a class="el" href="_m_q_t_t_manager_8h_source.html">MQTTManager.h</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00132">attemptConnection()</a>, and <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00038">begin()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00116">loop()</a>, and <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00016">MQTTManager()</a>.</p>
 
 </div>
 </div>
@@ -873,9 +1152,9 @@ Here is the call graph for this function:</div>
 
 <p>MQTT client instance. </p>
 
-<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8h_source.html#l00046">46</a> of file <a class="el" href="_m_q_t_t_manager_8h_source.html">MQTTManager.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8h_source.html#l00091">91</a> of file <a class="el" href="_m_q_t_t_manager_8h_source.html">MQTTManager.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00132">attemptConnection()</a>, <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00038">begin()</a>, <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00262">connected()</a>, <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00287">getState()</a>, <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00081">loop()</a>, <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00016">MQTTManager()</a>, <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00225">publish()</a>, <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00269">reconnect()</a>, and <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00025">~MQTTManager()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00169">attemptConnection()</a>, <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00039">begin()</a>, <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00302">connected()</a>, <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00327">getState()</a>, <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00116">loop()</a>, <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00016">MQTTManager()</a>, <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00278">publish()</a>, <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00309">reconnect()</a>, <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00422">setConfig()</a>, <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00505">testPublish()</a>, and <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00026">~MQTTManager()</a>.</p>
 
 </div>
 </div>
@@ -901,35 +1180,9 @@ Here is the call graph for this function:</div>
 
 <p>Publish interval in milliseconds (1 second) </p>
 
-<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8h_source.html#l00053">53</a> of file <a class="el" href="_m_q_t_t_manager_8h_source.html">MQTTManager.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8h_source.html#l00098">98</a> of file <a class="el" href="_m_q_t_t_manager_8h_source.html">MQTTManager.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00081">loop()</a>.</p>
-
-</div>
-</div>
-<a id="a9082b97bf176d06f2787fae66e2bf175" name="a9082b97bf176d06f2787fae66e2bf175"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9082b97bf176d06f2787fae66e2bf175">&#9670;&#160;</a></span>PUBLISH_TOPIC</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">const char* MQTTManager::PUBLISH_TOPIC = &quot;temp/pub&quot;</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span><span class="mlabel private">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8h_source.html#l00039">39</a> of file <a class="el" href="_m_q_t_t_manager_8h_source.html">MQTTManager.h</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00038">begin()</a>, and <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00225">publish()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00116">loop()</a>.</p>
 
 </div>
 </div>
@@ -955,9 +1208,9 @@ Here is the call graph for this function:</div>
 
 <p>Counter for incrementing numbers. </p>
 
-<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8h_source.html#l00054">54</a> of file <a class="el" href="_m_q_t_t_manager_8h_source.html">MQTTManager.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8h_source.html#l00099">99</a> of file <a class="el" href="_m_q_t_t_manager_8h_source.html">MQTTManager.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00081">loop()</a>, and <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00016">MQTTManager()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00116">loop()</a>, and <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00016">MQTTManager()</a>.</p>
 
 </div>
 </div>
@@ -983,35 +1236,9 @@ Here is the call graph for this function:</div>
 
 <p>Reconnection interval in milliseconds. </p>
 
-<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8h_source.html#l00050">50</a> of file <a class="el" href="_m_q_t_t_manager_8h_source.html">MQTTManager.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8h_source.html#l00095">95</a> of file <a class="el" href="_m_q_t_t_manager_8h_source.html">MQTTManager.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00081">loop()</a>.</p>
-
-</div>
-</div>
-<a id="a58881b0872fe45c1c5eca20d18817297" name="a58881b0872fe45c1c5eca20d18817297"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a58881b0872fe45c1c5eca20d18817297">&#9670;&#160;</a></span>SUBSCRIBE_TOPIC</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">const char* MQTTManager::SUBSCRIBE_TOPIC = &quot;temp/sub&quot;</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span><span class="mlabel private">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8h_source.html#l00040">40</a> of file <a class="el" href="_m_q_t_t_manager_8h_source.html">MQTTManager.h</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00132">attemptConnection()</a>, and <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00038">begin()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00116">loop()</a>.</p>
 
 </div>
 </div>
@@ -1037,9 +1264,37 @@ Here is the call graph for this function:</div>
 
 <p>Secure WiFi client for SSL connection. </p>
 
-<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8h_source.html#l00045">45</a> of file <a class="el" href="_m_q_t_t_manager_8h_source.html">MQTTManager.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8h_source.html#l00089">89</a> of file <a class="el" href="_m_q_t_t_manager_8h_source.html">MQTTManager.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00038">begin()</a>, and <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00016">MQTTManager()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00039">begin()</a>, <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00016">MQTTManager()</a>, and <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00422">setConfig()</a>.</p>
+
+</div>
+</div>
+<a id="a9a2a868ab4ca4856a70d466047310bdf" name="a9a2a868ab4ca4856a70d466047310bdf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a2a868ab4ca4856a70d466047310bdf">&#9670;&#160;</a></span>wifiClientInsecure</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">WiFiClient MQTTManager::wifiClientInsecure</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Insecure WiFi client for non-SSL. </p>
+
+<p class="definition">Definition at line <a class="el" href="_m_q_t_t_manager_8h_source.html#l00090">90</a> of file <a class="el" href="_m_q_t_t_manager_8h_source.html">MQTTManager.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00039">begin()</a>, and <a class="el" href="_m_q_t_t_manager_8cpp_source.html#l00422">setConfig()</a>.</p>
 
 </div>
 </div>

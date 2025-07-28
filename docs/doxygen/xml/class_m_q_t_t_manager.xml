@@ -3,123 +3,184 @@
   <compounddef id="class_m_q_t_t_manager" kind="class" language="C++" prot="public">
     <compoundname>MQTTManager</compoundname>
     <includes refid="_m_q_t_t_manager_8h" local="no">MQTTManager.h</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_m_q_t_t_manager_1a3bc5e9366746360ca989a12cbe594338" prot="private" static="no" mutable="no">
+        <type><ref refid="struct_m_q_t_t_config" kindref="compound">MQTTConfig</ref></type>
+        <definition>MQTTConfig MQTTManager::config</definition>
+        <argsstring></argsstring>
+        <name>config</name>
+        <qualifiedname>MQTTManager::config</qualifiedname>
+        <briefdescription>
+<para>Configuration loaded from JSON. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MQTTManager.h" line="86" column="16" bodyfile="include/MQTTManager.h" bodystart="86" bodyend="-1"/>
+        <referencedby refid="class_m_q_t_t_manager_1a129d111c8b1ae84640849bc206098853" compoundref="_m_q_t_t_manager_8cpp" startline="169" endline="230">attemptConnection</referencedby>
+        <referencedby refid="class_m_q_t_t_manager_1a0865d8e5c42ab2106d9f2c172ee1cec2" compoundref="_m_q_t_t_manager_8cpp" startline="39" endline="111">begin</referencedby>
+        <referencedby refid="class_m_q_t_t_manager_1a80eeb5b0b084ede6d789459381acec6d" compoundref="_m_q_t_t_manager_8cpp" startline="468" endline="498">buildTopic</referencedby>
+        <referencedby refid="class_m_q_t_t_manager_1a60ee8b1480e6bf4a8125705415501757" compoundref="_m_q_t_t_manager_8h" startline="200" endline="200">getConfig</referencedby>
+        <referencedby refid="class_m_q_t_t_manager_1ae85864580886b1f7caa7899fa269a249" compoundref="_m_q_t_t_manager_8cpp" startline="536" endline="591">getConfigJson</referencedby>
+        <referencedby refid="class_m_q_t_t_manager_1a8b084fb62e23dc3f2895ede2ec011b42" compoundref="_m_q_t_t_manager_8h" startline="213" endline="213">isEnabled</referencedby>
+        <referencedby refid="class_m_q_t_t_manager_1aacbf1b109ac1d6b168309abfd8b3aa72" compoundref="_m_q_t_t_manager_8cpp" startline="422" endline="460">setConfig</referencedby>
+        <referencedby refid="class_m_q_t_t_manager_1ac17b9ceb70d483611944d626c8c933a1" compoundref="_m_q_t_t_manager_8cpp" startline="598" endline="681">setConfigJson</referencedby>
+        <referencedby refid="class_m_q_t_t_manager_1a6d04009ffe15591e5faf9589e05787e0" compoundref="_m_q_t_t_manager_8cpp" startline="505" endline="530">testPublish</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_m_q_t_t_manager_1a40421587ffcaf38da5189de4fd721dcf" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool MQTTManager::configLoaded</definition>
+        <argsstring></argsstring>
+        <name>configLoaded</name>
+        <qualifiedname>MQTTManager::configLoaded</qualifiedname>
+        <briefdescription>
+<para>Flag indicating if config is loaded. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MQTTManager.h" line="87" column="10" bodyfile="include/MQTTManager.h" bodystart="87" bodyend="-1"/>
+        <referencedby refid="class_m_q_t_t_manager_1a0865d8e5c42ab2106d9f2c172ee1cec2" compoundref="_m_q_t_t_manager_8cpp" startline="39" endline="111">begin</referencedby>
+        <referencedby refid="class_m_q_t_t_manager_1a8b084fb62e23dc3f2895ede2ec011b42" compoundref="_m_q_t_t_manager_8h" startline="213" endline="213">isEnabled</referencedby>
+        <referencedby refid="class_m_q_t_t_manager_1a9266e647933501851b411b6d2a9a1f95" compoundref="_m_q_t_t_manager_8cpp" startline="116" endline="163">loop</referencedby>
+        <referencedby refid="class_m_q_t_t_manager_1a84fe61d82134dc33feb2e76ed30ef25d" compoundref="_m_q_t_t_manager_8cpp" startline="16" endline="21">MQTTManager</referencedby>
+        <referencedby refid="class_m_q_t_t_manager_1aacbf1b109ac1d6b168309abfd8b3aa72" compoundref="_m_q_t_t_manager_8cpp" startline="422" endline="460">setConfig</referencedby>
+        <referencedby refid="class_m_q_t_t_manager_1ac17b9ceb70d483611944d626c8c933a1" compoundref="_m_q_t_t_manager_8cpp" startline="598" endline="681">setConfigJson</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_m_q_t_t_manager_1a39ad7e75f56664b1f8c5191798d6835e" prot="private" static="no" mutable="no">
+        <type>WiFiClientSecure</type>
+        <definition>WiFiClientSecure MQTTManager::wifiClient</definition>
+        <argsstring></argsstring>
+        <name>wifiClient</name>
+        <qualifiedname>MQTTManager::wifiClient</qualifiedname>
+        <briefdescription>
+<para>Secure WiFi client for SSL connection. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MQTTManager.h" line="89" column="22" bodyfile="include/MQTTManager.h" bodystart="89" bodyend="-1"/>
+        <referencedby refid="class_m_q_t_t_manager_1a0865d8e5c42ab2106d9f2c172ee1cec2" compoundref="_m_q_t_t_manager_8cpp" startline="39" endline="111">begin</referencedby>
+        <referencedby refid="class_m_q_t_t_manager_1a84fe61d82134dc33feb2e76ed30ef25d" compoundref="_m_q_t_t_manager_8cpp" startline="16" endline="21">MQTTManager</referencedby>
+        <referencedby refid="class_m_q_t_t_manager_1aacbf1b109ac1d6b168309abfd8b3aa72" compoundref="_m_q_t_t_manager_8cpp" startline="422" endline="460">setConfig</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_m_q_t_t_manager_1a9a2a868ab4ca4856a70d466047310bdf" prot="private" static="no" mutable="no">
+        <type>WiFiClient</type>
+        <definition>WiFiClient MQTTManager::wifiClientInsecure</definition>
+        <argsstring></argsstring>
+        <name>wifiClientInsecure</name>
+        <qualifiedname>MQTTManager::wifiClientInsecure</qualifiedname>
+        <briefdescription>
+<para>Insecure WiFi client for non-SSL. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MQTTManager.h" line="90" column="16" bodyfile="include/MQTTManager.h" bodystart="90" bodyend="-1"/>
+        <referencedby refid="class_m_q_t_t_manager_1a0865d8e5c42ab2106d9f2c172ee1cec2" compoundref="_m_q_t_t_manager_8cpp" startline="39" endline="111">begin</referencedby>
+        <referencedby refid="class_m_q_t_t_manager_1aacbf1b109ac1d6b168309abfd8b3aa72" compoundref="_m_q_t_t_manager_8cpp" startline="422" endline="460">setConfig</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_m_q_t_t_manager_1a89a2f7d33295fccd3507f34ac9df0508" prot="private" static="no" mutable="no">
+        <type>PubSubClient</type>
+        <definition>PubSubClient MQTTManager::mqttClient</definition>
+        <argsstring></argsstring>
+        <name>mqttClient</name>
+        <qualifiedname>MQTTManager::mqttClient</qualifiedname>
+        <briefdescription>
+<para>MQTT client instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MQTTManager.h" line="91" column="18" bodyfile="include/MQTTManager.h" bodystart="91" bodyend="-1"/>
+        <referencedby refid="class_m_q_t_t_manager_1a129d111c8b1ae84640849bc206098853" compoundref="_m_q_t_t_manager_8cpp" startline="169" endline="230">attemptConnection</referencedby>
+        <referencedby refid="class_m_q_t_t_manager_1a0865d8e5c42ab2106d9f2c172ee1cec2" compoundref="_m_q_t_t_manager_8cpp" startline="39" endline="111">begin</referencedby>
+        <referencedby refid="class_m_q_t_t_manager_1aaa6dfaebfbbfb48e3f4de45bab477d2c" compoundref="_m_q_t_t_manager_8cpp" startline="302" endline="304">connected</referencedby>
+        <referencedby refid="class_m_q_t_t_manager_1a7b05e6c97ae6c0d7522b75977e66dba4" compoundref="_m_q_t_t_manager_8cpp" startline="327" endline="329">getState</referencedby>
+        <referencedby refid="class_m_q_t_t_manager_1a9266e647933501851b411b6d2a9a1f95" compoundref="_m_q_t_t_manager_8cpp" startline="116" endline="163">loop</referencedby>
+        <referencedby refid="class_m_q_t_t_manager_1a84fe61d82134dc33feb2e76ed30ef25d" compoundref="_m_q_t_t_manager_8cpp" startline="16" endline="21">MQTTManager</referencedby>
+        <referencedby refid="class_m_q_t_t_manager_1aba0fa39910d767f0623291608e83ae81" compoundref="_m_q_t_t_manager_8cpp" startline="278" endline="286">publish</referencedby>
+        <referencedby refid="class_m_q_t_t_manager_1ab8e796839e28f468cb21f9f28b421bed" compoundref="_m_q_t_t_manager_8cpp" startline="309" endline="320">reconnect</referencedby>
+        <referencedby refid="class_m_q_t_t_manager_1aacbf1b109ac1d6b168309abfd8b3aa72" compoundref="_m_q_t_t_manager_8cpp" startline="422" endline="460">setConfig</referencedby>
+        <referencedby refid="class_m_q_t_t_manager_1a6d04009ffe15591e5faf9589e05787e0" compoundref="_m_q_t_t_manager_8cpp" startline="505" endline="530">testPublish</referencedby>
+        <referencedby refid="class_m_q_t_t_manager_1ac100762bef069504d97a5002577893e8" compoundref="_m_q_t_t_manager_8cpp" startline="26" endline="33">~MQTTManager</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_m_q_t_t_manager_1af868832c1d807e4c416a4da46b0808d7" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool MQTTManager::isConnected</definition>
+        <argsstring></argsstring>
+        <name>isConnected</name>
+        <qualifiedname>MQTTManager::isConnected</qualifiedname>
+        <briefdescription>
+<para>Connection status flag. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MQTTManager.h" line="93" column="10" bodyfile="include/MQTTManager.h" bodystart="93" bodyend="-1"/>
+        <referencedby refid="class_m_q_t_t_manager_1a129d111c8b1ae84640849bc206098853" compoundref="_m_q_t_t_manager_8cpp" startline="169" endline="230">attemptConnection</referencedby>
+        <referencedby refid="class_m_q_t_t_manager_1a9266e647933501851b411b6d2a9a1f95" compoundref="_m_q_t_t_manager_8cpp" startline="116" endline="163">loop</referencedby>
+        <referencedby refid="class_m_q_t_t_manager_1a84fe61d82134dc33feb2e76ed30ef25d" compoundref="_m_q_t_t_manager_8cpp" startline="16" endline="21">MQTTManager</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_m_q_t_t_manager_1ac33a3f71ab1a3d601c5d4fe93e2b6077" prot="private" static="no" mutable="no">
+        <type>unsigned long</type>
+        <definition>unsigned long MQTTManager::lastReconnectAttempt</definition>
+        <argsstring></argsstring>
+        <name>lastReconnectAttempt</name>
+        <qualifiedname>MQTTManager::lastReconnectAttempt</qualifiedname>
+        <briefdescription>
+<para>Timestamp of last reconnection attempt. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MQTTManager.h" line="94" column="19" bodyfile="include/MQTTManager.h" bodystart="94" bodyend="-1"/>
+        <referencedby refid="class_m_q_t_t_manager_1a9266e647933501851b411b6d2a9a1f95" compoundref="_m_q_t_t_manager_8cpp" startline="116" endline="163">loop</referencedby>
+        <referencedby refid="class_m_q_t_t_manager_1a84fe61d82134dc33feb2e76ed30ef25d" compoundref="_m_q_t_t_manager_8cpp" startline="16" endline="21">MQTTManager</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_m_q_t_t_manager_1ac80e68f1c4ff7a778786c4cf669144c2" prot="private" static="no" mutable="no">
+        <type>unsigned long</type>
+        <definition>unsigned long MQTTManager::lastPublishTime</definition>
+        <argsstring></argsstring>
+        <name>lastPublishTime</name>
+        <qualifiedname>MQTTManager::lastPublishTime</qualifiedname>
+        <briefdescription>
+<para>Timestamp of last publish. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MQTTManager.h" line="97" column="19" bodyfile="include/MQTTManager.h" bodystart="97" bodyend="-1"/>
+        <referencedby refid="class_m_q_t_t_manager_1a9266e647933501851b411b6d2a9a1f95" compoundref="_m_q_t_t_manager_8cpp" startline="116" endline="163">loop</referencedby>
+        <referencedby refid="class_m_q_t_t_manager_1a84fe61d82134dc33feb2e76ed30ef25d" compoundref="_m_q_t_t_manager_8cpp" startline="16" endline="21">MQTTManager</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_m_q_t_t_manager_1af1032c63a8824102312224a716cc6da6" prot="private" static="no" mutable="no">
+        <type>unsigned long</type>
+        <definition>unsigned long MQTTManager::publishCounter</definition>
+        <argsstring></argsstring>
+        <name>publishCounter</name>
+        <qualifiedname>MQTTManager::publishCounter</qualifiedname>
+        <briefdescription>
+<para>Counter for incrementing numbers. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MQTTManager.h" line="99" column="19" bodyfile="include/MQTTManager.h" bodystart="99" bodyend="-1"/>
+        <referencedby refid="class_m_q_t_t_manager_1a9266e647933501851b411b6d2a9a1f95" compoundref="_m_q_t_t_manager_8cpp" startline="116" endline="163">loop</referencedby>
+        <referencedby refid="class_m_q_t_t_manager_1a84fe61d82134dc33feb2e76ed30ef25d" compoundref="_m_q_t_t_manager_8cpp" startline="16" endline="21">MQTTManager</referencedby>
+      </memberdef>
+    </sectiondef>
     <sectiondef kind="private-static-attrib">
-      <memberdef kind="variable" id="class_m_q_t_t_manager_1a607d3cb42b6984a50e9072a21fbbe675" prot="private" static="yes" constexpr="yes" mutable="no">
-        <type>const char *</type>
-        <definition>const char* MQTTManager::MQTT_SERVER</definition>
-        <argsstring></argsstring>
-        <name>MQTT_SERVER</name>
-        <qualifiedname>MQTTManager::MQTT_SERVER</qualifiedname>
-        <initializer>= &quot;987bfd99193b4a21a18a665a3812cc90.s1.eu.hivemq.cloud&quot;</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/MQTTManager.h" line="33" column="33" bodyfile="include/MQTTManager.h" bodystart="33" bodyend="-1"/>
-        <referencedby refid="class_m_q_t_t_manager_1a0865d8e5c42ab2106d9f2c172ee1cec2" compoundref="_m_q_t_t_manager_8cpp" startline="38" endline="76">begin</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="class_m_q_t_t_manager_1a43e53d526945bdcbe7195261ceb88115" prot="private" static="yes" constexpr="yes" mutable="no">
-        <type>int</type>
-        <definition>int MQTTManager::MQTT_PORT</definition>
-        <argsstring></argsstring>
-        <name>MQTT_PORT</name>
-        <qualifiedname>MQTTManager::MQTT_PORT</qualifiedname>
-        <initializer>= 8883</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/MQTTManager.h" line="34" column="26" bodyfile="include/MQTTManager.h" bodystart="34" bodyend="-1"/>
-        <referencedby refid="class_m_q_t_t_manager_1a0865d8e5c42ab2106d9f2c172ee1cec2" compoundref="_m_q_t_t_manager_8cpp" startline="38" endline="76">begin</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="class_m_q_t_t_manager_1a6ac5857649943a2eb2663ca7fb1efc02" prot="private" static="yes" constexpr="yes" mutable="no">
-        <type>const char *</type>
-        <definition>const char* MQTTManager::MQTT_USERNAME</definition>
-        <argsstring></argsstring>
-        <name>MQTT_USERNAME</name>
-        <qualifiedname>MQTTManager::MQTT_USERNAME</qualifiedname>
-        <initializer>= &quot;ESP32-TempCont&quot;</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/MQTTManager.h" line="35" column="33" bodyfile="include/MQTTManager.h" bodystart="35" bodyend="-1"/>
-        <referencedby refid="class_m_q_t_t_manager_1a129d111c8b1ae84640849bc206098853" compoundref="_m_q_t_t_manager_8cpp" startline="132" endline="177">attemptConnection</referencedby>
-        <referencedby refid="class_m_q_t_t_manager_1a0865d8e5c42ab2106d9f2c172ee1cec2" compoundref="_m_q_t_t_manager_8cpp" startline="38" endline="76">begin</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="class_m_q_t_t_manager_1a32def76742264dbc0f411dd64905f1ad" prot="private" static="yes" constexpr="yes" mutable="no">
-        <type>const char *</type>
-        <definition>const char* MQTTManager::MQTT_PASSWORD</definition>
-        <argsstring></argsstring>
-        <name>MQTT_PASSWORD</name>
-        <qualifiedname>MQTTManager::MQTT_PASSWORD</qualifiedname>
-        <initializer>= &quot;PolzaOil2019&quot;</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/MQTTManager.h" line="36" column="33" bodyfile="include/MQTTManager.h" bodystart="36" bodyend="-1"/>
-        <referencedby refid="class_m_q_t_t_manager_1a129d111c8b1ae84640849bc206098853" compoundref="_m_q_t_t_manager_8cpp" startline="132" endline="177">attemptConnection</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="class_m_q_t_t_manager_1a9082b97bf176d06f2787fae66e2bf175" prot="private" static="yes" constexpr="yes" mutable="no">
-        <type>const char *</type>
-        <definition>const char* MQTTManager::PUBLISH_TOPIC</definition>
-        <argsstring></argsstring>
-        <name>PUBLISH_TOPIC</name>
-        <qualifiedname>MQTTManager::PUBLISH_TOPIC</qualifiedname>
-        <initializer>= &quot;temp/pub&quot;</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/MQTTManager.h" line="39" column="33" bodyfile="include/MQTTManager.h" bodystart="39" bodyend="-1"/>
-        <referencedby refid="class_m_q_t_t_manager_1a0865d8e5c42ab2106d9f2c172ee1cec2" compoundref="_m_q_t_t_manager_8cpp" startline="38" endline="76">begin</referencedby>
-        <referencedby refid="class_m_q_t_t_manager_1aba0fa39910d767f0623291608e83ae81" compoundref="_m_q_t_t_manager_8cpp" startline="225" endline="246">publish</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="class_m_q_t_t_manager_1a58881b0872fe45c1c5eca20d18817297" prot="private" static="yes" constexpr="yes" mutable="no">
-        <type>const char *</type>
-        <definition>const char* MQTTManager::SUBSCRIBE_TOPIC</definition>
-        <argsstring></argsstring>
-        <name>SUBSCRIBE_TOPIC</name>
-        <qualifiedname>MQTTManager::SUBSCRIBE_TOPIC</qualifiedname>
-        <initializer>= &quot;temp/sub&quot;</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/MQTTManager.h" line="40" column="33" bodyfile="include/MQTTManager.h" bodystart="40" bodyend="-1"/>
-        <referencedby refid="class_m_q_t_t_manager_1a129d111c8b1ae84640849bc206098853" compoundref="_m_q_t_t_manager_8cpp" startline="132" endline="177">attemptConnection</referencedby>
-        <referencedby refid="class_m_q_t_t_manager_1a0865d8e5c42ab2106d9f2c172ee1cec2" compoundref="_m_q_t_t_manager_8cpp" startline="38" endline="76">begin</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="class_m_q_t_t_manager_1a4be14db58e5135343ea5cb9da1eaa303" prot="private" static="yes" constexpr="yes" mutable="no">
-        <type>const char *</type>
-        <definition>const char* MQTTManager::DEVICE_ID</definition>
-        <argsstring></argsstring>
-        <name>DEVICE_ID</name>
-        <qualifiedname>MQTTManager::DEVICE_ID</qualifiedname>
-        <initializer>= &quot;esp32_temp_controller&quot;</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/MQTTManager.h" line="43" column="33" bodyfile="include/MQTTManager.h" bodystart="43" bodyend="-1"/>
-        <referencedby refid="class_m_q_t_t_manager_1a129d111c8b1ae84640849bc206098853" compoundref="_m_q_t_t_manager_8cpp" startline="132" endline="177">attemptConnection</referencedby>
-        <referencedby refid="class_m_q_t_t_manager_1a0865d8e5c42ab2106d9f2c172ee1cec2" compoundref="_m_q_t_t_manager_8cpp" startline="38" endline="76">begin</referencedby>
-      </memberdef>
       <memberdef kind="variable" id="class_m_q_t_t_manager_1ac8d002476a7bd769e7c36b05298173db" prot="private" static="yes" constexpr="yes" mutable="no">
         <type>unsigned long</type>
         <definition>unsigned long MQTTManager::RECONNECT_INTERVAL</definition>
@@ -134,8 +195,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/MQTTManager.h" line="50" column="36" bodyfile="include/MQTTManager.h" bodystart="50" bodyend="-1"/>
-        <referencedby refid="class_m_q_t_t_manager_1a9266e647933501851b411b6d2a9a1f95" compoundref="_m_q_t_t_manager_8cpp" startline="81" endline="126">loop</referencedby>
+        <location file="include/MQTTManager.h" line="95" column="36" bodyfile="include/MQTTManager.h" bodystart="95" bodyend="-1"/>
+        <referencedby refid="class_m_q_t_t_manager_1a9266e647933501851b411b6d2a9a1f95" compoundref="_m_q_t_t_manager_8cpp" startline="116" endline="163">loop</referencedby>
       </memberdef>
       <memberdef kind="variable" id="class_m_q_t_t_manager_1a36f27fe8d5a3e83c9804d2072bc20517" prot="private" static="yes" constexpr="yes" mutable="no">
         <type>unsigned long</type>
@@ -151,8 +212,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/MQTTManager.h" line="53" column="36" bodyfile="include/MQTTManager.h" bodystart="53" bodyend="-1"/>
-        <referencedby refid="class_m_q_t_t_manager_1a9266e647933501851b411b6d2a9a1f95" compoundref="_m_q_t_t_manager_8cpp" startline="81" endline="126">loop</referencedby>
+        <location file="include/MQTTManager.h" line="98" column="36" bodyfile="include/MQTTManager.h" bodystart="98" bodyend="-1"/>
+        <referencedby refid="class_m_q_t_t_manager_1a9266e647933501851b411b6d2a9a1f95" compoundref="_m_q_t_t_manager_8cpp" startline="116" endline="163">loop</referencedby>
       </memberdef>
       <memberdef kind="variable" id="class_m_q_t_t_manager_1a6e768a4f36c87e9f60a3a60ae95c0ef4" prot="private" static="yes" mutable="no">
         <type><ref refid="class_m_q_t_t_manager" kindref="compound">MQTTManager</ref> *</type>
@@ -168,122 +229,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/MQTTManager.h" line="67" column="24" bodyfile="include/MQTTManager.h" bodystart="67" bodyend="-1"/>
-        <referencedby refid="class_m_q_t_t_manager_1aaac19647fab19e7a0f819691ba06e772" compoundref="_m_q_t_t_manager_8cpp" startline="182" endline="186">messageCallback</referencedby>
-        <referencedby refid="class_m_q_t_t_manager_1a84fe61d82134dc33feb2e76ed30ef25d" compoundref="_m_q_t_t_manager_8cpp" startline="16" endline="20">MQTTManager</referencedby>
-        <referencedby refid="class_m_q_t_t_manager_1ac100762bef069504d97a5002577893e8" compoundref="_m_q_t_t_manager_8cpp" startline="25" endline="32">~MQTTManager</referencedby>
-      </memberdef>
-    </sectiondef>
-    <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="class_m_q_t_t_manager_1a39ad7e75f56664b1f8c5191798d6835e" prot="private" static="no" mutable="no">
-        <type>WiFiClientSecure</type>
-        <definition>WiFiClientSecure MQTTManager::wifiClient</definition>
-        <argsstring></argsstring>
-        <name>wifiClient</name>
-        <qualifiedname>MQTTManager::wifiClient</qualifiedname>
-        <briefdescription>
-<para>Secure WiFi client for SSL connection. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/MQTTManager.h" line="45" column="22" bodyfile="include/MQTTManager.h" bodystart="45" bodyend="-1"/>
-        <referencedby refid="class_m_q_t_t_manager_1a0865d8e5c42ab2106d9f2c172ee1cec2" compoundref="_m_q_t_t_manager_8cpp" startline="38" endline="76">begin</referencedby>
-        <referencedby refid="class_m_q_t_t_manager_1a84fe61d82134dc33feb2e76ed30ef25d" compoundref="_m_q_t_t_manager_8cpp" startline="16" endline="20">MQTTManager</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="class_m_q_t_t_manager_1a89a2f7d33295fccd3507f34ac9df0508" prot="private" static="no" mutable="no">
-        <type>PubSubClient</type>
-        <definition>PubSubClient MQTTManager::mqttClient</definition>
-        <argsstring></argsstring>
-        <name>mqttClient</name>
-        <qualifiedname>MQTTManager::mqttClient</qualifiedname>
-        <briefdescription>
-<para>MQTT client instance. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/MQTTManager.h" line="46" column="18" bodyfile="include/MQTTManager.h" bodystart="46" bodyend="-1"/>
-        <referencedby refid="class_m_q_t_t_manager_1a129d111c8b1ae84640849bc206098853" compoundref="_m_q_t_t_manager_8cpp" startline="132" endline="177">attemptConnection</referencedby>
-        <referencedby refid="class_m_q_t_t_manager_1a0865d8e5c42ab2106d9f2c172ee1cec2" compoundref="_m_q_t_t_manager_8cpp" startline="38" endline="76">begin</referencedby>
-        <referencedby refid="class_m_q_t_t_manager_1aaa6dfaebfbbfb48e3f4de45bab477d2c" compoundref="_m_q_t_t_manager_8cpp" startline="262" endline="264">connected</referencedby>
-        <referencedby refid="class_m_q_t_t_manager_1a7b05e6c97ae6c0d7522b75977e66dba4" compoundref="_m_q_t_t_manager_8cpp" startline="287" endline="289">getState</referencedby>
-        <referencedby refid="class_m_q_t_t_manager_1a9266e647933501851b411b6d2a9a1f95" compoundref="_m_q_t_t_manager_8cpp" startline="81" endline="126">loop</referencedby>
-        <referencedby refid="class_m_q_t_t_manager_1a84fe61d82134dc33feb2e76ed30ef25d" compoundref="_m_q_t_t_manager_8cpp" startline="16" endline="20">MQTTManager</referencedby>
-        <referencedby refid="class_m_q_t_t_manager_1aba0fa39910d767f0623291608e83ae81" compoundref="_m_q_t_t_manager_8cpp" startline="225" endline="246">publish</referencedby>
-        <referencedby refid="class_m_q_t_t_manager_1ab8e796839e28f468cb21f9f28b421bed" compoundref="_m_q_t_t_manager_8cpp" startline="269" endline="280">reconnect</referencedby>
-        <referencedby refid="class_m_q_t_t_manager_1ac100762bef069504d97a5002577893e8" compoundref="_m_q_t_t_manager_8cpp" startline="25" endline="32">~MQTTManager</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="class_m_q_t_t_manager_1af868832c1d807e4c416a4da46b0808d7" prot="private" static="no" mutable="no">
-        <type>bool</type>
-        <definition>bool MQTTManager::isConnected</definition>
-        <argsstring></argsstring>
-        <name>isConnected</name>
-        <qualifiedname>MQTTManager::isConnected</qualifiedname>
-        <briefdescription>
-<para>Connection status flag. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/MQTTManager.h" line="48" column="10" bodyfile="include/MQTTManager.h" bodystart="48" bodyend="-1"/>
-        <referencedby refid="class_m_q_t_t_manager_1a129d111c8b1ae84640849bc206098853" compoundref="_m_q_t_t_manager_8cpp" startline="132" endline="177">attemptConnection</referencedby>
-        <referencedby refid="class_m_q_t_t_manager_1a9266e647933501851b411b6d2a9a1f95" compoundref="_m_q_t_t_manager_8cpp" startline="81" endline="126">loop</referencedby>
-        <referencedby refid="class_m_q_t_t_manager_1a84fe61d82134dc33feb2e76ed30ef25d" compoundref="_m_q_t_t_manager_8cpp" startline="16" endline="20">MQTTManager</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="class_m_q_t_t_manager_1ac33a3f71ab1a3d601c5d4fe93e2b6077" prot="private" static="no" mutable="no">
-        <type>unsigned long</type>
-        <definition>unsigned long MQTTManager::lastReconnectAttempt</definition>
-        <argsstring></argsstring>
-        <name>lastReconnectAttempt</name>
-        <qualifiedname>MQTTManager::lastReconnectAttempt</qualifiedname>
-        <briefdescription>
-<para>Timestamp of last reconnection attempt. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/MQTTManager.h" line="49" column="19" bodyfile="include/MQTTManager.h" bodystart="49" bodyend="-1"/>
-        <referencedby refid="class_m_q_t_t_manager_1a9266e647933501851b411b6d2a9a1f95" compoundref="_m_q_t_t_manager_8cpp" startline="81" endline="126">loop</referencedby>
-        <referencedby refid="class_m_q_t_t_manager_1a84fe61d82134dc33feb2e76ed30ef25d" compoundref="_m_q_t_t_manager_8cpp" startline="16" endline="20">MQTTManager</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="class_m_q_t_t_manager_1ac80e68f1c4ff7a778786c4cf669144c2" prot="private" static="no" mutable="no">
-        <type>unsigned long</type>
-        <definition>unsigned long MQTTManager::lastPublishTime</definition>
-        <argsstring></argsstring>
-        <name>lastPublishTime</name>
-        <qualifiedname>MQTTManager::lastPublishTime</qualifiedname>
-        <briefdescription>
-<para>Timestamp of last publish. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/MQTTManager.h" line="52" column="19" bodyfile="include/MQTTManager.h" bodystart="52" bodyend="-1"/>
-        <referencedby refid="class_m_q_t_t_manager_1a9266e647933501851b411b6d2a9a1f95" compoundref="_m_q_t_t_manager_8cpp" startline="81" endline="126">loop</referencedby>
-        <referencedby refid="class_m_q_t_t_manager_1a84fe61d82134dc33feb2e76ed30ef25d" compoundref="_m_q_t_t_manager_8cpp" startline="16" endline="20">MQTTManager</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="class_m_q_t_t_manager_1af1032c63a8824102312224a716cc6da6" prot="private" static="no" mutable="no">
-        <type>unsigned long</type>
-        <definition>unsigned long MQTTManager::publishCounter</definition>
-        <argsstring></argsstring>
-        <name>publishCounter</name>
-        <qualifiedname>MQTTManager::publishCounter</qualifiedname>
-        <briefdescription>
-<para>Counter for incrementing numbers. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/MQTTManager.h" line="54" column="19" bodyfile="include/MQTTManager.h" bodystart="54" bodyend="-1"/>
-        <referencedby refid="class_m_q_t_t_manager_1a9266e647933501851b411b6d2a9a1f95" compoundref="_m_q_t_t_manager_8cpp" startline="81" endline="126">loop</referencedby>
-        <referencedby refid="class_m_q_t_t_manager_1a84fe61d82134dc33feb2e76ed30ef25d" compoundref="_m_q_t_t_manager_8cpp" startline="16" endline="20">MQTTManager</referencedby>
+        <location file="include/MQTTManager.h" line="112" column="24" bodyfile="include/MQTTManager.h" bodystart="112" bodyend="-1"/>
+        <referencedby refid="class_m_q_t_t_manager_1aaac19647fab19e7a0f819691ba06e772" compoundref="_m_q_t_t_manager_8cpp" startline="235" endline="239">messageCallback</referencedby>
+        <referencedby refid="class_m_q_t_t_manager_1a84fe61d82134dc33feb2e76ed30ef25d" compoundref="_m_q_t_t_manager_8cpp" startline="16" endline="21">MQTTManager</referencedby>
+        <referencedby refid="class_m_q_t_t_manager_1ac100762bef069504d97a5002577893e8" compoundref="_m_q_t_t_manager_8cpp" startline="26" endline="33">~MQTTManager</referencedby>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-static-func">
@@ -339,9 +288,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/MQTTManager.h" line="62" column="17" bodyfile="src/MQTTManager.cpp" bodystart="182" bodyend="186"/>
-        <references refid="class_m_q_t_t_manager_1a6e768a4f36c87e9f60a3a60ae95c0ef4" compoundref="_m_q_t_t_manager_8h" startline="67">instance</references>
-        <referencedby refid="class_m_q_t_t_manager_1a0865d8e5c42ab2106d9f2c172ee1cec2" compoundref="_m_q_t_t_manager_8cpp" startline="38" endline="76">begin</referencedby>
+        <location file="include/MQTTManager.h" line="107" column="17" bodyfile="src/MQTTManager.cpp" bodystart="235" bodyend="239"/>
+        <references refid="class_m_q_t_t_manager_1a6e768a4f36c87e9f60a3a60ae95c0ef4" compoundref="_m_q_t_t_manager_8h" startline="112">instance</references>
+        <referencedby refid="class_m_q_t_t_manager_1a0865d8e5c42ab2106d9f2c172ee1cec2" compoundref="_m_q_t_t_manager_8cpp" startline="39" endline="111">begin</referencedby>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-func">
@@ -397,7 +346,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/MQTTManager.h" line="75" column="10" bodyfile="src/MQTTManager.cpp" bodystart="191" bodyend="218"/>
+        <location file="include/MQTTManager.h" line="120" column="10" bodyfile="src/MQTTManager.cpp" bodystart="244" bodyend="271"/>
       </memberdef>
       <memberdef kind="function" id="class_m_q_t_t_manager_1a129d111c8b1ae84640849bc206098853" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -417,17 +366,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/MQTTManager.h" line="81" column="10" bodyfile="src/MQTTManager.cpp" bodystart="132" bodyend="177"/>
-        <references refid="class_m_q_t_t_manager_1a4be14db58e5135343ea5cb9da1eaa303" compoundref="_m_q_t_t_manager_8h" startline="43">DEVICE_ID</references>
-        <references refid="class_m_q_t_t_manager_1af868832c1d807e4c416a4da46b0808d7" compoundref="_m_q_t_t_manager_8h" startline="48">isConnected</references>
-        <references refid="class_m_q_t_t_manager_1a32def76742264dbc0f411dd64905f1ad" compoundref="_m_q_t_t_manager_8h" startline="36">MQTT_PASSWORD</references>
-        <references refid="class_m_q_t_t_manager_1a6ac5857649943a2eb2663ca7fb1efc02" compoundref="_m_q_t_t_manager_8h" startline="35">MQTT_USERNAME</references>
-        <references refid="class_m_q_t_t_manager_1a89a2f7d33295fccd3507f34ac9df0508" compoundref="_m_q_t_t_manager_8h" startline="46">mqttClient</references>
-        <references refid="class_m_q_t_t_manager_1aba0fa39910d767f0623291608e83ae81" compoundref="_m_q_t_t_manager_8cpp" startline="225" endline="246">publish</references>
-        <references refid="class_m_q_t_t_manager_1a58881b0872fe45c1c5eca20d18817297" compoundref="_m_q_t_t_manager_8h" startline="40">SUBSCRIBE_TOPIC</references>
-        <referencedby refid="class_m_q_t_t_manager_1a0865d8e5c42ab2106d9f2c172ee1cec2" compoundref="_m_q_t_t_manager_8cpp" startline="38" endline="76">begin</referencedby>
-        <referencedby refid="class_m_q_t_t_manager_1a9266e647933501851b411b6d2a9a1f95" compoundref="_m_q_t_t_manager_8cpp" startline="81" endline="126">loop</referencedby>
-        <referencedby refid="class_m_q_t_t_manager_1ab8e796839e28f468cb21f9f28b421bed" compoundref="_m_q_t_t_manager_8cpp" startline="269" endline="280">reconnect</referencedby>
+        <location file="include/MQTTManager.h" line="126" column="10" bodyfile="src/MQTTManager.cpp" bodystart="169" bodyend="230"/>
+        <references refid="class_m_q_t_t_manager_1a3bc5e9366746360ca989a12cbe594338" compoundref="_m_q_t_t_manager_8h" startline="86">config</references>
+        <references refid="class_m_q_t_t_manager_1aaa6dfaebfbbfb48e3f4de45bab477d2c" compoundref="_m_q_t_t_manager_8cpp" startline="302" endline="304">connected</references>
+        <references refid="class_m_q_t_t_manager_1af868832c1d807e4c416a4da46b0808d7" compoundref="_m_q_t_t_manager_8h" startline="93">isConnected</references>
+        <references refid="class_m_q_t_t_manager_1a89a2f7d33295fccd3507f34ac9df0508" compoundref="_m_q_t_t_manager_8h" startline="91">mqttClient</references>
+        <references refid="class_m_q_t_t_manager_1a6d04009ffe15591e5faf9589e05787e0" compoundref="_m_q_t_t_manager_8cpp" startline="505" endline="530">testPublish</references>
+        <referencedby refid="class_m_q_t_t_manager_1a0865d8e5c42ab2106d9f2c172ee1cec2" compoundref="_m_q_t_t_manager_8cpp" startline="39" endline="111">begin</referencedby>
+        <referencedby refid="class_m_q_t_t_manager_1a9266e647933501851b411b6d2a9a1f95" compoundref="_m_q_t_t_manager_8cpp" startline="116" endline="163">loop</referencedby>
+        <referencedby refid="class_m_q_t_t_manager_1ab8e796839e28f468cb21f9f28b421bed" compoundref="_m_q_t_t_manager_8cpp" startline="309" endline="320">reconnect</referencedby>
+        <referencedby refid="class_m_q_t_t_manager_1aacbf1b109ac1d6b168309abfd8b3aa72" compoundref="_m_q_t_t_manager_8cpp" startline="422" endline="460">setConfig</referencedby>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -445,14 +393,15 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/MQTTManager.h" line="87" column="5" bodyfile="src/MQTTManager.cpp" bodystart="16" bodyend="20"/>
-        <references refid="class_m_q_t_t_manager_1a6e768a4f36c87e9f60a3a60ae95c0ef4" compoundref="_m_q_t_t_manager_8h" startline="67">instance</references>
-        <references refid="class_m_q_t_t_manager_1af868832c1d807e4c416a4da46b0808d7" compoundref="_m_q_t_t_manager_8h" startline="48">isConnected</references>
-        <references refid="class_m_q_t_t_manager_1ac80e68f1c4ff7a778786c4cf669144c2" compoundref="_m_q_t_t_manager_8h" startline="52">lastPublishTime</references>
-        <references refid="class_m_q_t_t_manager_1ac33a3f71ab1a3d601c5d4fe93e2b6077" compoundref="_m_q_t_t_manager_8h" startline="49">lastReconnectAttempt</references>
-        <references refid="class_m_q_t_t_manager_1a89a2f7d33295fccd3507f34ac9df0508" compoundref="_m_q_t_t_manager_8h" startline="46">mqttClient</references>
-        <references refid="class_m_q_t_t_manager_1af1032c63a8824102312224a716cc6da6" compoundref="_m_q_t_t_manager_8h" startline="54">publishCounter</references>
-        <references refid="class_m_q_t_t_manager_1a39ad7e75f56664b1f8c5191798d6835e" compoundref="_m_q_t_t_manager_8h" startline="45">wifiClient</references>
+        <location file="include/MQTTManager.h" line="132" column="5" bodyfile="src/MQTTManager.cpp" bodystart="16" bodyend="21"/>
+        <references refid="class_m_q_t_t_manager_1a40421587ffcaf38da5189de4fd721dcf" compoundref="_m_q_t_t_manager_8h" startline="87">configLoaded</references>
+        <references refid="class_m_q_t_t_manager_1a6e768a4f36c87e9f60a3a60ae95c0ef4" compoundref="_m_q_t_t_manager_8h" startline="112">instance</references>
+        <references refid="class_m_q_t_t_manager_1af868832c1d807e4c416a4da46b0808d7" compoundref="_m_q_t_t_manager_8h" startline="93">isConnected</references>
+        <references refid="class_m_q_t_t_manager_1ac80e68f1c4ff7a778786c4cf669144c2" compoundref="_m_q_t_t_manager_8h" startline="97">lastPublishTime</references>
+        <references refid="class_m_q_t_t_manager_1ac33a3f71ab1a3d601c5d4fe93e2b6077" compoundref="_m_q_t_t_manager_8h" startline="94">lastReconnectAttempt</references>
+        <references refid="class_m_q_t_t_manager_1a89a2f7d33295fccd3507f34ac9df0508" compoundref="_m_q_t_t_manager_8h" startline="91">mqttClient</references>
+        <references refid="class_m_q_t_t_manager_1af1032c63a8824102312224a716cc6da6" compoundref="_m_q_t_t_manager_8h" startline="99">publishCounter</references>
+        <references refid="class_m_q_t_t_manager_1a39ad7e75f56664b1f8c5191798d6835e" compoundref="_m_q_t_t_manager_8h" startline="89">wifiClient</references>
       </memberdef>
       <memberdef kind="function" id="class_m_q_t_t_manager_1ac100762bef069504d97a5002577893e8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -468,9 +417,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/MQTTManager.h" line="92" column="5" bodyfile="src/MQTTManager.cpp" bodystart="25" bodyend="32"/>
-        <references refid="class_m_q_t_t_manager_1a6e768a4f36c87e9f60a3a60ae95c0ef4" compoundref="_m_q_t_t_manager_8h" startline="67">instance</references>
-        <references refid="class_m_q_t_t_manager_1a89a2f7d33295fccd3507f34ac9df0508" compoundref="_m_q_t_t_manager_8h" startline="46">mqttClient</references>
+        <location file="include/MQTTManager.h" line="137" column="5" bodyfile="src/MQTTManager.cpp" bodystart="26" bodyend="33"/>
+        <references refid="class_m_q_t_t_manager_1a6e768a4f36c87e9f60a3a60ae95c0ef4" compoundref="_m_q_t_t_manager_8h" startline="112">instance</references>
+        <references refid="class_m_q_t_t_manager_1a89a2f7d33295fccd3507f34ac9df0508" compoundref="_m_q_t_t_manager_8h" startline="91">mqttClient</references>
       </memberdef>
       <memberdef kind="function" id="class_m_q_t_t_manager_1a0865d8e5c42ab2106d9f2c172ee1cec2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -491,17 +440,15 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/MQTTManager.h" line="98" column="10" bodyfile="src/MQTTManager.cpp" bodystart="38" bodyend="76"/>
-        <references refid="class_m_q_t_t_manager_1a129d111c8b1ae84640849bc206098853" compoundref="_m_q_t_t_manager_8cpp" startline="132" endline="177">attemptConnection</references>
-        <references refid="class_m_q_t_t_manager_1a4be14db58e5135343ea5cb9da1eaa303" compoundref="_m_q_t_t_manager_8h" startline="43">DEVICE_ID</references>
-        <references refid="class_m_q_t_t_manager_1aaac19647fab19e7a0f819691ba06e772" compoundref="_m_q_t_t_manager_8cpp" startline="182" endline="186">messageCallback</references>
-        <references refid="class_m_q_t_t_manager_1a43e53d526945bdcbe7195261ceb88115" compoundref="_m_q_t_t_manager_8h" startline="34">MQTT_PORT</references>
-        <references refid="class_m_q_t_t_manager_1a607d3cb42b6984a50e9072a21fbbe675" compoundref="_m_q_t_t_manager_8h" startline="33">MQTT_SERVER</references>
-        <references refid="class_m_q_t_t_manager_1a6ac5857649943a2eb2663ca7fb1efc02" compoundref="_m_q_t_t_manager_8h" startline="35">MQTT_USERNAME</references>
-        <references refid="class_m_q_t_t_manager_1a89a2f7d33295fccd3507f34ac9df0508" compoundref="_m_q_t_t_manager_8h" startline="46">mqttClient</references>
-        <references refid="class_m_q_t_t_manager_1a9082b97bf176d06f2787fae66e2bf175" compoundref="_m_q_t_t_manager_8h" startline="39">PUBLISH_TOPIC</references>
-        <references refid="class_m_q_t_t_manager_1a58881b0872fe45c1c5eca20d18817297" compoundref="_m_q_t_t_manager_8h" startline="40">SUBSCRIBE_TOPIC</references>
-        <references refid="class_m_q_t_t_manager_1a39ad7e75f56664b1f8c5191798d6835e" compoundref="_m_q_t_t_manager_8h" startline="45">wifiClient</references>
+        <location file="include/MQTTManager.h" line="143" column="10" bodyfile="src/MQTTManager.cpp" bodystart="39" bodyend="111"/>
+        <references refid="class_m_q_t_t_manager_1a129d111c8b1ae84640849bc206098853" compoundref="_m_q_t_t_manager_8cpp" startline="169" endline="230">attemptConnection</references>
+        <references refid="class_m_q_t_t_manager_1a3bc5e9366746360ca989a12cbe594338" compoundref="_m_q_t_t_manager_8h" startline="86">config</references>
+        <references refid="class_m_q_t_t_manager_1a40421587ffcaf38da5189de4fd721dcf" compoundref="_m_q_t_t_manager_8h" startline="87">configLoaded</references>
+        <references refid="class_m_q_t_t_manager_1a43dca57da65facd4d341963403dd737b" compoundref="_m_q_t_t_manager_8cpp" startline="335" endline="371">loadConfig</references>
+        <references refid="class_m_q_t_t_manager_1aaac19647fab19e7a0f819691ba06e772" compoundref="_m_q_t_t_manager_8cpp" startline="235" endline="239">messageCallback</references>
+        <references refid="class_m_q_t_t_manager_1a89a2f7d33295fccd3507f34ac9df0508" compoundref="_m_q_t_t_manager_8h" startline="91">mqttClient</references>
+        <references refid="class_m_q_t_t_manager_1a39ad7e75f56664b1f8c5191798d6835e" compoundref="_m_q_t_t_manager_8h" startline="89">wifiClient</references>
+        <references refid="class_m_q_t_t_manager_1a9a2a868ab4ca4856a70d466047310bdf" compoundref="_m_q_t_t_manager_8h" startline="90">wifiClientInsecure</references>
       </memberdef>
       <memberdef kind="function" id="class_m_q_t_t_manager_1a9266e647933501851b411b6d2a9a1f95" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -518,16 +465,17 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/MQTTManager.h" line="104" column="10" bodyfile="src/MQTTManager.cpp" bodystart="81" bodyend="126"/>
-        <references refid="class_m_q_t_t_manager_1a129d111c8b1ae84640849bc206098853" compoundref="_m_q_t_t_manager_8cpp" startline="132" endline="177">attemptConnection</references>
-        <references refid="class_m_q_t_t_manager_1af868832c1d807e4c416a4da46b0808d7" compoundref="_m_q_t_t_manager_8h" startline="48">isConnected</references>
-        <references refid="class_m_q_t_t_manager_1ac80e68f1c4ff7a778786c4cf669144c2" compoundref="_m_q_t_t_manager_8h" startline="52">lastPublishTime</references>
-        <references refid="class_m_q_t_t_manager_1ac33a3f71ab1a3d601c5d4fe93e2b6077" compoundref="_m_q_t_t_manager_8h" startline="49">lastReconnectAttempt</references>
-        <references refid="class_m_q_t_t_manager_1a89a2f7d33295fccd3507f34ac9df0508" compoundref="_m_q_t_t_manager_8h" startline="46">mqttClient</references>
-        <references refid="class_m_q_t_t_manager_1aba0fa39910d767f0623291608e83ae81" compoundref="_m_q_t_t_manager_8cpp" startline="225" endline="246">publish</references>
-        <references refid="class_m_q_t_t_manager_1a36f27fe8d5a3e83c9804d2072bc20517" compoundref="_m_q_t_t_manager_8h" startline="53">PUBLISH_INTERVAL</references>
-        <references refid="class_m_q_t_t_manager_1af1032c63a8824102312224a716cc6da6" compoundref="_m_q_t_t_manager_8h" startline="54">publishCounter</references>
-        <references refid="class_m_q_t_t_manager_1ac8d002476a7bd769e7c36b05298173db" compoundref="_m_q_t_t_manager_8h" startline="50">RECONNECT_INTERVAL</references>
+        <location file="include/MQTTManager.h" line="149" column="10" bodyfile="src/MQTTManager.cpp" bodystart="116" bodyend="163"/>
+        <references refid="class_m_q_t_t_manager_1a129d111c8b1ae84640849bc206098853" compoundref="_m_q_t_t_manager_8cpp" startline="169" endline="230">attemptConnection</references>
+        <references refid="class_m_q_t_t_manager_1a40421587ffcaf38da5189de4fd721dcf" compoundref="_m_q_t_t_manager_8h" startline="87">configLoaded</references>
+        <references refid="class_m_q_t_t_manager_1af868832c1d807e4c416a4da46b0808d7" compoundref="_m_q_t_t_manager_8h" startline="93">isConnected</references>
+        <references refid="class_m_q_t_t_manager_1ac80e68f1c4ff7a778786c4cf669144c2" compoundref="_m_q_t_t_manager_8h" startline="97">lastPublishTime</references>
+        <references refid="class_m_q_t_t_manager_1ac33a3f71ab1a3d601c5d4fe93e2b6077" compoundref="_m_q_t_t_manager_8h" startline="94">lastReconnectAttempt</references>
+        <references refid="class_m_q_t_t_manager_1a89a2f7d33295fccd3507f34ac9df0508" compoundref="_m_q_t_t_manager_8h" startline="91">mqttClient</references>
+        <references refid="class_m_q_t_t_manager_1a36f27fe8d5a3e83c9804d2072bc20517" compoundref="_m_q_t_t_manager_8h" startline="98">PUBLISH_INTERVAL</references>
+        <references refid="class_m_q_t_t_manager_1af1032c63a8824102312224a716cc6da6" compoundref="_m_q_t_t_manager_8h" startline="99">publishCounter</references>
+        <references refid="class_m_q_t_t_manager_1ac8d002476a7bd769e7c36b05298173db" compoundref="_m_q_t_t_manager_8h" startline="95">RECONNECT_INTERVAL</references>
+        <references refid="class_m_q_t_t_manager_1a6d04009ffe15591e5faf9589e05787e0" compoundref="_m_q_t_t_manager_8cpp" startline="505" endline="530">testPublish</references>
       </memberdef>
       <memberdef kind="function" id="class_m_q_t_t_manager_1aba0fa39910d767f0623291608e83ae81" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -570,12 +518,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/MQTTManager.h" line="111" column="10" bodyfile="src/MQTTManager.cpp" bodystart="225" bodyend="246"/>
-        <references refid="class_m_q_t_t_manager_1a89a2f7d33295fccd3507f34ac9df0508" compoundref="_m_q_t_t_manager_8h" startline="46">mqttClient</references>
-        <references refid="class_m_q_t_t_manager_1a9082b97bf176d06f2787fae66e2bf175" compoundref="_m_q_t_t_manager_8h" startline="39">PUBLISH_TOPIC</references>
-        <referencedby refid="class_m_q_t_t_manager_1a129d111c8b1ae84640849bc206098853" compoundref="_m_q_t_t_manager_8cpp" startline="132" endline="177">attemptConnection</referencedby>
-        <referencedby refid="class_m_q_t_t_manager_1a9266e647933501851b411b6d2a9a1f95" compoundref="_m_q_t_t_manager_8cpp" startline="81" endline="126">loop</referencedby>
-        <referencedby refid="class_m_q_t_t_manager_1ae68e09972e3ed17d457e1c05117d613b" compoundref="_m_q_t_t_manager_8cpp" startline="253" endline="255">publish</referencedby>
+        <location file="include/MQTTManager.h" line="156" column="10" bodyfile="src/MQTTManager.cpp" bodystart="278" bodyend="286"/>
+        <references refid="class_m_q_t_t_manager_1a89a2f7d33295fccd3507f34ac9df0508" compoundref="_m_q_t_t_manager_8h" startline="91">mqttClient</references>
+        <references refid="class_m_q_t_t_manager_1a6d04009ffe15591e5faf9589e05787e0" compoundref="_m_q_t_t_manager_8cpp" startline="505" endline="530">testPublish</references>
+        <referencedby refid="class_m_q_t_t_manager_1ae68e09972e3ed17d457e1c05117d613b" compoundref="_m_q_t_t_manager_8cpp" startline="293" endline="295">publish</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_m_q_t_t_manager_1ae68e09972e3ed17d457e1c05117d613b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -618,8 +564,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/MQTTManager.h" line="118" column="10" bodyfile="src/MQTTManager.cpp" bodystart="253" bodyend="255"/>
-        <references refid="class_m_q_t_t_manager_1aba0fa39910d767f0623291608e83ae81" compoundref="_m_q_t_t_manager_8cpp" startline="225" endline="246">publish</references>
+        <location file="include/MQTTManager.h" line="163" column="10" bodyfile="src/MQTTManager.cpp" bodystart="293" bodyend="295"/>
+        <references refid="class_m_q_t_t_manager_1aba0fa39910d767f0623291608e83ae81" compoundref="_m_q_t_t_manager_8cpp" startline="278" endline="286">publish</references>
       </memberdef>
       <memberdef kind="function" id="class_m_q_t_t_manager_1aaa6dfaebfbbfb48e3f4de45bab477d2c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -643,8 +589,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/MQTTManager.h" line="125" column="10" bodyfile="src/MQTTManager.cpp" bodystart="262" bodyend="264"/>
-        <references refid="class_m_q_t_t_manager_1a89a2f7d33295fccd3507f34ac9df0508" compoundref="_m_q_t_t_manager_8h" startline="46">mqttClient</references>
+        <location file="include/MQTTManager.h" line="170" column="10" bodyfile="src/MQTTManager.cpp" bodystart="302" bodyend="304"/>
+        <references refid="class_m_q_t_t_manager_1a89a2f7d33295fccd3507f34ac9df0508" compoundref="_m_q_t_t_manager_8h" startline="91">mqttClient</references>
+        <referencedby refid="class_m_q_t_t_manager_1a129d111c8b1ae84640849bc206098853" compoundref="_m_q_t_t_manager_8cpp" startline="169" endline="230">attemptConnection</referencedby>
       </memberdef>
       <memberdef kind="function" id="class_m_q_t_t_manager_1ab8e796839e28f468cb21f9f28b421bed" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -659,9 +606,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/MQTTManager.h" line="130" column="10" bodyfile="src/MQTTManager.cpp" bodystart="269" bodyend="280"/>
-        <references refid="class_m_q_t_t_manager_1a129d111c8b1ae84640849bc206098853" compoundref="_m_q_t_t_manager_8cpp" startline="132" endline="177">attemptConnection</references>
-        <references refid="class_m_q_t_t_manager_1a89a2f7d33295fccd3507f34ac9df0508" compoundref="_m_q_t_t_manager_8h" startline="46">mqttClient</references>
+        <location file="include/MQTTManager.h" line="175" column="10" bodyfile="src/MQTTManager.cpp" bodystart="309" bodyend="320"/>
+        <references refid="class_m_q_t_t_manager_1a129d111c8b1ae84640849bc206098853" compoundref="_m_q_t_t_manager_8cpp" startline="169" endline="230">attemptConnection</references>
+        <references refid="class_m_q_t_t_manager_1a89a2f7d33295fccd3507f34ac9df0508" compoundref="_m_q_t_t_manager_8h" startline="91">mqttClient</references>
       </memberdef>
       <memberdef kind="function" id="class_m_q_t_t_manager_1a7b05e6c97ae6c0d7522b75977e66dba4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -682,61 +629,328 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/MQTTManager.h" line="137" column="9" bodyfile="src/MQTTManager.cpp" bodystart="287" bodyend="289"/>
-        <references refid="class_m_q_t_t_manager_1a89a2f7d33295fccd3507f34ac9df0508" compoundref="_m_q_t_t_manager_8h" startline="46">mqttClient</references>
+        <location file="include/MQTTManager.h" line="182" column="9" bodyfile="src/MQTTManager.cpp" bodystart="327" bodyend="329"/>
+        <references refid="class_m_q_t_t_manager_1a89a2f7d33295fccd3507f34ac9df0508" compoundref="_m_q_t_t_manager_8h" startline="91">mqttClient</references>
+      </memberdef>
+      <memberdef kind="function" id="class_m_q_t_t_manager_1a43dca57da65facd4d341963403dd737b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool MQTTManager::loadConfig</definition>
+        <argsstring>()</argsstring>
+        <name>loadConfig</name>
+        <qualifiedname>MQTTManager::loadConfig</qualifiedname>
+        <briefdescription>
+<para>Load configuration from JSON file on SD card. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>true if configuration loaded successfully </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MQTTManager.h" line="188" column="10" bodyfile="src/MQTTManager.cpp" bodystart="335" bodyend="371"/>
+        <references refid="class_m_q_t_t_manager_1ac17b9ceb70d483611944d626c8c933a1" compoundref="_m_q_t_t_manager_8cpp" startline="598" endline="681">setConfigJson</references>
+        <referencedby refid="class_m_q_t_t_manager_1a0865d8e5c42ab2106d9f2c172ee1cec2" compoundref="_m_q_t_t_manager_8cpp" startline="39" endline="111">begin</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_m_q_t_t_manager_1a6d569cd808a59dba0dcdf2239d54d6ab" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool MQTTManager::saveConfig</definition>
+        <argsstring>()</argsstring>
+        <name>saveConfig</name>
+        <qualifiedname>MQTTManager::saveConfig</qualifiedname>
+        <briefdescription>
+<para>Save configuration to JSON file on SD card. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>true if configuration saved successfully </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MQTTManager.h" line="194" column="10" bodyfile="src/MQTTManager.cpp" bodystart="377" bodyend="415"/>
+        <references refid="class_m_q_t_t_manager_1ae85864580886b1f7caa7899fa269a249" compoundref="_m_q_t_t_manager_8cpp" startline="536" endline="591">getConfigJson</references>
+        <referencedby refid="class_m_q_t_t_manager_1aacbf1b109ac1d6b168309abfd8b3aa72" compoundref="_m_q_t_t_manager_8cpp" startline="422" endline="460">setConfig</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_m_q_t_t_manager_1a60ee8b1480e6bf4a8125705415501757" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="struct_m_q_t_t_config" kindref="compound">MQTTConfig</ref> &amp;</type>
+        <definition>const MQTTConfig &amp; MQTTManager::getConfig</definition>
+        <argsstring>() const</argsstring>
+        <name>getConfig</name>
+        <qualifiedname>MQTTManager::getConfig</qualifiedname>
+        <briefdescription>
+<para>Get current configuration. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Reference to current configuration </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MQTTManager.h" line="200" column="22" bodyfile="include/MQTTManager.h" bodystart="200" bodyend="200"/>
+        <references refid="class_m_q_t_t_manager_1a3bc5e9366746360ca989a12cbe594338" compoundref="_m_q_t_t_manager_8h" startline="86">config</references>
+      </memberdef>
+      <memberdef kind="function" id="class_m_q_t_t_manager_1aacbf1b109ac1d6b168309abfd8b3aa72" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool MQTTManager::setConfig</definition>
+        <argsstring>(const MQTTConfig &amp;newConfig)</argsstring>
+        <name>setConfig</name>
+        <qualifiedname>MQTTManager::setConfig</qualifiedname>
+        <param>
+          <type>const <ref refid="struct_m_q_t_t_config" kindref="compound">MQTTConfig</ref> &amp;</type>
+          <declname>newConfig</declname>
+        </param>
+        <briefdescription>
+<para>Set new configuration. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>newConfig</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New configuration to apply </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if configuration applied successfully </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MQTTManager.h" line="207" column="10" bodyfile="src/MQTTManager.cpp" bodystart="422" bodyend="460"/>
+        <references refid="class_m_q_t_t_manager_1a129d111c8b1ae84640849bc206098853" compoundref="_m_q_t_t_manager_8cpp" startline="169" endline="230">attemptConnection</references>
+        <references refid="class_m_q_t_t_manager_1a3bc5e9366746360ca989a12cbe594338" compoundref="_m_q_t_t_manager_8h" startline="86">config</references>
+        <references refid="class_m_q_t_t_manager_1a40421587ffcaf38da5189de4fd721dcf" compoundref="_m_q_t_t_manager_8h" startline="87">configLoaded</references>
+        <references refid="class_m_q_t_t_manager_1a89a2f7d33295fccd3507f34ac9df0508" compoundref="_m_q_t_t_manager_8h" startline="91">mqttClient</references>
+        <references refid="class_m_q_t_t_manager_1a6d569cd808a59dba0dcdf2239d54d6ab" compoundref="_m_q_t_t_manager_8cpp" startline="377" endline="415">saveConfig</references>
+        <references refid="class_m_q_t_t_manager_1a39ad7e75f56664b1f8c5191798d6835e" compoundref="_m_q_t_t_manager_8h" startline="89">wifiClient</references>
+        <references refid="class_m_q_t_t_manager_1a9a2a868ab4ca4856a70d466047310bdf" compoundref="_m_q_t_t_manager_8h" startline="90">wifiClientInsecure</references>
+      </memberdef>
+      <memberdef kind="function" id="class_m_q_t_t_manager_1a8b084fb62e23dc3f2895ede2ec011b42" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool MQTTManager::isEnabled</definition>
+        <argsstring>() const</argsstring>
+        <name>isEnabled</name>
+        <qualifiedname>MQTTManager::isEnabled</qualifiedname>
+        <briefdescription>
+<para>Check if MQTT is enabled. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>true if MQTT is enabled in configuration </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MQTTManager.h" line="213" column="10" bodyfile="include/MQTTManager.h" bodystart="213" bodyend="213"/>
+        <references refid="class_m_q_t_t_manager_1a3bc5e9366746360ca989a12cbe594338" compoundref="_m_q_t_t_manager_8h" startline="86">config</references>
+        <references refid="class_m_q_t_t_manager_1a40421587ffcaf38da5189de4fd721dcf" compoundref="_m_q_t_t_manager_8h" startline="87">configLoaded</references>
+      </memberdef>
+      <memberdef kind="function" id="class_m_q_t_t_manager_1a80eeb5b0b084ede6d789459381acec6d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>String</type>
+        <definition>String MQTTManager::buildTopic</definition>
+        <argsstring>(const String &amp;topicType, const String &amp;subtopic=&quot;&quot;) const</argsstring>
+        <name>buildTopic</name>
+        <qualifiedname>MQTTManager::buildTopic</qualifiedname>
+        <param>
+          <type>const String &amp;</type>
+          <declname>topicType</declname>
+        </param>
+        <param>
+          <type>const String &amp;</type>
+          <declname>subtopic</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+<para>Build topic string based on configuration. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>topicType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Type of topic (telemetry, command, alarm, etc.) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>subtopic</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Specific subtopic </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Complete topic string </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MQTTManager.h" line="221" column="12" bodyfile="src/MQTTManager.cpp" bodystart="468" bodyend="498"/>
+        <references refid="class_m_q_t_t_manager_1a3bc5e9366746360ca989a12cbe594338" compoundref="_m_q_t_t_manager_8h" startline="86">config</references>
+        <referencedby refid="class_m_q_t_t_manager_1ac17b9ceb70d483611944d626c8c933a1" compoundref="_m_q_t_t_manager_8cpp" startline="598" endline="681">setConfigJson</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_m_q_t_t_manager_1a6d04009ffe15591e5faf9589e05787e0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool MQTTManager::testPublish</definition>
+        <argsstring>(const String &amp;message)</argsstring>
+        <name>testPublish</name>
+        <qualifiedname>MQTTManager::testPublish</qualifiedname>
+        <param>
+          <type>const String &amp;</type>
+          <declname>message</declname>
+        </param>
+        <briefdescription>
+<para>Test publish to configured test topic. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>message</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Message to publish </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if publish successful </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MQTTManager.h" line="228" column="10" bodyfile="src/MQTTManager.cpp" bodystart="505" bodyend="530"/>
+        <references refid="class_m_q_t_t_manager_1a3bc5e9366746360ca989a12cbe594338" compoundref="_m_q_t_t_manager_8h" startline="86">config</references>
+        <references refid="class_m_q_t_t_manager_1a89a2f7d33295fccd3507f34ac9df0508" compoundref="_m_q_t_t_manager_8h" startline="91">mqttClient</references>
+        <referencedby refid="class_m_q_t_t_manager_1a129d111c8b1ae84640849bc206098853" compoundref="_m_q_t_t_manager_8cpp" startline="169" endline="230">attemptConnection</referencedby>
+        <referencedby refid="class_m_q_t_t_manager_1a9266e647933501851b411b6d2a9a1f95" compoundref="_m_q_t_t_manager_8cpp" startline="116" endline="163">loop</referencedby>
+        <referencedby refid="class_m_q_t_t_manager_1aba0fa39910d767f0623291608e83ae81" compoundref="_m_q_t_t_manager_8cpp" startline="278" endline="286">publish</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_m_q_t_t_manager_1ae85864580886b1f7caa7899fa269a249" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>String</type>
+        <definition>String MQTTManager::getConfigJson</definition>
+        <argsstring>() const</argsstring>
+        <name>getConfigJson</name>
+        <qualifiedname>MQTTManager::getConfigJson</qualifiedname>
+        <briefdescription>
+<para>Get configuration as JSON string. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>JSON string representation of configuration </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MQTTManager.h" line="234" column="12" bodyfile="src/MQTTManager.cpp" bodystart="536" bodyend="591"/>
+        <references refid="class_m_q_t_t_manager_1a3bc5e9366746360ca989a12cbe594338" compoundref="_m_q_t_t_manager_8h" startline="86">config</references>
+        <referencedby refid="class_m_q_t_t_manager_1a6d569cd808a59dba0dcdf2239d54d6ab" compoundref="_m_q_t_t_manager_8cpp" startline="377" endline="415">saveConfig</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_m_q_t_t_manager_1ac17b9ceb70d483611944d626c8c933a1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool MQTTManager::setConfigJson</definition>
+        <argsstring>(const String &amp;jsonStr)</argsstring>
+        <name>setConfigJson</name>
+        <qualifiedname>MQTTManager::setConfigJson</qualifiedname>
+        <param>
+          <type>const String &amp;</type>
+          <declname>jsonStr</declname>
+        </param>
+        <briefdescription>
+<para>Set configuration from JSON string. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>jsonStr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>JSON string containing configuration </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if configuration parsed and applied successfully </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MQTTManager.h" line="241" column="10" bodyfile="src/MQTTManager.cpp" bodystart="598" bodyend="681"/>
+        <references refid="class_m_q_t_t_manager_1a80eeb5b0b084ede6d789459381acec6d" compoundref="_m_q_t_t_manager_8cpp" startline="468" endline="498">buildTopic</references>
+        <references refid="class_m_q_t_t_manager_1a3bc5e9366746360ca989a12cbe594338" compoundref="_m_q_t_t_manager_8h" startline="86">config</references>
+        <references refid="class_m_q_t_t_manager_1a40421587ffcaf38da5189de4fd721dcf" compoundref="_m_q_t_t_manager_8h" startline="87">configLoaded</references>
+        <referencedby refid="class_m_q_t_t_manager_1a43dca57da65facd4d341963403dd737b" compoundref="_m_q_t_t_manager_8cpp" startline="335" endline="371">loadConfig</referencedby>
       </memberdef>
     </sectiondef>
     <briefdescription>
-<para>Manages MQTT connection and communication with HiveMQ Cloud broker. </para>
+<para>Manages MQTT connection and communication with broker. </para>
     </briefdescription>
     <detaileddescription>
 <para>This class handles all MQTT operations including:<itemizedlist>
-<listitem><para>Secure connection to HiveMQ Cloud broker</para>
+<listitem><para>Configurable connection to MQTT broker</para>
 </listitem><listitem><para>Auto-reconnection on connection loss</para>
-</listitem><listitem><para>Message publishing to hardcoded topic</para>
+</listitem><listitem><para>Message publishing with configurable topics</para>
 </listitem><listitem><para>Message subscription with callback handling</para>
+</listitem><listitem><para>JSON configuration from SD card</para>
 </listitem><listitem><para>Verbose debug output for troubleshooting </para>
 </listitem></itemizedlist>
 </para>
     </detaileddescription>
     <collaborationgraph>
+      <node id="2">
+        <label>MQTTConfig</label>
+        <link refid="struct_m_q_t_t_config"/>
+      </node>
       <node id="1">
         <label>MQTTManager</label>
         <link refid="class_m_q_t_t_manager"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>-config</edgelabel>
+        </childnode>
         <childnode refid="1" relation="usage">
           <edgelabel>-instance</edgelabel>
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="include/MQTTManager.h" line="30" column="1" bodyfile="include/MQTTManager.h" bodystart="30" bodyend="138"/>
+    <location file="include/MQTTManager.h" line="84" column="1" bodyfile="include/MQTTManager.h" bodystart="84" bodyend="242"/>
     <listofallmembers>
       <member refid="class_m_q_t_t_manager_1a129d111c8b1ae84640849bc206098853" prot="private" virt="non-virtual"><scope>MQTTManager</scope><name>attemptConnection</name></member>
       <member refid="class_m_q_t_t_manager_1a0865d8e5c42ab2106d9f2c172ee1cec2" prot="public" virt="non-virtual"><scope>MQTTManager</scope><name>begin</name></member>
+      <member refid="class_m_q_t_t_manager_1a80eeb5b0b084ede6d789459381acec6d" prot="public" virt="non-virtual"><scope>MQTTManager</scope><name>buildTopic</name></member>
+      <member refid="class_m_q_t_t_manager_1a3bc5e9366746360ca989a12cbe594338" prot="private" virt="non-virtual"><scope>MQTTManager</scope><name>config</name></member>
+      <member refid="class_m_q_t_t_manager_1a40421587ffcaf38da5189de4fd721dcf" prot="private" virt="non-virtual"><scope>MQTTManager</scope><name>configLoaded</name></member>
       <member refid="class_m_q_t_t_manager_1aaa6dfaebfbbfb48e3f4de45bab477d2c" prot="public" virt="non-virtual"><scope>MQTTManager</scope><name>connected</name></member>
-      <member refid="class_m_q_t_t_manager_1a4be14db58e5135343ea5cb9da1eaa303" prot="private" virt="non-virtual"><scope>MQTTManager</scope><name>DEVICE_ID</name></member>
+      <member refid="class_m_q_t_t_manager_1a60ee8b1480e6bf4a8125705415501757" prot="public" virt="non-virtual"><scope>MQTTManager</scope><name>getConfig</name></member>
+      <member refid="class_m_q_t_t_manager_1ae85864580886b1f7caa7899fa269a249" prot="public" virt="non-virtual"><scope>MQTTManager</scope><name>getConfigJson</name></member>
       <member refid="class_m_q_t_t_manager_1a7b05e6c97ae6c0d7522b75977e66dba4" prot="public" virt="non-virtual"><scope>MQTTManager</scope><name>getState</name></member>
       <member refid="class_m_q_t_t_manager_1aa915f47a548fa481517a2450ad1a6970" prot="private" virt="non-virtual"><scope>MQTTManager</scope><name>handleMessage</name></member>
       <member refid="class_m_q_t_t_manager_1a6e768a4f36c87e9f60a3a60ae95c0ef4" prot="private" virt="non-virtual"><scope>MQTTManager</scope><name>instance</name></member>
       <member refid="class_m_q_t_t_manager_1af868832c1d807e4c416a4da46b0808d7" prot="private" virt="non-virtual"><scope>MQTTManager</scope><name>isConnected</name></member>
+      <member refid="class_m_q_t_t_manager_1a8b084fb62e23dc3f2895ede2ec011b42" prot="public" virt="non-virtual"><scope>MQTTManager</scope><name>isEnabled</name></member>
       <member refid="class_m_q_t_t_manager_1ac80e68f1c4ff7a778786c4cf669144c2" prot="private" virt="non-virtual"><scope>MQTTManager</scope><name>lastPublishTime</name></member>
       <member refid="class_m_q_t_t_manager_1ac33a3f71ab1a3d601c5d4fe93e2b6077" prot="private" virt="non-virtual"><scope>MQTTManager</scope><name>lastReconnectAttempt</name></member>
+      <member refid="class_m_q_t_t_manager_1a43dca57da65facd4d341963403dd737b" prot="public" virt="non-virtual"><scope>MQTTManager</scope><name>loadConfig</name></member>
       <member refid="class_m_q_t_t_manager_1a9266e647933501851b411b6d2a9a1f95" prot="public" virt="non-virtual"><scope>MQTTManager</scope><name>loop</name></member>
       <member refid="class_m_q_t_t_manager_1aaac19647fab19e7a0f819691ba06e772" prot="private" virt="non-virtual"><scope>MQTTManager</scope><name>messageCallback</name></member>
-      <member refid="class_m_q_t_t_manager_1a32def76742264dbc0f411dd64905f1ad" prot="private" virt="non-virtual"><scope>MQTTManager</scope><name>MQTT_PASSWORD</name></member>
-      <member refid="class_m_q_t_t_manager_1a43e53d526945bdcbe7195261ceb88115" prot="private" virt="non-virtual"><scope>MQTTManager</scope><name>MQTT_PORT</name></member>
-      <member refid="class_m_q_t_t_manager_1a607d3cb42b6984a50e9072a21fbbe675" prot="private" virt="non-virtual"><scope>MQTTManager</scope><name>MQTT_SERVER</name></member>
-      <member refid="class_m_q_t_t_manager_1a6ac5857649943a2eb2663ca7fb1efc02" prot="private" virt="non-virtual"><scope>MQTTManager</scope><name>MQTT_USERNAME</name></member>
       <member refid="class_m_q_t_t_manager_1a89a2f7d33295fccd3507f34ac9df0508" prot="private" virt="non-virtual"><scope>MQTTManager</scope><name>mqttClient</name></member>
       <member refid="class_m_q_t_t_manager_1a84fe61d82134dc33feb2e76ed30ef25d" prot="public" virt="non-virtual"><scope>MQTTManager</scope><name>MQTTManager</name></member>
       <member refid="class_m_q_t_t_manager_1aba0fa39910d767f0623291608e83ae81" prot="public" virt="non-virtual"><scope>MQTTManager</scope><name>publish</name></member>
       <member refid="class_m_q_t_t_manager_1ae68e09972e3ed17d457e1c05117d613b" prot="public" virt="non-virtual"><scope>MQTTManager</scope><name>publish</name></member>
       <member refid="class_m_q_t_t_manager_1a36f27fe8d5a3e83c9804d2072bc20517" prot="private" virt="non-virtual"><scope>MQTTManager</scope><name>PUBLISH_INTERVAL</name></member>
-      <member refid="class_m_q_t_t_manager_1a9082b97bf176d06f2787fae66e2bf175" prot="private" virt="non-virtual"><scope>MQTTManager</scope><name>PUBLISH_TOPIC</name></member>
       <member refid="class_m_q_t_t_manager_1af1032c63a8824102312224a716cc6da6" prot="private" virt="non-virtual"><scope>MQTTManager</scope><name>publishCounter</name></member>
       <member refid="class_m_q_t_t_manager_1ab8e796839e28f468cb21f9f28b421bed" prot="public" virt="non-virtual"><scope>MQTTManager</scope><name>reconnect</name></member>
       <member refid="class_m_q_t_t_manager_1ac8d002476a7bd769e7c36b05298173db" prot="private" virt="non-virtual"><scope>MQTTManager</scope><name>RECONNECT_INTERVAL</name></member>
-      <member refid="class_m_q_t_t_manager_1a58881b0872fe45c1c5eca20d18817297" prot="private" virt="non-virtual"><scope>MQTTManager</scope><name>SUBSCRIBE_TOPIC</name></member>
+      <member refid="class_m_q_t_t_manager_1a6d569cd808a59dba0dcdf2239d54d6ab" prot="public" virt="non-virtual"><scope>MQTTManager</scope><name>saveConfig</name></member>
+      <member refid="class_m_q_t_t_manager_1aacbf1b109ac1d6b168309abfd8b3aa72" prot="public" virt="non-virtual"><scope>MQTTManager</scope><name>setConfig</name></member>
+      <member refid="class_m_q_t_t_manager_1ac17b9ceb70d483611944d626c8c933a1" prot="public" virt="non-virtual"><scope>MQTTManager</scope><name>setConfigJson</name></member>
+      <member refid="class_m_q_t_t_manager_1a6d04009ffe15591e5faf9589e05787e0" prot="public" virt="non-virtual"><scope>MQTTManager</scope><name>testPublish</name></member>
       <member refid="class_m_q_t_t_manager_1a39ad7e75f56664b1f8c5191798d6835e" prot="private" virt="non-virtual"><scope>MQTTManager</scope><name>wifiClient</name></member>
+      <member refid="class_m_q_t_t_manager_1a9a2a868ab4ca4856a70d466047310bdf" prot="private" virt="non-virtual"><scope>MQTTManager</scope><name>wifiClientInsecure</name></member>
       <member refid="class_m_q_t_t_manager_1ac100762bef069504d97a5002577893e8" prot="public" virt="non-virtual"><scope>MQTTManager</scope><name>~MQTTManager</name></member>
     </listofallmembers>
   </compounddef>

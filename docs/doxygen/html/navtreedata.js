@@ -53,9 +53,9 @@ var NAVTREEINDEX =
 [
 "_alarm_8cpp.html",
 "class_indicator_interface.html#a54fa76657f9ef0c9e19b6e94d682fb65",
-"class_measurement_point.html#adc31f012462c1623617d5f362bcb2c59",
-"class_temperature_controller.html#a58f7a683f6e4c08dbfdfc43c1e740f15",
-"main_8cpp.html#a064a914bb7eaaf470d545cab5f0c0066"
+"class_measurement_point.html#aa689590a454a7e11401a59e0399e66f4",
+"class_temperature_controller.html#a515b9f088ad00d4b7e106081c94a7d12",
+"globals_enum.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

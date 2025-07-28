@@ -1,0 +1,455 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="struct_m_q_t_t_config" kind="struct" language="C++" prot="public">
+    <compoundname>MQTTConfig</compoundname>
+    <includes refid="_m_q_t_t_manager_8h" local="no">MQTTManager.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_m_q_t_t_config_1a907aad6e61809c485711150d7a272569" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool MQTTConfig::enabled</definition>
+        <argsstring></argsstring>
+        <name>enabled</name>
+        <qualifiedname>MQTTConfig::enabled</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MQTTManager.h" line="29" column="10" bodyfile="include/MQTTManager.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_m_q_t_t_config_1aa8d7f585a74dd09d857c612cf2c8889c" prot="public" static="no" mutable="no">
+        <type>String</type>
+        <definition>String MQTTConfig::broker_host</definition>
+        <argsstring></argsstring>
+        <name>broker_host</name>
+        <qualifiedname>MQTTConfig::broker_host</qualifiedname>
+        <initializer>= &quot;&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MQTTManager.h" line="32" column="12" bodyfile="include/MQTTManager.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_m_q_t_t_config_1ae1756fb591d5f8914e1deb1ec265393b" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t MQTTConfig::broker_port</definition>
+        <argsstring></argsstring>
+        <name>broker_port</name>
+        <qualifiedname>MQTTConfig::broker_port</qualifiedname>
+        <initializer>= 1883</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MQTTManager.h" line="33" column="14" bodyfile="include/MQTTManager.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_m_q_t_t_config_1a236677b27a65ceca8e07cae8a9f4ae1f" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool MQTTConfig::use_tls</definition>
+        <argsstring></argsstring>
+        <name>use_tls</name>
+        <qualifiedname>MQTTConfig::use_tls</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MQTTManager.h" line="34" column="10" bodyfile="include/MQTTManager.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_m_q_t_t_config_1a43a4ea2098aff596440bebd9b9d376ed" prot="public" static="no" mutable="no">
+        <type>String</type>
+        <definition>String MQTTConfig::username</definition>
+        <argsstring></argsstring>
+        <name>username</name>
+        <qualifiedname>MQTTConfig::username</qualifiedname>
+        <initializer>= &quot;&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MQTTManager.h" line="37" column="12" bodyfile="include/MQTTManager.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_m_q_t_t_config_1aec40eb331e8243950effc9b006df3707" prot="public" static="no" mutable="no">
+        <type>String</type>
+        <definition>String MQTTConfig::password</definition>
+        <argsstring></argsstring>
+        <name>password</name>
+        <qualifiedname>MQTTConfig::password</qualifiedname>
+        <initializer>= &quot;&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MQTTManager.h" line="38" column="12" bodyfile="include/MQTTManager.h" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_m_q_t_t_config_1a82898468aa7aa760cfbcda2412fce2ab" prot="public" static="no" mutable="no">
+        <type>String</type>
+        <definition>String MQTTConfig::client_id</definition>
+        <argsstring></argsstring>
+        <name>client_id</name>
+        <qualifiedname>MQTTConfig::client_id</qualifiedname>
+        <initializer>= &quot;&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MQTTManager.h" line="39" column="12" bodyfile="include/MQTTManager.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_m_q_t_t_config_1ad57f4c089dfbd16ce95fd98578738cc1" prot="public" static="no" mutable="no">
+        <type>String</type>
+        <definition>String MQTTConfig::device_name</definition>
+        <argsstring></argsstring>
+        <name>device_name</name>
+        <qualifiedname>MQTTConfig::device_name</qualifiedname>
+        <initializer>= &quot;&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MQTTManager.h" line="40" column="12" bodyfile="include/MQTTManager.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_m_q_t_t_config_1add0a404f132bb03114d7ee030eceea1b" prot="public" static="no" mutable="no">
+        <type>String</type>
+        <definition>String MQTTConfig::topic_level1_type</definition>
+        <argsstring></argsstring>
+        <name>topic_level1_type</name>
+        <qualifiedname>MQTTConfig::topic_level1_type</qualifiedname>
+        <initializer>= &quot;skip&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MQTTManager.h" line="43" column="12" bodyfile="include/MQTTManager.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_m_q_t_t_config_1ae835523197dd09e69aeb20cfb9bf81f8" prot="public" static="no" mutable="no">
+        <type>String</type>
+        <definition>String MQTTConfig::topic_level1_value</definition>
+        <argsstring></argsstring>
+        <name>topic_level1_value</name>
+        <qualifiedname>MQTTConfig::topic_level1_value</qualifiedname>
+        <initializer>= &quot;&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MQTTManager.h" line="44" column="12" bodyfile="include/MQTTManager.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_m_q_t_t_config_1a735343a1960a6bd587f830a99b586a3b" prot="public" static="no" mutable="no">
+        <type>String</type>
+        <definition>String MQTTConfig::topic_level2_type</definition>
+        <argsstring></argsstring>
+        <name>topic_level2_type</name>
+        <qualifiedname>MQTTConfig::topic_level2_type</qualifiedname>
+        <initializer>= &quot;skip&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MQTTManager.h" line="45" column="12" bodyfile="include/MQTTManager.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_m_q_t_t_config_1a905599437fdcb2736aa7bd2546392236" prot="public" static="no" mutable="no">
+        <type>String</type>
+        <definition>String MQTTConfig::topic_level2_value</definition>
+        <argsstring></argsstring>
+        <name>topic_level2_value</name>
+        <qualifiedname>MQTTConfig::topic_level2_value</qualifiedname>
+        <initializer>= &quot;&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MQTTManager.h" line="46" column="12" bodyfile="include/MQTTManager.h" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_m_q_t_t_config_1a509475ad945bbcb4e323f8395979b61d" prot="public" static="no" mutable="no">
+        <type>String</type>
+        <definition>String MQTTConfig::topic_level3_type</definition>
+        <argsstring></argsstring>
+        <name>topic_level3_type</name>
+        <qualifiedname>MQTTConfig::topic_level3_type</qualifiedname>
+        <initializer>= &quot;skip&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MQTTManager.h" line="47" column="12" bodyfile="include/MQTTManager.h" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_m_q_t_t_config_1a5bea6b566bb25d080077ce5ad8fd5a36" prot="public" static="no" mutable="no">
+        <type>String</type>
+        <definition>String MQTTConfig::topic_level3_value</definition>
+        <argsstring></argsstring>
+        <name>topic_level3_value</name>
+        <qualifiedname>MQTTConfig::topic_level3_value</qualifiedname>
+        <initializer>= &quot;&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MQTTManager.h" line="48" column="12" bodyfile="include/MQTTManager.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_m_q_t_t_config_1aaa23126deb269cbfac2a73d12c5f57a1" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool MQTTConfig::retain_telemetry</definition>
+        <argsstring></argsstring>
+        <name>retain_telemetry</name>
+        <qualifiedname>MQTTConfig::retain_telemetry</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MQTTManager.h" line="51" column="10" bodyfile="include/MQTTManager.h" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_m_q_t_t_config_1a34526b54ac4b1af456873b5374922c9c" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool MQTTConfig::retain_alarms</definition>
+        <argsstring></argsstring>
+        <name>retain_alarms</name>
+        <qualifiedname>MQTTConfig::retain_alarms</qualifiedname>
+        <initializer>= true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MQTTManager.h" line="52" column="10" bodyfile="include/MQTTManager.h" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_m_q_t_t_config_1a4ccfcccb213159560b123282f095d05d" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool MQTTConfig::retain_state</definition>
+        <argsstring></argsstring>
+        <name>retain_state</name>
+        <qualifiedname>MQTTConfig::retain_state</qualifiedname>
+        <initializer>= true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MQTTManager.h" line="53" column="10" bodyfile="include/MQTTManager.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_m_q_t_t_config_1a42c603af846ed0d602e2a77000a7a110" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t MQTTConfig::qos_telemetry</definition>
+        <argsstring></argsstring>
+        <name>qos_telemetry</name>
+        <qualifiedname>MQTTConfig::qos_telemetry</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MQTTManager.h" line="56" column="13" bodyfile="include/MQTTManager.h" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_m_q_t_t_config_1a700b92a433c8cbfe84c1f2f6b00ebe82" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t MQTTConfig::qos_alarms</definition>
+        <argsstring></argsstring>
+        <name>qos_alarms</name>
+        <qualifiedname>MQTTConfig::qos_alarms</qualifiedname>
+        <initializer>= 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MQTTManager.h" line="57" column="13" bodyfile="include/MQTTManager.h" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_m_q_t_t_config_1a25f454a663b5d04e3e4cfe69ec22e090" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t MQTTConfig::qos_commands</definition>
+        <argsstring></argsstring>
+        <name>qos_commands</name>
+        <qualifiedname>MQTTConfig::qos_commands</qualifiedname>
+        <initializer>= 2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MQTTManager.h" line="58" column="13" bodyfile="include/MQTTManager.h" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_m_q_t_t_config_1a1128b9c8a03305064b65d3ffaac65204" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool MQTTConfig::lwt_enabled</definition>
+        <argsstring></argsstring>
+        <name>lwt_enabled</name>
+        <qualifiedname>MQTTConfig::lwt_enabled</qualifiedname>
+        <initializer>= true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MQTTManager.h" line="61" column="10" bodyfile="include/MQTTManager.h" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_m_q_t_t_config_1a8fbffc92fb95c28840e537ead498a72d" prot="public" static="no" mutable="no">
+        <type>String</type>
+        <definition>String MQTTConfig::lwt_topic</definition>
+        <argsstring></argsstring>
+        <name>lwt_topic</name>
+        <qualifiedname>MQTTConfig::lwt_topic</qualifiedname>
+        <initializer>= &quot;&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MQTTManager.h" line="62" column="12" bodyfile="include/MQTTManager.h" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_m_q_t_t_config_1a3bcc7301b55b7fc211780eb344133d55" prot="public" static="no" mutable="no">
+        <type>String</type>
+        <definition>String MQTTConfig::lwt_message</definition>
+        <argsstring></argsstring>
+        <name>lwt_message</name>
+        <qualifiedname>MQTTConfig::lwt_message</qualifiedname>
+        <initializer>= &quot;&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MQTTManager.h" line="63" column="12" bodyfile="include/MQTTManager.h" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_m_q_t_t_config_1ade4ab265fd0959ab2c431872c768b7cf" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t MQTTConfig::lwt_qos</definition>
+        <argsstring></argsstring>
+        <name>lwt_qos</name>
+        <qualifiedname>MQTTConfig::lwt_qos</qualifiedname>
+        <initializer>= 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MQTTManager.h" line="64" column="13" bodyfile="include/MQTTManager.h" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_m_q_t_t_config_1a2a1e0a221a06c7ff2dd4e815811b782d" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool MQTTConfig::lwt_retain</definition>
+        <argsstring></argsstring>
+        <name>lwt_retain</name>
+        <qualifiedname>MQTTConfig::lwt_retain</qualifiedname>
+        <initializer>= true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MQTTManager.h" line="65" column="10" bodyfile="include/MQTTManager.h" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_m_q_t_t_config_1aa94258b9eacc20ecf243181958553d1e" prot="public" static="no" mutable="no">
+        <type>String</type>
+        <definition>String MQTTConfig::test_publish_topic</definition>
+        <argsstring></argsstring>
+        <name>test_publish_topic</name>
+        <qualifiedname>MQTTConfig::test_publish_topic</qualifiedname>
+        <initializer>= &quot;test/pub&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MQTTManager.h" line="68" column="12" bodyfile="include/MQTTManager.h" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_m_q_t_t_config_1a3aba9b60317b2f523b51092936cba37a" prot="public" static="no" mutable="no">
+        <type>String</type>
+        <definition>String MQTTConfig::test_subscribe_topic</definition>
+        <argsstring></argsstring>
+        <name>test_subscribe_topic</name>
+        <qualifiedname>MQTTConfig::test_subscribe_topic</qualifiedname>
+        <initializer>= &quot;test/sub&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MQTTManager.h" line="69" column="12" bodyfile="include/MQTTManager.h" bodystart="69" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>MQTT configuration structure for JSON storage. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>MQTTConfig</label>
+        <link refid="struct_m_q_t_t_config"/>
+      </node>
+    </collaborationgraph>
+    <location file="include/MQTTManager.h" line="27" column="1" bodyfile="include/MQTTManager.h" bodystart="27" bodyend="70"/>
+    <listofallmembers>
+      <member refid="struct_m_q_t_t_config_1aa8d7f585a74dd09d857c612cf2c8889c" prot="public" virt="non-virtual"><scope>MQTTConfig</scope><name>broker_host</name></member>
+      <member refid="struct_m_q_t_t_config_1ae1756fb591d5f8914e1deb1ec265393b" prot="public" virt="non-virtual"><scope>MQTTConfig</scope><name>broker_port</name></member>
+      <member refid="struct_m_q_t_t_config_1a82898468aa7aa760cfbcda2412fce2ab" prot="public" virt="non-virtual"><scope>MQTTConfig</scope><name>client_id</name></member>
+      <member refid="struct_m_q_t_t_config_1ad57f4c089dfbd16ce95fd98578738cc1" prot="public" virt="non-virtual"><scope>MQTTConfig</scope><name>device_name</name></member>
+      <member refid="struct_m_q_t_t_config_1a907aad6e61809c485711150d7a272569" prot="public" virt="non-virtual"><scope>MQTTConfig</scope><name>enabled</name></member>
+      <member refid="struct_m_q_t_t_config_1a1128b9c8a03305064b65d3ffaac65204" prot="public" virt="non-virtual"><scope>MQTTConfig</scope><name>lwt_enabled</name></member>
+      <member refid="struct_m_q_t_t_config_1a3bcc7301b55b7fc211780eb344133d55" prot="public" virt="non-virtual"><scope>MQTTConfig</scope><name>lwt_message</name></member>
+      <member refid="struct_m_q_t_t_config_1ade4ab265fd0959ab2c431872c768b7cf" prot="public" virt="non-virtual"><scope>MQTTConfig</scope><name>lwt_qos</name></member>
+      <member refid="struct_m_q_t_t_config_1a2a1e0a221a06c7ff2dd4e815811b782d" prot="public" virt="non-virtual"><scope>MQTTConfig</scope><name>lwt_retain</name></member>
+      <member refid="struct_m_q_t_t_config_1a8fbffc92fb95c28840e537ead498a72d" prot="public" virt="non-virtual"><scope>MQTTConfig</scope><name>lwt_topic</name></member>
+      <member refid="struct_m_q_t_t_config_1aec40eb331e8243950effc9b006df3707" prot="public" virt="non-virtual"><scope>MQTTConfig</scope><name>password</name></member>
+      <member refid="struct_m_q_t_t_config_1a700b92a433c8cbfe84c1f2f6b00ebe82" prot="public" virt="non-virtual"><scope>MQTTConfig</scope><name>qos_alarms</name></member>
+      <member refid="struct_m_q_t_t_config_1a25f454a663b5d04e3e4cfe69ec22e090" prot="public" virt="non-virtual"><scope>MQTTConfig</scope><name>qos_commands</name></member>
+      <member refid="struct_m_q_t_t_config_1a42c603af846ed0d602e2a77000a7a110" prot="public" virt="non-virtual"><scope>MQTTConfig</scope><name>qos_telemetry</name></member>
+      <member refid="struct_m_q_t_t_config_1a34526b54ac4b1af456873b5374922c9c" prot="public" virt="non-virtual"><scope>MQTTConfig</scope><name>retain_alarms</name></member>
+      <member refid="struct_m_q_t_t_config_1a4ccfcccb213159560b123282f095d05d" prot="public" virt="non-virtual"><scope>MQTTConfig</scope><name>retain_state</name></member>
+      <member refid="struct_m_q_t_t_config_1aaa23126deb269cbfac2a73d12c5f57a1" prot="public" virt="non-virtual"><scope>MQTTConfig</scope><name>retain_telemetry</name></member>
+      <member refid="struct_m_q_t_t_config_1aa94258b9eacc20ecf243181958553d1e" prot="public" virt="non-virtual"><scope>MQTTConfig</scope><name>test_publish_topic</name></member>
+      <member refid="struct_m_q_t_t_config_1a3aba9b60317b2f523b51092936cba37a" prot="public" virt="non-virtual"><scope>MQTTConfig</scope><name>test_subscribe_topic</name></member>
+      <member refid="struct_m_q_t_t_config_1add0a404f132bb03114d7ee030eceea1b" prot="public" virt="non-virtual"><scope>MQTTConfig</scope><name>topic_level1_type</name></member>
+      <member refid="struct_m_q_t_t_config_1ae835523197dd09e69aeb20cfb9bf81f8" prot="public" virt="non-virtual"><scope>MQTTConfig</scope><name>topic_level1_value</name></member>
+      <member refid="struct_m_q_t_t_config_1a735343a1960a6bd587f830a99b586a3b" prot="public" virt="non-virtual"><scope>MQTTConfig</scope><name>topic_level2_type</name></member>
+      <member refid="struct_m_q_t_t_config_1a905599437fdcb2736aa7bd2546392236" prot="public" virt="non-virtual"><scope>MQTTConfig</scope><name>topic_level2_value</name></member>
+      <member refid="struct_m_q_t_t_config_1a509475ad945bbcb4e323f8395979b61d" prot="public" virt="non-virtual"><scope>MQTTConfig</scope><name>topic_level3_type</name></member>
+      <member refid="struct_m_q_t_t_config_1a5bea6b566bb25d080077ce5ad8fd5a36" prot="public" virt="non-virtual"><scope>MQTTConfig</scope><name>topic_level3_value</name></member>
+      <member refid="struct_m_q_t_t_config_1a236677b27a65ceca8e07cae8a9f4ae1f" prot="public" virt="non-virtual"><scope>MQTTConfig</scope><name>use_tls</name></member>
+      <member refid="struct_m_q_t_t_config_1a43a4ea2098aff596440bebd9b9d376ed" prot="public" virt="non-virtual"><scope>MQTTConfig</scope><name>username</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

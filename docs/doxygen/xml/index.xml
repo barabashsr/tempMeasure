@@ -411,23 +411,48 @@
     <member refid="class_measurement_point_1a6a78c850d05aa4ae8151e5e9f828fce0" kind="function"><name>resetMinMaxTemp</name></member>
     <member refid="class_measurement_point_1a71995209f2507e6cc15d01607f60767f" kind="function"><name>updateAlarmStatus</name></member>
   </compound>
+  <compound refid="struct_m_q_t_t_config" kind="struct"><name>MQTTConfig</name>
+    <member refid="struct_m_q_t_t_config_1a907aad6e61809c485711150d7a272569" kind="variable"><name>enabled</name></member>
+    <member refid="struct_m_q_t_t_config_1aa8d7f585a74dd09d857c612cf2c8889c" kind="variable"><name>broker_host</name></member>
+    <member refid="struct_m_q_t_t_config_1ae1756fb591d5f8914e1deb1ec265393b" kind="variable"><name>broker_port</name></member>
+    <member refid="struct_m_q_t_t_config_1a236677b27a65ceca8e07cae8a9f4ae1f" kind="variable"><name>use_tls</name></member>
+    <member refid="struct_m_q_t_t_config_1a43a4ea2098aff596440bebd9b9d376ed" kind="variable"><name>username</name></member>
+    <member refid="struct_m_q_t_t_config_1aec40eb331e8243950effc9b006df3707" kind="variable"><name>password</name></member>
+    <member refid="struct_m_q_t_t_config_1a82898468aa7aa760cfbcda2412fce2ab" kind="variable"><name>client_id</name></member>
+    <member refid="struct_m_q_t_t_config_1ad57f4c089dfbd16ce95fd98578738cc1" kind="variable"><name>device_name</name></member>
+    <member refid="struct_m_q_t_t_config_1add0a404f132bb03114d7ee030eceea1b" kind="variable"><name>topic_level1_type</name></member>
+    <member refid="struct_m_q_t_t_config_1ae835523197dd09e69aeb20cfb9bf81f8" kind="variable"><name>topic_level1_value</name></member>
+    <member refid="struct_m_q_t_t_config_1a735343a1960a6bd587f830a99b586a3b" kind="variable"><name>topic_level2_type</name></member>
+    <member refid="struct_m_q_t_t_config_1a905599437fdcb2736aa7bd2546392236" kind="variable"><name>topic_level2_value</name></member>
+    <member refid="struct_m_q_t_t_config_1a509475ad945bbcb4e323f8395979b61d" kind="variable"><name>topic_level3_type</name></member>
+    <member refid="struct_m_q_t_t_config_1a5bea6b566bb25d080077ce5ad8fd5a36" kind="variable"><name>topic_level3_value</name></member>
+    <member refid="struct_m_q_t_t_config_1aaa23126deb269cbfac2a73d12c5f57a1" kind="variable"><name>retain_telemetry</name></member>
+    <member refid="struct_m_q_t_t_config_1a34526b54ac4b1af456873b5374922c9c" kind="variable"><name>retain_alarms</name></member>
+    <member refid="struct_m_q_t_t_config_1a4ccfcccb213159560b123282f095d05d" kind="variable"><name>retain_state</name></member>
+    <member refid="struct_m_q_t_t_config_1a42c603af846ed0d602e2a77000a7a110" kind="variable"><name>qos_telemetry</name></member>
+    <member refid="struct_m_q_t_t_config_1a700b92a433c8cbfe84c1f2f6b00ebe82" kind="variable"><name>qos_alarms</name></member>
+    <member refid="struct_m_q_t_t_config_1a25f454a663b5d04e3e4cfe69ec22e090" kind="variable"><name>qos_commands</name></member>
+    <member refid="struct_m_q_t_t_config_1a1128b9c8a03305064b65d3ffaac65204" kind="variable"><name>lwt_enabled</name></member>
+    <member refid="struct_m_q_t_t_config_1a8fbffc92fb95c28840e537ead498a72d" kind="variable"><name>lwt_topic</name></member>
+    <member refid="struct_m_q_t_t_config_1a3bcc7301b55b7fc211780eb344133d55" kind="variable"><name>lwt_message</name></member>
+    <member refid="struct_m_q_t_t_config_1ade4ab265fd0959ab2c431872c768b7cf" kind="variable"><name>lwt_qos</name></member>
+    <member refid="struct_m_q_t_t_config_1a2a1e0a221a06c7ff2dd4e815811b782d" kind="variable"><name>lwt_retain</name></member>
+    <member refid="struct_m_q_t_t_config_1aa94258b9eacc20ecf243181958553d1e" kind="variable"><name>test_publish_topic</name></member>
+    <member refid="struct_m_q_t_t_config_1a3aba9b60317b2f523b51092936cba37a" kind="variable"><name>test_subscribe_topic</name></member>
+  </compound>
   <compound refid="class_m_q_t_t_manager" kind="class"><name>MQTTManager</name>
-    <member refid="class_m_q_t_t_manager_1a607d3cb42b6984a50e9072a21fbbe675" kind="variable"><name>MQTT_SERVER</name></member>
-    <member refid="class_m_q_t_t_manager_1a43e53d526945bdcbe7195261ceb88115" kind="variable"><name>MQTT_PORT</name></member>
-    <member refid="class_m_q_t_t_manager_1a6ac5857649943a2eb2663ca7fb1efc02" kind="variable"><name>MQTT_USERNAME</name></member>
-    <member refid="class_m_q_t_t_manager_1a32def76742264dbc0f411dd64905f1ad" kind="variable"><name>MQTT_PASSWORD</name></member>
-    <member refid="class_m_q_t_t_manager_1a9082b97bf176d06f2787fae66e2bf175" kind="variable"><name>PUBLISH_TOPIC</name></member>
-    <member refid="class_m_q_t_t_manager_1a58881b0872fe45c1c5eca20d18817297" kind="variable"><name>SUBSCRIBE_TOPIC</name></member>
-    <member refid="class_m_q_t_t_manager_1a4be14db58e5135343ea5cb9da1eaa303" kind="variable"><name>DEVICE_ID</name></member>
-    <member refid="class_m_q_t_t_manager_1ac8d002476a7bd769e7c36b05298173db" kind="variable"><name>RECONNECT_INTERVAL</name></member>
-    <member refid="class_m_q_t_t_manager_1a36f27fe8d5a3e83c9804d2072bc20517" kind="variable"><name>PUBLISH_INTERVAL</name></member>
-    <member refid="class_m_q_t_t_manager_1a6e768a4f36c87e9f60a3a60ae95c0ef4" kind="variable"><name>instance</name></member>
+    <member refid="class_m_q_t_t_manager_1a3bc5e9366746360ca989a12cbe594338" kind="variable"><name>config</name></member>
+    <member refid="class_m_q_t_t_manager_1a40421587ffcaf38da5189de4fd721dcf" kind="variable"><name>configLoaded</name></member>
     <member refid="class_m_q_t_t_manager_1a39ad7e75f56664b1f8c5191798d6835e" kind="variable"><name>wifiClient</name></member>
+    <member refid="class_m_q_t_t_manager_1a9a2a868ab4ca4856a70d466047310bdf" kind="variable"><name>wifiClientInsecure</name></member>
     <member refid="class_m_q_t_t_manager_1a89a2f7d33295fccd3507f34ac9df0508" kind="variable"><name>mqttClient</name></member>
     <member refid="class_m_q_t_t_manager_1af868832c1d807e4c416a4da46b0808d7" kind="variable"><name>isConnected</name></member>
     <member refid="class_m_q_t_t_manager_1ac33a3f71ab1a3d601c5d4fe93e2b6077" kind="variable"><name>lastReconnectAttempt</name></member>
     <member refid="class_m_q_t_t_manager_1ac80e68f1c4ff7a778786c4cf669144c2" kind="variable"><name>lastPublishTime</name></member>
     <member refid="class_m_q_t_t_manager_1af1032c63a8824102312224a716cc6da6" kind="variable"><name>publishCounter</name></member>
+    <member refid="class_m_q_t_t_manager_1ac8d002476a7bd769e7c36b05298173db" kind="variable"><name>RECONNECT_INTERVAL</name></member>
+    <member refid="class_m_q_t_t_manager_1a36f27fe8d5a3e83c9804d2072bc20517" kind="variable"><name>PUBLISH_INTERVAL</name></member>
+    <member refid="class_m_q_t_t_manager_1a6e768a4f36c87e9f60a3a60ae95c0ef4" kind="variable"><name>instance</name></member>
     <member refid="class_m_q_t_t_manager_1aaac19647fab19e7a0f819691ba06e772" kind="function"><name>messageCallback</name></member>
     <member refid="class_m_q_t_t_manager_1aa915f47a548fa481517a2450ad1a6970" kind="function"><name>handleMessage</name></member>
     <member refid="class_m_q_t_t_manager_1a129d111c8b1ae84640849bc206098853" kind="function"><name>attemptConnection</name></member>
@@ -440,6 +465,15 @@
     <member refid="class_m_q_t_t_manager_1aaa6dfaebfbbfb48e3f4de45bab477d2c" kind="function"><name>connected</name></member>
     <member refid="class_m_q_t_t_manager_1ab8e796839e28f468cb21f9f28b421bed" kind="function"><name>reconnect</name></member>
     <member refid="class_m_q_t_t_manager_1a7b05e6c97ae6c0d7522b75977e66dba4" kind="function"><name>getState</name></member>
+    <member refid="class_m_q_t_t_manager_1a43dca57da65facd4d341963403dd737b" kind="function"><name>loadConfig</name></member>
+    <member refid="class_m_q_t_t_manager_1a6d569cd808a59dba0dcdf2239d54d6ab" kind="function"><name>saveConfig</name></member>
+    <member refid="class_m_q_t_t_manager_1a60ee8b1480e6bf4a8125705415501757" kind="function"><name>getConfig</name></member>
+    <member refid="class_m_q_t_t_manager_1aacbf1b109ac1d6b168309abfd8b3aa72" kind="function"><name>setConfig</name></member>
+    <member refid="class_m_q_t_t_manager_1a8b084fb62e23dc3f2895ede2ec011b42" kind="function"><name>isEnabled</name></member>
+    <member refid="class_m_q_t_t_manager_1a80eeb5b0b084ede6d789459381acec6d" kind="function"><name>buildTopic</name></member>
+    <member refid="class_m_q_t_t_manager_1a6d04009ffe15591e5faf9589e05787e0" kind="function"><name>testPublish</name></member>
+    <member refid="class_m_q_t_t_manager_1ae85864580886b1f7caa7899fa269a249" kind="function"><name>getConfigJson</name></member>
+    <member refid="class_m_q_t_t_manager_1ac17b9ceb70d483611944d626c8c933a1" kind="function"><name>setConfigJson</name></member>
   </compound>
   <compound refid="class_register_map" kind="class"><name>RegisterMap</name>
     <member refid="class_register_map_1adbc8f6a4a506265d1ce3f51e0f3cc54c" kind="variable"><name>DEVICE_ID_REG</name></member>

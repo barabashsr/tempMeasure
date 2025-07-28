@@ -11,8 +11,11 @@ var searchData=
   ['blinkingport_8',['BlinkingPort',['../struct_indicator_interface_1_1_blinking_port.html',1,'IndicatorInterface']]],
   ['blinkok_9',['blinkOK',['../class_indicator_interface.html#aa7c6bd010177acde7097bd4b186fa96d',1,'IndicatorInterface']]],
   ['boundsensor_10',['boundSensor',['../class_measurement_point.html#a2bd6f123317fd8ff0ed22be09a7ac495',1,'MeasurementPoint']]],
-  ['bus1_5fpin_11',['BUS1_PIN',['../main_8cpp.html#ad0c1f84a4e0ecd91e5e90f215bf80540',1,'main.cpp']]],
-  ['bus2_5fpin_12',['BUS2_PIN',['../main_8cpp.html#ab048e547366b8ce86c0adbf08a8b472c',1,'main.cpp']]],
-  ['bus3_5fpin_13',['BUS3_PIN',['../main_8cpp.html#ac49d737679d0daa5c1ad94069632a6b9',1,'main.cpp']]],
-  ['bus4_5fpin_14',['BUS4_PIN',['../main_8cpp.html#aae717cc08d7660a544aa5d25bc49328e',1,'main.cpp']]]
+  ['broker_5fhost_11',['broker_host',['../struct_m_q_t_t_config.html#aa8d7f585a74dd09d857c612cf2c8889c',1,'MQTTConfig']]],
+  ['broker_5fport_12',['broker_port',['../struct_m_q_t_t_config.html#ae1756fb591d5f8914e1deb1ec265393b',1,'MQTTConfig']]],
+  ['buildtopic_13',['buildTopic',['../class_m_q_t_t_manager.html#a80eeb5b0b084ede6d789459381acec6d',1,'MQTTManager']]],
+  ['bus1_5fpin_14',['BUS1_PIN',['../main_8cpp.html#ad0c1f84a4e0ecd91e5e90f215bf80540',1,'main.cpp']]],
+  ['bus2_5fpin_15',['BUS2_PIN',['../main_8cpp.html#ab048e547366b8ce86c0adbf08a8b472c',1,'main.cpp']]],
+  ['bus3_5fpin_16',['BUS3_PIN',['../main_8cpp.html#ac49d737679d0daa5c1ad94069632a6b9',1,'main.cpp']]],
+  ['bus4_5fpin_17',['BUS4_PIN',['../main_8cpp.html#aae717cc08d7660a544aa5d25bc49328e',1,'main.cpp']]]
 ];
