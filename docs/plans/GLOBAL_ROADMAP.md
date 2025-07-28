@@ -188,6 +188,9 @@ Temperature Control System - PlatformIO-based embedded system for monitoring and
    ***Phase 3: Command Processing (Week 2)***
    - [ ] Command parser and router
    - [ ] Standard commands: help, status, get_point, get_summary
+   - [ ] User interaction commands:
+     - [ ] send_message: Display message on OLED with acknowledgment
+     - [ ] help: Get available commands list (n8n AI agent ready)
    - [ ] Alarm commands: acknowledge, get_active, set_threshold
    - [ ] Configuration commands: get/set alarm config
    - [ ] Request/response correlation with command IDs
@@ -201,7 +204,11 @@ Temperature Control System - PlatformIO-based embedded system for monitoring and
    
    ***Phase 5: Advanced Features (Week 3-4)***
    - [ ] Scheduler for periodic commands
-   - [ ] Notification display system
+   - [ ] Notification display system:
+     - [ ] OLED message display with scrolling support
+     - [ ] RELAY1 blinking for attention
+     - [ ] Button acknowledgment handling
+     - [ ] Acknowledgment timestamp tracking
    - [ ] Relay control via MQTT (respecting Modbus overrides)
    - [ ] Bulk data transfers (logs, historical data)
    - [ ] LWT (Last Will and Testament) implementation
@@ -219,6 +226,9 @@ Temperature Control System - PlatformIO-based embedded system for monitoring and
    - `RelayManager::setRelay()` - MQTT relay control
    - `DisplayManager::showNotification()` - Display MQTT notifications
    - `ConfigManager` - Add MQTT settings endpoints
+   - `IndicatorInterface::displayMessage()` - Show user messages with acknowledgment
+   - `Button::onPress()` - Handle message acknowledgment
+   - `MQTTManager::registerCommand()` - Dynamic command registration for help system
    
    **Testing Requirements:**
    - Unit tests for all MQTT classes

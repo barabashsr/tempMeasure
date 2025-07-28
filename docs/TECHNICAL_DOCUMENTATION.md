@@ -392,6 +392,101 @@ ws.onopen = () => {
 }
 ```
 
+### MQTT API
+
+#### Command Topics
+```
+<device>/command/request    # Send commands to device
+<device>/command/response   # Receive command responses
+```
+
+#### User Interaction Commands
+
+##### send_message
+Display a message on the OLED screen with acknowledgment requirement:
+```json
+// Request
+{
+    "command": "send_message",
+    "command_id": "msg-001",
+    "timestamp": "2024-12-30T14:30:00Z",
+    "params": {
+        "message": "Maintenance required in Zone 3",
+        "priority": "high"
+    }
+}
+
+// Response
+{
+    "command": "send_message",
+    "command_id": "msg-001",
+    "status": "success",
+    "timestamp": "2024-12-30T14:30:01Z",
+    "data": {
+        "displayed": true,
+        "acknowledged": true,
+        "acknowledgment_time": "2024-12-30T14:30:45Z"
+    }
+}
+```
+
+Features:
+- Message displayed on OLED screen
+- RELAY1 blinks until button acknowledgment
+- Response includes acknowledgment timestamp
+- Priority levels affect display behavior
+
+##### help
+Get list of available commands with data structures:
+```json
+// Request
+{
+    "command": "help",
+    "command_id": "help-001",
+    "timestamp": "2024-12-30T14:30:00Z"
+}
+
+// Response
+{
+    "command": "help",
+    "command_id": "help-001",
+    "status": "success",
+    "timestamp": "2024-12-30T14:30:01Z",
+    "data": {
+        "commands": [
+            {
+                "name": "help",
+                "description": "Get list of available commands",
+                "params": {},
+                "response": {
+                    "commands": "array of command objects"
+                }
+            },
+            {
+                "name": "send_message",
+                "description": "Display message on OLED screen",
+                "params": {
+                    "message": "string",
+                    "priority": "string (low/medium/high)"
+                },
+                "response": {
+                    "displayed": "boolean",
+                    "acknowledged": "boolean",
+                    "acknowledgment_time": "ISO8601 timestamp"
+                }
+            },
+            // ... other commands
+        ]
+    }
+}
+```
+
+Features:
+- Dynamically generated from runtime capabilities
+- Designed for n8n AI agent integration
+- Includes all available commands with parameter schemas
+- Self-documenting API
+
 ## Configuration Files
 
 ### Main Configuration (`/config.yaml`)
@@ -474,6 +569,16 @@ point,low_threshold,low_priority,high_threshold,high_priority,error_priority,hys
   - 0x20: PCF8575 I/O expander
   - 0x3C: OLED display
   - 0x68: RTC (if present)
+
+### MQTT Protocol
+- Transport: TCP/IP over WiFi
+- Default port: 1883 (non-SSL), 8883 (SSL/TLS)
+- QoS levels: 0 (fire-and-forget), 1 (at least once), 2 (exactly once)
+- Topic structure: `<level1>/<level2>/<level3>/<device>/[topic_type]/[subtopic]`
+- Payload format: JSON (UTF-8 encoded)
+- Keep alive: 60 seconds (configurable)
+- Client ID: Device name or custom identifier
+- Authentication: Username/password and/or TLS client certificates
 
 ## Hardware Interfaces
 
