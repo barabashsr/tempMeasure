@@ -10,10 +10,11 @@ var searchData=
   ['closecurrentfile_7',['closeCurrentFile',['../class_logger_manager.html#ae88c89f897e9041a19ec8c68b5375034',1,'LoggerManager']]],
   ['configmanager_8',['ConfigManager',['../class_config_manager.html#abb5e68671c5a8087abb50b289d3522b4',1,'ConfigManager']]],
   ['connected_9',['connected',['../class_m_q_t_t_manager.html#aaa6dfaebfbbfb48e3f4de45bab477d2c',1,'MQTTManager']]],
-  ['connectwifi_10',['connectWiFi',['../class_config_manager.html#a83b4217012bf8eda57fbfd8deca09dd2',1,'ConfigManager']]],
-  ['createalarm_11',['createAlarm',['../class_temperature_controller.html#aa64384fb8503814b46a7d55f53ccb53a',1,'TemperatureController']]],
-  ['createnewlogfile_12',['createNewLogFile',['../class_logger_manager.html#a445856fb9bb37bd5e61d5242d8996c1f',1,'LoggerManager']]],
-  ['critical_13',['critical',['../class_logger_manager.html#adec54c926cce1f89ac492f0c647e2ba1',1,'LoggerManager']]],
-  ['csvconfigmanager_14',['CSVConfigManager',['../class_c_s_v_config_manager.html#aeb5348105aeb04d73c45526f70d745f6',1,'CSVConfigManager']]],
-  ['csvimportexportapi_15',['csvImportExportAPI',['../class_config_manager.html#a9b7af07b85bf9cc3ac05603db6e89fd2',1,'ConfigManager']]]
+  ['connectmqtt_10',['connectMQTT',['../class_m_q_t_t_manager.html#a2ce492eb2115ac5803cff2f29966a211',1,'MQTTManager']]],
+  ['connectwifi_11',['connectWiFi',['../class_config_manager.html#a83b4217012bf8eda57fbfd8deca09dd2',1,'ConfigManager']]],
+  ['createalarm_12',['createAlarm',['../class_temperature_controller.html#aa64384fb8503814b46a7d55f53ccb53a',1,'TemperatureController']]],
+  ['createnewlogfile_13',['createNewLogFile',['../class_logger_manager.html#a445856fb9bb37bd5e61d5242d8996c1f',1,'LoggerManager']]],
+  ['critical_14',['critical',['../class_logger_manager.html#adec54c926cce1f89ac492f0c647e2ba1',1,'LoggerManager']]],
+  ['csvconfigmanager_15',['CSVConfigManager',['../class_c_s_v_config_manager.html#aeb5348105aeb04d73c45526f70d745f6',1,'CSVConfigManager']]],
+  ['csvimportexportapi_16',['csvImportExportAPI',['../class_config_manager.html#a9b7af07b85bf9cc3ac05603db6e89fd2',1,'ConfigManager']]]
 ];

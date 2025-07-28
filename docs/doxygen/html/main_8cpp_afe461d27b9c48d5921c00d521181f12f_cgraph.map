@@ -1,27 +1,22 @@
 <map id="loop" name="loop">
-<area shape="rect" id="Node000001" title="Main system loop." alt="" coords="5,109,51,135"/>
-<area shape="rect" id="Node000002" href="$class_m_q_t_t_manager.html#a0865d8e5c42ab2106d9f2c172ee1cec2" title="Initialize MQTT manager and establish connection." alt="" coords="99,80,246,106"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="50,115,91,107,92,112,51,120"/>
-<area shape="rect" id="Node000009" href="$class_m_q_t_t_manager.html#a9266e647933501851b411b6d2a9a1f95" title="Main loop function to handle MQTT operations." alt="" coords="102,133,242,159"/>
-<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="51,123,88,129,87,135,50,128"/>
-<area shape="rect" id="Node000003" href="$class_m_q_t_t_manager.html#a129d111c8b1ae84640849bc206098853" title="Attempt to connect to MQTT broker (non&#45;blocking)" alt="" coords="294,104,520,130"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="247,98,279,101,278,106,246,103"/>
-<area shape="rect" id="Node000004" href="$class_m_q_t_t_manager.html#a43dca57da65facd4d341963403dd737b" title="Load configuration from JSON file on SD card." alt="" coords="318,5,496,31"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="200,77,293,40,319,32,320,38,295,45,202,82"/>
-<area shape="rect" id="Node000007" href="$class_m_q_t_t_manager.html#aaac19647fab19e7a0f819691ba06e772" title="Static callback function for MQTT message reception." alt="" coords="297,55,517,80"/>
-<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="246,82,281,78,282,84,247,88"/>
-<area shape="rect" id="Node000005" href="$class_m_q_t_t_manager.html#ac17b9ceb70d483611944d626c8c933a1" title="Set configuration from JSON string." alt="" coords="572,5,772,31"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="497,16,556,16,556,21,497,21"/>
-<area shape="rect" id="Node000006" href="$class_m_q_t_t_manager.html#a542f100738a605efbd30b788835efd1d" title="Build topic string based on configuration." alt="" coords="824,5,998,31"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="773,16,808,16,808,21,773,21"/>
-<area shape="rect" id="Node000008" href="$class_m_q_t_t_manager.html#aa915f47a548fa481517a2450ad1a6970" title="Static method to handle received messages." alt="" coords="568,55,776,80"/>
-<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="518,65,553,65,553,70,518,70"/>
-<area shape="poly" id="edge9_Node000009_Node000003" title=" " alt="" coords="242,135,284,130,285,135,243,140"/>
-<area shape="rect" id="Node000010" href="$class_m_q_t_t_manager.html#ab005f48ef3d1e54464b8f2205346179f" title="Check non&#45;blocking connection progress." alt="" coords="298,154,516,194"/>
-<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="243,152,283,157,283,162,242,157"/>
-<area shape="rect" id="Node000012" href="$class_m_q_t_t_manager.html#a6d04009ffe15591e5faf9589e05787e0" title="Test publish to configured test topic." alt="" coords="581,215,763,240"/>
-<area shape="poly" id="edge13_Node000009_Node000012" title=" " alt="" coords="195,157,240,182,295,204,364,218,435,226,566,230,566,235,435,232,363,223,293,209,237,187,193,162"/>
-<area shape="rect" id="Node000011" href="$class_m_q_t_t_manager.html#aaa6dfaebfbbfb48e3f4de45bab477d2c" title="Check if connected to MQTT broker." alt="" coords="584,161,760,187"/>
-<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="516,172,568,172,568,177,516,177"/>
-<area shape="poly" id="edge12_Node000010_Node000012" title=" " alt="" coords="512,192,590,208,589,214,511,198"/>
+<area shape="rect" id="Node000001" title="Main system loop." alt="" coords="5,80,51,106"/>
+<area shape="rect" id="Node000002" href="$class_m_q_t_t_manager.html#a0865d8e5c42ab2106d9f2c172ee1cec2" title="Initialize MQTT manager and establish connection." alt="" coords="99,55,246,80"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="50,86,83,81,84,86,51,92"/>
+<area shape="rect" id="Node000008" href="$class_m_q_t_t_manager.html#a9266e647933501851b411b6d2a9a1f95" title="Main loop function to handle MQTT operations." alt="" coords="102,104,242,130"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="51,94,88,100,87,105,50,99"/>
+<area shape="rect" id="Node000003" href="$class_m_q_t_t_manager.html#a43dca57da65facd4d341963403dd737b" title="Load configuration from JSON file on SD card." alt="" coords="315,5,493,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="236,51,325,32,326,37,237,57"/>
+<area shape="rect" id="Node000006" href="$class_m_q_t_t_manager.html#aaac19647fab19e7a0f819691ba06e772" title="Static callback function for MQTT message reception." alt="" coords="294,55,514,80"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="246,65,278,65,278,70,246,70"/>
+<area shape="rect" id="Node000004" href="$class_m_q_t_t_manager.html#ac17b9ceb70d483611944d626c8c933a1" title="Set configuration from JSON string." alt="" coords="566,5,766,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="494,16,550,16,550,21,494,21"/>
+<area shape="rect" id="Node000005" href="$class_m_q_t_t_manager.html#a542f100738a605efbd30b788835efd1d" title="Build topic string based on configuration." alt="" coords="818,5,992,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="767,16,802,16,802,21,767,21"/>
+<area shape="rect" id="Node000007" href="$class_m_q_t_t_manager.html#aa915f47a548fa481517a2450ad1a6970" title="Static method to handle received messages." alt="" coords="562,55,770,80"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="515,65,547,65,547,70,515,70"/>
+<area shape="rect" id="Node000009" href="$class_m_q_t_t_manager.html#a2ce492eb2115ac5803cff2f29966a211" title="Connect to MQTT broker (blocking)" alt="" coords="304,104,504,130"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="243,114,289,114,289,120,243,120"/>
+<area shape="rect" id="Node000010" href="$class_m_q_t_t_manager.html#a6d04009ffe15591e5faf9589e05787e0" title="Test publish to configured test topic." alt="" coords="575,129,757,155"/>
+<area shape="poly" id="edge10_Node000008_Node000010" title=" " alt="" coords="226,128,294,140,433,147,560,145,560,151,433,152,294,145,226,133"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="504,124,560,129,559,135,504,129"/>
 </map>

@@ -66,10 +66,10 @@ Alarm::Alarm(AlarmType type, MeasurementPoint* source, AlarmPriority priority)
     LoggerManager::info(source_, description);
     
     // Debug output to serial
-    Serial.printf("New alarm created: %s for point %d (%s)\n", 
-                  getTypeString().c_str(), 
-                  _source ? _source->getAddress() : -1,
-                  _source ? _source->getName().c_str() : "Unknown");
+    // Serial.printf("New alarm created: %s for point %d (%s)\n", 
+    //               getTypeString().c_str(), 
+    //               _source ? _source->getAddress() : -1,
+    //               _source ? _source->getName().c_str() : "Unknown");
 }
 
 

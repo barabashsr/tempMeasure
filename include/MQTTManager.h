@@ -132,6 +132,11 @@ private:
     static bool checkConnectionProgress();
     
     /**
+     * @brief Connect to MQTT broker (blocking)
+     */
+    static void connectMQTT();
+    
+    /**
      * @brief Private constructor to prevent instantiation
      */
     MQTTManager() = delete;

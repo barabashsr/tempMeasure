@@ -50,6 +50,11 @@ bool MQTTManager::begin() {
         return false;
     }
     
+    // Temporary: Test with non-TLS to isolate TLS issues
+    // config.use_tls = false;
+    // config.broker_port = 1883;
+    // Serial.println("[MQTTManager] WARNING: Temporarily disabled TLS for testing!");
+    
     Serial.println("[MQTTManager] Configuration:");
     Serial.print("[MQTTManager]   Server: ");
     Serial.println(config.broker_host.c_str());
@@ -79,17 +84,16 @@ bool MQTTManager::begin() {
         mqttClient.setClient(wifiClientInsecure);
     }
     
-    // Configure MQTT client
+    // Configure MQTT client with increased buffer size
     Serial.println("[MQTTManager] Configuring MQTT client...");
     mqttClient.setServer(config.broker_host.c_str(), config.broker_port);
     mqttClient.setCallback(messageCallback);
+    mqttClient.setBufferSize(512);  // Increase buffer size for larger messages
     Serial.println("[MQTTManager] MQTT client configured");
+    Serial.println("[MQTTManager] Buffer size set to 512 bytes");
     
-    // Start non-blocking connection attempt
-    Serial.println("[MQTTManager] Starting non-blocking connection attempt...");
-    attemptConnection();
-    
-    Serial.println("[MQTTManager] Initialization complete - connection in progress");
+    // Don't attempt connection here - let loop() handle it
+    Serial.println("[MQTTManager] Initialization complete - connection will be attempted in loop");
     return true;
 }
 
@@ -97,19 +101,6 @@ bool MQTTManager::begin() {
  * @brief Main loop to handle MQTT operations
  */
 void MQTTManager::loop() {
-    // Check if non-blocking connection is in progress
-    if (connectInProgress) {
-        if (checkConnectionProgress()) {
-            connectInProgress = false;
-            if (isConnected) {
-                Serial.println("[MQTTManager] Connection established!");
-            } else {
-                Serial.println("[MQTTManager] Connection failed!");
-            }
-        }
-        return; // Skip other operations while connecting
-    }
-    
     if (!mqttClient.connected()) {
         if (isConnected) {
             // First time noticing disconnection
@@ -120,13 +111,20 @@ void MQTTManager::loop() {
         // Check if it's time to reconnect
         unsigned long now = millis();
         if (now - lastReconnectAttempt > RECONNECT_INTERVAL) {
-            Serial.println("[MQTTManager] Starting reconnection attempt...");
+            Serial.println("[MQTTManager] Attempting reconnection...");
             lastReconnectAttempt = now;
-            attemptConnection();
+            
+            // Simple blocking connection like the example
+            connectMQTT();
         }
     } else {
         // Maintain connection
         mqttClient.loop();
+        
+        // Mark as connected if not already
+        if (!isConnected) {
+            isConnected = true;
+        }
         
         // Publish incrementing counter every second (only if config is loaded)
         if (configLoaded) {
@@ -151,25 +149,55 @@ void MQTTManager::loop() {
 }
 
 /**
- * @brief Attempt to connect to MQTT broker (non-blocking)
+ * @brief Connect to MQTT broker (blocking, like the example)
+ */
+void MQTTManager::connectMQTT() {
+    Serial.print("[MQTTManager] Attempting MQTT connection...");
+    Serial.printf(" (Free heap: %d bytes)\n", ESP.getFreeHeap());
+    
+    // Simple connection like the example
+    if (mqttClient.connect(config.client_id.c_str(), 
+                          config.username.c_str(), 
+                          config.password.c_str())) {
+        Serial.println("[MQTTManager] Connected!");
+        
+        // Subscribe to test topic
+        if (mqttClient.subscribe(config.test_subscribe_topic.c_str())) {
+            Serial.printf("[MQTTManager] Subscribed to: %s\n", config.test_subscribe_topic.c_str());
+        } else {
+            Serial.println("[MQTTManager] Failed to subscribe!");
+        }
+        
+        // Send connection announcement
+        testPublish("Device connected and ready");
+        
+    } else {
+        Serial.print("[MQTTManager] Failed, rc=");
+        Serial.print(mqttClient.state());
+        Serial.println(" trying again in 5 seconds");
+        
+        // Decode error for debugging
+        switch(mqttClient.state()) {
+            case -4: Serial.println("[MQTTManager] MQTT_CONNECTION_TIMEOUT"); break;
+            case -3: Serial.println("[MQTTManager] MQTT_CONNECTION_LOST"); break;
+            case -2: Serial.println("[MQTTManager] MQTT_CONNECT_FAILED"); break;
+            case -1: Serial.println("[MQTTManager] MQTT_DISCONNECTED"); break;
+            case 1:  Serial.println("[MQTTManager] MQTT_CONNECT_BAD_PROTOCOL"); break;
+            case 2:  Serial.println("[MQTTManager] MQTT_CONNECT_BAD_CLIENT_ID"); break;
+            case 3:  Serial.println("[MQTTManager] MQTT_CONNECT_UNAVAILABLE"); break;
+            case 4:  Serial.println("[MQTTManager] MQTT_CONNECT_BAD_CREDENTIALS"); break;
+            case 5:  Serial.println("[MQTTManager] MQTT_CONNECT_UNAUTHORIZED"); break;
+        }
+    }
+}
+
+/**
+ * @brief Attempt to connect to MQTT broker (non-blocking) - DEPRECATED
  * @return true if connection started
  */
 bool MQTTManager::attemptConnection() {
-    if (connectInProgress) {
-        Serial.println("[MQTTManager] Connection already in progress");
-        return false;
-    }
-    
-    Serial.println("[MQTTManager] Starting non-blocking connection attempt...");
-    
-    // Set connection timeout to prevent blocking
-    mqttClient.setSocketTimeout(1); // 1 second timeout for non-blocking
-    mqttClient.setKeepAlive(15); // 15 seconds keepalive
-    
-    // Mark connection as in progress
-    connectInProgress = true;
-    connectStartTime = millis();
-    
+    // This method is deprecated - using simple blocking connection instead
+    connectMQTT();
     return true;
 }
 
@@ -179,31 +207,36 @@ bool MQTTManager::attemptConnection() {
  */
 bool MQTTManager::checkConnectionProgress() {
     // Check timeout
-    if (millis() - connectStartTime > CONNECT_TIMEOUT) {
+    unsigned long elapsed = millis() - connectStartTime;
+    if (elapsed > CONNECT_TIMEOUT) {
         Serial.println("[MQTTManager] Connection timeout!");
+        Serial.printf("[MQTTManager] Elapsed time: %lu ms\n", elapsed);
         isConnected = false;
+        connectInProgress = false;
         return true; // Connection complete (failed)
     }
     
-    // Try to connect
-    bool connected = false;
-    if (config.lwt_enabled && !config.lwt_topic.isEmpty()) {
-        connected = mqttClient.connect(config.client_id.c_str(), 
-                                     config.username.c_str(), 
-                                     config.password.c_str(),
-                                     config.lwt_topic.c_str(),
-                                     config.lwt_qos,
-                                     config.lwt_retain,
-                                     config.lwt_message.c_str());
-    } else {
-        connected = mqttClient.connect(config.client_id.c_str(), 
-                                     config.username.c_str(), 
-                                     config.password.c_str());
+    // Show progress every second
+    static unsigned long lastProgress = 0;
+    if (millis() - lastProgress > 1000) {
+        lastProgress = millis();
+        Serial.printf("[MQTTManager] Connection in progress... (%lu ms)\n", elapsed);
     }
+    
+    // Try to connect
+    Serial.println("[MQTTManager] Attempting MQTT connection...");
+    bool connected = false;
+    
+    // For debugging, let's use a simpler connection first
+    connected = mqttClient.connect(config.client_id.c_str(), 
+                                 config.username.c_str(), 
+                                 config.password.c_str());
     
     if (connected) {
         Serial.println("[MQTTManager] CONNECTED!");
+        Serial.printf("[MQTTManager] Free heap after connection: %d bytes\n", ESP.getFreeHeap());
         isConnected = true;
+        connectInProgress = false;
         
         // Subscribe to test topic
         Serial.print("[MQTTManager] Subscribing to topic: ");
@@ -222,26 +255,55 @@ bool MQTTManager::checkConnectionProgress() {
         return true; // Connection complete (success)
     } else {
         int state = mqttClient.state();
-        if (state != -1 && state != -2) { // Not disconnected or connect failed
-            // Connection failed with specific error
-            Serial.print("[MQTTManager] Connection failed! rc=");
-            Serial.print(state);
-            Serial.print(" - ");
-            
-            // Decode error codes
-            switch(state) {
-                case -4: Serial.println("MQTT_CONNECTION_TIMEOUT"); break;
-                case -3: Serial.println("MQTT_CONNECTION_LOST"); break;
-                case 0:  Serial.println("MQTT_CONNECTED"); break;
-                case 1:  Serial.println("MQTT_CONNECT_BAD_PROTOCOL"); break;
-                case 2:  Serial.println("MQTT_CONNECT_BAD_CLIENT_ID"); break;
-                case 3:  Serial.println("MQTT_CONNECT_UNAVAILABLE"); break;
-                case 4:  Serial.println("MQTT_CONNECT_BAD_CREDENTIALS"); break;
-                case 5:  Serial.println("MQTT_CONNECT_UNAUTHORIZED"); break;
-                default: Serial.println("UNKNOWN ERROR"); break;
-            }
-            
+        Serial.printf("[MQTTManager] Connection attempt failed, state: %d\n", state);
+        
+        // Decode error codes
+        switch(state) {
+            case -4: 
+                Serial.println("[MQTTManager] MQTT_CONNECTION_TIMEOUT - Network/TLS timeout"); 
+                connectInProgress = false;
+                return true; // Stop trying
+            case -3: 
+                Serial.println("[MQTTManager] MQTT_CONNECTION_LOST"); 
+                break;
+            case -2: 
+                Serial.println("[MQTTManager] MQTT_CONNECT_FAILED - Still connecting..."); 
+                return false; // Keep trying
+            case -1: 
+                Serial.println("[MQTTManager] MQTT_DISCONNECTED"); 
+                break;
+            case 0:  
+                Serial.println("[MQTTManager] MQTT_CONNECTED"); 
+                break;
+            case 1:  
+                Serial.println("[MQTTManager] MQTT_CONNECT_BAD_PROTOCOL"); 
+                connectInProgress = false;
+                return true;
+            case 2:  
+                Serial.println("[MQTTManager] MQTT_CONNECT_BAD_CLIENT_ID"); 
+                connectInProgress = false;
+                return true;
+            case 3:  
+                Serial.println("[MQTTManager] MQTT_CONNECT_UNAVAILABLE"); 
+                connectInProgress = false;
+                return true;
+            case 4:  
+                Serial.println("[MQTTManager] MQTT_CONNECT_BAD_CREDENTIALS"); 
+                connectInProgress = false;
+                return true;
+            case 5:  
+                Serial.println("[MQTTManager] MQTT_CONNECT_UNAUTHORIZED"); 
+                connectInProgress = false;
+                return true;
+            default: 
+                Serial.printf("[MQTTManager] UNKNOWN ERROR: %d\n", state); 
+                break;
+        }
+        
+        // For specific errors, stop trying
+        if (state > 0) {
             isConnected = false;
+            connectInProgress = false;
             return true; // Connection complete (failed)
         }
         

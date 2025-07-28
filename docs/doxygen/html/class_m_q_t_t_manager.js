@@ -6,6 +6,7 @@ var class_m_q_t_t_manager =
     [ "buildTopic", "class_m_q_t_t_manager.html#a542f100738a605efbd30b788835efd1d", null ],
     [ "checkConnectionProgress", "class_m_q_t_t_manager.html#ab005f48ef3d1e54464b8f2205346179f", null ],
     [ "connected", "class_m_q_t_t_manager.html#aaa6dfaebfbbfb48e3f4de45bab477d2c", null ],
+    [ "connectMQTT", "class_m_q_t_t_manager.html#a2ce492eb2115ac5803cff2f29966a211", null ],
     [ "getConfig", "class_m_q_t_t_manager.html#a571d796801f60b7f1a82830fa53f119e", null ],
     [ "getConfigJson", "class_m_q_t_t_manager.html#a2c8c1f0367aa9d93bfad4301a95b9e41", null ],
     [ "getState", "class_m_q_t_t_manager.html#a7b05e6c97ae6c0d7522b75977e66dba4", null ],

@@ -428,7 +428,7 @@ void TemperatureController::ensureAlarmsForPoint(MeasurementPoint* point) {
         lowAlarm->setPriority(AlarmPriority::PRIORITY_MEDIUM);  // Default priority
         lowAlarm->setEnabled(false);  // Default disabled
         _configuredAlarms.push_back(lowAlarm);
-        Serial.printf("Created LOW_TEMPERATURE alarm for point %d\n", address);
+        //Serial.printf("Created LOW_TEMPERATURE alarm for point %d\n", address);
     }
     
     // Check and create HIGH_TEMPERATURE alarm if not exists
@@ -439,7 +439,7 @@ void TemperatureController::ensureAlarmsForPoint(MeasurementPoint* point) {
         highAlarm->setPriority(AlarmPriority::PRIORITY_MEDIUM);  // Default priority
         highAlarm->setEnabled(false);  // Default disabled
         _configuredAlarms.push_back(highAlarm);
-        Serial.printf("Created HIGH_TEMPERATURE alarm for point %d\n", address);
+        //Serial.printf("Created HIGH_TEMPERATURE alarm for point %d\n", address);
     }
     
     // Check and create SENSOR_ERROR alarm if not exists
@@ -450,7 +450,7 @@ void TemperatureController::ensureAlarmsForPoint(MeasurementPoint* point) {
         errorAlarm->setPriority(AlarmPriority::PRIORITY_HIGH);  // Default high priority
         errorAlarm->setEnabled(point->getBoundSensor() != nullptr);  // Auto-enable if sensor bound
         _configuredAlarms.push_back(errorAlarm);
-        Serial.printf("Created SENSOR_ERROR alarm for point %d (enabled=%d)\n", address, point->getBoundSensor() != nullptr);
+        //Serial.printf("Created SENSOR_ERROR alarm for point %d (enabled=%d)\n", address, point->getBoundSensor() != nullptr);
     }
 }
 

@@ -282,13 +282,8 @@ void loop() {
                 Serial.println("MQTT manager initialized successfully");
                 mqttInitialized = true;
             } else {
-                Serial.println("MQTT initialization failed, will retry later");
-                // Reset flag to retry after some time
-                static unsigned long lastMqttRetry = 0;
-                if (millis() - lastMqttRetry > 30000) { // Retry every 30 seconds
-                    lastMqttRetry = millis();
-                    mqttInitialized = false; // This will trigger another attempt
-                }
+                Serial.println("MQTT initialization failed");
+                // Don't retry automatically - let user restart if needed
             }
         }
         

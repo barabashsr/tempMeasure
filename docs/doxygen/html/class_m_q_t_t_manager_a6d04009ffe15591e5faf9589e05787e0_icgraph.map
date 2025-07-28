@@ -1,14 +1,26 @@
 <map id="MQTTManager::testPublish" name="MQTTManager::testPublish">
-<area shape="rect" id="Node000001" title="Test publish to configured test topic." alt="" coords="569,70,751,96"/>
-<area shape="rect" id="Node000002" href="$class_m_q_t_t_manager.html#ab005f48ef3d1e54464b8f2205346179f" title="Check non&#45;blocking connection progress." alt="" coords="304,5,521,46"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="586,69,503,49,504,44,587,63"/>
-<area shape="rect" id="Node000003" href="$class_m_q_t_t_manager.html#a9266e647933501851b411b6d2a9a1f95" title="Main loop function to handle MQTT operations." alt="" coords="107,42,248,68"/>
-<area shape="poly" id="edge4_Node000001_Node000003" title=" " alt="" coords="554,80,248,62,248,56,554,74"/>
-<area shape="rect" id="Node000005" href="$class_m_q_t_t_manager.html#aba0fa39910d767f0623291608e83ae81" title="Publish a message to the hardcoded publish topic." alt="" coords="334,121,491,146"/>
-<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="579,102,479,123,478,118,578,97"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="289,44,248,49,247,44,288,39"/>
-<area shape="rect" id="Node000004" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title="Main system loop." alt="" coords="5,42,51,68"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="91,58,51,58,51,52,91,52"/>
-<area shape="rect" id="Node000006" href="$class_m_q_t_t_manager.html#ae68e09972e3ed17d457e1c05117d613b" title="Publish a message to the hardcoded publish topic." alt="" coords="99,121,256,146"/>
-<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="319,136,257,136,257,131,319,131"/>
+<area shape="rect" id="Node000001" title="Test publish to configured test topic." alt="" coords="1176,96,1357,121"/>
+<area shape="rect" id="Node000002" href="$class_m_q_t_t_manager.html#ab005f48ef3d1e54464b8f2205346179f" title="Check non&#45;blocking connection progress." alt="" coords="911,5,1128,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1216,92,1127,60,1092,49,1094,44,1129,55,1218,87"/>
+<area shape="rect" id="Node000003" href="$class_m_q_t_t_manager.html#a2ce492eb2115ac5803cff2f29966a211" title="Connect to MQTT broker (blocking)" alt="" coords="920,70,1119,96"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="1160,100,1119,96,1120,91,1161,95"/>
+<area shape="rect" id="Node000009" href="$class_m_q_t_t_manager.html#a9266e647933501851b411b6d2a9a1f95" title="Main loop function to handle MQTT operations." alt="" coords="679,121,820,146"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="1161,116,820,133,820,128,1160,111"/>
+<area shape="rect" id="Node000011" href="$class_m_q_t_t_manager.html#aba0fa39910d767f0623291608e83ae81" title="Publish a message to the hardcoded publish topic." alt="" coords="941,172,1098,197"/>
+<area shape="poly" id="edge11_Node000001_Node000011" title=" " alt="" coords="1211,129,1129,155,1067,173,1066,168,1127,150,1209,124"/>
+<area shape="rect" id="Node000004" href="$class_m_q_t_t_manager.html#a129d111c8b1ae84640849bc206098853" title="Attempt to connect to MQTT broker (non&#45;blocking)" alt="" coords="636,70,863,96"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="904,86,863,86,863,80,904,80"/>
+<area shape="poly" id="edge8_Node000003_Node000009" title=" " alt="" coords="933,102,821,123,820,118,932,97"/>
+<area shape="rect" id="Node000005" href="$class_m_q_t_t_manager.html#ab8e796839e28f468cb21f9f28b421bed" title="Force reconnection to MQTT broker." alt="" coords="415,22,588,48"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="664,69,571,51,572,46,665,64"/>
+<area shape="rect" id="Node000008" href="$class_m_q_t_t_manager.html#aacbf1b109ac1d6b168309abfd8b3aa72" title="Set new configuration." alt="" coords="416,72,588,97"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="621,86,588,87,588,81,621,81"/>
+<area shape="rect" id="Node000006" href="$class_config_manager.html#aeaf809f5fcc5b5be963935c533a56e49" title="Setup MQTT API endpoints." alt="" coords="202,22,367,48"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="400,38,367,38,367,32,400,32"/>
+<area shape="rect" id="Node000007" href="$class_config_manager.html#a0497343220fc493f5cf9574922508908" title="Initialize the configuration system." alt="" coords="5,22,154,48"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="186,38,154,38,154,32,186,32"/>
+<area shape="rect" id="Node000010" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title="Main system loop." alt="" coords="479,121,524,146"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="664,136,525,136,525,131,664,131"/>
+<area shape="rect" id="Node000012" href="$class_m_q_t_t_manager.html#ae68e09972e3ed17d457e1c05117d613b" title="Publish a message to the hardcoded publish topic." alt="" coords="671,172,828,197"/>
+<area shape="poly" id="edge12_Node000011_Node000012" title=" " alt="" coords="925,187,828,187,828,182,925,182"/>
 </map>

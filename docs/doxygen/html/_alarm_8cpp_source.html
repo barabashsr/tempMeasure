@@ -139,10 +139,10 @@ $(function(){initNavTree('_alarm_8cpp_source.html','',''); });
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <a class="code hl_function" href="class_logger_manager.html#a5c1373ccc47f4112b596fe6f84fbbc21">LoggerManager::info</a>(source_, description);</div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    </div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="comment">// Debug output to serial</span></div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    Serial.printf(<span class="stringliteral">&quot;New alarm created: %s for point %d (%s)\n&quot;</span>, </div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>                  <a class="code hl_function" href="class_alarm.html#abd578ec75a5ac9bce00b7ce7207c5d8c">getTypeString</a>().c_str(), </div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>                  <a class="code hl_variable" href="class_alarm.html#a1f87216f47e3421c09b6a2531963b24d">_source</a> ? <a class="code hl_variable" href="class_alarm.html#a1f87216f47e3421c09b6a2531963b24d">_source</a>-&gt;getAddress() : -1,</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>                  <a class="code hl_variable" href="class_alarm.html#a1f87216f47e3421c09b6a2531963b24d">_source</a> ? <a class="code hl_variable" href="class_alarm.html#a1f87216f47e3421c09b6a2531963b24d">_source</a>-&gt;getName().c_str() : <span class="stringliteral">&quot;Unknown&quot;</span>);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="comment">// Serial.printf(&quot;New alarm created: %s for point %d (%s)\n&quot;, </span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="comment">//               getTypeString().c_str(), </span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="comment">//               _source ? _source-&gt;getAddress() : -1,</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="comment">//               _source ? _source-&gt;getName().c_str() : &quot;Unknown&quot;);</span></div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>}</div>
 </div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
