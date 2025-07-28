@@ -1,5 +1,7 @@
 var NAVTREEINDEX3 =
 {
+"class_temperature_controller.html#a4e75dbef3c1ce99afd4ec8e71102e836":[0,0,12,20],
+"class_temperature_controller.html#a4f0672d3b309325c9c2e75c75bafc154":[0,0,12,123],
 "class_temperature_controller.html#a515b9f088ad00d4b7e106081c94a7d12":[0,0,12,164],
 "class_temperature_controller.html#a5637103784725fb1a73f6463d7cbfde6":[0,0,12,80],
 "class_temperature_controller.html#a565a282c8a8330005545d92686ae8a01":[0,0,12,46],
@@ -247,7 +249,5 @@ var NAVTREEINDEX3 =
 "functions_vars_u.html":[0,2,2,18],
 "functions_vars_w.html":[0,2,2,19],
 "functions_w.html":[0,2,0,21],
-"functions_~.html":[0,2,0,22],
-"globals.html":[1,1,0],
-"globals_defs.html":[1,1,4]
+"functions_~.html":[0,2,0,22]
 };

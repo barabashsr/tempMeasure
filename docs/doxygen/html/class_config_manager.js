@@ -32,6 +32,7 @@ var class_config_manager =
     [ "loadAlarmsConfig", "class_config_manager.html#a468923ce5f2edecd218b29605d75426f", null ],
     [ "loadPointsConfig", "class_config_manager.html#a04edc14e642ecadb9ccb87be05d1d878", null ],
     [ "logsAPI", "class_config_manager.html#a9e977107b4795fcbce0482711ff1ce7a", null ],
+    [ "mqttAPI", "class_config_manager.html#aeaf809f5fcc5b5be963935c533a56e49", null ],
     [ "onConfigChanged", "class_config_manager.html#a93a63ddc3f7efd83e80345826493a45d", null ],
     [ "pointsAPI", "class_config_manager.html#a471a844085c27f3a8a8f9394d9c14677", null ],
     [ "resetMinMaxValues", "class_config_manager.html#a798727e00c1f0ff18044bc4ae097be2e", null ],

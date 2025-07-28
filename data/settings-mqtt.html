@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Monitoring System - MQTT Settings</title>
+    <link rel="stylesheet" href="/common.css">
+    <style>
+        /* Page-specific styles */
+        .settings-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #3f51b5;
+        }
+        
+        .settings-section h3 {
+            margin-top: 0;
+            color: #3f51b5;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        
+        .form-group input[type="text"],
+        .form-group input[type="number"],
+        .form-group input[type="password"],
+        .form-group select {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .form-group input[type="checkbox"] {
+            margin-right: 8px;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 20px;
+            align-items: flex-end;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .topic-level {
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
+            margin-bottom: 10px;
+        }
+        
+        .topic-level select {
+            width: 150px;
+        }
+        
+        .topic-level input {
+            flex: 1;
+        }
+        
+        .topic-preview {
+            background: #e3f2fd;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+            font-family: monospace;
+            color: #1976d2;
+        }
+        
+        .mqtt-status {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 15px;
+            background: #fff;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        
+        .status-indicator.connected {
+            background: #4CAF50;
+            animation: pulse 2s infinite;
+        }
+        
+        .status-indicator.disconnected {
+            background: #f44336;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            font-weight: 500;
+            font-size: 14px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background: #3f51b5;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #1976D2;
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+        
+        .btn-success {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background: #45a049;
+        }
+        
+        .btn-warning {
+            background: #FF9800;
+            color: white;
+        }
+        
+        .btn-warning:hover {
+            background: #F57C00;
+        }
+        
+        .file-actions {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f0f4ff;
+            border-radius: 4px;
+        }
+        
+        .file-actions h4 {
+            margin-top: 0;
+            color: #3f51b5;
+        }
+        
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            display: none;
+        }
+        
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .alert-info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+    </style>
+</head>
+<body>
+    <header>Temperature Monitoring System</header>
+    
+    <nav>
+        <a href="/dashboard.html">Dashboard</a>
+        <a href="/points.html">Measurement Points</a>
+        <a href="/sensors.html">Sensors</a>
+        <a href="/alarms.html">Alarms</a>
+        <a href="/alarm-config.html">Alarm Config</a>
+        <a href="/alarm-history.html">Alarm History</a>
+        <a href="/event-logs.html">Event Logs</a>
+        <a href="/download-logs.html">Download Logs</a>
+        <a href="/settings-mqtt.html" class="active">MQTT Settings</a>
+    </nav>
+    
+    <main>
+        <h1>MQTT Configuration</h1>
+        
+        <div id="alert" class="alert"></div>
+        
+        <div class="settings-section">
+            <h3>Connection Settings</h3>
+            
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="mqtt_enabled"> Enable MQTT
+                </label>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Broker Address:</label>
+                    <input type="text" id="mqtt_broker" placeholder="broker.hivemq.com">
+                </div>
+                
+                <div class="form-group" style="width: 150px;">
+                    <label>Port:</label>
+                    <input type="number" id="mqtt_port" value="1883" min="1" max="65535">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="mqtt_use_tls"> Use TLS/SSL
+                </label>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Username:</label>
+                    <input type="text" id="mqtt_username" placeholder="Optional">
+                </div>
+                
+                <div class="form-group">
+                    <label>Password:</label>
+                    <input type="password" id="mqtt_password" placeholder="Optional">
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Client ID:</label>
+                    <input type="text" id="mqtt_client_id" placeholder="esp32_temp_controller">
+                </div>
+                
+                <div class="form-group">
+                    <label>Device Name:</label>
+                    <input type="text" id="mqtt_device_name" placeholder="esp32_temp_controller">
+                </div>
+            </div>
+        </div>
+        
+        <div class="settings-section">
+            <h3>Topic Configuration</h3>
+            <p style="color: #666; margin-bottom: 15px;">Configure hierarchical topic structure (ISA-95 based)</p>
+            
+            <div class="topic-level">
+                <label style="width: 80px;">Level 1:</label>
+                <select id="topic_level1_type">
+                    <option value="skip">Skip Level</option>
+                    <option value="custom">Custom</option>
+                    <option value="plant">Plant</option>
+                    <option value="enterprise">Enterprise</option>
+                </select>
+                <input type="text" id="topic_level1_value" placeholder="Enter custom value">
+            </div>
+            
+            <div class="topic-level">
+                <label style="width: 80px;">Level 2:</label>
+                <select id="topic_level2_type">
+                    <option value="skip">Skip Level</option>
+                    <option value="custom">Custom</option>
+                    <option value="area">Area</option>
+                    <option value="department">Department</option>
+                </select>
+                <input type="text" id="topic_level2_value" placeholder="Enter custom value">
+            </div>
+            
+            <div class="topic-level">
+                <label style="width: 80px;">Level 3:</label>
+                <select id="topic_level3_type">
+                    <option value="skip">Skip Level</option>
+                    <option value="custom">Custom</option>
+                    <option value="line">Line</option>
+                    <option value="cell">Cell</option>
+                </select>
+                <input type="text" id="topic_level3_value" placeholder="Enter custom value">
+            </div>
+            
+            <div class="topic-preview">
+                Topic Preview: <code id="topic-preview">device/telemetry/temperature</code>
+            </div>
+        </div>
+        
+        <div class="settings-section">
+            <h3>Publishing Settings</h3>
+            
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="mqtt_retain_telemetry"> Retain Telemetry Messages
+                </label>
+            </div>
+            
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="mqtt_retain_alarms" checked> Retain Alarm Messages
+                </label>
+            </div>
+            
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="mqtt_retain_state" checked> Retain State Messages
+                </label>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>QoS for Telemetry:</label>
+                    <select id="mqtt_qos_telemetry">
+                        <option value="0">0 - At most once</option>
+                        <option value="1">1 - At least once</option>
+                        <option value="2">2 - Exactly once</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>QoS for Alarms:</label>
+                    <select id="mqtt_qos_alarms">
+                        <option value="0">0 - At most once</option>
+                        <option value="1" selected>1 - At least once</option>
+                        <option value="2">2 - Exactly once</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>QoS for Commands:</label>
+                    <select id="mqtt_qos_commands">
+                        <option value="0">0 - At most once</option>
+                        <option value="1">1 - At least once</option>
+                        <option value="2" selected>2 - Exactly once</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <div class="settings-section">
+            <h3>Last Will and Testament (LWT)</h3>
+            
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="mqtt_lwt_enabled" checked> Enable LWT
+                </label>
+            </div>
+            
+            <div class="form-group">
+                <label>LWT Message:</label>
+                <input type="text" id="mqtt_lwt_message" value='{"status":"offline"}'>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>LWT QoS:</label>
+                    <select id="mqtt_lwt_qos">
+                        <option value="0">0 - At most once</option>
+                        <option value="1" selected>1 - At least once</option>
+                        <option value="2">2 - Exactly once</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="mqtt_lwt_retain" checked> Retain LWT
+                    </label>
+                </div>
+            </div>
+        </div>
+        
+        <div class="settings-section">
+            <h3>Test Configuration</h3>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Test Publish Topic:</label>
+                    <input type="text" id="mqtt_test_publish_topic" value="temp/pub">
+                </div>
+                
+                <div class="form-group">
+                    <label>Test Subscribe Topic:</label>
+                    <input type="text" id="mqtt_test_subscribe_topic" value="temp/sub">
+                </div>
+            </div>
+            
+            <div class="btn-group">
+                <button class="btn btn-warning" onclick="testConnection()">Test Connection</button>
+                <button class="btn btn-success" onclick="testPublish()">Test Publish</button>
+            </div>
+        </div>
+        
+        <div class="settings-section">
+            <h3>Connection Status</h3>
+            <div class="mqtt-status">
+                <span class="status-indicator disconnected" id="mqtt-status-indicator"></span>
+                <span class="status-text" id="mqtt-status-text">Disconnected</span>
+                <div style="margin-left: auto;">
+                    <div>Messages Sent: <strong id="mqtt-sent">0</strong></div>
+                    <div>Messages Received: <strong id="mqtt-received">0</strong></div>
+                    <div>Last Error: <strong id="mqtt-error">None</strong></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="btn-group">
+            <button class="btn btn-primary" onclick="saveConfig()">Save Configuration</button>
+            <button class="btn btn-secondary" onclick="loadConfig()">Reload Configuration</button>
+        </div>
+        
+        <div class="file-actions">
+            <h4>Configuration File Management</h4>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="downloadConfig()">Download Configuration</button>
+                <input type="file" id="upload-file" accept=".json" style="display: none;" onchange="uploadConfig(event)">
+                <button class="btn btn-warning" onclick="document.getElementById('upload-file').click()">Upload Configuration</button>
+            </div>
+        </div>
+    </main>
+    
+    <script>
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            loadConfig();
+            updateTopicPreview();
+            setInterval(updateStatus, 5000);
+        });
+        
+        // Update topic preview
+        function updateTopicPreview() {
+            const level1Type = document.getElementById('topic_level1_type').value;
+            const level1Value = document.getElementById('topic_level1_value').value;
+            const level2Type = document.getElementById('topic_level2_type').value;
+            const level2Value = document.getElementById('topic_level2_value').value;
+            const level3Type = document.getElementById('topic_level3_type').value;
+            const level3Value = document.getElementById('topic_level3_value').value;
+            const deviceName = document.getElementById('mqtt_device_name').value || 'device';
+            
+            let topic = '';
+            
+            if (level1Type !== 'skip' && level1Value) {
+                topic += level1Value + '/';
+            }
+            if (level2Type !== 'skip' && level2Value) {
+                topic += level2Value + '/';
+            }
+            if (level3Type !== 'skip' && level3Value) {
+                topic += level3Value + '/';
+            }
+            
+            topic += deviceName + '/telemetry/temperature';
+            
+            document.getElementById('topic-preview').textContent = topic;
+        }
+        
+        // Add event listeners for topic configuration
+        document.getElementById('topic_level1_type').addEventListener('change', function() {
+            const input = document.getElementById('topic_level1_value');
+            if (this.value === 'skip') {
+                input.disabled = true;
+                input.value = '';
+            } else if (this.value === 'custom') {
+                input.disabled = false;
+            } else {
+                input.disabled = false;
+                input.value = this.value;
+            }
+            updateTopicPreview();
+        });
+        
+        document.getElementById('topic_level2_type').addEventListener('change', function() {
+            const input = document.getElementById('topic_level2_value');
+            if (this.value === 'skip') {
+                input.disabled = true;
+                input.value = '';
+            } else if (this.value === 'custom') {
+                input.disabled = false;
+            } else {
+                input.disabled = false;
+                input.value = this.value;
+            }
+            updateTopicPreview();
+        });
+        
+        document.getElementById('topic_level3_type').addEventListener('change', function() {
+            const input = document.getElementById('topic_level3_value');
+            if (this.value === 'skip') {
+                input.disabled = true;
+                input.value = '';
+            } else if (this.value === 'custom') {
+                input.disabled = false;
+            } else {
+                input.disabled = false;
+                input.value = this.value;
+            }
+            updateTopicPreview();
+        });
+        
+        document.getElementById('topic_level1_value').addEventListener('input', updateTopicPreview);
+        document.getElementById('topic_level2_value').addEventListener('input', updateTopicPreview);
+        document.getElementById('topic_level3_value').addEventListener('input', updateTopicPreview);
+        document.getElementById('mqtt_device_name').addEventListener('input', updateTopicPreview);
+        
+        // Show alert message
+        function showAlert(message, type) {
+            const alert = document.getElementById('alert');
+            alert.className = 'alert alert-' + type;
+            alert.textContent = message;
+            alert.style.display = 'block';
+            setTimeout(() => {
+                alert.style.display = 'none';
+            }, 5000);
+        }
+        
+        // Load configuration
+        function loadConfig() {
+            fetch('/api/mqtt/config')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        const config = data.config;
+                        
+                        // Basic settings
+                        document.getElementById('mqtt_enabled').checked = config.enabled;
+                        document.getElementById('mqtt_broker').value = config.broker_host;
+                        document.getElementById('mqtt_port').value = config.broker_port;
+                        document.getElementById('mqtt_use_tls').checked = config.use_tls;
+                        document.getElementById('mqtt_username').value = config.username;
+                        document.getElementById('mqtt_password').value = config.password;
+                        document.getElementById('mqtt_client_id').value = config.client_id;
+                        document.getElementById('mqtt_device_name').value = config.device_name;
+                        
+                        // Topic configuration
+                        if (config.topics) {
+                            document.getElementById('topic_level1_type').value = config.topics.level1_type;
+                            document.getElementById('topic_level1_value').value = config.topics.level1_value;
+                            document.getElementById('topic_level2_type').value = config.topics.level2_type;
+                            document.getElementById('topic_level2_value').value = config.topics.level2_value;
+                            document.getElementById('topic_level3_type').value = config.topics.level3_type;
+                            document.getElementById('topic_level3_value').value = config.topics.level3_value;
+                            
+                            // Trigger change events to update disabled state
+                            document.getElementById('topic_level1_type').dispatchEvent(new Event('change'));
+                            document.getElementById('topic_level2_type').dispatchEvent(new Event('change'));
+                            document.getElementById('topic_level3_type').dispatchEvent(new Event('change'));
+                        }
+                        
+                        // Publishing settings
+                        if (config.publishing) {
+                            document.getElementById('mqtt_retain_telemetry').checked = config.publishing.retain_telemetry;
+                            document.getElementById('mqtt_retain_alarms').checked = config.publishing.retain_alarms;
+                            document.getElementById('mqtt_retain_state').checked = config.publishing.retain_state;
+                        }
+                        
+                        // QoS settings
+                        if (config.qos) {
+                            document.getElementById('mqtt_qos_telemetry').value = config.qos.telemetry;
+                            document.getElementById('mqtt_qos_alarms').value = config.qos.alarms;
+                            document.getElementById('mqtt_qos_commands').value = config.qos.commands;
+                        }
+                        
+                        // LWT settings
+                        if (config.lwt) {
+                            document.getElementById('mqtt_lwt_enabled').checked = config.lwt.enabled;
+                            document.getElementById('mqtt_lwt_message').value = config.lwt.message;
+                            document.getElementById('mqtt_lwt_qos').value = config.lwt.qos;
+                            document.getElementById('mqtt_lwt_retain').checked = config.lwt.retain;
+                        }
+                        
+                        // Test topics
+                        if (config.test) {
+                            document.getElementById('mqtt_test_publish_topic').value = config.test.publish_topic;
+                            document.getElementById('mqtt_test_subscribe_topic').value = config.test.subscribe_topic;
+                        }
+                        
+                        updateTopicPreview();
+                        showAlert('Configuration loaded successfully', 'success');
+                    } else {
+                        showAlert('Failed to load configuration: ' + data.message, 'error');
+                    }
+                })
+                .catch(error => {
+                    showAlert('Error loading configuration: ' + error, 'error');
+                });
+        }
+        
+        // Save configuration
+        function saveConfig() {
+            const config = {
+                enabled: document.getElementById('mqtt_enabled').checked,
+                broker_host: document.getElementById('mqtt_broker').value,
+                broker_port: parseInt(document.getElementById('mqtt_port').value),
+                use_tls: document.getElementById('mqtt_use_tls').checked,
+                username: document.getElementById('mqtt_username').value,
+                password: document.getElementById('mqtt_password').value,
+                client_id: document.getElementById('mqtt_client_id').value,
+                device_name: document.getElementById('mqtt_device_name').value,
+                topics: {
+                    level1_type: document.getElementById('topic_level1_type').value,
+                    level1_value: document.getElementById('topic_level1_value').value,
+                    level2_type: document.getElementById('topic_level2_type').value,
+                    level2_value: document.getElementById('topic_level2_value').value,
+                    level3_type: document.getElementById('topic_level3_type').value,
+                    level3_value: document.getElementById('topic_level3_value').value
+                },
+                publishing: {
+                    retain_telemetry: document.getElementById('mqtt_retain_telemetry').checked,
+                    retain_alarms: document.getElementById('mqtt_retain_alarms').checked,
+                    retain_state: document.getElementById('mqtt_retain_state').checked
+                },
+                qos: {
+                    telemetry: parseInt(document.getElementById('mqtt_qos_telemetry').value),
+                    alarms: parseInt(document.getElementById('mqtt_qos_alarms').value),
+                    commands: parseInt(document.getElementById('mqtt_qos_commands').value)
+                },
+                lwt: {
+                    enabled: document.getElementById('mqtt_lwt_enabled').checked,
+                    message: document.getElementById('mqtt_lwt_message').value,
+                    qos: parseInt(document.getElementById('mqtt_lwt_qos').value),
+                    retain: document.getElementById('mqtt_lwt_retain').checked
+                },
+                test: {
+                    publish_topic: document.getElementById('mqtt_test_publish_topic').value,
+                    subscribe_topic: document.getElementById('mqtt_test_subscribe_topic').value
+                }
+            };
+            
+            fetch('/api/mqtt/config', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(config)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showAlert('Configuration saved successfully', 'success');
+                } else {
+                    showAlert('Failed to save configuration: ' + data.message, 'error');
+                }
+            })
+            .catch(error => {
+                showAlert('Error saving configuration: ' + error, 'error');
+            });
+        }
+        
+        // Update status
+        function updateStatus() {
+            fetch('/api/mqtt/status')
+                .then(response => response.json())
+                .then(data => {
+                    const indicator = document.getElementById('mqtt-status-indicator');
+                    const text = document.getElementById('mqtt-status-text');
+                    
+                    if (data.connected) {
+                        indicator.className = 'status-indicator connected';
+                        text.textContent = 'Connected';
+                    } else {
+                        indicator.className = 'status-indicator disconnected';
+                        text.textContent = 'Disconnected';
+                    }
+                    
+                    document.getElementById('mqtt-sent').textContent = data.messages_sent || 0;
+                    document.getElementById('mqtt-received').textContent = data.messages_received || 0;
+                    document.getElementById('mqtt-error').textContent = data.last_error || 'None';
+                })
+                .catch(error => {
+                    console.error('Error updating status:', error);
+                });
+        }
+        
+        // Test connection
+        function testConnection() {
+            showAlert('Testing connection...', 'info');
+            
+            fetch('/api/mqtt/test', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ action: 'connect' })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showAlert('Connection test successful', 'success');
+                } else {
+                    showAlert('Connection test failed: ' + data.message, 'error');
+                }
+            })
+            .catch(error => {
+                showAlert('Error testing connection: ' + error, 'error');
+            });
+        }
+        
+        // Test publish
+        function testPublish() {
+            const message = prompt('Enter test message:', 'Hello from ESP32');
+            if (!message) return;
+            
+            fetch('/api/mqtt/test', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ 
+                    action: 'publish',
+                    message: message
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showAlert('Test message published successfully', 'success');
+                } else {
+                    showAlert('Failed to publish test message: ' + data.message, 'error');
+                }
+            })
+            .catch(error => {
+                showAlert('Error publishing test message: ' + error, 'error');
+            });
+        }
+        
+        // Download configuration
+        function downloadConfig() {
+            fetch('/api/mqtt/download')
+                .then(response => response.blob())
+                .then(blob => {
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.style.display = 'none';
+                    a.href = url;
+                    a.download = 'mqtt_config.json';
+                    document.body.appendChild(a);
+                    a.click();
+                    window.URL.revokeObjectURL(url);
+                    showAlert('Configuration downloaded', 'success');
+                })
+                .catch(error => {
+                    showAlert('Error downloading configuration: ' + error, 'error');
+                });
+        }
+        
+        // Upload configuration
+        function uploadConfig(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const config = JSON.parse(e.target.result);
+                    
+                    fetch('/api/mqtt/upload', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(config)
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            showAlert('Configuration uploaded successfully', 'success');
+                            loadConfig();
+                        } else {
+                            showAlert('Failed to upload configuration: ' + data.message, 'error');
+                        }
+                    })
+                    .catch(error => {
+                        showAlert('Error uploading configuration: ' + error, 'error');
+                    });
+                } catch (error) {
+                    showAlert('Invalid JSON file: ' + error, 'error');
+                }
+            };
+            reader.readAsText(file);
+        }
+    </script>
+</body>
+</html>

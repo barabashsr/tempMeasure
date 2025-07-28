@@ -25,7 +25,10 @@
 #include <ArduinoJson.h>
 #include <time.h>
 #include <algorithm>
+#include "MQTTManager.h"
 
+// External references
+extern MQTTManager mqttManager;
 
 ConfigManager* ConfigManager::instance = nullptr;
 
@@ -185,6 +188,7 @@ bool ConfigManager::begin() {
     alarmsAPI();
     logsAPI();
     downloadAPI();
+    mqttAPI();
     
 
     
@@ -3034,5 +3038,204 @@ void ConfigManager::downloadAPI() {
         }
         
         file.close();
+    });
+}
+
+/**
+ * @brief Configure MQTT API endpoints
+ * @details Sets up endpoints for MQTT configuration management:
+ *          - GET /api/mqtt/config - Get current MQTT configuration
+ *          - POST /api/mqtt/config - Update MQTT configuration
+ *          - GET /api/mqtt/status - Get MQTT connection status
+ *          - POST /api/mqtt/test - Test MQTT connection or publish
+ *          - GET /api/mqtt/download - Download config file
+ *          - POST /api/mqtt/upload - Upload config file
+ */
+void ConfigManager::mqttAPI() {
+    // Add MQTT settings page handler
+    server->on("/settings-mqtt.html", HTTP_GET, [this]() {
+        if (LittleFS.exists("/settings-mqtt.html")) {
+            server->sendHeader("HTTP/1.1 200 OK", "");
+            server->sendHeader("Content-Type", "text/html");
+            server->sendHeader("Connection", "close");
+            server->sendHeader("Cache-Control", "max-age=3600");
+            File file = LittleFS.open("/settings-mqtt.html", "r");
+            server->streamFile(file, "text/html");
+            file.close();
+            Serial.println("SERVER: /settings-mqtt.html");
+        } else {
+            server->sendHeader("HTTP/1.1 200 OK", "");
+            server->sendHeader("Content-Type", "text/plain");
+            server->sendHeader("Connection", "close");
+            server->send(404, "text/plain", "settings-mqtt.html not found");
+        }
+    });
+    
+    // GET /api/mqtt/config - Get current MQTT configuration
+    server->on("/api/mqtt/config", HTTP_GET, [this]() {
+        DynamicJsonDocument doc(2048);
+        
+        // Get configuration from MQTTManager
+        String configJson = mqttManager.getConfigJson();
+        DeserializationError error = deserializeJson(doc, configJson);
+        
+        if (error) {
+            doc["success"] = false;
+            doc["message"] = "Failed to get MQTT configuration";
+        } else {
+            doc["success"] = true;
+            JsonObject config = doc.createNestedObject("config");
+            config.set(doc.as<JsonObject>());
+            doc.remove("success");
+            doc["success"] = true;
+        }
+        
+        String response;
+        serializeJson(doc, response);
+        server->sendHeader("Content-Type", "application/json");
+        server->sendHeader("Access-Control-Allow-Origin", "*");
+        server->send(200, "application/json", response);
+    });
+    
+    // POST /api/mqtt/config - Update MQTT configuration
+    server->on("/api/mqtt/config", HTTP_POST, [this]() {
+        if (!server->hasArg("plain")) {
+            server->send(400, "application/json", "{\"success\":false,\"message\":\"No configuration data provided\"}");
+            return;
+        }
+        
+        String jsonStr = server->arg("plain");
+        bool result = mqttManager.setConfigJson(jsonStr);
+        
+        DynamicJsonDocument doc(256);
+        doc["success"] = result;
+        doc["message"] = result ? "Configuration updated successfully" : "Failed to update configuration";
+        
+        String response;
+        serializeJson(doc, response);
+        server->sendHeader("Content-Type", "application/json");
+        server->sendHeader("Access-Control-Allow-Origin", "*");
+        server->send(200, "application/json", response);
+        
+        if (result) {
+            Serial.println("MQTT configuration updated via web interface");
+        }
+    });
+    
+    // GET /api/mqtt/status - Get MQTT connection status
+    server->on("/api/mqtt/status", HTTP_GET, [this]() {
+        DynamicJsonDocument doc(512);
+        
+        doc["connected"] = mqttManager.connected();
+        doc["enabled"] = mqttManager.isEnabled();
+        doc["state"] = mqttManager.getState();
+        
+        // Add status descriptions
+        switch(mqttManager.getState()) {
+            case -4: doc["state_text"] = "CONNECTION_TIMEOUT"; break;
+            case -3: doc["state_text"] = "CONNECTION_LOST"; break;
+            case -2: doc["state_text"] = "CONNECT_FAILED"; break;
+            case -1: doc["state_text"] = "DISCONNECTED"; break;
+            case 0:  doc["state_text"] = "CONNECTED"; break;
+            case 1:  doc["state_text"] = "CONNECT_BAD_PROTOCOL"; break;
+            case 2:  doc["state_text"] = "CONNECT_BAD_CLIENT_ID"; break;
+            case 3:  doc["state_text"] = "CONNECT_UNAVAILABLE"; break;
+            case 4:  doc["state_text"] = "CONNECT_BAD_CREDENTIALS"; break;
+            case 5:  doc["state_text"] = "CONNECT_UNAUTHORIZED"; break;
+            default: doc["state_text"] = "UNKNOWN"; break;
+        }
+        
+        // TODO: Add message counters when implemented
+        doc["messages_sent"] = 0;
+        doc["messages_received"] = 0;
+        doc["last_error"] = "None";
+        
+        String response;
+        serializeJson(doc, response);
+        server->sendHeader("Content-Type", "application/json");
+        server->sendHeader("Access-Control-Allow-Origin", "*");
+        server->send(200, "application/json", response);
+    });
+    
+    // POST /api/mqtt/test - Test MQTT connection or publish
+    server->on("/api/mqtt/test", HTTP_POST, [this]() {
+        if (!server->hasArg("plain")) {
+            server->send(400, "application/json", "{\"success\":false,\"message\":\"No test parameters provided\"}");
+            return;
+        }
+        
+        DynamicJsonDocument doc(512);
+        DeserializationError error = deserializeJson(doc, server->arg("plain"));
+        
+        if (error) {
+            server->send(400, "application/json", "{\"success\":false,\"message\":\"Invalid JSON\"}");
+            return;
+        }
+        
+        String action = doc["action"] | "";
+        DynamicJsonDocument response(256);
+        
+        if (action == "connect") {
+            // Test connection
+            if (mqttManager.connected()) {
+                response["success"] = true;
+                response["message"] = "Already connected to MQTT broker";
+            } else {
+                mqttManager.reconnect();
+                delay(1000); // Give it a moment to connect
+                response["success"] = mqttManager.connected();
+                response["message"] = response["success"] ? "Connected successfully" : "Connection failed";
+            }
+        } else if (action == "publish") {
+            // Test publish
+            String message = doc["message"] | "Test message from ESP32";
+            bool result = mqttManager.testPublish(message);
+            response["success"] = result;
+            response["message"] = result ? "Message published successfully" : "Failed to publish message";
+        } else {
+            response["success"] = false;
+            response["message"] = "Unknown action";
+        }
+        
+        String responseStr;
+        serializeJson(response, responseStr);
+        server->sendHeader("Content-Type", "application/json");
+        server->sendHeader("Access-Control-Allow-Origin", "*");
+        server->send(200, "application/json", responseStr);
+    });
+    
+    // GET /api/mqtt/download - Download configuration file
+    server->on("/api/mqtt/download", HTTP_GET, [this]() {
+        String configJson = mqttManager.getConfigJson();
+        
+        server->sendHeader("Content-Type", "application/json");
+        server->sendHeader("Content-Disposition", "attachment; filename=\"mqtt_config.json\"");
+        server->sendHeader("Access-Control-Allow-Origin", "*");
+        server->send(200, "application/json", configJson);
+    });
+    
+    // POST /api/mqtt/upload - Upload configuration file
+    server->on("/api/mqtt/upload", HTTP_POST, [this]() {
+        if (!server->hasArg("plain")) {
+            server->send(400, "application/json", "{\"success\":false,\"message\":\"No configuration data provided\"}");
+            return;
+        }
+        
+        String jsonStr = server->arg("plain");
+        bool result = mqttManager.setConfigJson(jsonStr);
+        
+        DynamicJsonDocument doc(256);
+        doc["success"] = result;
+        doc["message"] = result ? "Configuration uploaded and applied successfully" : "Failed to apply configuration";
+        
+        String response;
+        serializeJson(doc, response);
+        server->sendHeader("Content-Type", "application/json");
+        server->sendHeader("Access-Control-Allow-Origin", "*");
+        server->send(200, "application/json", response);
+        
+        if (result) {
+            Serial.println("MQTT configuration uploaded via web interface");
+        }
     });
 }

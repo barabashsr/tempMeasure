@@ -127,6 +127,12 @@ private:
      * @details Configures endpoints for downloading log files and configurations
      */
     void downloadAPI();
+    
+    /**
+     * @brief Setup MQTT API endpoints
+     * @details Configures endpoints for MQTT configuration and management
+     */
+    void mqttAPI();
 
     
     // Save sensor configuration to file

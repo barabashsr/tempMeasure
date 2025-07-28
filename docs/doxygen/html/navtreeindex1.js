@@ -1,5 +1,7 @@
 var NAVTREEINDEX1 =
 {
+"class_indicator_interface.html#a52dd1fa732e288e344fe017f100d6c0d":[0,0,4,41],
+"class_indicator_interface.html#a54182aa1c8eb74b781bea42002efb18e":[0,0,4,89],
 "class_indicator_interface.html#a54fa76657f9ef0c9e19b6e94d682fb65":[0,0,4,25],
 "class_indicator_interface.html#a55da41c64cf3538a8bbb5252dd38b885":[0,0,4,5],
 "class_indicator_interface.html#a56c23034a963e2099e36cf55ec70055e":[0,0,4,7],
@@ -247,7 +249,5 @@ var NAVTREEINDEX1 =
 "class_measurement_point.html#a7b74a18d86e0e545264a774aa2c31cad":[0,0,6,4],
 "class_measurement_point.html#a81c7ae93a9314344967d0f31c6fefe2f":[0,0,6,6],
 "class_measurement_point.html#a8677e00e0be369d7874f4982990dc56d":[0,0,6,11],
-"class_measurement_point.html#a8ee3863bb5548fe9c919234aff8ee0b6":[0,0,6,2],
-"class_measurement_point.html#a9b17fba6e1ea928d4aa88abf28731fc7":[0,0,6,25],
-"class_measurement_point.html#aa3a80d373c7609c7b178bf7353ffdd7a":[0,0,6,13]
+"class_measurement_point.html#a8ee3863bb5548fe9c919234aff8ee0b6":[0,0,6,2]
 };

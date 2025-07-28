@@ -95,6 +95,7 @@
     <member refid="class_config_manager_1ae605c999fabc6344511f455618655326" kind="function"><name>alarmsAPI</name></member>
     <member refid="class_config_manager_1a9e977107b4795fcbce0482711ff1ce7a" kind="function"><name>logsAPI</name></member>
     <member refid="class_config_manager_1a3b28982c79587a287c8ddf0acf47f71d" kind="function"><name>downloadAPI</name></member>
+    <member refid="class_config_manager_1aeaf809f5fcc5b5be963935c533a56e49" kind="function"><name>mqttAPI</name></member>
     <member refid="class_config_manager_1a93a63ddc3f7efd83e80345826493a45d" kind="function"><name>onConfigChanged</name></member>
     <member refid="class_config_manager_1abb5e68671c5a8087abb50b289d3522b4" kind="function"><name>ConfigManager</name></member>
     <member refid="class_config_manager_1a7fa65fdff98bdd5bbbf72196bd9ccf17" kind="function"><name>~ConfigManager</name></member>
@@ -960,6 +961,7 @@
   <compound refid="_alarm_8cpp" kind="file"><name>Alarm.cpp</name>
   </compound>
   <compound refid="_config_manager_8cpp" kind="file"><name>ConfigManager.cpp</name>
+    <member refid="_config_manager_8cpp_1a6b542f1a2b6fe18cd432d4c17b1afed7" kind="variable"><name>mqttManager</name></member>
     <member refid="_config_manager_8cpp_1aebf5c53a9cc4344b37db0940a8e91591" kind="variable"><name>PROGMEM</name></member>
   </compound>
   <compound refid="_c_s_v_config_manager_8cpp" kind="file"><name>CSVConfigManager.cpp</name>
