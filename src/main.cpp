@@ -93,8 +93,6 @@ TimeManager timeManager(I2C_SDA, I2C_SCL);
 
 /// Data and event logger with SD card storage
 LoggerManager logger(controller, timeManager, SD);
-/// MQTT manager for cloud connectivity
-MQTTManager mqttManager;
 /// Flag to track MQTT initialization
 bool mqttInitialized = false;
 /// Flag to track first WiFi connection
@@ -280,7 +278,7 @@ void loop() {
         // Initialize MQTT if not already done and WiFi has been connected
         if (!mqttInitialized && wifiWasConnected) {
             Serial.println("WiFi stable, initializing MQTT...");
-            if (mqttManager.begin()) {
+            if (MQTTManager::begin()) {
                 Serial.println("MQTT manager initialized successfully");
                 mqttInitialized = true;
             } else {
@@ -296,7 +294,7 @@ void loop() {
         
         // Process MQTT loop if initialized
         if (mqttInitialized) {
-            mqttManager.loop();
+            MQTTManager::loop();
         }
     } else {
         // WiFi disconnected - reset flags

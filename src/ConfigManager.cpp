@@ -3073,24 +3073,27 @@ void ConfigManager::mqttAPI() {
     
     // GET /api/mqtt/config - Get current MQTT configuration
     server->on("/api/mqtt/config", HTTP_GET, [this]() {
-        DynamicJsonDocument doc(2048);
+        // Get configuration JSON directly from MQTTManager
+        String configJson = MQTTManager::getConfigJson();
         
-        // Get configuration from MQTTManager
-        String configJson = mqttManager.getConfigJson();
+        // Use JsonDocument for wrapper
+        JsonDocument doc;
         DeserializationError error = deserializeJson(doc, configJson);
         
         if (error) {
+            doc.clear();
             doc["success"] = false;
             doc["message"] = "Failed to get MQTT configuration";
         } else {
-            doc["success"] = true;
-            JsonObject config = doc.createNestedObject("config");
-            config.set(doc.as<JsonObject>());
-            doc.remove("success");
-            doc["success"] = true;
+            // Create wrapper with success and config
+            JsonDocument wrapper;
+            wrapper["success"] = true;
+            wrapper["config"] = doc;
+            doc = wrapper;
         }
         
         String response;
+        response.reserve(1536);
         serializeJson(doc, response);
         server->sendHeader("Content-Type", "application/json");
         server->sendHeader("Access-Control-Allow-Origin", "*");
@@ -3107,11 +3110,12 @@ void ConfigManager::mqttAPI() {
         String jsonStr = server->arg("plain");
         bool result = mqttManager.setConfigJson(jsonStr);
         
-        DynamicJsonDocument doc(256);
+        StaticJsonDocument<256> doc;
         doc["success"] = result;
         doc["message"] = result ? "Configuration updated successfully" : "Failed to update configuration";
         
         String response;
+        response.reserve(256);
         serializeJson(doc, response);
         server->sendHeader("Content-Type", "application/json");
         server->sendHeader("Access-Control-Allow-Origin", "*");
@@ -3124,14 +3128,14 @@ void ConfigManager::mqttAPI() {
     
     // GET /api/mqtt/status - Get MQTT connection status
     server->on("/api/mqtt/status", HTTP_GET, [this]() {
-        DynamicJsonDocument doc(512);
+        JsonDocument doc;
         
-        doc["connected"] = mqttManager.connected();
-        doc["enabled"] = mqttManager.isEnabled();
-        doc["state"] = mqttManager.getState();
+        doc["connected"] = MQTTManager::connected();
+        doc["enabled"] = MQTTManager::isEnabled();
+        doc["state"] = MQTTManager::getState();
         
         // Add status descriptions
-        switch(mqttManager.getState()) {
+        switch(MQTTManager::getState()) {
             case -4: doc["state_text"] = "CONNECTION_TIMEOUT"; break;
             case -3: doc["state_text"] = "CONNECTION_LOST"; break;
             case -2: doc["state_text"] = "CONNECT_FAILED"; break;
@@ -3177,13 +3181,13 @@ void ConfigManager::mqttAPI() {
         
         if (action == "connect") {
             // Test connection
-            if (mqttManager.connected()) {
+            if (MQTTManager::connected()) {
                 response["success"] = true;
                 response["message"] = "Already connected to MQTT broker";
             } else {
-                mqttManager.reconnect();
+                MQTTManager::reconnect();
                 delay(1000); // Give it a moment to connect
-                response["success"] = mqttManager.connected();
+                response["success"] = MQTTManager::connected();
                 response["message"] = response["success"] ? "Connected successfully" : "Connection failed";
             }
         } else if (action == "publish") {

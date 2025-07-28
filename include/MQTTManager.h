@@ -71,7 +71,7 @@ struct MQTTConfig {
 
 /**
  * @class MQTTManager
- * @brief Manages MQTT connection and communication with broker
+ * @brief Static/Singleton MQTT manager for global access
  * 
  * @details This class handles all MQTT operations including:
  * - Configurable connection to MQTT broker
@@ -80,23 +80,28 @@ struct MQTTConfig {
  * - Message subscription with callback handling
  * - JSON configuration from SD card
  * - Verbose debug output for troubleshooting
+ * - Non-blocking connection with timeout
  */
 class MQTTManager {
 private:
-    MQTTConfig config;               ///< Configuration loaded from JSON
-    bool configLoaded;               ///< Flag indicating if config is loaded
+    static MQTTConfig config;               ///< Configuration loaded from JSON
+    static bool configLoaded;               ///< Flag indicating if config is loaded
     
-    WiFiClientSecure wifiClient;     ///< Secure WiFi client for SSL connection
-    WiFiClient wifiClientInsecure;   ///< Insecure WiFi client for non-SSL
-    PubSubClient mqttClient;         ///< MQTT client instance
+    static WiFiClientSecure wifiClient;     ///< Secure WiFi client for SSL connection
+    static WiFiClient wifiClientInsecure;   ///< Insecure WiFi client for non-SSL
+    static PubSubClient mqttClient;         ///< MQTT client instance
     
-    bool isConnected;                ///< Connection status flag
-    unsigned long lastReconnectAttempt; ///< Timestamp of last reconnection attempt
+    static bool isConnected;                ///< Connection status flag
+    static unsigned long lastReconnectAttempt; ///< Timestamp of last reconnection attempt
     static constexpr unsigned long RECONNECT_INTERVAL = 5000; ///< Reconnection interval in milliseconds
     
-    unsigned long lastPublishTime;       ///< Timestamp of last publish
+    static unsigned long lastPublishTime;       ///< Timestamp of last publish
     static constexpr unsigned long PUBLISH_INTERVAL = 1000; ///< Publish interval in milliseconds (1 second)
-    unsigned long publishCounter;        ///< Counter for incrementing numbers
+    static unsigned long publishCounter;        ///< Counter for incrementing numbers
+    
+    static bool connectInProgress;          ///< Non-blocking connection in progress
+    static unsigned long connectStartTime;  ///< Connection attempt start time
+    static constexpr unsigned long CONNECT_TIMEOUT = 5000; ///< Connection timeout in milliseconds
     
     /**
      * @brief Static callback function for MQTT message reception
@@ -107,110 +112,104 @@ private:
     static void messageCallback(char* topic, byte* payload, unsigned int length);
     
     /**
-     * @brief Static pointer to the current instance for callback routing
-     */
-    static MQTTManager* instance;
-    
-    /**
-     * @brief Instance method to handle received messages
+     * @brief Static method to handle received messages
      * @param topic The topic on which message was received
      * @param payload The message payload as byte array
      * @param length The length of the payload
      */
-    void handleMessage(char* topic, byte* payload, unsigned int length);
+    static void handleMessage(char* topic, byte* payload, unsigned int length);
     
     /**
-     * @brief Attempt to connect to MQTT broker
-     * @return true if connection successful, false otherwise
+     * @brief Attempt to connect to MQTT broker (non-blocking)
+     * @return true if connection successful, false if still connecting, throws on error
      */
-    bool attemptConnection();
+    static bool attemptConnection();
+    
+    /**
+     * @brief Check non-blocking connection progress
+     * @return true if connected, false if still connecting
+     */
+    static bool checkConnectionProgress();
+    
+    /**
+     * @brief Private constructor to prevent instantiation
+     */
+    MQTTManager() = delete;
 
 public:
-    /**
-     * @brief Constructor for MQTTManager
-     */
-    MQTTManager();
-    
-    /**
-     * @brief Destructor for MQTTManager
-     */
-    ~MQTTManager();
-    
     /**
      * @brief Initialize MQTT manager and establish connection
      * @return true if initialization successful, false otherwise
      */
-    bool begin();
+    static bool begin();
     
     /**
      * @brief Main loop function to handle MQTT operations
      * @details Must be called regularly to maintain connection and process messages
      */
-    void loop();
+    static void loop();
     
     /**
      * @brief Publish a message to the hardcoded publish topic
      * @param message The message to publish
      * @return true if publish successful, false otherwise
      */
-    bool publish(const char* message);
+    static bool publish(const char* message);
     
     /**
      * @brief Publish a message to the hardcoded publish topic
      * @param message The message to publish as String
      * @return true if publish successful, false otherwise
      */
-    bool publish(const String& message);
+    static bool publish(const String& message);
     
     /**
      * @brief Check if connected to MQTT broker
      * @return true if connected, false otherwise
-     * @note Cannot be const due to PubSubClient library limitations
      */
-    bool connected();
+    static bool connected();
     
     /**
      * @brief Force reconnection to MQTT broker
      */
-    void reconnect();
+    static void reconnect();
     
     /**
      * @brief Get the current MQTT client state
      * @return MQTT client state code
-     * @note Cannot be const due to PubSubClient library limitations
      */
-    int getState();
+    static int getState();
     
     /**
      * @brief Load configuration from JSON file on SD card
      * @return true if configuration loaded successfully
      */
-    bool loadConfig();
+    static bool loadConfig();
     
     /**
      * @brief Save configuration to JSON file on SD card
      * @return true if configuration saved successfully
      */
-    bool saveConfig();
+    static bool saveConfig();
     
     /**
      * @brief Get current configuration
      * @return Reference to current configuration
      */
-    const MQTTConfig& getConfig() const { return config; }
+    static const MQTTConfig& getConfig() { return config; }
     
     /**
      * @brief Set new configuration
      * @param newConfig New configuration to apply
      * @return true if configuration applied successfully
      */
-    bool setConfig(const MQTTConfig& newConfig);
+    static bool setConfig(const MQTTConfig& newConfig);
     
     /**
      * @brief Check if MQTT is enabled
      * @return true if MQTT is enabled in configuration
      */
-    bool isEnabled() const { return configLoaded && config.enabled; }
+    static bool isEnabled() { return configLoaded && config.enabled; }
     
     /**
      * @brief Build topic string based on configuration
@@ -218,27 +217,27 @@ public:
      * @param subtopic Specific subtopic
      * @return Complete topic string
      */
-    String buildTopic(const String& topicType, const String& subtopic = "") const;
+    static String buildTopic(const String& topicType, const String& subtopic = "");
     
     /**
      * @brief Test publish to configured test topic
      * @param message Message to publish
      * @return true if publish successful
      */
-    bool testPublish(const String& message);
+    static bool testPublish(const String& message);
     
     /**
      * @brief Get configuration as JSON string
      * @return JSON string representation of configuration
      */
-    String getConfigJson() const;
+    static String getConfigJson();
     
     /**
      * @brief Set configuration from JSON string
      * @param jsonStr JSON string containing configuration
      * @return true if configuration parsed and applied successfully
      */
-    bool setConfigJson(const String& jsonStr);
+    static bool setConfigJson(const String& jsonStr);
 };
 
 #endif // MQTT_MANAGER_H

@@ -66,3 +66,4 @@ cat .claude/sessions/current/DOC_SUMMARY.md
 - do not commit after codding before I have tested the code on the real hardware
 - NEVER do not try to upload the firmware. Always ask me to do it.
 - NEVER try to uplaod the firmware, ask me to do this.
+- USE SUBAGENTS to distribute the tasks
