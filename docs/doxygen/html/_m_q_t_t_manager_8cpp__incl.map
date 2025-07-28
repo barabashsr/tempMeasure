@@ -1,19 +1,87 @@
 <map id="src/MQTTManager.cpp" name="src/MQTTManager.cpp">
-<area shape="rect" id="Node000001" title="Implementation of basic MQTT Manager for temperature controller." alt="" coords="328,5,482,31"/>
-<area shape="rect" id="Node000002" href="$_m_q_t_t_manager_8h.html" title="Basic MQTT Manager for temperature controller with HiveMQ Cloud connection." alt="" coords="346,79,464,105"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="408,31,408,63,402,63,402,31"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="5,153,82,178"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="346,107,97,155,96,150,345,101"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="106,153,165,178"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="359,108,181,155,180,150,358,103"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="190,153,324,178"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="381,108,297,148,295,143,379,103"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="349,153,461,178"/>
-<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="408,105,408,137,402,137,402,105"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="485,153,589,178"/>
-<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="428,103,503,143,500,147,426,108"/>
-<area shape="rect" id="Node000008" title=" " alt="" coords="612,153,664,178"/>
-<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="446,103,598,149,597,154,444,108"/>
-<area shape="rect" id="Node000009" title=" " alt="" coords="688,153,738,178"/>
-<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="465,102,673,150,672,155,464,107"/>
+<area shape="rect" id="Node000001" title="Implementation of MQTT Manager using 256dpi/MQTT library." alt="" coords="829,5,984,31"/>
+<area shape="rect" id="Node000002" href="$_m_q_t_t_manager_8h.html" title="MQTT Manager for temperature controller using 256dpi/MQTT library." alt="" coords="1398,300,1516,326"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="930,29,1423,290,1420,295,928,34"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="978,447,1038,473"/>
+<area shape="poly" id="edge54_Node000001_Node000004" title=" " alt="" coords="903,33,821,211,776,314,753,374,750,387,753,398,766,409,786,418,842,434,906,445,963,452,962,458,905,451,841,440,784,423,763,413,748,401,744,387,748,373,771,312,816,209,899,30"/>
+<area shape="rect" id="Node000010" href="$_temperature_controller_8h.html" title="Central temperature monitoring and control system." alt="" coords="522,79,681,105"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="855,34,669,78,667,72,854,29"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="591,447,667,473"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1398,326,1081,376,1057,389,1033,402,938,427,842,444,754,454,683,459,683,454,754,449,841,439,937,422,1031,397,1055,384,1079,371,1397,320"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="1398,326,1242,353,1134,376,1079,406,1034,440,1031,435,1076,402,1132,371,1241,348,1397,321"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="1279,374,1414,399"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="1440,328,1379,367,1377,363,1437,324"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="1438,374,1506,399"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="1462,325,1469,358,1464,359,1457,326"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="1490,447,1595,473"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="1475,324,1498,345,1520,372,1533,402,1541,432,1536,433,1528,404,1515,375,1494,349,1471,328"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="969,374,1020,399"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="1398,326,1380,328,1209,349,1134,359,1039,376,1036,377,1035,372,1038,371,1134,354,1208,344,1380,323,1397,320"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="895,374,945,399"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="1398,326,1380,328,1263,341,1171,347,1078,356,960,376,959,371,1078,351,1171,342,1263,335,1380,323,1397,321"/>
+<area shape="poly" id="edge10_Node000010_Node000003" title=" " alt="" coords="521,99,372,109,287,119,204,133,127,152,65,175,42,189,24,204,13,220,9,238,9,314,10,362,17,380,33,397,62,409,115,419,268,436,438,448,576,454,576,460,438,453,267,442,114,425,61,414,30,402,13,382,5,363,4,314,4,238,8,218,20,200,39,184,63,170,126,147,202,128,287,114,372,104,521,93"/>
+<area shape="poly" id="edge52_Node000010_Node000007" title=" " alt="" coords="681,93,935,106,1254,131,1404,150,1528,173,1577,187,1614,202,1638,219,1647,237,1647,314,1639,352,1621,387,1596,416,1572,439,1569,436,1593,413,1616,384,1634,351,1641,314,1641,238,1634,222,1611,207,1575,192,1527,179,1403,155,1254,137,935,111,681,99"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="762,374,819,399"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="682,101,846,127,1045,168,1141,195,1226,225,1294,260,1319,279,1338,298,1364,324,1365,329,1360,333,1337,336,1199,345,884,376,835,382,834,377,884,371,1198,340,1336,330,1359,328,1360,327,1360,327,1334,302,1316,283,1291,264,1224,230,1139,200,1044,174,845,132,681,106"/>
+<area shape="rect" id="Node000012" href="$_sensor_8h.html" title="Temperature sensor abstraction layer." alt="" coords="240,300,312,326"/>
+<area shape="poly" id="edge12_Node000010_Node000012" title=" " alt="" coords="522,105,412,124,365,138,334,155,310,184,294,219,285,254,280,285,275,284,280,253,289,217,306,181,330,151,363,133,411,119,521,100"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="44,374,127,399"/>
+<area shape="poly" id="edge50_Node000010_Node000013" title=" " alt="" coords="522,99,471,105,416,115,359,131,307,155,272,177,240,202,181,260,135,317,103,362,99,359,131,314,177,256,236,198,269,172,304,150,358,126,414,110,470,99,521,93"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="375,374,516,399"/>
+<area shape="poly" id="edge51_Node000010_Node000014" title=" " alt="" coords="522,105,464,123,436,137,411,155,390,176,378,198,374,222,379,251,388,282,402,311,430,359,426,362,397,313,383,284,373,253,369,222,373,196,386,173,408,151,433,132,462,118,520,100"/>
+<area shape="rect" id="Node000016" href="$_measurement_point_8h.html" title="Measurement point abstraction for temperature monitoring system." alt="" coords="476,226,617,252"/>
+<area shape="poly" id="edge17_Node000010_Node000016" title=" " alt="" coords="599,106,559,213,554,211,594,104"/>
+<area shape="rect" id="Node000023" href="$_register_map_8h.html" title="Modbus register mapping for temperature monitoring system." alt="" coords="421,153,528,178"/>
+<area shape="poly" id="edge33_Node000010_Node000023" title=" " alt="" coords="581,108,511,147,508,142,578,103"/>
+<area shape="rect" id="Node000025" href="$_indicator_interface_8h.html" title="Hardware interface for PCF8575 I/O expander and SH1106 OLED display." alt="" coords="945,226,1079,252"/>
+<area shape="poly" id="edge36_Node000010_Node000025" title=" " alt="" coords="617,103,667,139,699,159,733,176,782,194,834,208,930,226,929,231,833,213,781,199,731,181,696,164,664,144,614,107"/>
+<area shape="rect" id="Node000030" href="$_alarm_8h.html" title="Alarm management system for temperature monitoring." alt="" coords="603,153,669,178"/>
+<area shape="poly" id="edge45_Node000010_Node000030" title=" " alt="" coords="609,104,626,137,621,140,605,106"/>
+<area shape="rect" id="Node000031" title=" " alt="" coords="744,153,818,178"/>
+<area shape="poly" id="edge53_Node000010_Node000031" title=" " alt="" coords="633,103,737,144,735,149,631,108"/>
+<area shape="poly" id="edge13_Node000012_Node000003" title=" " alt="" coords="249,329,222,343,199,360,186,379,186,388,191,398,217,416,256,430,306,441,361,449,477,456,575,457,575,463,477,461,361,454,305,446,255,435,215,421,187,401,181,390,181,378,195,357,219,338,246,324"/>
+<area shape="poly" id="edge14_Node000012_Node000013" title=" " alt="" coords="245,329,133,370,131,365,243,324"/>
+<area shape="poly" id="edge15_Node000012_Node000014" title=" " alt="" coords="306,324,403,365,401,370,304,329"/>
+<area shape="rect" id="Node000015" title=" " alt="" coords="202,374,350,399"/>
+<area shape="poly" id="edge16_Node000012_Node000015" title=" " alt="" coords="279,326,279,358,273,358,273,326"/>
+<area shape="poly" id="edge18_Node000016_Node000003" title=" " alt="" coords="551,252,561,316,572,358,588,398,611,434,606,437,583,401,567,359,556,317,545,253"/>
+<area shape="poly" id="edge19_Node000016_Node000012" title=" " alt="" coords="501,255,328,301,326,295,500,250"/>
+<area shape="rect" id="Node000017" href="$_logger_manager_8h.html" title="Comprehensive data and event logging system for temperature monitoring." alt="" coords="844,300,964,326"/>
+<area shape="poly" id="edge20_Node000016_Node000017" title=" " alt="" coords="608,250,829,294,828,299,607,255"/>
+<area shape="poly" id="edge21_Node000017_Node000003" title=" " alt="" coords="899,328,874,364,855,384,833,402,797,421,757,436,684,454,682,449,756,431,794,417,830,397,851,380,869,361,895,324"/>
+<area shape="poly" id="edge23_Node000017_Node000008" title=" " alt="" coords="921,324,969,362,966,366,918,328"/>
+<area shape="poly" id="edge22_Node000017_Node000009" title=" " alt="" coords="909,325,916,358,911,359,904,326"/>
+<area shape="poly" id="edge32_Node000017_Node000011" title=" " alt="" coords="886,328,824,367,821,363,883,324"/>
+<area shape="rect" id="Node000018" href="$_time_manager_8h.html" title="Real&#45;time clock and time synchronization management." alt="" coords="1145,374,1255,399"/>
+<area shape="poly" id="edge24_Node000017_Node000018" title=" " alt="" coords="955,324,1136,367,1134,372,954,329"/>
+<area shape="poly" id="edge25_Node000018_Node000003" title=" " alt="" coords="1145,397,683,455,683,450,1144,392"/>
+<area shape="poly" id="edge26_Node000018_Node000004" title=" " alt="" coords="1168,402,1053,445,1051,440,1166,397"/>
+<area shape="poly" id="edge31_Node000018_Node000007" title=" " alt="" coords="1256,397,1476,442,1475,448,1255,402"/>
+<area shape="rect" id="Node000019" title=" " alt="" coords="1400,447,1459,473"/>
+<area shape="poly" id="edge27_Node000018_Node000019" title=" " alt="" coords="1240,397,1385,442,1384,447,1238,402"/>
+<area shape="rect" id="Node000020" title=" " alt="" coords="1170,447,1243,473"/>
+<area shape="poly" id="edge28_Node000018_Node000020" title=" " alt="" coords="1204,399,1207,432,1201,432,1198,400"/>
+<area shape="rect" id="Node000021" title=" " alt="" coords="1268,447,1361,473"/>
+<area shape="poly" id="edge29_Node000018_Node000021" title=" " alt="" coords="1221,398,1283,436,1281,441,1218,402"/>
+<area shape="rect" id="Node000022" title=" " alt="" coords="1062,447,1146,473"/>
+<area shape="poly" id="edge30_Node000018_Node000022" title=" " alt="" coords="1185,402,1133,440,1130,436,1182,398"/>
+<area shape="poly" id="edge35_Node000023_Node000016" title=" " alt="" coords="488,177,525,213,522,217,485,180"/>
+<area shape="rect" id="Node000024" title=" " alt="" coords="388,226,452,252"/>
+<area shape="poly" id="edge34_Node000023_Node000024" title=" " alt="" coords="468,180,440,216,436,212,463,177"/>
+<area shape="poly" id="edge37_Node000025_Node000003" title=" " alt="" coords="945,255,878,273,809,302,761,334,717,371,651,438,647,434,713,367,758,330,807,298,876,268,944,250"/>
+<area shape="poly" id="edge43_Node000025_Node000011" title=" " alt="" coords="946,252,887,270,859,284,834,302,813,329,800,360,795,358,808,327,830,298,856,279,885,265,944,247"/>
+<area shape="poly" id="edge44_Node000025_Node000017" title=" " alt="" coords="995,255,937,293,934,289,992,250"/>
+<area shape="poly" id="edge38_Node000025_Node000019" title=" " alt="" coords="1079,241,1201,248,1342,259,1465,275,1507,286,1530,298,1538,316,1540,341,1534,370,1520,401,1499,424,1473,442,1470,438,1495,420,1515,398,1529,368,1535,340,1533,317,1526,302,1505,291,1464,281,1342,264,1201,253,1079,246"/>
+<area shape="rect" id="Node000026" title=" " alt="" coords="989,300,1035,326"/>
+<area shape="poly" id="edge39_Node000025_Node000026" title=" " alt="" coords="1015,252,1015,284,1009,284,1009,252"/>
+<area shape="rect" id="Node000027" title=" " alt="" coords="1059,300,1112,326"/>
+<area shape="poly" id="edge40_Node000025_Node000027" title=" " alt="" coords="1026,250,1064,287,1060,291,1022,254"/>
+<area shape="rect" id="Node000028" title=" " alt="" coords="1136,300,1224,326"/>
+<area shape="poly" id="edge41_Node000025_Node000028" title=" " alt="" coords="1041,250,1138,291,1136,296,1039,255"/>
+<area shape="rect" id="Node000029" title=" " alt="" coords="1247,300,1323,326"/>
+<area shape="poly" id="edge42_Node000025_Node000029" title=" " alt="" coords="1059,250,1232,295,1231,300,1058,255"/>
+<area shape="poly" id="edge46_Node000030_Node000003" title=" " alt="" coords="638,179,633,432,627,432,633,179"/>
+<area shape="poly" id="edge47_Node000030_Node000011" title=" " alt="" coords="646,177,776,360,772,363,642,180"/>
+<area shape="poly" id="edge48_Node000030_Node000016" title=" " alt="" coords="622,181,575,219,572,214,619,177"/>
+<area shape="poly" id="edge49_Node000030_Node000017" title=" " alt="" coords="660,177,869,290,867,294,657,181"/>
 </map>

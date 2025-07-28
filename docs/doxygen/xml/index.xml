@@ -440,44 +440,43 @@
     <member refid="struct_m_q_t_t_config_1a2a1e0a221a06c7ff2dd4e815811b782d" kind="variable"><name>lwt_retain</name></member>
     <member refid="struct_m_q_t_t_config_1aa94258b9eacc20ecf243181958553d1e" kind="variable"><name>test_publish_topic</name></member>
     <member refid="struct_m_q_t_t_config_1a3aba9b60317b2f523b51092936cba37a" kind="variable"><name>test_subscribe_topic</name></member>
+    <member refid="struct_m_q_t_t_config_1a9f369aa77babd8f88d5265d41d2419a3" kind="variable"><name>telemetry_interval</name></member>
   </compound>
   <compound refid="class_m_q_t_t_manager" kind="class"><name>MQTTManager</name>
     <member refid="class_m_q_t_t_manager_1a3bc5e9366746360ca989a12cbe594338" kind="variable"><name>config</name></member>
     <member refid="class_m_q_t_t_manager_1a40421587ffcaf38da5189de4fd721dcf" kind="variable"><name>configLoaded</name></member>
-    <member refid="class_m_q_t_t_manager_1a39ad7e75f56664b1f8c5191798d6835e" kind="variable"><name>wifiClient</name></member>
-    <member refid="class_m_q_t_t_manager_1a9a2a868ab4ca4856a70d466047310bdf" kind="variable"><name>wifiClientInsecure</name></member>
-    <member refid="class_m_q_t_t_manager_1a89a2f7d33295fccd3507f34ac9df0508" kind="variable"><name>mqttClient</name></member>
+    <member refid="class_m_q_t_t_manager_1aea5e63c1823a6fbd8c0622fbd060aae4" kind="variable"><name>wifiClient</name></member>
+    <member refid="class_m_q_t_t_manager_1a6804a792b125ec236ad62dbfeee65c48" kind="variable"><name>wifiClientSecure</name></member>
+    <member refid="class_m_q_t_t_manager_1aa671b3227f467969d40927bf9ecd090c" kind="variable"><name>mqttClient</name></member>
     <member refid="class_m_q_t_t_manager_1af868832c1d807e4c416a4da46b0808d7" kind="variable"><name>isConnected</name></member>
     <member refid="class_m_q_t_t_manager_1ac33a3f71ab1a3d601c5d4fe93e2b6077" kind="variable"><name>lastReconnectAttempt</name></member>
     <member refid="class_m_q_t_t_manager_1ac8d002476a7bd769e7c36b05298173db" kind="variable"><name>RECONNECT_INTERVAL</name></member>
-    <member refid="class_m_q_t_t_manager_1ac80e68f1c4ff7a778786c4cf669144c2" kind="variable"><name>lastPublishTime</name></member>
-    <member refid="class_m_q_t_t_manager_1a36f27fe8d5a3e83c9804d2072bc20517" kind="variable"><name>PUBLISH_INTERVAL</name></member>
+    <member refid="class_m_q_t_t_manager_1ae5de7818b911e1fba9705fd17b39b8c8" kind="variable"><name>lastTelemetryPublish</name></member>
+    <member refid="class_m_q_t_t_manager_1aaedfdffed76c75fd893e52dcbf02dd98" kind="variable"><name>publishIntervalMs</name></member>
     <member refid="class_m_q_t_t_manager_1af1032c63a8824102312224a716cc6da6" kind="variable"><name>publishCounter</name></member>
-    <member refid="class_m_q_t_t_manager_1aa5b5a22593fdba8db2d41fd8e3ad7610" kind="variable"><name>connectInProgress</name></member>
-    <member refid="class_m_q_t_t_manager_1afaef7c15425710258b6c6047aaec7d95" kind="variable"><name>connectStartTime</name></member>
-    <member refid="class_m_q_t_t_manager_1a1c6aafe65594f0b7f0e58b4376646115" kind="variable"><name>CONNECT_TIMEOUT</name></member>
-    <member refid="class_m_q_t_t_manager_1aaac19647fab19e7a0f819691ba06e772" kind="function"><name>messageCallback</name></member>
-    <member refid="class_m_q_t_t_manager_1aa915f47a548fa481517a2450ad1a6970" kind="function"><name>handleMessage</name></member>
-    <member refid="class_m_q_t_t_manager_1a129d111c8b1ae84640849bc206098853" kind="function"><name>attemptConnection</name></member>
-    <member refid="class_m_q_t_t_manager_1ab005f48ef3d1e54464b8f2205346179f" kind="function"><name>checkConnectionProgress</name></member>
-    <member refid="class_m_q_t_t_manager_1a2ce492eb2115ac5803cff2f29966a211" kind="function"><name>connectMQTT</name></member>
+    <member refid="class_m_q_t_t_manager_1ab32c8cdf6807d43fbca0808fd0dd5159" kind="function"><name>messageReceived</name></member>
+    <member refid="class_m_q_t_t_manager_1a76a2bc2516afb2e3aa07b847f32f611e" kind="function"><name>connect</name></member>
+    <member refid="class_m_q_t_t_manager_1a9266e647933501851b411b6d2a9a1f95" kind="function"><name>loop</name></member>
+    <member refid="class_m_q_t_t_manager_1abed500066c9485cb62ce17eb7c8ad197" kind="function"><name>publishTemperatureData</name></member>
+    <member refid="class_m_q_t_t_manager_1a295b55db26948bad7c1849198cc6480e" kind="function"><name>publishSystemStatus</name></member>
     <member refid="class_m_q_t_t_manager_1a85879ab5ef3cc4ff89e5ca789651cf2a" kind="function"><name>MQTTManager</name></member>
     <member refid="class_m_q_t_t_manager_1a0865d8e5c42ab2106d9f2c172ee1cec2" kind="function"><name>begin</name></member>
-    <member refid="class_m_q_t_t_manager_1a9266e647933501851b411b6d2a9a1f95" kind="function"><name>loop</name></member>
-    <member refid="class_m_q_t_t_manager_1aba0fa39910d767f0623291608e83ae81" kind="function"><name>publish</name></member>
-    <member refid="class_m_q_t_t_manager_1ae68e09972e3ed17d457e1c05117d613b" kind="function"><name>publish</name></member>
-    <member refid="class_m_q_t_t_manager_1aaa6dfaebfbbfb48e3f4de45bab477d2c" kind="function"><name>connected</name></member>
-    <member refid="class_m_q_t_t_manager_1ab8e796839e28f468cb21f9f28b421bed" kind="function"><name>reconnect</name></member>
-    <member refid="class_m_q_t_t_manager_1a7b05e6c97ae6c0d7522b75977e66dba4" kind="function"><name>getState</name></member>
+    <member refid="class_m_q_t_t_manager_1aa2391d50cff2826a29a22879c2b33380" kind="function"><name>update</name></member>
+    <member refid="class_m_q_t_t_manager_1a52c5a6d9564f0ca0861adb8fb508a1bc" kind="function"><name>publish</name></member>
+    <member refid="class_m_q_t_t_manager_1a3fd7044f23d0362c60dc477ee9e2e2aa" kind="function"><name>publish</name></member>
+    <member refid="class_m_q_t_t_manager_1ae409088b01e23cd804d8ad1ae21ac23f" kind="function"><name>connected</name></member>
+    <member refid="class_m_q_t_t_manager_1a0e7eeb8aab7ad6c859a1eb352b5e301f" kind="function"><name>isEnabled</name></member>
+    <member refid="class_m_q_t_t_manager_1ab7e30be38a54f74dc66657dbeb3a1892" kind="function"><name>reconnect</name></member>
     <member refid="class_m_q_t_t_manager_1a43dca57da65facd4d341963403dd737b" kind="function"><name>loadConfig</name></member>
     <member refid="class_m_q_t_t_manager_1a6d569cd808a59dba0dcdf2239d54d6ab" kind="function"><name>saveConfig</name></member>
     <member refid="class_m_q_t_t_manager_1a571d796801f60b7f1a82830fa53f119e" kind="function"><name>getConfig</name></member>
     <member refid="class_m_q_t_t_manager_1aacbf1b109ac1d6b168309abfd8b3aa72" kind="function"><name>setConfig</name></member>
-    <member refid="class_m_q_t_t_manager_1a0e7eeb8aab7ad6c859a1eb352b5e301f" kind="function"><name>isEnabled</name></member>
     <member refid="class_m_q_t_t_manager_1a542f100738a605efbd30b788835efd1d" kind="function"><name>buildTopic</name></member>
     <member refid="class_m_q_t_t_manager_1a6d04009ffe15591e5faf9589e05787e0" kind="function"><name>testPublish</name></member>
     <member refid="class_m_q_t_t_manager_1a2c8c1f0367aa9d93bfad4301a95b9e41" kind="function"><name>getConfigJson</name></member>
     <member refid="class_m_q_t_t_manager_1ac17b9ceb70d483611944d626c8c933a1" kind="function"><name>setConfigJson</name></member>
+    <member refid="class_m_q_t_t_manager_1ac32e16cdf19b6fe8022d1efdfb7a41d9" kind="function"><name>setPublishInterval</name></member>
+    <member refid="class_m_q_t_t_manager_1ad1340280fc4329c17cf6d085940f993b" kind="function"><name>getPublishInterval</name></member>
   </compound>
   <compound refid="class_register_map" kind="class"><name>RegisterMap</name>
     <member refid="class_register_map_1adbc8f6a4a506265d1ce3f51e0f3cc54c" kind="variable"><name>DEVICE_ID_REG</name></member>

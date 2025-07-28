@@ -1,36 +1,36 @@
 /**
  * @file MQTTManager.cpp
- * @brief Implementation of basic MQTT Manager for temperature controller
+ * @brief Implementation of MQTT Manager using 256dpi/MQTT library
  * @author Claude Assistant
- * @date 2025-01-27
+ * @date 2025-01-28
  */
 
 #include "MQTTManager.h"
+#include "TemperatureController.h"
+#include <WiFi.h>
 
 // Initialize static members
 MQTTConfig MQTTManager::config;
 bool MQTTManager::configLoaded = false;
-WiFiClientSecure MQTTManager::wifiClient;
-WiFiClient MQTTManager::wifiClientInsecure;
-PubSubClient MQTTManager::mqttClient(wifiClient);
+WiFiClient MQTTManager::wifiClient;
+WiFiClientSecure MQTTManager::wifiClientSecure;
+MQTTClient MQTTManager::mqttClient(4096); // 4KB buffer for large messages
 bool MQTTManager::isConnected = false;
 unsigned long MQTTManager::lastReconnectAttempt = 0;
-unsigned long MQTTManager::lastPublishTime = 0;
+unsigned long MQTTManager::lastTelemetryPublish = 0;
+unsigned long MQTTManager::publishIntervalMs = 60000;
 unsigned long MQTTManager::publishCounter = 0;
-bool MQTTManager::connectInProgress = false;
-unsigned long MQTTManager::connectStartTime = 0;
 
 /**
  * @brief Initialize MQTT manager
- * @return true if initialization successful
  */
 bool MQTTManager::begin() {
-    Serial.println("[MQTTManager] Initializing MQTT Manager...");
+    Serial.println("[MQTTManager] Initializing MQTT Manager (256dpi/MQTT)...");
     
-    // Load configuration from SD card
+    // Load configuration
     if (!loadConfig()) {
         Serial.println("[MQTTManager] Failed to load configuration, using defaults");
-        // Set some default values for testing
+        // Set default HiveMQ Cloud values
         config.enabled = true;
         config.broker_host = "987bfd99193b4a21a18a665a3812cc90.s1.eu.hivemq.cloud";
         config.broker_port = 8883;
@@ -44,548 +44,191 @@ bool MQTTManager::begin() {
         configLoaded = true;
     }
     
-    // Check if MQTT is enabled
     if (!config.enabled) {
         Serial.println("[MQTTManager] MQTT is disabled in configuration");
         return false;
     }
     
-    // Temporary: Test with non-TLS to isolate TLS issues
-    // config.use_tls = false;
-    // config.broker_port = 1883;
-    // Serial.println("[MQTTManager] WARNING: Temporarily disabled TLS for testing!");
-    
     Serial.println("[MQTTManager] Configuration:");
-    Serial.print("[MQTTManager]   Server: ");
-    Serial.println(config.broker_host.c_str());
-    Serial.print("[MQTTManager]   Port: ");
-    Serial.println(config.broker_port);
-    Serial.print("[MQTTManager]   Use TLS: ");
-    Serial.println(config.use_tls ? "Yes" : "No");
-    Serial.print("[MQTTManager]   Username: ");
-    Serial.println(config.username.c_str());
-    Serial.print("[MQTTManager]   Client ID: ");
-    Serial.println(config.client_id.c_str());
-    Serial.print("[MQTTManager]   Device Name: ");
-    Serial.println(config.device_name.c_str());
-    Serial.print("[MQTTManager]   Test Publish Topic: ");
-    Serial.println(config.test_publish_topic.c_str());
-    Serial.print("[MQTTManager]   Test Subscribe Topic: ");
-    Serial.println(config.test_subscribe_topic.c_str());
+    Serial.printf("[MQTTManager]   Server: %s\n", config.broker_host.c_str());
+    Serial.printf("[MQTTManager]   Port: %d\n", config.broker_port);
+    Serial.printf("[MQTTManager]   Use TLS: %s\n", config.use_tls ? "Yes" : "No");
+    Serial.printf("[MQTTManager]   Username: %s\n", config.username.c_str());
+    Serial.printf("[MQTTManager]   Client ID: %s\n", config.client_id.c_str());
     
-    // Configure WiFi client based on TLS setting
+    // Configure WiFi client
     if (config.use_tls) {
-        Serial.println("[MQTTManager] Configuring WiFiClientSecure...");
-        wifiClient.setInsecure();
-        Serial.println("[MQTTManager] SSL verification disabled (setInsecure)");
-        mqttClient.setClient(wifiClient);
+        wifiClientSecure.setInsecure(); // Skip certificate verification for now
+        mqttClient.begin(config.broker_host.c_str(), config.broker_port, wifiClientSecure);
     } else {
-        Serial.println("[MQTTManager] Using insecure WiFi client...");
-        mqttClient.setClient(wifiClientInsecure);
+        mqttClient.begin(config.broker_host.c_str(), config.broker_port, wifiClient);
     }
     
-    // Configure MQTT client with increased buffer size
-    Serial.println("[MQTTManager] Configuring MQTT client...");
-    mqttClient.setServer(config.broker_host.c_str(), config.broker_port);
-    mqttClient.setCallback(messageCallback);
-    mqttClient.setBufferSize(512);  // Increase buffer size for larger messages
-    Serial.println("[MQTTManager] MQTT client configured");
-    Serial.println("[MQTTManager] Buffer size set to 512 bytes");
+    // Set callback
+    mqttClient.onMessage(messageReceived);
     
-    // Don't attempt connection here - let loop() handle it
-    Serial.println("[MQTTManager] Initialization complete - connection will be attempted in loop");
+    // Set options
+    mqttClient.setOptions(30, true, 5000); // keepAlive, cleanSession, timeout
+    
+    Serial.println("[MQTTManager] MQTT Manager initialized");
     return true;
 }
 
 /**
- * @brief Main loop to handle MQTT operations
+ * @brief Connect to MQTT broker
  */
-void MQTTManager::loop() {
-    if (!mqttClient.connected()) {
-        if (isConnected) {
-            // First time noticing disconnection
-            Serial.println("[MQTTManager] MQTT connection lost!");
-            isConnected = false;
+void MQTTManager::connect() {
+    Serial.print("[MQTTManager] Connecting to MQTT broker...");
+    
+    // Set LWT if enabled
+    if (config.lwt_enabled) {
+        if (config.lwt_topic.isEmpty()) {
+            config.lwt_topic = buildTopic("state", "connection");
         }
+        if (config.lwt_message.isEmpty()) {
+            config.lwt_message = "{\"status\":\"offline\"}";
+        }
+        mqttClient.setWill(config.lwt_topic.c_str(), config.lwt_message.c_str(), 
+                          config.lwt_retain, config.lwt_qos);
+    }
+    
+    bool connected = false;
+    if (!config.username.isEmpty()) {
+        connected = mqttClient.connect(config.client_id.c_str(), 
+                                     config.username.c_str(), 
+                                     config.password.c_str());
+    } else {
+        connected = mqttClient.connect(config.client_id.c_str());
+    }
+    
+    if (connected) {
+        Serial.println(" connected!");
+        isConnected = true;
         
-        // Check if it's time to reconnect
-        unsigned long now = millis();
-        if (now - lastReconnectAttempt > RECONNECT_INTERVAL) {
-            Serial.println("[MQTTManager] Attempting reconnection...");
-            lastReconnectAttempt = now;
-            
-            // Simple blocking connection like the example
-            connectMQTT();
+        // Subscribe to test topic
+        mqttClient.subscribe(config.test_subscribe_topic, config.qos_commands);
+        Serial.printf("[MQTTManager] Subscribed to: %s\n", config.test_subscribe_topic.c_str());
+        
+        // Send connection announcement
+        testPublish("Device connected and ready");
+        
+        // Send online status
+        if (config.lwt_enabled) {
+            String onlineMsg = "{\"status\":\"online\",\"timestamp\":" + String(millis()) + "}";
+            mqttClient.publish(config.lwt_topic, onlineMsg, config.lwt_retain, config.lwt_qos);
         }
     } else {
-        // Maintain connection
-        mqttClient.loop();
-        
-        // Mark as connected if not already
-        if (!isConnected) {
-            isConnected = true;
+        Serial.printf(" failed, error = %d\n", mqttClient.lastError());
+        switch (mqttClient.lastError()) {
+            case LWMQTT_CONNECTION_DENIED:
+                Serial.println("[MQTTManager] Connection denied");
+                break;
+            case LWMQTT_NETWORK_TIMEOUT:
+                Serial.println("[MQTTManager] Network timeout");
+                break;
+            case LWMQTT_NETWORK_FAILED_CONNECT:
+                Serial.println("[MQTTManager] Network connection failed");
+                break;
+            case LWMQTT_MISSING_OR_WRONG_PACKET:
+                Serial.println("[MQTTManager] Protocol error");
+                break;
+            default:
+                Serial.printf("[MQTTManager] Unknown error: %d\n", mqttClient.lastError());
         }
-        
-        // Publish incrementing counter every second (only if config is loaded)
-        if (configLoaded) {
-            unsigned long now = millis();
-            if (now - lastPublishTime >= PUBLISH_INTERVAL) {
-                lastPublishTime = now;
-                
-                // Create message with incrementing counter
-                String message = String(publishCounter++);
-                
-                Serial.print("[MQTTManager] Publishing counter: ");
-                Serial.println(message);
-                
-                if (testPublish(message)) {
-                    Serial.println("[MQTTManager] Counter published successfully");
-                } else {
-                    Serial.println("[MQTTManager] Failed to publish counter");
-                }
+    }
+}
+
+/**
+ * @brief Main update function that handles connection and publishing
+ */
+void MQTTManager::update(TemperatureController& controller) {
+    if (!config.enabled) {
+        return;
+    }
+    
+    // Handle connection maintenance
+    loop();
+    
+    // Publish data at configured interval
+    if (mqttClient.connected()) {
+        unsigned long now = millis();
+        if (now - lastTelemetryPublish >= publishIntervalMs) {
+            lastTelemetryPublish = now;
+            
+            // Publish temperature data
+            if (publishTemperatureData(controller)) {
+                Serial.println("[MQTTManager] Temperature data published to MQTT");
+            }
+            
+            // Publish system status
+            if (publishSystemStatus(controller)) {
+                Serial.println("[MQTTManager] System status published to MQTT");
             }
         }
     }
 }
 
 /**
- * @brief Connect to MQTT broker (blocking, like the example)
+ * @brief Internal loop function for connection maintenance
  */
-void MQTTManager::connectMQTT() {
-    Serial.print("[MQTTManager] Attempting MQTT connection...");
-    Serial.printf(" (Free heap: %d bytes)\n", ESP.getFreeHeap());
-    
-    // Simple connection like the example
-    if (mqttClient.connect(config.client_id.c_str(), 
-                          config.username.c_str(), 
-                          config.password.c_str())) {
-        Serial.println("[MQTTManager] Connected!");
-        
-        // Subscribe to test topic
-        if (mqttClient.subscribe(config.test_subscribe_topic.c_str())) {
-            Serial.printf("[MQTTManager] Subscribed to: %s\n", config.test_subscribe_topic.c_str());
-        } else {
-            Serial.println("[MQTTManager] Failed to subscribe!");
-        }
-        
-        // Send connection announcement
-        testPublish("Device connected and ready");
-        
-    } else {
-        Serial.print("[MQTTManager] Failed, rc=");
-        Serial.print(mqttClient.state());
-        Serial.println(" trying again in 5 seconds");
-        
-        // Decode error for debugging
-        switch(mqttClient.state()) {
-            case -4: Serial.println("[MQTTManager] MQTT_CONNECTION_TIMEOUT"); break;
-            case -3: Serial.println("[MQTTManager] MQTT_CONNECTION_LOST"); break;
-            case -2: Serial.println("[MQTTManager] MQTT_CONNECT_FAILED"); break;
-            case -1: Serial.println("[MQTTManager] MQTT_DISCONNECTED"); break;
-            case 1:  Serial.println("[MQTTManager] MQTT_CONNECT_BAD_PROTOCOL"); break;
-            case 2:  Serial.println("[MQTTManager] MQTT_CONNECT_BAD_CLIENT_ID"); break;
-            case 3:  Serial.println("[MQTTManager] MQTT_CONNECT_UNAVAILABLE"); break;
-            case 4:  Serial.println("[MQTTManager] MQTT_CONNECT_BAD_CREDENTIALS"); break;
-            case 5:  Serial.println("[MQTTManager] MQTT_CONNECT_UNAUTHORIZED"); break;
-        }
-    }
-}
-
-/**
- * @brief Attempt to connect to MQTT broker (non-blocking) - DEPRECATED
- * @return true if connection started
- */
-bool MQTTManager::attemptConnection() {
-    // This method is deprecated - using simple blocking connection instead
-    connectMQTT();
-    return true;
-}
-
-/**
- * @brief Check non-blocking connection progress
- * @return true if connection complete (success or failure)
- */
-bool MQTTManager::checkConnectionProgress() {
-    // Check timeout
-    unsigned long elapsed = millis() - connectStartTime;
-    if (elapsed > CONNECT_TIMEOUT) {
-        Serial.println("[MQTTManager] Connection timeout!");
-        Serial.printf("[MQTTManager] Elapsed time: %lu ms\n", elapsed);
-        isConnected = false;
-        connectInProgress = false;
-        return true; // Connection complete (failed)
-    }
-    
-    // Show progress every second
-    static unsigned long lastProgress = 0;
-    if (millis() - lastProgress > 1000) {
-        lastProgress = millis();
-        Serial.printf("[MQTTManager] Connection in progress... (%lu ms)\n", elapsed);
-    }
-    
-    // Try to connect
-    Serial.println("[MQTTManager] Attempting MQTT connection...");
-    bool connected = false;
-    
-    // For debugging, let's use a simpler connection first
-    connected = mqttClient.connect(config.client_id.c_str(), 
-                                 config.username.c_str(), 
-                                 config.password.c_str());
-    
-    if (connected) {
-        Serial.println("[MQTTManager] CONNECTED!");
-        Serial.printf("[MQTTManager] Free heap after connection: %d bytes\n", ESP.getFreeHeap());
-        isConnected = true;
-        connectInProgress = false;
-        
-        // Subscribe to test topic
-        Serial.print("[MQTTManager] Subscribing to topic: ");
-        Serial.print(config.test_subscribe_topic.c_str());
-        
-        if (mqttClient.subscribe(config.test_subscribe_topic.c_str())) {
-            Serial.println(" - SUCCESS!");
-        } else {
-            Serial.println(" - FAILED!");
-        }
-        
-        // Send connection announcement
-        Serial.println("[MQTTManager] Sending connection announcement...");
-        testPublish("Device connected and ready");
-        
-        return true; // Connection complete (success)
-    } else {
-        int state = mqttClient.state();
-        Serial.printf("[MQTTManager] Connection attempt failed, state: %d\n", state);
-        
-        // Decode error codes
-        switch(state) {
-            case -4: 
-                Serial.println("[MQTTManager] MQTT_CONNECTION_TIMEOUT - Network/TLS timeout"); 
-                connectInProgress = false;
-                return true; // Stop trying
-            case -3: 
-                Serial.println("[MQTTManager] MQTT_CONNECTION_LOST"); 
-                break;
-            case -2: 
-                Serial.println("[MQTTManager] MQTT_CONNECT_FAILED - Still connecting..."); 
-                return false; // Keep trying
-            case -1: 
-                Serial.println("[MQTTManager] MQTT_DISCONNECTED"); 
-                break;
-            case 0:  
-                Serial.println("[MQTTManager] MQTT_CONNECTED"); 
-                break;
-            case 1:  
-                Serial.println("[MQTTManager] MQTT_CONNECT_BAD_PROTOCOL"); 
-                connectInProgress = false;
-                return true;
-            case 2:  
-                Serial.println("[MQTTManager] MQTT_CONNECT_BAD_CLIENT_ID"); 
-                connectInProgress = false;
-                return true;
-            case 3:  
-                Serial.println("[MQTTManager] MQTT_CONNECT_UNAVAILABLE"); 
-                connectInProgress = false;
-                return true;
-            case 4:  
-                Serial.println("[MQTTManager] MQTT_CONNECT_BAD_CREDENTIALS"); 
-                connectInProgress = false;
-                return true;
-            case 5:  
-                Serial.println("[MQTTManager] MQTT_CONNECT_UNAUTHORIZED"); 
-                connectInProgress = false;
-                return true;
-            default: 
-                Serial.printf("[MQTTManager] UNKNOWN ERROR: %d\n", state); 
-                break;
-        }
-        
-        // For specific errors, stop trying
-        if (state > 0) {
+void MQTTManager::loop() {
+    if (!mqttClient.connected()) {
+        if (isConnected) {
+            Serial.println("[MQTTManager] MQTT connection lost!");
             isConnected = false;
-            connectInProgress = false;
-            return true; // Connection complete (failed)
         }
         
-        // Still trying to connect
-        return false;
+        // Reconnect with interval
+        unsigned long now = millis();
+        if (now - lastReconnectAttempt > RECONNECT_INTERVAL) {
+            lastReconnectAttempt = now;
+            connect();
+        }
+    } else {
+        // Maintain connection
+        mqttClient.loop();
+        
+        if (!isConnected) {
+            isConnected = true;
+        }
     }
 }
 
 /**
- * @brief Static callback function for MQTT messages
+ * @brief Message received callback
  */
-void MQTTManager::messageCallback(char* topic, byte* payload, unsigned int length) {
-    handleMessage(topic, payload, length);
-}
-
-/**
- * @brief Handle received MQTT messages
- */
-void MQTTManager::handleMessage(char* topic, byte* payload, unsigned int length) {
+void MQTTManager::messageReceived(String &topic, String &payload) {
     Serial.println("[MQTTManager] ========== MESSAGE RECEIVED ==========");
-    Serial.print("[MQTTManager] Topic: ");
-    Serial.println(topic);
-    Serial.print("[MQTTManager] Length: ");
-    Serial.print(length);
-    Serial.println(" bytes");
-    Serial.print("[MQTTManager] Payload (raw): ");
-    
-    // Print raw bytes
-    for (unsigned int i = 0; i < length; i++) {
-        Serial.print("0x");
-        if (payload[i] < 16) Serial.print("0");
-        Serial.print(payload[i], HEX);
-        Serial.print(" ");
-    }
-    Serial.println();
-    
-    // Convert to string and print
-    String message;
-    for (unsigned int i = 0; i < length; i++) {
-        message += (char)payload[i];
-    }
-    
-    Serial.print("[MQTTManager] Payload (string): ");
-    Serial.println(message);
+    Serial.printf("[MQTTManager] Topic: %s\n", topic.c_str());
+    Serial.printf("[MQTTManager] Payload: %s\n", payload.c_str());
     Serial.println("[MQTTManager] =====================================");
 }
 
 /**
- * @brief Publish message to configured topic
- * @param message Message to publish
- * @return true if publish successful
+ * @brief Publish message
  */
-bool MQTTManager::publish(const char* message) {
+bool MQTTManager::publish(const char* topic, const char* payload, bool retain, int qos) {
     if (!mqttClient.connected()) {
-        Serial.println("[MQTTManager] Cannot publish - not connected to broker");
+        Serial.println("[MQTTManager] Cannot publish - not connected");
         return false;
     }
     
-    // Use test publish topic from configuration
-    return testPublish(message);
+    return mqttClient.publish(topic, payload, retain, qos);
 }
 
 /**
- * @brief Publish message to configured topic
- * @param message Message to publish as String
- * @return true if publish successful
+ * @brief Publish message (String version)
  */
-bool MQTTManager::publish(const String& message) {
-    return publish(message.c_str());
-}
-
-/**
- * @brief Check if connected to MQTT broker
- * @return true if connected
- * @note Cannot be const due to PubSubClient library limitations
- */
-bool MQTTManager::connected() {
-    return mqttClient.connected();
-}
-
-/**
- * @brief Force reconnection to MQTT broker
- */
-void MQTTManager::reconnect() {
-    Serial.println("[MQTTManager] Force reconnection requested");
-    
-    if (mqttClient.connected()) {
-        Serial.println("[MQTTManager] Disconnecting current connection...");
-        mqttClient.disconnect();
-        delay(100);
-    }
-    
-    Serial.println("[MQTTManager] Attempting new connection...");
-    attemptConnection();
-}
-
-/**
- * @brief Get current MQTT client state
- * @return MQTT client state code
- * @note Cannot be const due to PubSubClient library limitations
- */
-int MQTTManager::getState() {
-    return mqttClient.state();
-}
-
-/**
- * @brief Load configuration from JSON file on SD card
- * @return true if configuration loaded successfully
- */
-bool MQTTManager::loadConfig() {
-    Serial.println("[MQTTManager] Loading configuration from SD card...");
-    
-    // Check if SD card is available
-    if (!SD.begin()) {
-        Serial.println("[MQTTManager] SD card not available");
-        return false;
-    }
-    
-    // Check if config file exists
-    const char* configPath = "/config/mqtt.json";
-    if (!SD.exists(configPath)) {
-        Serial.println("[MQTTManager] Config file not found: /config/mqtt.json");
-        return false;
-    }
-    
-    // Open config file
-    File configFile = SD.open(configPath, FILE_READ);
-    if (!configFile) {
-        Serial.println("[MQTTManager] Failed to open config file");
-        return false;
-    }
-    
-    // Read file content
-    String jsonContent = "";
-    while (configFile.available()) {
-        jsonContent += configFile.readString();
-    }
-    configFile.close();
-    
-    Serial.print("[MQTTManager] Config file size: ");
-    Serial.print(jsonContent.length());
-    Serial.println(" bytes");
-    
-    // Parse JSON
-    return setConfigJson(jsonContent);
-}
-
-/**
- * @brief Save configuration to JSON file on SD card
- * @return true if configuration saved successfully
- */
-bool MQTTManager::saveConfig() {
-    Serial.println("[MQTTManager] Saving configuration to SD card...");
-    
-    // Check if SD card is available
-    if (!SD.begin()) {
-        Serial.println("[MQTTManager] SD card not available");
-        return false;
-    }
-    
-    // Create config directory if it doesn't exist
-    if (!SD.exists("/config")) {
-        Serial.println("[MQTTManager] Creating /config directory");
-        if (!SD.mkdir("/config")) {
-            Serial.println("[MQTTManager] Failed to create config directory");
-            return false;
-        }
-    }
-    
-    // Get JSON string
-    String jsonContent = getConfigJson();
-    
-    // Open file for writing
-    const char* configPath = "/config/mqtt.json";
-    File configFile = SD.open(configPath, FILE_WRITE);
-    if (!configFile) {
-        Serial.println("[MQTTManager] Failed to open config file for writing");
-        return false;
-    }
-    
-    // Write content
-    size_t written = configFile.print(jsonContent);
-    configFile.close();
-    
-    Serial.print("[MQTTManager] Written ");
-    Serial.print(written);
-    Serial.println(" bytes to config file");
-    
-    return written == jsonContent.length();
-}
-
-/**
- * @brief Set new configuration
- * @param newConfig New configuration to apply
- * @return true if configuration applied successfully
- */
-bool MQTTManager::setConfig(const MQTTConfig& newConfig) {
-    Serial.println("[MQTTManager] Applying new configuration...");
-    
-    // Store new configuration
-    config = newConfig;
-    configLoaded = true;
-    
-    // Save to SD card
-    if (!saveConfig()) {
-        Serial.println("[MQTTManager] Warning: Failed to save configuration to SD card");
-    }
-    
-    // If connected, disconnect to apply new settings
-    if (mqttClient.connected()) {
-        Serial.println("[MQTTManager] Disconnecting to apply new configuration...");
-        mqttClient.disconnect();
-        delay(100);
-    }
-    
-    // Reconfigure client based on new settings
-    if (config.enabled) {
-        // Configure WiFi client based on TLS setting
-        if (config.use_tls) {
-            wifiClient.setInsecure();
-            mqttClient.setClient(wifiClient);
-        } else {
-            mqttClient.setClient(wifiClientInsecure);
-        }
-        
-        // Set server
-        mqttClient.setServer(config.broker_host.c_str(), config.broker_port);
-        
-        // Attempt reconnection
-        Serial.println("[MQTTManager] Attempting to connect with new configuration...");
-        return attemptConnection();
-    }
-    
-    return true;
-}
-
-/**
- * @brief Build topic string based on configuration
- * @param topicType Type of topic (telemetry, command, alarm, etc.)
- * @param subtopic Specific subtopic
- * @return Complete topic string
- */
-String MQTTManager::buildTopic(const String& topicType, const String& subtopic) {
-    String topic = "";
-    
-    // Add level 1 if not skipped
-    if (config.topic_level1_type != "skip" && !config.topic_level1_value.isEmpty()) {
-        topic += config.topic_level1_value + "/";
-    }
-    
-    // Add level 2 if not skipped
-    if (config.topic_level2_type != "skip" && !config.topic_level2_value.isEmpty()) {
-        topic += config.topic_level2_value + "/";
-    }
-    
-    // Add level 3 if not skipped
-    if (config.topic_level3_type != "skip" && !config.topic_level3_value.isEmpty()) {
-        topic += config.topic_level3_value + "/";
-    }
-    
-    // Add device name
-    topic += config.device_name + "/";
-    
-    // Add topic type
-    topic += topicType;
-    
-    // Add subtopic if provided
-    if (!subtopic.isEmpty()) {
-        topic += "/" + subtopic;
-    }
-    
-    return topic;
+bool MQTTManager::publish(const String& topic, const String& payload, bool retain, int qos) {
+    return publish(topic.c_str(), payload.c_str(), retain, qos);
 }
 
 /**
  * @brief Test publish to configured test topic
- * @param message Message to publish
- * @return true if publish successful
  */
 bool MQTTManager::testPublish(const String& message) {
     if (!mqttClient.connected()) {
-        Serial.println("[MQTTManager] Cannot publish - not connected to broker");
+        Serial.println("[MQTTManager] Cannot publish - not connected");
         return false;
     }
     
@@ -594,12 +237,11 @@ bool MQTTManager::testPublish(const String& message) {
         return false;
     }
     
-    Serial.print("[MQTTManager] Test publishing to topic: ");
-    Serial.println(config.test_publish_topic);
-    Serial.print("[MQTTManager] Message: ");
-    Serial.println(message);
+    Serial.printf("[MQTTManager] Test publishing to %s: %s\n", 
+                  config.test_publish_topic.c_str(), message.c_str());
     
-    bool result = mqttClient.publish(config.test_publish_topic.c_str(), message.c_str());
+    bool result = mqttClient.publish(config.test_publish_topic, message, 
+                                   config.retain_telemetry, config.qos_telemetry);
     
     if (result) {
         Serial.println("[MQTTManager] Test publish successful");
@@ -611,28 +253,118 @@ bool MQTTManager::testPublish(const String& message) {
 }
 
 /**
+ * @brief Build topic string based on configuration
+ */
+String MQTTManager::buildTopic(const String& topicType, const String& subtopic) {
+    String topic = "";
+    
+    if (config.topic_level1_type != "skip" && !config.topic_level1_value.isEmpty()) {
+        topic += config.topic_level1_value + "/";
+    }
+    
+    if (config.topic_level2_type != "skip" && !config.topic_level2_value.isEmpty()) {
+        topic += config.topic_level2_value + "/";
+    }
+    
+    if (config.topic_level3_type != "skip" && !config.topic_level3_value.isEmpty()) {
+        topic += config.topic_level3_value + "/";
+    }
+    
+    topic += config.device_name + "/";
+    topic += topicType;
+    
+    if (!subtopic.isEmpty()) {
+        topic += "/" + subtopic;
+    }
+    
+    return topic;
+}
+
+/**
+ * @brief Load configuration from JSON file
+ */
+bool MQTTManager::loadConfig() {
+    Serial.println("[MQTTManager] Loading configuration from SD card...");
+    
+    if (!SD.begin()) {
+        Serial.println("[MQTTManager] SD card not available");
+        return false;
+    }
+    
+    const char* configPath = "/config/mqtt.json";
+    if (!SD.exists(configPath)) {
+        Serial.println("[MQTTManager] Config file not found: /config/mqtt.json");
+        return false;
+    }
+    
+    File configFile = SD.open(configPath, FILE_READ);
+    if (!configFile) {
+        Serial.println("[MQTTManager] Failed to open config file");
+        return false;
+    }
+    
+    String jsonContent = "";
+    while (configFile.available()) {
+        jsonContent += configFile.readString();
+    }
+    configFile.close();
+    
+    Serial.printf("[MQTTManager] Config file size: %d bytes\n", jsonContent.length());
+    
+    return setConfigJson(jsonContent);
+}
+
+/**
+ * @brief Save configuration to JSON file
+ */
+bool MQTTManager::saveConfig() {
+    Serial.println("[MQTTManager] Saving configuration to SD card...");
+    
+    if (!SD.begin()) {
+        Serial.println("[MQTTManager] SD card not available");
+        return false;
+    }
+    
+    if (!SD.exists("/config")) {
+        Serial.println("[MQTTManager] Creating /config directory");
+        if (!SD.mkdir("/config")) {
+            Serial.println("[MQTTManager] Failed to create config directory");
+            return false;
+        }
+    }
+    
+    String jsonContent = getConfigJson();
+    
+    const char* configPath = "/config/mqtt.json";
+    File configFile = SD.open(configPath, FILE_WRITE);
+    if (!configFile) {
+        Serial.println("[MQTTManager] Failed to open config file for writing");
+        return false;
+    }
+    
+    size_t written = configFile.print(jsonContent);
+    configFile.close();
+    
+    Serial.printf("[MQTTManager] Written %d bytes to config file\n", written);
+    
+    return written == jsonContent.length();
+}
+
+/**
  * @brief Get configuration as JSON string
- * @return JSON string representation of configuration
  */
 String MQTTManager::getConfigJson() {
-    // Use JsonDocument to avoid stack overflow
     JsonDocument doc;
     
-    // Basic settings
     doc["enabled"] = config.enabled;
-    
-    // Broker settings
     doc["broker_host"] = config.broker_host;
     doc["broker_port"] = config.broker_port;
     doc["use_tls"] = config.use_tls;
-    
-    // Credentials
     doc["username"] = config.username;
     doc["password"] = config.password;
     doc["client_id"] = config.client_id;
     doc["device_name"] = config.device_name;
     
-    // Topic configuration
     JsonObject topics = doc["topics"].to<JsonObject>();
     topics["level1_type"] = config.topic_level1_type;
     topics["level1_value"] = config.topic_level1_value;
@@ -641,19 +373,16 @@ String MQTTManager::getConfigJson() {
     topics["level3_type"] = config.topic_level3_type;
     topics["level3_value"] = config.topic_level3_value;
     
-    // Publishing settings
     JsonObject publishing = doc["publishing"].to<JsonObject>();
     publishing["retain_telemetry"] = config.retain_telemetry;
     publishing["retain_alarms"] = config.retain_alarms;
     publishing["retain_state"] = config.retain_state;
     
-    // QoS levels
     JsonObject qos = doc["qos"].to<JsonObject>();
     qos["telemetry"] = config.qos_telemetry;
     qos["alarms"] = config.qos_alarms;
     qos["commands"] = config.qos_commands;
     
-    // LWT settings
     JsonObject lwt = doc["lwt"].to<JsonObject>();
     lwt["enabled"] = config.lwt_enabled;
     lwt["topic"] = config.lwt_topic;
@@ -661,51 +390,42 @@ String MQTTManager::getConfigJson() {
     lwt["qos"] = config.lwt_qos;
     lwt["retain"] = config.lwt_retain;
     
-    // Test topics
     JsonObject test = doc["test"].to<JsonObject>();
     test["publish_topic"] = config.test_publish_topic;
     test["subscribe_topic"] = config.test_subscribe_topic;
     
-    // Serialize to string
+    JsonObject intervals = doc["intervals"].to<JsonObject>();
+    intervals["telemetry"] = config.telemetry_interval;
+    
     String output;
-    output.reserve(1024); // Pre-allocate to avoid reallocation
+    output.reserve(1024);
     serializeJsonPretty(doc, output);
     return output;
 }
 
 /**
  * @brief Set configuration from JSON string
- * @param jsonStr JSON string containing configuration
- * @return true if configuration parsed and applied successfully
  */
 bool MQTTManager::setConfigJson(const String& jsonStr) {
     Serial.println("[MQTTManager] Parsing JSON configuration...");
     
-    // Use JsonDocument to avoid stack overflow
     JsonDocument doc;
     DeserializationError error = deserializeJson(doc, jsonStr);
     
     if (error) {
-        Serial.print("[MQTTManager] JSON parse error: ");
-        Serial.println(error.c_str());
+        Serial.printf("[MQTTManager] JSON parse error: %s\n", error.c_str());
         return false;
     }
     
-    // Parse basic settings
     config.enabled = doc["enabled"] | false;
-    
-    // Parse broker settings
     config.broker_host = doc["broker_host"] | "";
     config.broker_port = doc["broker_port"] | 1883;
     config.use_tls = doc["use_tls"] | false;
-    
-    // Parse credentials
     config.username = doc["username"] | "";
     config.password = doc["password"] | "";
     config.client_id = doc["client_id"] | "esp32_temp_controller";
     config.device_name = doc["device_name"] | "esp32_temp_controller";
     
-    // Parse topic configuration
     JsonObject topics = doc["topics"];
     if (!topics.isNull()) {
         config.topic_level1_type = topics["level1_type"] | "skip";
@@ -716,7 +436,6 @@ bool MQTTManager::setConfigJson(const String& jsonStr) {
         config.topic_level3_value = topics["level3_value"] | "";
     }
     
-    // Parse publishing settings
     JsonObject publishing = doc["publishing"];
     if (!publishing.isNull()) {
         config.retain_telemetry = publishing["retain_telemetry"] | false;
@@ -724,7 +443,6 @@ bool MQTTManager::setConfigJson(const String& jsonStr) {
         config.retain_state = publishing["retain_state"] | true;
     }
     
-    // Parse QoS levels
     JsonObject qos = doc["qos"];
     if (!qos.isNull()) {
         config.qos_telemetry = qos["telemetry"] | 0;
@@ -732,7 +450,6 @@ bool MQTTManager::setConfigJson(const String& jsonStr) {
         config.qos_commands = qos["commands"] | 2;
     }
     
-    // Parse LWT settings
     JsonObject lwt = doc["lwt"];
     if (!lwt.isNull()) {
         config.lwt_enabled = lwt["enabled"] | true;
@@ -742,24 +459,182 @@ bool MQTTManager::setConfigJson(const String& jsonStr) {
         config.lwt_retain = lwt["retain"] | true;
     }
     
-    // Parse test topics
     JsonObject test = doc["test"];
     if (!test.isNull()) {
         config.test_publish_topic = test["publish_topic"] | "test/pub";
         config.test_subscribe_topic = test["subscribe_topic"] | "test/sub";
     }
     
-    // Generate LWT topic if not set
+    JsonObject intervals = doc["intervals"];
+    if (!intervals.isNull()) {
+        config.telemetry_interval = intervals["telemetry"] | 60;
+        if (config.telemetry_interval < 10) {
+            config.telemetry_interval = 10;
+        }
+    }
+    
+    setPublishInterval(config.telemetry_interval);
+    
     if (config.lwt_enabled && config.lwt_topic.isEmpty()) {
         config.lwt_topic = buildTopic("state", "connection");
     }
     
-    // Generate LWT message if not set
     if (config.lwt_enabled && config.lwt_message.isEmpty()) {
         config.lwt_message = "{\"status\":\"offline\",\"timestamp\":\"" + String(millis()) + "\"}";
     }
     
     configLoaded = true;
     Serial.println("[MQTTManager] Configuration parsed successfully");
+    return true;
+}
+
+/**
+ * @brief Publish temperature data
+ */
+bool MQTTManager::publishTemperatureData(TemperatureController& controller) {
+    if (!mqttClient.connected()) {
+        Serial.println("[MQTTManager] Cannot publish temperature data - not connected");
+        return false;
+    }
+    
+    JsonDocument doc;
+    doc["timestamp"] = millis();
+    doc["device_name"] = config.device_name;
+    
+    JsonArray points = doc["measurement_points"].to<JsonArray>();
+    
+    // Add DS18B20 points
+    for (uint8_t i = 0; i < 50; i++) {
+        MeasurementPoint* point = controller.getDS18B20Point(i);
+        if (point && point->getBoundSensor() != nullptr) {
+            JsonObject pointObj = points.add<JsonObject>();
+            pointObj["address"] = point->getAddress();
+            pointObj["name"] = point->getName();
+            pointObj["type"] = "DS18B20";
+            pointObj["value"] = point->getCurrentTemp();
+            pointObj["min"] = point->getMinTemp();
+            pointObj["max"] = point->getMaxTemp();
+            pointObj["alarm_status"] = point->getAlarmStatus();
+            pointObj["error_status"] = point->getErrorStatus();
+        }
+    }
+    
+    // Add PT1000 points
+    for (uint8_t i = 0; i < 10; i++) {
+        MeasurementPoint* point = controller.getPT1000Point(i);
+        if (point && point->getBoundSensor() != nullptr) {
+            JsonObject pointObj = points.add<JsonObject>();
+            pointObj["address"] = point->getAddress();
+            pointObj["name"] = point->getName();
+            pointObj["type"] = "PT1000";
+            pointObj["value"] = point->getCurrentTemp();
+            pointObj["min"] = point->getMinTemp();
+            pointObj["max"] = point->getMaxTemp();
+            pointObj["alarm_status"] = point->getAlarmStatus();
+            pointObj["error_status"] = point->getErrorStatus();
+        }
+    }
+    
+    String topic = buildTopic("telemetry", "temperature");
+    String payload;
+    serializeJson(doc, payload);
+    
+    if (payload.length() > 4096) {
+        Serial.printf("[MQTTManager] Warning: Large payload size: %d bytes\n", payload.length());
+    }
+    
+    bool result = mqttClient.publish(topic, payload, config.retain_telemetry, config.qos_telemetry);
+    
+    if (result) {
+        Serial.printf("[MQTTManager] Temperature data published to %s (%d bytes)\n", 
+                      topic.c_str(), payload.length());
+    } else {
+        Serial.println("[MQTTManager] Failed to publish temperature data");
+    }
+    
+    return result;
+}
+
+/**
+ * @brief Publish system status
+ */
+bool MQTTManager::publishSystemStatus(TemperatureController& controller) {
+    if (!mqttClient.connected()) {
+        Serial.println("[MQTTManager] Cannot publish system status - not connected");
+        return false;
+    }
+    
+    JsonDocument doc;
+    doc["timestamp"] = millis();
+    doc["device_name"] = config.device_name;
+    doc["device_id"] = controller.getDeviceId();
+    doc["firmware_version"] = controller.getFirmwareVersion();
+    doc["uptime"] = millis() / 1000;
+    
+    JsonObject alarms = doc["alarms"].to<JsonObject>();
+    alarms["active_count"] = controller.getActiveAlarms().size();
+    alarms["acknowledged_count"] = controller.getAlarmCount(AlarmStage::ACKNOWLEDGED);
+    alarms["total_count"] = controller.getAlarmCount();
+    
+    JsonObject network = doc["network"].to<JsonObject>();
+    network["wifi_connected"] = WiFi.status() == WL_CONNECTED;
+    if (WiFi.status() == WL_CONNECTED) {
+        network["wifi_ssid"] = WiFi.SSID();
+        network["wifi_rssi"] = WiFi.RSSI();
+        network["ip_address"] = WiFi.localIP().toString();
+    }
+    
+    JsonObject memory = doc["memory"].to<JsonObject>();
+    memory["free_heap"] = ESP.getFreeHeap();
+    memory["min_free_heap"] = ESP.getMinFreeHeap();
+    memory["heap_size"] = ESP.getHeapSize();
+    
+    String topic = buildTopic("telemetry", "status");
+    String payload;
+    serializeJson(doc, payload);
+    
+    bool result = mqttClient.publish(topic, payload, config.retain_state, config.qos_telemetry);
+    
+    if (result) {
+        Serial.printf("[MQTTManager] System status published to %s\n", topic.c_str());
+    } else {
+        Serial.println("[MQTTManager] Failed to publish system status");
+    }
+    
+    return result;
+}
+
+/**
+ * @brief Set new configuration
+ */
+bool MQTTManager::setConfig(const MQTTConfig& newConfig) {
+    Serial.println("[MQTTManager] Applying new configuration...");
+    
+    config = newConfig;
+    configLoaded = true;
+    
+    if (!saveConfig()) {
+        Serial.println("[MQTTManager] Warning: Failed to save configuration to SD card");
+    }
+    
+    // Disconnect if connected
+    if (mqttClient.connected()) {
+        Serial.println("[MQTTManager] Disconnecting to apply new configuration...");
+        mqttClient.disconnect();
+    }
+    
+    // Reconfigure client
+    if (config.use_tls) {
+        wifiClientSecure.setInsecure();
+        mqttClient.begin(config.broker_host.c_str(), config.broker_port, wifiClientSecure);
+    } else {
+        mqttClient.begin(config.broker_host.c_str(), config.broker_port, wifiClient);
+    }
+    
+    // Reconnect if enabled
+    if (config.enabled && WiFi.isConnected()) {
+        connect();
+    }
+    
     return true;
 }

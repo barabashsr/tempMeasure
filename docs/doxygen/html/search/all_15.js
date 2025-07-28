@@ -1,8 +1,8 @@
 var searchData=
 [
   ['warning_0',['warning',['../class_logger_manager.html#a0d52b0ff7bff22817e987ad753102854',1,'LoggerManager']]],
-  ['wificlient_1',['wifiClient',['../class_m_q_t_t_manager.html#a39ad7e75f56664b1f8c5191798d6835e',1,'MQTTManager']]],
-  ['wificlientinsecure_2',['wifiClientInsecure',['../class_m_q_t_t_manager.html#a9a2a868ab4ca4856a70d466047310bdf',1,'MQTTManager']]],
+  ['wificlient_1',['wifiClient',['../class_m_q_t_t_manager.html#aea5e63c1823a6fbd8c0622fbd060aae4',1,'MQTTManager']]],
+  ['wificlientsecure_2',['wifiClientSecure',['../class_m_q_t_t_manager.html#a6804a792b125ec236ad62dbfeee65c48',1,'MQTTManager']]],
   ['wifiwasconnected_3',['wifiWasConnected',['../main_8cpp.html#a975b5148f97bf4e1db273ce754d82ba9',1,'main.cpp']]],
   ['writeholdingregister_4',['writeHoldingRegister',['../class_register_map.html#a187e2d597d507f0c42da6a6a8d016da2',1,'RegisterMap']]],
   ['writeholdingregisterworker_5',['writeHoldingRegisterWorker',['../class_temp_modbus_server.html#a88b7288d622b52f9e28b7c6075b75fe0',1,'TempModbusServer']]],

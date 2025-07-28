@@ -1,7 +1,5 @@
 var NAVTREEINDEX2 =
 {
-"class_measurement_point.html#a81c7ae93a9314344967d0f31c6fefe2f":[0,0,6,6],
-"class_measurement_point.html#a8677e00e0be369d7874f4982990dc56d":[0,0,6,11],
 "class_measurement_point.html#a8ee3863bb5548fe9c919234aff8ee0b6":[0,0,6,2],
 "class_measurement_point.html#a9b17fba6e1ea928d4aa88abf28731fc7":[0,0,6,25],
 "class_measurement_point.html#aa3a80d373c7609c7b178bf7353ffdd7a":[0,0,6,13],
@@ -249,5 +247,7 @@ var NAVTREEINDEX2 =
 "class_temperature_controller.html#a45f7994a3a052a527981dbfdad27606b":[0,0,12,19],
 "class_temperature_controller.html#a473053bec0dba7d493499df05cd53fa8":[0,0,12,138],
 "class_temperature_controller.html#a477597992aa9362076843f37b648741a":[0,0,12,23],
-"class_temperature_controller.html#a484a2c1885c26905cb9c5c01e3518fe1":[0,0,12,109]
+"class_temperature_controller.html#a484a2c1885c26905cb9c5c01e3518fe1":[0,0,12,109],
+"class_temperature_controller.html#a494f057c234b4ff7526bde271aec9267":[0,0,12,66],
+"class_temperature_controller.html#a4d36576f7d6ab8f5222a082878314912":[0,0,12,24]
 };

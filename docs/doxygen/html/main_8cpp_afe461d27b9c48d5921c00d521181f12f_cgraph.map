@@ -1,22 +1,48 @@
 <map id="loop" name="loop">
-<area shape="rect" id="Node000001" title="Main system loop." alt="" coords="5,80,51,106"/>
-<area shape="rect" id="Node000002" href="$class_m_q_t_t_manager.html#a0865d8e5c42ab2106d9f2c172ee1cec2" title="Initialize MQTT manager and establish connection." alt="" coords="99,55,246,80"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="50,86,83,81,84,86,51,92"/>
-<area shape="rect" id="Node000008" href="$class_m_q_t_t_manager.html#a9266e647933501851b411b6d2a9a1f95" title="Main loop function to handle MQTT operations." alt="" coords="102,104,242,130"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="51,94,88,100,87,105,50,99"/>
-<area shape="rect" id="Node000003" href="$class_m_q_t_t_manager.html#a43dca57da65facd4d341963403dd737b" title="Load configuration from JSON file on SD card." alt="" coords="315,5,493,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="236,51,325,32,326,37,237,57"/>
-<area shape="rect" id="Node000006" href="$class_m_q_t_t_manager.html#aaac19647fab19e7a0f819691ba06e772" title="Static callback function for MQTT message reception." alt="" coords="294,55,514,80"/>
-<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="246,65,278,65,278,70,246,70"/>
-<area shape="rect" id="Node000004" href="$class_m_q_t_t_manager.html#ac17b9ceb70d483611944d626c8c933a1" title="Set configuration from JSON string." alt="" coords="566,5,766,31"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="494,16,550,16,550,21,494,21"/>
-<area shape="rect" id="Node000005" href="$class_m_q_t_t_manager.html#a542f100738a605efbd30b788835efd1d" title="Build topic string based on configuration." alt="" coords="818,5,992,31"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="767,16,802,16,802,21,767,21"/>
-<area shape="rect" id="Node000007" href="$class_m_q_t_t_manager.html#aa915f47a548fa481517a2450ad1a6970" title="Static method to handle received messages." alt="" coords="562,55,770,80"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="515,65,547,65,547,70,515,70"/>
-<area shape="rect" id="Node000009" href="$class_m_q_t_t_manager.html#a2ce492eb2115ac5803cff2f29966a211" title="Connect to MQTT broker (blocking)" alt="" coords="304,104,504,130"/>
-<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="243,114,289,114,289,120,243,120"/>
-<area shape="rect" id="Node000010" href="$class_m_q_t_t_manager.html#a6d04009ffe15591e5faf9589e05787e0" title="Test publish to configured test topic." alt="" coords="575,129,757,155"/>
-<area shape="poly" id="edge10_Node000008_Node000010" title=" " alt="" coords="226,128,294,140,433,147,560,145,560,151,433,152,294,145,226,133"/>
-<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="504,124,560,129,559,135,504,129"/>
+<area shape="rect" id="Node000001" title="Main system loop." alt="" coords="5,332,51,358"/>
+<area shape="rect" id="Node000002" href="$class_m_q_t_t_manager.html#a0865d8e5c42ab2106d9f2c172ee1cec2" title="Initialize MQTT manager." alt="" coords="103,260,250,286"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="50,332,133,290,136,295,52,337"/>
+<area shape="rect" id="Node000008" href="$class_m_q_t_t_manager.html#aa2391d50cff2826a29a22879c2b33380" title="Main update function that handles connection and publishing." alt="" coords="99,356,254,382"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="51,346,84,351,83,356,50,351"/>
+<area shape="rect" id="Node000003" href="$class_m_q_t_t_manager.html#a43dca57da65facd4d341963403dd737b" title="Load configuration from JSON file." alt="" coords="342,96,520,122"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="197,257,395,128,398,133,200,262"/>
+<area shape="rect" id="Node000007" href="$class_m_q_t_t_manager.html#ab32c8cdf6807d43fbca0808fd0dd5159" title="Message received callback." alt="" coords="318,260,543,286"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="250,270,303,270,303,276,250,276"/>
+<area shape="rect" id="Node000004" href="$class_m_q_t_t_manager.html#ac17b9ceb70d483611944d626c8c933a1" title="Set configuration from JSON string." alt="" coords="623,5,823,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="463,93,529,67,607,41,638,33,639,38,608,46,530,72,465,98"/>
+<area shape="rect" id="Node000005" href="$class_m_q_t_t_manager.html#a542f100738a605efbd30b788835efd1d" title="Build topic string based on configuration." alt="" coords="910,429,1084,455"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="822,29,840,41,881,83,913,132,939,184,959,238,985,339,996,413,991,414,980,340,954,239,934,186,909,134,876,87,837,46,819,34"/>
+<area shape="rect" id="Node000006" href="$class_m_q_t_t_manager.html#ac32e16cdf19b6fe8022d1efdfb7a41d9" title=" " alt="" coords="887,5,1107,31"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="824,16,871,16,871,21,824,21"/>
+<area shape="rect" id="Node000009" href="$class_m_q_t_t_manager.html#a9266e647933501851b411b6d2a9a1f95" title="Internal loop function for connection maintenance." alt="" coords="360,536,501,562"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="198,380,400,524,397,529,195,384"/>
+<area shape="rect" id="Node000013" href="$class_m_q_t_t_manager.html#a295b55db26948bad7c1849198cc6480e" title="Publish system status." alt="" coords="330,396,532,437"/>
+<area shape="poly" id="edge13_Node000008_Node000013" title=" " alt="" coords="249,380,315,392,314,398,248,385"/>
+<area shape="rect" id="Node000014" href="$class_m_q_t_t_manager.html#abed500066c9485cb62ce17eb7c8ad197" title="Publish temperature data." alt="" coords="302,309,559,335"/>
+<area shape="poly" id="edge15_Node000008_Node000014" title=" " alt="" coords="250,353,341,336,342,341,251,358"/>
+<area shape="rect" id="Node000010" href="$class_m_q_t_t_manager.html#a76a2bc2516afb2e3aa07b847f32f611e" title="Connect to MQTT broker." alt="" coords="642,600,804,626"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="494,560,646,593,645,599,493,565"/>
+<area shape="poly" id="edge10_Node000010_Node000005" title=" " alt="" coords="791,597,837,578,878,553,915,522,972,465,976,469,918,526,881,557,840,583,793,602"/>
+<area shape="rect" id="Node000011" href="$class_m_q_t_t_manager.html#ae409088b01e23cd804d8ad1ae21ac23f" title=" " alt="" coords="909,624,1085,650"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="805,617,893,625,893,630,804,623"/>
+<area shape="rect" id="Node000012" href="$class_m_q_t_t_manager.html#a6d04009ffe15591e5faf9589e05787e0" title="Test publish to configured test topic." alt="" coords="906,575,1088,600"/>
+<area shape="poly" id="edge12_Node000010_Node000012" title=" " alt="" coords="804,603,890,595,891,600,805,608"/>
+<area shape="poly" id="edge14_Node000013_Node000005" title=" " alt="" coords="455,436,520,489,562,515,608,534,671,551,723,556,774,550,838,534,875,521,910,502,967,463,970,467,912,507,877,525,839,539,775,555,723,561,671,556,606,539,560,520,516,493,451,440"/>
+<area shape="poly" id="edge16_Node000014_Node000005" title=" " alt="" coords="560,326,696,341,768,354,839,370,903,393,959,419,957,424,901,398,838,375,767,359,695,346,560,331"/>
+<area shape="rect" id="Node000015" href="$class_measurement_point.html#a7b74a18d86e0e545264a774aa2c31cad" title="Get measurement point address." alt="" coords="621,435,825,460"/>
+<area shape="poly" id="edge17_Node000014_Node000015" title=" " alt="" coords="465,333,511,355,561,383,584,403,609,421,623,427,621,432,606,426,581,407,558,387,509,359,463,338"/>
+<area shape="rect" id="Node000016" href="$class_measurement_point.html#a1421d744f7982e528a579da02adb1919" title="Get alarm status bits." alt="" coords="628,484,818,525"/>
+<area shape="poly" id="edge18_Node000014_Node000016" title=" " alt="" coords="475,333,519,353,561,383,578,407,585,429,592,450,609,471,616,476,613,480,606,475,587,453,580,431,573,409,557,387,517,358,473,338"/>
+<area shape="rect" id="Node000017" href="$class_measurement_point.html#a81c7ae93a9314344967d0f31c6fefe2f" title="Get pointer to bound sensor." alt="" coords="626,55,820,96"/>
+<area shape="poly" id="edge19_Node000014_Node000017" title=" " alt="" coords="543,307,557,296,575,274,582,251,584,228,582,204,579,180,580,155,588,130,605,106,612,100,616,104,609,109,593,132,586,156,585,179,587,204,589,228,588,252,580,277,561,300,546,311"/>
+<area shape="rect" id="Node000018" href="$class_measurement_point.html#aceaf14fde40bcd5331e5ea6a07d7dde8" title="Get current temperature." alt="" coords="607,120,839,146"/>
+<area shape="poly" id="edge20_Node000014_Node000018" title=" " alt="" coords="542,307,558,296,571,280,578,264,581,228,584,192,591,174,605,156,611,152,614,156,609,160,596,176,589,193,586,229,584,265,576,283,561,300,545,311"/>
+<area shape="rect" id="Node000019" href="$class_measurement_point.html#a3fb0693931f12190a7f96e5d6be51b51" title="Get error status bits." alt="" coords="631,170,815,210"/>
+<area shape="poly" id="edge21_Node000014_Node000019" title=" " alt="" coords="538,306,558,296,574,279,581,260,589,240,606,220,616,213,619,218,609,224,593,242,586,262,579,282,561,300,541,311"/>
+<area shape="rect" id="Node000020" href="$class_measurement_point.html#a8677e00e0be369d7874f4982990dc56d" title="Get maximum recorded temperature." alt="" coords="616,235,830,260"/>
+<area shape="poly" id="edge22_Node000014_Node000020" title=" " alt="" coords="522,306,558,296,582,283,606,269,627,262,629,267,608,274,585,287,560,301,524,311"/>
+<area shape="rect" id="Node000021" href="$class_measurement_point.html#adc31f012462c1623617d5f362bcb2c59" title="Get minimum recorded temperature." alt="" coords="618,284,828,310"/>
+<area shape="poly" id="edge23_Node000014_Node000021" title=" " alt="" coords="560,308,603,305,603,310,560,314"/>
+<area shape="rect" id="Node000022" href="$class_measurement_point.html#aa3a80d373c7609c7b178bf7353ffdd7a" title="Get measurement point name." alt="" coords="627,385,819,411"/>
+<area shape="poly" id="edge24_Node000014_Node000022" title=" " alt="" coords="484,333,657,378,655,384,483,338"/>
 </map>

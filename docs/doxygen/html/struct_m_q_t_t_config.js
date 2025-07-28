@@ -17,6 +17,7 @@ var struct_m_q_t_t_config =
     [ "retain_alarms", "struct_m_q_t_t_config.html#a34526b54ac4b1af456873b5374922c9c", null ],
     [ "retain_state", "struct_m_q_t_t_config.html#a4ccfcccb213159560b123282f095d05d", null ],
     [ "retain_telemetry", "struct_m_q_t_t_config.html#aaa23126deb269cbfac2a73d12c5f57a1", null ],
+    [ "telemetry_interval", "struct_m_q_t_t_config.html#a9f369aa77babd8f88d5265d41d2419a3", null ],
     [ "test_publish_topic", "struct_m_q_t_t_config.html#aa94258b9eacc20ecf243181958553d1e", null ],
     [ "test_subscribe_topic", "struct_m_q_t_t_config.html#a3aba9b60317b2f523b51092936cba37a", null ],
     [ "topic_level1_type", "struct_m_q_t_t_config.html#add0a404f132bb03114d7ee030eceea1b", null ],

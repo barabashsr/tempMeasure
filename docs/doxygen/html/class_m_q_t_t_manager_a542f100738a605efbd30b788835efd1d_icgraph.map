@@ -1,11 +1,32 @@
 <map id="MQTTManager::buildTopic" name="MQTTManager::buildTopic">
-<area shape="rect" id="Node000001" title="Build topic string based on configuration." alt="" coords="769,5,943,31"/>
-<area shape="rect" id="Node000002" href="$class_m_q_t_t_manager.html#ac17b9ceb70d483611944d626c8c933a1" title="Set configuration from JSON string." alt="" coords="520,5,721,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="754,21,721,21,721,16,754,16"/>
-<area shape="rect" id="Node000003" href="$class_m_q_t_t_manager.html#a43dca57da65facd4d341963403dd737b" title="Load configuration from JSON file on SD card." alt="" coords="294,5,472,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="505,21,473,21,473,16,505,16"/>
-<area shape="rect" id="Node000004" href="$class_m_q_t_t_manager.html#a0865d8e5c42ab2106d9f2c172ee1cec2" title="Initialize MQTT manager and establish connection." alt="" coords="99,5,246,31"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="278,21,246,21,246,16,278,16"/>
-<area shape="rect" id="Node000005" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title="Main system loop." alt="" coords="5,5,51,31"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="83,21,51,21,51,16,83,16"/>
+<area shape="rect" id="Node000001" title="Build topic string based on configuration." alt="" coords="947,179,1121,204"/>
+<area shape="rect" id="Node000002" href="$class_m_q_t_t_manager.html#a76a2bc2516afb2e3aa07b847f32f611e" title="Connect to MQTT broker." alt="" coords="689,73,851,99"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="990,174,898,133,813,102,814,97,900,128,993,169"/>
+<area shape="rect" id="Node000010" href="$class_m_q_t_t_manager.html#a295b55db26948bad7c1849198cc6480e" title="Publish system status." alt="" coords="669,142,871,182"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="931,183,871,176,872,171,932,177"/>
+<area shape="rect" id="Node000011" href="$class_m_q_t_t_manager.html#abed500066c9485cb62ce17eb7c8ad197" title="Publish temperature data." alt="" coords="641,207,899,232"/>
+<area shape="poly" id="edge11_Node000001_Node000011" title=" " alt="" coords="932,205,897,209,897,203,931,200"/>
+<area shape="rect" id="Node000012" href="$class_m_q_t_t_manager.html#ac17b9ceb70d483611944d626c8c933a1" title="Set configuration from JSON string." alt="" coords="670,256,870,282"/>
+<area shape="poly" id="edge13_Node000001_Node000012" title=" " alt="" coords="991,213,899,247,856,258,855,253,898,242,989,208"/>
+<area shape="rect" id="Node000003" href="$class_m_q_t_t_manager.html#a9266e647933501851b411b6d2a9a1f95" title="Internal loop function for connection maintenance." alt="" coords="434,55,574,80"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="673,82,575,75,575,70,673,77"/>
+<area shape="rect" id="Node000006" href="$class_m_q_t_t_manager.html#ab7e30be38a54f74dc66657dbeb3a1892" title=" " alt="" coords="418,5,591,31"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="701,72,557,34,558,29,703,66"/>
+<area shape="rect" id="Node000009" href="$class_m_q_t_t_manager.html#aacbf1b109ac1d6b168309abfd8b3aa72" title="Set new configuration." alt="" coords="418,104,590,130"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="673,100,591,110,591,104,673,95"/>
+<area shape="rect" id="Node000004" href="$class_m_q_t_t_manager.html#aa2391d50cff2826a29a22879c2b33380" title="Main update function that handles connection and publishing." alt="" coords="207,180,362,206"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="428,89,416,94,381,115,349,138,301,182,297,178,346,134,378,110,414,89,426,84"/>
+<area shape="rect" id="Node000005" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title="Main system loop." alt="" coords="57,204,102,230"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="192,206,103,217,102,212,191,201"/>
+<area shape="rect" id="Node000007" href="$class_config_manager.html#aeaf809f5fcc5b5be963935c533a56e49" title="Setup MQTT API endpoints." alt="" coords="202,5,367,31"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="402,21,367,21,367,16,402,16"/>
+<area shape="rect" id="Node000008" href="$class_config_manager.html#a0497343220fc493f5cf9574922508908" title="Initialize the configuration system." alt="" coords="5,5,154,31"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="186,21,154,21,154,16,186,16"/>
+<area shape="poly" id="edge10_Node000010_Node000004" title=" " alt="" coords="653,172,363,191,362,185,653,167"/>
+<area shape="poly" id="edge12_Node000011_Node000004" title=" " alt="" coords="626,214,362,200,363,194,626,209"/>
+<area shape="rect" id="Node000013" href="$class_m_q_t_t_manager.html#a43dca57da65facd4d341963403dd737b" title="Load configuration from JSON file." alt="" coords="415,256,593,282"/>
+<area shape="poly" id="edge14_Node000012_Node000013" title=" " alt="" coords="654,272,594,272,594,266,654,266"/>
+<area shape="rect" id="Node000014" href="$class_m_q_t_t_manager.html#a0865d8e5c42ab2106d9f2c172ee1cec2" title="Initialize MQTT manager." alt="" coords="211,229,358,255"/>
+<area shape="poly" id="edge15_Node000013_Node000014" title=" " alt="" coords="399,259,358,254,359,248,400,254"/>
+<area shape="poly" id="edge16_Node000014_Node000005" title=" " alt="" coords="195,234,102,222,103,217,195,229"/>
 </map>

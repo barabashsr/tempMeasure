@@ -133,7 +133,7 @@
         <link refid="_indicator_interface_8h"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="11" relation="include">
+        <childnode refid="12" relation="include">
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
@@ -149,6 +149,8 @@
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
         <childnode refid="6" relation="include">
         </childnode>
         <childnode refid="7" relation="include">
@@ -162,7 +164,7 @@
         <label>src/ConfigManager.cpp</label>
         <link refid="_config_manager_8cpp"/>
       </node>
-      <node id="11">
+      <node id="12">
         <label>src/IndicatorInterface.cpp</label>
         <link refid="_indicator_interface_8cpp"/>
       </node>
@@ -171,6 +173,10 @@
         <link refid="_logger_manager_8cpp"/>
       </node>
       <node id="10">
+        <label>src/MQTTManager.cpp</label>
+        <link refid="_m_q_t_t_manager_8cpp"/>
+      </node>
+      <node id="11">
         <label>src/TempModbusServer.cpp</label>
         <link refid="_temp_modbus_server_8cpp"/>
       </node>

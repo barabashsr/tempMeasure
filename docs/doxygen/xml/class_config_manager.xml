@@ -141,7 +141,7 @@
         <referencedby refid="class_config_manager_1a3b28982c79587a287c8ddf0acf47f71d" compoundref="_config_manager_8cpp" startline="2292" endline="3042">downloadAPI</referencedby>
         <referencedby refid="class_config_manager_1ac880f2edae50caef8bcc750f7260a896" compoundref="_config_manager_8h" startline="195" endline="195">getWebServer</referencedby>
         <referencedby refid="class_config_manager_1a9e977107b4795fcbce0482711ff1ce7a" compoundref="_config_manager_8cpp" startline="2035" endline="2165">logsAPI</referencedby>
-        <referencedby refid="class_config_manager_1aeaf809f5fcc5b5be963935c533a56e49" compoundref="_config_manager_8cpp" startline="3054" endline="3245">mqttAPI</referencedby>
+        <referencedby refid="class_config_manager_1aeaf809f5fcc5b5be963935c533a56e49" compoundref="_config_manager_8cpp" startline="3054" endline="3238">mqttAPI</referencedby>
         <referencedby refid="class_config_manager_1a471a844085c27f3a8a8f9394d9c14677" compoundref="_config_manager_8cpp" startline="1347" endline="1390">pointsAPI</referencedby>
         <referencedby refid="class_config_manager_1a45b1ce1f09401af0b6f700cf4388b233" compoundref="_config_manager_8cpp" startline="1094" endline="1217">sensorAPI</referencedby>
         <referencedby refid="class_config_manager_1a2f271ab2a1e8014cebe1e26afe9974df" compoundref="_config_manager_8cpp" startline="281" endline="284">update</referencedby>
@@ -477,14 +477,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/ConfigManager.h" line="135" column="10" bodyfile="src/ConfigManager.cpp" bodystart="3054" bodyend="3245"/>
-        <references refid="class_m_q_t_t_manager_1aaa6dfaebfbbfb48e3f4de45bab477d2c" compoundref="_m_q_t_t_manager_8cpp" startline="383" endline="385">MQTTManager::connected</references>
-        <references refid="class_m_q_t_t_manager_1a2c8c1f0367aa9d93bfad4301a95b9e41" compoundref="_m_q_t_t_manager_8cpp" startline="617" endline="674">MQTTManager::getConfigJson</references>
-        <references refid="class_m_q_t_t_manager_1a7b05e6c97ae6c0d7522b75977e66dba4" compoundref="_m_q_t_t_manager_8cpp" startline="408" endline="410">MQTTManager::getState</references>
-        <references refid="class_m_q_t_t_manager_1a0e7eeb8aab7ad6c859a1eb352b5e301f" compoundref="_m_q_t_t_manager_8h" startline="217" endline="217">MQTTManager::isEnabled</references>
+        <location file="include/ConfigManager.h" line="135" column="10" bodyfile="src/ConfigManager.cpp" bodystart="3054" bodyend="3238"/>
+        <references refid="class_m_q_t_t_manager_1ae409088b01e23cd804d8ad1ae21ac23f" compoundref="_m_q_t_t_manager_8h" startline="110" endline="110">MQTTManager::connected</references>
+        <references refid="class_m_q_t_t_manager_1a2c8c1f0367aa9d93bfad4301a95b9e41" compoundref="_m_q_t_t_manager_8cpp" startline="356" endline="404">MQTTManager::getConfigJson</references>
+        <references refid="class_m_q_t_t_manager_1a0e7eeb8aab7ad6c859a1eb352b5e301f" compoundref="_m_q_t_t_manager_8h" startline="111" endline="111">MQTTManager::isEnabled</references>
         <references refid="_config_manager_8cpp_1a6b542f1a2b6fe18cd432d4c17b1afed7">mqttManager</references>
-        <references refid="class_m_q_t_t_manager_1ab8e796839e28f468cb21f9f28b421bed" compoundref="_m_q_t_t_manager_8cpp" startline="390" endline="401">MQTTManager::reconnect</references>
+        <references refid="class_m_q_t_t_manager_1ab7e30be38a54f74dc66657dbeb3a1892" compoundref="_m_q_t_t_manager_8h" startline="112" endline="112">MQTTManager::reconnect</references>
         <references refid="class_config_manager_1a773fb5f7cd89fa594bd05184e8af14a0" compoundref="_config_manager_8h" startline="49">server</references>
+        <references refid="class_m_q_t_t_manager_1a6d04009ffe15591e5faf9589e05787e0" compoundref="_m_q_t_t_manager_8cpp" startline="229" endline="253">MQTTManager::testPublish</references>
         <referencedby refid="class_config_manager_1a0497343220fc493f5cf9574922508908" compoundref="_config_manager_8cpp" startline="165" endline="279">begin</referencedby>
       </memberdef>
     </sectiondef>
@@ -611,7 +611,7 @@ Sets up file system, configuration, web server and all API endpoints </para>
         <references refid="class_logger_manager_1a5c1373ccc47f4112b596fe6f84fbbc21" compoundref="_logger_manager_8h" startline="145" endline="147">LoggerManager::info</references>
         <references refid="class_config_manager_1a04edc14e642ecadb9ccb87be05d1d878" compoundref="_config_manager_8cpp" startline="477" endline="690">loadPointsConfig</references>
         <references refid="class_config_manager_1a9e977107b4795fcbce0482711ff1ce7a" compoundref="_config_manager_8cpp" startline="2035" endline="2165">logsAPI</references>
-        <references refid="class_config_manager_1aeaf809f5fcc5b5be963935c533a56e49" compoundref="_config_manager_8cpp" startline="3054" endline="3245">mqttAPI</references>
+        <references refid="class_config_manager_1aeaf809f5fcc5b5be963935c533a56e49" compoundref="_config_manager_8cpp" startline="3054" endline="3238">mqttAPI</references>
         <references refid="class_config_manager_1a93a63ddc3f7efd83e80345826493a45d" compoundref="_config_manager_8cpp" startline="301" endline="332">onConfigChanged</references>
         <references refid="class_config_manager_1a471a844085c27f3a8a8f9394d9c14677" compoundref="_config_manager_8cpp" startline="1347" endline="1390">pointsAPI</references>
         <references refid="class_config_manager_1a45b1ce1f09401af0b6f700cf4388b233" compoundref="_config_manager_8cpp" startline="1094" endline="1217">sensorAPI</references>

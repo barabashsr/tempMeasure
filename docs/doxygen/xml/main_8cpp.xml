@@ -253,6 +253,9 @@
       <node id="35">
         <label>LittleFS.h</label>
       </node>
+      <node id="42">
+        <label>MQTT.h</label>
+      </node>
       <node id="30">
         <label>ModbusServerRTU.h</label>
       </node>
@@ -264,9 +267,6 @@
       </node>
       <node id="25">
         <label>PCF8575.h</label>
-      </node>
-      <node id="42">
-        <label>PubSubClient.h</label>
       </node>
       <node id="16">
         <label>RTClib.h</label>
@@ -603,7 +603,11 @@
         <referencedby refid="class_c_s_v_config_manager_1aeb5348105aeb04d73c45526f70d745f6" compoundref="_c_s_v_config_manager_8cpp" startline="24" endline="26">CSVConfigManager::CSVConfigManager</referencedby>
         <referencedby refid="class_logger_manager_1a321bbaf7cc3b3aa05c8ec036d4dbfea0" compoundref="_logger_manager_8cpp" startline="31" endline="39">LoggerManager::LoggerManager</referencedby>
         <referencedby refid="main_8cpp_1afe461d27b9c48d5921c00d521181f12f" compoundref="main_8cpp" startline="259" endline="326">loop</referencedby>
+        <referencedby refid="class_m_q_t_t_manager_1a85879ab5ef3cc4ff89e5ca789651cf2a">MQTTManager::MQTTManager</referencedby>
+        <referencedby refid="class_m_q_t_t_manager_1a295b55db26948bad7c1849198cc6480e" compoundref="_m_q_t_t_manager_8cpp" startline="561" endline="605">MQTTManager::publishSystemStatus</referencedby>
+        <referencedby refid="class_m_q_t_t_manager_1abed500066c9485cb62ce17eb7c8ad197" compoundref="_m_q_t_t_manager_8cpp" startline="494" endline="556">MQTTManager::publishTemperatureData</referencedby>
         <referencedby refid="main_8cpp_1a4fc01d736fe50cf5b977f755b675f11d" compoundref="main_8cpp" startline="106" endline="252">setup</referencedby>
+        <referencedby refid="class_m_q_t_t_manager_1aa2391d50cff2826a29a22879c2b33380" compoundref="_m_q_t_t_manager_8cpp" startline="144" endline="169">MQTTManager::update</referencedby>
       </memberdef>
       <memberdef kind="variable" id="main_8cpp_1a064a914bb7eaaf470d545cab5f0c0066" prot="public" static="no" mutable="no">
         <type><ref refid="class_config_manager" kindref="compound">ConfigManager</ref> *</type>
@@ -755,14 +759,14 @@
         <inbodydescription>
         </inbodydescription>
         <location file="src/main.cpp" line="259" column="6" bodyfile="src/main.cpp" bodystart="259" bodyend="326"/>
-        <references refid="class_m_q_t_t_manager_1a0865d8e5c42ab2106d9f2c172ee1cec2" compoundref="_m_q_t_t_manager_8cpp" startline="27" endline="98">MQTTManager::begin</references>
+        <references refid="class_m_q_t_t_manager_1a0865d8e5c42ab2106d9f2c172ee1cec2" compoundref="_m_q_t_t_manager_8cpp" startline="27" endline="75">MQTTManager::begin</references>
         <references refid="main_8cpp_1a064a914bb7eaaf470d545cab5f0c0066" compoundref="main_8cpp" startline="86">configManager</references>
         <references refid="main_8cpp_1aecbe6ad38ed7d220ace280ea33d8ab45">controller</references>
         <references refid="main_8cpp_1a543ccc95fbe6dd49b01bdc937630a4ac">logger</references>
-        <references refid="class_m_q_t_t_manager_1a9266e647933501851b411b6d2a9a1f95" compoundref="_m_q_t_t_manager_8cpp" startline="103" endline="149">MQTTManager::loop</references>
         <references refid="main_8cpp_1a4d17575d4300b383a3726118c7dba5ef" compoundref="main_8cpp" startline="89">modbusServer</references>
         <references refid="main_8cpp_1a1d9e181c64d8c5dcbbd5fec9b928a86d" compoundref="main_8cpp" startline="97">mqttInitialized</references>
         <references refid="main_8cpp_1ad27a531589f8fed0687abe50e4ab32dc">timeManager</references>
+        <references refid="class_m_q_t_t_manager_1aa2391d50cff2826a29a22879c2b33380" compoundref="_m_q_t_t_manager_8cpp" startline="144" endline="169">MQTTManager::update</references>
         <references refid="main_8cpp_1a975b5148f97bf4e1db273ce754d82ba9" compoundref="main_8cpp" startline="99">wifiWasConnected</references>
       </memberdef>
     </sectiondef>
@@ -1045,9 +1049,9 @@ This is the main application file that initializes and coordinates all system co
 <codeline lineno="287"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="290"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Process<sp/>MQTT<sp/>loop<sp/>if<sp/>initialized</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="290"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Process<sp/>MQTT<sp/>if<sp/>initialized</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="291"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="main_8cpp_1a1d9e181c64d8c5dcbbd5fec9b928a86d" kindref="member">mqttInitialized</ref>)<sp/>{</highlight></codeline>
-<codeline lineno="292"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_m_q_t_t_manager_1a9266e647933501851b411b6d2a9a1f95" kindref="member">MQTTManager::loop</ref>();</highlight></codeline>
+<codeline lineno="292"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_m_q_t_t_manager_1aa2391d50cff2826a29a22879c2b33380" kindref="member">MQTTManager::update</ref>(<ref refid="main_8cpp_1aecbe6ad38ed7d220ace280ea33d8ab45" kindref="member">controller</ref>);</highlight></codeline>
 <codeline lineno="293"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="294"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline lineno="295"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>WiFi<sp/>disconnected<sp/>-<sp/>reset<sp/>flags</highlight><highlight class="normal"></highlight></codeline>

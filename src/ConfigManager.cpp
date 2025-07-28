@@ -3132,21 +3132,14 @@ void ConfigManager::mqttAPI() {
         
         doc["connected"] = MQTTManager::connected();
         doc["enabled"] = MQTTManager::isEnabled();
-        doc["state"] = MQTTManager::getState();
         
-        // Add status descriptions
-        switch(MQTTManager::getState()) {
-            case -4: doc["state_text"] = "CONNECTION_TIMEOUT"; break;
-            case -3: doc["state_text"] = "CONNECTION_LOST"; break;
-            case -2: doc["state_text"] = "CONNECT_FAILED"; break;
-            case -1: doc["state_text"] = "DISCONNECTED"; break;
-            case 0:  doc["state_text"] = "CONNECTED"; break;
-            case 1:  doc["state_text"] = "CONNECT_BAD_PROTOCOL"; break;
-            case 2:  doc["state_text"] = "CONNECT_BAD_CLIENT_ID"; break;
-            case 3:  doc["state_text"] = "CONNECT_UNAVAILABLE"; break;
-            case 4:  doc["state_text"] = "CONNECT_BAD_CREDENTIALS"; break;
-            case 5:  doc["state_text"] = "CONNECT_UNAUTHORIZED"; break;
-            default: doc["state_text"] = "UNKNOWN"; break;
+        // Add status description
+        if (MQTTManager::connected()) {
+            doc["state_text"] = "CONNECTED";
+        } else if (MQTTManager::isEnabled()) {
+            doc["state_text"] = "DISCONNECTED";
+        } else {
+            doc["state_text"] = "DISABLED";
         }
         
         // TODO: Add message counters when implemented
@@ -3193,7 +3186,7 @@ void ConfigManager::mqttAPI() {
         } else if (action == "publish") {
             // Test publish
             String message = doc["message"] | "Test message from ESP32";
-            bool result = mqttManager.testPublish(message);
+            bool result = MQTTManager::testPublish(message);
             response["success"] = result;
             response["message"] = result ? "Message published successfully" : "Failed to publish message";
         } else {

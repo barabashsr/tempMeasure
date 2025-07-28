@@ -1,0 +1,35 @@
+<map id="MQTTManager::update" name="MQTTManager::update">
+<area shape="rect" id="Node000001" title="Main update function that handles connection and publishing." alt="" coords="5,92,161,117"/>
+<area shape="rect" id="Node000002" href="$class_m_q_t_t_manager.html#a9266e647933501851b411b6d2a9a1f95" title="Internal loop function for connection maintenance." alt="" coords="267,92,408,117"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="161,102,252,102,252,107,161,107"/>
+<area shape="rect" id="Node000007" href="$class_m_q_t_t_manager.html#a295b55db26948bad7c1849198cc6480e" title="Publish system status." alt="" coords="236,5,438,46"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="126,88,253,49,255,54,128,94"/>
+<area shape="rect" id="Node000008" href="$class_m_q_t_t_manager.html#abed500066c9485cb62ce17eb7c8ad197" title="Publish temperature data." alt="" coords="209,292,466,317"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="103,116,309,280,306,284,100,120"/>
+<area shape="rect" id="Node000003" href="$class_m_q_t_t_manager.html#a76a2bc2516afb2e3aa07b847f32f611e" title="Connect to MQTT broker." alt="" coords="548,92,711,117"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="408,102,533,102,533,107,408,107"/>
+<area shape="rect" id="Node000004" href="$class_m_q_t_t_manager.html#a542f100738a605efbd30b788835efd1d" title="Build topic string based on configuration." alt="" coords="797,41,971,66"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="697,88,801,67,802,73,698,94"/>
+<area shape="rect" id="Node000005" href="$class_m_q_t_t_manager.html#ae409088b01e23cd804d8ad1ae21ac23f" title=" " alt="" coords="796,92,972,117"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="711,102,780,102,780,107,711,107"/>
+<area shape="rect" id="Node000006" href="$class_m_q_t_t_manager.html#a6d04009ffe15591e5faf9589e05787e0" title="Test publish to configured test topic." alt="" coords="793,141,975,166"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="700,115,800,135,799,140,699,120"/>
+<area shape="poly" id="edge7_Node000007_Node000004" title=" " alt="" coords="439,22,584,24,746,32,781,36,781,41,745,38,584,30,439,28"/>
+<area shape="poly" id="edge9_Node000008_Node000004" title=" " alt="" coords="346,290,432,171,481,109,512,77,545,62,579,51,649,38,718,34,781,37,781,42,718,39,650,43,580,56,547,67,516,81,485,113,437,174,350,293"/>
+<area shape="rect" id="Node000009" href="$class_measurement_point.html#a7b74a18d86e0e545264a774aa2c31cad" title="Get measurement point address." alt="" coords="528,469,732,494"/>
+<area shape="poly" id="edge10_Node000008_Node000009" title=" " alt="" coords="351,316,416,383,463,423,515,455,528,461,526,466,513,460,460,427,412,387,347,319"/>
+<area shape="rect" id="Node000010" href="$class_measurement_point.html#a1421d744f7982e528a579da02adb1919" title="Get alarm status bits." alt="" coords="534,519,725,559"/>
+<area shape="poly" id="edge11_Node000008_Node000010" title=" " alt="" coords="348,316,372,354,410,405,458,459,486,483,515,505,523,509,520,514,513,509,483,488,454,463,405,408,368,357,344,319"/>
+<area shape="rect" id="Node000011" href="$class_measurement_point.html#a81c7ae93a9314344967d0f31c6fefe2f" title="Get pointer to bound sensor." alt="" coords="533,141,726,182"/>
+<area shape="poly" id="edge12_Node000008_Node000011" title=" " alt="" coords="355,289,422,242,466,215,513,191,528,185,530,190,515,196,469,220,425,246,358,293"/>
+<area shape="rect" id="Node000012" href="$class_measurement_point.html#aceaf14fde40bcd5331e5ea6a07d7dde8" title="Get current temperature." alt="" coords="514,206,745,232"/>
+<area shape="poly" id="edge13_Node000008_Node000012" title=" " alt="" coords="373,288,513,242,546,233,547,239,515,247,375,294"/>
+<area shape="rect" id="Node000013" href="$class_measurement_point.html#a3fb0693931f12190a7f96e5d6be51b51" title="Get error status bits." alt="" coords="538,256,722,297"/>
+<area shape="poly" id="edge14_Node000008_Node000013" title=" " alt="" coords="466,289,522,284,522,289,467,295"/>
+<area shape="rect" id="Node000014" href="$class_measurement_point.html#a8677e00e0be369d7874f4982990dc56d" title="Get maximum recorded temperature." alt="" coords="523,321,736,346"/>
+<area shape="poly" id="edge15_Node000008_Node000014" title=" " alt="" coords="467,315,508,319,507,324,466,320"/>
+<area shape="rect" id="Node000015" href="$class_measurement_point.html#adc31f012462c1623617d5f362bcb2c59" title="Get minimum recorded temperature." alt="" coords="525,370,734,396"/>
+<area shape="poly" id="edge16_Node000008_Node000015" title=" " alt="" coords="379,315,515,356,545,364,544,369,513,362,377,320"/>
+<area shape="rect" id="Node000016" href="$class_measurement_point.html#aa3a80d373c7609c7b178bf7353ffdd7a" title="Get measurement point name." alt="" coords="534,420,725,445"/>
+<area shape="poly" id="edge17_Node000008_Node000016" title=" " alt="" coords="358,315,425,360,469,385,515,406,534,412,533,417,513,411,466,390,422,365,355,320"/>
+</map>

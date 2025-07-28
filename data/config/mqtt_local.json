@@ -1,0 +1,42 @@
+{
+  "enabled": true,
+  "broker_host": "192.168.0.104",
+  "broker_port": 1883,
+  "use_tls": false,
+  "username": "",
+  "password": "",
+  "client_id": "esp32_temp_controller",
+  "device_name": "esp32_temp_controller",
+  "topics": {
+    "level1_type": "skip",
+    "level1_value": "",
+    "level2_type": "skip",
+    "level2_value": "",
+    "level3_type": "skip",
+    "level3_value": ""
+  },
+  "publishing": {
+    "retain_telemetry": false,
+    "retain_alarms": true,
+    "retain_state": true
+  },
+  "qos": {
+    "telemetry": 0,
+    "alarms": 1,
+    "commands": 2
+  },
+  "lwt": {
+    "enabled": true,
+    "topic": "",
+    "message": "{\"status\":\"offline\"}",
+    "qos": 1,
+    "retain": true
+  },
+  "test": {
+    "publish_topic": "test/pub",
+    "subscribe_topic": "test/sub"
+  },
+  "intervals": {
+    "telemetry": 60
+  }
+}

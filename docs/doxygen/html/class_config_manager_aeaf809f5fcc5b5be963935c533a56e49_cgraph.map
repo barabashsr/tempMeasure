@@ -1,19 +1,19 @@
 <map id="ConfigManager::mqttAPI" name="ConfigManager::mqttAPI">
-<area shape="rect" id="Node000001" title="Setup MQTT API endpoints." alt="" coords="5,104,171,130"/>
-<area shape="rect" id="Node000002" href="$class_m_q_t_t_manager.html#aaa6dfaebfbbfb48e3f4de45bab477d2c" title="Check if connected to MQTT broker." alt="" coords="231,5,407,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="107,101,156,70,218,40,236,33,237,38,220,45,159,75,110,106"/>
-<area shape="rect" id="Node000003" href="$class_m_q_t_t_manager.html#a2c8c1f0367aa9d93bfad4301a95b9e41" title="Get configuration as JSON string." alt="" coords="219,55,419,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="151,101,240,82,241,87,152,106"/>
-<area shape="rect" id="Node000004" href="$class_m_q_t_t_manager.html#a7b05e6c97ae6c0d7522b75977e66dba4" title="Get the current MQTT client state." alt="" coords="236,104,402,130"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="171,114,221,114,221,120,171,120"/>
-<area shape="rect" id="Node000005" href="$class_m_q_t_t_manager.html#a0e7eeb8aab7ad6c859a1eb352b5e301f" title="Check if MQTT is enabled." alt="" coords="232,153,406,179"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="152,128,241,147,240,152,151,133"/>
-<area shape="rect" id="Node000006" href="$class_m_q_t_t_manager.html#ab8e796839e28f468cb21f9f28b421bed" title="Force reconnection to MQTT broker." alt="" coords="232,203,406,228"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="110,128,159,159,220,189,237,195,236,200,218,194,156,163,107,133"/>
-<area shape="rect" id="Node000007" href="$class_m_q_t_t_manager.html#a129d111c8b1ae84640849bc206098853" title="Attempt to connect to MQTT broker (non&#45;blocking)" alt="" coords="467,203,693,228"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="406,213,451,213,451,218,406,218"/>
-<area shape="rect" id="Node000008" href="$class_m_q_t_t_manager.html#a2ce492eb2115ac5803cff2f29966a211" title="Connect to MQTT broker (blocking)" alt="" coords="741,203,941,228"/>
-<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="694,213,726,213,726,218,694,218"/>
-<area shape="rect" id="Node000009" href="$class_m_q_t_t_manager.html#a6d04009ffe15591e5faf9589e05787e0" title="Test publish to configured test topic." alt="" coords="989,203,1170,228"/>
-<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="941,213,973,213,973,218,941,218"/>
+<area shape="rect" id="Node000001" title="Setup MQTT API endpoints." alt="" coords="5,90,171,116"/>
+<area shape="rect" id="Node000002" href="$class_m_q_t_t_manager.html#ae409088b01e23cd804d8ad1ae21ac23f" title=" " alt="" coords="680,41,856,66"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="104,87,153,54,184,38,218,26,282,12,349,5,415,3,481,5,601,17,697,34,696,39,600,22,480,10,415,8,349,10,283,17,219,31,187,43,156,59,107,92"/>
+<area shape="rect" id="Node000003" href="$class_m_q_t_t_manager.html#a2c8c1f0367aa9d93bfad4301a95b9e41" title="Get configuration as JSON string." alt="" coords="219,41,419,66"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="151,87,240,67,241,73,152,92"/>
+<area shape="rect" id="Node000004" href="$class_m_q_t_t_manager.html#a0e7eeb8aab7ad6c859a1eb352b5e301f" title=" " alt="" coords="232,90,406,116"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="171,100,217,100,217,105,171,105"/>
+<area shape="rect" id="Node000005" href="$class_m_q_t_t_manager.html#ab7e30be38a54f74dc66657dbeb3a1892" title=" " alt="" coords="232,139,406,165"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="152,114,241,133,240,138,151,119"/>
+<area shape="rect" id="Node000008" href="$class_m_q_t_t_manager.html#a6d04009ffe15591e5faf9589e05787e0" title="Test publish to configured test topic." alt="" coords="677,189,859,214"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="108,114,156,146,187,162,219,175,277,189,335,199,454,211,566,213,662,209,662,214,566,218,454,216,335,205,275,194,218,180,185,167,153,151,105,118"/>
+<area shape="rect" id="Node000006" href="$class_m_q_t_t_manager.html#a76a2bc2516afb2e3aa07b847f32f611e" title="Connect to MQTT broker." alt="" coords="467,139,629,165"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="406,149,452,149,452,155,406,155"/>
+<area shape="poly" id="edge7_Node000006_Node000002" title=" " alt="" coords="578,136,722,71,725,75,580,141"/>
+<area shape="rect" id="Node000007" href="$class_m_q_t_t_manager.html#a542f100738a605efbd30b788835efd1d" title="Build topic string based on configuration." alt="" coords="681,139,855,165"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="630,149,665,149,665,155,630,155"/>
+<area shape="poly" id="edge8_Node000006_Node000008" title=" " alt="" coords="609,163,693,182,692,187,608,168"/>
 </map>

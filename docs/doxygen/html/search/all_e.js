@@ -17,8 +17,10 @@ var searchData=
   ['pt1000_14',['PT1000',['../_sensor_8h.html#a213c434cb928c4ca22513e2302632435a481caba3768b84e8b68fb58b04ec595e',1,'Sensor.h']]],
   ['pt1000_15',['pt1000',['../class_sensor.html#a8ca8a9931ab07b445039fe8298329939',1,'Sensor']]],
   ['ptpoints_16',['ptPoints',['../class_temperature_controller.html#af7c6beb92cc3f0b60ade37d2f87d53de',1,'TemperatureController']]],
-  ['publish_17',['publish',['../class_m_q_t_t_manager.html#aba0fa39910d767f0623291608e83ae81',1,'MQTTManager::publish(const char *message)'],['../class_m_q_t_t_manager.html#ae68e09972e3ed17d457e1c05117d613b',1,'MQTTManager::publish(const String &amp;message)']]],
-  ['publish_5finterval_18',['PUBLISH_INTERVAL',['../class_m_q_t_t_manager.html#a36f27fe8d5a3e83c9804d2072bc20517',1,'MQTTManager']]],
-  ['publishcounter_19',['publishCounter',['../class_m_q_t_t_manager.html#af1032c63a8824102312224a716cc6da6',1,'MQTTManager']]],
-  ['pushline_20',['pushLine',['../class_indicator_interface.html#a3d7f75c8c69808ecc98d1e1fb272984d',1,'IndicatorInterface']]]
+  ['publish_17',['publish',['../class_m_q_t_t_manager.html#a52c5a6d9564f0ca0861adb8fb508a1bc',1,'MQTTManager::publish(const char *topic, const char *payload, bool retain=false, int qos=0)'],['../class_m_q_t_t_manager.html#a3fd7044f23d0362c60dc477ee9e2e2aa',1,'MQTTManager::publish(const String &amp;topic, const String &amp;payload, bool retain=false, int qos=0)']]],
+  ['publishcounter_18',['publishCounter',['../class_m_q_t_t_manager.html#af1032c63a8824102312224a716cc6da6',1,'MQTTManager']]],
+  ['publishintervalms_19',['publishIntervalMs',['../class_m_q_t_t_manager.html#aaedfdffed76c75fd893e52dcbf02dd98',1,'MQTTManager']]],
+  ['publishsystemstatus_20',['publishSystemStatus',['../class_m_q_t_t_manager.html#a295b55db26948bad7c1849198cc6480e',1,'MQTTManager']]],
+  ['publishtemperaturedata_21',['publishTemperatureData',['../class_m_q_t_t_manager.html#abed500066c9485cb62ce17eb7c8ad197',1,'MQTTManager']]],
+  ['pushline_22',['pushLine',['../class_indicator_interface.html#a3d7f75c8c69808ecc98d1e1fb272984d',1,'IndicatorInterface']]]
 ];

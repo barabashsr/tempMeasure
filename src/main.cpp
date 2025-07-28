@@ -287,9 +287,9 @@ void loop() {
             }
         }
         
-        // Process MQTT loop if initialized
+        // Process MQTT if initialized
         if (mqttInitialized) {
-            MQTTManager::loop();
+            MQTTManager::update(controller);
         }
     } else {
         // WiFi disconnected - reset flags
