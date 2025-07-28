@@ -148,24 +148,6 @@ void MQTTManager::update(TemperatureController& controller) {
     
     // Handle connection maintenance
     loop();
-    
-    // Publish data at configured interval
-    if (mqttClient.connected()) {
-        unsigned long now = millis();
-        if (now - lastTelemetryPublish >= publishIntervalMs) {
-            lastTelemetryPublish = now;
-            
-            // Publish temperature data
-            if (publishTemperatureData(controller)) {
-                Serial.println("[MQTTManager] Temperature data published to MQTT");
-            }
-            
-            // Publish system status
-            if (publishSystemStatus(controller)) {
-                Serial.println("[MQTTManager] System status published to MQTT");
-            }
-        }
-    }
 }
 
 /**
@@ -190,6 +172,20 @@ void MQTTManager::loop() {
         
         if (!isConnected) {
             isConnected = true;
+        }
+        
+        // Test publish counter every second
+        static unsigned long lastPublishTime = 0;
+        unsigned long now = millis();
+        if (now - lastPublishTime >= 1000) {
+            lastPublishTime = now;
+            
+            String message = String(publishCounter++);
+            Serial.printf("[MQTTManager] Publishing counter: %s\n", message.c_str());
+            
+            if (!testPublish(message)) {
+                Serial.println("[MQTTManager] Failed to publish counter");
+            }
         }
     }
 }

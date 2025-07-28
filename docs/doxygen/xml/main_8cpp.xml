@@ -604,10 +604,10 @@
         <referencedby refid="class_logger_manager_1a321bbaf7cc3b3aa05c8ec036d4dbfea0" compoundref="_logger_manager_8cpp" startline="31" endline="39">LoggerManager::LoggerManager</referencedby>
         <referencedby refid="main_8cpp_1afe461d27b9c48d5921c00d521181f12f" compoundref="main_8cpp" startline="259" endline="326">loop</referencedby>
         <referencedby refid="class_m_q_t_t_manager_1a85879ab5ef3cc4ff89e5ca789651cf2a">MQTTManager::MQTTManager</referencedby>
-        <referencedby refid="class_m_q_t_t_manager_1a295b55db26948bad7c1849198cc6480e" compoundref="_m_q_t_t_manager_8cpp" startline="561" endline="605">MQTTManager::publishSystemStatus</referencedby>
-        <referencedby refid="class_m_q_t_t_manager_1abed500066c9485cb62ce17eb7c8ad197" compoundref="_m_q_t_t_manager_8cpp" startline="494" endline="556">MQTTManager::publishTemperatureData</referencedby>
+        <referencedby refid="class_m_q_t_t_manager_1a295b55db26948bad7c1849198cc6480e" compoundref="_m_q_t_t_manager_8cpp" startline="557" endline="601">MQTTManager::publishSystemStatus</referencedby>
+        <referencedby refid="class_m_q_t_t_manager_1abed500066c9485cb62ce17eb7c8ad197" compoundref="_m_q_t_t_manager_8cpp" startline="490" endline="552">MQTTManager::publishTemperatureData</referencedby>
         <referencedby refid="main_8cpp_1a4fc01d736fe50cf5b977f755b675f11d" compoundref="main_8cpp" startline="106" endline="252">setup</referencedby>
-        <referencedby refid="class_m_q_t_t_manager_1aa2391d50cff2826a29a22879c2b33380" compoundref="_m_q_t_t_manager_8cpp" startline="144" endline="169">MQTTManager::update</referencedby>
+        <referencedby refid="class_m_q_t_t_manager_1aa2391d50cff2826a29a22879c2b33380" compoundref="_m_q_t_t_manager_8cpp" startline="144" endline="151">MQTTManager::update</referencedby>
       </memberdef>
       <memberdef kind="variable" id="main_8cpp_1a064a914bb7eaaf470d545cab5f0c0066" prot="public" static="no" mutable="no">
         <type><ref refid="class_config_manager" kindref="compound">ConfigManager</ref> *</type>
@@ -766,7 +766,7 @@
         <references refid="main_8cpp_1a4d17575d4300b383a3726118c7dba5ef" compoundref="main_8cpp" startline="89">modbusServer</references>
         <references refid="main_8cpp_1a1d9e181c64d8c5dcbbd5fec9b928a86d" compoundref="main_8cpp" startline="97">mqttInitialized</references>
         <references refid="main_8cpp_1ad27a531589f8fed0687abe50e4ab32dc">timeManager</references>
-        <references refid="class_m_q_t_t_manager_1aa2391d50cff2826a29a22879c2b33380" compoundref="_m_q_t_t_manager_8cpp" startline="144" endline="169">MQTTManager::update</references>
+        <references refid="class_m_q_t_t_manager_1aa2391d50cff2826a29a22879c2b33380" compoundref="_m_q_t_t_manager_8cpp" startline="144" endline="151">MQTTManager::update</references>
         <references refid="main_8cpp_1a975b5148f97bf4e1db273ce754d82ba9" compoundref="main_8cpp" startline="99">wifiWasConnected</references>
       </memberdef>
     </sectiondef>

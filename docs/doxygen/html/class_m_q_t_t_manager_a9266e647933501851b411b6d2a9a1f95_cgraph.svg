@@ -12,8 +12,8 @@
 <g id="Node000001" class="node">
 <title>Node1</title>
 <g id="a_Node000001"><a xlink:title="Internal loop function for connection maintenance.">
-<polygon fill="#999999" stroke="#666666" points="105.25,-56.25 0,-56.25 0,-37 105.25,-37 105.25,-56.25"/>
-<text xml:space="preserve" text-anchor="middle" x="52.62" y="-42.75" font-family="Helvetica,sans-Serif" font-size="10.00">MQTTManager::loop</text>
+<polygon fill="#999999" stroke="#666666" points="105.25,-38.25 0,-38.25 0,-19 105.25,-19 105.25,-38.25"/>
+<text xml:space="preserve" text-anchor="middle" x="52.62" y="-24.75" font-family="Helvetica,sans-Serif" font-size="10.00">MQTTManager::loop</text>
 </a>
 </g>
 </g>
@@ -21,8 +21,8 @@
 <g id="Node000002" class="node">
 <title>Node2</title>
 <g id="a_Node000002"><a xlink:href="class_m_q_t_t_manager.html#a76a2bc2516afb2e3aa07b847f32f611e" target="_top" xlink:title="Connect to MQTT broker.">
-<polygon fill="white" stroke="#666666" points="263,-56.25 141.25,-56.25 141.25,-37 263,-37 263,-56.25"/>
-<text xml:space="preserve" text-anchor="middle" x="202.12" y="-42.75" font-family="Helvetica,sans-Serif" font-size="10.00">MQTTManager::connect</text>
+<polygon fill="white" stroke="#666666" points="263,-57.25 141.25,-57.25 141.25,-38 263,-38 263,-57.25"/>
+<text xml:space="preserve" text-anchor="middle" x="202.12" y="-43.75" font-family="Helvetica,sans-Serif" font-size="10.00">MQTTManager::connect</text>
 </a>
 </g>
 </g>
@@ -30,8 +30,26 @@
 <g id="edge1_Node000001_Node000002" class="edge">
 <title>Node1&#45;&gt;Node2</title>
 <g id="a_edge1_Node000001_Node000002"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M105.63,-46.62C113.35,-46.62 121.42,-46.62 129.46,-46.62"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="129.25,-50.13 139.25,-46.63 129.25,-43.13 129.25,-50.13"/>
+<path fill="none" stroke="#63b8ff" d="M105.63,-35.32C113.35,-36.32 121.42,-37.36 129.46,-38.39"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="128.9,-41.85 139.27,-39.66 129.8,-34.91 128.9,-41.85"/>
+</a>
+</g>
+</g>
+<!-- Node5 -->
+<g id="Node000005" class="node">
+<title>Node5</title>
+<g id="a_Node000005"><a xlink:href="class_m_q_t_t_manager.html#a6d04009ffe15591e5faf9589e05787e0" target="_top" xlink:title="Test publish to configured test topic.">
+<polygon fill="white" stroke="#666666" points="435,-19.25 299,-19.25 299,0 435,0 435,-19.25"/>
+<text xml:space="preserve" text-anchor="middle" x="367" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">MQTTManager::testPublish</text>
+</a>
+</g>
+</g>
+<!-- Node1&#45;&gt;Node5 -->
+<g id="edge5_Node000001_Node000005" class="edge">
+<title>Node1&#45;&gt;Node5</title>
+<g id="a_edge5_Node000001_Node000005"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M105.56,-25.47C155.06,-22.46 230.28,-17.88 287.17,-14.42"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="287.38,-17.91 297.15,-13.81 286.95,-10.93 287.38,-17.91"/>
 </a>
 </g>
 </g>
@@ -48,8 +66,8 @@
 <g id="edge2_Node000002_Node000003" class="edge">
 <title>Node2&#45;&gt;Node3</title>
 <g id="a_edge2_Node000002_Node000003"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M247.63,-56.74C267.02,-61.14 289.96,-66.35 310.45,-71.01"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="309.54,-74.39 320.07,-73.19 311.1,-67.56 309.54,-74.39"/>
+<path fill="none" stroke="#63b8ff" d="M248.93,-57.75C267.66,-61.89 289.52,-66.72 309.24,-71.08"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="308.26,-74.45 318.78,-73.19 309.77,-67.61 308.26,-74.45"/>
 </a>
 </g>
 </g>
@@ -66,17 +84,8 @@
 <g id="edge3_Node000002_Node000004" class="edge">
 <title>Node2&#45;&gt;Node4</title>
 <g id="a_edge3_Node000002_Node000004"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M263.31,-46.62C271.75,-46.62 280.52,-46.62 289.22,-46.62"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="289.07,-50.13 299.07,-46.63 289.07,-43.13 289.07,-50.13"/>
-</a>
-</g>
-</g>
-<!-- Node5 -->
-<g id="Node000005" class="node">
-<title>Node5</title>
-<g id="a_Node000005"><a xlink:href="class_m_q_t_t_manager.html#a6d04009ffe15591e5faf9589e05787e0" target="_top" xlink:title="Test publish to configured test topic.">
-<polygon fill="white" stroke="#666666" points="435,-19.25 299,-19.25 299,0 435,0 435,-19.25"/>
-<text xml:space="preserve" text-anchor="middle" x="367" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">MQTTManager::testPublish</text>
+<path fill="none" stroke="#63b8ff" d="M263.31,-47.26C271.75,-47.2 280.52,-47.15 289.22,-47.1"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="289.09,-50.6 299.07,-47.04 289.05,-43.6 289.09,-50.6"/>
 </a>
 </g>
 </g>
@@ -84,8 +93,8 @@
 <g id="edge4_Node000002_Node000005" class="edge">
 <title>Node2&#45;&gt;Node5</title>
 <g id="a_edge4_Node000002_Node000005"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M247.63,-36.51C267.02,-32.11 289.96,-26.9 310.45,-22.24"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="311.1,-25.69 320.07,-20.06 309.54,-18.86 311.1,-25.69"/>
+<path fill="none" stroke="#63b8ff" d="M246.34,-37.54C266.4,-32.86 290.45,-27.25 311.71,-22.29"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="312.44,-25.71 321.39,-20.03 310.85,-18.9 312.44,-25.71"/>
 </a>
 </g>
 </g>
