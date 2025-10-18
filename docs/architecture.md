@@ -635,11 +635,897 @@ Logger.log(LOG_INFO, "MQTT", "Published telemetry: %d points", pointCount);
    - Log all Modbus changes
    - Include timestamps and values
 
+## MQTT Implementation Guide
+
+### Overview
+The MQTT implementation uses the **static class pattern** (singleton-like) to provide global access to MQTT functionality throughout the codebase. The `MQTTManager` class is implemented entirely with static members and methods, making it accessible from any component without passing instances.
+
+### Static Class Design
+```cpp
+class MQTTManager {
+private:
+    static MQTTConfig config;
+    static MQTTClient mqttClient;
+    // All members are static
+    MQTTManager() = delete;  // Prevent instantiation
+
+public:
+    // All methods are static - accessible anywhere
+    static bool begin();
+    static void update(TemperatureController& controller);
+    static bool publish(const char* topic, const char* payload, bool retain, int qos);
+    static bool isEnabled() { return configLoaded && config.enabled; }
+    static bool connected() { return mqttClient.connected(); }
+};
+```
+
+### Integration Points
+
+#### 1. Main Application (main.cpp)
+```cpp
+void setup() {
+    // Initialize MQTT after WiFi is connected
+    if (WiFi.status() == WL_CONNECTED) {
+        MQTTManager::begin();
+    }
+}
+
+void loop() {
+    // Update MQTT in main loop
+    if (MQTTManager::isEnabled()) {
+        MQTTManager::update(temperatureController);
+    }
+}
+```
+
+#### 2. Alarm State Changes (Alarm.cpp)
+Add MQTT notification when alarm state changes:
+```cpp
+void Alarm::setState(AlarmStage newStage) {
+    if (stage != newStage) {
+        AlarmStage oldStage = stage;
+        stage = newStage;
+        
+        // Log state change
+        Serial.printf("Alarm state changed: Point %d from %s to %s\n", 
+                     pointIndex, getStageString(oldStage), getStageString(newStage));
+        
+        // MQTT notification - ADD THIS
+        if (MQTTManager::isEnabled() && MQTTManager::connected()) {
+            publishAlarmStateChange(oldStage, newStage);
+        }
+        
+        // Update timestamps
+        updateTimestamp(newStage);
+    }
+}
+
+void Alarm::publishAlarmStateChange(AlarmStage oldStage, AlarmStage newStage) {
+    JsonDocument doc;
+    doc["timestamp"] = millis();
+    doc["point_index"] = pointIndex;
+    doc["point_name"] = measurementPoint->getName();
+    doc["alarm_type"] = (alarmType == ALARM_LOW) ? "LOW" : "HIGH";
+    doc["old_state"] = getStageString(oldStage);
+    doc["new_state"] = getStageString(newStage);
+    doc["current_temp"] = measurementPoint->getCurrentTemp();
+    doc["threshold"] = (alarmType == ALARM_LOW) ? 
+                       measurementPoint->getLowAlarmThreshold() : 
+                       measurementPoint->getHighAlarmThreshold();
+    
+    String topic = MQTTManager::buildTopic("alarms", "state_change");
+    String payload;
+    serializeJson(doc, payload);
+    
+    MQTTManager::publish(topic, payload, true, 1);  // Retain=true, QoS=1
+}
+```
+
+#### 3. Temperature Updates (TemperatureController.cpp)
+Enable periodic temperature publishing in the update method:
+```cpp
+void MQTTManager::update(TemperatureController& controller) {
+    if (!config.enabled) return;
+    
+    // Handle connection maintenance
+    loop();
+    
+    // Publish temperature data periodically - ENABLE THIS
+    if (connected()) {
+        unsigned long now = millis();
+        if (now - lastTelemetryPublish >= publishIntervalMs) {
+            publishTemperatureData(controller);
+            publishSystemStatus(controller);
+            lastTelemetryPublish = now;
+        }
+    }
+}
+```
+
+#### 4. Command Processing (MQTTManager.cpp)
+Implement command handling in the message callback:
+```cpp
+void MQTTManager::messageReceived(String &topic, String &payload) {
+    Serial.printf("[MQTT] Received: Topic=%s, Payload=%s\n", 
+                  topic.c_str(), payload.c_str());
+    
+    // Check if this is a command request
+    if (topic.endsWith("/command/request")) {
+        processCommand(topic, payload);
+    }
+}
+
+void MQTTManager::processCommand(const String& topic, const String& payload) {
+    JsonDocument request;
+    DeserializationError error = deserializeJson(request, payload);
+    
+    if (error) {
+        sendCommandError("Invalid JSON", "");
+        return;
+    }
+    
+    const char* cmd = request["command"];
+    const char* cmdId = request["cmd_id"] | "";
+    
+    if (!cmd) {
+        sendCommandError("Missing command field", cmdId);
+        return;
+    }
+    
+    // Process commands
+    if (strcmp(cmd, "get_status") == 0) {
+        handleGetStatus(cmdId);
+    } else if (strcmp(cmd, "get_points_data") == 0) {
+        handleGetPointsData(cmdId, request["params"]);
+    } else if (strcmp(cmd, "acknowledge_alarm") == 0) {
+        handleAcknowledgeAlarm(cmdId, request["params"]);
+    } else if (strcmp(cmd, "reset_min_max") == 0) {
+        handleResetMinMax(cmdId, request["params"]);
+    } else if (strcmp(cmd, "send_message") == 0) {
+        handleSendMessage(cmdId, request["params"]);
+    } else {
+        sendCommandError("Unknown command", cmdId);
+    }
+}
+```
+
+#### 5. Web Interface Integration (ConfigManager.cpp)
+Update MQTT settings when changed via web:
+```cpp
+void ConfigManager::onConfigChanged(String key) {
+    if (key == "mqtt_enabled") {
+        bool enabled = conf(key).toInt() == 1;
+        if (enabled && !MQTTManager::isEnabled()) {
+            MQTTManager::begin();
+        } else if (!enabled && MQTTManager::isEnabled()) {
+            MQTTManager::disconnect();
+        }
+    }
+}
+```
+
+### MQTT Message Formats
+
+#### 1. Temperature Telemetry
+**Topic**: `{prefix}/{device_name}/telemetry/temperature`  
+**Publish Interval**: Configurable (default 60 seconds)  
+**Retain**: false  
+**QoS**: 0  
+
+**Message Example**:
+```json
+{
+  "timestamp": 1706543210123,
+  "device_name": "temp_controller_01",
+  "measurement_points": [
+    {
+      "address": "28:FF:12:34:56:78:90:AB",
+      "name": "Tank 1 Bottom",
+      "type": "DS18B20",
+      "value": 65.5,
+      "min": 64.2,
+      "max": 67.8,
+      "alarm_status": "NORMAL",
+      "error_status": false
+    },
+    {
+      "address": "28:FF:AB:CD:EF:12:34:56",
+      "name": "Tank 1 Top",
+      "type": "DS18B20",
+      "value": 66.2,
+      "min": 65.0,
+      "max": 68.1,
+      "alarm_status": "HIGH_WARNING",
+      "error_status": false
+    },
+    {
+      "address": "PT1000_0",
+      "name": "Reactor Core",
+      "type": "PT1000",
+      "value": 125.3,
+      "min": 120.1,
+      "max": 128.5,
+      "alarm_status": "NORMAL",
+      "error_status": false
+    }
+  ]
+}
+```
+
+#### 2. System Status
+**Topic**: `{prefix}/{device_name}/telemetry/status`  
+**Publish Interval**: Same as temperature  
+**Retain**: true  
+**QoS**: 0  
+
+**Message Example**:
+```json
+{
+  "timestamp": 1706543210123,
+  "device_name": "temp_controller_01",
+  "device_id": 1001,
+  "firmware_version": "2.1.0",
+  "uptime": 3600,
+  "alarms": {
+    "active_count": 2,
+    "acknowledged_count": 1,
+    "total_count": 5
+  },
+  "network": {
+    "wifi_connected": true,
+    "wifi_ssid": "PlantNetwork",
+    "wifi_rssi": -65,
+    "ip_address": "192.168.1.100"
+  },
+  "memory": {
+    "free_heap": 145632,
+    "min_free_heap": 125000,
+    "heap_size": 327680
+  }
+}
+```
+
+#### 3. Alarm State Change
+**Topic**: `{prefix}/{device_name}/alarms/state_change`  
+**Publish**: On state change  
+**Retain**: true  
+**QoS**: 1  
+
+**Message Example**:
+```json
+{
+  "timestamp": 1706543215456,
+  "point_index": 5,
+  "point_name": "Tank 2 Middle",
+  "alarm_type": "HIGH",
+  "old_state": "NORMAL",
+  "new_state": "HIGH_WARNING",
+  "current_temp": 68.5,
+  "threshold": 68.0
+}
+```
+
+#### 4. Command Request (Subscribe)
+**Topic**: `{prefix}/{device_name}/command/request`  
+**Direction**: Device subscribes  
+**QoS**: 2  
+
+**Command Examples**:
+
+**4.1 Get Status Command**:
+```json
+{
+  "command": "get_status",
+  "cmd_id": "cmd_123456",
+  "timestamp": 1706543220000
+}
+```
+
+**4.2 Get Points Data Command**:
+```json
+{
+  "command": "get_points_data",
+  "cmd_id": "cmd_123457",
+  "params": {
+    "points": [0, 5, 10, 15],  // Optional: specific points
+    "include_history": false
+  }
+}
+```
+
+**4.3 Acknowledge Alarm Command**:
+```json
+{
+  "command": "acknowledge_alarm",
+  "cmd_id": "cmd_123458",
+  "params": {
+    "point_index": 5,
+    "alarm_type": "HIGH",
+    "acknowledgment_message": "Operator aware, cooling initiated"
+  }
+}
+```
+
+**4.4 Reset Min/Max Command**:
+```json
+{
+  "command": "reset_min_max",
+  "cmd_id": "cmd_123459",
+  "params": {
+    "points": "all"  // or array of point indices
+  }
+}
+```
+
+**4.5 Send Message Command**:
+```json
+{
+  "command": "send_message",
+  "cmd_id": "cmd_123460",
+  "params": {
+    "message": "Maintenance scheduled for 14:00",
+    "display_duration": 30
+  }
+}
+```
+
+#### 5. Command Response (Publish)
+**Topic**: `{prefix}/{device_name}/command/response`  
+**Publish**: In response to commands  
+**Retain**: false  
+**QoS**: 2  
+
+**Response Examples**:
+
+**5.1 Success Response**:
+```json
+{
+  "cmd_id": "cmd_123456",
+  "status": "success",
+  "timestamp": 1706543221000,
+  "data": {
+    // Command-specific response data
+  }
+}
+```
+
+**5.2 Get Status Response**:
+```json
+{
+  "cmd_id": "cmd_123456",
+  "status": "success",
+  "timestamp": 1706543221000,
+  "data": {
+    "device_id": 1001,
+    "active_alarms": [
+      {
+        "point_index": 5,
+        "point_name": "Tank 2 Middle",
+        "alarm_type": "HIGH",
+        "state": "HIGH_WARNING",
+        "duration": 300
+      }
+    ],
+    "sensor_count": {
+      "ds18b20": 45,
+      "pt1000": 8,
+      "total": 53
+    }
+  }
+}
+```
+
+**5.3 Error Response**:
+```json
+{
+  "cmd_id": "cmd_123458",
+  "status": "error",
+  "timestamp": 1706543222000,
+  "error": {
+    "code": "INVALID_POINT",
+    "message": "Point index 65 does not exist"
+  }
+}
+```
+
+#### 6. Last Will and Testament (LWT)
+**Topic**: `{prefix}/{device_name}/state/connection`  
+**Retain**: true  
+**QoS**: 1  
+
+**Online Message** (sent on connect):
+```json
+{
+  "status": "online",
+  "timestamp": 1706543200000
+}
+```
+
+**Offline Message** (LWT):
+```json
+{
+  "status": "offline"
+}
+```
+
+### Topic Structure
+
+The topic structure follows ISA-95 hierarchy pattern:
+```
+{level1}/{level2}/{level3}/{device_name}/{category}/{subcategory}
+```
+
+Example configurations:
+- `plant/area1/line2/temp_controller_01/telemetry/temperature`
+- `factory/building_a/zone3/tc_1001/alarms/state_change`
+- `site/process/reactor/temp_mon_05/command/request`
+
+Topic building example:
+```cpp
+// Configure hierarchy in settings
+config.topic_level1_type = "plant";
+config.topic_level1_value = "chemical_plant_1";
+config.topic_level2_type = "area";
+config.topic_level2_value = "reactor_area";
+config.topic_level3_type = "line";
+config.topic_level3_value = "reactor_1";
+config.device_name = "temp_ctrl_r1";
+
+// Results in topics like:
+// chemical_plant_1/reactor_area/reactor_1/temp_ctrl_r1/telemetry/temperature
+```
+
+### Implementation Checklist
+
+To fully integrate MQTT functionality:
+
+1. **In TemperatureController::loop()**:
+   ```cpp
+   // Add MQTT update call
+   if (MQTTManager::isEnabled()) {
+       MQTTManager::update(*this);
+   }
+   ```
+
+2. **In Alarm::setState()**:
+   - Add alarm state change publishing
+
+3. **In MQTTManager::update()**:
+   - Uncomment temperature publishing calls
+   - Remove test counter publishing
+
+4. **In MQTTManager::messageReceived()**:
+   - Implement command processing logic
+
+5. **Subscribe to command topic** in connect():
+   ```cpp
+   String cmdTopic = buildTopic("command", "request");
+   mqttClient.subscribe(cmdTopic, config.qos_commands);
+   ```
+
+6. **Add command handlers**:
+   - Implement each command processing function
+   - Send appropriate responses
+
+### Memory Considerations
+
+- Message buffer: 4KB allocated for MQTT client
+- JSON documents: Use StaticJsonDocument where possible
+- Topic strings: Build dynamically, don't store
+- Payload optimization: Only send changed values when possible
+
+### Error Handling
+
+```cpp
+// Connection error handling
+if (!MQTTManager::connected()) {
+    // MQTT operations will fail gracefully
+    // Automatic reconnection handled internally
+}
+
+// Publish error handling
+if (!MQTTManager::publish(topic, payload, retain, qos)) {
+    Serial.printf("MQTT publish failed for topic: %s\n", topic);
+    // Log error but don't block operation
+}
+```
+
+### Testing MQTT Integration
+
+1. **Test connection**: Check test topic publishing
+2. **Verify telemetry**: Monitor temperature/status topics
+3. **Test alarms**: Trigger alarm conditions
+4. **Command testing**: Send each command type
+5. **Disconnection handling**: Test network interruptions
+6. **Load testing**: Verify with all 60 points active
+
+## ConfigAssist Library Usage Guide
+
+### Overview
+The system uses ConfigAssist library for persistent configuration management with automatic web interface generation. ConfigAssist provides YAML-based configuration definition, automatic HTML form generation, and JSON/INI file storage.
+
+### Library Integration
+```cpp
+// Platform configuration (platformio.ini)
+lib_deps = https://github.com/gemi254/ConfigAssist.git
+```
+
+### Core Configuration Setup
+
+#### 1. YAML Configuration Definition
+Define configuration structure using YAML format with validation rules:
+
+```cpp
+const char* VARIABLES_DEF_YAML PROGMEM = R"~(
+    Wifi settings:
+      - st_ssid:
+          label: WiFi SSID
+          default: ""
+          max: 32
+      - st_pass:
+          label: WiFi Password  
+          default: ""
+          type: password
+          max: 64
+      - host_name:
+          label: Device Hostname
+          default: 'temp-monitor-{mac}'
+          max: 32
+    
+    Device settings:
+      - device_id:
+          label: Device ID
+          type: number
+          min: 1
+          max: 9999
+          default: 1000
+      - measurement_period:
+          label: Measurement Period (seconds)
+          type: number
+          min: 1
+          max: 3600
+          default: 10
+      - modbus_enabled:
+          label: Enable Modbus
+          type: checkbox
+          default: 1
+    
+    MQTT settings:
+      - mqtt_enabled:
+          label: Enable MQTT
+          type: checkbox
+          default: 0
+      - mqtt_broker:
+          label: MQTT Broker
+          default: ""
+          max: 128
+)~";
+```
+
+#### 2. ConfigAssist Initialization
+```cpp
+class ConfigManager {
+private:
+    ConfigAssist conf;
+    WebServer* server;
+    
+public:
+    ConfigManager(TemperatureController& tempController) 
+        : conf("/config.ini", VARIABLES_DEF_YAML),  // Primary config file
+          controller(tempController) {
+        
+        server = new WebServer(80);
+    }
+    
+    void begin() {
+        // Mount filesystem
+        if (!LittleFS.begin()) {
+            Serial.println("Failed to mount LittleFS");
+            return;
+        }
+        
+        // Setup ConfigAssist with web server
+        bool startAP = shouldStartAP();
+        conf.setup(*server, startAP);
+        
+        // Set configuration change callback
+        conf.setRemotUpdateCallback(onConfigChanged);
+        
+        // Start web server
+        server->begin();
+    }
+};
+```
+
+### Saving Settings to File
+
+#### 1. Automatic Saving
+ConfigAssist automatically saves changes when values are modified through the web interface or programmatically:
+
+```cpp
+// Setting values automatically triggers save
+conf["device_id"] = "1234";
+conf["measurement_period"] = "30";
+// File is automatically saved after changes
+```
+
+#### 2. Manual Save
+For explicit save operations:
+
+```cpp
+// Force save current configuration
+conf.saveConfigFile();
+```
+
+#### 3. Multiple Configuration Files
+For secondary configuration files (e.g., measurement points):
+
+```cpp
+// Create secondary config without YAML definition
+ConfigAssist pointsConf("/points2.ini", false);
+
+// Set values
+for (int i = 0; i < 60; i++) {
+    String key = "P" + String(i);
+    MeasurementPoint* point = controller.getPoint(i);
+    
+    pointsConf[key + "_name"] = point->getName();
+    pointsConf[key + "_enabled"] = String(point->isEnabled() ? 1 : 0);
+    pointsConf[key + "_low_alarm"] = String(point->getLowAlarmThreshold());
+    pointsConf[key + "_high_alarm"] = String(point->getHighAlarmThreshold());
+}
+
+// Manually save the file
+pointsConf.saveConfigFile();
+```
+
+### Retrieving Settings from File
+
+#### 1. Using operator() for Read Access
+The operator() provides read-only access to configuration values:
+
+```cpp
+// Get string values
+String getWifiSSID() { return conf("st_ssid"); }
+String getWifiPassword() { return conf("st_pass"); }
+String getHostname() { return conf("host_name"); }
+
+// Get numeric values with conversion
+uint16_t getDeviceId() { return conf("device_id").toInt(); }
+uint16_t getMeasurementPeriod() { return conf("measurement_period").toInt(); }
+
+// Get boolean values
+bool isModbusEnabled() { return conf("modbus_enabled").toInt() == 1; }
+bool isMQTTEnabled() { return conf("mqtt_enabled").toInt() == 1; }
+```
+
+#### 2. Using operator[] for Read/Write Access
+```cpp
+// Read value
+String currentSSID = conf["st_ssid"];
+
+// Write value (triggers auto-save)
+conf["st_ssid"] = "NewWiFiNetwork";
+```
+
+#### 3. Loading from Secondary Files
+```cpp
+// Load existing configuration file
+ConfigAssist alarmsConf("/alarms.ini", false);
+
+// Read values
+for (int i = 0; i < 20; i++) {
+    String key = "A" + String(i);
+    String name = alarmsConf[key + "_name"];
+    float threshold = alarmsConf[key + "_threshold"].toFloat();
+    bool enabled = alarmsConf[key + "_enabled"].toInt() == 1;
+}
+```
+
+### Declaring API Endpoints
+
+#### 1. Automatic ConfigAssist Endpoints
+ConfigAssist automatically creates these endpoints:
+
+```cpp
+// Automatic endpoints created by conf.setup():
+// GET /setup           - Configuration web interface
+// GET /setup/values    - Get all values as JSON
+// POST /setup/values   - Update values from JSON
+// GET /setup/json      - Get configuration as JSON
+// GET /setup/ini       - Download config.ini file
+```
+
+#### 2. Custom API Endpoints Integration
+Add custom endpoints that work with ConfigAssist:
+
+```cpp
+void ConfigManager::setupAPIEndpoints() {
+    // Status endpoint using ConfigAssist values
+    server->on("/api/status", HTTP_GET, [this]() {
+        JsonDocument doc;
+        
+        // Add ConfigAssist values to response
+        doc["device_id"] = conf("device_id");
+        doc["hostname"] = conf("host_name");
+        doc["wifi_ssid"] = conf("st_ssid");
+        doc["modbus_enabled"] = conf("modbus_enabled").toInt() == 1;
+        doc["mqtt_enabled"] = conf("mqtt_enabled").toInt() == 1;
+        doc["measurement_period"] = conf("measurement_period").toInt();
+        
+        // Add runtime values
+        doc["uptime"] = millis() / 1000;
+        doc["free_heap"] = ESP.getFreeHeap();
+        
+        String response;
+        serializeJson(doc, response);
+        server->send(200, "application/json", response);
+    });
+    
+    // Export settings as CSV
+    server->on("/api/settings/export", HTTP_GET, [this]() {
+        String csv = "Setting,Value\n";
+        
+        // WiFi Settings
+        csv += "st_ssid," + _escapeCSVField(conf("st_ssid")) + "\n";
+        csv += "st_pass," + _escapeCSVField(conf("st_pass")) + "\n";
+        csv += "host_name," + _escapeCSVField(conf("host_name")) + "\n";
+        
+        // Device Settings
+        csv += "device_id," + conf("device_id") + "\n";
+        csv += "measurement_period," + conf("measurement_period") + "\n";
+        csv += "modbus_enabled," + conf("modbus_enabled") + "\n";
+        
+        server->send(200, "text/csv", csv);
+    });
+    
+    // Import settings from CSV
+    server->on("/api/settings/import", HTTP_POST, []() {
+        server->send(200);
+    }, [this]() {
+        HTTPUpload& upload = server->upload();
+        if (upload.status == UPLOAD_FILE_END) {
+            String csvData = upload.buf;
+            
+            // Parse CSV and update ConfigAssist
+            // ... CSV parsing logic ...
+            
+            // Update values (auto-saves)
+            conf["device_id"] = parsedDeviceId;
+            conf["measurement_period"] = parsedPeriod;
+        }
+    });
+}
+```
+
+#### 3. Configuration Change Handling
+React to configuration changes in real-time:
+
+```cpp
+// Static callback function
+void ConfigManager::onConfigChanged(String key) {
+    if (instance == nullptr) return;
+    
+    // Handle specific key changes
+    if (key == "device_id") {
+        uint16_t newId = instance->conf(key).toInt();
+        instance->controller.setDeviceId(newId);
+        Serial.printf("Device ID changed to: %d\n", newId);
+        
+    } else if (key == "measurement_period") {
+        uint16_t newPeriod = instance->conf(key).toInt();
+        instance->controller.setMeasurementPeriod(newPeriod);
+        Serial.printf("Measurement period changed to: %d seconds\n", newPeriod);
+        
+    } else if (key == "modbus_enabled") {
+        bool enabled = instance->conf(key).toInt() == 1;
+        instance->controller.setModbusEnabled(enabled);
+        
+    } else if (key == "mqtt_enabled") {
+        bool enabled = instance->conf(key).toInt() == 1;
+        if (enabled) {
+            MQTTManager::begin();
+        } else {
+            MQTTManager::disconnect();
+        }
+        
+    } else if (key == "reset_min_max") {
+        if (instance->conf(key).toInt() == 1) {
+            instance->resetMinMaxValues();
+            instance->conf[key] = "0";  // Reset the flag
+        }
+    }
+}
+```
+
+### Advanced ConfigAssist Patterns
+
+#### 1. Dynamic Variable Substitution
+ConfigAssist supports variable substitution in default values:
+
+```cpp
+// In YAML definition
+default: 'temp-monitor-{mac}'  // {mac} will be replaced with MAC address
+```
+
+#### 2. Value Validation
+Define validation rules in YAML:
+
+```cpp
+- temperature_offset:
+    label: Temperature Offset
+    type: number
+    min: -10.0
+    max: 10.0
+    step: 0.1
+    default: 0.0
+```
+
+#### 3. Conditional Configuration
+```cpp
+// Show/hide options based on other settings
+if (conf("mqtt_enabled").toInt() == 1) {
+    // MQTT is enabled, show MQTT settings in UI
+    server->on("/api/mqtt/config", HTTP_GET, handleMQTTConfig);
+}
+```
+
+#### 4. Configuration Backup/Restore
+```cpp
+// Backup configuration
+void backupConfiguration() {
+    File configFile = LittleFS.open("/config.ini", "r");
+    File backupFile = LittleFS.open("/config.bak", "w");
+    
+    while (configFile.available()) {
+        backupFile.write(configFile.read());
+    }
+    
+    configFile.close();
+    backupFile.close();
+}
+
+// Restore configuration
+void restoreConfiguration() {
+    LittleFS.remove("/config.ini");
+    LittleFS.rename("/config.bak", "/config.ini");
+    
+    // Reload ConfigAssist
+    conf.loadConfigFile();
+}
+```
+
+### Best Practices
+
+1. **Use PROGMEM for YAML Definitions**
+   - Saves RAM by storing configuration structure in flash
+
+2. **Implement Change Callbacks**
+   - React to configuration changes without polling
+
+3. **Validate Input Ranges**
+   - Define min/max values in YAML to prevent invalid configurations
+
+4. **Use Separate Files for Different Configs**
+   - Main settings in `/config.ini`
+   - Feature-specific settings in separate files
+
+5. **Provide Default Values**
+   - Ensure system can start with factory defaults
+
+6. **Escape Special Characters**
+   - Use proper escaping for CSV export/import
+
+7. **Thread Safety**
+   - ConfigAssist is not thread-safe; use from main loop only
+
 ## Conclusion
 
 This architecture enhances the Temperature Controller system with modern connectivity and usability features while maintaining its industrial reliability. The modular design ensures each enhancement can be developed, tested, and deployed independently with minimal risk to existing functionality.
 
 The MQTT infrastructure is substantially complete, requiring only the final integration hooks to activate the already-implemented publishing and command features. This significantly reduces the implementation risk and timeline.
+
+ConfigAssist provides a robust foundation for configuration management with minimal code overhead, automatic persistence, and integrated web interface generation.
 
 ---
 
