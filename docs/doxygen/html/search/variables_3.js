@@ -12,7 +12,7 @@ var searchData=
   ['configloaded_9',['configLoaded',['../class_m_q_t_t_manager.html#a40421587ffcaf38da5189de4fd721dcf',1,'MQTTManager']]],
   ['configmanager_10',['configManager',['../main_8cpp.html#a064a914bb7eaaf470d545cab5f0c0066',1,'main.cpp']]],
   ['connection_11',['connection',['../class_sensor.html#adaacf2cbc3623d86bad4c32496340a74',1,'Sensor']]],
-  ['controller_12',['controller',['../class_config_manager.html#a68eeba761f112013757ddf298454407d',1,'ConfigManager::controller'],['../class_temp_modbus_server.html#a1b87630d285f12a2b180b21f2acb5584',1,'TempModbusServer::controller'],['../main_8cpp.html#aecbe6ad38ed7d220ace280ea33d8ab45',1,'controller:&#160;main.cpp']]],
+  ['controller_12',['controller',['../class_config_manager.html#a68eeba761f112013757ddf298454407d',1,'ConfigManager::controller'],['../class_temp_modbus_server.html#a1b87630d285f12a2b180b21f2acb5584',1,'TempModbusServer::controller'],['../main_8cpp.html#a1eb3fa5a65249939a674c25ce59c6b7a',1,'controller:&#160;main.cpp']]],
   ['controllerptr_13',['controllerPtr',['../class_temp_modbus_server.html#adefc0e4358d5ac9626c4186f6925bf03',1,'TempModbusServer']]],
   ['cspin_14',['csPin',['../class_sensor.html#ae982d7fa79bdc6e223632c69ca512b34',1,'Sensor']]],
   ['cspins_15',['csPins',['../main_8cpp.html#ab7afb3d24d4590b3ba10970a6bff2631',1,'main.cpp']]],

@@ -151,6 +151,7 @@ Temperature Control System - PlatformIO-based embedded system for monitoring and
    - All code must include Doxygen-style comments as per project documentation
    
    **Reference Documentation:**
+   - `docs/briefs/mqtt_architecture_guide.md` - a short guide. **MUST READ**
    - `/docs/briefs/mqtt_implementation_brief.md` - Comprehensive MQTT specification
    - `/docs/briefs/mqtt_implementation_plan.md` - Detailed implementation phases
    - `/docs/briefs/mqtt_command_reference.md` - Command specifications
@@ -171,7 +172,7 @@ Temperature Control System - PlatformIO-based embedded system for monitoring and
    
    **Implementation Phases:**
    
-   ***Phase 1: Core Infrastructure (Week 1)***
+   ***Phase 1: Core Infrastructure (Week 1)*** ✓
    - [ ] Basic MQTTManager class with PubSubClient
    - [ ] Configuration structure and ConfigAssist integration
    - [ ] Connection management with auto-reconnect

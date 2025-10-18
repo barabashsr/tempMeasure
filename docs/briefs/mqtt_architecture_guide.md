@@ -8,7 +8,7 @@ This guide outlines the MQTT communication architecture and command structure fo
 
 ### Primary Topic Structure
 ```
-<prefix>/<level1>/<level2>/<level3>/<device_name>/<topic_type>/<subtopic>
+<level1>/<level2>/<level3>/<device_name>/<topic_type>/<subtopic>
 ```
 
 ### Topic Levels

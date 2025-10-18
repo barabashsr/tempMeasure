@@ -21,13 +21,13 @@ var main_8cpp =
     [ "loop", "main_8cpp.html#afe461d27b9c48d5921c00d521181f12f", null ],
     [ "setup", "main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d", null ],
     [ "configManager", "main_8cpp.html#a064a914bb7eaaf470d545cab5f0c0066", null ],
-    [ "controller", "main_8cpp.html#aecbe6ad38ed7d220ace280ea33d8ab45", null ],
+    [ "controller", "main_8cpp.html#a1eb3fa5a65249939a674c25ce59c6b7a", null ],
     [ "csPins", "main_8cpp.html#ab7afb3d24d4590b3ba10970a6bff2631", null ],
     [ "indicator", "main_8cpp.html#a009a384f716fb318dbb3ca6c01f82cf6", null ],
     [ "logger", "main_8cpp.html#a543ccc95fbe6dd49b01bdc937630a4ac", null ],
     [ "modbusServer", "main_8cpp.html#a4d17575d4300b383a3726118c7dba5ef", null ],
     [ "mqttInitialized", "main_8cpp.html#a1d9e181c64d8c5dcbbd5fec9b928a86d", null ],
-    [ "onwWirePins", "main_8cpp.html#a42643b111a01e68b13ba177173ca18f2", null ],
+    [ "oneWirePins", "main_8cpp.html#a0fdd7bccfc360c77907efbb7be09da20", null ],
     [ "timeManager", "main_8cpp.html#ad27a531589f8fed0687abe50e4ab32dc", null ],
     [ "wifiWasConnected", "main_8cpp.html#a975b5148f97bf4e1db273ce754d82ba9", null ]
 ];

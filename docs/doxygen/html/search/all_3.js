@@ -26,7 +26,7 @@ var searchData=
   ['connected_23',['connected',['../class_m_q_t_t_manager.html#ae409088b01e23cd804d8ad1ae21ac23f',1,'MQTTManager']]],
   ['connection_24',['connection',['../class_sensor.html#adaacf2cbc3623d86bad4c32496340a74',1,'Sensor']]],
   ['connectwifi_25',['connectWiFi',['../class_config_manager.html#a83b4217012bf8eda57fbfd8deca09dd2',1,'ConfigManager']]],
-  ['controller_26',['controller',['../class_config_manager.html#a68eeba761f112013757ddf298454407d',1,'ConfigManager::controller'],['../class_temp_modbus_server.html#a1b87630d285f12a2b180b21f2acb5584',1,'TempModbusServer::controller'],['../main_8cpp.html#aecbe6ad38ed7d220ace280ea33d8ab45',1,'controller:&#160;main.cpp']]],
+  ['controller_26',['controller',['../class_config_manager.html#a68eeba761f112013757ddf298454407d',1,'ConfigManager::controller'],['../class_temp_modbus_server.html#a1b87630d285f12a2b180b21f2acb5584',1,'TempModbusServer::controller'],['../main_8cpp.html#a1eb3fa5a65249939a674c25ce59c6b7a',1,'controller:&#160;main.cpp']]],
   ['controllerptr_27',['controllerPtr',['../class_temp_modbus_server.html#adefc0e4358d5ac9626c4186f6925bf03',1,'TempModbusServer']]],
   ['createalarm_28',['createAlarm',['../class_temperature_controller.html#aa64384fb8503814b46a7d55f53ccb53a',1,'TemperatureController']]],
   ['createnewlogfile_29',['createNewLogFile',['../class_logger_manager.html#a445856fb9bb37bd5e61d5242d8996c1f',1,'LoggerManager']]],

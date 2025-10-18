@@ -74,13 +74,13 @@
 IndicatorInterface indicator(Wire, 0x20, PCF_INT);
 
 /// OneWire bus pin array for DS18B20 sensors
-uint8_t onwWirePins[4] = {BUS1_PIN, BUS2_PIN, BUS3_PIN, BUS4_PIN};
+uint8_t oneWirePins[4] = {BUS1_PIN, BUS2_PIN, BUS3_PIN, BUS4_PIN};
 
 /// SPI chip select pin array for PT1000 sensors
 uint8_t csPins[4] = {CS1_PIN, CS2_PIN, CS3_PIN, CS4_PIN};
 
 /// Main temperature controller managing all sensors and measurement points
-TemperatureController controller(onwWirePins, csPins, indicator);
+TemperatureController controller(oneWirePins, csPins, indicator);
 
 /// Web-based configuration manager (dynamically allocated)
 ConfigManager* configManager;
