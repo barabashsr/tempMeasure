@@ -1,8 +1,8 @@
 # Product Requirements Document (PRD)
 ## Temperature Controller System Enhancement
 
-**Version**: 1.0  
-**Date**: 2024-10-18  
+**Version**: 1.1  
+**Date**: 2024-10-18 (Updated: 2024-10-20)  
 **Author**: John (Product Manager)  
 **Project Type**: Brownfield Enhancement
 
@@ -87,6 +87,7 @@ The system currently monitors 60 temperature measurement points with comprehensi
 - Support TLS/SSL encryption (optional)
 - Auto-reconnect with exponential backoff
 - Configurable client ID and credentials
+- Configurable message history logging
 - Maximum 30KB additional RAM usage
 
 #### FR1.2: Topic Structure
@@ -136,6 +137,15 @@ Publish every 60 seconds (configurable 10-3600s):
 - Include priority, temperature, threshold
 - QoS 2 for critical alarms
 - Support bulk acknowledgment
+
+#### FR1.7: MQTT History and Logging
+- Optional MQTT message logging to SD card
+- User-configurable enable/disable via web interface
+- CSV format for browser-side parsing: timestamp,direction,topic,size,status,priority,message_preview
+- Automatic log rotation with configurable retention (1-30 days, default 7)
+- Web interface for viewing and filtering MQTT history
+- No server-side JSON generation (browser parses CSV)
+- Performance consideration: disabled by default
 
 ### FR2: Russian Translation
 
@@ -222,6 +232,7 @@ URL:http://192.168.4.1
 
 ### NFR1: Performance
 - MQTT operations: <5% CPU overhead
+- MQTT logging when enabled: Additional <2% CPU for SD writes
 - Command response: <500ms
 - Memory usage: <30KB additional for MQTT
 - Telemetry processing: <100ms
@@ -259,6 +270,7 @@ URL:http://192.168.4.1
 3. Temperature telemetry publishing
 4. Essential commands (status, acknowledge)
 5. Alarm notifications
+6. MQTT history logging framework
 
 ### Phase 2: Russian Translation (Week 2)
 1. Extract all strings to language files
@@ -286,9 +298,11 @@ URL:http://192.168.4.1
 ### Technical Metrics
 - [ ] All 60 points publishing via MQTT
 - [ ] <5% CPU overhead confirmed
+- [ ] MQTT history viewer functional with <2% additional overhead
 - [ ] 100% Russian translation coverage
 - [ ] QR code scannable in <2 seconds
 - [ ] Zero Modbus configuration corruptions
+- [ ] User documentation updated throughout development
 
 ### Operational Metrics
 - [ ] 80% reduction in alarm response time
@@ -328,7 +342,251 @@ URL:http://192.168.4.1
 - Preserve configuration structure
 - Keep current web server implementation
 
+## Epic & Story Structure
+
+### Epic 1: MQTT Integration
+**Goal**: Add complete MQTT functionality with telemetry, commands, and alarms
+
+#### Story 1.1: Complete existing MQTTManager implementation
+- Finish the partially implemented MQTTManager class
+- Ensure MQTTManager is singleton or static class for global access
+- Hook publishTemperatureData() into main loop
+- Enable the existing test counter publishing
+- **User Manual Update**: Add MQTT overview section, broker connection basics
+- **Manual Testing**:
+  - Connect to HiveMQ Cloud console
+  - Verify test counter messages appear
+  - Monitor Serial output for connection status
+  - Check heap usage via Serial (ESP.getFreeHeap())
+  - Test disconnect/reconnect by unplugging router
+- **Rollback**: Set MQTT enabled = false in config
+
+#### Story 1.2: Implement temperature telemetry publishing  
+- Call publishTemperatureData() every 60 seconds
+- Publish all 60 measurement points in JSON format
+- Add publishChangedValues() for delta updates
+- Implement optional MQTT history logging to SD card
+- Add MQTT logging to LoggerManager (new file: mqtt_log_YYYY-MM-DD.csv)
+- **User Manual Update**: Document telemetry data format, publishing intervals, and logging option
+- **Manual Testing**:
+  - Use MQTT Explorer to subscribe to telemetry topic
+  - Verify JSON format matches specification
+  - Test with 10-second intervals temporarily
+  - Monitor Serial for timing accuracy
+  - Verify MQTT logs created on SD card when enabled
+  - Test with logging disabled - verify no mqtt_log files created
+  - Check log format: timestamp,direction,topic,size,status
+- **Rollback**: Comment out publish calls in main loop
+
+#### Story 1.3: Add system status publishing
+- Implement publishSystemStatus() method
+- Include uptime, memory, WiFi RSSI, sensor counts
+- Publish every 5 minutes to status topic
+- Add device info (firmware version, MAC address)
+- Log status publishes to mqtt_log file
+- **User Manual Update**: Add system status monitoring section
+- **Manual Testing**:
+  - Subscribe to status topic in MQTT Explorer
+  - Verify 5-minute publishing interval
+  - Check all status fields populated correctly
+  - Force WiFi reconnect and verify RSSI updates
+  - Verify status messages in mqtt_log file
+- **Rollback**: Disable status publishing flag
+
+#### Story 1.4: Implement alarm MQTT notifications
+- Add MQTT notification calls in Alarm::updateState()
+- Publish to alarm topic on state transitions
+- Use QoS 1 for alarm messages
+- Include all alarm details (type, priority, value, threshold)
+- Log alarm notifications with priority flag
+- **User Manual Update**: Document alarm notification format and priorities
+- **Manual Testing**:
+  - Heat/cool sensors to trigger alarms
+  - Verify alarm messages in MQTT Explorer
+  - Test all alarm types (LOW/HIGH/CRITICAL)
+  - Verify state transition messages
+  - Check mqtt_log shows alarm messages with HIGH priority
+- **Rollback**: Remove MQTT calls from Alarm class
+
+#### Story 1.5: Add command subscription and parser
+- Implement processIncomingMessage() in MQTTManager
+- Subscribe to command/request topic
+- Parse JSON command structure
+- Add command validation and error responses
+- Log all received commands to mqtt_log
+- **User Manual Update**: Add MQTT commands overview section
+- **Manual Testing**:
+  - Send test commands via MQTT Explorer
+  - Verify Serial logs show received commands
+  - Test malformed JSON handling
+  - Verify commands logged with timestamp
+  - Test rate limiting (flood with commands)
+- **Rollback**: Unsubscribe from command topic
+
+#### Story 1.6: Implement essential read commands
+- Add handlers for get_status, get_points_data
+- Create command response framework
+- Publish responses to command/response topic
+- Add rate limiting (10 commands/second)
+- Log command responses
+- **User Manual Update**: Document read commands with examples
+- **Manual Testing**:
+  - Send get_status command, verify response
+  - Test get_points_data with various point lists
+  - Verify response times < 500ms (Serial timing)
+  - Check mqtt_log shows request/response pairs
+  - Test with invalid point numbers
+- **Rollback**: Return "not implemented" for all commands
+
+#### Story 1.7: Implement control commands
+- Add acknowledge_alarm command with validation
+- Implement send_message for OLED display
+- Add set_alarm_threshold with range validation
+- Log all control commands for audit with AUDIT flag
+- **User Manual Update**: Document control commands, safety considerations
+- **Manual Testing**:
+  - Trigger alarm, then acknowledge via MQTT
+  - Verify OLED displays sent messages
+  - Test threshold changes via MQTT
+  - Verify AUDIT entries in mqtt_log
+  - Test acknowledgment of non-existent alarms
+- **Rollback**: Disable control commands via config flag
+
+#### Story 1.8: Add MQTT history viewer and optimization
+- Create new settings-mqtt-history.html page
+- Add "Enable MQTT History" checkbox to settings-mqtt.html
+- Add JavaScript to fetch and parse mqtt_log files
+- Display in sortable/filterable table
+- Add download mqtt_log button
+- Implement conditional logging based on setting
+- Implement offline message queuing (100 messages)
+- Optimize message sizes and frequencies
+- **User Manual Update**: Document MQTT history viewer usage and enable/disable option
+- **Manual Testing**:
+  - Toggle "Enable MQTT History" setting
+  - Verify setting persists after reboot
+  - Test that logs only created when enabled
+  - Navigate to MQTT History page
+  - Verify log file list appears (or empty message)
+  - Test parsing of CSV format in browser
+  - Filter by direction (IN/OUT)
+  - Sort by timestamp
+  - Test download functionality
+  - Disable logging and verify new messages not logged
+  - Perform 24-hour stability test
+- **Rollback**: Disable advanced features individually
+
+### Epic 2: System Fine-tuning and Additional Features
+**Goal**: Complete Russian translation, QR code display, and Modbus safety
+
+#### Story 2.1: Implement Russian translation framework
+- Create language switching mechanism
+- Extract all UI strings to translation files
+- Add language selection to settings
+- Default to English if not configured
+- **User Manual Update**: Add language switching instructions (RU)
+- **Manual Testing**:
+  - Switch language via web settings
+  - Verify language persists after reboot
+  - Test fallback to English
+  - Check Serial logs in both languages
+  - Verify MQTT history page translates
+- **Rollback**: Force English language
+
+#### Story 2.2: Translate all web interface pages
+- Translate all 8 HTML pages + new MQTT history page to Russian
+- Localize JavaScript alert/confirm messages
+- Translate form validation messages
+- Update dynamic content generation
+- **User Manual Update**: Translate existing sections to Russian
+- **Manual Testing**:
+  - Navigate all pages in Russian
+  - Test all form submissions
+  - Verify all alerts/confirms in Russian
+  - Test MQTT history page in Russian
+  - Check special characters display correctly
+- **Rollback**: Serve English HTML files
+
+#### Story 2.3: Add QR code display functionality
+- Integrate QR code library (test memory impact)
+- Generate QR with device IP address
+- Add new OLED display page for QR
+- Update button navigation logic
+- **User Manual Update**: Add QR code usage section with images
+- **Manual Testing**:
+  - Long press button to enter QR mode
+  - Scan QR with multiple phone types
+  - Verify URL opens in browser
+  - Test QR readability from 30cm
+  - Test display timeout after 30s
+- **Rollback**: Skip QR page in display rotation
+
+#### Story 2.4: Implement WiFi setup QR for AP mode
+- Generate WiFi connection QR in AP mode
+- Include SSID and password in QR
+- Add setup URL to QR data
+- **User Manual Update**: Document AP mode QR setup process
+- **Manual Testing**:
+  - Enter AP mode
+  - Scan QR with iOS/Android devices
+  - Verify auto-connection to AP
+  - Test password-protected AP
+  - Verify web UI accessible after connection
+- **Rollback**: Display text-only connection info
+
+#### Story 2.5: Complete Modbus register 899 implementation
+- Add command handler for register 899
+- Implement configuration validation logic
+- Add command codes (apply, reset, clear, factory)
+- Require confirmation sequence for safety
+- **User Manual Update**: Document Modbus command register usage
+- **Manual Testing**:
+  - Use Modbus simulator (ModbusPoll)
+  - Test all command codes (0x01-0xFF)
+  - Verify threshold validation
+  - Test timeout on incomplete commands
+  - Verify changes logged to Serial
+- **Rollback**: Return error for all register 899 writes
+
+#### Story 2.6: Add safety mechanisms and logging
+- Implement timeout protection for commands
+- Add configuration rollback on error
+- Log all Modbus configuration changes
+- Integrate Modbus changes with mqtt_log when MQTT enabled
+- Validate threshold ranges and hysteresis
+- **User Manual Update**: Add troubleshooting section
+- **Manual Testing**:
+  - Test command timeout (5s)
+  - Verify all Modbus changes logged
+  - Test invalid configuration rejection
+  - Verify rollback on validation failure
+  - Check integrated logging when MQTT active
+- **Rollback**: Make register 899 read-only
+
+#### Story 2.7: Final User Manual Review and Alignment
+- Review entire USER_MANUAL_RU.md
+- Verify all features documented accurately
+- Add missing sections for new features
+- Update screenshots
+- Create quick reference card
+- **Manual Testing**:
+  - Follow guide as new user
+  - Verify all procedures match actual device behavior
+  - Test every documented workflow
+  - Have Russian speaker review grammar
+  - Verify MQTT examples work
+  - Check QR code instructions accurate
+  - Validate troubleshooting steps
+- **Rollback**: Not applicable
+
 ## Migration Strategy
+
+### Rollback Strategy
+Each story includes specific rollback steps. General rollback approach:
+1. **Level 1**: Disable specific feature via configuration
+2. **Level 2**: Comment out feature code
+3. **Level 3**: Revert to previous firmware
+4. **Level 4**: Factory reset to original firmware
 
 ### Pre-deployment
 1. Full backup of existing configuration
