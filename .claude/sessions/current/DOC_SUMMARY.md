@@ -1,8 +1,8 @@
 # Documentation Summary
-Generated: Wed Jul 23 22:12:47 MSK 2025
+Generated: Sat Oct 18 09:07:40 MSK 2025
 
 ## Classes Found
-14 classes documented
+17 classes documented
 
 ## Key Modules
 src/Alarm.cpp
