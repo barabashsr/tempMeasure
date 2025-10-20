@@ -103,17 +103,20 @@ Types:
 - `alarm/state` - State changes
 
 #### FR1.3: Temperature Telemetry
-Publish every 60 seconds (configurable 10-3600s):
+Publish every 60 seconds (configurable 10-3600s) - only configured points with bound sensors:
 ```json
 {
   "timestamp": "2024-10-18T10:00:00Z",
   "device_id": "tempcontroller01",
   "points": {
     "0": {"name": "Reactor Core", "temp": 75.3, "status": "OK"},
-    // ... all 60 points
+    "5": {"name": "Heat Exchanger", "temp": 85.2, "status": "OK"},
+    "12": {"name": "Cooling Tower", "temp": 45.1, "status": "OK"}
+    // ... only configured points, not all 60
   },
   "summary": {
-    "active_points": 45,
+    "configured_points": 15,
+    "active_points": 12,
     "sensor_errors": 2,
     "active_alarms": 3
   }
@@ -344,6 +347,85 @@ URL:http://192.168.4.1
 
 ## Epic & Story Structure
 
+### Testing Documentation Requirements
+
+**IMPORTANT**: Each story MUST have an associated manual testing instructions file that provides detailed, step-by-step testing procedures for developers and QA engineers.
+
+#### Manual Testing File Requirements:
+1. **File Location**: `/docs/testing/manual/[story-number]-[story-name]-test.md`
+2. **File Naming Convention**: Use story number and brief descriptive name (e.g., `1.1-mqttmanager-test.md`)
+3. **Content Structure**:
+   - Test Environment Setup
+   - Required Tools and Software
+   - Pre-test Configuration
+   - Step-by-step Test Procedures
+   - Expected Results for Each Step
+   - Error Scenarios to Test
+   - Performance Benchmarks
+   - Rollback Verification
+   - Test Data Cleanup
+
+#### Developer Responsibilities:
+1. **Create Initial Test File**: Developer MUST create the test file when starting work on a story
+2. **Update During Development**: As code changes, the test procedures MUST be updated to reflect:
+   - New functionality added
+   - Changed behavior
+   - Additional edge cases discovered
+   - Performance metrics observed
+   - Any deviations from original requirements
+3. **Maintain Accuracy**: Test instructions must always match the current implementation
+4. **Document Test Results**: Include actual test results and observations in a "Test Execution Log" section
+5. **Version Control**: Test files must be committed alongside code changes
+
+#### Manual Testing File Template:
+```markdown
+# Manual Testing Instructions: [Story Number] [Story Title]
+
+## Test Environment Setup
+- Hardware requirements
+- Software tools needed
+- Network configuration
+
+## Pre-Test Checklist
+- [ ] Configuration steps
+- [ ] Required dependencies
+
+## Test Procedures
+
+### Test Case 1: [Description]
+**Objective**: What this test validates
+
+**Steps**:
+1. Step with specific action
+2. Expected observation
+3. Verification method
+
+**Expected Result**: Clear success criteria
+
+**Failure Scenarios**: What could go wrong
+
+### Test Case 2: [Description]
+...
+
+## Performance Tests
+- Metrics to monitor
+- Acceptable thresholds
+
+## Rollback Testing
+- Steps to verify rollback works
+
+## Post-Test Cleanup
+- Reset procedures
+- Log collection
+
+## Test Execution Log
+| Date | Tester | Test Case | Result | Notes |
+|------|--------|-----------|--------|-------|
+| | | | | |
+```
+
+## Epic & Story Structure
+
 ### Epic 1: MQTT Integration
 **Goal**: Add complete MQTT functionality with telemetry, commands, and alarms
 
@@ -361,24 +443,48 @@ URL:http://192.168.4.1
   - Test disconnect/reconnect by unplugging router
 - **Rollback**: Set MQTT enabled = false in config
 
-#### Story 1.2: Implement temperature telemetry publishing  
-- Call publishTemperatureData() every 60 seconds
-- Publish all 60 measurement points in JSON format
-- Add publishChangedValues() for delta updates
-- Implement optional MQTT history logging to SD card
-- Add MQTT logging to LoggerManager (new file: mqtt_log_YYYY-MM-DD.csv)
-- **User Manual Update**: Document telemetry data format, publishing intervals, and logging option
+#### Story 1.2: Implement MQTT history logging framework
+- Add MQTT logging configuration to MQTTConfig structure (enableHistory flag, retentionDays)
+- Implement logMQTTMessage() in LoggerManager
+- Define CSV format: timestamp,direction,topic,size,status,priority,message_preview
+- Create mqtt_log_YYYY-MM-DD.csv files on SD card
+- Implement log rotation based on date with configurable retention
+- Add logging calls to publish() and messageReceived() methods
+- Implement priority levels (NORMAL, HIGH for alarms, AUDIT for commands)
+- Add "MQTT History" section to existing settings-mqtt.html:
+  - Checkbox for "Enable MQTT Command History"
+  - Number input for retention days (1-30, default 7)
+  - Button to view MQTT history logs
+  - Help text about performance impact
+- **User Manual Update**: Document MQTT logging feature and performance implications
 - **Manual Testing**:
+  - Enable/disable logging via web interface checkbox
+  - Verify CSV files created only when enabled
+  - Check file format and headers
+  - Test log rotation at midnight
+  - Verify retention period works (change system date to test)
+  - Verify no performance impact when disabled
+  - Monitor SD card writes with Serial output
+- **Rollback**: Set enableHistory = false in config
+
+#### Story 1.3: Implement temperature telemetry publishing  
+- Call publishTemperatureData() every 60 seconds
+- Publish ONLY configured points (with bound sensors, not all 60)
+- Skip points without sensors or disabled points
+- Add publishChangedValues() for delta updates
+- Integrate with MQTT logging (if enabled)
+- **User Manual Update**: Document telemetry data format and publishing intervals
+- **Manual Testing**:
+  - Configure only 10 points with sensors
   - Use MQTT Explorer to subscribe to telemetry topic
-  - Verify JSON format matches specification
+  - Verify JSON contains only configured points
   - Test with 10-second intervals temporarily
   - Monitor Serial for timing accuracy
-  - Verify MQTT logs created on SD card when enabled
-  - Test with logging disabled - verify no mqtt_log files created
-  - Check log format: timestamp,direction,topic,size,status
+  - Verify telemetry messages in mqtt_log when logging enabled
+  - Check message size is reduced with fewer points
 - **Rollback**: Comment out publish calls in main loop
 
-#### Story 1.3: Add system status publishing
+#### Story 1.4: Add system status publishing
 - Implement publishSystemStatus() method
 - Include uptime, memory, WiFi RSSI, sensor counts
 - Publish every 5 minutes to status topic
@@ -393,7 +499,7 @@ URL:http://192.168.4.1
   - Verify status messages in mqtt_log file
 - **Rollback**: Disable status publishing flag
 
-#### Story 1.4: Implement alarm MQTT notifications
+#### Story 1.5: Implement alarm MQTT notifications
 - Add MQTT notification calls in Alarm::updateState()
 - Publish to alarm topic on state transitions
 - Use QoS 1 for alarm messages
@@ -408,7 +514,7 @@ URL:http://192.168.4.1
   - Check mqtt_log shows alarm messages with HIGH priority
 - **Rollback**: Remove MQTT calls from Alarm class
 
-#### Story 1.5: Add command subscription and parser
+#### Story 1.6: Add command subscription and parser
 - Implement processIncomingMessage() in MQTTManager
 - Subscribe to command/request topic
 - Parse JSON command structure
@@ -423,7 +529,7 @@ URL:http://192.168.4.1
   - Test rate limiting (flood with commands)
 - **Rollback**: Unsubscribe from command topic
 
-#### Story 1.6: Implement essential read commands
+#### Story 1.7: Implement essential read commands
 - Add handlers for get_status, get_points_data
 - Create command response framework
 - Publish responses to command/response topic
@@ -438,7 +544,7 @@ URL:http://192.168.4.1
   - Test with invalid point numbers
 - **Rollback**: Return "not implemented" for all commands
 
-#### Story 1.7: Implement control commands
+#### Story 1.8: Implement control commands
 - Add acknowledge_alarm command with validation
 - Implement send_message for OLED display
 - Add set_alarm_threshold with range validation
@@ -452,29 +558,35 @@ URL:http://192.168.4.1
   - Test acknowledgment of non-existent alarms
 - **Rollback**: Disable control commands via config flag
 
-#### Story 1.8: Add MQTT history viewer and optimization
-- Create new settings-mqtt-history.html page
-- Add "Enable MQTT History" checkbox to settings-mqtt.html
-- Add JavaScript to fetch and parse mqtt_log files
-- Display in sortable/filterable table
-- Add download mqtt_log button
-- Implement conditional logging based on setting
+#### Story 1.9: Add MQTT history viewer and optimization
+- Create new mqtt-history.html page for viewing logs
+- Add link to MQTT History page from settings-mqtt.html
+- Implement JavaScript to:
+  - Fetch list of mqtt_log_*.csv files via API
+  - Parse CSV content in browser (no server-side JSON generation)
+  - Display in sortable/filterable table
+  - Filter by direction (IN/OUT/ALL), topic pattern, time range
+  - Show message preview with expandable full content
+  - Download individual log files
+- Add API endpoints in ConfigManager:
+  - GET /api/mqtt/logs - list available log files
+  - GET /api/mqtt/logs/{filename} - get log file content
+  - DELETE /api/mqtt/logs/{filename} - delete old logs
 - Implement offline message queuing (100 messages)
 - Optimize message sizes and frequencies
-- **User Manual Update**: Document MQTT history viewer usage and enable/disable option
+- **User Manual Update**: Document MQTT history viewer usage and navigation
 - **Manual Testing**:
-  - Toggle "Enable MQTT History" setting
-  - Verify setting persists after reboot
-  - Test that logs only created when enabled
-  - Navigate to MQTT History page
-  - Verify log file list appears (or empty message)
-  - Test parsing of CSV format in browser
-  - Filter by direction (IN/OUT)
-  - Sort by timestamp
-  - Test download functionality
-  - Disable logging and verify new messages not logged
+  - Navigate to MQTT History page from settings
+  - Verify log file list appears (or empty message if disabled)
+  - Test CSV parsing with various message sizes
+  - Test all filters (direction, topic, date range)
+  - Verify sorting by timestamp, topic, size
+  - Test message preview expansion
+  - Download log files and verify content
+  - Test with history disabled - should show appropriate message
+  - Test performance with large log files (1000+ entries)
   - Perform 24-hour stability test
-- **Rollback**: Disable advanced features individually
+- **Rollback**: Remove history page link, disable advanced features
 
 ### Epic 2: System Fine-tuning and Additional Features
 **Goal**: Complete Russian translation, QR code display, and Modbus safety
@@ -484,12 +596,15 @@ URL:http://192.168.4.1
 - Extract all UI strings to translation files
 - Add language selection to settings
 - Default to English if not configured
+- Keep Serial debug logs in English (for development)
+- Translate only: web UI, system event logs, alarm descriptions
 - **User Manual Update**: Add language switching instructions (RU)
 - **Manual Testing**:
   - Switch language via web settings
   - Verify language persists after reboot
   - Test fallback to English
-  - Check Serial logs in both languages
+  - Verify Serial logs remain in English
+  - Check system event logs use selected language
   - Verify MQTT history page translates
 - **Rollback**: Force English language
 
@@ -563,7 +678,29 @@ URL:http://192.168.4.1
   - Check integrated logging when MQTT active
 - **Rollback**: Make register 899 read-only
 
-#### Story 2.7: Final User Manual Review and Alignment
+#### Story 2.7: Refactor event logs viewer to prevent controller suspension
+- Replace current event-logs.html JSON generation with file download approach
+- Remove server-side JSON generation that causes controller to hang
+- Implement new workflow:
+  - Page requests list of available log files
+  - User selects date range or specific files
+  - Browser downloads CSV files directly
+  - JavaScript parses CSV client-side
+  - Display in paginated table (100 entries per page)
+- Add virtual scrolling for large files
+- Implement same filtering as dashboard trends
+- **User Manual Update**: Document new logs viewer interface
+- **Manual Testing**:
+  - Load page with large log files (10,000+ entries)
+  - Verify controller doesn't suspend/hang
+  - Test file download progress indication
+  - Verify CSV parsing handles all event types
+  - Test pagination and filtering
+  - Check memory usage in browser
+  - Compare performance with old implementation
+- **Rollback**: Restore old event-logs.html
+
+#### Story 2.8: Final User Manual Review and Alignment
 - Review entire USER_MANUAL_RU.md
 - Verify all features documented accurately
 - Add missing sections for new features
